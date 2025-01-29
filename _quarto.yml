@@ -12,8 +12,21 @@ website:
 format:
   html:
     theme: cosmo
-    css: styles.css
+    css: styles.scss
     toc: true
 
-editor: visual
+  letterbox-revealjs:
+    embed-resources: true
+    theme: styles_dark.scss
+    highlight-style: dark.theme
+
+code-link: true
+code-line-numbers: false
+execute:
+  echo: true
+callout-appearance: simple
+lang: de
+csl: apa7.csl
+
+editor: source
 
