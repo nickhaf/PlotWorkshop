@@ -1,9 +1,37 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "sessions/Einführung/Einführung.html",
+    "href": "sessions/Einführung/Einführung.html",
+    "title": "Einführung",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "View slides in full screen"
+  },
+  {
+    "objectID": "sessions/Einführung/Einführung.html#einführung",
+    "href": "sessions/Einführung/Einführung.html#einführung",
+    "title": "Einführung",
+    "section": "",
+    "text": "View slides in full screen"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Datenvisualisierung in R",
+    "section": "",
+    "text": "Kursübersicht\n\n  \n\n\n\nZeitplan\n\nIntro/Beispiele/Motivation\nggplot2 Basics\nWahrnehmungspsychologie/Gute Grafiken\nÜbung: Grafik verbessern\n\nTag 2:\n\ngganimate\nplotly\nAbschlussübung"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#section-1",
+    "href": "sessions/Einführung/slides.html#section-1",
+    "title": "Einführung",
+    "section": "",
+    "text": "https://r-graph-gallery.com/best-r-chart-examples https://allisonhorst.com/r-packages-functions"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#example-plot",
+    "href": "sessions/Einführung/slides.html#example-plot",
+    "title": "Einführung",
+    "section": "Example plot",
+    "text": "Example plot"
   }
 ]
