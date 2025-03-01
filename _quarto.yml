@@ -5,9 +5,10 @@ website:
   title: "PlotWorkshop"
   navbar:
     left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+      - text: Themen
+        menu: 
+          - text: Einführung
+            href: sessions/Einführung/Einführung.qmd
 
 format:
   html:

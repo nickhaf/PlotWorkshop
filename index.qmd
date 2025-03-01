@@ -1,3 +1,35 @@
 ---
-title: "PlotWorkshop"
+title: "Datenvisualisierung in R"
+subtitle: "Was ist eigentlich eine gute Grafik?"
+about:
+  id: intro-heading
+  template: jolla
+format: html
 ---
+
+:::{#intro-heading}
+
+# Kursübersicht
+
+
+:::
+
+
+
+
+
+
+# Zeitplan
+
+- Intro/Beispiele/Motivation
+- ggplot2 Basics
+- Wahrnehmungspsychologie/Gute Grafiken
+- Übung: Grafik verbessern
+
+
+Tag 2:
+
+- gganimate
+- plotly
+- Abschlussübung
+
