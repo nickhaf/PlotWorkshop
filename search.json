@@ -16,14 +16,7 @@
   {
     "objectID": "sessions/good_plots/good_plots.html",
     "href": "sessions/good_plots/good_plots.html",
-    "title": "Einführung",
-    "section": "",
-    "text": "View slides in full screen"
-  },
-  {
-    "objectID": "sessions/good_plots/good_plots.html#einführung",
-    "href": "sessions/good_plots/good_plots.html#einführung",
-    "title": "Einführung",
+    "title": "Was ist eine gute Grafik?",
     "section": "",
     "text": "View slides in full screen"
   },
@@ -32,21 +25,56 @@
     "href": "index.html",
     "title": "Datenvisualisierung in R",
     "section": "",
-    "text": "Kursübersicht\n\n  \n\n\n\nZeitplan\nTag 1:\n\nIntro/Beispiele/Motivation\nggplot2 Basics\nWahrnehmungspsychologie/Gute Grafiken\nÜbung: Grafik verbessern\n\nTag 2:\n\ngganimate\nplotly\nAbschlussübung"
+    "text": "Kursübersicht\n\n  \n\n\n\nZeitplan\nTag 1:\n\nIntro/Beispiele/Motivation\nggplot2 Basics\nWahrnehmungspsychologie/Gute Grafiken\nÜbung: Grafik verbessern\n\nTag 2:\n\nAdvanced ggplot? Own Stats? How it works under the hood? -&gt; probably not that interesting, unless there is a use case\ngganimate/plotly\nAbschlussübung"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#plot-typen",
+    "href": "sessions/good_plots/slides.html#plot-typen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Plot-Typen",
+    "text": "Plot-Typen"
   },
   {
     "objectID": "sessions/good_plots/slides.html#choosing-the-correct-plot",
     "href": "sessions/good_plots/slides.html#choosing-the-correct-plot",
-    "title": "Einführung",
+    "title": "Was ist eine gute Grafik?",
     "section": "Choosing the correct plot",
     "text": "Choosing the correct plot\nhttps://www.data-to-viz.com/"
   },
   {
+    "objectID": "sessions/good_plots/slides.html#tufte",
+    "href": "sessions/good_plots/slides.html#tufte",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Tufte",
+    "text": "Tufte"
+  },
+  {
     "objectID": "sessions/good_plots/slides.html#caveats",
     "href": "sessions/good_plots/slides.html#caveats",
-    "title": "Einführung",
+    "title": "Was ist eine gute Grafik?",
     "section": "Caveats",
     "text": "Caveats\nhttps://www.data-to-viz.com/caveats.html"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#warum-ggplot2",
+    "href": "sessions/Einführung/slides.html#warum-ggplot2",
+    "title": "Einführung",
+    "section": "Warum ggplot2?",
+    "text": "Warum ggplot2?"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#einfach",
+    "href": "sessions/Einführung/slides.html#einfach",
+    "title": "Einführung",
+    "section": "Einfach!",
+    "text": "Einfach!\n\nSimple, schnelle Beispiele"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#beautiful",
+    "href": "sessions/Einführung/slides.html#beautiful",
+    "title": "Einführung",
+    "section": "Beautiful",
+    "text": "Beautiful\n\nBeispiele verschönert"
   },
   {
     "objectID": "sessions/Einführung/slides.html#section",
@@ -75,5 +103,26 @@
     "title": "Einführung",
     "section": "Example plot",
     "text": "Example plot"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#gganimate",
+    "href": "sessions/Einführung/slides.html#gganimate",
+    "title": "Einführung",
+    "section": "gganimate",
+    "text": "gganimate"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#generative-art",
+    "href": "sessions/Einführung/slides.html#generative-art",
+    "title": "Einführung",
+    "section": "Generative Art",
+    "text": "Generative Art"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#step-by-step-example",
+    "href": "sessions/Einführung/slides.html#step-by-step-example",
+    "title": "Einführung",
+    "section": "Step By Step example",
+    "text": "Step By Step example"
   }
 ]
