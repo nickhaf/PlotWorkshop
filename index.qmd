@@ -27,7 +27,7 @@ Tag 1:
 
 Tag 2:
 
-- gganimate
-- plotly
+- Advanced ggplot? Own Stats? How it works under the hood? -> probably not that interesting, unless there is a use case
+- gganimate/plotly
 - Abschlussübung
 

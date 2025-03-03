@@ -1,11 +1,20 @@
 ---
-title: "Einführung"
+title: "Was ist eine gute Grafik?"
 format: letterbox-revealjs
 ---
+
+
+
+## Plot-Typen
 
 ## Choosing the correct plot
 https://www.data-to-viz.com/
 
 
+## Tufte
+
+
 ## Caveats
 https://www.data-to-viz.com/caveats.html
+
+

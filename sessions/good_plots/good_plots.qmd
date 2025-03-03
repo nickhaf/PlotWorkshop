@@ -1,9 +1,8 @@
 ---
-title: "Einführung"
+title: "Was ist eine gute Grafik?"
 format: html
 ---
 
-## Einführung
 
 
 
@@ -12,3 +11,5 @@ format: html
 ```
 
 [View slides in full screen](slides.html)
+
+

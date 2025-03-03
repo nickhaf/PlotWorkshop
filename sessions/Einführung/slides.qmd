@@ -8,7 +8,15 @@ format: letterbox-revealjs
 
 # Motivation
 
-# Warum in R?
+## Warum ggplot2?
+
+## Einfach!
+- Simple, schnelle Beispiele
+
+
+## Beautiful
+- Beispiele verschönert
+
 
 # [The R Graph Gallery](https://r-graph-gallery.com/best-r-chart-examples.html)
 
@@ -372,4 +380,14 @@ ggplot(data = cars,
   geom_point(colour = "#F4BA02", alpha = 1.5, size = 3) +
   theme_bg()
 ```
+
+
+
+# Plotly
+
+## gganimate
+
+## Generative Art
+
+## Step By Step example
 
