@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Datenvisualisierung in R",
     "section": "",
-    "text": "Kursübersicht\n\n  \n\n\n\nZeitplan\n\nIntro/Beispiele/Motivation\nggplot2 Basics\nWahrnehmungspsychologie/Gute Grafiken\nÜbung: Grafik verbessern\n\nTag 2:\n\ngganimate\nplotly\nAbschlussübung"
+    "text": "Kursübersicht\n\n  \n\n\n\nZeitplan\nTag 1:\n\nIntro/Beispiele/Motivation\nggplot2 Basics\nWahrnehmungspsychologie/Gute Grafiken\nÜbung: Grafik verbessern\n\nTag 2:\n\ngganimate\nplotly\nAbschlussübung"
   },
   {
     "objectID": "about.html",
@@ -39,7 +39,7 @@
     "href": "sessions/Einführung/slides.html#section-1",
     "title": "Einführung",
     "section": "",
-    "text": "https://r-graph-gallery.com/best-r-chart-examples https://allisonhorst.com/r-packages-functions"
+    "text": "Image from Wikipedia."
   },
   {
     "objectID": "sessions/Einführung/Einführung.html",
@@ -54,5 +54,19 @@
     "title": "Einführung",
     "section": "",
     "text": "View slides in full screen"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#section",
+    "href": "sessions/Einführung/slides.html#section",
+    "title": "Einführung",
+    "section": "",
+    "text": "Example from The R Graph Gallery."
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#section-3",
+    "href": "sessions/Einführung/slides.html#section-3",
+    "title": "Einführung",
+    "section": "",
+    "text": "https://r-graph-gallery.com/best-r-chart-examples https://allisonhorst.com/r-packages-functions"
   }
 ]

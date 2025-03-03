@@ -12,14 +12,13 @@ website:
 
 format:
   html:
-    theme: cosmo
-    css: styles.scss
+    theme: styles_light.scss
     toc: true
 
   letterbox-revealjs:
     embed-resources: true
-    theme: styles_dark.scss
-    highlight-style: dark.theme
+    theme: styles.scss
+    highlight-style: light.theme
 
 code-link: true
 code-line-numbers: false

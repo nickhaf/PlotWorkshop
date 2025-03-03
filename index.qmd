@@ -15,11 +15,9 @@ format: html
 :::
 
 
-
-
-
-
 # Zeitplan
+
+Tag 1: 
 
 - Intro/Beispiele/Motivation
 - ggplot2 Basics
