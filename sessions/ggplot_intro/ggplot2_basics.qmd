@@ -1,0 +1,10 @@
+---
+title: "ggplot2 Basics"
+format: html
+---
+
+```{=html}
+<iframe class="slide-deck" src="slides.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
+```
+
+[View slides in full screen](slides.html)

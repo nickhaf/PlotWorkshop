@@ -9,6 +9,8 @@ website:
         menu: 
           - text: Einführung
             href: sessions/Einführung/Einführung.qmd
+          - text: "ggplot2: Basics"
+            href: sessions/ggplot_intro/ggplot2_basics.qmd
 
 format:
   html:
