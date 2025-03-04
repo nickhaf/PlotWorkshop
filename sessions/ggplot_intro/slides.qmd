@@ -75,11 +75,14 @@ Best country each year.
 
 ```{r}
 medal_counts <- athletes %>% 
-  filter(!is.na(Medal)) %>% 
+  filter(!is.na(Medal), Season == 'Summer') %>% 
   group_by(Year, Region) %>% 
   count(Medal) %>%
   group_by(Year, Medal) %>%
-  slice_max(order_by = n, n = 1, with_ties = FALSE)
+  mutate(col = ifelse(Region == "Germany", "1", "0")) %>% 
+  mutate(region_medal = paste0(Region, Medal))
+
+  #slice_max(order_by = n, n = 1, with_ties = FALSE)
 
 ```
 
@@ -120,11 +123,42 @@ Maybe plot against number of total medals
 
 ```{r}
 ggplot(data = medal_counts, 
-       aes(x = Year, y = n, colour = Region, group = Medal)) +
-  geom_point() +
-  geom_line(aes(colour = Medal))
+       aes(x = Year, y = n, group = region_medal, alpha = col)) +
+  geom_point(aes(colour = Medal)) +
+  geom_line(aes(colour = Medal)) +
+  scale_color_manual(values = c("1" = "red", "0" = "lightgrey", "Gold" = "yellow", "Silver" = "grey", "Bronze" = "brown")) +
+  scale_alpha_manual(values = c("1" = 1, "0" = 0.1)) +
+  theme_classic()
 ```
 
+
+```{r}
+data_germany <- medal_counts %>% 
+  filter(col == '1')
+data_noGermany <- medal_counts %>% 
+  filter(col == 0)
+
+
+ggplot(data = medal_counts, 
+       aes(x = Year, y = n, group = region_medal, alpha = col)) +
+  geom_point(data = data_noGermany, aes(colour = Medal)) +
+  geom_line(data = data_germany, aes(colour = Medal)) +
+  scale_color_manual(values = c("1" = "red", "0" = "lightgrey", "Gold" = "yellow", "Silver" = "grey", "Bronze" = "brown")) +
+  scale_alpha_manual(values = c("1" = 1, "0" = 0.1)) +
+  theme_classic() 
+```
+
+```{r}
+library(ggbump)
+ggplot(data = medal_counts, 
+       aes(x = Year, y = n, group = region_medal)) +
+  geom_bump(color = 'grey90') 
+```
+
+
+
+
+Was ist hier auch mit missing data?
 
 ## Let's take a deeper look
 Hier dann nochmal genauer durchgehen - Was haben wir eigentlich gemacht. 
