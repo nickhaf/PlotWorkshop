@@ -20,7 +20,8 @@ format:
   letterbox-revealjs:
     embed-resources: true
     theme: styles.scss
-    highlight-style: light.theme
+    highlight-style: dark.theme
+    fontsize: 20pt
 
 code-link: true
 code-line-numbers: false

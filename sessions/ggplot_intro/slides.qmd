@@ -5,9 +5,129 @@ format: letterbox-revealjs
 
 ## {background-image="images/ggplot_art.png" background-size="1160px" background-position="15%"}
 
-::: {.absolute right="0.5%" bottom="0.5%" style="font-size:0.5em; padding: 0.15em 0.15em; background-color: rgba(255, 255, 255 .7); backdrop-filter: blur(5px); box-shadow: 0 0 1rem 0 rgba(255, 255, 255 .5); border-radius: 2. 5px;"}
+::: {.absolute right="0.5%" bottom="0.5%" style="font-size:0.25em; padding: 0.15em 0.15em; background-color: rgba(255, 255, 255 .7); backdrop-filter: blur(5px); box-shadow: 0 0 1rem 0 rgba(255, 255, 255 .5); border-radius: 2. 5px;"}
 
 Bild von [Allison Horst](https://allisonhorst.com/r-packages-functions).
 :::
 
+## ggplot2: Das Paket
+
+\
+
+[ggplot2](https://ggplot2.tidyverse.org/) gehört zum [tidiverse](https://www.tidyverse.org/)
+
+```{r}
+#install.packages("tidyverse")
+library(tidyverse)
+```
+
+\
+
+... kann aber natürlich auch seperat geladen werden:
+
+```{r}
+#install.packages("ggplot2")
+library(ggplot2)
+```
+
+##  {background-image="images/babyfeet.jpg" background-size="1225px"}
+
+::: {.absolute right="1.5%" top="1.5%" style="padding: 0.5em 0.5em; background-color: rgba(255, 255, 255, 0); backdrop-filter: blur(0px); box-shadow: 0 0 0rem 0 rgba(255, 255, 255, 0); color:#F8F8F8;"}
+Erste Schritte.
+:::
+
+
+::: {.absolute right="0%" bottom="0%" style="font-size:0.25em; padding: 0.5em 0.5em; background-color: rgba(255, 255, 255, 0); backdrop-filter: blur(0px); box-shadow: 0 0 0rem 0 rgba(255, 255, 255, 0); color:#F8F8F8;"}
+
+Foto von <a href="https://unsplash.com/de/@omarlopez1?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Omar Lopez</a> auf <a href="https://unsplash.com/de/fotos/person-die-babyfusse-halt-vTknj2OxDVg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+
+
+## Komponenten
+
+Hier ein ganz simples beispiel von Anfang bis Ende. Welche daten? Irgendwas, was für linear regression geeignet ist. TidyTuesday?
+
+Olympische Daten wieder? Daran könnte man den Medaillienverlauf auch gut zeigen. 
+Aber irgendwas wäre besser mit kontinuierlich durchlaufenden daten. 
+
+
+## Daten vorstellen
+
+
+```{r}
+library(tidyverse)
+
+athletes <- readRDS(file = here::here("raw_data", "athletes.rds"))
+world_coordinates <- readRDS(file = here::here("raw_data", "world_coordinates.rds"))
+
+medal_counts <- athletes %>%
+  filter(Medal == "Gold") %>%
+  group_by(Region) %>%
+  count(Medal)
+
+medal_countries <- world_coordinates %>%
+  rename("Region" = region) %>%
+  left_join(medal_counts)
+```
+
+Best country each year. 
+
+
+```{r}
+medal_counts <- athletes %>% 
+  filter(!is.na(Medal)) %>% 
+  group_by(Year, Region) %>% 
+  count(Medal) %>%
+  group_by(Year, Medal) %>%
+  slice_max(order_by = n, n = 1, with_ties = FALSE)
+
+```
+
+## Daten
+```{r}
+ggplot(data = medal_counts) 
+```
+
+
+
+
+## Aesthetic mappings
+
+```{r}
+ggplot(data = medal_counts, 
+       mapping = aes(x = Year, y = n))
+```
+
+Das erzeugt erst einmal nur das Koordinatensystem. Als nächstes fügen wir `layers` hinzu.
+
+## Layer
+
+```{r}
+#| output-location: column
+#| code-line-numbers: "1,2|3"
+ggplot(data = medal_counts, 
+       aes(x = Year, y = n)) +
+  geom_point()
+```
+
+
+
+
 ## 
+
+Maybe plot against number of total medals 
+
+
+```{r}
+ggplot(data = medal_counts, 
+       aes(x = Year, y = n, colour = Region, group = Medal)) +
+  geom_point() +
+  geom_line(aes(colour = Medal))
+```
+
+
+## Let's take a deeper look
+Hier dann nochmal genauer durchgehen - Was haben wir eigentlich gemacht. 
+Nicht zu sehr in den Basics verlieren, auch schneller tiefer reingehen (scales, coord system ...)
+
+

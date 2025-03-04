@@ -158,7 +158,7 @@
     "href": "sessions/ggplot_intro/slides.html#section",
     "title": "ggplot2: Basics",
     "section": "",
-    "text": "Image by Allison Horst."
+    "text": "Bild von Allison Horst."
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#background-imageimagesggplot_art.png-background-size1150px-background-position-bottom-10",
@@ -173,5 +173,61 @@
     "title": "ggplot2: Basics",
     "section": "{background-image=“images/ggplot_art.png” background-size=“1150px” background-position= “0% 10% 0% 0%”}",
     "text": "{background-image=“images/ggplot_art.png” background-size=“1150px” background-position= “0% 10% 0% 0%”}\n\nImage by Allison Horst."
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#ggplot2-das-paket",
+    "href": "sessions/ggplot_intro/slides.html#ggplot2-das-paket",
+    "title": "ggplot2: Basics",
+    "section": "ggplot2: Das Paket",
+    "text": "ggplot2: Das Paket\n\n\nggplot2 gehört zum tidiverse\n\n#install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n\n\n… kann aber natürlich auch seperat geladen werden:\n\n#install.packages(\"ggplot2\")\nlibrary(ggplot2)"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#section-1",
+    "href": "sessions/ggplot_intro/slides.html#section-1",
+    "title": "ggplot2: Basics",
+    "section": "",
+    "text": "Erste Schritte.\n\n\nFoto von Omar Lopez auf Unsplash"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#komponenten",
+    "href": "sessions/ggplot_intro/slides.html#komponenten",
+    "title": "ggplot2: Basics",
+    "section": "Komponenten",
+    "text": "Komponenten\nHier ein ganz simples beispiel von Anfang bis Ende. Welche daten? Irgendwas, was für linear regression geeignet ist. TidyTuesday?\nOlympische Daten wieder? Daran könnte man den Medaillienverlauf auch gut zeigen. Aber irgendwas wäre besser mit kontinuierlich durchlaufenden daten."
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#daten-vorstellen",
+    "href": "sessions/ggplot_intro/slides.html#daten-vorstellen",
+    "title": "ggplot2: Basics",
+    "section": "Daten vorstellen",
+    "text": "Daten vorstellen\n\nlibrary(tidyverse)\n\nathletes &lt;- readRDS(file = here::here(\"raw_data\", \"athletes.rds\"))\nworld_coordinates &lt;- readRDS(file = here::here(\"raw_data\", \"world_coordinates.rds\"))\n\nmedal_counts &lt;- athletes %&gt;%\n  filter(Medal == \"Gold\") %&gt;%\n  group_by(Region) %&gt;%\n  count(Medal)\n\nmedal_countries &lt;- world_coordinates %&gt;%\n  rename(\"Region\" = region) %&gt;%\n  left_join(medal_counts)\n\nBest country each year.\n\nmedal_counts &lt;- athletes %&gt;% \n  filter(!is.na(Medal)) %&gt;% \n  group_by(Year, Region) %&gt;% \n  count(Medal) %&gt;%\n  group_by(Year, Medal) %&gt;%\n  slice_max(order_by = n, n = 1, with_ties = FALSE)"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#daten",
+    "href": "sessions/ggplot_intro/slides.html#daten",
+    "title": "ggplot2: Basics",
+    "section": "Daten",
+    "text": "Daten\n\nggplot(data = medal_counts)"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#aesthetic-mappings",
+    "href": "sessions/ggplot_intro/slides.html#aesthetic-mappings",
+    "title": "ggplot2: Basics",
+    "section": "Aesthetic mappings",
+    "text": "Aesthetic mappings\n\nggplot(data = medal_counts, \n       mapping = aes(x = Year, y = n))\n\n\nDas erzeugt erst einmal nur das Koordinatensystem. Als nächstes fügen wir layers hinzu."
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#layer",
+    "href": "sessions/ggplot_intro/slides.html#layer",
+    "title": "ggplot2: Basics",
+    "section": "Layer",
+    "text": "Layer\n\n\nggplot(data = medal_counts, \n       aes(x = Year, y = n)) +\n  geom_point()\n\n\n\n\n\n\nMaybe plot against number of total medals\n\nggplot(data = medal_counts, \n       aes(x = Year, y = n, colour = Region, group = Medal)) +\n  geom_point() +\n  geom_line(aes(colour = Medal))"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#lets-take-a-deeper-look",
+    "href": "sessions/ggplot_intro/slides.html#lets-take-a-deeper-look",
+    "title": "ggplot2: Basics",
+    "section": "Let’s take a deeper look",
+    "text": "Let’s take a deeper look\nHier dann nochmal genauer durchgehen - Was haben wir eigentlich gemacht. Nicht zu sehr in den Basics verlieren, auch schneller tiefer reingehen (scales, coord system …)"
   }
 ]
