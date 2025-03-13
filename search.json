@@ -25,7 +25,7 @@
     "href": "index.html",
     "title": "Datenvisualisierung in R",
     "section": "",
-    "text": "Kursübersicht\n\n  \n\n\n\nZeitplan\nTag 1:\n\nIntro/Beispiele/Motivation\nggplot2 Basics\nWahrnehmungspsychologie/Gute Grafiken\nÜbung: Grafik verbessern\n\nTag 2:\n\nAdvanced ggplot? Own Stats? How it works under the hood? -&gt; probably not that interesting, unless there is a use case\ngganimate/plotly\nAbschlussübung (z.B. mit dem Characters data set?)"
+    "text": "Kursübersicht\n\n  \n\n\n\nZeitplan\nTag 1:\n\nIntro/Beispiele/Motivation\nggplot2 Basics\nWahrnehmungspsychologie/Gute Grafiken\nÜbung: Grafik verbessern\n\nTag 2:\n\nAdvanced ggplot? Own Stats? How it works under the hood? -&gt; probably not that interesting, unless there is a use case\ngganimate/plotly\nWissenschaftliche Grafiken\nAbschlussübung (z.B. mit dem Characters data set?) Oder: Where to get data set? + einige angebote"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#section",
@@ -33,6 +33,118 @@
     "title": "ggplot2: Basics",
     "section": "",
     "text": "Bild von Allison Horst."
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#ggplot2-das-paket",
+    "href": "sessions/ggplot_intro/slides.html#ggplot2-das-paket",
+    "title": "ggplot2: Basics",
+    "section": "ggplot2: Das Paket",
+    "text": "ggplot2: Das Paket\n\n\nggplot2 gehört zum tidiverse\n\n#install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n\n\n… kann aber natürlich auch seperat geladen werden:\n\n#install.packages(\"ggplot2\")\nlibrary(ggplot2)"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#section-1",
+    "href": "sessions/ggplot_intro/slides.html#section-1",
+    "title": "ggplot2: Basics",
+    "section": "",
+    "text": "Erste Schritte.\n\n\nFoto von Omar Lopez auf Unsplash"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#komponenten",
+    "href": "sessions/ggplot_intro/slides.html#komponenten",
+    "title": "ggplot2: Basics",
+    "section": "Komponenten",
+    "text": "Komponenten\nHier ein ganz simples beispiel von Anfang bis Ende. Welche daten? Irgendwas, was für linear regression geeignet ist. TidyTuesday?\nOlympische Daten wieder? Daran könnte man den Medaillienverlauf auch gut zeigen. Aber irgendwas wäre besser mit kontinuierlich durchlaufenden daten."
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#daten-vorstellen",
+    "href": "sessions/ggplot_intro/slides.html#daten-vorstellen",
+    "title": "ggplot2: Basics",
+    "section": "Daten vorstellen",
+    "text": "Daten vorstellen\n\nlibrary(tidyverse)\n\nathletes &lt;- readRDS(file = here::here(\"raw_data\", \"athletes.rds\"))\nworld_coordinates &lt;- readRDS(file = here::here(\"raw_data\", \"world_coordinates.rds\"))\n\nmedal_counts &lt;- athletes %&gt;%\n  filter(Medal == \"Gold\") %&gt;%\n  group_by(Region) %&gt;%\n  count(Medal)\n\nmedal_countries &lt;- world_coordinates %&gt;%\n  rename(\"Region\" = region) %&gt;%\n  left_join(medal_counts)\n\nBest country each year.\n\nmedal_counts &lt;- athletes %&gt;% \n  filter(!is.na(Medal), Season == 'Summer') %&gt;% \n  group_by(Year, Region) %&gt;% \n  count(Medal) %&gt;%\n  group_by(Year, Medal) %&gt;%\n  mutate(col = ifelse(Region == \"Germany\", \"1\", \"0\")) %&gt;% \n  mutate(region_medal = paste0(Region, Medal))\n\n  #slice_max(order_by = n, n = 1, with_ties = FALSE)"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#daten",
+    "href": "sessions/ggplot_intro/slides.html#daten",
+    "title": "ggplot2: Basics",
+    "section": "Daten",
+    "text": "Daten\n\nggplot(data = medal_counts)"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#aesthetic-mappings",
+    "href": "sessions/ggplot_intro/slides.html#aesthetic-mappings",
+    "title": "ggplot2: Basics",
+    "section": "Aesthetic mappings",
+    "text": "Aesthetic mappings\n\nggplot(data = medal_counts, \n       mapping = aes(x = Year, y = n))\n\n\nDas erzeugt erst einmal nur das Koordinatensystem. Als nächstes fügen wir layers hinzu."
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#layer",
+    "href": "sessions/ggplot_intro/slides.html#layer",
+    "title": "ggplot2: Basics",
+    "section": "Layer",
+    "text": "Layer\n\n\nggplot(data = medal_counts, \n       aes(x = Year, y = n)) +\n  geom_point()"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#section-2",
+    "href": "sessions/ggplot_intro/slides.html#section-2",
+    "title": "ggplot2: Basics",
+    "section": "",
+    "text": "Maybe plot against number of total medals\n\nggplot(data = medal_counts, \n       aes(x = Year, y = n, group = region_medal, alpha = col)) +\n  geom_point(aes(colour = Medal)) +\n  geom_line(aes(colour = Medal)) +\n  scale_color_manual(values = c(\"1\" = \"red\", \"0\" = \"lightgrey\", \"Gold\" = \"yellow\", \"Silver\" = \"grey\", \"Bronze\" = \"brown\")) +\n  scale_alpha_manual(values = c(\"1\" = 1, \"0\" = 0.1)) +\n  theme_classic()\n\n\n\n\n\n\n\n\n\ndata_germany &lt;- medal_counts %&gt;% \n  filter(col == '1')\ndata_noGermany &lt;- medal_counts %&gt;% \n  filter(col == 0)\n\n\nggplot(data = medal_counts, \n       aes(x = Year, y = n, group = region_medal, alpha = col)) +\n  geom_point(data = data_noGermany, aes(colour = Medal)) +\n  geom_line(data = data_germany, aes(colour = Medal)) +\n  scale_color_manual(values = c(\"1\" = \"red\", \"0\" = \"lightgrey\", \"Gold\" = \"yellow\", \"Silver\" = \"grey\", \"Bronze\" = \"brown\")) +\n  scale_alpha_manual(values = c(\"1\" = 1, \"0\" = 0.1)) +\n  theme_classic() \n\n\n\n\n\n\n\n\n\nlibrary(ggbump)\nggplot(data = medal_counts, \n       aes(x = Year, y = n, group = region_medal)) +\n  geom_bump(color = 'grey90') \n\n\n\n\n\n\n\n\nWas ist hier auch mit missing data?"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#lets-take-a-deeper-look",
+    "href": "sessions/ggplot_intro/slides.html#lets-take-a-deeper-look",
+    "title": "ggplot2: Basics",
+    "section": "Let’s take a deeper look",
+    "text": "Let’s take a deeper look\nHier dann nochmal genauer durchgehen - Was haben wir eigentlich gemacht. Nicht zu sehr in den Basics verlieren, auch schneller tiefer reingehen (scales, coord system …)"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#section",
+    "href": "sessions/good_plots/slides.html#section",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "::: aside\n:::"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#eine-gute-grafik-sollte",
+    "href": "sessions/good_plots/slides.html#eine-gute-grafik-sollte",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Eine gute Grafik sollte …",
+    "text": "Eine gute Grafik sollte …\n… eine Geschichte erzählen … helfen, Zusammenhänge in den Grafiken zu erkennen und zu kommunizieren … die Zusammenhänge möglichst “umfänglich” darzustellen."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#datasaurus-dozen-quartets-paket",
+    "href": "sessions/good_plots/slides.html#datasaurus-dozen-quartets-paket",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Datasaurus Dozen (quartets-Paket)",
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\ndataset\nmean_x\nvar_x\nmean_y\nvar_y\ncor\n\n\n\n\naway\n54.27\n281.23\n47.83\n725.75\n-0.06\n\n\nbullseye\n54.27\n281.21\n47.83\n725.53\n-0.07\n\n\ncircle\n54.27\n280.90\n47.84\n725.23\n-0.07\n\n\ndino\n54.26\n281.07\n47.83\n725.52\n-0.06\n\n\ndots\n54.26\n281.16\n47.84\n725.24\n-0.06\n\n\nh_lines\n54.26\n281.10\n47.83\n725.76\n-0.06\n\n\nhigh_lines\n54.27\n281.12\n47.84\n725.76\n-0.07\n\n\nslant_down\n54.27\n281.12\n47.84\n725.55\n-0.07\n\n\nslant_up\n54.27\n281.19\n47.83\n725.69\n-0.07\n\n\nstar\n54.27\n281.20\n47.84\n725.24\n-0.06\n\n\nv_lines\n54.27\n281.23\n47.84\n725.64\n-0.07\n\n\nwide_lines\n54.27\n281.23\n47.83\n725.65\n-0.07\n\n\nx_shape\n54.26\n281.23\n47.84\n725.22\n-0.07"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#verteilungen-plotten",
+    "href": "sessions/good_plots/slides.html#verteilungen-plotten",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Verteilungen Plotten",
+    "text": "Verteilungen Plotten"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#eine-grafik-ist-kann-nur-einen-teil-der-zusammenhänge-darstellen",
+    "href": "sessions/good_plots/slides.html#eine-grafik-ist-kann-nur-einen-teil-der-zusammenhänge-darstellen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Eine Grafik ist kann nur einen Teil der Zusammenhänge darstellen",
+    "text": "Eine Grafik ist kann nur einen Teil der Zusammenhänge darstellen\nIm Schlechtesten Fall für Manipulation nutzbar"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#black-swann",
+    "href": "sessions/good_plots/slides.html#black-swann",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Black swann",
+    "text": "Black swann"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#was-mögt-ihr-an-dieser-grafiknicht",
+    "href": "sessions/good_plots/slides.html#was-mögt-ihr-an-dieser-grafiknicht",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Was mögt ihr an dieser Grafik/nicht?",
+    "text": "Was mögt ihr an dieser Grafik/nicht?"
   },
   {
     "objectID": "sessions/good_plots/slides.html#plot-typen",
@@ -49,6 +161,34 @@
     "text": "Choosing the correct plot\nhttps://www.data-to-viz.com/"
   },
   {
+    "objectID": "sessions/good_plots/slides.html#pulikum",
+    "href": "sessions/good_plots/slides.html#pulikum",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Pulikum",
+    "text": "Pulikum"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#geschichte",
+    "href": "sessions/good_plots/slides.html#geschichte",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Geschichte",
+    "text": "Geschichte\n\nGleiche sache auf verschiedene Arten darstellen -&gt; was wirkt am meisten?"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#purpose",
+    "href": "sessions/good_plots/slides.html#purpose",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Purpose",
+    "text": "Purpose\n\nExploratory vs. Explanatory\nKann oft über reines Zeigen der Daten hinausgehen."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#section-3",
+    "href": "sessions/good_plots/slides.html#section-3",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "Data from Rockefeller Institute and Wikipedia."
+  },
+  {
     "objectID": "sessions/good_plots/slides.html#tufte",
     "href": "sessions/good_plots/slides.html#tufte",
     "title": "Was ist eine gute Grafik?",
@@ -60,7 +200,14 @@
     "href": "sessions/good_plots/slides.html#caveats",
     "title": "Was ist eine gute Grafik?",
     "section": "Caveats",
-    "text": "Caveats\nhttps://www.data-to-viz.com/caveats.html"
+    "text": "Caveats\nhttps://www.data-to-viz.com/caveats.html\nImmer einen Plot zeigen, dann zusammen überlgen was daran schlecht ist, was verbessert werden kann."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#übung",
+    "href": "sessions/good_plots/slides.html#übung",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Übung",
+    "text": "Übung\nSchlechte Grafiken verbessern: https://www.data-to-viz.com/caveats.html"
   },
   {
     "objectID": "sessions/Einführung/slides.html#warum-ggplot2",
