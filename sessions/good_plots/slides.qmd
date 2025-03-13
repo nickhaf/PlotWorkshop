@@ -103,11 +103,11 @@ https://www.data-to-viz.com/
 
 
 ## 
-- https://rockinst.org/blog/public-mass-shootings-around-the-world-prevalence-context-and-prevention/
-- 
-
 
 ```{r}
+#| echo: false
+#| eval: false
+
 library(rvest)
 library(httr)
 library(polite)
@@ -120,25 +120,48 @@ firearm_df <- polite::scrape(url_bow) %>%
   rvest::html_nodes("table.wikitable") %>% 
   rvest::html_table(fill = TRUE) %>% 
   as.data.frame() %>% 
-  rename(country = "Countries.and.territories", "guns" = "Estimate.of.civilian.firearms.per.100.people") 
+  rename(country = "Countries.and.territories", "guns" = "Estimate.of.civilian.firearms.per.100.people") %>% 
+  select(country, guns)
+
+saveRDS(firearm_df, here::here("sessions", "good_plots","data", "firearm_df.rds"))
 ```
 
 ```{r}
+#| echo: false
+
+firearm_df <- readRDS(here::here("sessions", "good_plots","data", "firearm_df.rds"))
 df <- data.frame(
-  country = c("USA", "Deutschland", "Frankreich", "Kanada", "Finnland", "Österreich", "Australien", "Italien", "Niederlande", "Schweiz", "Großbritannien"), 
-  mass_shootings = c(109, 5, 6, 4, 3, 2, 1, 2, 2, 2, 2)) %>% 
-  left_join()
+  country = c("United States", "Germany", "France", "Canada", "Finland", "Austria", "Australia", "Italy", "Netherlands", "Switzerland"), 
+  mass_shootings = c(109, 5, 6, 4, 3, 2, 1, 2, 2, 2)) %>% 
+  left_join(firearm_df) %>% 
+  mutate(labels = case_when(country == "United States" ~ "USA", 
+                            country == "Germany" ~ "Germany", 
+                            country == "Switzerland" ~ "Switzerland", 
+                            country == "Netherlands" ~ "Netherlands", 
+                            TRUE ~ NA))
 ```
 
 
 ```{r}
+#| echo: false
+#| fig-height: 7
+#| fig-width: 12
+
 ggplot(data = df, 
-       aes(x = guns_per_100, y = mass_shootings, label = country)) +
-  geom_point()
+       aes(x = guns, y = mass_shootings, label = labels)) +
+  geom_point(aes(colour = ifelse(country == "United States", "USA", "noUSA")), size = 5) +
+  scale_colour_manual(values = c("lightgrey", "red")) +
+  geom_text(vjust = 2, size = 5, color = '#01364C') +
+  theme_bg() +
+  theme(legend.position="none") +
+  xlab("Guns per 100 Civilians") +
+  ylab("Number of Mass Shootings 2002 - 2022")
 ```
 
 
-
+::: aside
+Data from [Rockefeller Institute](https://rockinst.org/blog/public-mass-shootings-around-the-world-prevalence-context-and-prevention/) and [Wikipedia](https://en.wikipedia.org/wiki/Gun_ownership). 
+:::
 
 
 ## Tufte
