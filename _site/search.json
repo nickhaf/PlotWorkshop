@@ -102,7 +102,7 @@
     "href": "sessions/good_plots/slides.html#caveats",
     "title": "Was ist eine gute Grafik?",
     "section": "Caveats",
-    "text": "Caveats\nhttps://www.data-to-viz.com/caveats.html"
+    "text": "Caveats\nhttps://www.data-to-viz.com/caveats.html\nImmer einen Plot zeigen, dann zusammen überlgen was daran schlecht ist, was verbessert werden kann."
   },
   {
     "objectID": "sessions/Einführung/slides.html#warum-ggplot2",
@@ -285,5 +285,68 @@
     "title": "Was ist eine gute Grafik?",
     "section": "Verteilungen Plotten",
     "text": "Verteilungen Plotten"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#section",
+    "href": "sessions/good_plots/slides.html#section",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "::: aside\n:::"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#eine-grafik-ist-kann-nur-einen-teil-der-zusammenhänge-darstellen",
+    "href": "sessions/good_plots/slides.html#eine-grafik-ist-kann-nur-einen-teil-der-zusammenhänge-darstellen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Eine Grafik ist kann nur einen Teil der Zusammenhänge darstellen",
+    "text": "Eine Grafik ist kann nur einen Teil der Zusammenhänge darstellen\nIm Schlechtesten Fall für Manipulation nutzbar"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#black-swann",
+    "href": "sessions/good_plots/slides.html#black-swann",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Black swann",
+    "text": "Black swann"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#was-mögt-ihr-an-dieser-grafiknicht",
+    "href": "sessions/good_plots/slides.html#was-mögt-ihr-an-dieser-grafiknicht",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Was mögt ihr an dieser Grafik/nicht?",
+    "text": "Was mögt ihr an dieser Grafik/nicht?"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#pulikum",
+    "href": "sessions/good_plots/slides.html#pulikum",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Pulikum",
+    "text": "Pulikum"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#geschichte",
+    "href": "sessions/good_plots/slides.html#geschichte",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Geschichte",
+    "text": "Geschichte\n\nGleiche sache auf verschiedene Arten darstellen -&gt; was wirkt am meisten?"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#purpose",
+    "href": "sessions/good_plots/slides.html#purpose",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Purpose",
+    "text": "Purpose\n\nExploratory vs. Explanatory\nKann oft über reines Zeigen der Daten hinausgehen."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#section-3",
+    "href": "sessions/good_plots/slides.html#section-3",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "Data from Rockefeller Institute and Wikipedia."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#übung",
+    "href": "sessions/good_plots/slides.html#übung",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Übung",
+    "text": "Übung\nSchlechte Grafiken verbessern: https://www.data-to-viz.com/caveats.html"
   }
 ]
