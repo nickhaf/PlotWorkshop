@@ -29,5 +29,5 @@ Tag 2:
 
 - Advanced ggplot? Own Stats? How it works under the hood? -> probably not that interesting, unless there is a use case
 - gganimate/plotly
-- Abschlussübung (z.B. mit dem Characters data set?)
+- Abschlussübung (z.B. mit dem Characters data set?) Oder: Where to get data set? + einige angebote
 
