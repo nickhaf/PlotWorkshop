@@ -13,6 +13,7 @@
 - https://informationisbeautiful.net/
 - https://store.informationisbeautiful.net/products/novels-everyone-should-read-fine-art-print
 - https://www.storytellingwithdata.com/blog/2018/3/9/bring-on-the-bar-charts
+- https://github.com/tashapiro/tanya-data-viz
 
 ## Knowledge
 - https://ggplot2-book.org/introduction
@@ -28,4 +29,5 @@
 
 ## Colours
 - Huecolour
-- magritr (Paket zum finden von Farbcodes in Bildern)
+- Paket zum finden von Farbcodes in Bildern
+- ggview

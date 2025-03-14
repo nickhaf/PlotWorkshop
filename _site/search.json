@@ -179,7 +179,7 @@
     "href": "sessions/ggplot_intro/slides.html#ggplot2-das-paket",
     "title": "ggplot2: Basics",
     "section": "ggplot2: Das Paket",
-    "text": "ggplot2: Das Paket\n\n\nggplot2 gehört zum tidiverse\n\n#install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.4     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n\n… kann aber natürlich auch seperat geladen werden:\n\n#install.packages(\"ggplot2\")\nlibrary(ggplot2)"
+    "text": "ggplot2: Das Paket\n\nggplot2 gehört zum tidyverse\n\n#install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n\n… kann aber natürlich auch seperat geladen werden:\n\n#install.packages(\"ggplot2\")\nlibrary(ggplot2)"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#section-1",
@@ -193,35 +193,35 @@
     "href": "sessions/ggplot_intro/slides.html#komponenten",
     "title": "ggplot2: Basics",
     "section": "Komponenten",
-    "text": "Komponenten\nHier ein ganz simples beispiel von Anfang bis Ende. Welche daten? Irgendwas, was für linear regression geeignet ist. TidyTuesday?\nOlympische Daten wieder? Daran könnte man den Medaillienverlauf auch gut zeigen. Aber irgendwas wäre besser mit kontinuierlich durchlaufenden daten."
+    "text": "Komponenten\nÜbersicht"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#daten-vorstellen",
     "href": "sessions/ggplot_intro/slides.html#daten-vorstellen",
     "title": "ggplot2: Basics",
     "section": "Daten vorstellen",
-    "text": "Daten vorstellen\n\nlibrary(tidyverse)\n\nathletes &lt;- readRDS(file = here::here(\"raw_data\", \"athletes.rds\"))\nworld_coordinates &lt;- readRDS(file = here::here(\"raw_data\", \"world_coordinates.rds\"))\n\nmedal_counts &lt;- athletes %&gt;%\n  filter(Medal == \"Gold\") %&gt;%\n  group_by(Region) %&gt;%\n  count(Medal)\n\nmedal_countries &lt;- world_coordinates %&gt;%\n  rename(\"Region\" = region) %&gt;%\n  left_join(medal_counts)\n\nJoining with `by = join_by(Region)`\n\n\nBest country each year.\n\nmedal_counts &lt;- athletes %&gt;% \n  filter(!is.na(Medal), Season == 'Summer') %&gt;% \n  group_by(Year, Region) %&gt;% \n  count(Medal) %&gt;%\n  group_by(Year, Medal) %&gt;%\n  mutate(col = ifelse(Region == \"Germany\", \"1\", \"0\")) %&gt;% \n  mutate(region_medal = paste0(Region, Medal))\n\n  #slice_max(order_by = n, n = 1, with_ties = FALSE)"
+    "text": "Daten vorstellen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#|echo: false\n#|eval: false\n\n\ninstall.packages(\"tidytuesdayR\")\n\nThe following package(s) will be installed:\n- tidytuesdayR [1.1.2]\nThese packages will be installed into \"~/GitHub/PlotWorkshop/renv/library/windows/R-4.4/x86_64-w64-mingw32\".\n\n# Installing packages --------------------------------------------------------\n- Installing tidytuesdayR ...                   OK [linked from cache]\nSuccessfully installed 1 package in 14 milliseconds.\n\nlibrary(tidytuesdayR)\n\ntuesdata &lt;- tidytuesdayR::tt_load('2022-08-16')\n\n\n## Sowas wie Female Darstellung in Sitcoms over time? Also man köñnte sich schon interessante Zusammenhänge zwischen Darstellung von Figuren über die Zeti anschauen?\n\ncharacters_psych &lt;- tuesdata$psych_stats %&gt;% \n  select(char_name, uni_name, personality, avg_rating) %&gt;% \n  # filter(uni_name %in% c(\"Friends\", \"How I Met Your Mother\", \"Breaking Bad\")) %&gt;% \n  filter( personality %in% c(\"sexual\", \"bossy\")) %&gt;% \n  pivot_wider(names_from = personality, values_from = avg_rating)\n\nggplot(characters_psych, aes(x = sexual, y = bossy)) +\n  geom_point() + \n  geom_smooth(method = \"lm\")\n\n\n\n\n\n\n## Eventuell später mit PCA oder so interessant\n  \n\n# https://www.kaggle.com/datasets/nelgiriyewithana/countries-of-the-world-2023"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#daten",
     "href": "sessions/ggplot_intro/slides.html#daten",
     "title": "ggplot2: Basics",
     "section": "Daten",
-    "text": "Daten\n\nggplot(data = medal_counts)"
+    "text": "Daten\n\n\nggplot(data = books)"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#aesthetic-mappings",
     "href": "sessions/ggplot_intro/slides.html#aesthetic-mappings",
     "title": "ggplot2: Basics",
     "section": "Aesthetic mappings",
-    "text": "Aesthetic mappings\n\nggplot(data = medal_counts, \n       mapping = aes(x = Year, y = n))\n\n\nDas erzeugt erst einmal nur das Koordinatensystem. Als nächstes fügen wir layers hinzu."
+    "text": "Aesthetic mappings\n\n\nggplot(data = medal_counts, \n       mapping = aes(x = Year, y = n))\n\n\n\n\n\n\n\n\n\nDas erzeugt erst einmal nur das Koordinatensystem. Als nächstes fügen wir layers hinzu."
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#layer",
     "href": "sessions/ggplot_intro/slides.html#layer",
     "title": "ggplot2: Basics",
     "section": "Layer",
-    "text": "Layer\n\n\nggplot(data = medal_counts, \n       aes(x = Year, y = n)) +\n  geom_point()"
+    "text": "Layer\n\n\nggplot(data = books, \n       mapping = aes(x = num_pages, \n                     y = average_rating)) +\n  geom_point()"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#lets-take-a-deeper-look",
@@ -242,7 +242,7 @@
     "href": "sessions/ggplot_intro/slides.html#section-2",
     "title": "ggplot2: Basics",
     "section": "",
-    "text": "Maybe plot against number of total medals\n\nggplot(data = medal_counts, \n       aes(x = Year, y = n, group = region_medal, alpha = col)) +\n  geom_point(aes(colour = Medal)) +\n  geom_line(aes(colour = Medal)) +\n  scale_color_manual(values = c(\"1\" = \"red\", \"0\" = \"lightgrey\", \"Gold\" = \"yellow\", \"Silver\" = \"grey\", \"Bronze\" = \"brown\")) +\n  scale_alpha_manual(values = c(\"1\" = 1, \"0\" = 0.1)) +\n  theme_classic()\n\n\n\n\n\n\n\n\n\ndata_germany &lt;- medal_counts %&gt;% \n  filter(col == '1')\ndata_noGermany &lt;- medal_counts %&gt;% \n  filter(col == 0)\n\n\nggplot(data = medal_counts, \n       aes(x = Year, y = n, group = region_medal, alpha = col)) +\n  geom_point(data = data_noGermany, aes(colour = Medal)) +\n  geom_line(data = data_germany, aes(colour = Medal)) +\n  scale_color_manual(values = c(\"1\" = \"red\", \"0\" = \"lightgrey\", \"Gold\" = \"yellow\", \"Silver\" = \"grey\", \"Bronze\" = \"brown\")) +\n  scale_alpha_manual(values = c(\"1\" = 1, \"0\" = 0.1)) +\n  theme_classic() \n\n\n\n\n\n\n\n\n\nlibrary(ggbump)\nggplot(data = medal_counts, \n       aes(x = Year, y = n, group = region_medal)) +\n  geom_bump(color = 'grey90') \n\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\nWarning in compute_group(...): 'StatBump' needs at least two observations per\ngroup\n\n\n\n\n\n\n\n\n\nWas ist hier auch mit missing data?"
+    "text": "Maybe plot against number of total medals\n\nggplot(data = medal_counts, \n       aes(x = Year, y = n, group = region_medal, alpha = col)) +\n  geom_point(aes(colour = Medal)) +\n  geom_line(aes(colour = Medal)) +\n  scale_color_manual(values = c(\"1\" = \"red\", \"0\" = \"lightgrey\", \"Gold\" = \"yellow\", \"Silver\" = \"grey\", \"Bronze\" = \"brown\")) +\n  scale_alpha_manual(values = c(\"1\" = 1, \"0\" = 0.1)) +\n  theme_classic()\n\n\n\n\n\n\n\n\n\ndata_germany &lt;- medal_counts %&gt;% \n  filter(col == '1')\ndata_noGermany &lt;- medal_counts %&gt;% \n  filter(col == 0)\n\n\nggplot(data = medal_counts, \n       aes(x = Year, y = n, group = region_medal, alpha = col)) +\n  geom_point(data = data_noGermany, aes(colour = Medal)) +\n  geom_line(data = data_germany, aes(colour = Medal)) +\n  scale_color_manual(values = c(\"1\" = \"red\", \"0\" = \"lightgrey\", \"Gold\" = \"yellow\", \"Silver\" = \"grey\", \"Bronze\" = \"brown\")) +\n  scale_alpha_manual(values = c(\"1\" = 1, \"0\" = 0.1)) +\n  theme_classic() \n\n\n\n\n\n\n\n\n\nlibrary(ggbump)\nggplot(data = medal_counts, \n       aes(x = Year, y = n, group = region_medal)) +\n  geom_bump(color = 'grey90') \n\n\n\n\n\n\n\n\nWas ist hier auch mit missing data?"
   },
   {
     "objectID": "sessions/good_plots/slides.html#eine-gute-grafik-sollte",
@@ -348,5 +348,61 @@
     "title": "Was ist eine gute Grafik?",
     "section": "Übung",
     "text": "Übung\nSchlechte Grafiken verbessern: https://www.data-to-viz.com/caveats.html"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#lets-take-a-deeper-dive",
+    "href": "sessions/ggplot_intro/slides.html#lets-take-a-deeper-dive",
+    "title": "ggplot2: Basics",
+    "section": "Let’s take a deeper dive",
+    "text": "Let’s take a deeper dive\nHier dann nochmal genauer durchgehen - Was haben wir eigentlich gemacht. Nicht zu sehr in den Basics verlieren, auch schneller tiefer reingehen (scales, coord system …)"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#abspeichern",
+    "href": "sessions/ggplot_intro/slides.html#abspeichern",
+    "title": "ggplot2: Basics",
+    "section": "Abspeichern",
+    "text": "Abspeichern\n\n\n\nJanine Birkholz & Nicklas Hafiz // Mai 2025"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#ggplot",
+    "href": "sessions/ggplot_intro/slides.html#ggplot",
+    "title": "ggplot2: Basics",
+    "section": "ggplot()",
+    "text": "ggplot()\n\n\nggplot()"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#aesthetic-mapping",
+    "href": "sessions/ggplot_intro/slides.html#aesthetic-mapping",
+    "title": "ggplot2: Basics",
+    "section": "Aesthetic mapping",
+    "text": "Aesthetic mapping\nUm diese leere Leinwand zu befüllen, müssen wir die Daten mit den benötigten visuellen Eigenschaften verknüpfen:\nmapping =  aes()\nJe nach Plot-Art sind verschiedene Visuelle Eigenschaften möglich. Wichtig ist für uns jetzt erst einmal die Position, also x - und y-Achsen."
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#aesthetic-mapping-achsen",
+    "href": "sessions/ggplot_intro/slides.html#aesthetic-mapping-achsen",
+    "title": "ggplot2: Basics",
+    "section": "Aesthetic mapping: Achsen",
+    "text": "Aesthetic mapping: Achsen\n\n\nggplot(data = books, \n       mapping = aes(x = num_pages, \n                     y = average_rating))"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#the-big-picture",
+    "href": "sessions/ggplot_intro/slides.html#the-big-picture",
+    "title": "ggplot2: Basics",
+    "section": "The Big picture",
+    "text": "The Big picture\n\n\nggplot(data = books, \n       mapping = aes(x = num_pages, \n                     y = average_rating)) +\n  geom_point()"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#geometric-layers",
+    "href": "sessions/ggplot_intro/slides.html#geometric-layers",
+    "title": "ggplot2: Basics",
+    "section": "Geometric Layers",
+    "text": "Geometric Layers\nggplots sind aus verschiedenen Layern aufgebaut, die mithilfe eines + übereinander gelegt werden.\ngeom_"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#übung",
+    "href": "sessions/ggplot_intro/slides.html#übung",
+    "title": "ggplot2: Basics",
+    "section": "Übung",
+    "text": "Übung"
   }
 ]

@@ -1,6 +1,10 @@
 ---
 title: "ggplot2: Basics"
 format: letterbox-revealjs
+footer: 'Janine Birkholz & Nicklas Hafiz // Mai 2025'
+execute: 
+  fig-width: 5
+  fig-height: 6
 ---
 
 ## {background-image="images/ggplot_art.png" background-size="1160px" background-position="15%"}
@@ -14,7 +18,7 @@ Bild von [Allison Horst](https://allisonhorst.com/r-packages-functions).
 
 \
 
-[ggplot2](https://ggplot2.tidyverse.org/) gehört zum [tidiverse](https://www.tidyverse.org/)
+[ggplot2](https://ggplot2.tidyverse.org/) gehört zum [tidyverse](https://www.tidyverse.org/)
 
 ```{r}
 #install.packages("tidyverse")
@@ -45,123 +49,174 @@ Foto von <a href="https://unsplash.com/de/@omarlopez1?utm_content=creditCopyText
 
 ## Komponenten
 
-Hier ein ganz simples beispiel von Anfang bis Ende. Welche daten? Irgendwas, was für linear regression geeignet ist. TidyTuesday?
-
-Olympische Daten wieder? Daran könnte man den Medaillienverlauf auch gut zeigen. 
-Aber irgendwas wäre besser mit kontinuierlich durchlaufenden daten. 
+Übersicht
 
 
 ## Daten vorstellen
 
-
 ```{r}
-library(tidyverse)
+#| echo: false
 
-athletes <- readRDS(file = here::here("raw_data", "athletes.rds"))
-world_coordinates <- readRDS(file = here::here("raw_data", "world_coordinates.rds"))
+# https://www.kaggle.com/datasets/jealousleopard/goodreadsbooks
+# Clean, number of ratings but no genre data (but isbn is there, so could be added)
+books <- read.csv("C:/Users/hafiznij/Downloads/archive(1)/books.csv") %>% 
+  filter(ratings_count > 1000) %>% 
+  mutate(average_rating = as.numeric(average_rating)) %>%  
+  mutate(num_pages = as.numeric(num_pages)) 
 
-medal_counts <- athletes %>%
-  filter(Medal == "Gold") %>%
-  group_by(Region) %>%
-  count(Medal)
+books$pubdate <- mdy(books$publication_date)
 
-medal_countries <- world_coordinates %>%
-  rename("Region" = region) %>%
-  left_join(medal_counts)
+
+ggplot(books, aes(x = num_pages, y = average_rating) )+
+  geom_point() +
+  geom_smooth(method = "lm")
+
+
+ggplot(books, aes(x = pubdate, y = average_rating)) +
+  geom_point() +
+  geom_smooth()
+### Best book per year
+
+
+# chttps://www.kaggle.com/datasets/dylanjcastillo/7k-books-with-metadata
+## Thumbnail enthalten!
+
+
+
+# https://github.com/prasertcbs/basic-dataset/tree/master/book_ratings
+books4 <- read.csv("C:/Users/hafiznij/Downloads/books(1).csv")
 ```
 
-Best country each year. 
-
-
 ```{r}
-medal_counts <- athletes %>% 
-  filter(!is.na(Medal), Season == 'Summer') %>% 
-  group_by(Year, Region) %>% 
-  count(Medal) %>%
-  group_by(Year, Medal) %>%
-  mutate(col = ifelse(Region == "Germany", "1", "0")) %>% 
-  mutate(region_medal = paste0(Region, Medal))
+#|echo: false
+#|eval: false
 
-  #slice_max(order_by = n, n = 1, with_ties = FALSE)
+
+install.packages("tidytuesdayR")
+library(tidytuesdayR)
+
+tuesdata <- tidytuesdayR::tt_load('2022-08-16')
+
+
+## Sowas wie Female Darstellung in Sitcoms over time? Also man köñnte sich schon interessante Zusammenhänge zwischen Darstellung von Figuren über die Zeti anschauen?
+
+characters_psych <- tuesdata$psych_stats %>% 
+  select(char_name, uni_name, personality, avg_rating) %>% 
+  # filter(uni_name %in% c("Friends", "How I Met Your Mother", "Breaking Bad")) %>% 
+  filter( personality %in% c("sexual", "bossy")) %>% 
+  pivot_wider(names_from = personality, values_from = avg_rating)
+
+ggplot(characters_psych, aes(x = sexual, y = bossy)) +
+  geom_point() + 
+  geom_smooth(method = "lm")
+
+## Eventuell später mit PCA oder so interessant
+  
+
+# https://www.kaggle.com/datasets/nelgiriyewithana/countries-of-the-world-2023
 
 ```
+
+
+## The Big picture
+
+```{r}
+#| output-location: column
+#| code-line-numbers: "1|2,3|4"
+
+ggplot(data = books %>% filter(num_pages < 2000), 
+       mapping = aes(x = num_pages, 
+                     y = average_rating)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
+
+
+# Start
+
+## `ggplot()`
+```{r}
+#| output-location: column
+
+ggplot()
+```
+
 
 ## Daten
+
 ```{r}
-ggplot(data = medal_counts) 
+#| output-location: column
+ggplot(data = books)
 ```
 
 
+## Aesthetic mapping
+
+Um diese leere Leinwand zu befüllen, müssen wir die Daten mit den benötigten visuellen Eigenschaften verknüpfen: 
+
+`mapping =  aes()`
+
+Je nach Plot-Art sind verschiedene Visuelle Eigenschaften möglich. Wichtig ist für uns jetzt erst einmal die Position, also x - und y-Achsen.
 
 
-## Aesthetic mappings
+## Aesthetic mapping: Achsen 
 
 ```{r}
-ggplot(data = medal_counts, 
-       mapping = aes(x = Year, y = n))
+#| output-location: column
+#| code-line-numbers: "2,3"
+
+ggplot(data = books, 
+       mapping = aes(x = num_pages, 
+                     y = average_rating))
 ```
 
-Das erzeugt erst einmal nur das Koordinatensystem. Als nächstes fügen wir `layers` hinzu.
+
+## Geometric Layers
+ggplots sind aus verschiedenen Layern aufgebaut, die mithilfe eines `+` übereinander gelegt werden.  
+
+`geom_`
 
 ## Layer
 
 ```{r}
 #| output-location: column
-#| code-line-numbers: "1,2|3"
-ggplot(data = medal_counts, 
-       aes(x = Year, y = n)) +
+#| code-line-numbers: "4"
+
+ggplot(data = books, 
+       mapping = aes(x = num_pages, 
+                     y = average_rating)) +
   geom_point()
 ```
 
-
-
-
-## 
-
-Maybe plot against number of total medals 
-
-
 ```{r}
-ggplot(data = medal_counts, 
-       aes(x = Year, y = n, group = region_medal, alpha = col)) +
-  geom_point(aes(colour = Medal)) +
-  geom_line(aes(colour = Medal)) +
-  scale_color_manual(values = c("1" = "red", "0" = "lightgrey", "Gold" = "yellow", "Silver" = "grey", "Bronze" = "brown")) +
-  scale_alpha_manual(values = c("1" = 1, "0" = 0.1)) +
-  theme_classic()
+library(ggwordcloud)
+
+ggplot(data = books %>% filter(average_rating > 4.5), 
+       mapping = aes(label = title, 
+                     size = average_rating)) +
+  geom_text_wordcloud()
+  
+
 ```
 
 
-```{r}
-data_germany <- medal_counts %>% 
-  filter(col == '1')
-data_noGermany <- medal_counts %>% 
-  filter(col == 0)
-
-
-ggplot(data = medal_counts, 
-       aes(x = Year, y = n, group = region_medal, alpha = col)) +
-  geom_point(data = data_noGermany, aes(colour = Medal)) +
-  geom_line(data = data_germany, aes(colour = Medal)) +
-  scale_color_manual(values = c("1" = "red", "0" = "lightgrey", "Gold" = "yellow", "Silver" = "grey", "Bronze" = "brown")) +
-  scale_alpha_manual(values = c("1" = 1, "0" = 0.1)) +
-  theme_classic() 
-```
+## Übung
 
 ```{r}
-library(ggbump)
-ggplot(data = medal_counts, 
-       aes(x = Year, y = n, group = region_medal)) +
-  geom_bump(color = 'grey90') 
+
 ```
 
 
 
-
-Was ist hier auch mit missing data?
-
-## Let's take a deeper look
+## Let's take a deeper dive
 Hier dann nochmal genauer durchgehen - Was haben wir eigentlich gemacht. 
 Nicht zu sehr in den Basics verlieren, auch schneller tiefer reingehen (scales, coord system ...)
 
 
+## Abspeichern
+
+
+
+## Farben 
+
+https://questionsindataviz.com/2023/12/29/what-makes-a-truly-terrible-map/
