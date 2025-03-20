@@ -55,99 +55,9 @@ Foto von <a href="https://unsplash.com/de/@omarlopez1?utm_content=creditCopyText
 ## Daten vorstellen
 
 ```{r}
-#| echo: false
-
-# https://www.kaggle.com/datasets/jealousleopard/goodreadsbooks
-# Clean, number of ratings but no genre data (but isbn is there, so could be added)
-books <- read.csv("C:/Users/hafiznij/Downloads/archive(1)/books.csv") %>% 
-  filter(ratings_count > 1000) %>% 
-  mutate(average_rating = as.numeric(average_rating)) %>%  
-  mutate(num_pages = as.numeric(num_pages)) 
-
-books$pubdate <- mdy(books$publication_date)
-
-
-ggplot(books, aes(x = num_pages, y = average_rating) )+
-  geom_point() +
-  geom_smooth(method = "lm")
-
-
-ggplot(books, aes(x = pubdate, y = average_rating)) +
-  geom_point() +
-  geom_smooth()
-### Best book per year
-
-
-# chttps://www.kaggle.com/datasets/dylanjcastillo/7k-books-with-metadata
-## Thumbnail enthalten!
-
-
-
-# https://github.com/prasertcbs/basic-dataset/tree/master/book_ratings
-books4 <- read.csv("C:/Users/hafiznij/Downloads/books(1).csv")
-```
-
-```{r}
-#|echo: false
-#|eval: false
-
-
-# install.packages("tidytuesdayR")
-library(tidytuesdayR)
-
-tuesdata <- tidytuesdayR::tt_load('2022-08-16')
-
-
-## Sowas wie Female Darstellung in Sitcoms over time? Also man köñnte sich schon interessante Zusammenhänge zwischen Darstellung von Figuren über die Zeti anschauen?
-
-characters_psych <- tuesdata$psych_stats %>% 
-  select(char_name, uni_name, personality, avg_rating) %>% 
-  # filter(uni_name %in% c("Friends", "How I Met Your Mother", "Breaking Bad")) %>% 
-  filter( personality %in% c("sexual", "bossy")) %>% 
-  pivot_wider(names_from = personality, values_from = avg_rating)
-
-ggplot(characters_psych, aes(x = sexual, y = bossy)) +
-  geom_point() + 
-  geom_smooth(method = "lm")
-
-## Eventuell später mit PCA oder so interessant
-  
-
-# https://www.kaggle.com/datasets/nelgiriyewithana/countries-of-the-world-2023
 
 ```
 
-
-```{r}
-# install.packages('spotifyr')
-library(spotifyr)
-library(lubridate)
-
-
-Sys.setenv(SPOTIFY_CLIENT_ID = 'b659f23a41964a1eb30033893df3e57f')
-Sys.setenv(SPOTIFY_CLIENT_SECRET = 'd736f07b42a04805b4ba34a52ae55f33')
-
-access_token <- get_spotify_access_token()
-
-beatles <- get_artist_audio_features('the beatles')
-
-
-get_my_recently_played(limit = 5) %>% 
-    mutate(artist.name = map_chr(track.artists, function(x) x$name[1]),
-           played_at = as_datetime(played_at)) %>% 
-    select(track.name, artist.name, track.album.name, played_at)
-
-my_plists <- get_user_playlists("nickha1234")
-
-tracks <- get_playlist_tracks("7u6duSFjCraRposPGIZD6c")
-get_track_audio_features(tracks$track.id[1])
-
-get_artist("6gto7HVNhu4ARE3P3g8Y5Y")
-get_track("0A36fhiySewWxiN2n2p0xq")
-get_track_audio_features("0A36fhiySewWxiN2n2p0xq")
-
-tuesdata <- tidytuesdayR::tt_load('2020-01-21') 
-```
 
 
 ## The Big picture
