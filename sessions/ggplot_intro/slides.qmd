@@ -54,12 +54,56 @@ Foto von <a href="https://unsplash.com/de/@omarlopez1?utm_content=creditCopyText
 
 ## Daten vorstellen
 
+could use the imbd data for season/episode popularity. 
+Or some network plot with the actors, maybe which combinations have the best ratings. 
+Return of investment by categorie, with naming outliers!
+Life expectancy by country, with looking at outliers for example. 
+
 ```{r}
-library(readr)
-title_basics <- read_tsv(here::here("data", "title_basics.tsv"))
-head(title_basics)
+movies_metadat <- read.csv(here::here("data", "movies_metadata.csv")) %>% 
+  mutate(budget = as.numeric(budget), 
+         vote_average = as.numeric(vote_average)) %>% 
+  filter(revenue > 0, budget > 0)
+
+## Popularity over seasons
 ```
 
+
+## Astronauts
+```{r}
+tuesdata <- tidytuesdayR::tt_load('2020-07-14')
+
+astro <- tuesdata$astronauts
+```
+
+
+```{r}
+ggplot(data = astro, 
+       aes(x = year_of_mission, 
+           y = hours_mission)) +
+  geom_point() +
+  geom_smooth()
+```
+
+```{r}
+ggplot(data = astro, 
+       aes(x = eva_hrs_mission, 
+           y = hours_mission, 
+           colour = sex)) +
+  geom_point() 
+```
+
+```{r}
+library(tidyverse)
+library(here)
+library(janitor)
+
+# read in the specific category/field datasets and the overall winners
+
+nobel_winners <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2019/2019-05-14/nobel_winners.csv")
+nobel_winner_all_pubs <- readr::read_csv("https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2019/2019-05-14/nobel_winner_all_pubs.csv")
+
+```
 
 
 ## The Big picture
@@ -68,11 +112,11 @@ head(title_basics)
 #| output-location: column
 #| code-line-numbers: "1|2,3|4"
 
-ggplot(data = books %>% filter(num_pages < 2000), 
-       mapping = aes(x = num_pages, 
-                     y = average_rating)) +
+ggplot(data = movies_metadat, 
+       mapping = aes(x = revenue, 
+                     y = vote_average)) +
   geom_point() +
-  geom_smooth(method = "lm")
+  geom_smooth()
 ```
 
 
@@ -90,7 +134,7 @@ ggplot()
 
 ```{r}
 #| output-location: column
-ggplot(data = books)
+ggplot(data = movies_metadat)
 ```
 
 
@@ -109,9 +153,9 @@ Je nach Plot-Art sind verschiedene Visuelle Eigenschaften möglich. Wichtig ist 
 #| output-location: column
 #| code-line-numbers: "2,3"
 
-ggplot(data = books, 
-       mapping = aes(x = num_pages, 
-                     y = average_rating))
+ggplot(data = movies_metadat, 
+       mapping = aes(x = revenue, 
+                     y = vote_average))
 ```
 
 
