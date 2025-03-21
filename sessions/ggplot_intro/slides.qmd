@@ -55,7 +55,9 @@ Foto von <a href="https://unsplash.com/de/@omarlopez1?utm_content=creditCopyText
 ## Daten vorstellen
 
 ```{r}
-
+library(readr)
+title_basics <- read_tsv(here::here("data", "title_basics.tsv"))
+head(title_basics)
 ```
 
 
