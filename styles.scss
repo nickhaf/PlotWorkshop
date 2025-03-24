@@ -110,6 +110,13 @@ $presentation-heading-font: 'Roboto Condensed', san-serif;
   font-size: 30px;
 }
 
+.panel-tabset {
+  border: 2px solid $theme-darkblue;
+  background-color: darken($theme-background, 2.5%);
+  padding: 10px; /* Padding around the plot */
+  border-radius: 5px; /* Optional: rounded corners */
+}
+
 
 input[type="range"] {
   background: $body-bg; // Set your desired background color:
@@ -141,3 +148,5 @@ input[type="range"] {
   border-radius: 5px; /* Optional: rounded corners */
   background-color: #f8f8f8; /* Optional: background color */
 }
+
+

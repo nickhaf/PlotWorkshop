@@ -19,7 +19,8 @@ format:
 
   letterbox-revealjs:
     embed-resources: true
-    theme: styles.scss
+    theme: 
+      - styles.scss
     highlight-style: dark.theme
     fontsize: 20pt
 
