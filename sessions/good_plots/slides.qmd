@@ -73,6 +73,43 @@ ggplot(datasaurus_dozen, aes(x = x, y = y)) +
 
 ```
 
+## Darstellung von Größen
+
+## Manipulation von Achsen
+
+## Manipulation des Bildformats
+
+```{r}
+set.seed(42)
+my_weight <- data.frame(
+  month = factor(c("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"),
+                 levels = c("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"), 
+                 ordered = TRUE), 
+  weight = rnorm(12, 90, 5)/1000, 
+  group = rep(1, 12)
+)
+
+ggplot(my_weight, 
+       aes(x = month, y = weight, group = group)) +
+  geom_point() +
+  geom_line() +
+  labs(title = "Mein Gewicht 2024",
+       subtitle = "In metrischen Tonnen", 
+       x = "Monat", 
+       y = "Gewicht in t") +
+  ylim(0, 1000) + 
+  theme_bg() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+## Election Plot
+https://storymaps.arcgis.com/stories/0e636a652d44484b9457f953994b212b
+Vielleicht mit Bundestagswahl?
+
+## Fehlender Kontext
+Ausschnitt aus Zeitreihe, ohne KOntext schwer zu Interpretieren. 
+Irgendwas mit Schuldenpaket z.B.?
+Am besten noch mit anderen Kategorien dazu
 
 ## Verteilungen Plotten
 
@@ -166,7 +203,14 @@ Data from [Rockefeller Institute](https://rockinst.org/blog/public-mass-shooting
 
 
 ## Tufte
+- So wenig Tinte wie möglich nutzen
+- Alles nicht essentielle entfernen
+- Redundanzen entferenen  
 
+Beispiel zeigen: Eins ist aufgeblasen, man braucht Zeit zur Orientierung. Ein anderes theme_tufte
+
+## Data-ink ratio
+Beispiel zum Minimieren zeigen
 
 ## Caveats
 https://www.data-to-viz.com/caveats.html
@@ -174,6 +218,15 @@ https://www.data-to-viz.com/caveats.html
 Immer einen Plot zeigen, dann zusammen überlgen was daran schlecht ist, was verbessert werden kann. 
 
 
+## Farben
+
+## Takeaways
+- Kommunizieren von der größtmöglichen Anzahl von Ideen in kürzester Zeit.
+- Maximieren von Data-ink ratio
+- Minimieren von Chart-junk
+- Erhöhe Datendichte, Vervielfältige kleine Versionen der Abbildung für verschiedene Gruppen
+
+## Caveat Plots: See data to viz
 
 
 ## Übung

@@ -1,0 +1,12 @@
+---
+title: "Mehr ggplot2!"
+format: letterbox-revealjs
+---
+
+## Faceting
+
+## Scales
+Logarithmisch vs linear
+
+## Koordinatensytem
+## Abspeichern
