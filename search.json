@@ -137,7 +137,7 @@
     "href": "sessions/ggplot_intro/slides.html#übung",
     "title": "ggplot2: Basics",
     "section": "Übung",
-    "text": "Übung"
+    "text": "Übung\n\nAufgabeLösung\n\n\nErstelle ein eigenes Punktdiagramm. Nutze dafür andere Variablen im Datensatz movies_metadat. Vergib auch einen Titel, Achsen-Beschriftungen und suche ein Theme aus.\n\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Getting a bang for your buck: Are Movies with higher budget also better?\",\n    subtitle = \"There doesn't seem to be a strong relation between movie budget and average rating.\",\n    x = \"Movie budget\",\n    y = \"Average vote\"\n  ) +\n  theme_classic()"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#lets-take-a-deeper-dive",
