@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "sessions/more_ggplot/good_plots.html",
+    "href": "sessions/more_ggplot/good_plots.html",
+    "title": "Mehr ggplot2!",
+    "section": "",
+    "text": "View slides in full screen"
+  },
+  {
     "objectID": "sessions/Einführung/Einführung.html",
     "href": "sessions/Einführung/Einführung.html",
     "title": "Einführung",
@@ -182,6 +189,41 @@
     "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\ndataset\nmean_x\nvar_x\nmean_y\nvar_y\ncor\n\n\n\n\naway\n54.27\n281.23\n47.83\n725.75\n-0.06\n\n\nbullseye\n54.27\n281.21\n47.83\n725.53\n-0.07\n\n\ncircle\n54.27\n280.90\n47.84\n725.23\n-0.07\n\n\ndino\n54.26\n281.07\n47.83\n725.52\n-0.06\n\n\ndots\n54.26\n281.16\n47.84\n725.24\n-0.06\n\n\nh_lines\n54.26\n281.10\n47.83\n725.76\n-0.06\n\n\nhigh_lines\n54.27\n281.12\n47.84\n725.76\n-0.07\n\n\nslant_down\n54.27\n281.12\n47.84\n725.55\n-0.07\n\n\nslant_up\n54.27\n281.19\n47.83\n725.69\n-0.07\n\n\nstar\n54.27\n281.20\n47.84\n725.24\n-0.06\n\n\nv_lines\n54.27\n281.23\n47.84\n725.64\n-0.07\n\n\nwide_lines\n54.27\n281.23\n47.83\n725.65\n-0.07\n\n\nx_shape\n54.26\n281.23\n47.84\n725.22\n-0.07"
   },
   {
+    "objectID": "sessions/good_plots/slides.html#darstellung-von-größen",
+    "href": "sessions/good_plots/slides.html#darstellung-von-größen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Darstellung von Größen",
+    "text": "Darstellung von Größen"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#manipulation-von-achsen",
+    "href": "sessions/good_plots/slides.html#manipulation-von-achsen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Manipulation von Achsen",
+    "text": "Manipulation von Achsen"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#manipulation-des-bildformats",
+    "href": "sessions/good_plots/slides.html#manipulation-des-bildformats",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Manipulation des Bildformats",
+    "text": "Manipulation des Bildformats\n\nset.seed(42)\nmy_weight &lt;- data.frame(\n  month = factor(c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"),\n                 levels = c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"), \n                 ordered = TRUE), \n  weight = rnorm(12, 90, 5)/1000, \n  group = rep(1, 12)\n)\n\nggplot(my_weight, \n       aes(x = month, y = weight, group = group)) +\n  geom_point() +\n  geom_line() +\n  labs(title = \"Mein Gewicht 2024\",\n       subtitle = \"In metrischen Tonnen\", \n       x = \"Monat\", \n       y = \"Gewicht in t\") +\n  ylim(0, 1000) + \n  theme_bg() +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#election-plot",
+    "href": "sessions/good_plots/slides.html#election-plot",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Election Plot",
+    "text": "Election Plot\nhttps://storymaps.arcgis.com/stories/0e636a652d44484b9457f953994b212b Vielleicht mit Bundestagswahl?"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#fehlender-kontext",
+    "href": "sessions/good_plots/slides.html#fehlender-kontext",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Fehlender Kontext",
+    "text": "Fehlender Kontext\nAusschnitt aus Zeitreihe, ohne KOntext schwer zu Interpretieren. Irgendwas mit Schuldenpaket z.B.? Am besten noch mit anderen Kategorien dazu"
+  },
+  {
     "objectID": "sessions/good_plots/slides.html#verteilungen-plotten",
     "href": "sessions/good_plots/slides.html#verteilungen-plotten",
     "title": "Was ist eine gute Grafik?",
@@ -256,7 +298,14 @@
     "href": "sessions/good_plots/slides.html#tufte",
     "title": "Was ist eine gute Grafik?",
     "section": "Tufte",
-    "text": "Tufte"
+    "text": "Tufte\n\nSo wenig Tinte wie möglich nutzen\nAlles nicht essentielle entfernen\nRedundanzen entferenen\n\nBeispiel zeigen: Eins ist aufgeblasen, man braucht Zeit zur Orientierung. Ein anderes theme_tufte"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#data-ink-ratio",
+    "href": "sessions/good_plots/slides.html#data-ink-ratio",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Data-ink ratio",
+    "text": "Data-ink ratio\nBeispiel zum Minimieren zeigen"
   },
   {
     "objectID": "sessions/good_plots/slides.html#caveats",
@@ -264,6 +313,27 @@
     "title": "Was ist eine gute Grafik?",
     "section": "Caveats",
     "text": "Caveats\nhttps://www.data-to-viz.com/caveats.html\nImmer einen Plot zeigen, dann zusammen überlgen was daran schlecht ist, was verbessert werden kann."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#farben",
+    "href": "sessions/good_plots/slides.html#farben",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Farben",
+    "text": "Farben"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#takeaways",
+    "href": "sessions/good_plots/slides.html#takeaways",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Takeaways",
+    "text": "Takeaways\n\nKommunizieren von der größtmöglichen Anzahl von Ideen in kürzester Zeit.\nMaximieren von Data-ink ratio\nMinimieren von Chart-junk\nErhöhe Datendichte, Vervielfältige kleine Versionen der Abbildung für verschiedene Gruppen"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#caveat-plots-see-data-to-viz",
+    "href": "sessions/good_plots/slides.html#caveat-plots-see-data-to-viz",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Caveat Plots: See data to viz",
+    "text": "Caveat Plots: See data to viz"
   },
   {
     "objectID": "sessions/good_plots/slides.html#übung",
@@ -341,5 +411,33 @@
     "title": "Einführung",
     "section": "Step By Step example",
     "text": "Step By Step example"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#faceting",
+    "href": "sessions/more_ggplot/slides.html#faceting",
+    "title": "Mehr ggplot2!",
+    "section": "Faceting",
+    "text": "Faceting"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#scales",
+    "href": "sessions/more_ggplot/slides.html#scales",
+    "title": "Mehr ggplot2!",
+    "section": "Scales",
+    "text": "Scales\nLogarithmisch vs linear"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#koordinatensytem",
+    "href": "sessions/more_ggplot/slides.html#koordinatensytem",
+    "title": "Mehr ggplot2!",
+    "section": "Koordinatensytem",
+    "text": "Koordinatensytem"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#abspeichern",
+    "href": "sessions/more_ggplot/slides.html#abspeichern",
+    "title": "Mehr ggplot2!",
+    "section": "Abspeichern",
+    "text": "Abspeichern"
   }
 ]
