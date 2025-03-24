@@ -7,6 +7,15 @@ execute:
   fig-height: 6
 ---
 
+
+```{r}
+#| echo: false
+
+library(here)
+library(janitor)
+library(ggwordcloud)
+```
+
 ## {background-image="images/ggplot_art.png" background-size="1160px" background-position="15%"}
 
 ::: {.absolute right="0.5%" bottom="0.5%" style="font-size:0.25em; padding: 0.15em 0.15em; background-color: rgba(255, 255, 255 .7); backdrop-filter: blur(5px); box-shadow: 0 0 1rem 0 rgba(255, 255, 255 .5); border-radius: 2. 5px;"}
@@ -23,9 +32,7 @@ Bild von [Allison Horst](https://allisonhorst.com/r-packages-functions).
 ```{r}
 #install.packages("tidyverse")
 library(tidyverse)
-library(here)
-library(janitor)
-library(ggwordcloud)
+
 
 ```
 
@@ -57,6 +64,32 @@ Foto von <a href="https://unsplash.com/de/@omarlopez1?utm_content=creditCopyText
 
 
 ## Daten vorstellen
+```{r}
+#| echo: false
+library(rjson)
+
+
+movies_metadat <- read.csv(here::here("data", "movies_metadata.csv")) %>% 
+  mutate(budget = as.numeric(budget), 
+         vote_average = as.numeric(vote_average), 
+         popularity = as.numeric(popularity)) %>% 
+  filter(revenue > 0, budget > 0)
+
+
+extract_genres <- function(json_string) {
+  json_string %>%
+    str_replace_all("'", "\"") %>%   # Replace single quotes with double quotes
+    fromJSON() %>%                   # Convert JSON string to list
+    map_chr("name") %>%               # Extract "name" field
+    paste(collapse = ", ")            # Combine into a single string
+}
+
+movies_metadat <- movies_metadat %>% 
+  mutate(genres_clean = map_chr(genres, extract_genres)) %>% 
+  separate_rows(genres_clean, sep = ", ")  # Split the column into multiple rows
+
+
+```
 
 ## The Big picture
 
@@ -93,7 +126,8 @@ Um diese leere Leinwand zu befüllen, müssen wir die Daten mit den benötigten 
 
 `mapping =  aes()`
 
-Je nach Plot-Art sind verschiedene Visuelle Eigenschaften möglich. Wichtig ist für uns jetzt erst einmal die Position, also x - und y-Achsen.
+Je nach Plot-Art sind verschiedene visuelle Eigenschaften möglich. Wichtig ist für uns jetzt erst einmal die Position, also x - und y-Achsen.  
+Es kann hier aber z.B. auch die Farbe der Punkte in Agnhängikeit von Kategorien in den Daten geändert werden. 
 
 
 ## Aesthetic mapping: Achsen 
@@ -103,7 +137,7 @@ Je nach Plot-Art sind verschiedene Visuelle Eigenschaften möglich. Wichtig ist 
 #| code-line-numbers: "2,3"
 
 ggplot(data = movies_metadat, 
-       mapping = aes(x = revenue, 
+       mapping = aes(x = budget, 
                      y = vote_average))
 ```
 
@@ -113,25 +147,73 @@ ggplots sind aus verschiedenen Layern aufgebaut, die mithilfe eines `+` überein
 
 `geom_`
 
-## Layer
+## Layers
 
 ```{r}
 #| output-location: column
 #| code-line-numbers: "4"
 
 ggplot(data = movies_metadat, 
-       mapping = aes(x = revenue, 
+       mapping = aes(x = budget, 
                      y = vote_average)) +
   geom_point()
 ```
 
+## Mehr Layers!
+```{r}
+#| output-location: column
+#| code-line-numbers: "5"
+
+ggplot(data = movies_metadat, 
+       mapping = aes(x = budget, 
+                     y = vote_average)) +
+  geom_point() +
+  geom_smooth()
+```
+
+## Titel/Labels
+```{r}
+#| output-location: column
+#| code-line-numbers: "6|7|8|9|10"
+
+ggplot(data = movies_metadat, 
+       mapping = aes(x = budget, 
+                     y = vote_average)) +
+  geom_point() +
+  geom_smooth() +
+  labs(
+    title = "Getting a bang for your buck: Are Movies with higher budget also better?",
+    subtitle = "There doesn't seem to be a strong relation between movie budget and average rating.",
+    x = "Movie budget",
+    y = "Average vote"
+  )
+```
+
+
+## Style deinen Plot: Themes
+
+```{r}
+#| output-location: column
+#| code-line-numbers: "6|7|8|9|10"
+
+ggplot(data = movies_metadat, 
+       mapping = aes(x = budget, 
+                     y = vote_average)) +
+  geom_point() +
+  geom_smooth() +
+  labs(
+    title = "Getting a bang for your buck: Are Movies with higher budget also better?",
+    subtitle = "There doesn't seem to be a strong relation between movie budget and average rating.",
+    x = "Movie budget",
+    y = "Average vote"
+  ) +
+  theme_classic()
+```
+
+
 
 
 ## Übung
-
-```{r}
-
-```
 
 
 

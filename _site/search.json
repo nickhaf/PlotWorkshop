@@ -179,7 +179,7 @@
     "href": "sessions/ggplot_intro/slides.html#ggplot2-das-paket",
     "title": "ggplot2: Basics",
     "section": "ggplot2: Das Paket",
-    "text": "ggplot2: Das Paket\n\nggplot2 gehört zum tidyverse\n\n#install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n\n… kann aber natürlich auch seperat geladen werden:\n\n#install.packages(\"ggplot2\")\nlibrary(ggplot2)"
+    "text": "ggplot2: Das Paket\n\n\nggplot2 gehört zum tidyverse\n\n#install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n\n\n… kann aber natürlich auch seperat geladen werden:\n\n#install.packages(\"ggplot2\")\nlibrary(ggplot2)"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#section-1",
@@ -200,14 +200,14 @@
     "href": "sessions/ggplot_intro/slides.html#daten-vorstellen",
     "title": "ggplot2: Basics",
     "section": "Daten vorstellen",
-    "text": "Daten vorstellen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#|echo: false\n#|eval: false\n\n\ninstall.packages(\"tidytuesdayR\")\n\nThe following package(s) will be installed:\n- tidytuesdayR [1.1.2]\nThese packages will be installed into \"~/GitHub/PlotWorkshop/renv/library/windows/R-4.4/x86_64-w64-mingw32\".\n\n# Installing packages --------------------------------------------------------\n- Installing tidytuesdayR ...                   OK [linked from cache]\nSuccessfully installed 1 package in 14 milliseconds.\n\nlibrary(tidytuesdayR)\n\ntuesdata &lt;- tidytuesdayR::tt_load('2022-08-16')\n\n\n## Sowas wie Female Darstellung in Sitcoms over time? Also man köñnte sich schon interessante Zusammenhänge zwischen Darstellung von Figuren über die Zeti anschauen?\n\ncharacters_psych &lt;- tuesdata$psych_stats %&gt;% \n  select(char_name, uni_name, personality, avg_rating) %&gt;% \n  # filter(uni_name %in% c(\"Friends\", \"How I Met Your Mother\", \"Breaking Bad\")) %&gt;% \n  filter( personality %in% c(\"sexual\", \"bossy\")) %&gt;% \n  pivot_wider(names_from = personality, values_from = avg_rating)\n\nggplot(characters_psych, aes(x = sexual, y = bossy)) +\n  geom_point() + \n  geom_smooth(method = \"lm\")\n\n\n\n\n\n\n## Eventuell später mit PCA oder so interessant\n  \n\n# https://www.kaggle.com/datasets/nelgiriyewithana/countries-of-the-world-2023"
+    "text": "Daten vorstellen"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#daten",
     "href": "sessions/ggplot_intro/slides.html#daten",
     "title": "ggplot2: Basics",
     "section": "Daten",
-    "text": "Daten\n\n\nggplot(data = books)"
+    "text": "Daten\n\n\nggplot(data = movies_metadat)"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#aesthetic-mappings",
@@ -221,7 +221,7 @@
     "href": "sessions/ggplot_intro/slides.html#layer",
     "title": "ggplot2: Basics",
     "section": "Layer",
-    "text": "Layer\n\n\nggplot(data = books, \n       mapping = aes(x = num_pages, \n                     y = average_rating)) +\n  geom_point()"
+    "text": "Layer\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = revenue, \n                     y = vote_average)) +\n  geom_point()"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#lets-take-a-deeper-look",
@@ -361,7 +361,7 @@
     "href": "sessions/ggplot_intro/slides.html#abspeichern",
     "title": "ggplot2: Basics",
     "section": "Abspeichern",
-    "text": "Abspeichern\n\n\n\nJanine Birkholz & Nicklas Hafiz // Mai 2025"
+    "text": "Abspeichern"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#ggplot",
@@ -375,21 +375,21 @@
     "href": "sessions/ggplot_intro/slides.html#aesthetic-mapping",
     "title": "ggplot2: Basics",
     "section": "Aesthetic mapping",
-    "text": "Aesthetic mapping\nUm diese leere Leinwand zu befüllen, müssen wir die Daten mit den benötigten visuellen Eigenschaften verknüpfen:\nmapping =  aes()\nJe nach Plot-Art sind verschiedene Visuelle Eigenschaften möglich. Wichtig ist für uns jetzt erst einmal die Position, also x - und y-Achsen."
+    "text": "Aesthetic mapping\nUm diese leere Leinwand zu befüllen, müssen wir die Daten mit den benötigten visuellen Eigenschaften verknüpfen:\nmapping =  aes()\nJe nach Plot-Art sind verschiedene visuelle Eigenschaften möglich. Wichtig ist für uns jetzt erst einmal die Position, also x - und y-Achsen.\nEs kann hier aber z.B. auch die Farbe der Punkte in Agnhängikeit von Kategorien in den Daten geändert werden."
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#aesthetic-mapping-achsen",
     "href": "sessions/ggplot_intro/slides.html#aesthetic-mapping-achsen",
     "title": "ggplot2: Basics",
     "section": "Aesthetic mapping: Achsen",
-    "text": "Aesthetic mapping: Achsen\n\n\nggplot(data = books, \n       mapping = aes(x = num_pages, \n                     y = average_rating))"
+    "text": "Aesthetic mapping: Achsen\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average))"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#the-big-picture",
     "href": "sessions/ggplot_intro/slides.html#the-big-picture",
     "title": "ggplot2: Basics",
     "section": "The Big picture",
-    "text": "The Big picture\n\n\nggplot(data = books, \n       mapping = aes(x = num_pages, \n                     y = average_rating)) +\n  geom_point()"
+    "text": "The Big picture"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#geometric-layers",
@@ -404,5 +404,54 @@
     "title": "ggplot2: Basics",
     "section": "Übung",
     "text": "Übung"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#farben",
+    "href": "sessions/ggplot_intro/slides.html#farben",
+    "title": "ggplot2: Basics",
+    "section": "Farben",
+    "text": "Farben\nhttps://questionsindataviz.com/2023/12/29/what-makes-a-truly-terrible-map/\n\n\nJanine Birkholz & Nicklas Hafiz // Mai 2025"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#layers",
+    "href": "sessions/ggplot_intro/slides.html#layers",
+    "title": "ggplot2: Basics",
+    "section": "Layers",
+    "text": "Layers\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point()"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#mehr-layers",
+    "href": "sessions/ggplot_intro/slides.html#mehr-layers",
+    "title": "ggplot2: Basics",
+    "section": "Mehr Layers!",
+    "text": "Mehr Layers!\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth()"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#titlelabels",
+    "href": "sessions/ggplot_intro/slides.html#titlelabels",
+    "title": "ggplot2: Basics",
+    "section": "Title/Labels",
+    "text": "Title/Labels"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#themes",
+    "href": "sessions/ggplot_intro/slides.html#themes",
+    "title": "ggplot2: Basics",
+    "section": "Themes",
+    "text": "Themes"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#titellabels",
+    "href": "sessions/ggplot_intro/slides.html#titellabels",
+    "title": "ggplot2: Basics",
+    "section": "Titel/Labels",
+    "text": "Titel/Labels\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Getting a bang for your buck: Are Movies with higher budget also better?\",\n    subtitle = \"There doesn't seem to be a strong relation between movie budget and average rating.\",\n    x = \"Movie budget\",\n    y = \"Average vote\"\n  )"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#style-deinen-plot-themes",
+    "href": "sessions/ggplot_intro/slides.html#style-deinen-plot-themes",
+    "title": "ggplot2: Basics",
+    "section": "Style deinen Plot: Themes",
+    "text": "Style deinen Plot: Themes\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Getting a bang for your buck: Are Movies with higher budget also better?\",\n    subtitle = \"There doesn't seem to be a strong relation between movie budget and average rating.\",\n    x = \"Movie budget\",\n    y = \"Average vote\"\n  ) +\n  theme_classic()"
   }
 ]
