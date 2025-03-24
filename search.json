@@ -39,7 +39,7 @@
     "href": "sessions/ggplot_intro/slides.html#ggplot2-das-paket",
     "title": "ggplot2: Basics",
     "section": "ggplot2: Das Paket",
-    "text": "ggplot2: Das Paket\n\n\nggplot2 gehört zum tidiverse\n\n#install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n\n\n… kann aber natürlich auch seperat geladen werden:\n\n#install.packages(\"ggplot2\")\nlibrary(ggplot2)"
+    "text": "ggplot2: Das Paket\n\n\nggplot2 gehört zum tidyverse\n\n#install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n\n\n… kann aber natürlich auch seperat geladen werden:\n\n#install.packages(\"ggplot2\")\nlibrary(ggplot2)"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#section-1",
@@ -53,49 +53,112 @@
     "href": "sessions/ggplot_intro/slides.html#komponenten",
     "title": "ggplot2: Basics",
     "section": "Komponenten",
-    "text": "Komponenten\nHier ein ganz simples beispiel von Anfang bis Ende. Welche daten? Irgendwas, was für linear regression geeignet ist. TidyTuesday?\nOlympische Daten wieder? Daran könnte man den Medaillienverlauf auch gut zeigen. Aber irgendwas wäre besser mit kontinuierlich durchlaufenden daten."
+    "text": "Komponenten\nÜbersicht"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#daten-vorstellen",
     "href": "sessions/ggplot_intro/slides.html#daten-vorstellen",
     "title": "ggplot2: Basics",
     "section": "Daten vorstellen",
-    "text": "Daten vorstellen\n\nlibrary(tidyverse)\n\nathletes &lt;- readRDS(file = here::here(\"raw_data\", \"athletes.rds\"))\nworld_coordinates &lt;- readRDS(file = here::here(\"raw_data\", \"world_coordinates.rds\"))\n\nmedal_counts &lt;- athletes %&gt;%\n  filter(Medal == \"Gold\") %&gt;%\n  group_by(Region) %&gt;%\n  count(Medal)\n\nmedal_countries &lt;- world_coordinates %&gt;%\n  rename(\"Region\" = region) %&gt;%\n  left_join(medal_counts)\n\nBest country each year.\n\nmedal_counts &lt;- athletes %&gt;% \n  filter(!is.na(Medal), Season == 'Summer') %&gt;% \n  group_by(Year, Region) %&gt;% \n  count(Medal) %&gt;%\n  group_by(Year, Medal) %&gt;%\n  mutate(col = ifelse(Region == \"Germany\", \"1\", \"0\")) %&gt;% \n  mutate(region_medal = paste0(Region, Medal))\n\n  #slice_max(order_by = n, n = 1, with_ties = FALSE)"
+    "text": "Daten vorstellen"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#the-big-picture",
+    "href": "sessions/ggplot_intro/slides.html#the-big-picture",
+    "title": "ggplot2: Basics",
+    "section": "The Big picture",
+    "text": "The Big picture"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#ggplot",
+    "href": "sessions/ggplot_intro/slides.html#ggplot",
+    "title": "ggplot2: Basics",
+    "section": "ggplot()",
+    "text": "ggplot()\n\n\nggplot()"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#daten",
     "href": "sessions/ggplot_intro/slides.html#daten",
     "title": "ggplot2: Basics",
     "section": "Daten",
-    "text": "Daten\n\nggplot(data = medal_counts)"
+    "text": "Daten\n\n\nggplot(data = movies_metadat)"
   },
   {
-    "objectID": "sessions/ggplot_intro/slides.html#aesthetic-mappings",
-    "href": "sessions/ggplot_intro/slides.html#aesthetic-mappings",
+    "objectID": "sessions/ggplot_intro/slides.html#aesthetic-mapping",
+    "href": "sessions/ggplot_intro/slides.html#aesthetic-mapping",
     "title": "ggplot2: Basics",
-    "section": "Aesthetic mappings",
-    "text": "Aesthetic mappings\n\nggplot(data = medal_counts, \n       mapping = aes(x = Year, y = n))\n\n\nDas erzeugt erst einmal nur das Koordinatensystem. Als nächstes fügen wir layers hinzu."
+    "section": "Aesthetic mapping",
+    "text": "Aesthetic mapping\nUm diese leere Leinwand zu befüllen, müssen wir die Daten mit den benötigten visuellen Eigenschaften verknüpfen:\nmapping =  aes()\nJe nach Plot-Art sind verschiedene visuelle Eigenschaften möglich. Wichtig ist für uns jetzt erst einmal die Position, also x - und y-Achsen.\nEs kann hier aber z.B. auch die Farbe der Punkte in Agnhängikeit von Kategorien in den Daten geändert werden."
   },
   {
-    "objectID": "sessions/ggplot_intro/slides.html#layer",
-    "href": "sessions/ggplot_intro/slides.html#layer",
+    "objectID": "sessions/ggplot_intro/slides.html#aesthetic-mapping-achsen",
+    "href": "sessions/ggplot_intro/slides.html#aesthetic-mapping-achsen",
     "title": "ggplot2: Basics",
-    "section": "Layer",
-    "text": "Layer\n\n\nggplot(data = medal_counts, \n       aes(x = Year, y = n)) +\n  geom_point()"
+    "section": "Aesthetic mapping: Achsen",
+    "text": "Aesthetic mapping: Achsen\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average))"
   },
   {
-    "objectID": "sessions/ggplot_intro/slides.html#section-2",
-    "href": "sessions/ggplot_intro/slides.html#section-2",
+    "objectID": "sessions/ggplot_intro/slides.html#geometric-layers",
+    "href": "sessions/ggplot_intro/slides.html#geometric-layers",
     "title": "ggplot2: Basics",
-    "section": "",
-    "text": "Maybe plot against number of total medals\n\nggplot(data = medal_counts, \n       aes(x = Year, y = n, group = region_medal, alpha = col)) +\n  geom_point(aes(colour = Medal)) +\n  geom_line(aes(colour = Medal)) +\n  scale_color_manual(values = c(\"1\" = \"red\", \"0\" = \"lightgrey\", \"Gold\" = \"yellow\", \"Silver\" = \"grey\", \"Bronze\" = \"brown\")) +\n  scale_alpha_manual(values = c(\"1\" = 1, \"0\" = 0.1)) +\n  theme_classic()\n\n\n\n\n\n\n\n\n\ndata_germany &lt;- medal_counts %&gt;% \n  filter(col == '1')\ndata_noGermany &lt;- medal_counts %&gt;% \n  filter(col == 0)\n\n\nggplot(data = medal_counts, \n       aes(x = Year, y = n, group = region_medal, alpha = col)) +\n  geom_point(data = data_noGermany, aes(colour = Medal)) +\n  geom_line(data = data_germany, aes(colour = Medal)) +\n  scale_color_manual(values = c(\"1\" = \"red\", \"0\" = \"lightgrey\", \"Gold\" = \"yellow\", \"Silver\" = \"grey\", \"Bronze\" = \"brown\")) +\n  scale_alpha_manual(values = c(\"1\" = 1, \"0\" = 0.1)) +\n  theme_classic() \n\n\n\n\n\n\n\n\n\nlibrary(ggbump)\nggplot(data = medal_counts, \n       aes(x = Year, y = n, group = region_medal)) +\n  geom_bump(color = 'grey90') \n\n\n\n\n\n\n\n\nWas ist hier auch mit missing data?"
+    "section": "Geometric Layers",
+    "text": "Geometric Layers\nggplots sind aus verschiedenen Layern aufgebaut, die mithilfe eines + übereinander gelegt werden.\ngeom_"
   },
   {
-    "objectID": "sessions/ggplot_intro/slides.html#lets-take-a-deeper-look",
-    "href": "sessions/ggplot_intro/slides.html#lets-take-a-deeper-look",
+    "objectID": "sessions/ggplot_intro/slides.html#layers",
+    "href": "sessions/ggplot_intro/slides.html#layers",
     "title": "ggplot2: Basics",
-    "section": "Let’s take a deeper look",
-    "text": "Let’s take a deeper look\nHier dann nochmal genauer durchgehen - Was haben wir eigentlich gemacht. Nicht zu sehr in den Basics verlieren, auch schneller tiefer reingehen (scales, coord system …)"
+    "section": "Layers",
+    "text": "Layers\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point()"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#mehr-layers",
+    "href": "sessions/ggplot_intro/slides.html#mehr-layers",
+    "title": "ggplot2: Basics",
+    "section": "Mehr Layers!",
+    "text": "Mehr Layers!\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth()"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#titellabels",
+    "href": "sessions/ggplot_intro/slides.html#titellabels",
+    "title": "ggplot2: Basics",
+    "section": "Titel/Labels",
+    "text": "Titel/Labels\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Getting a bang for your buck: Are Movies with higher budget also better?\",\n    subtitle = \"There doesn't seem to be a strong relation between movie budget and average rating.\",\n    x = \"Movie budget\",\n    y = \"Average vote\"\n  )"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#style-deinen-plot-themes",
+    "href": "sessions/ggplot_intro/slides.html#style-deinen-plot-themes",
+    "title": "ggplot2: Basics",
+    "section": "Style deinen Plot: Themes",
+    "text": "Style deinen Plot: Themes\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Getting a bang for your buck: Are Movies with higher budget also better?\",\n    subtitle = \"There doesn't seem to be a strong relation between movie budget and average rating.\",\n    x = \"Movie budget\",\n    y = \"Average vote\"\n  ) +\n  theme_classic()"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#übung",
+    "href": "sessions/ggplot_intro/slides.html#übung",
+    "title": "ggplot2: Basics",
+    "section": "Übung",
+    "text": "Übung"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#lets-take-a-deeper-dive",
+    "href": "sessions/ggplot_intro/slides.html#lets-take-a-deeper-dive",
+    "title": "ggplot2: Basics",
+    "section": "Let’s take a deeper dive",
+    "text": "Let’s take a deeper dive\nHier dann nochmal genauer durchgehen - Was haben wir eigentlich gemacht. Nicht zu sehr in den Basics verlieren, auch schneller tiefer reingehen (scales, coord system …)"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#abspeichern",
+    "href": "sessions/ggplot_intro/slides.html#abspeichern",
+    "title": "ggplot2: Basics",
+    "section": "Abspeichern",
+    "text": "Abspeichern"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#farben",
+    "href": "sessions/ggplot_intro/slides.html#farben",
+    "title": "ggplot2: Basics",
+    "section": "Farben",
+    "text": "Farben\nhttps://questionsindataviz.com/2023/12/29/what-makes-a-truly-terrible-map/"
   },
   {
     "objectID": "sessions/good_plots/slides.html#section",
