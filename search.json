@@ -179,7 +179,7 @@
     "href": "sessions/good_plots/slides.html#eine-gute-grafik-sollte",
     "title": "Was ist eine gute Grafik?",
     "section": "Eine gute Grafik sollte …",
-    "text": "Eine gute Grafik sollte …\n… eine Geschichte erzählen … helfen, auf das Wesentliche zu konzentrieren (datasaurus) … die Zusammenhänge möglichst “umfänglich” darzustellen. … (cool aussehen)"
+    "text": "Eine gute Grafik sollte …\n… eine Geschichte erzählen … helfen, auf das Wesentliche zu konzentrieren (datasaurus) … die Zusammenhänge möglichst “umfänglich” darzustellen. … (cool aussehen) … Kultur-, Personen-, Zeitunabhängig sein, soweit wie möglich"
   },
   {
     "objectID": "sessions/good_plots/slides.html#datasaurus-dozen-quartets-paket",
@@ -305,7 +305,7 @@
     "href": "sessions/good_plots/slides.html#data-ink-ratio",
     "title": "Was ist eine gute Grafik?",
     "section": "Data-ink ratio",
-    "text": "Data-ink ratio\nBeispiel zum Minimieren zeigen"
+    "text": "Data-ink ratio\nBeispiel zum Minimieren zeigen - Raincloud plots"
   },
   {
     "objectID": "sessions/good_plots/slides.html#caveats",
@@ -319,7 +319,21 @@
     "href": "sessions/good_plots/slides.html#farben",
     "title": "Was ist eine gute Grafik?",
     "section": "Farben",
-    "text": "Farben"
+    "text": "Farben\nGanglienzellen übertragen keine Informationen über absolute Helligkeit, sondern über relative Helligkeit. ‣ Wie stark unterscheiden sich zwei Bereiche in ihrer Helligkeit? ‣ Wie stark hat sich eine Helligkeit gerade geändert? Allgemeine Lehre daraus: ‣ Visualisierung kann nicht gut darin sein, absolute Werte zu kommunizieren (Tabellen können das besser) ‣ Hingegen ist das visuelle System (und das Gehirn allgemein) extrem gut darin, Unterschiede und Veränderungen zu erkennen –&gt; Beispiel bringen (Simultankontrast)\n\nGraustufen nicht für absolute oder kategorische Werte nutzen (mehr als vier können iwr nicht gut unterscheiden)\nWelche Farben wir wahrnehmen können (Exkurs Tierwelt?)\nDiese Webseite zur Auswahl von passenden Farben nutzen?\nRGB erklären (und die Addition im Gehirn?"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#farbfehlsichtigkeiten",
+    "href": "sessions/good_plots/slides.html#farbfehlsichtigkeiten",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Farbfehlsichtigkeiten",
+    "text": "Farbfehlsichtigkeiten\nFarbsehtests\n\nFarbwahrnehmung braucht Helligkeit und Fläche"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#anwendung-in-ggplot2-farbskalen-wählen",
+    "href": "sessions/good_plots/slides.html#anwendung-in-ggplot2-farbskalen-wählen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Anwendung in ggplot2: Farbskalen wählen",
+    "text": "Anwendung in ggplot2: Farbskalen wählen"
   },
   {
     "objectID": "sessions/good_plots/slides.html#takeaways",
@@ -334,6 +348,27 @@
     "title": "Was ist eine gute Grafik?",
     "section": "Caveat Plots: See data to viz",
     "text": "Caveat Plots: See data to viz"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#storytelling",
+    "href": "sessions/good_plots/slides.html#storytelling",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Storytelling",
+    "text": "Storytelling\nRolfs 7"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#using-textannotations",
+    "href": "sessions/good_plots/slides.html#using-textannotations",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Using Text/Annotations",
+    "text": "Using Text/Annotations"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#nutzen-von-eigenschaften-der-wahrnehmung",
+    "href": "sessions/good_plots/slides.html#nutzen-von-eigenschaften-der-wahrnehmung",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Nutzen von Eigenschaften der Wahrnehmung",
+    "text": "Nutzen von Eigenschaften der Wahrnehmung\n\nBewusste Wahrnehmung ignoriert Informationen und fügt hinzu\nNähe\nSalienz (Farbe, Größe, Neigung) (Szaﬁr, Haroz, Gleicher & Franconeri (2016))\nHier würde das USA Bild passen (evtl. mit einem anderen Beispiel, das den Unterschied deutlich macht, z.B. keine andere Farbe, näher dran durch andere Achse)\nHarold et al., 2016: Lenken von Aufmerksamkeit\nNothelfer et al., 2017: Redundatne Kodierung führt zu deutlich höherer Genauigkeit der Antworten und kürzeren Reaktionszeiten"
   },
   {
     "objectID": "sessions/good_plots/slides.html#übung",
@@ -438,6 +473,6 @@
     "href": "sessions/more_ggplot/slides.html#abspeichern",
     "title": "Mehr ggplot2!",
     "section": "Abspeichern",
-    "text": "Abspeichern"
+    "text": "Abspeichern\nVektor vs Raster (Rolfs 7)"
   }
 ]
