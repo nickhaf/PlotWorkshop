@@ -111,6 +111,7 @@ Vielleicht mit Bundestagswahl?
 Ausschnitt aus Zeitreihe, ohne KOntext schwer zu Interpretieren. 
 Irgendwas mit Schuldenpaket z.B.?
 Am besten noch mit anderen Kategorien dazu
+- Co2 Data insgesamt ohne Population zeigen
 
 ## Verteilungen Plotten
 

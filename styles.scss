@@ -110,13 +110,12 @@ $presentation-heading-font: 'Roboto Condensed', san-serif;
   font-size: 30px;
 }
 
-.panel-tabset {
-  border: 2px solid $theme-darkblue;
-  background-color: darken($theme-background, 2.5%);
-  padding: 10px; /* Padding around the plot */
-  border-radius: 5px; /* Optional: rounded corners */
+.panel-tabset{
+  border: 1px solid $theme-darkblue;
+  border-radius: 5px;
+  background-color: $theme-yellow;
+  padding: 10px;
 }
-
 
 input[type="range"] {
   background: $body-bg; // Set your desired background color:
@@ -148,5 +147,3 @@ input[type="range"] {
   border-radius: 5px; /* Optional: rounded corners */
   background-color: #f8f8f8; /* Optional: background color */
 }
-
-

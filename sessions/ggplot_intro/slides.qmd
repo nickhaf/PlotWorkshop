@@ -65,6 +65,23 @@ Foto von <a href="https://unsplash.com/de/@omarlopez1?utm_content=creditCopyText
 
 ## Daten vorstellen
 ```{r}
+pop_world <- read.csv(here::here("raw_data", "pop.csv"))
+co2_world <- read.csv(here::here("raw_data", "co2_pcap_cons.csv"))
+
+colnames(co2_world) <- gsub("^X", "", colnames(co2_world)) 
+co2_world[, 2:ncol(co2_world)] <- co2_world[, 2:ncol(co2_world)] %>% 
+  mutate(across(everything(), ~ gsub("−", "-", as.character(.)))) %>% 
+mutate_if(is.character, as.numeric) 
+
+co2_world <- co2_world %>% 
+  pivot_longer(cols = -country, 
+               names_to = "year", 
+               values_to = "co2")
+
+```
+
+
+```{r}
 #| echo: false
 library(rjson)
 

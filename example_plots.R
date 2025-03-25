@@ -126,3 +126,37 @@ ggplot(nobel_winners, aes(
 ## Nobel Prize universities. 
 ## Where do the winners come from?
 
+
+
+# Gapminder ---------------------------------------------------------------
+pop_world <- read.csv(here::here("raw_data", "pop.csv"))
+co2_world <- read.csv(here::here("raw_data", "co2_pcap_cons.csv"))
+
+colnames(co2_world) <- gsub("^X", "", colnames(co2_world)) 
+co2_world[, 2:ncol(co2_world)] <- co2_world[, 2:ncol(co2_world)] %>% 
+  mutate(across(everything(), ~ gsub("−", "-", as.character(.)))) %>% 
+mutate_if(is.character, as.numeric) 
+
+co2_world <- co2_world %>% 
+  pivot_longer(cols = -country, 
+               names_to = "year", 
+               values_to = "co2")
+
+
+co2_top <- co2_world %>% 
+  group_by(country) %>% 
+  summarize(total_co2 = mean(co2, na.rm = TRUE)) %>% 
+  top_n(10, total_co2) %>% 
+  pull(country)
+
+co2_world_top <- co2_world %>% 
+  filter(country %in% co2_top)
+
+ggplot(co2_world_top, 
+       aes(x = year, 
+           y = co2,
+           group = country, 
+           colour = country)) +
+  geom_point() +
+  geom_line()
+  

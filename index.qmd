@@ -21,7 +21,7 @@ Tag 1:
 
 - Intro/Beispiele/Motivation
 - ggplot2 Basics
-- Wahrnehmungspsychologie/Gute Grafiken
+- Wahrnehmungspsychologie/Gute Grafiken/ggplot-Anwendung direkt dazu (z.B. Farben, Annotation ... -> Also direkte Anwendung der Theorie)
 - Übung: Grafik verbessern
 
 
