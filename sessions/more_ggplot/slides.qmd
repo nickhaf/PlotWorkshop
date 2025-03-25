@@ -10,3 +10,4 @@ Logarithmisch vs linear
 
 ## Koordinatensytem
 ## Abspeichern
+Vektor vs Raster (Rolfs 7)

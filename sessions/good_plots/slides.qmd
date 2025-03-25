@@ -24,6 +24,7 @@ source(here::here("src", "themes.R"))
 ... helfen, auf das Wesentliche zu konzentrieren (datasaurus)
 ... die Zusammenhänge möglichst "umfänglich" darzustellen. 
 ... (cool aussehen)
+... Kultur-, Personen-, Zeitunabhängig sein, soweit wie möglich
 
 ## Datasaurus Dozen ([`quartets`-Paket](https://github.com/r-causal/quartets))
 
@@ -211,6 +212,7 @@ Beispiel zeigen: Eins ist aufgeblasen, man braucht Zeit zur Orientierung. Ein an
 
 ## Data-ink ratio
 Beispiel zum Minimieren zeigen
+- Raincloud plots
 
 ## Caveats
 https://www.data-to-viz.com/caveats.html
@@ -219,6 +221,30 @@ Immer einen Plot zeigen, dann zusammen überlgen was daran schlecht ist, was ver
 
 
 ## Farben
+Ganglienzellen übertragen keine Informationen über absolute Helligkeit,
+sondern über relative Helligkeit.
+‣ Wie stark unterscheiden sich zwei Bereiche in ihrer Helligkeit?
+‣ Wie stark hat sich eine Helligkeit gerade geändert?
+Allgemeine Lehre daraus:
+‣ Visualisierung kann nicht gut darin sein, absolute Werte zu
+kommunizieren (Tabellen können das besser)
+‣ Hingegen ist das visuelle System (und das Gehirn allgemein) extrem gut
+darin, Unterschiede und Veränderungen zu erkennen
+--> Beispiel bringen (Simultankontrast)
+
+- Graustufen nicht für absolute oder kategorische Werte nutzen (mehr als vier können iwr nicht gut unterscheiden)
+- Welche Farben wir wahrnehmen können (Exkurs Tierwelt?)
+- Diese Webseite zur Auswahl von passenden Farben nutzen?
+- RGB erklären (und die Addition im Gehirn?
+
+## Farbfehlsichtigkeiten
+
+Farbsehtests
+
+
+- Farbwahrnehmung braucht Helligkeit und Fläche
+
+## Anwendung in ggplot2: Farbskalen wählen
 
 ## Takeaways
 - Kommunizieren von der größtmöglichen Anzahl von Ideen in kürzester Zeit.
@@ -228,6 +254,19 @@ Immer einen Plot zeigen, dann zusammen überlgen was daran schlecht ist, was ver
 
 ## Caveat Plots: See data to viz
 
+## Storytelling
+Rolfs 7
+
+## Using Text/Annotations
+
+## Nutzen von Eigenschaften der Wahrnehmung
+- Bewusste Wahrnehmung ignoriert Informationen und fügt hinzu
+- Nähe
+- Salienz (Farbe, Größe, Neigung) (Szaﬁr, Haroz, Gleicher & Franconeri
+(2016))
+- Hier würde das USA Bild passen (evtl. mit einem anderen Beispiel, das den Unterschied deutlich macht, z.B. keine andere Farbe, näher dran durch andere Achse)
+- Harold et al., 2016: Lenken von Aufmerksamkeit
+- Nothelfer et al., 2017: Redundatne Kodierung führt zu deutlich höherer Genauigkeit der Antworten und kürzeren Reaktionszeiten
 
 ## Übung
 Schlechte Grafiken verbessern: https://www.data-to-viz.com/caveats.html
