@@ -18,7 +18,7 @@ $theme-inlinecode: $theme_red;
 $theme-background: $theme_timberwolf;
 $theme-codeblock: $theme_darkblue;
 
-$code-block-border-color: lighten($body-bg, 70%);
+$code-block-border-color: $theme-darkblue;
 $code-block-bg: $theme-codeblock;
 $code-color: $theme-inlinecode;
 
@@ -113,7 +113,6 @@ $presentation-heading-font: 'Roboto Condensed', san-serif;
 .panel-tabset{
   border: 1px solid $theme-darkblue;
   border-radius: 5px;
-  background-color: $theme-yellow;
   padding: 10px;
 }
 
