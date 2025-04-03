@@ -32,7 +32,7 @@
     "href": "index.html",
     "title": "Datenvisualisierung in R",
     "section": "",
-    "text": "Kursübersicht\n\n  \n\n\n\nZeitplan\nTag 1:\n\nIntro/Beispiele/Motivation\nggplot2 Basics\nWahrnehmungspsychologie/Gute Grafiken/ggplot-Anwendung direkt dazu (z.B. Farben, Annotation … -&gt; Also direkte Anwendung der Theorie)\nÜbung: Grafik verbessern\n\nTag 2:\n\nAdvanced ggplot? Own Stats? How it works under the hood? -&gt; probably not that interesting, unless there is a use case\ngganimate/plotly\nWissenschaftliche Grafiken\nAbschlussübung (z.B. mit dem Characters data set?) Oder: Where to get data set? + einige angebote"
+    "text": "Kursübersicht\n\n  \n\n\n\nZeitplan\nTag 1:\n\nIntro/Beispiele/Motivation/Arten von Grafiken (1 Basic + 1 Schöne) - Janine (+Nicklas)\nggplot2 Basics - Nicklas\nÜbung erster eigener Plot (jeder eine andere Art)\ntidyverse, Factors, long format - Nicklas\nWahrnehmungspsychologie/Schlechte/Gute Grafiken + Sammeln?/ggplot-Anwendung direkt dazu (z.B. Farben, Annotation … -&gt; Also direkte Anwendung der Theorie) - Janine (+ Nicklas)\nÜbung: schlechte Grafiken diskutieren\n\nTag 2: - Advanced: Achsen, theme, Titel, Coords, scales, speichern - Nicklas (+Janine) - Wissenschaftliche Grafiken (APA) - Janine - Übung: Grafiken Druckreif machen und vorstellen (verschiedene Ziele/Zielgruppen, Alle die den gleichen Plot-Typ haben gruppieren) - Explorative Grafiken - Janine - Was noch so möglich: gganimate/plotly - Janine (+ Nicklas) - (Übung: Grafik animieren/plotly)"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#section",
