@@ -19,16 +19,20 @@ format: html
 
 Tag 1: 
 
-- Intro/Beispiele/Motivation
-- ggplot2 Basics
-- Wahrnehmungspsychologie/Gute Grafiken/ggplot-Anwendung direkt dazu (z.B. Farben, Annotation ... -> Also direkte Anwendung der Theorie)
-- Übung: Grafik verbessern
+- Intro/Beispiele/Motivation/Arten von Grafiken (1 Basic + 1 Schöne) - Janine (+Nicklas)
+- ggplot2 Basics - Nicklas
+- Übung erster eigener Plot (jeder eine andere Art)
+- tidyverse, Factors, long format - Nicklas
+- Wahrnehmungspsychologie/Schlechte/Gute Grafiken + Sammeln?/ggplot-Anwendung direkt dazu (z.B. Farben, Annotation ... -> Also direkte Anwendung der Theorie) - Janine (+ Nicklas)
+- Übung: schlechte Grafiken diskutieren 
+
 
 
 Tag 2:
-
-- Advanced ggplot? Own Stats? How it works under the hood? -> probably not that interesting, unless there is a use case
-- gganimate/plotly
-- Wissenschaftliche Grafiken
-- Abschlussübung (z.B. mit dem Characters data set?) Oder: Where to get data set? + einige angebote
+- Advanced: Achsen, theme, Titel, Coords, scales, speichern - Nicklas (+Janine)
+- Wissenschaftliche Grafiken (APA) - Janine
+- Übung: Grafiken Druckreif machen und vorstellen (verschiedene Ziele/Zielgruppen, Alle die den gleichen Plot-Typ haben gruppieren)
+- Explorative Grafiken - Janine
+- Was noch so möglich: gganimate/plotly - Janine (+ Nicklas)
+- (Übung: Grafik animieren/plotly)
 
