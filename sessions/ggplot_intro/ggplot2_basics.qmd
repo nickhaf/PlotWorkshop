@@ -1,6 +1,8 @@
 ---
 title: "ggplot2 Basics"
 format: html
+author: 
+  - name: "Nicklas Hafiz"
 ---
 
 ```{=html}
@@ -8,3 +10,32 @@ format: html
 ```
 
 [View slides in full screen](slides.html)
+
+
+# Übung
+::: {.panel-tabset}
+
+## Aufgabe 
+Wir losen Gruppen aus, jede Gruppe bekommt eine eigene Plot-Art. Erst einmal Einzelarbeit.
+
+## Lösung
+
+```{r}
+#| eval: false 
+library(ggplot2)
+ggplot(data = movies_metadat, 
+       mapping = aes(x = budget, 
+                     y = vote_average)) +
+  geom_point() +
+  geom_smooth() +
+  labs(
+    title = "Getting a bang for your buck: Are Movies with higher budget also better?",
+    subtitle = "There doesn't seem to be a strong relation between movie budget and average rating.",
+    x = "Movie budget",
+    y = "Average vote"
+  ) +
+  theme_classic()
+```
+
+:::
+

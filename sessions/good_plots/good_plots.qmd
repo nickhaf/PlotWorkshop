@@ -1,6 +1,9 @@
 ---
 title: "Was ist eine gute Grafik?"
 format: html
+author: 
+  - name: "Janine Buchholz"
+  - name: "Nicklas Hafiz"
 ---
 
 
@@ -12,4 +15,8 @@ format: html
 
 [View slides in full screen](slides.html)
 
+- Wahrnehmungspsychologie/Schlechte/Gute Grafiken + Sammeln?/ggplot-Anwendung direkt dazu (z.B. Farben, Annotation ... -> Also direkte Anwendung der Theorie) - Janine (+ Nicklas)
 
+
+# Übung
+Schlechte Grafiken diskutieren

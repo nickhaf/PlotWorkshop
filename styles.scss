@@ -10,8 +10,9 @@ $theme-brown: #472120;
 $theme-green: #aaa938;
 
 $link-color: $theme-blue;
+$header-color: $theme-darkblue;
 $body-bg: $theme-timberwolf;
-$body-color: $theme_darkblue;
+$body-color: #000000;
 
 $theme-highlight: $theme_yellow;
 $theme-inlinecode: $theme_red;
@@ -21,6 +22,8 @@ $theme-codeblock: $theme_darkblue;
 $code-block-border-color: $theme-darkblue;
 $code-block-bg: $theme-codeblock;
 $code-color: $theme-inlinecode;
+
+$navbar-bg: $theme-darkblue;
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
@@ -39,6 +42,8 @@ $presentation-heading-font: 'Roboto Condensed', san-serif;
     box-shadow: 0 0 1rem 0 rgba(248, 248, 248, .5);
     border-radius: 5px;
 }
+
+.column
 
 .highlight{
     color: $theme-highlight;
@@ -88,9 +93,27 @@ $presentation-heading-font: 'Roboto Condensed', san-serif;
 }
 
 .title {
-  font-size: 120px !important;
-  color: $body-bg !important;
+  font-size: 70px !important;
+  color: $header-color !important;
 }
+
+
+h1, h2, h3, h4 {
+  color: $header-color;
+}
+
+.reveal h1 {
+  color: $header-color;
+}
+
+.reveal h2 {
+  color: $header-color;
+}
+
+.reveal h3 {
+  color: $header-color;
+}
+
 
 .quarto-title-author-name {
   font-size: 100px;
@@ -116,33 +139,10 @@ $presentation-heading-font: 'Roboto Condensed', san-serif;
   padding: 10px;
 }
 
-input[type="range"] {
-  background: $body-bg; // Set your desired background color:
-
-  &::-webkit-slider-runnable-track {
-    background: $theme-highlight; // Change this to your desired color
-  }
-
-  &::-webkit-slider-thumb {
-    background: $theme-darkblue; // Change this to your desired color
-    width: 7px; // Set your desired width
-    height: 7px; // Set your desired height
-  }
-
-  &::-moz-range-track {
-    background: $theme-highlight; // Change this to your desired color
-  }
-
-  &::-moz-range-thumb {
-    background: $theme-darkblue; // Change this to your desired color
-    width: 7px; // Set your desired width
-    height: 7px; // Set your desired height
-  }
-}
-
 .plot-frame {
   border: 2px solid #000; /* Black border, you can change the color */
   padding: 10px; /* Padding around the plot */
   border-radius: 5px; /* Optional: rounded corners */
   background-color: #f8f8f8; /* Optional: background color */
 }
+

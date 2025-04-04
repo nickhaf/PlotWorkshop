@@ -5,16 +5,33 @@ website:
   title: "PlotWorkshop"
   navbar:
     left:
-      - text: Themen
-        menu: 
-          - text: Einführung
-            href: sessions/Einführung/Einführung.qmd
-          - text: "ggplot2: Basics"
-            href: sessions/ggplot_intro/ggplot2_basics.qmd
+      - text: Tag 1
+        icon: flower3
+        menu:
+        - text: "Einführung"
+          href: sessions/Einführung/Einführung.qmd
+          icon: book-fill
+        - text: "ggplot2: Die Basics"
+          href: sessions/ggplot_intro/ggplot2_basics.qmd
+          icon: bar-chart-fill
+        - text: "R für Grafiken"
+          href: sessions/r_basics/r_basics.qmd
+          icon: r-circle-fill
+        - text: "Gute Plots"
+          href: sessions/good_plots/good_plots.qmd
+          icon: pie-chart-fill
+      
+      - text: Tag 2
+        icon: mortarboard-fill
+        menu:
+        - text: "ggplot2: Advanced"
+          href: sessions/more_ggplot/more_ggplot.qmd
+          icon: bar-chart-steps
+
 
 format:
   html:
-    theme: styles_light.scss
+    theme: styles.scss
     toc: true
 
   letterbox-revealjs:
@@ -23,10 +40,13 @@ format:
       - styles.scss
     highlight-style: dark.theme
     fontsize: 20pt
+    code-block-height: 100px
 
 code-link: true
 code-line-numbers: false
-execute:
+execute: 
+  fig-width: 5
+  fig-height: 5
   echo: true
 callout-appearance: simple
 lang: de
