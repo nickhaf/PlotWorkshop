@@ -1,7 +1,7 @@
 ---
 title: "ggplot2: Basics"
 format: letterbox-revealjs
-footer: 'Janine Birkholz & Nicklas Hafiz // Mai 2025'
+footer: 'Janine Buchholz & Nicklas Hafiz // Mai 2025'
 execute: 
   fig-width: 5
   fig-height: 6
