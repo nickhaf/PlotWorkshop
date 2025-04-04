@@ -1,39 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://nickhaf.github.io/PlotWorkshop/sessions/more_ggplot/good_plots.html</loc>
-    <lastmod>2025-04-04T14:53:00.949Z</lastmod>
+    <loc>https://nickhaf.github.io/PlotWorkshop/sessions/more_ggplot/more_ggplot.html</loc>
+    <lastmod>2025-04-04T17:14:12.416Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nickhaf.github.io/PlotWorkshop/sessions/r_basics/r_basics.html</loc>
+    <lastmod>2025-04-04T17:14:12.435Z</lastmod>
   </url>
   <url>
     <loc>https://nickhaf.github.io/PlotWorkshop/sessions/Einführung/Einführung.html</loc>
-    <lastmod>2025-04-04T14:53:00.911Z</lastmod>
+    <lastmod>2025-04-04T17:14:12.379Z</lastmod>
   </url>
   <url>
     <loc>https://nickhaf.github.io/PlotWorkshop/sessions/good_plots/good_plots.html</loc>
-    <lastmod>2025-04-04T14:53:00.949Z</lastmod>
+    <lastmod>2025-04-04T17:14:12.413Z</lastmod>
   </url>
   <url>
     <loc>https://nickhaf.github.io/PlotWorkshop/sessions/ggplot_intro/ggplot2_basics.html</loc>
-    <lastmod>2025-04-04T14:53:00.933Z</lastmod>
+    <lastmod>2025-04-04T17:14:12.394Z</lastmod>
   </url>
   <url>
     <loc>https://nickhaf.github.io/PlotWorkshop/index.html</loc>
-    <lastmod>2025-04-04T14:53:00.888Z</lastmod>
+    <lastmod>2025-04-04T17:14:12.357Z</lastmod>
   </url>
   <url>
     <loc>https://nickhaf.github.io/PlotWorkshop/sessions/ggplot_intro/slides.html</loc>
-    <lastmod>2025-04-04T14:53:00.949Z</lastmod>
+    <lastmod>2025-04-04T17:14:12.409Z</lastmod>
   </url>
   <url>
     <loc>https://nickhaf.github.io/PlotWorkshop/sessions/good_plots/slides.html</loc>
-    <lastmod>2025-04-04T14:53:00.949Z</lastmod>
+    <lastmod>2025-04-04T17:14:12.413Z</lastmod>
   </url>
   <url>
     <loc>https://nickhaf.github.io/PlotWorkshop/sessions/Einführung/slides.html</loc>
-    <lastmod>2025-04-04T14:53:00.917Z</lastmod>
+    <lastmod>2025-04-04T17:14:12.385Z</lastmod>
+  </url>
+  <url>
+    <loc>https://nickhaf.github.io/PlotWorkshop/sessions/r_basics/slides.html</loc>
+    <lastmod>2025-04-04T17:14:12.435Z</lastmod>
   </url>
   <url>
     <loc>https://nickhaf.github.io/PlotWorkshop/sessions/more_ggplot/slides.html</loc>
-    <lastmod>2025-04-04T14:53:00.949Z</lastmod>
+    <lastmod>2025-04-04T17:14:12.416Z</lastmod>
   </url>
 </urlset>

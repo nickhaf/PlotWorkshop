@@ -30,6 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -37,7 +39,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-d4d76bf8491c20bad77d141916dc28e1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-831a6e13d34e89ab8943621a9b1bffba.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-b3401fc4f2e4fd823b2df227c08e7ae0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -65,9 +67,67 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Suchen"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-tag1 .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
 
-</head>
+    const options = {
+      valueNames: ['listing-title','listing-author','listing-subtitle','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-subtitle","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-tag1'] = new List('listing-tag1', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="alternate" type="application/rss+xml" title="PlotWorkshop" href="index.xml" data-external="1"></head>
 
 <body class="nav-fixed">
 
@@ -87,17 +147,45 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-themen" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Themen</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tag-1" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-flower3" role="img">
+</i> 
+ <span class="menu-text">Tag 1</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-themen">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tag-1">    
         <li>
-    <a class="dropdown-item" href="./sessions/Einführung/Einführung.html">
+    <a class="dropdown-item" href="./sessions/Einführung/Einführung.html"><i class="bi bi-book-fill" role="img">
+</i> 
  <span class="dropdown-text">Einführung</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./sessions/ggplot_intro/ggplot2_basics.html">
- <span class="dropdown-text">ggplot2: Basics</span></a>
+    <a class="dropdown-item" href="./sessions/ggplot_intro/ggplot2_basics.html"><i class="bi bi-bar-chart-fill" role="img">
+</i> 
+ <span class="dropdown-text">ggplot2: Die Basics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./sessions/r_basics/r_basics.html"><i class="bi bi-r-circle-fill" role="img">
+</i> 
+ <span class="dropdown-text">R für Grafiken</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./sessions/good_plots/good_plots.html"><i class="bi bi-pie-chart-fill" role="img">
+</i> 
+ <span class="dropdown-text">Gute Plots</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tag-2" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-mortarboard-fill" role="img">
+</i> 
+ <span class="menu-text">Tag 2</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tag-2">    
+        <li>
+    <a class="dropdown-item" href="./sessions/more_ggplot/more_ggplot.html"><i class="bi bi-bar-chart-steps" role="img">
+</i> 
+ <span class="dropdown-text">ggplot2: Advanced</span></a>
   </li>  
     </ul>
   </li>
@@ -129,6 +217,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 <div class="quarto-about-jolla">
+  <img src="logo.png" class="about-image
+  round " style="height: 15em; width: 15em;">
  <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Datenvisualisierung in R</h1>
@@ -145,22 +235,203 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="zeitplan" class="level1">
 <h1>Zeitplan</h1>
-<p>Tag 1:</p>
-<ul>
-<li>Intro/Beispiele/Motivation/Arten von Grafiken (1 Basic + 1 Schöne) - Janine (+Nicklas)</li>
-<li>ggplot2 Basics - Nicklas</li>
-<li>Übung erster eigener Plot (jeder eine andere Art)</li>
-<li>tidyverse, Factors, long format - Nicklas</li>
-<li>Wahrnehmungspsychologie/Schlechte/Gute Grafiken + Sammeln?/ggplot-Anwendung direkt dazu (z.B. Farben, Annotation … -&gt; Also direkte Anwendung der Theorie) - Janine (+ Nicklas)</li>
-<li>Übung: schlechte Grafiken diskutieren</li>
-</ul>
-<p>Tag 2: - Advanced: Achsen, theme, Titel, Coords, scales, speichern - Nicklas (+Janine) - Wissenschaftliche Grafiken (APA) - Janine - Übung: Grafiken Druckreif machen und vorstellen (verschiedene Ziele/Zielgruppen, Alle die den gleichen Plot-Typ haben gruppieren) - Explorative Grafiken - Janine - Was noch so möglich: gganimate/plotly - Janine (+ Nicklas) - (Übung: Grafik animieren/plotly)</p>
+<div class="{tag1}">
+
+</div>
+<!-- Tag 2: -->
+<!-- - Wissenschaftliche Grafiken (APA) - Janine -->
+<!-- - Übung: Grafiken Druckreif machen und vorstellen (verschiedene Ziele/Zielgruppen, Alle die den gleichen Plot-Typ haben gruppieren) -->
+<!-- - Explorative Grafiken - Janine -->
+<!-- - Was noch so möglich: gganimate/plotly - Janine (+ Nicklas) -->
+<!-- - (Übung: Grafik animieren/plotly) -->
+
 
 
 
 </section>
 
-</main> <!-- /main -->
+<div class="quarto-listing quarto-listing-container-default" id="listing-tag1">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0">
+<div class="thumbnail">
+<p><a href="" class="no-external"></a></p><a href="" class="no-external">
+</a><p><a href="" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="" class="no-external">
+<h3 style="color: #01364C;">
+Tag 1
+</h3>
+</a>
+</h3>
+<div class="listing-subtitle">
+<a href="" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="" class="no-external"></a>
+</div>
+</div>
+<div class="metadata">
+<p><a href="" class="no-external"></a></p><a href="" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-listing-file-modified-sort="1743786852379" data-listing-reading-time-sort="1" data-listing-word-count-sort="24">
+<div class="thumbnail">
+<p><a href="./sessions/Einführung/Einführung.html" class="no-external"></a></p><a href="./sessions/Einführung/Einführung.html" class="no-external">
+<p><img loading="lazy" src="sessions/Einführung/images/worldmap.jpg" class="thumbnail-image"></p>
+</a><p><a href="./sessions/Einführung/Einführung.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./sessions/Einführung/Einführung.html" class="no-external">Einführung</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./sessions/Einführung/Einführung.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./sessions/Einführung/Einführung.html" class="no-external"><strong>Session 1</strong>: Wieso? Weshalb? Warum?</a>
+</div>
+</div>
+<div class="metadata">
+<p><a href="./sessions/Einführung/Einführung.html" class="no-external"></a></p><a href="./sessions/Einführung/Einführung.html" class="no-external">
+<div class="listing-author">
+Janine Buchholz, Nicklas Hafiz
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-listing-file-modified-sort="1743786852394" data-listing-reading-time-sort="1" data-listing-word-count-sort="135">
+<div class="thumbnail">
+<p><a href="./sessions/ggplot_intro/ggplot2_basics.html" class="no-external"></a></p><a href="./sessions/ggplot_intro/ggplot2_basics.html" class="no-external">
+<p><img loading="lazy" src="sessions/ggplot_intro/images/ggplot_art.png" class="thumbnail-image"></p>
+</a><p><a href="./sessions/ggplot_intro/ggplot2_basics.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./sessions/ggplot_intro/ggplot2_basics.html" class="no-external">ggplot2: Die Basics</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./sessions/ggplot_intro/ggplot2_basics.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./sessions/ggplot_intro/ggplot2_basics.html" class="no-external"><strong>Session 2</strong>: Wie?</a>
+</div>
+</div>
+<div class="metadata">
+<p><a href="./sessions/ggplot_intro/ggplot2_basics.html" class="no-external"></a></p><a href="./sessions/ggplot_intro/ggplot2_basics.html" class="no-external">
+<div class="listing-author">
+Nicklas Hafiz
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-listing-file-modified-sort="1743786852435" data-listing-reading-time-sort="1" data-listing-word-count-sort="19">
+<div class="thumbnail">
+<p><a href="./sessions/r_basics/r_basics.html" class="no-external"></a></p><a href="./sessions/r_basics/r_basics.html" class="no-external">
+<p><img loading="lazy" src="sessions/r_basics/images/coder.jpg" class="thumbnail-image"></p>
+</a><p><a href="./sessions/r_basics/r_basics.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./sessions/r_basics/r_basics.html" class="no-external">R für Grafiken</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./sessions/r_basics/r_basics.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./sessions/r_basics/r_basics.html" class="no-external"><strong>Session 3</strong>: R für Grafiken</a>
+</div>
+</div>
+<div class="metadata">
+<p><a href="./sessions/r_basics/r_basics.html" class="no-external"></a></p><a href="./sessions/r_basics/r_basics.html" class="no-external">
+<div class="listing-author">
+Nicklas Hafiz
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="4" data-listing-file-modified-sort="1743786852413" data-listing-reading-time-sort="1" data-listing-word-count-sort="35">
+<div class="thumbnail">
+<p><a href="./sessions/good_plots/good_plots.html" class="no-external"></a></p><a href="./sessions/good_plots/good_plots.html" class="no-external">
+<p><img loading="lazy" src="sessions/good_plots/images/mcCandless.png" class="thumbnail-image"></p>
+</a><p><a href="./sessions/good_plots/good_plots.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./sessions/good_plots/good_plots.html" class="no-external">Gute Plots</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./sessions/good_plots/good_plots.html" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="./sessions/good_plots/good_plots.html" class="no-external"><strong>Session 4</strong>: Was ist eigentlich eine gute Grafik?</a>
+</div>
+</div>
+<div class="metadata">
+<p><a href="./sessions/good_plots/good_plots.html" class="no-external"></a></p><a href="./sessions/good_plots/good_plots.html" class="no-external">
+<div class="listing-author">
+Janine Buchholz, Nicklas Hafiz
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="5">
+<div class="thumbnail">
+<p><a href="" class="no-external"></a></p><a href="" class="no-external">
+</a><p><a href="" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="" class="no-external">
+<h3 style="color: #01364C;">
+Tag 2
+</h3>
+</a>
+</h3>
+<div class="listing-subtitle">
+<a href="" class="no-external"></a>
+</div>
+<div class="listing-description">
+<a href="" class="no-external"></a>
+</div>
+</div>
+<div class="metadata">
+<p><a href="" class="no-external"></a></p><a href="" class="no-external">
+</a>
+</div>
+</div>
+<div class="quarto-post image-right" data-index="6" data-listing-file-modified-sort="1743786852416" data-listing-reading-time-sort="1" data-listing-word-count-sort="23">
+<div class="thumbnail">
+<p><a href="./sessions/more_ggplot/more_ggplot.html" class="no-external"></a></p><a href="./sessions/more_ggplot/more_ggplot.html" class="no-external">
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+</a><p><a href="./sessions/more_ggplot/more_ggplot.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./sessions/more_ggplot/more_ggplot.html" class="no-external">ggplot2: Advanced</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./sessions/more_ggplot/more_ggplot.html" class="no-external">Weitere Funktionen</a>
+</div>
+<div class="listing-description">
+<a href="./sessions/more_ggplot/more_ggplot.html" class="no-external"><strong>Session 5</strong>: Mehr!</a>
+</div>
+</div>
+<div class="metadata">
+<p><a href="./sessions/more_ggplot/more_ggplot.html" class="no-external"></a></p><a href="./sessions/more_ggplot/more_ggplot.html" class="no-external">
+<div class="listing-author">
+Nicklas Hafiz, Janine Buchholz
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+Keine Treffer
+</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>PlotWorkshop</title>
+<link>https://nickhaf.github.io/PlotWorkshop/</link>
+<atom:link href="https://nickhaf.github.io/PlotWorkshop/index.xml" rel="self" type="application/rss+xml"/>
+<description></description>
+<generator>quarto-1.6.43</generator>
+<lastBuildDate>Fri, 04 Apr 2025 17:15:55 GMT</lastBuildDate>
+<item>
+  <title>&lt;h3 style=&#39;color: #01364C;&#39;&gt;Tag 1&lt;/h3&gt;</title>
+  <link>https://nickhaf.github.io/PlotWorkshop/</link>
+  <description></description>
+  <guid>https://nickhaf.github.io/PlotWorkshop/</guid>
+  <pubDate>Fri, 04 Apr 2025 17:15:55 GMT</pubDate>
+</item>
+<item>
+  <title>Einführung</title>
+  <dc:creator>Janine Buchholz</dc:creator>
+  <dc:creator>Nicklas Hafiz</dc:creator>
+  <link>https://nickhaf.github.io/PlotWorkshop/sessions/Einführung/Einführung.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<iframe class="slide-deck" src="slides.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
+<p><a href="slides.html">View slides in full screen</a></p>
+<ul>
+<li>Intro/Beispiele/Motivation/Arten von Grafiken (1 Basic + 1 Schöne) - Janine (+Nicklas)</li>
+</ul>
+
+
+
+ ]]></description>
+  <guid>https://nickhaf.github.io/PlotWorkshop/sessions/Einführung/Einführung.html</guid>
+  <pubDate>Fri, 04 Apr 2025 17:15:55 GMT</pubDate>
+  <media:content url="https://nickhaf.github.io/PlotWorkshop/sessions/Einführung/images/worldmap.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>ggplot2 Basics</title>
+  <dc:creator>Nicklas Hafiz</dc:creator>
+  <link>https://nickhaf.github.io/PlotWorkshop/sessions/ggplot_intro/ggplot2_basics.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<iframe class="slide-deck" src="slides.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
+<p><a href="slides.html">View slides in full screen</a></p>
+<section id="übung" class="level1">
+<h1>Übung</h1>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs"><li class="nav-item"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" aria-controls="tabset-1-1" aria-selected="true">Aufgabe</a></li><li class="nav-item"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" aria-controls="tabset-1-2" aria-selected="false">Lösung</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" aria-labelledby="tabset-1-1-tab">
+<p>Wir losen Gruppen aus, jede Gruppe bekommt eine eigene Plot-Art. Erst einmal Einzelarbeit.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">library</span>(ggplot2)</span>
+<span id="cb1-2"><span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">ggplot</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">data =</span> movies_metadat, </span>
+<span id="cb1-3">       <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">mapping =</span> <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">aes</span>(<span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> budget, </span>
+<span id="cb1-4">                     <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> vote_average)) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-5">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_point</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-6">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">geom_smooth</span>() <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-7">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">labs</span>(</span>
+<span id="cb1-8">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">title =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Getting a bang for your buck: Are Movies with higher budget also better?"</span>,</span>
+<span id="cb1-9">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">subtitle =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"There doesn't seem to be a strong relation between movie budget and average rating."</span>,</span>
+<span id="cb1-10">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">x =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Movie budget"</span>,</span>
+<span id="cb1-11">    <span class="at" style="color: #657422;
+background-color: null;
+font-style: inherit;">y =</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Average vote"</span></span>
+<span id="cb1-12">  ) <span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span></span>
+<span id="cb1-13">  <span class="fu" style="color: #4758AB;
+background-color: null;
+font-style: inherit;">theme_classic</span>()</span></code></pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <guid>https://nickhaf.github.io/PlotWorkshop/sessions/ggplot_intro/ggplot2_basics.html</guid>
+  <pubDate>Fri, 04 Apr 2025 17:15:55 GMT</pubDate>
+  <media:content url="https://nickhaf.github.io/PlotWorkshop/sessions/ggplot_intro/images/ggplot_art.png" medium="image" type="image/png" height="108" width="144"/>
+</item>
+<item>
+  <title>R-Basics</title>
+  <dc:creator>Nicklas Hafiz</dc:creator>
+  <link>https://nickhaf.github.io/PlotWorkshop/sessions/r_basics/r_basics.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<iframe class="slide-deck" src="slides.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
+<p><a href="slides.html">View slides in full screen</a></p>
+<ul>
+<li>tidyverse, Factors, long format - Nicklas</li>
+</ul>
+
+
+
+ ]]></description>
+  <guid>https://nickhaf.github.io/PlotWorkshop/sessions/r_basics/r_basics.html</guid>
+  <pubDate>Fri, 04 Apr 2025 17:15:55 GMT</pubDate>
+  <media:content url="https://nickhaf.github.io/PlotWorkshop/sessions/r_basics/images/coder.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>Was ist eine gute Grafik?</title>
+  <dc:creator>Janine Buchholz</dc:creator>
+  <dc:creator>Nicklas Hafiz</dc:creator>
+  <link>https://nickhaf.github.io/PlotWorkshop/sessions/good_plots/good_plots.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<iframe class="slide-deck" src="slides.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
+<p><a href="slides.html">View slides in full screen</a></p>
+<ul>
+<li>Wahrnehmungspsychologie/Schlechte/Gute Grafiken + Sammeln?/ggplot-Anwendung direkt dazu (z.B. Farben, Annotation … -&gt; Also direkte Anwendung der Theorie) - Janine (+ Nicklas)</li>
+</ul>
+<section id="übung" class="level1">
+<h1>Übung</h1>
+<p>Schlechte Grafiken diskutieren</p>
+
+
+</section>
+
+ ]]></description>
+  <guid>https://nickhaf.github.io/PlotWorkshop/sessions/good_plots/good_plots.html</guid>
+  <pubDate>Fri, 04 Apr 2025 17:15:55 GMT</pubDate>
+  <media:content url="https://nickhaf.github.io/PlotWorkshop/sessions/good_plots/images/mcCandless.png" medium="image" type="image/png" height="95" width="144"/>
+</item>
+<item>
+  <title>Mehr ggplot2!</title>
+  <dc:creator>Nicklas Hafiz</dc:creator>
+  <dc:creator>Janine Buchholz</dc:creator>
+  <link>https://nickhaf.github.io/PlotWorkshop/sessions/more_ggplot/more_ggplot.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<iframe class="slide-deck" src="slides.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
+<p><a href="slides.html">View slides in full screen</a></p>
+<ul>
+<li>Advanced: Achsen, theme, Titel, Coords, scales, speichern - Nicklas (+Janine)</li>
+</ul>
+
+
+
+ ]]></description>
+  <guid>https://nickhaf.github.io/PlotWorkshop/sessions/more_ggplot/more_ggplot.html</guid>
+  <pubDate>Fri, 04 Apr 2025 17:15:55 GMT</pubDate>
+</item>
+</channel>
+</rss>

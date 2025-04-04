@@ -1,0 +1,12 @@
+[
+  {
+    "listing": "/index.html",
+    "items": [
+      "/sessions/Einführung/Einführung.html",
+      "/sessions/ggplot_intro/ggplot2_basics.html",
+      "/sessions/r_basics/r_basics.html",
+      "/sessions/good_plots/good_plots.html",
+      "/sessions/more_ggplot/more_ggplot.html"
+    ]
+  }
+]

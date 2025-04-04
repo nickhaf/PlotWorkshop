@@ -1,38 +1,45 @@
 [
   {
-    "objectID": "sessions/more_ggplot/good_plots.html",
-    "href": "sessions/more_ggplot/good_plots.html",
+    "objectID": "sessions/more_ggplot/more_ggplot.html",
+    "href": "sessions/more_ggplot/more_ggplot.html",
     "title": "Mehr ggplot2!",
     "section": "",
-    "text": "View slides in full screen"
+    "text": "View slides in full screen\n\nAdvanced: Achsen, theme, Titel, Coords, scales, speichern - Nicklas (+Janine)"
+  },
+  {
+    "objectID": "sessions/r_basics/r_basics.html",
+    "href": "sessions/r_basics/r_basics.html",
+    "title": "R-Basics",
+    "section": "",
+    "text": "View slides in full screen\n\ntidyverse, Factors, long format - Nicklas"
   },
   {
     "objectID": "sessions/Einführung/Einführung.html",
     "href": "sessions/Einführung/Einführung.html",
     "title": "Einführung",
     "section": "",
-    "text": "View slides in full screen"
+    "text": "View slides in full screen\n\nIntro/Beispiele/Motivation/Arten von Grafiken (1 Basic + 1 Schöne) - Janine (+Nicklas)"
   },
   {
     "objectID": "sessions/good_plots/good_plots.html",
     "href": "sessions/good_plots/good_plots.html",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "View slides in full screen"
+    "text": "View slides in full screen\n\nWahrnehmungspsychologie/Schlechte/Gute Grafiken + Sammeln?/ggplot-Anwendung direkt dazu (z.B. Farben, Annotation … -&gt; Also direkte Anwendung der Theorie) - Janine (+ Nicklas)\n\n\nÜbung\nSchlechte Grafiken diskutieren"
   },
   {
     "objectID": "sessions/ggplot_intro/ggplot2_basics.html",
     "href": "sessions/ggplot_intro/ggplot2_basics.html",
     "title": "ggplot2 Basics",
     "section": "",
-    "text": "View slides in full screen"
+    "text": "View slides in full screen\n\nÜbung\n\nAufgabeLösung\n\n\nWir losen Gruppen aus, jede Gruppe bekommt eine eigene Plot-Art. Erst einmal Einzelarbeit.\n\n\n\nlibrary(ggplot2)\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Getting a bang for your buck: Are Movies with higher budget also better?\",\n    subtitle = \"There doesn't seem to be a strong relation between movie budget and average rating.\",\n    x = \"Movie budget\",\n    y = \"Average vote\"\n  ) +\n  theme_classic()"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Datenvisualisierung in R",
     "section": "",
-    "text": "Kursübersicht\n\n  \n\n\n\nZeitplan\nTag 1:\n\nIntro/Beispiele/Motivation/Arten von Grafiken (1 Basic + 1 Schöne) - Janine (+Nicklas)\nggplot2 Basics - Nicklas\nÜbung erster eigener Plot (jeder eine andere Art)\ntidyverse, Factors, long format - Nicklas\nWahrnehmungspsychologie/Schlechte/Gute Grafiken + Sammeln?/ggplot-Anwendung direkt dazu (z.B. Farben, Annotation … -&gt; Also direkte Anwendung der Theorie) - Janine (+ Nicklas)\nÜbung: schlechte Grafiken diskutieren\n\nTag 2: - Advanced: Achsen, theme, Titel, Coords, scales, speichern - Nicklas (+Janine) - Wissenschaftliche Grafiken (APA) - Janine - Übung: Grafiken Druckreif machen und vorstellen (verschiedene Ziele/Zielgruppen, Alle die den gleichen Plot-Typ haben gruppieren) - Explorative Grafiken - Janine - Was noch so möglich: gganimate/plotly - Janine (+ Nicklas) - (Übung: Grafik animieren/plotly)"
+    "text": "Kursübersicht\n\n  \n\n\n\nZeitplan\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTag 1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEinführung\n\n\n\n\n\nSession 1: Wieso? Weshalb? Warum?\n\n\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2: Die Basics\n\n\n\n\n\nSession 2: Wie?\n\n\n\n\n\nNicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nR für Grafiken\n\n\n\n\n\nSession 3: R für Grafiken\n\n\n\n\n\nNicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nGute Plots\n\n\n\n\n\nSession 4: Was ist eigentlich eine gute Grafik?\n\n\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\n\nTag 2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2: Advanced\n\n\nWeitere Funktionen\n\n\nSession 5: Mehr!\n\n\n\n\n\nNicklas Hafiz, Janine Buchholz\n\n\n\n\n\n\nKeine Treffer"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#section",
@@ -144,7 +151,7 @@
     "href": "sessions/ggplot_intro/slides.html#übung",
     "title": "ggplot2: Basics",
     "section": "Übung",
-    "text": "Übung\n\nAufgabeLösung\n\n\nErstelle ein eigenes Punktdiagramm. Nutze dafür andere Variablen im Datensatz movies_metadat. Vergib auch einen Titel, Achsen-Beschriftungen und suche ein Theme aus.\n\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Getting a bang for your buck: Are Movies with higher budget also better?\",\n    subtitle = \"There doesn't seem to be a strong relation between movie budget and average rating.\",\n    x = \"Movie budget\",\n    y = \"Average vote\"\n  ) +\n  theme_classic()"
+    "text": "Übung"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#lets-take-a-deeper-dive",
