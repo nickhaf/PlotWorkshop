@@ -329,7 +329,7 @@ saveRDS(data_ready_plot, "./sessions/Einführung/surfdata.rds")
 #| echo: false
 
 # Load picture and render
-earth <- jpeg::readJPEG("images/BlackMarble_2016_01deg.jpg", native = TRUE)
+earth <- jpeg::readJPEG("images/worldmap.jpg", native = TRUE)
 earth <- grid::rasterGrob(earth, interpolate = TRUE)
 
 data_ready_plot <- readRDS("./surfdata.rds")

@@ -4,35 +4,104 @@ subtitle: "Was ist eigentlich eine gute Grafik?"
 about:
   id: intro-heading
   template: jolla
+  image: logo.png
 format: html
+listing:
+  id: tag1
+  type: default
+  feed: true
+  sort: false
+  contents: 
+    - title: "<h3 style='color: #01364C;'>Tag 1</h3>"
+      path: "" # No link, acts as a header
+      description: ""
+    - title: "Einführung"
+      path: sessions/Einführung/Einführung.qmd
+      image: sessions/Einführung/images/worldmap.jpg
+      description: "**Session 1**: Wieso? Weshalb? Warum?"
+    - title: "ggplot2: Die Basics"
+      path: sessions/ggplot_intro/ggplot2_basics.qmd
+      image: sessions/ggplot_intro/images/ggplot_art.png
+      description: "**Session 2**: Wie?"
+    - title: "R für Grafiken"
+      path: sessions/r_basics/r_basics.qmd
+      image: sessions/r_basics/images/coder.jpg
+      description: "**Session 3**: R für Grafiken"
+    - title: "Gute Plots"
+      path: sessions/good_plots/good_plots.qmd
+      image: sessions/good_plots/images/mcCandless.png
+      description: "**Session 4**: Was ist eigentlich eine gute Grafik?"
+    
+    - title: "<h3 style='color: #01364C;'>Tag 2</h3>"
+      path: "" # No link, acts as a header
+      description: ""
+    - title: "ggplot2: Advanced"
+      path: sessions/more_ggplot/more_ggplot.qmd
+      description: "**Session 5**: Mehr!"
 ---
 
+
+
 :::{#intro-heading}
+
+
+```{r}
+#| echo: false
+#| eval: false
+
+library(ggplot2)
+
+x <- 1.1 * c(0, -0.5, -0.5, 0, 0.5, 0.5, 0)
+y <- 1.1 * sqrt(3)*c(-1, -0.5, 0.5, 1, 0.5, -0.5, -1)
+hex <- data.frame(x, y)
+hex2 <- data.frame(x = 1.4*x, y = 1.4*y)
+line_points <- data.frame(
+  Ipx = c(-0.5, -0.3, -0.05, 0.05, 0.3, 0.5),
+  Ipy = c(0, 0.4, 0.9, 0.30, 0.7, 1)
+)
+
+bg_col <- c("#F2F2F2")
+l_col <- c("#424242")
+p_col <- c("#A8D6FF", "#51A7F9", "#0365C0", "#164F86", "#002452", "#000643")
+
+ggplot(hex, aes(x, y)) +
+  geom_line(aes(x = Ipx, y = Ipy), data = line_points, size = 4, color = l_col) +
+  geom_point(aes(x = Ipx, y = Ipy), data = line_points, size = 23, color = p_col) +
+  geom_path(size = 10, color = l_col, lineend = "square") +
+  geom_text(aes(x = 0, y = -0.5), label = "ggplot2", size = 33, color = l_col) +
+                        geom_text(aes(x = 0.15, y = -1.45, angle = 30),
+                        color = l_col, size = 6, label = "www.rstudio.com") +
+  geom_path(aes(x,y), data = hex2, size = 75, color = "white", lineend = "square") +
+  coord_cartesian(xlim = c(-0.55, 0.55), ylim = c(-2, 2)) +
+  theme(aspect.ratio = 1.2,
+        panel.background = element_rect(fill = bg_col),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_line(size = 1.5),
+        legend.position = "none",
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank())
+
+
+```
 
 # Kursübersicht
 
 
 :::
 
-
 # Zeitplan
-
-Tag 1: 
-
-- Intro/Beispiele/Motivation/Arten von Grafiken (1 Basic + 1 Schöne) - Janine (+Nicklas)
-- ggplot2 Basics - Nicklas
-- Übung erster eigener Plot (jeder eine andere Art)
-- tidyverse, Factors, long format - Nicklas
-- Wahrnehmungspsychologie/Schlechte/Gute Grafiken + Sammeln?/ggplot-Anwendung direkt dazu (z.B. Farben, Annotation ... -> Also direkte Anwendung der Theorie) - Janine (+ Nicklas)
-- Übung: schlechte Grafiken diskutieren 
+::: {tag1}
 
 
+:::
 
-Tag 2:
-- Advanced: Achsen, theme, Titel, Coords, scales, speichern - Nicklas (+Janine)
-- Wissenschaftliche Grafiken (APA) - Janine
-- Übung: Grafiken Druckreif machen und vorstellen (verschiedene Ziele/Zielgruppen, Alle die den gleichen Plot-Typ haben gruppieren)
-- Explorative Grafiken - Janine
-- Was noch so möglich: gganimate/plotly - Janine (+ Nicklas)
-- (Übung: Grafik animieren/plotly)
+
+<!-- Tag 2: -->
+<!-- - Wissenschaftliche Grafiken (APA) - Janine -->
+<!-- - Übung: Grafiken Druckreif machen und vorstellen (verschiedene Ziele/Zielgruppen, Alle die den gleichen Plot-Typ haben gruppieren) -->
+<!-- - Explorative Grafiken - Janine -->
+<!-- - Was noch so möglich: gganimate/plotly - Janine (+ Nicklas) -->
+<!-- - (Übung: Grafik animieren/plotly) -->
+
 

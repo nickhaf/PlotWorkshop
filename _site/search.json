@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Datenvisualisierung in R",
     "section": "",
-    "text": "Kursübersicht\n\n  \n\n\n\nZeitplan\nTag 1:\n\nIntro/Beispiele/Motivation\nggplot2 Basics\nWahrnehmungspsychologie/Gute Grafiken\nÜbung: Grafik verbessern\n\nTag 2:\n\nAdvanced ggplot? Own Stats? How it works under the hood? -&gt; probably not that interesting, unless there is a use case\ngganimate/plotly\nAbschlussübung (z.B. mit dem Characters data set?)"
+    "text": "Kursübersicht\n\n  \n\n\nZeitplan\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTag 1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEinführung\n\n\n\n\n\nSession 1: Wieso? Weshalb? Warum?\n\n\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2: Die Basics\n\n\n\n\n\nSession 2: Wie?\n\n\n\n\n\nNicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nR für Grafiken\n\n\n\n\n\nSession 3: R für Grafiken\n\n\n\n\n\nNicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nGute Plots\n\n\n\n\n\nSession 4: Was ist eigentlich eine gute Grafik?\n\n\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\n\nTag 2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2: Advanced\n\n\nWeitere Funktionen\n\n\nSession 5: Mehr!\n\n\n\n\n\nNicklas Hafiz, Janine Buchholz\n\n\n\n\n\n\nKeine Treffer"
   },
   {
     "objectID": "about.html",
@@ -46,7 +46,7 @@
     "href": "sessions/Einführung/Einführung.html",
     "title": "Einführung",
     "section": "",
-    "text": "View slides in full screen"
+    "text": "View slides in full screen\n\nIntro/Beispiele/Motivation/Arten von Grafiken (1 Basic + 1 Schöne) - Janine (+Nicklas)"
   },
   {
     "objectID": "sessions/Einführung/Einführung.html#einführung",
@@ -60,7 +60,7 @@
     "href": "sessions/Einführung/slides.html#section",
     "title": "Einführung",
     "section": "",
-    "text": "── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.4     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\nLade nötiges Paket: sysfonts\n\nLade nötiges Paket: showtextdb\n\nRows: 507 Columns: 9\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (3): password, category, time_unit\ndbl (6): rank, value, offline_crack_sec, rank_alt, strength, font_size\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\n\nWarning in scale_y_log10(expand = c(0, 0)): log-10 transformation introduced infinite values.\nlog-10 transformation introduced infinite values.\n\n\nWarning: Removed 1 row containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\nWarning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\nWarning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\nWarning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\nWarning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\nWarning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\nWarning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\nWarning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\nWarning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\nWarning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\nWarning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\n\n\nWarning in scale_y_log10(expand = c(0, 0)): log-10 transformation introduced infinite values.\nlog-10 transformation introduced infinite values.\n\n\nWarning: Removed 10 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)):\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\n\n\nWarning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\nWarning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\nWarning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\nWarning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\nWarning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\nWarning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\nWarning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\nWarning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\nWarning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\nWarning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\nWarning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\nWarning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :\nZeichensatzfamilie in der Windows Zeichensatzdatenbank nicht gefunden\n\n\n\n\n\n\n\n\n\n\n\nExample from The R Graph Gallery."
+    "text": "Example from The R Graph Gallery."
   },
   {
     "objectID": "sessions/Einführung/slides.html#section-3",
@@ -74,14 +74,14 @@
     "href": "sessions/good_plots/good_plots.html",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "View slides in full screen"
+    "text": "View slides in full screen\n\nWahrnehmungspsychologie/Schlechte/Gute Grafiken + Sammeln?/ggplot-Anwendung direkt dazu (z.B. Farben, Annotation … -&gt; Also direkte Anwendung der Theorie) - Janine (+ Nicklas)\n\n\nÜbung\nSchlechte Grafiken diskutieren"
   },
   {
     "objectID": "sessions/ggplot_intro/ggplot2_basics.html",
     "href": "sessions/ggplot_intro/ggplot2_basics.html",
     "title": "ggplot2 Basics",
     "section": "",
-    "text": "View slides in full screen"
+    "text": "View slides in full screen\nÜbung\n\n\nAufgabe\nLösung\n\n\n\nWir losen Gruppen aus, jede Gruppe bekommt eine eigene Plot-Art. Erst einmal Einzelarbeit.\n\n\n\nlibrary(ggplot2)\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Getting a bang for your buck: Are Movies with higher budget also better?\",\n    subtitle = \"There doesn't seem to be a strong relation between movie budget and average rating.\",\n    x = \"Movie budget\",\n    y = \"Average vote\"\n  ) +\n  theme_classic()"
   },
   {
     "objectID": "sessions/good_plots/slides.html#choosing-the-correct-plot",
@@ -235,7 +235,7 @@
     "href": "sessions/ggplot_intro/slides.html",
     "title": "ggplot2: Basics",
     "section": "",
-    "text": "Bild von Allison Horst."
+    "text": "here() starts at /home/nick/Dokumente/GitHub/PlotWorkshop\n\n\n\nAttache Paket: 'janitor'\n\n\nDie folgenden Objekte sind maskiert von 'package:stats':\n\n    chisq.test, fisher.test\n\n\nLade nötiges Paket: ggplot2"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#section-2",
@@ -249,7 +249,7 @@
     "href": "sessions/good_plots/slides.html#eine-gute-grafik-sollte",
     "title": "Was ist eine gute Grafik?",
     "section": "Eine gute Grafik sollte …",
-    "text": "Eine gute Grafik sollte …\n… eine Geschichte erzählen … helfen, auf das Wesentliche zu konzentrieren (datasaurus) … die Zusammenhänge möglichst “umfänglich” darzustellen. … (cool aussehen)"
+    "text": "Eine gute Grafik sollte …\n… eine Geschichte erzählen … helfen, auf das Wesentliche zu konzentrieren (datasaurus) … die Zusammenhänge möglichst “umfänglich” darzustellen. … (cool aussehen) … Kultur-, Personen-, Zeitunabhängig sein, soweit wie möglich"
   },
   {
     "objectID": "sessions/good_plots/slides.html#anscombes-quartet",
@@ -340,7 +340,7 @@
     "href": "sessions/good_plots/slides.html#section-3",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Data from Rockefeller Institute and Wikipedia."
+    "text": "Joining with `by = join_by(country)`\n\n\n\n\nWarning: Removed 6 rows containing missing values or values outside the scale range\n(`geom_text()`).\n\n\n\n\n\n\n\nData from Rockefeller Institute and Wikipedia."
   },
   {
     "objectID": "sessions/good_plots/slides.html#übung",
@@ -403,14 +403,14 @@
     "href": "sessions/ggplot_intro/slides.html#übung",
     "title": "ggplot2: Basics",
     "section": "Übung",
-    "text": "Übung\n\n\nAufgabe\nLösung\n\n\n\nErstelle ein eigenes Punktdiagramm. Nutze dafür andere Variablen im Datensatz movies_metadat. Vergib auch einen Titel, Achsen-Beschriftungen und suche ein Theme aus.\n\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Getting a bang for your buck: Are Movies with higher budget also better?\",\n    subtitle = \"There doesn't seem to be a strong relation between movie budget and average rating.\",\n    x = \"Movie budget\",\n    y = \"Average vote\"\n  ) +\n  theme_classic()"
+    "text": "Übung"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#farben",
     "href": "sessions/ggplot_intro/slides.html#farben",
     "title": "ggplot2: Basics",
     "section": "Farben",
-    "text": "Farben\nhttps://questionsindataviz.com/2023/12/29/what-makes-a-truly-terrible-map/\n\n\n\nJanine Birkholz & Nicklas Hafiz // Mai 2025"
+    "text": "Farben\nhttps://questionsindataviz.com/2023/12/29/what-makes-a-truly-terrible-map/"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#layers",
@@ -487,21 +487,21 @@
     "href": "sessions/good_plots/slides.html#fehlender-kontext",
     "title": "Was ist eine gute Grafik?",
     "section": "Fehlender Kontext",
-    "text": "Fehlender Kontext\nAusschnitt aus Zeitreihe, ohne KOntext schwer zu Interpretieren. Irgendwas mit Schuldenpaket z.B.? Am besten noch mit anderen Kategorien dazu"
+    "text": "Fehlender Kontext\nAusschnitt aus Zeitreihe, ohne KOntext schwer zu Interpretieren. Irgendwas mit Schuldenpaket z.B.? Am besten noch mit anderen Kategorien dazu - Co2 Data insgesamt ohne Population zeigen"
   },
   {
     "objectID": "sessions/good_plots/slides.html#data-ink-ratio",
     "href": "sessions/good_plots/slides.html#data-ink-ratio",
     "title": "Was ist eine gute Grafik?",
     "section": "Data-ink ratio",
-    "text": "Data-ink ratio\nBeispiel zum Minimieren zeigen"
+    "text": "Data-ink ratio\nBeispiel zum Minimieren zeigen - Raincloud plots"
   },
   {
     "objectID": "sessions/good_plots/slides.html#farben",
     "href": "sessions/good_plots/slides.html#farben",
     "title": "Was ist eine gute Grafik?",
     "section": "Farben",
-    "text": "Farben"
+    "text": "Farben\nGanglienzellen übertragen keine Informationen über absolute Helligkeit, sondern über relative Helligkeit. ‣ Wie stark unterscheiden sich zwei Bereiche in ihrer Helligkeit? ‣ Wie stark hat sich eine Helligkeit gerade geändert? Allgemeine Lehre daraus: ‣ Visualisierung kann nicht gut darin sein, absolute Werte zu kommunizieren (Tabellen können das besser) ‣ Hingegen ist das visuelle System (und das Gehirn allgemein) extrem gut darin, Unterschiede und Veränderungen zu erkennen –&gt; Beispiel bringen (Simultankontrast)\n\nGraustufen nicht für absolute oder kategorische Werte nutzen (mehr als vier können iwr nicht gut unterscheiden)\nWelche Farben wir wahrnehmen können (Exkurs Tierwelt?)\nDiese Webseite zur Auswahl von passenden Farben nutzen?\nRGB erklären (und die Addition im Gehirn?"
   },
   {
     "objectID": "sessions/good_plots/slides.html#takeaways",
@@ -516,5 +516,117 @@
     "title": "Was ist eine gute Grafik?",
     "section": "Caveat Plots: See data to viz",
     "text": "Caveat Plots: See data to viz"
+  },
+  {
+    "objectID": "sessions/more_ggplot/good_plots.html",
+    "href": "sessions/more_ggplot/good_plots.html",
+    "title": "Mehr ggplot2!",
+    "section": "",
+    "text": "View slides in full screen"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html",
+    "href": "sessions/Einführung/slides.html",
+    "title": "Einführung",
+    "section": "",
+    "text": "source(here::here(\"src\", \"themes.R\"))"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html",
+    "href": "sessions/good_plots/slides.html",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.1     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.4     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#section-1",
+    "href": "sessions/good_plots/slides.html#section-1",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "Warning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.\nℹ Please use the `linewidth` argument instead."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#farbfehlsichtigkeiten",
+    "href": "sessions/good_plots/slides.html#farbfehlsichtigkeiten",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Farbfehlsichtigkeiten",
+    "text": "Farbfehlsichtigkeiten\nFarbsehtests\n\nFarbwahrnehmung braucht Helligkeit und Fläche"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#anwendung-in-ggplot2-farbskalen-wählen",
+    "href": "sessions/good_plots/slides.html#anwendung-in-ggplot2-farbskalen-wählen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Anwendung in ggplot2: Farbskalen wählen",
+    "text": "Anwendung in ggplot2: Farbskalen wählen"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#storytelling",
+    "href": "sessions/good_plots/slides.html#storytelling",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Storytelling",
+    "text": "Storytelling\nRolfs 7"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#using-textannotations",
+    "href": "sessions/good_plots/slides.html#using-textannotations",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Using Text/Annotations",
+    "text": "Using Text/Annotations"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#nutzen-von-eigenschaften-der-wahrnehmung",
+    "href": "sessions/good_plots/slides.html#nutzen-von-eigenschaften-der-wahrnehmung",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Nutzen von Eigenschaften der Wahrnehmung",
+    "text": "Nutzen von Eigenschaften der Wahrnehmung\n\nBewusste Wahrnehmung ignoriert Informationen und fügt hinzu\nNähe\nSalienz (Farbe, Größe, Neigung) (Szaﬁr, Haroz, Gleicher & Franconeri (2016))\nHier würde das USA Bild passen (evtl. mit einem anderen Beispiel, das den Unterschied deutlich macht, z.B. keine andere Farbe, näher dran durch andere Achse)\nHarold et al., 2016: Lenken von Aufmerksamkeit\nNothelfer et al., 2017: Redundatne Kodierung führt zu deutlich höherer Genauigkeit der Antworten und kürzeren Reaktionszeiten"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#scales",
+    "href": "sessions/more_ggplot/slides.html#scales",
+    "title": "Mehr ggplot2!",
+    "section": "Scales",
+    "text": "Scales\nLogarithmisch vs linear"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#koordinatensytem",
+    "href": "sessions/more_ggplot/slides.html#koordinatensytem",
+    "title": "Mehr ggplot2!",
+    "section": "Koordinatensytem",
+    "text": "Koordinatensytem"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#abspeichern",
+    "href": "sessions/more_ggplot/slides.html#abspeichern",
+    "title": "Mehr ggplot2!",
+    "section": "Abspeichern",
+    "text": "Abspeichern\nVektor vs Raster (Rolfs 7)"
+  },
+  {
+    "objectID": "index.html#tag-1",
+    "href": "index.html#tag-1",
+    "title": "Datenvisualisierung in R",
+    "section": "Tag 1",
+    "text": "Tag 1"
+  },
+  {
+    "objectID": "sessions/r_basics/r_basics.html",
+    "href": "sessions/r_basics/r_basics.html",
+    "title": "R-Basics",
+    "section": "",
+    "text": "View slides in full screen\n\ntidyverse, Factors, long format - Nicklas"
+  },
+  {
+    "objectID": "sessions/r_basics/slides.html",
+    "href": "sessions/r_basics/slides.html",
+    "title": "Einführung",
+    "section": "",
+    "text": "source(here::here(\"src\", \"themes.R\"))"
+  },
+  {
+    "objectID": "sessions/more_ggplot/more_ggplot.html",
+    "href": "sessions/more_ggplot/more_ggplot.html",
+    "title": "Mehr ggplot2!",
+    "section": "",
+    "text": "View slides in full screen\n\nAdvanced: Achsen, theme, Titel, Coords, scales, speichern - Nicklas (+Janine)"
   }
 ]

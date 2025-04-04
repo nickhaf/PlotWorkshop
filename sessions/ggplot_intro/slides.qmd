@@ -1,10 +1,8 @@
 ---
 title: "ggplot2: Basics"
-format: letterbox-revealjs
-footer: 'Janine Buchholz & Nicklas Hafiz // Mai 2025'
-execute: 
-  fig-width: 5
-  fig-height: 6
+format: 
+  letterbox-revealjs:
+    code-block-height: 100px
 ---
 
 
@@ -158,7 +156,6 @@ ggplot(data = movies_metadat,
                      y = vote_average))
 ```
 
-
 ## Geometric Layers
 ggplots sind aus verschiedenen Layern aufgebaut, die mithilfe eines `+` übereinander gelegt werden.  
 
@@ -228,31 +225,6 @@ ggplot(data = movies_metadat,
 ```
 
 ## Übung
-
-::: {.panel-tabset}
-
-## Aufgabe 
-Erstelle ein eigenes Punktdiagramm. Nutze dafür andere Variablen im Datensatz `movies_metadat`. 
-Vergib auch einen Titel, Achsen-Beschriftungen und suche ein [Theme](https://ggplot2.tidyverse.org/reference/ggtheme.html) aus. 
-
-## Lösung
-
-```{r}
-ggplot(data = movies_metadat, 
-       mapping = aes(x = budget, 
-                     y = vote_average)) +
-  geom_point() +
-  geom_smooth() +
-  labs(
-    title = "Getting a bang for your buck: Are Movies with higher budget also better?",
-    subtitle = "There doesn't seem to be a strong relation between movie budget and average rating.",
-    x = "Movie budget",
-    y = "Average vote"
-  ) +
-  theme_classic()
-```
-
-:::
 
 
 ## Let's take a deeper dive

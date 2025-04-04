@@ -1,6 +1,10 @@
 ---
 title: "Einführung"
 format: html
+image: "images/worldmap.jpg"
+author: 
+  - name: "Janine Buchholz" 
+  - name: "Nicklas Hafiz"
 ---
 
 ```{=html}
@@ -8,3 +12,5 @@ format: html
 ```
 
 [View slides in full screen](slides.html)
+
+- Intro/Beispiele/Motivation/Arten von Grafiken (1 Basic + 1 Schöne) - Janine (+Nicklas)

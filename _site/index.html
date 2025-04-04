@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
-
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.54">
-
+<meta name="generator" content="quarto-99.9.9">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-
-<title>Datenvisualisierung in R – PlotWorkshop</title>
+<title>PlotWorkshop - Datenvisualisierung in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +19,6 @@ ul.task-list li input[type="checkbox"] {
 }
 </style>
 
-
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
@@ -30,6 +26,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -37,8 +35,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
@@ -59,112 +56,326 @@ ul.task-list li input[type="checkbox"] {
     "search-more-match-text": "weitere Treffer in diesem Dokument",
     "search-more-matches-text": "weitere Treffer in diesem Dokument",
     "search-clear-button-title": "Zurücksetzen",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Abbrechen",
     "search-submit-button-title": "Abschicken",
     "search-label": "Suchen"
   }
-}</script>
+}</script><script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-tag1 .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
 
+    const options = {
+      valueNames: ['listing-title','listing-author','listing-subtitle','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-subtitle","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-tag1'] = new List('listing-tag1', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script><script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 </head>
-
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
+  <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-lg navbar-dark "><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">PlotWorkshop</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Suchen"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Navigation umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Navigation umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-themen" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Themen</span>
+<li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tag-1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-flower3" role="img">
+</i> 
+ <span class="menu-text">Tag 1</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-themen">    
-        <li>
-    <a class="dropdown-item" href="./sessions/Einführung/Einführung.html">
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tag-1">
+<li>
+    <a class="dropdown-item" href="./sessions/Einführung/Einführung.html"><i class="bi bi-book-fill" role="img">
+</i> 
  <span class="dropdown-text">Einführung</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./sessions/ggplot_intro/ggplot2_basics.html">
- <span class="dropdown-text">ggplot2: Basics</span></a>
+    <a class="dropdown-item" href="./sessions/ggplot_intro/ggplot2_basics.html"><i class="bi bi-bar-chart-fill" role="img">
+</i> 
+ <span class="dropdown-text">ggplot2: Die Basics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./sessions/r_basics/r_basics.html"><i class="bi bi-r-circle-fill" role="img">
+</i> 
+ <span class="dropdown-text">R für Grafiken</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./sessions/good_plots/good_plots.html"><i class="bi bi-pie-chart-fill" role="img">
+</i> 
+ <span class="dropdown-text">Gute Plots</span></a>
   </li>  
     </ul>
-  </li>
+</li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tag-2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <i class="bi bi-mortarboard-fill" role="img">
+</i> 
+ <span class="menu-text">Tag 2</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tag-2">
+<li>
+    <a class="dropdown-item" href="./sessions/more_ggplot/more_ggplot.html"><i class="bi bi-bar-chart-steps" role="img">
+</i> 
+ <span class="dropdown-text">ggplot2: Advanced</span></a>
+  </li>  
+    </ul>
+</li>
 </ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
+</div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
 </div>
       </div> <!-- /container-fluid -->
-    </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+    </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Auf dieser Seite</h2>
+        <nav id="TOC" role="doc-toc" class="toc-active"><h2 id="toc-title">Auf dieser Seite</h2>
    
   <ul>
-  <li><a href="#kursübersicht" id="toc-kursübersicht" class="nav-link active" data-scroll-target="#kursübersicht">Kursübersicht</a></li>
+<li><a href="#kurs%C3%BCbersicht" id="toc-kursübersicht" class="nav-link active" data-scroll-target="#kurs%C3%BCbersicht">Kursübersicht</a></li>
   <li><a href="#zeitplan" id="toc-zeitplan" class="nav-link" data-scroll-target="#zeitplan">Zeitplan</a></li>
-  </ul>
-</nav>
+  </ul></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-
-
-
-<div class="quarto-about-jolla">
- <header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
+<main class="content" id="quarto-document-content"><div class="quarto-about-jolla">
+  <img src="logo.png" class="about-image
+  round " style="height: 15em; width: 15em;">
+ <header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">Datenvisualisierung in R</h1>
 <p class="subtitle lead">Was ist eigentlich eine gute Grafik?</p>
 </div>
 <div class="quarto-title-meta">
   </div>
 </header><div id="intro-heading">
-<section id="kursübersicht" class="level1">
-<h1>Kursübersicht</h1>
+<section id="kursübersicht" class="level1"><h1>Kursübersicht</h1>
 </section>
 </div>  
 </div>
 
-<section id="zeitplan" class="level1">
-<h1>Zeitplan</h1>
-<p>Tag 1:</p>
-<ul>
-<li>Intro/Beispiele/Motivation</li>
-<li>ggplot2 Basics</li>
-<li>Wahrnehmungspsychologie/Gute Grafiken</li>
-<li>Übung: Grafik verbessern</li>
-</ul>
-<p>Tag 2:</p>
-<ul>
-<li>Advanced ggplot? Own Stats? How it works under the hood? -&gt; probably not that interesting, unless there is a use case</li>
-<li>gganimate/plotly</li>
-<li>Abschlussübung (z.B. mit dem Characters data set?)</li>
-</ul>
+<section id="zeitplan" class="level1"><h1>Zeitplan</h1>
+<div class="{tag1}">
+
+</div>
+<!-- Tag 2: -->
+<!-- - Wissenschaftliche Grafiken (APA) - Janine -->
+<!-- - Übung: Grafiken Druckreif machen und vorstellen (verschiedene Ziele/Zielgruppen, Alle die den gleichen Plot-Typ haben gruppieren) -->
+<!-- - Explorative Grafiken - Janine -->
+<!-- - Was noch so möglich: gganimate/plotly - Janine (+ Nicklas) -->
+<!-- - (Übung: Grafik animieren/plotly) -->
 
 
 
-</section>
 
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
+</section><div class="quarto-listing quarto-listing-container-default" id="listing-tag1">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0">
+<div class="thumbnail">
+<p><a href=""></a></p>
+<p></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="">
+<h3 style="color: #01364C;">
+Tag 1
+</h3>
+</a>
+</h3>
+<div class="listing-subtitle">
+<a href=""></a>
+</div>
+<div class="listing-description">
+<a href=""></a>
+</div>
+</div>
+<div class="metadata">
+<p><a href=""></a></p>
+
+</div>
+</div>
+<div class="quarto-post image-right" data-index="1" data-listing-file-modified-sort="1743781184054" data-listing-reading-time-sort="1" data-listing-word-count-sort="24">
+<div class="thumbnail">
+<p><a href="./sessions/Einführung/Einführung.html"></a></p>
+<p><img src="sessions/Einführung/images/worldmap.jpg" class="thumbnail-image"></p>
+<p></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./sessions/Einführung/Einführung.html">Einführung</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./sessions/Einführung/Einführung.html"></a>
+</div>
+<div class="listing-description">
+<a href="./sessions/Einführung/Einführung.html"><strong>Session 1</strong>: Wieso? Weshalb? Warum?</a>
+</div>
+</div>
+<div class="metadata">
+<p><a href="./sessions/Einführung/Einführung.html"></a></p>
+<div class="listing-author">
+Janine Buchholz, Nicklas Hafiz
+</div>
+
+</div>
+</div>
+<div class="quarto-post image-right" data-index="2" data-listing-file-modified-sort="1743781349081" data-listing-reading-time-sort="1" data-listing-word-count-sort="135">
+<div class="thumbnail">
+<p><a href="./sessions/ggplot_intro/ggplot2_basics.html"></a></p>
+<p><img src="sessions/ggplot_intro/images/ggplot_art.png" class="thumbnail-image"></p>
+<p></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./sessions/ggplot_intro/ggplot2_basics.html">ggplot2: Die Basics</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./sessions/ggplot_intro/ggplot2_basics.html"></a>
+</div>
+<div class="listing-description">
+<a href="./sessions/ggplot_intro/ggplot2_basics.html"><strong>Session 2</strong>: Wie?</a>
+</div>
+</div>
+<div class="metadata">
+<p><a href="./sessions/ggplot_intro/ggplot2_basics.html"></a></p>
+<div class="listing-author">
+Nicklas Hafiz
+</div>
+
+</div>
+</div>
+<div class="quarto-post image-right" data-index="3" data-listing-file-modified-sort="1743781431055" data-listing-reading-time-sort="1" data-listing-word-count-sort="19">
+<div class="thumbnail">
+<p><a href="./sessions/r_basics/r_basics.html"></a></p>
+<p><img src="sessions/r_basics/images/coder.jpg" class="thumbnail-image"></p>
+<p></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./sessions/r_basics/r_basics.html">R für Grafiken</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./sessions/r_basics/r_basics.html"></a>
+</div>
+<div class="listing-description">
+<a href="./sessions/r_basics/r_basics.html"><strong>Session 3</strong>: R für Grafiken</a>
+</div>
+</div>
+<div class="metadata">
+<p><a href="./sessions/r_basics/r_basics.html"></a></p>
+<div class="listing-author">
+Nicklas Hafiz
+</div>
+
+</div>
+</div>
+<div class="quarto-post image-right" data-index="4" data-listing-file-modified-sort="1743784219775" data-listing-reading-time-sort="1" data-listing-word-count-sort="35">
+<div class="thumbnail">
+<p><a href="./sessions/good_plots/good_plots.html"></a></p>
+<p><img src="sessions/good_plots/images/mcCandless.png" class="thumbnail-image"></p>
+<p></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./sessions/good_plots/good_plots.html">Gute Plots</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./sessions/good_plots/good_plots.html"></a>
+</div>
+<div class="listing-description">
+<a href="./sessions/good_plots/good_plots.html"><strong>Session 4</strong>: Was ist eigentlich eine gute Grafik?</a>
+</div>
+</div>
+<div class="metadata">
+<p><a href="./sessions/good_plots/good_plots.html"></a></p>
+<div class="listing-author">
+Janine Buchholz, Nicklas Hafiz
+</div>
+
+</div>
+</div>
+<div class="quarto-post image-right" data-index="5">
+<div class="thumbnail">
+<p><a href=""></a></p>
+<p></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="">
+<h3 style="color: #01364C;">
+Tag 2
+</h3>
+</a>
+</h3>
+<div class="listing-subtitle">
+<a href=""></a>
+</div>
+<div class="listing-description">
+<a href=""></a>
+</div>
+</div>
+<div class="metadata">
+<p><a href=""></a></p>
+
+</div>
+</div>
+<div class="quarto-post image-right" data-index="6" data-listing-file-modified-sort="1743784374898" data-listing-reading-time-sort="1" data-listing-word-count-sort="23">
+<div class="thumbnail">
+<p><a href="./sessions/more_ggplot/more_ggplot.html"></a></p>
+<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
+<p></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./sessions/more_ggplot/more_ggplot.html">ggplot2: Advanced</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./sessions/more_ggplot/more_ggplot.html">Weitere Funktionen</a>
+</div>
+<div class="listing-description">
+<a href="./sessions/more_ggplot/more_ggplot.html"><strong>Session 5</strong>: Mehr!</a>
+</div>
+</div>
+<div class="metadata">
+<p><a href="./sessions/more_ggplot/more_ggplot.html"></a></p>
+<div class="listing-author">
+Nicklas Hafiz, Janine Buchholz
+</div>
+
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+Keine Treffer
+</div>
+</div></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
     const mode = bsSheetEl.getAttribute("data-mode");
@@ -192,7 +403,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const onCopySuccess = function(e) {
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -224,47 +446,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
   });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -299,11 +481,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
+      return note.innerHTML;
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -318,28 +496,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
+        typesetMath(container);
         return container.innerHTML
       } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
+        typesetMath(note);
         return note.innerHTML;
       }
     } else {
@@ -348,15 +536,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
+      typesetMath(note);
+      return note.innerHTML;
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -578,7 +759,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
-
 
 
 
