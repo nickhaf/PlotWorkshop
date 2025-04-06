@@ -63,20 +63,6 @@
     "text": "Erste Schritte.\n\n\nFoto von Omar Lopez auf Unsplash"
   },
   {
-    "objectID": "sessions/ggplot_intro/slides.html#komponenten",
-    "href": "sessions/ggplot_intro/slides.html#komponenten",
-    "title": "ggplot2: Basics",
-    "section": "Komponenten",
-    "text": "Komponenten\nÜbersicht"
-  },
-  {
-    "objectID": "sessions/ggplot_intro/slides.html#daten-vorstellen",
-    "href": "sessions/ggplot_intro/slides.html#daten-vorstellen",
-    "title": "ggplot2: Basics",
-    "section": "Daten vorstellen",
-    "text": "Daten vorstellen\n\npop_world &lt;- read.csv(here::here(\"raw_data\", \"pop.csv\"))\nco2_world &lt;- read.csv(here::here(\"raw_data\", \"co2_pcap_cons.csv\"))\n\ncolnames(co2_world) &lt;- gsub(\"^X\", \"\", colnames(co2_world)) \nco2_world[, 2:ncol(co2_world)] &lt;- co2_world[, 2:ncol(co2_world)] %&gt;% \n  mutate(across(everything(), ~ gsub(\"−\", \"-\", as.character(.)))) %&gt;% \nmutate_if(is.character, as.numeric) \n\nco2_world &lt;- co2_world %&gt;% \n  pivot_longer(cols = -country, \n               names_to = \"year\", \n               values_to = \"co2\")"
-  },
-  {
     "objectID": "sessions/ggplot_intro/slides.html#the-big-picture",
     "href": "sessions/ggplot_intro/slides.html#the-big-picture",
     "title": "ggplot2: Basics",
@@ -84,11 +70,25 @@
     "text": "The Big picture"
   },
   {
-    "objectID": "sessions/ggplot_intro/slides.html#ggplot",
-    "href": "sessions/ggplot_intro/slides.html#ggplot",
+    "objectID": "sessions/ggplot_intro/slides.html#start-ggplot",
+    "href": "sessions/ggplot_intro/slides.html#start-ggplot",
     "title": "ggplot2: Basics",
-    "section": "ggplot()",
-    "text": "ggplot()\n\n\nggplot()"
+    "section": "Start: ggplot()",
+    "text": "Start: ggplot()\n\n\nggplot()"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#komponenten",
+    "href": "sessions/ggplot_intro/slides.html#komponenten",
+    "title": "ggplot2: Basics",
+    "section": "Komponenten",
+    "text": "Komponenten\n\nDaten.\nAesthetic mapping zwischen Daten und visuellen Eigenschaften.\n[Layer(s)] zum rendern der Daten."
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#daten-vorstellen",
+    "href": "sessions/ggplot_intro/slides.html#daten-vorstellen",
+    "title": "ggplot2: Basics",
+    "section": "Daten vorstellen",
+    "text": "Daten vorstellen\n\npop_world &lt;- read.csv(here::here(\"raw_data\", \"pop.csv\"))\nco2_world &lt;- read.csv(here::here(\"raw_data\", \"co2_pcap_cons.csv\"))\n\ncolnames(co2_world) &lt;- gsub(\"^X\", \"\", colnames(co2_world)) \nco2_world[, 2:ncol(co2_world)] &lt;- co2_world[, 2:ncol(co2_world)] %&gt;% \n  mutate(across(everything(), ~ gsub(\"−\", \"-\", as.character(.)))) %&gt;% \nmutate_if(is.character, as.numeric) \n\nco2_world &lt;- co2_world %&gt;% \n  pivot_longer(cols = -country, \n               names_to = \"year\", \n               values_to = \"co2\")"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#daten",
