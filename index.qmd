@@ -4,7 +4,7 @@ subtitle: "Was ist eigentlich eine gute Grafik?"
 about:
   id: intro-heading
   template: jolla
-  image: logo.png
+  image: ./logo/logo3.png
 format: html
 listing:
   id: tag1

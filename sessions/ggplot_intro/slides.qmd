@@ -30,8 +30,6 @@ Bild von [Allison Horst](https://allisonhorst.com/r-packages-functions).
 ```{r}
 #install.packages("tidyverse")
 library(tidyverse)
-
-
 ```
 
 \
@@ -55,11 +53,30 @@ Erste Schritte.
 Foto von <a href="https://unsplash.com/de/@omarlopez1?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Omar Lopez</a> auf <a href="https://unsplash.com/de/fotos/person-die-babyfusse-halt-vTknj2OxDVg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 :::
 
+## The Big picture
+
+
+```{r}
+#| output-location: column
+#| code-line-numbers: "1|2,3|4"
+
+
+```
+
+
+## Start: `ggplot()`
+```{r}
+#| output-location: column
+
+ggplot()
+```
+
 
 ## Komponenten
 
-Übersicht
-
+1. Daten.
+2. [Aesthetic mapping]{.highlight} zwischen Daten und visuellen Eigenschaften.
+3. [Layer(s)] zum rendern der Daten. 
 
 ## Daten vorstellen
 ```{r}
@@ -106,25 +123,8 @@ movies_metadat <- movies_metadat %>%
 
 ```
 
-## The Big picture
 
 
-```{r}
-#| output-location: column
-#| code-line-numbers: "1|2,3|4"
-
-
-```
-
-
-# Start
-
-## `ggplot()`
-```{r}
-#| output-location: column
-
-ggplot()
-```
 
 
 ## Daten
