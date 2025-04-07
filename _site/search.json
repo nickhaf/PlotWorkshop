@@ -635,5 +635,75 @@
     "title": "ggplot2: Basics",
     "section": "Start: ggplot()\n",
     "text": "Start: ggplot()\n\n\n\nggplot()"
+  },
+  {
+    "objectID": "sessions/example_slides.html#normal-slide",
+    "href": "sessions/example_slides.html#normal-slide",
+    "title": "Einführung",
+    "section": "Normal Slide",
+    "text": "Normal Slide\n\nAdding a website-link: Wikipedia\nLink to specific chapter on other pages: aes-mapping\nThis will highlight text\n\n\n\nFade in\n\n\n\n\n\n\n\n\nCallout block header\n\n\nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod"
+  },
+  {
+    "objectID": "sessions/example_slides.html#column",
+    "href": "sessions/example_slides.html#column",
+    "title": "Einführung",
+    "section": "Column",
+    "text": "Column"
+  },
+  {
+    "objectID": "sessions/example_slides.html#columns",
+    "href": "sessions/example_slides.html#columns",
+    "title": "Einführung",
+    "section": "Columns",
+    "text": "Columns\n\n\nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\n\n\nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et"
+  },
+  {
+    "objectID": "sessions/example_slides.html#columns-with-code",
+    "href": "sessions/example_slides.html#columns-with-code",
+    "title": "Einführung",
+    "section": "Columns with code",
+    "text": "Columns with code\n\n\nggplot(cars, \n       aes(x = speed, y = dist)) +\n  geom_point()"
+  },
+  {
+    "objectID": "sessions/example_slides.html#code-shenannigans",
+    "href": "sessions/example_slides.html#code-shenannigans",
+    "title": "Einführung",
+    "section": "Code shenannigans",
+    "text": "Code shenannigans\n\n\n1ggplot(cars,\n2       aes(x = speed, y = dist)) +\n3  geom_point()\n\n\n\n1\n\nInput data\n\n2\n\nDefine mapping\n\n3\n\nAdd layer"
+  },
+  {
+    "objectID": "sessions/example_slides.html#code-annotation",
+    "href": "sessions/example_slides.html#code-annotation",
+    "title": "Einführung",
+    "section": "Code Annotation",
+    "text": "Code Annotation\n\n\n## (Empty line so the copy button doesn't overlays)\n1ggplot(cars,\n2       aes(x = speed, y = dist)) +\n3  geom_point()\n\n\n\n1\n\nInput data\n\n2\n\nDefine mapping\n\n3\n\nAdd layer"
+  },
+  {
+    "objectID": "sessions/example_slides.html#tabs",
+    "href": "sessions/example_slides.html#tabs",
+    "title": "Einführung",
+    "section": "Tabs",
+    "text": "Tabs\n\nAufgabeLösung\n\n\nWir losen Gruppen aus, jede Gruppe bekommt eine eigene Plot-Art. Erst einmal Einzelarbeit.\n\n\n\n\nggplot(cars, \n       aes(x = speed, y = dist)) +\n  geom_point()"
+  },
+  {
+    "objectID": "sessions/example_slides.html#section",
+    "href": "sessions/example_slides.html#section",
+    "title": "Einführung",
+    "section": "",
+    "text": "Background image\n\n\nFoto von Omar Lopez auf Unsplash"
+  },
+  {
+    "objectID": "sessions/example_slides.html#right-side-image",
+    "href": "sessions/example_slides.html#right-side-image",
+    "title": "Einführung",
+    "section": "Right-side image",
+    "text": "Right-side image\n\n\nI can also put images in a column and fill the right side of the slide with the image by using {.image-right}.\nFoto von Fabrice Villard auf Unsplash"
+  },
+  {
+    "objectID": "sessions/example_slides.html#highlight",
+    "href": "sessions/example_slides.html#highlight",
+    "title": "Einführung",
+    "section": "Highlight",
+    "text": "Highlight\nThis will brighten text"
   }
 ]

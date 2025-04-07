@@ -135,7 +135,7 @@ ggplot(data = movies_metadat)
 ```
 
 
-## Aesthetic mapping
+## Aesthetic mapping 
 
 Um diese leere Leinwand zu befüllen, müssen wir die Daten mit den benötigten visuellen Eigenschaften verknüpfen: 
 

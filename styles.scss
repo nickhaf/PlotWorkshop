@@ -43,11 +43,9 @@ $presentation-heading-font: 'Roboto Condensed', san-serif;
     border-radius: 5px;
 }
 
-.column
-
 .highlight{
-    color: $theme-highlight;
-    font-weight: bold;
+    color: $theme-highlight !important;
+    font-weight: bold !important;
 }
 
 .lightblue{
@@ -131,12 +129,6 @@ h1, h2, h3, h4 {
 
 .small-latex {
   font-size: 30px;
-}
-
-.panel-tabset{
-  border: 1px solid $theme-darkblue;
-  border-radius: 5px;
-  padding: 10px;
 }
 
 .plot-frame {
