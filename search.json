@@ -21,158 +21,53 @@
     "text": "View slides in full screen\n\nIntro/Beispiele/Motivation/Arten von Grafiken (1 Basic + 1 Schöne) - Janine (+Nicklas)"
   },
   {
-    "objectID": "sessions/good_plots/good_plots.html",
-    "href": "sessions/good_plots/good_plots.html",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/example_slides.html#normal-slide",
+    "href": "sessions/example_slides.html#normal-slide",
+    "title": "Einführung",
+    "section": "Normal Slide",
+    "text": "Normal Slide\n\nAdding a website-link: Wikipedia\nLink to specific chapter on other pages: aes-mapping\nThis will highlight text\n\n\n\nFade in\n\n\n\n\n\n\n\n\nCallout block header\n\n\nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod"
+  },
+  {
+    "objectID": "sessions/example_slides.html#columns",
+    "href": "sessions/example_slides.html#columns",
+    "title": "Einführung",
+    "section": "Columns",
+    "text": "Columns\n\n\nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\n\n\nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et"
+  },
+  {
+    "objectID": "sessions/example_slides.html#columns-with-code",
+    "href": "sessions/example_slides.html#columns-with-code",
+    "title": "Einführung",
+    "section": "Columns with code",
+    "text": "Columns with code\n\n\nggplot(cars, \n       aes(x = speed, y = dist)) +\n  geom_point()"
+  },
+  {
+    "objectID": "sessions/example_slides.html#code-annotation",
+    "href": "sessions/example_slides.html#code-annotation",
+    "title": "Einführung",
+    "section": "Code Annotation",
+    "text": "Code Annotation\n\n\n## (Empty line so the copy button doesn't overlays)\n1ggplot(cars,\n2       aes(x = speed, y = dist)) +\n3  geom_point()\n\n\n\n1\n\nInput data\n\n2\n\nDefine mapping\n\n3\n\nAdd layer"
+  },
+  {
+    "objectID": "sessions/example_slides.html#tabs",
+    "href": "sessions/example_slides.html#tabs",
+    "title": "Einführung",
+    "section": "Tabs",
+    "text": "Tabs\n\nAufgabeLösung\n\n\nWir losen Gruppen aus, jede Gruppe bekommt eine eigene Plot-Art. Erst einmal Einzelarbeit.\n\n\n\n\nggplot(cars, \n       aes(x = speed, y = dist)) +\n  geom_point()"
+  },
+  {
+    "objectID": "sessions/example_slides.html#section",
+    "href": "sessions/example_slides.html#section",
+    "title": "Einführung",
     "section": "",
-    "text": "View slides in full screen\n\nWahrnehmungspsychologie/Schlechte/Gute Grafiken + Sammeln?/ggplot-Anwendung direkt dazu (z.B. Farben, Annotation … -&gt; Also direkte Anwendung der Theorie) - Janine (+ Nicklas)\n\n\nÜbung\nSchlechte Grafiken diskutieren"
+    "text": "Background image\n\n\nFoto von Omar Lopez auf Unsplash"
   },
   {
-    "objectID": "sessions/ggplot_intro/ggplot2_basics.html",
-    "href": "sessions/ggplot_intro/ggplot2_basics.html",
-    "title": "ggplot2 Basics",
-    "section": "",
-    "text": "View slides in full screen\n\nÜbung\n\nAufgabeLösung\n\n\nWir losen Gruppen aus, jede Gruppe bekommt eine eigene Plot-Art. Erst einmal Einzelarbeit.\n\n\n\nlibrary(ggplot2)\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Getting a bang for your buck: Are Movies with higher budget also better?\",\n    subtitle = \"There doesn't seem to be a strong relation between movie budget and average rating.\",\n    x = \"Movie budget\",\n    y = \"Average vote\"\n  ) +\n  theme_classic()"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Datenvisualisierung in R",
-    "section": "",
-    "text": "Kursübersicht\n\n  \n\n\n\nZeitplan\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTag 1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEinführung\n\n\n\n\n\nSession 1: Wieso? Weshalb? Warum?\n\n\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2: Die Basics\n\n\n\n\n\nSession 2: Wie?\n\n\n\n\n\nNicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nR für Grafiken\n\n\n\n\n\nSession 3: R für Grafiken\n\n\n\n\n\nNicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nGute Plots\n\n\n\n\n\nSession 4: Was ist eigentlich eine gute Grafik?\n\n\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\n\nTag 2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2: Advanced\n\n\nWeitere Funktionen\n\n\nSession 5: Mehr!\n\n\n\n\n\nNicklas Hafiz, Janine Buchholz\n\n\n\n\n\n\nKeine Treffer"
-  },
-  {
-    "objectID": "sessions/ggplot_intro/slides.html#section",
-    "href": "sessions/ggplot_intro/slides.html#section",
-    "title": "ggplot2: Basics",
-    "section": "",
-    "text": "Bild von Allison Horst."
-  },
-  {
-    "objectID": "sessions/ggplot_intro/slides.html#ggplot2-das-paket",
-    "href": "sessions/ggplot_intro/slides.html#ggplot2-das-paket",
-    "title": "ggplot2: Basics",
-    "section": "ggplot2: Das Paket",
-    "text": "ggplot2: Das Paket\n\n\nggplot2 gehört zum tidyverse\n\n#install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n\n\n… kann aber natürlich auch seperat geladen werden:\n\n#install.packages(\"ggplot2\")\nlibrary(ggplot2)"
-  },
-  {
-    "objectID": "sessions/ggplot_intro/slides.html#section-1",
-    "href": "sessions/ggplot_intro/slides.html#section-1",
-    "title": "ggplot2: Basics",
-    "section": "",
-    "text": "Erste Schritte.\n\n\nFoto von Omar Lopez auf Unsplash"
-  },
-  {
-    "objectID": "sessions/ggplot_intro/slides.html#the-big-picture",
-    "href": "sessions/ggplot_intro/slides.html#the-big-picture",
-    "title": "ggplot2: Basics",
-    "section": "The Big picture",
-    "text": "The Big picture"
-  },
-  {
-    "objectID": "sessions/ggplot_intro/slides.html#start-ggplot",
-    "href": "sessions/ggplot_intro/slides.html#start-ggplot",
-    "title": "ggplot2: Basics",
-    "section": "Start: ggplot()",
-    "text": "Start: ggplot()\n\n\nggplot()"
-  },
-  {
-    "objectID": "sessions/ggplot_intro/slides.html#komponenten",
-    "href": "sessions/ggplot_intro/slides.html#komponenten",
-    "title": "ggplot2: Basics",
-    "section": "Komponenten",
-    "text": "Komponenten\n\nDaten.\nAesthetic mapping zwischen Daten und visuellen Eigenschaften.\n[Layer(s)] zum rendern der Daten."
-  },
-  {
-    "objectID": "sessions/ggplot_intro/slides.html#daten-vorstellen",
-    "href": "sessions/ggplot_intro/slides.html#daten-vorstellen",
-    "title": "ggplot2: Basics",
-    "section": "Daten vorstellen",
-    "text": "Daten vorstellen\n\npop_world &lt;- read.csv(here::here(\"raw_data\", \"pop.csv\"))\nco2_world &lt;- read.csv(here::here(\"raw_data\", \"co2_pcap_cons.csv\"))\n\ncolnames(co2_world) &lt;- gsub(\"^X\", \"\", colnames(co2_world)) \nco2_world[, 2:ncol(co2_world)] &lt;- co2_world[, 2:ncol(co2_world)] %&gt;% \n  mutate(across(everything(), ~ gsub(\"−\", \"-\", as.character(.)))) %&gt;% \nmutate_if(is.character, as.numeric) \n\nco2_world &lt;- co2_world %&gt;% \n  pivot_longer(cols = -country, \n               names_to = \"year\", \n               values_to = \"co2\")"
-  },
-  {
-    "objectID": "sessions/ggplot_intro/slides.html#daten",
-    "href": "sessions/ggplot_intro/slides.html#daten",
-    "title": "ggplot2: Basics",
-    "section": "Daten",
-    "text": "Daten\n\n\nggplot(data = movies_metadat)"
-  },
-  {
-    "objectID": "sessions/ggplot_intro/slides.html#aesthetic-mapping",
-    "href": "sessions/ggplot_intro/slides.html#aesthetic-mapping",
-    "title": "ggplot2: Basics",
-    "section": "Aesthetic mapping",
-    "text": "Aesthetic mapping\nUm diese leere Leinwand zu befüllen, müssen wir die Daten mit den benötigten visuellen Eigenschaften verknüpfen:\nmapping =  aes()\nJe nach Plot-Art sind verschiedene visuelle Eigenschaften möglich. Wichtig ist für uns jetzt erst einmal die Position, also x - und y-Achsen.\nEs kann hier aber z.B. auch die Farbe der Punkte in Agnhängikeit von Kategorien in den Daten geändert werden."
-  },
-  {
-    "objectID": "sessions/ggplot_intro/slides.html#aesthetic-mapping-achsen",
-    "href": "sessions/ggplot_intro/slides.html#aesthetic-mapping-achsen",
-    "title": "ggplot2: Basics",
-    "section": "Aesthetic mapping: Achsen",
-    "text": "Aesthetic mapping: Achsen\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average))"
-  },
-  {
-    "objectID": "sessions/ggplot_intro/slides.html#geometric-layers",
-    "href": "sessions/ggplot_intro/slides.html#geometric-layers",
-    "title": "ggplot2: Basics",
-    "section": "Geometric Layers",
-    "text": "Geometric Layers\nggplots sind aus verschiedenen Layern aufgebaut, die mithilfe eines + übereinander gelegt werden.\ngeom_"
-  },
-  {
-    "objectID": "sessions/ggplot_intro/slides.html#layers",
-    "href": "sessions/ggplot_intro/slides.html#layers",
-    "title": "ggplot2: Basics",
-    "section": "Layers",
-    "text": "Layers\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point()"
-  },
-  {
-    "objectID": "sessions/ggplot_intro/slides.html#mehr-layers",
-    "href": "sessions/ggplot_intro/slides.html#mehr-layers",
-    "title": "ggplot2: Basics",
-    "section": "Mehr Layers!",
-    "text": "Mehr Layers!\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth()"
-  },
-  {
-    "objectID": "sessions/ggplot_intro/slides.html#titellabels",
-    "href": "sessions/ggplot_intro/slides.html#titellabels",
-    "title": "ggplot2: Basics",
-    "section": "Titel/Labels",
-    "text": "Titel/Labels\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Getting a bang for your buck: Are Movies with higher budget also better?\",\n    subtitle = \"There doesn't seem to be a strong relation between movie budget and average rating.\",\n    x = \"Movie budget\",\n    y = \"Average vote\"\n  )"
-  },
-  {
-    "objectID": "sessions/ggplot_intro/slides.html#style-deinen-plot-themes",
-    "href": "sessions/ggplot_intro/slides.html#style-deinen-plot-themes",
-    "title": "ggplot2: Basics",
-    "section": "Style deinen Plot: Themes",
-    "text": "Style deinen Plot: Themes\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Getting a bang for your buck: Are Movies with higher budget also better?\",\n    subtitle = \"There doesn't seem to be a strong relation between movie budget and average rating.\",\n    x = \"Movie budget\",\n    y = \"Average vote\"\n  ) +\n  theme_classic()"
-  },
-  {
-    "objectID": "sessions/ggplot_intro/slides.html#übung",
-    "href": "sessions/ggplot_intro/slides.html#übung",
-    "title": "ggplot2: Basics",
-    "section": "Übung",
-    "text": "Übung"
-  },
-  {
-    "objectID": "sessions/ggplot_intro/slides.html#lets-take-a-deeper-dive",
-    "href": "sessions/ggplot_intro/slides.html#lets-take-a-deeper-dive",
-    "title": "ggplot2: Basics",
-    "section": "Let’s take a deeper dive",
-    "text": "Let’s take a deeper dive\nHier dann nochmal genauer durchgehen - Was haben wir eigentlich gemacht. Nicht zu sehr in den Basics verlieren, auch schneller tiefer reingehen (scales, coord system …)"
-  },
-  {
-    "objectID": "sessions/ggplot_intro/slides.html#abspeichern",
-    "href": "sessions/ggplot_intro/slides.html#abspeichern",
-    "title": "ggplot2: Basics",
-    "section": "Abspeichern",
-    "text": "Abspeichern"
-  },
-  {
-    "objectID": "sessions/ggplot_intro/slides.html#farben",
-    "href": "sessions/ggplot_intro/slides.html#farben",
-    "title": "ggplot2: Basics",
-    "section": "Farben",
-    "text": "Farben\nhttps://questionsindataviz.com/2023/12/29/what-makes-a-truly-terrible-map/"
+    "objectID": "sessions/example_slides.html#right-side-image",
+    "href": "sessions/example_slides.html#right-side-image",
+    "title": "Einführung",
+    "section": "Right-side image",
+    "text": "Right-side image\n\n\nI can also put images in a column and fill the right side of the slide with the image by using {.image-right}.\nFoto von Fabrice Villard auf Unsplash"
   },
   {
     "objectID": "sessions/good_plots/slides.html#section",
@@ -383,6 +278,160 @@
     "title": "Was ist eine gute Grafik?",
     "section": "Übung",
     "text": "Übung\nSchlechte Grafiken verbessern: https://www.data-to-viz.com/caveats.html"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#section",
+    "href": "sessions/ggplot_intro/slides.html#section",
+    "title": "ggplot2: Basics",
+    "section": "",
+    "text": "Bild von Allison Horst."
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#ggplot2-das-paket",
+    "href": "sessions/ggplot_intro/slides.html#ggplot2-das-paket",
+    "title": "ggplot2: Basics",
+    "section": "ggplot2: Das Paket",
+    "text": "ggplot2: Das Paket\n\n\nggplot2 gehört zum tidyverse\n\n#install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n\n\n… kann aber natürlich auch seperat geladen werden:\n\n#install.packages(\"ggplot2\")\nlibrary(ggplot2)"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#section-1",
+    "href": "sessions/ggplot_intro/slides.html#section-1",
+    "title": "ggplot2: Basics",
+    "section": "",
+    "text": "Erste Schritte.\n\n\nFoto von Omar Lopez auf Unsplash"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#the-big-picture",
+    "href": "sessions/ggplot_intro/slides.html#the-big-picture",
+    "title": "ggplot2: Basics",
+    "section": "The Big picture",
+    "text": "The Big picture"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#start-ggplot",
+    "href": "sessions/ggplot_intro/slides.html#start-ggplot",
+    "title": "ggplot2: Basics",
+    "section": "Start: ggplot()",
+    "text": "Start: ggplot()\n\n\nggplot()"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#komponenten",
+    "href": "sessions/ggplot_intro/slides.html#komponenten",
+    "title": "ggplot2: Basics",
+    "section": "Komponenten",
+    "text": "Komponenten\n\nDaten.\nAesthetic mapping zwischen Daten und visuellen Eigenschaften.\n[Layer(s)] zum rendern der Daten."
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#daten-vorstellen",
+    "href": "sessions/ggplot_intro/slides.html#daten-vorstellen",
+    "title": "ggplot2: Basics",
+    "section": "Daten vorstellen",
+    "text": "Daten vorstellen\n\npop_world &lt;- read.csv(here::here(\"raw_data\", \"pop.csv\"))\nco2_world &lt;- read.csv(here::here(\"raw_data\", \"co2_pcap_cons.csv\"))\n\ncolnames(co2_world) &lt;- gsub(\"^X\", \"\", colnames(co2_world)) \nco2_world[, 2:ncol(co2_world)] &lt;- co2_world[, 2:ncol(co2_world)] %&gt;% \n  mutate(across(everything(), ~ gsub(\"−\", \"-\", as.character(.)))) %&gt;% \nmutate_if(is.character, as.numeric) \n\nco2_world &lt;- co2_world %&gt;% \n  pivot_longer(cols = -country, \n               names_to = \"year\", \n               values_to = \"co2\")"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#daten",
+    "href": "sessions/ggplot_intro/slides.html#daten",
+    "title": "ggplot2: Basics",
+    "section": "Daten",
+    "text": "Daten\n\n\nggplot(data = movies_metadat)"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#aesthetic-mapping",
+    "href": "sessions/ggplot_intro/slides.html#aesthetic-mapping",
+    "title": "ggplot2: Basics",
+    "section": "Aesthetic mapping",
+    "text": "Aesthetic mapping\nUm diese leere Leinwand zu befüllen, müssen wir die Daten mit den benötigten visuellen Eigenschaften verknüpfen:\nmapping =  aes()\nJe nach Plot-Art sind verschiedene visuelle Eigenschaften möglich. Wichtig ist für uns jetzt erst einmal die Position, also x - und y-Achsen.\nEs kann hier aber z.B. auch die Farbe der Punkte in Agnhängikeit von Kategorien in den Daten geändert werden."
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#aesthetic-mapping-achsen",
+    "href": "sessions/ggplot_intro/slides.html#aesthetic-mapping-achsen",
+    "title": "ggplot2: Basics",
+    "section": "Aesthetic mapping: Achsen",
+    "text": "Aesthetic mapping: Achsen\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average))"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#geometric-layers",
+    "href": "sessions/ggplot_intro/slides.html#geometric-layers",
+    "title": "ggplot2: Basics",
+    "section": "Geometric Layers",
+    "text": "Geometric Layers\nggplots sind aus verschiedenen Layern aufgebaut, die mithilfe eines + übereinander gelegt werden.\ngeom_"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#layers",
+    "href": "sessions/ggplot_intro/slides.html#layers",
+    "title": "ggplot2: Basics",
+    "section": "Layers",
+    "text": "Layers\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point()"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#mehr-layers",
+    "href": "sessions/ggplot_intro/slides.html#mehr-layers",
+    "title": "ggplot2: Basics",
+    "section": "Mehr Layers!",
+    "text": "Mehr Layers!\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth()"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#titellabels",
+    "href": "sessions/ggplot_intro/slides.html#titellabels",
+    "title": "ggplot2: Basics",
+    "section": "Titel/Labels",
+    "text": "Titel/Labels\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Getting a bang for your buck: Are Movies with higher budget also better?\",\n    subtitle = \"There doesn't seem to be a strong relation between movie budget and average rating.\",\n    x = \"Movie budget\",\n    y = \"Average vote\"\n  )"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#style-deinen-plot-themes",
+    "href": "sessions/ggplot_intro/slides.html#style-deinen-plot-themes",
+    "title": "ggplot2: Basics",
+    "section": "Style deinen Plot: Themes",
+    "text": "Style deinen Plot: Themes\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Getting a bang for your buck: Are Movies with higher budget also better?\",\n    subtitle = \"There doesn't seem to be a strong relation between movie budget and average rating.\",\n    x = \"Movie budget\",\n    y = \"Average vote\"\n  ) +\n  theme_classic()"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#übung",
+    "href": "sessions/ggplot_intro/slides.html#übung",
+    "title": "ggplot2: Basics",
+    "section": "Übung",
+    "text": "Übung"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#lets-take-a-deeper-dive",
+    "href": "sessions/ggplot_intro/slides.html#lets-take-a-deeper-dive",
+    "title": "ggplot2: Basics",
+    "section": "Let’s take a deeper dive",
+    "text": "Let’s take a deeper dive\nHier dann nochmal genauer durchgehen - Was haben wir eigentlich gemacht. Nicht zu sehr in den Basics verlieren, auch schneller tiefer reingehen (scales, coord system …)"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#abspeichern",
+    "href": "sessions/ggplot_intro/slides.html#abspeichern",
+    "title": "ggplot2: Basics",
+    "section": "Abspeichern",
+    "text": "Abspeichern"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#farben",
+    "href": "sessions/ggplot_intro/slides.html#farben",
+    "title": "ggplot2: Basics",
+    "section": "Farben",
+    "text": "Farben\nhttps://questionsindataviz.com/2023/12/29/what-makes-a-truly-terrible-map/"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Datenvisualisierung in R",
+    "section": "",
+    "text": "Kursübersicht\n\n  \n\n\n\nZeitplan\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTag 1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEinführung\n\n\n\n\n\nSession 1: Wieso? Weshalb? Warum?\n\n\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2: Die Basics\n\n\n\n\n\nSession 2: Wie?\n\n\n\n\n\nNicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nR für Grafiken\n\n\n\n\n\nSession 3: R für Grafiken\n\n\n\n\n\nNicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nGute Plots\n\n\n\n\n\nSession 4: Was ist eigentlich eine gute Grafik?\n\n\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\n\nTag 2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2: Advanced\n\n\nWeitere Funktionen\n\n\nSession 5: Mehr!\n\n\n\n\n\nNicklas Hafiz, Janine Buchholz\n\n\n\n\n\n\nKeine Treffer"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/ggplot2_basics.html",
+    "href": "sessions/ggplot_intro/ggplot2_basics.html",
+    "title": "ggplot2 Basics",
+    "section": "",
+    "text": "View slides in full screen\n\nÜbung\n\nAufgabeLösung\n\n\nWir losen Gruppen aus, jede Gruppe bekommt eine eigene Plot-Art. Erst einmal Einzelarbeit.\n\n\n\nlibrary(ggplot2)\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Getting a bang for your buck: Are Movies with higher budget also better?\",\n    subtitle = \"There doesn't seem to be a strong relation between movie budget and average rating.\",\n    x = \"Movie budget\",\n    y = \"Average vote\"\n  ) +\n  theme_classic()"
+  },
+  {
+    "objectID": "sessions/good_plots/good_plots.html",
+    "href": "sessions/good_plots/good_plots.html",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "View slides in full screen\n\nWahrnehmungspsychologie/Schlechte/Gute Grafiken + Sammeln?/ggplot-Anwendung direkt dazu (z.B. Farben, Annotation … -&gt; Also direkte Anwendung der Theorie) - Janine (+ Nicklas)\n\n\nÜbung\nSchlechte Grafiken diskutieren"
   },
   {
     "objectID": "sessions/Einführung/slides.html#warum-ggplot2",
