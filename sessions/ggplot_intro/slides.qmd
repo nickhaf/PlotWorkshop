@@ -14,6 +14,60 @@ library(janitor)
 library(ggwordcloud)
 ```
 
+```{r}
+#| echo: false
+#| message: false
+
+library(jsonlite)
+library(tidyverse)
+
+get_gapminder <- function(repo = "https://github.com/open-numbers/ddf--gapminder--fasttrack",
+                          keywords = "co2") {
+  ## Get json
+  ## Filter paths there
+  ## use them for download directly
+
+  path_json <- "/refs/heads/master/datapackage.json"
+  raw_url <- gsub("github.com", "raw.githubusercontent.com", "https://raw.githubusercontent.com/open-numbers/ddf--gapminder--fasttrack")
+  download.file(url = paste0(raw_url, path_json), destfile = "datapackage.json")
+
+  json_data <- jsonlite::fromJSON("datapackage.json")
+
+  csv_paths <- json_data$resources$path
+  matched_paths <- csv_paths[str_detect(csv_paths, str_c(keywords, collapse = "|"))]
+
+  if (length(matched_paths) == 0) {
+    stop("No files matched the specified keywords.")
+  }
+
+  matched_paths_url <- paste0(raw_url, "/refs/heads/master/", matched_paths)
+
+  merged_df <- read.csv(matched_paths_url[1])
+
+  # Loop through and merge the rest
+  if (length(matched_paths) > 1) {
+    for (i in 2:length(matched_paths)) {
+      message("Reading file: ", matched_paths_url[i])
+      temp_df <- read_csv(matched_paths_url[i])
+
+      merged_df <- full_join(merged_df, temp_df)
+      rm(temp_df)
+      gc()
+    }
+  }
+
+  if (file.exists("datapackage.json")) {
+    file.remove("datapackage.json")
+  }
+
+  return(merged_df)
+}
+
+gapminder_dat_full <- get_gapminder(keywords = c("pop--", "co2"))
+```
+
+
+
 ## {background-image="images/ggplot_art.png" background-size="1160px" background-position="15%"}
 
 ::: {.absolute right="0.5%" bottom="0.5%" style="font-size:0.25em; padding: 0.15em 0.15em; background-color: rgba(255, 255, 255 .7); backdrop-filter: blur(5px); box-shadow: 0 0 1rem 0 rgba(255, 255, 255 .5); border-radius: 2. 5px;"}
@@ -62,12 +116,6 @@ Foto von <a href="https://unsplash.com/de/@omarlopez1?utm_content=creditCopyText
 ```
 
 
-## Start: `ggplot()`
-```{r}
-#| output-location: column
-
-ggplot()
-```
 
 
 ## Komponenten
@@ -76,97 +124,42 @@ ggplot()
 2. [Aesthetic mapping]{.highlight} zwischen Daten und visuellen Eigenschaften.
 3. [Layer(s)] zum rendern der Daten. 
 
-## Daten vorstellen
+## Die Daten
+
+Wir nutzen Daten von [Gapminder](https://www.gapminder.org/data/).  
+Gapminder sammelt diverse Indikatoren über viele Jahre aus allen Ländern weltweit, z.B. Lebenserwartung, GDP, CO2-Verbrauch und viele mehr.  
+Bekannt sind vor allem die [Bubble-Plots](https://www.gapminder.org/tools/#$chart-type=bubbles&url=v2).
+
+\
+
+![](./images/bubbleplot.png){height="95%" }
+
+
+## Die Daten
+
+Zuerst schauen wir uns nur eins der Jahre genauer an:
 
 ```{r}
-#| eval: false
-#| message: false
-
-library(jsonlite)
-library(tidyverse)
-
-get_gapminder <- function(repo = "https://github.com/open-numbers/ddf--gapminder--fasttrack",
-                          keywords = "co2") {
-  ## Get json
-  ## Filter paths there
-  ## use them for download directly
-
-  path_json <- "/refs/heads/master/datapackage.json"
-  raw_url <- gsub("github.com", "raw.githubusercontent.com", "https://raw.githubusercontent.com/open-numbers/ddf--gapminder--fasttrack")
-  download.file(url = paste0(raw_url, path_json), destfile = "datapackage.json")
-
-  json_data <- jsonlite::fromJSON("datapackage.json")
-
-  csv_paths <- json_data$resources$path
-  matched_paths <- csv_paths[str_detect(csv_paths, str_c(keywords, collapse = "|"))]
-
-  if (length(matched_paths) == 0) {
-    stop("No files matched the specified keywords.")
-  }
-
-  matched_paths_url <- paste0(raw_url, "/refs/heads/master/", matched_paths)
-
-  merged_df <- read.csv(matched_paths_url[1])
-
-  # Loop through and merge the rest
-  if (length(matched_paths) > 1) {
-    for (i in 2:length(matched_paths)) {
-      message("Reading file: ", matched_paths_url[i])
-      temp_df <- read_csv(matched_paths_url[i])
-
-      merged_df <- full_join(merged_df, temp_df)
-      rm(temp_df)
-      gc()
-    }
-  }
-
-  if (file.exists("datapackage.json")) {
-    file.remove("datapackage.json")
-  }
-
-  return(merged_df)
-}
-
-co2_gapminder <- get_gapminder(keywords = c("pop--", "co2"))
+gapminder_dat <- gapminder_dat_full %>% 
+  filter(time == "2020")
 ```
 
 
+# Einen ggplot bauen
+
+## Start: `ggplot()`
 ```{r}
-#| echo: false
-library(rjson)
+#| output-location: column
 
-
-movies_metadat <- read.csv(here::here("data", "movies_metadata.csv")) %>%
-  mutate(
-    budget = as.numeric(budget),
-    vote_average = as.numeric(vote_average),
-    popularity = as.numeric(popularity)
-  ) %>%
-  filter(revenue > 0, budget > 0)
-
-
-extract_genres <- function(json_string) {
-  json_string %>%
-    str_replace_all("'", "\"") %>% # Replace single quotes with double quotes
-    fromJSON() %>% # Convert JSON string to list
-    map_chr("name") %>% # Extract "name" field
-    paste(collapse = ", ") # Combine into a single string
-}
-
-movies_metadat <- movies_metadat %>%
-  mutate(genres_clean = map_chr(genres, extract_genres)) %>%
-  separate_rows(genres_clean, sep = ", ") # Split the column into multiple rows
+ggplot()
 ```
-
-
-
 
 
 ## Daten
 
 ```{r}
 #| output-location: column
-ggplot(data = movies_metadat)
+ggplot(data = gapminder_dat)
 ```
 
 
@@ -187,10 +180,10 @@ Es kann hier aber z.B. auch die Farbe der Punkte in Agnhängikeit von Kategorien
 #| code-line-numbers: "2,3"
 
 ggplot(
-  data = movies_metadat,
+  data = gapminder_dat,
   mapping = aes(
-    x = budget,
-    y = vote_average
+    x = pop,
+    y = co2_cons
   )
 )
 ```
@@ -207,10 +200,10 @@ ggplots sind aus verschiedenen Layern aufgebaut, die mithilfe eines `+` überein
 #| code-line-numbers: "4"
 
 ggplot(
-  data = movies_metadat,
+  data = gapminder_dat,
   mapping = aes(
-    x = budget,
-    y = vote_average
+    x = pop,
+    y = co2_cons
   )
 ) +
   geom_point()
@@ -222,10 +215,10 @@ ggplot(
 #| code-line-numbers: "5"
 
 ggplot(
-  data = movies_metadat,
+  data = gapminder_dat,
   mapping = aes(
-    x = budget,
-    y = vote_average
+    x = pop,
+    y = co2_cons
   )
 ) +
   geom_point() +
@@ -238,19 +231,19 @@ ggplot(
 #| code-line-numbers: "6|7|8|9|10"
 
 ggplot(
-  data = movies_metadat,
+  data = gapminder_dat,
   mapping = aes(
-    x = budget,
-    y = vote_average
+    x = pop,
+    y = co2_cons
   )
 ) +
   geom_point() +
   geom_smooth() +
   labs(
-    title = "Getting a bang for your buck: Are Movies with higher budget also better?",
-    subtitle = "There doesn't seem to be a strong relation between movie budget and average rating.",
-    x = "Movie budget",
-    y = "Average vote"
+    title = "x",
+    subtitle = "x",
+    x = "Bevölkerung",
+    y = "CO2-Ausstoß"
   )
 ```
 
@@ -262,19 +255,19 @@ ggplot(
 #| code-line-numbers: "6|7|8|9|10"
 
 ggplot(
-  data = movies_metadat,
+  data = gapminder_dat,
   mapping = aes(
-    x = budget,
-    y = vote_average
+    x = pop,
+    y = co2_cons
   )
 ) +
   geom_point() +
   geom_smooth() +
   labs(
-    title = "Getting a bang for your buck: Are Movies with higher budget also better?",
-    subtitle = "There doesn't seem to be a strong relation between movie budget and average rating.",
-    x = "Movie budget",
-    y = "Average vote"
+    title = "x",
+    subtitle = "x",
+    x = "Bevölkerung",
+    y = "CO2-Ausstoß"
   ) +
   theme_classic()
 ```

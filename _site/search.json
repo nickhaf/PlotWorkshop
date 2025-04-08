@@ -179,7 +179,7 @@
     "href": "sessions/ggplot_intro/slides.html#ggplot2-das-paket",
     "title": "ggplot2: Basics",
     "section": "ggplot2: Das Paket",
-    "text": "ggplot2: Das Paket\n\nggplot2 gehört zum tidyverse\n\n#install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n\n… kann aber natürlich auch seperat geladen werden:\n\n#install.packages(\"ggplot2\")\nlibrary(ggplot2)"
+    "text": "ggplot2: Das Paket\n\nggplot2 gehört zum tidyverse\n\n# install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n\n… kann aber natürlich auch seperat geladen werden:\n\n# install.packages(\"ggplot2\")\nlibrary(ggplot2)"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#section-1",
@@ -207,7 +207,7 @@
     "href": "sessions/ggplot_intro/slides.html#daten",
     "title": "ggplot2: Basics",
     "section": "Daten",
-    "text": "Daten\n\n\nggplot(data = movies_metadat)"
+    "text": "Daten\n\n\nggplot(data = gapminder_dat)"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#aesthetic-mappings",
@@ -242,7 +242,7 @@
     "href": "sessions/ggplot_intro/slides.html#section-2",
     "title": "ggplot2: Basics",
     "section": "",
-    "text": "Maybe plot against number of total medals\n\nggplot(data = medal_counts, \n       aes(x = Year, y = n, group = region_medal, alpha = col)) +\n  geom_point(aes(colour = Medal)) +\n  geom_line(aes(colour = Medal)) +\n  scale_color_manual(values = c(\"1\" = \"red\", \"0\" = \"lightgrey\", \"Gold\" = \"yellow\", \"Silver\" = \"grey\", \"Bronze\" = \"brown\")) +\n  scale_alpha_manual(values = c(\"1\" = 1, \"0\" = 0.1)) +\n  theme_classic()\n\n\n\n\n\n\n\n\n\ndata_germany &lt;- medal_counts %&gt;% \n  filter(col == '1')\ndata_noGermany &lt;- medal_counts %&gt;% \n  filter(col == 0)\n\n\nggplot(data = medal_counts, \n       aes(x = Year, y = n, group = region_medal, alpha = col)) +\n  geom_point(data = data_noGermany, aes(colour = Medal)) +\n  geom_line(data = data_germany, aes(colour = Medal)) +\n  scale_color_manual(values = c(\"1\" = \"red\", \"0\" = \"lightgrey\", \"Gold\" = \"yellow\", \"Silver\" = \"grey\", \"Bronze\" = \"brown\")) +\n  scale_alpha_manual(values = c(\"1\" = 1, \"0\" = 0.1)) +\n  theme_classic() \n\n\n\n\n\n\n\n\n\nlibrary(ggbump)\nggplot(data = medal_counts, \n       aes(x = Year, y = n, group = region_medal)) +\n  geom_bump(color = 'grey90') \n\n\n\n\n\n\n\n\nWas ist hier auch mit missing data?"
+    "text": "Zuerst schauen wir uns nur eins der Jahre genauer an:\n\ngapminder_dat &lt;- gapminder_dat_full %&gt;% \n  filter(time == \"2020\")"
   },
   {
     "objectID": "sessions/good_plots/slides.html#eine-gute-grafik-sollte",
@@ -382,7 +382,7 @@
     "href": "sessions/ggplot_intro/slides.html#aesthetic-mapping-achsen",
     "title": "ggplot2: Basics",
     "section": "Aesthetic mapping: Achsen",
-    "text": "Aesthetic mapping: Achsen\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average))"
+    "text": "Aesthetic mapping: Achsen\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n)"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#the-big-picture",
@@ -417,14 +417,14 @@
     "href": "sessions/ggplot_intro/slides.html#layers",
     "title": "ggplot2: Basics",
     "section": "Layers",
-    "text": "Layers\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point()"
+    "text": "Layers\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point()"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#mehr-layers",
     "href": "sessions/ggplot_intro/slides.html#mehr-layers",
     "title": "ggplot2: Basics",
     "section": "Mehr Layers!",
-    "text": "Mehr Layers!\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth()"
+    "text": "Mehr Layers!\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point() +\n  geom_smooth()"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#titlelabels",
@@ -445,14 +445,14 @@
     "href": "sessions/ggplot_intro/slides.html#titellabels",
     "title": "ggplot2: Basics",
     "section": "Titel/Labels",
-    "text": "Titel/Labels\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Getting a bang for your buck: Are Movies with higher budget also better?\",\n    subtitle = \"There doesn't seem to be a strong relation between movie budget and average rating.\",\n    x = \"Movie budget\",\n    y = \"Average vote\"\n  )"
+    "text": "Titel/Labels\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"x\",\n    subtitle = \"x\",\n    x = \"Bevölkerung\",\n    y = \"CO2-Ausstoß\"\n  )"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#style-deinen-plot-themes",
     "href": "sessions/ggplot_intro/slides.html#style-deinen-plot-themes",
     "title": "ggplot2: Basics",
     "section": "Style deinen Plot: Themes",
-    "text": "Style deinen Plot: Themes\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Getting a bang for your buck: Are Movies with higher budget also better?\",\n    subtitle = \"There doesn't seem to be a strong relation between movie budget and average rating.\",\n    x = \"Movie budget\",\n    y = \"Average vote\"\n  ) +\n  theme_classic()"
+    "text": "Style deinen Plot: Themes\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"x\",\n    subtitle = \"x\",\n    x = \"Bevölkerung\",\n    y = \"CO2-Ausstoß\"\n  ) +\n  theme_classic()"
   },
   {
     "objectID": "sessions/good_plots/slides.html#darstellung-von-größen",
@@ -705,5 +705,12 @@
     "title": "Einführung",
     "section": "Highlight",
     "text": "Highlight\nThis will brighten text"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#die-daten",
+    "href": "sessions/ggplot_intro/slides.html#die-daten",
+    "title": "ggplot2: Basics",
+    "section": "Die Daten",
+    "text": "Die Daten\nWir nutzen Daten von Gapminder.\nGapminder sammelt diverse Indikatoren über viele Jahre aus allen Ländern weltweit, z.B. Lebenserwartung, GDP, CO2-Verbrauch und viele mehr.\nBekannt sind vor allem die Bubble-Plots.\n\n\n\nZuerst schauen wir uns nur eins der Jahre genauer an:\n\ngapminder_dat &lt;- gapminder_dat_full %&gt;% \n  filter(time == \"2020\")"
   }
 ]
