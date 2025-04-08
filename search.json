@@ -291,7 +291,7 @@
     "href": "sessions/ggplot_intro/slides.html#ggplot2-das-paket",
     "title": "ggplot2: Basics",
     "section": "ggplot2: Das Paket",
-    "text": "ggplot2: Das Paket\n\n\nggplot2 gehört zum tidyverse\n\n#install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n\n\n… kann aber natürlich auch seperat geladen werden:\n\n#install.packages(\"ggplot2\")\nlibrary(ggplot2)"
+    "text": "ggplot2: Das Paket\n\n\nggplot2 gehört zum tidyverse\n\n# install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n\n\n… kann aber natürlich auch seperat geladen werden:\n\n# install.packages(\"ggplot2\")\nlibrary(ggplot2)"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#section-1",
@@ -326,7 +326,7 @@
     "href": "sessions/ggplot_intro/slides.html#daten-vorstellen",
     "title": "ggplot2: Basics",
     "section": "Daten vorstellen",
-    "text": "Daten vorstellen\n\nlibrary(jsonlite)\nlibrary(tidyverse)\n\nget_gapminder &lt;- function(repo = \"https://github.com/open-numbers/ddf--gapminder--fasttrack/archive/refs/heads/master.zip\", \n                          keywords = \"co2\"){\n  download.file(url = repo, destfile = \"gapminder_fasttrack_master.zip\")\nunzip(zipfile = \"gapminder_fasttrack_master.zip\", exdir = \"data\")\ngapminder_path &lt;- \"data/ddf--gapminder--fasttrack-master/\"\n\njson_data &lt;- jsonlite::fromJSON(here::here(gapminder_path, \"datapackage.json\"))\n\nif (file.exists(\"gapminder_fasttrack_master.zip\")) {\n  #Delete file if it exists\n  file.remove(\"gapminder_fasttrack_master.zip\")\n}\n\n\ncsv_paths &lt;- json_data$resources$path\nmatched_paths &lt;- csv_paths[str_detect(csv_paths, str_c(keywords, collapse = \"|\"))]\nmatched_paths &lt;- paste0(gapminder_path, matched_paths)\n\n\nif (length(matched_paths) == 0) {\n  stop(\"No files matched the specified keywords.\")\n}\n\n\nmerged_df &lt;- read_csv(matched_paths[1])\n\n# Loop through and merge the rest\nif (length(matched_paths) &gt; 1) {\n  for (i in 2:length(matched_paths)) {\n    message(\"Reading file: \", matched_paths[i])\n    temp_df &lt;- read_csv(matched_paths[i])\n    \n    merged_df &lt;- full_join(merged_df, temp_df)\n    rm(temp_df)\n    gc()\n  }\n}\n\n\n\n# Create timestamp string: e.g., \"2025-04-08_14-30-15\"\ntimestamp &lt;- format(Sys.time(), \"%Y-%m-%d_%H-%M-%S\")\n\n# Build filename with path\nfilename &lt;- paste0(\"./data/gapminder_set_\", timestamp, \".RDS\")\n\n# Save RDS\nsaveRDS(merged_df, filename)\n\nif (dir.exists(gapminder_path)) {\n  unlink(gapminder_path, recursive = TRUE)\n}\n\nreturn(merged_df)\n}\n\n\nco2_gapminder &lt;- get_gapminder(keywords = c(\"population\", \"co2\"))\n\n\npop_world &lt;- read.csv(here::here(\"raw_data\", \"pop.csv\"))\nco2_world &lt;- read.csv(here::here(\"raw_data\", \"co2_pcap_cons.csv\"))\n\ncolnames(co2_world) &lt;- gsub(\"^X\", \"\", colnames(co2_world)) \nco2_world[, 2:ncol(co2_world)] &lt;- co2_world[, 2:ncol(co2_world)] %&gt;% \n  mutate(across(everything(), ~ gsub(\"−\", \"-\", as.character(.)))) %&gt;% \nmutate_if(is.character, as.numeric) \n\nco2_world &lt;- co2_world %&gt;% \n  pivot_longer(cols = -country, \n               names_to = \"year\", \n               values_to = \"co2\")"
+    "text": "Daten vorstellen\n\nlibrary(jsonlite)\nlibrary(tidyverse)\n\nget_gapminder &lt;- function(repo = \"https://github.com/open-numbers/ddf--gapminder--fasttrack\",\n                          keywords = \"co2\") {\n  ## Get json\n  ## Filter paths there\n  ## use them for download directly\n\n  path_json &lt;- \"/refs/heads/master/datapackage.json\"\n  raw_url &lt;- gsub(\"github.com\", \"raw.githubusercontent.com\", \"https://raw.githubusercontent.com/open-numbers/ddf--gapminder--fasttrack\")\n  download.file(url = paste0(raw_url, path_json), destfile = \"datapackage.json\")\n\n  json_data &lt;- jsonlite::fromJSON(\"datapackage.json\")\n\n  csv_paths &lt;- json_data$resources$path\n  matched_paths &lt;- csv_paths[str_detect(csv_paths, str_c(keywords, collapse = \"|\"))]\n\n  if (length(matched_paths) == 0) {\n    stop(\"No files matched the specified keywords.\")\n  }\n\n  matched_paths_url &lt;- paste0(raw_url, \"/refs/heads/master/\", matched_paths)\n\n  merged_df &lt;- read.csv(matched_paths_url[1])\n\n  # Loop through and merge the rest\n  if (length(matched_paths) &gt; 1) {\n    for (i in 2:length(matched_paths)) {\n      message(\"Reading file: \", matched_paths_url[i])\n      temp_df &lt;- read_csv(matched_paths_url[i])\n\n      merged_df &lt;- full_join(merged_df, temp_df)\n      rm(temp_df)\n      gc()\n    }\n  }\n\n  if (file.exists(\"datapackage.json\")) {\n    file.remove(\"datapackage.json\")\n  }\n\n  return(merged_df)\n}\n\nco2_gapminder &lt;- get_gapminder(keywords = c(\"pop--\", \"co2\"))"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#daten",
@@ -347,7 +347,7 @@
     "href": "sessions/ggplot_intro/slides.html#aesthetic-mapping-achsen",
     "title": "ggplot2: Basics",
     "section": "Aesthetic mapping: Achsen",
-    "text": "Aesthetic mapping: Achsen\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average))"
+    "text": "Aesthetic mapping: Achsen\n\n\nggplot(\n  data = movies_metadat,\n  mapping = aes(\n    x = budget,\n    y = vote_average\n  )\n)"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#geometric-layers",
@@ -361,28 +361,28 @@
     "href": "sessions/ggplot_intro/slides.html#layers",
     "title": "ggplot2: Basics",
     "section": "Layers",
-    "text": "Layers\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point()"
+    "text": "Layers\n\n\nggplot(\n  data = movies_metadat,\n  mapping = aes(\n    x = budget,\n    y = vote_average\n  )\n) +\n  geom_point()"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#mehr-layers",
     "href": "sessions/ggplot_intro/slides.html#mehr-layers",
     "title": "ggplot2: Basics",
     "section": "Mehr Layers!",
-    "text": "Mehr Layers!\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth()"
+    "text": "Mehr Layers!\n\n\nggplot(\n  data = movies_metadat,\n  mapping = aes(\n    x = budget,\n    y = vote_average\n  )\n) +\n  geom_point() +\n  geom_smooth()"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#titellabels",
     "href": "sessions/ggplot_intro/slides.html#titellabels",
     "title": "ggplot2: Basics",
     "section": "Titel/Labels",
-    "text": "Titel/Labels\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Getting a bang for your buck: Are Movies with higher budget also better?\",\n    subtitle = \"There doesn't seem to be a strong relation between movie budget and average rating.\",\n    x = \"Movie budget\",\n    y = \"Average vote\"\n  )"
+    "text": "Titel/Labels\n\n\nggplot(\n  data = movies_metadat,\n  mapping = aes(\n    x = budget,\n    y = vote_average\n  )\n) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Getting a bang for your buck: Are Movies with higher budget also better?\",\n    subtitle = \"There doesn't seem to be a strong relation between movie budget and average rating.\",\n    x = \"Movie budget\",\n    y = \"Average vote\"\n  )"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#style-deinen-plot-themes",
     "href": "sessions/ggplot_intro/slides.html#style-deinen-plot-themes",
     "title": "ggplot2: Basics",
     "section": "Style deinen Plot: Themes",
-    "text": "Style deinen Plot: Themes\n\n\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Getting a bang for your buck: Are Movies with higher budget also better?\",\n    subtitle = \"There doesn't seem to be a strong relation between movie budget and average rating.\",\n    x = \"Movie budget\",\n    y = \"Average vote\"\n  ) +\n  theme_classic()"
+    "text": "Style deinen Plot: Themes\n\n\nggplot(\n  data = movies_metadat,\n  mapping = aes(\n    x = budget,\n    y = vote_average\n  )\n) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Getting a bang for your buck: Are Movies with higher budget also better?\",\n    subtitle = \"There doesn't seem to be a strong relation between movie budget and average rating.\",\n    x = \"Movie budget\",\n    y = \"Average vote\"\n  ) +\n  theme_classic()"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#übung",
