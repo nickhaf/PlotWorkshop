@@ -28,7 +28,7 @@ Bild von [Allison Horst](https://allisonhorst.com/r-packages-functions).
 [ggplot2](https://ggplot2.tidyverse.org/) gehört zum [tidyverse](https://www.tidyverse.org/)
 
 ```{r}
-#install.packages("tidyverse")
+# install.packages("tidyverse")
 library(tidyverse)
 ```
 
@@ -37,7 +37,7 @@ library(tidyverse)
 ... kann aber natürlich auch seperat geladen werden:
 
 ```{r}
-#install.packages("ggplot2")
+# install.packages("ggplot2")
 library(ggplot2)
 ```
 
@@ -59,8 +59,6 @@ Foto von <a href="https://unsplash.com/de/@omarlopez1?utm_content=creditCopyText
 ```{r}
 #| output-location: column
 #| code-line-numbers: "1|2,3|4"
-
-
 ```
 
 
@@ -82,85 +80,54 @@ ggplot()
 
 ```{r}
 #| eval: false
+#| message: false
+
 library(jsonlite)
 library(tidyverse)
 
-get_gapminder <- function(repo = "https://github.com/open-numbers/ddf--gapminder--fasttrack/archive/refs/heads/master.zip", 
-                          keywords = "co2"){
-  download.file(url = repo, destfile = "gapminder_fasttrack_master.zip")
-unzip(zipfile = "gapminder_fasttrack_master.zip", exdir = "data")
-gapminder_path <- "data/ddf--gapminder--fasttrack-master/"
+get_gapminder <- function(repo = "https://github.com/open-numbers/ddf--gapminder--fasttrack",
+                          keywords = "co2") {
+  ## Get json
+  ## Filter paths there
+  ## use them for download directly
 
-json_data <- jsonlite::fromJSON(here::here(gapminder_path, "datapackage.json"))
+  path_json <- "/refs/heads/master/datapackage.json"
+  raw_url <- gsub("github.com", "raw.githubusercontent.com", "https://raw.githubusercontent.com/open-numbers/ddf--gapminder--fasttrack")
+  download.file(url = paste0(raw_url, path_json), destfile = "datapackage.json")
 
-if (file.exists("gapminder_fasttrack_master.zip")) {
-  #Delete file if it exists
-  file.remove("gapminder_fasttrack_master.zip")
-}
+  json_data <- jsonlite::fromJSON("datapackage.json")
 
+  csv_paths <- json_data$resources$path
+  matched_paths <- csv_paths[str_detect(csv_paths, str_c(keywords, collapse = "|"))]
 
-csv_paths <- json_data$resources$path
-matched_paths <- csv_paths[str_detect(csv_paths, str_c(keywords, collapse = "|"))]
-matched_paths <- paste0(gapminder_path, matched_paths)
-
-
-if (length(matched_paths) == 0) {
-  stop("No files matched the specified keywords.")
-}
-
-
-merged_df <- read_csv(matched_paths[1])
-
-# Loop through and merge the rest
-if (length(matched_paths) > 1) {
-  for (i in 2:length(matched_paths)) {
-    message("Reading file: ", matched_paths[i])
-    temp_df <- read_csv(matched_paths[i])
-    
-    merged_df <- full_join(merged_df, temp_df)
-    rm(temp_df)
-    gc()
+  if (length(matched_paths) == 0) {
+    stop("No files matched the specified keywords.")
   }
+
+  matched_paths_url <- paste0(raw_url, "/refs/heads/master/", matched_paths)
+
+  merged_df <- read.csv(matched_paths_url[1])
+
+  # Loop through and merge the rest
+  if (length(matched_paths) > 1) {
+    for (i in 2:length(matched_paths)) {
+      message("Reading file: ", matched_paths_url[i])
+      temp_df <- read_csv(matched_paths_url[i])
+
+      merged_df <- full_join(merged_df, temp_df)
+      rm(temp_df)
+      gc()
+    }
+  }
+
+  if (file.exists("datapackage.json")) {
+    file.remove("datapackage.json")
+  }
+
+  return(merged_df)
 }
 
-
-
-# Create timestamp string: e.g., "2025-04-08_14-30-15"
-timestamp <- format(Sys.time(), "%Y-%m-%d_%H-%M-%S")
-
-# Build filename with path
-filename <- paste0("./data/gapminder_set_", timestamp, ".RDS")
-
-# Save RDS
-saveRDS(merged_df, filename)
-
-if (dir.exists(gapminder_path)) {
-  unlink(gapminder_path, recursive = TRUE)
-}
-
-return(merged_df)
-}
-
-
-co2_gapminder <- get_gapminder(keywords = c("population", "co2"))
-
-```
-
-
-```{r}
-pop_world <- read.csv(here::here("raw_data", "pop.csv"))
-co2_world <- read.csv(here::here("raw_data", "co2_pcap_cons.csv"))
-
-colnames(co2_world) <- gsub("^X", "", colnames(co2_world)) 
-co2_world[, 2:ncol(co2_world)] <- co2_world[, 2:ncol(co2_world)] %>% 
-  mutate(across(everything(), ~ gsub("−", "-", as.character(.)))) %>% 
-mutate_if(is.character, as.numeric) 
-
-co2_world <- co2_world %>% 
-  pivot_longer(cols = -country, 
-               names_to = "year", 
-               values_to = "co2")
-
+co2_gapminder <- get_gapminder(keywords = c("pop--", "co2"))
 ```
 
 
@@ -169,26 +136,26 @@ co2_world <- co2_world %>%
 library(rjson)
 
 
-movies_metadat <- read.csv(here::here("data", "movies_metadata.csv")) %>% 
-  mutate(budget = as.numeric(budget), 
-         vote_average = as.numeric(vote_average), 
-         popularity = as.numeric(popularity)) %>% 
+movies_metadat <- read.csv(here::here("data", "movies_metadata.csv")) %>%
+  mutate(
+    budget = as.numeric(budget),
+    vote_average = as.numeric(vote_average),
+    popularity = as.numeric(popularity)
+  ) %>%
   filter(revenue > 0, budget > 0)
 
 
 extract_genres <- function(json_string) {
   json_string %>%
-    str_replace_all("'", "\"") %>%   # Replace single quotes with double quotes
-    fromJSON() %>%                   # Convert JSON string to list
-    map_chr("name") %>%               # Extract "name" field
-    paste(collapse = ", ")            # Combine into a single string
+    str_replace_all("'", "\"") %>% # Replace single quotes with double quotes
+    fromJSON() %>% # Convert JSON string to list
+    map_chr("name") %>% # Extract "name" field
+    paste(collapse = ", ") # Combine into a single string
 }
 
-movies_metadat <- movies_metadat %>% 
-  mutate(genres_clean = map_chr(genres, extract_genres)) %>% 
-  separate_rows(genres_clean, sep = ", ")  # Split the column into multiple rows
-
-
+movies_metadat <- movies_metadat %>%
+  mutate(genres_clean = map_chr(genres, extract_genres)) %>%
+  separate_rows(genres_clean, sep = ", ") # Split the column into multiple rows
 ```
 
 
@@ -219,9 +186,13 @@ Es kann hier aber z.B. auch die Farbe der Punkte in Agnhängikeit von Kategorien
 #| output-location: column
 #| code-line-numbers: "2,3"
 
-ggplot(data = movies_metadat, 
-       mapping = aes(x = budget, 
-                     y = vote_average))
+ggplot(
+  data = movies_metadat,
+  mapping = aes(
+    x = budget,
+    y = vote_average
+  )
+)
 ```
 
 ## Geometric Layers
@@ -235,9 +206,13 @@ ggplots sind aus verschiedenen Layern aufgebaut, die mithilfe eines `+` überein
 #| output-location: column
 #| code-line-numbers: "4"
 
-ggplot(data = movies_metadat, 
-       mapping = aes(x = budget, 
-                     y = vote_average)) +
+ggplot(
+  data = movies_metadat,
+  mapping = aes(
+    x = budget,
+    y = vote_average
+  )
+) +
   geom_point()
 ```
 
@@ -246,9 +221,13 @@ ggplot(data = movies_metadat,
 #| output-location: column
 #| code-line-numbers: "5"
 
-ggplot(data = movies_metadat, 
-       mapping = aes(x = budget, 
-                     y = vote_average)) +
+ggplot(
+  data = movies_metadat,
+  mapping = aes(
+    x = budget,
+    y = vote_average
+  )
+) +
   geom_point() +
   geom_smooth()
 ```
@@ -258,9 +237,13 @@ ggplot(data = movies_metadat,
 #| output-location: column
 #| code-line-numbers: "6|7|8|9|10"
 
-ggplot(data = movies_metadat, 
-       mapping = aes(x = budget, 
-                     y = vote_average)) +
+ggplot(
+  data = movies_metadat,
+  mapping = aes(
+    x = budget,
+    y = vote_average
+  )
+) +
   geom_point() +
   geom_smooth() +
   labs(
@@ -278,9 +261,13 @@ ggplot(data = movies_metadat,
 #| output-location: column
 #| code-line-numbers: "6|7|8|9|10"
 
-ggplot(data = movies_metadat, 
-       mapping = aes(x = budget, 
-                     y = vote_average)) +
+ggplot(
+  data = movies_metadat,
+  mapping = aes(
+    x = budget,
+    y = vote_average
+  )
+) +
   geom_point() +
   geom_smooth() +
   labs(
