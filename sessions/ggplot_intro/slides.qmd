@@ -340,7 +340,7 @@ ggplot(
 ::: {.column width="33%"}
 
 ### Für spezifische Layer
-
+::: {.fragment}
 ```{r}
 #| code-line-numbers: "8"
 
@@ -355,11 +355,12 @@ ggplot(
   geom_smooth()
 ```
 :::
-
+:::
 ::: {.column width="33%"}
 
-### Als Setting
 
+### Als Setting
+::: {.fragment}
 ```{r}
 #| code-line-numbers: "8"
 
@@ -373,6 +374,7 @@ ggplot(
   geom_point(color = "#F4BA02") +
   geom_smooth()
 ```
+:::
 :::
 :::
 

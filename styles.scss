@@ -111,12 +111,12 @@ h1, h2, h3, h4 {
 }
 
 .reveal h2 {
-  color: $header-color;
+  color: lighten($header-color, 5%);
   font-weight: bold;
 }
 
 .reveal h3 {
-  color: $header-color;
+  color: lighten($header-color, 10%);
   font-weight: bold;
 }
 
