@@ -193,7 +193,7 @@
     "href": "sessions/ggplot_intro/slides.html#komponenten",
     "title": "ggplot2: Basics",
     "section": "Komponenten",
-    "text": "Komponenten\n\nDaten.\n\nAesthetic mapping zwischen Daten und visuellen Eigenschaften.\n[Layer(s)] zum rendern der Daten."
+    "text": "Komponenten\n\nDaten.\n\nAesthetic mapping zwischen Daten und visuellen Eigenschaften.\n\nLayer(s) zum rendern der Daten."
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#daten-vorstellen",
@@ -206,8 +206,8 @@
     "objectID": "sessions/ggplot_intro/slides.html#daten",
     "href": "sessions/ggplot_intro/slides.html#daten",
     "title": "ggplot2: Basics",
-    "section": "Daten",
-    "text": "Daten\n\n\nggplot(data = gapminder_dat)"
+    "section": "1. Daten",
+    "text": "1. Daten\n\n\nggplot(data = gapminder_dat)"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#aesthetic-mappings",
@@ -242,7 +242,7 @@
     "href": "sessions/ggplot_intro/slides.html#section-2",
     "title": "ggplot2: Basics",
     "section": "",
-    "text": "Zuerst schauen wir uns nur eins der Jahre genauer an:\n\ngapminder_dat &lt;- gapminder_dat_full %&gt;% \n  filter(time == \"2020\")"
+    "text": "Aesthetics können auf verschiedene Arten definiert werden:\n\n\nFür alle Layer\n\nggplot(\n  data = gapminder_dat,\n  aes(\n    x = pop,\n    y = co2_cons,\n    color = world_6region\n  )\n) +\n  geom_point() +\n  geom_smooth()\n\n\n\n\n\n\n\n\nFür spezifische Layer\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point(aes(color = world_6region)) +\n  geom_smooth()\n\n\n\n\n\n\n\n\nAls Setting\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point(color = \"#F4BA02\") +\n  geom_smooth()"
   },
   {
     "objectID": "sessions/good_plots/slides.html#eine-gute-grafik-sollte",
@@ -374,15 +374,15 @@
     "objectID": "sessions/ggplot_intro/slides.html#aesthetic-mapping",
     "href": "sessions/ggplot_intro/slides.html#aesthetic-mapping",
     "title": "ggplot2: Basics",
-    "section": "Aesthetic mapping",
-    "text": "Aesthetic mapping\nUm diese leere Leinwand zu befüllen, müssen wir die Daten mit den benötigten visuellen Eigenschaften verknüpfen:\nmapping =  aes()\nJe nach Plot-Art sind verschiedene visuelle Eigenschaften möglich. Wichtig ist für uns jetzt erst einmal die Position, also x - und y-Achsen.\nEs kann hier aber z.B. auch die Farbe der Punkte in Agnhängikeit von Kategorien in den Daten geändert werden."
+    "section": "2. Aesthetic mapping",
+    "text": "2. Aesthetic mapping\n\n\n\nVerknüpfen von Spalten im Datensatz mit visuellen Eigenschaften:\nmapping =  aes()\n\n\n\nDie wichtigsten Aestetics\n\nArgument\nAesthetic\n\n\n\nx\nx-Achse\n\n\ny\ny-Achse\n\n\ncolor\nFarbe\n\n\nfill\nFüllfarbe\n\n\nshape\nForm\n\n\nsize\nGröße\n\n\nalpha\nTransparenz\n\n\ngroup\nGruppe\n\n\n\n\n\n\n\n\n\n\nUmfangreicherer Überblick über mögliche Aestethics."
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#aesthetic-mapping-achsen",
     "href": "sessions/ggplot_intro/slides.html#aesthetic-mapping-achsen",
     "title": "ggplot2: Basics",
     "section": "Aesthetic mapping: Achsen",
-    "text": "Aesthetic mapping: Achsen\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n)"
+    "text": "Aesthetic mapping: Achsen\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(x = pop, y = co2_cons)\n)"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#the-big-picture",
@@ -395,8 +395,8 @@
     "objectID": "sessions/ggplot_intro/slides.html#geometric-layers",
     "href": "sessions/ggplot_intro/slides.html#geometric-layers",
     "title": "ggplot2: Basics",
-    "section": "Geometric Layers",
-    "text": "Geometric Layers\nggplots sind aus verschiedenen Layern aufgebaut, die mithilfe eines + übereinander gelegt werden.\ngeom_"
+    "section": "3. Geometric Layers",
+    "text": "3. Geometric Layers\n\n\n\nVerschiedene Layers (geoms) werden übereinandergelegt:\n  geom_&lt;layer1&gt;() + \n  geom_&lt;layer2&gt;() + \n  ...\n\n\n\nDie wichtigsten Layers\n\nArgument\nAesthetic\n\n\n\ngeom_point()\nPunkte\n\n\ngeom_line()\nLinien\n\n\ngeom_histogram()\nHistogramm\n\n\ngeom_text()\nText\n\n\ngeom_boxplot()\nBoxplot\n\n\n\n\n\n\n\n\n\n\nUmfangreicherer Überblick über mögliche Geoms."
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#übung",
@@ -424,7 +424,7 @@
     "href": "sessions/ggplot_intro/slides.html#mehr-layers",
     "title": "ggplot2: Basics",
     "section": "Mehr Layers!",
-    "text": "Mehr Layers!\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point() +\n  geom_smooth()"
+    "text": "Mehr Layers!\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons, \n    color = world_6region\n  )\n) +\n  geom_point() +\n  geom_smooth()"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#titlelabels",
@@ -452,7 +452,7 @@
     "href": "sessions/ggplot_intro/slides.html#style-deinen-plot-themes",
     "title": "ggplot2: Basics",
     "section": "Style deinen Plot: Themes",
-    "text": "Style deinen Plot: Themes\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"x\",\n    subtitle = \"x\",\n    x = \"Bevölkerung\",\n    y = \"CO2-Ausstoß\"\n  ) +\n  theme_classic()"
+    "text": "Style deinen Plot: Themes\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Größere Bevölkerung führt zu mehr CO2-Ausstoß!\",\n    subtitle = \"CO2-Ausstoß diverser Länder in 2020\",\n    x = \"Bevölkerungzahl\",\n    y = \"CO2-Ausstoß in Tonnen\"\n  ) +\n  theme_classic()"
   },
   {
     "objectID": "sessions/good_plots/slides.html#darstellung-von-größen",
@@ -711,6 +711,55 @@
     "href": "sessions/ggplot_intro/slides.html#die-daten",
     "title": "ggplot2: Basics",
     "section": "Die Daten",
-    "text": "Die Daten\nWir nutzen Daten von Gapminder.\nGapminder sammelt diverse Indikatoren über viele Jahre aus allen Ländern weltweit, z.B. Lebenserwartung, GDP, CO2-Verbrauch und viele mehr.\nBekannt sind vor allem die Bubble-Plots.\n\n\n\nZuerst schauen wir uns nur eins der Jahre genauer an:\n\ngapminder_dat &lt;- gapminder_dat_full %&gt;% \n  filter(time == \"2020\")"
+    "text": "Die Daten\nWir nutzen Daten von Gapminder.\n\n\n\n\n\n\nGapminder sammelt diverse Indikatoren über viele Jahre aus allen Ländern weltweit, z.B. Lebenserwartung, GDP, CO2-Verbrauch und viele mehr.\n\n\n\nBekannt sind vor allem die Bubble-Plots."
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#die-daten-1",
+    "href": "sessions/ggplot_intro/slides.html#die-daten-1",
+    "title": "ggplot2: Basics",
+    "section": "Die Daten",
+    "text": "Die Daten\nZuerst schauen wir uns nur eins der Jahre genauer an, und zwar nur für die Länder im Datensatz:\n\ngapminder_dat &lt;- gapminder_dat_full %&gt;% \n  filter(time == \"2020\", !is.na(country))"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#layers-punkte",
+    "href": "sessions/ggplot_intro/slides.html#layers-punkte",
+    "title": "ggplot2: Basics",
+    "section": "Layers: Punkte",
+    "text": "Layers: Punkte\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point()"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#labels",
+    "href": "sessions/ggplot_intro/slides.html#labels",
+    "title": "ggplot2: Basics",
+    "section": "Labels",
+    "text": "Labels\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Größere Bevölkerung führt zu mehr CO2-Ausstoß!\",\n    subtitle = \"CO2-Ausstoß diverser Länder in 2020\",\n    x = \"Bevölkerungzahl\",\n    y = \"CO2-Ausstoß in Tonnen\"\n  )"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#mehr-aesthetics",
+    "href": "sessions/ggplot_intro/slides.html#mehr-aesthetics",
+    "title": "ggplot2: Basics",
+    "section": "Mehr Aesthetics!",
+    "text": "Mehr Aesthetics!\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons, \n    color = world_6region\n  )\n) +\n  geom_point()"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#für-alle-layer",
+    "href": "sessions/ggplot_intro/slides.html#für-alle-layer",
+    "title": "ggplot2: Basics",
+    "section": "Für alle Layer",
+    "text": "Für alle Layer\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons,\n    color = world_6region\n  )\n) +\n  geom_point() +\n  geom_smooth()"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#für-spezifische-layer",
+    "href": "sessions/ggplot_intro/slides.html#für-spezifische-layer",
+    "title": "ggplot2: Basics",
+    "section": "Für spezifische Layer",
+    "text": "Für spezifische Layer\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point(aes(color = world_6region)) +\n  geom_smooth()"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#als-setting-nicht-mapping",
+    "href": "sessions/ggplot_intro/slides.html#als-setting-nicht-mapping",
+    "title": "ggplot2: Basics",
+    "section": "Als Setting (nicht Mapping)",
+    "text": "Als Setting (nicht Mapping)\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point(color = \"#F4BA02\") +\n  geom_smooth()"
   }
 ]

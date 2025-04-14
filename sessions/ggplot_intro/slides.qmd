@@ -2,7 +2,7 @@
 title: "ggplot2: Basics"
 format: 
   letterbox-revealjs:
-    code-block-height: 100px
+    code-block-height: 400px
 ---
 
 
@@ -63,7 +63,7 @@ get_gapminder <- function(repo = "https://github.com/open-numbers/ddf--gapminder
   return(merged_df)
 }
 
-gapminder_dat_full <- get_gapminder(keywords = c("pop--", "co2"))
+gapminder_dat_full <- get_gapminder(keywords = c("pop--", "co2", "--geo--country"))
 ```
 
 
@@ -122,12 +122,16 @@ Foto von <a href="https://unsplash.com/de/@omarlopez1?utm_content=creditCopyText
 
 1. Daten.
 2. [Aesthetic mapping]{.highlight} zwischen Daten und visuellen Eigenschaften.
-3. [Layer(s)] zum rendern der Daten. 
+3. [Layer(s)]{.highlight} zum rendern der Daten. 
 
 ## Die Daten
 
 Wir nutzen Daten von [Gapminder](https://www.gapminder.org/data/).  
-Gapminder sammelt diverse Indikatoren über viele Jahre aus allen Ländern weltweit, z.B. Lebenserwartung, GDP, CO2-Verbrauch und viele mehr.  
+
+::: {.callout-note}
+Gapminder sammelt diverse Indikatoren über viele Jahre aus allen Ländern weltweit, z.B. Lebenserwartung, GDP, CO2-Verbrauch und viele mehr. 
+:::
+
 Bekannt sind vor allem die [Bubble-Plots](https://www.gapminder.org/tools/#$chart-type=bubbles&url=v2).
 
 \
@@ -137,11 +141,11 @@ Bekannt sind vor allem die [Bubble-Plots](https://www.gapminder.org/tools/#$char
 
 ## Die Daten
 
-Zuerst schauen wir uns nur eins der Jahre genauer an:
+Zuerst schauen wir uns nur eins der Jahre genauer an, und zwar nur für die Länder im Datensatz:
 
 ```{r}
 gapminder_dat <- gapminder_dat_full %>% 
-  filter(time == "2020")
+  filter(time == "2020", !is.na(country)) 
 ```
 
 
@@ -155,7 +159,7 @@ ggplot()
 ```
 
 
-## Daten
+## 1. Daten
 
 ```{r}
 #| output-location: column
@@ -163,41 +167,104 @@ ggplot(data = gapminder_dat)
 ```
 
 
-## Aesthetic mapping 
+## 2. Aesthetic mapping 
 
-Um diese leere Leinwand zu befüllen, müssen wir die Daten mit den benötigten visuellen Eigenschaften verknüpfen: 
+:::: {.columns}
+
+::: {.column width="50%"}
+\
+\
+\
+
+Verknüpfen von Spalten im Datensatz mit [visuellen Eigenschaften]{.highlight}:
 
 `mapping =  aes()`
 
-Je nach Plot-Art sind verschiedene visuelle Eigenschaften möglich. Wichtig ist für uns jetzt erst einmal die Position, also x - und y-Achsen.  
-Es kann hier aber z.B. auch die Farbe der Punkte in Agnhängikeit von Kategorien in den Daten geändert werden. 
+:::
 
+::: {.column width="50%"}
+
+\
+
+|Argument|Aesthetic|
+|--------|---------|
+|`x`       |x-Achse  |
+|`y`       |y-Achse  |
+|`color`   |Farbe    |
+|`fill`    |Füllfarbe|
+|`shape`   |Form     |
+|`size`    |Größe    |
+|`alpha`   |Transparenz|
+|`group`  |Gruppe|
+
+: Die wichtigsten Aestetics {.striped}
+
+:::
+::::
+
+::: {.callout-tip}
+[Umfangreicherer Überblick](https://ggplot2.tidyverse.org/articles/ggplot2-specs.html) über mögliche Aestethics. 
+:::
 
 ## Aesthetic mapping: Achsen 
 
 ```{r}
 #| output-location: column
-#| code-line-numbers: "2,3"
+#| code-line-numbers: "3"
 
 ggplot(
   data = gapminder_dat,
-  mapping = aes(
-    x = pop,
-    y = co2_cons
-  )
+  mapping = aes(x = pop, y = co2_cons)
 )
 ```
 
-## Geometric Layers
-ggplots sind aus verschiedenen Layern aufgebaut, die mithilfe eines `+` übereinander gelegt werden.  
+## 3. Geometric Layers
 
-`geom_`
+:::: {.columns}
 
-## Layers
+::: {.column width="50%"}
+\
+\
+\
+
+Verschiedene Layers ([geoms]{.highlight}) werden übereinandergelegt: 
+
+```
+  geom_<layer1>() + 
+  geom_<layer2>() + 
+  ...
+```
+
+:::
+
+::: {.column width="50%"}
+
+\
+
+|Argument|Aesthetic|
+|--------|---------|
+|`geom_point()`       |Punkte  |
+|`geom_line()`       |Linien|
+|`geom_histogram()`   |Histogramm    |
+|`geom_text()`    |Text|
+|`geom_boxplot()`   |Boxplot|
+
+: Die wichtigsten Layers {.striped}
+
+
+
+:::
+::::
+
+::: {.callout-tip}
+[Umfangreicherer Überblick](https://stulp.gmw.rug.nl/dataviz/ggplotgeoms.html) über mögliche Geoms.
+:::
+
+## Layers: Punkte
 
 ```{r}
 #| output-location: column
-#| code-line-numbers: "4"
+#| code-line-numbers: "8"
 
 ggplot(
   data = gapminder_dat,
@@ -209,10 +276,73 @@ ggplot(
   geom_point()
 ```
 
+
+## Mehr Aesthetics!
+```{r}
+#| output-location: column
+#| code-line-numbers: "6"
+
+ggplot(
+  data = gapminder_dat,
+  mapping = aes(
+    x = pop,
+    y = co2_cons, 
+    color = world_6region
+  )
+) +
+  geom_point() 
+```
+
+
 ## Mehr Layers!
 ```{r}
 #| output-location: column
-#| code-line-numbers: "5"
+#| code-line-numbers: "10"
+
+ggplot(
+  data = gapminder_dat,
+  mapping = aes(
+    x = pop,
+    y = co2_cons, 
+    color = world_6region
+  )
+) +
+  geom_point() +
+  geom_smooth()
+```
+
+
+
+## Aestetics als Mapping oder Setting
+
+:::{ .columns}
+
+::: {.column width="33%"}
+
+### Für alle Layer
+
+```{r}
+#| code-line-numbers: "6"
+
+ggplot(
+  data = gapminder_dat,
+  aes(
+    x = pop,
+    y = co2_cons,
+    color = world_6region
+  )
+) +
+  geom_point() +
+  geom_smooth()
+```
+:::
+
+::: {.column width="33%"}
+
+### Für spezifische Layer
+
+```{r}
+#| code-line-numbers: "8"
 
 ggplot(
   data = gapminder_dat,
@@ -221,14 +351,36 @@ ggplot(
     y = co2_cons
   )
 ) +
-  geom_point() +
+  geom_point(aes(color = world_6region)) +
   geom_smooth()
 ```
+:::
 
-## Titel/Labels
+::: {.column width="33%"}
+
+### Als Setting
+
+```{r}
+#| code-line-numbers: "8"
+
+ggplot(
+  data = gapminder_dat,
+  mapping = aes(
+    x = pop,
+    y = co2_cons
+  )
+) +
+  geom_point(color = "#F4BA02") +
+  geom_smooth()
+```
+:::
+:::
+
+
+## Labels
 ```{r}
 #| output-location: column
-#| code-line-numbers: "6|7|8|9|10"
+#| code-line-numbers: "10,11,12,13,14,15"
 
 ggplot(
   data = gapminder_dat,
@@ -240,10 +392,10 @@ ggplot(
   geom_point() +
   geom_smooth() +
   labs(
-    title = "x",
-    subtitle = "x",
-    x = "Bevölkerung",
-    y = "CO2-Ausstoß"
+    title = "Größere Bevölkerung führt zu mehr CO2-Ausstoß!",
+    subtitle = "CO2-Ausstoß diverser Länder in 2020",
+    x = "Bevölkerungzahl",
+    y = "CO2-Ausstoß in Tonnen"
   )
 ```
 
@@ -252,7 +404,7 @@ ggplot(
 
 ```{r}
 #| output-location: column
-#| code-line-numbers: "6|7|8|9|10"
+#| code-line-numbers: "16"
 
 ggplot(
   data = gapminder_dat,
@@ -264,23 +416,17 @@ ggplot(
   geom_point() +
   geom_smooth() +
   labs(
-    title = "x",
-    subtitle = "x",
-    x = "Bevölkerung",
-    y = "CO2-Ausstoß"
+    title = "Größere Bevölkerung führt zu mehr CO2-Ausstoß!",
+    subtitle = "CO2-Ausstoß diverser Länder in 2020",
+    x = "Bevölkerungzahl",
+    y = "CO2-Ausstoß in Tonnen"
   ) +
   theme_classic()
 ```
 
+
+
 ## Übung
-
-
-## Let's take a deeper dive
-Hier dann nochmal genauer durchgehen - Was haben wir eigentlich gemacht. 
-Nicht zu sehr in den Basics verlieren, auch schneller tiefer reingehen (scales, coord system ...)
-
-
-
 
 
 ## Abspeichern

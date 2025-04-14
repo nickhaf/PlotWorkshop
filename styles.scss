@@ -7,15 +7,15 @@ $theme-yellow: #F4BA02;
 $theme-red: #9B1B34;
 $theme-timberwolf: #F8F8F8;
 $theme-brown: #472120;
-$theme-green: #aaa938;
+$theme-green: darken(#269b88, 5%);
 
 $link-color: $theme-blue;
-$header-color: $theme-red;
+$header-color: $theme-green;
 $body-bg: $theme-timberwolf;
 $body-color: $theme-darkblue;
 
 $theme-highlight: $theme_yellow;
-$theme-inlinecode: $theme_red;
+$theme-inlinecode: lighten($body_color, 10%);
 $theme-background: $theme_timberwolf;
 $theme-codeblock: $theme_darkblue;
 
@@ -29,7 +29,7 @@ $navbar-bg: $theme-darkblue;
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 $font-family-sans-serif: 'Roboto', sans-serif;
-$presentation-heading-font: 'Roboto Condensed', san-serif;
+$presentation-heading-font: 'Roboto Condensed', san-serif; 
 
 /*-- scss:rules --*/
 
@@ -93,23 +93,31 @@ $presentation-heading-font: 'Roboto Condensed', san-serif;
 .title {
   font-size: 70px !important;
   color: $header-color !important;
+  font-weight: bold;
+
 }
 
 
 h1, h2, h3, h4 {
   color: $header-color;
+  font-weight: bold;
+
 }
 
 .reveal h1 {
   color: $header-color;
+  font-weight: bold;
+
 }
 
 .reveal h2 {
   color: $header-color;
+  font-weight: bold;
 }
 
 .reveal h3 {
   color: $header-color;
+  font-weight: bold;
 }
 
 
