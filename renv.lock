@@ -791,6 +791,13 @@
       ],
       "Hash": "fbbbc48eba7a6626a08bb365e44b563b"
     },
+    "gifski": {
+      "Package": "gifski",
+      "Version": "1.32.0-2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "7c58097dfa68463cd26f927f0a892031"
+    },
     "gitcreds": {
       "Package": "gitcreds",
       "Version": "0.1.2",
