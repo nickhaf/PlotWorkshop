@@ -135,6 +135,11 @@ h1, h2, h3, h4 {
   font-size: 20px;
 }
 
+.image-ref {
+  font-size: 10px;
+  color: darken($theme-timberwolf, 30%);
+}
+
 .small-latex {
   font-size: 30px;
 }

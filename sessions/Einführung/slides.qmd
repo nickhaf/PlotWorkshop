@@ -3,6 +3,8 @@ title: "Einführung"
 format: letterbox-revealjs
 ---
 ```{r}
+library(quartets)
+library(tidyverse)
 source(here::here("src", "themes.R"))
 ```
 
@@ -13,6 +15,56 @@ source(here::here("src", "themes.R"))
 
 
 # Motivation
+
+
+## Datasaurus Dozen ([`quartets`-Paket](https://github.com/r-causal/quartets))
+
+```{r}
+#| echo: false
+
+datasaurus_dozen |>
+  group_by(dataset) |>
+  summarise(mean_x = mean(x),
+            var_x = var(x),
+            mean_y = mean(y),
+            var_y = var(y),
+            cor = cor(x, y)) |>
+  knitr::kable(digits = 2)
+```
+
+## 
+
+```{r}
+#| echo: false
+#| fig-height: 8
+#| fig-width: 12
+
+ggplot(datasaurus_dozen, aes(x = x, y = y)) +
+  geom_smooth(method = "lm", formula = "y ~ x") +
+  facet_wrap(~dataset) +
+  theme_bg() +
+  ylim(0, 100)
+
+```
+
+## 
+
+```{r}
+#| echo: false
+#| fig-height: 8
+#| fig-width: 12
+
+
+ggplot(datasaurus_dozen, aes(x = x, y = y)) +
+  geom_smooth(method = "lm", formula = "y ~ x") +
+  facet_wrap(~dataset, ncol = 5) +
+  geom_point() +
+  theme_bg() +
+  ylim(0, 100)
+
+
+```
+
 
 ## Warum ggplot2?
 

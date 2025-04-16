@@ -5,7 +5,6 @@ format: letterbox-revealjs
 
 ```{r}
 #| echo: false
-library(quartets)
 library(tidyverse)
 source(here::here("src", "themes.R"))
 ```
@@ -14,65 +13,74 @@ source(here::here("src", "themes.R"))
 ## 
 
 ![](./images/mcCandless.png)
-::: aside
+::: image-ref
 
 :::
 
-## Eine gute Grafik sollte ...
 
-... eine Geschichte erzählen
-... helfen, auf das Wesentliche zu konzentrieren (datasaurus)
-... die Zusammenhänge möglichst "umfänglich" darzustellen. 
-... (cool aussehen)
-... Kultur-, Personen-, Zeitunabhängig sein, soweit wie möglich
+# Negativbeispiele
 
-## Datasaurus Dozen ([`quartets`-Paket](https://github.com/r-causal/quartets))
+Beim Plotten kann auch ganz schön viel schief gehen.  
+Wir schauen uns mal ein worst of an!
 
-```{r}
-#| echo: false
 
-datasaurus_dozen |>
-  group_by(dataset) |>
-  summarise(mean_x = mean(x),
-            var_x = var(x),
-            mean_y = mean(y),
-            var_y = var(y),
-            cor = cor(x, y)) |>
-  knitr::kable(digits = 2)
-```
+
+# Design von Grafiken
+
+"Design is a requirement, not a cosmetic addition." [nature methods](https://www.nature.com/articles/nmeth.1783)
+
+
+:::{.columns}
+
+::: {.column width="50%"}
+![](./images/remote.jpg)
+
+::: image-ref
+Foto von <a href="https://unsplash.com/de/@kellysikkema?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Kelly Sikkema</a> auf <a href="https://unsplash.com/de/fotos/drei-schwarze-fernbedienungen-auf-holztisch-HprPUHnjDgk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+
+:::
+
+:::{.column width="50%"}
+![](./images/remote_2.jpg)
+
+::: image-ref
+Foto von <a href="https://unsplash.com/de/@ymoran?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Yucel Moran</a> auf <a href="https://unsplash.com/de/fotos/schwarze-fernbedienung-auf-weissem-textil-LJW-blAKI98?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+
+:::
+:::
+
+
+
+## Funktionelles Design {.nostretch}
+
+Welche Funktion?
+
+:::{.columns}
+
+::: {.column width="67.5%"}
+![](./images/map.png)
+
+::: image-ref
+Foto von <a href="https://www.bvg.de/.imaging/mte/bvg-theme/zoomed3000w/dam/BVG-Bilder/Verbindungen/netz-ab-01-a.jpg/jcr:content/netz-ab-01-a.jpg">BVG</a>
+:::
+
+:::
+
+:::{.column width="32.5%"}
+![](./images/fahrplan-tabelle.png)
+
+::: image-ref
+Foto von <a href="https://www.bvg.de/de/verbindungen/linienuebersicht">BVG</a>
+:::
+
+:::
+:::
 
 ## 
+Dabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen. 
 
-```{r}
-#| echo: false
-#| fig-height: 8
-#| fig-width: 12
-
-ggplot(datasaurus_dozen, aes(x = x, y = y)) +
-  geom_smooth(method = "lm", formula = "y ~ x") +
-  facet_wrap(~dataset) +
-  theme_bg() +
-  ylim(0, 100)
-
-```
-
-## 
-
-```{r}
-#| echo: false
-#| fig-height: 8
-#| fig-width: 12
-
-
-ggplot(datasaurus_dozen, aes(x = x, y = y)) +
-  geom_smooth(method = "lm", formula = "y ~ x") +
-  facet_wrap(~dataset, ncol = 5) +
-  geom_point() +
-  theme_bg() +
-  ylim(0, 100)
-
-
-```
 
 ## Darstellung von Größen
 
@@ -80,7 +88,16 @@ ggplot(datasaurus_dozen, aes(x = x, y = y)) +
 
 ## Manipulation des Bildformats
 
+::: panel-tabset
+### Graphic
+
+
 ```{r}
+#| label: example-weight
+#| fig-width: 14
+#| fig-height: 7
+#| echo: false
+
 set.seed(42)
 my_weight <- data.frame(
   month = factor(c("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"),
@@ -102,6 +119,18 @@ ggplot(my_weight,
   theme_bg() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
+
+
+### Code
+
+
+```{r}
+#| label: example-weight
+#| eval: false
+```
+
+:::
+
 
 ## Election Plot
 https://storymaps.arcgis.com/stories/0e636a652d44484b9457f953994b212b

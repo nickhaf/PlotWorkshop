@@ -291,7 +291,7 @@
     "href": "sessions/good_plots/slides.html#section",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "::: aside\n:::"
+    "text": "::: image-ref\n:::"
   },
   {
     "objectID": "sessions/good_plots/slides.html#eine-grafik-ist-kann-nur-einen-teil-der-zusammenhänge-darstellen",
@@ -340,7 +340,7 @@
     "href": "sessions/good_plots/slides.html#section-3",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Joining with `by = join_by(country)`\n\n\n\n\nWarning: Removed 6 rows containing missing values or values outside the scale range\n(`geom_text()`).\n\n\n\n\n\n\n\nData from Rockefeller Institute and Wikipedia."
+    "text": "Data from Rockefeller Institute and Wikipedia."
   },
   {
     "objectID": "sessions/good_plots/slides.html#übung",
@@ -473,7 +473,7 @@
     "href": "sessions/good_plots/slides.html#manipulation-des-bildformats",
     "title": "Was ist eine gute Grafik?",
     "section": "Manipulation des Bildformats",
-    "text": "Manipulation des Bildformats\n\nset.seed(42)\nmy_weight &lt;- data.frame(\n  month = factor(c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"),\n                 levels = c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"), \n                 ordered = TRUE), \n  weight = rnorm(12, 90, 5)/1000, \n  group = rep(1, 12)\n)\n\nggplot(my_weight, \n       aes(x = month, y = weight, group = group)) +\n  geom_point() +\n  geom_line() +\n  labs(title = \"Mein Gewicht 2024\",\n       subtitle = \"In metrischen Tonnen\", \n       x = \"Monat\", \n       y = \"Gewicht in t\") +\n  ylim(0, 1000) + \n  theme_bg() +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))"
+    "text": "Manipulation des Bildformats\n\n\nGraphic\nCode\n\n\n\n\n\n\n\n\n\n\n\nset.seed(42)\nmy_weight &lt;- data.frame(\n  month = factor(c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"),\n                 levels = c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"), \n                 ordered = TRUE), \n  weight = rnorm(12, 90, 5)/1000, \n  group = rep(1, 12)\n)\n\nggplot(my_weight, \n       aes(x = month, y = weight, group = group)) +\n  geom_point() +\n  geom_line() +\n  labs(title = \"Mein Gewicht 2024\",\n       subtitle = \"In metrischen Tonnen\", \n       x = \"Monat\", \n       y = \"Gewicht in t\") +\n  ylim(0, 1000) + \n  theme_bg() +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))"
   },
   {
     "objectID": "sessions/good_plots/slides.html#election-plot",
@@ -543,7 +543,7 @@
     "href": "sessions/good_plots/slides.html#section-1",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Warning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.\nℹ Please use the `linewidth` argument instead."
+    "text": "Dabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen."
   },
   {
     "objectID": "sessions/good_plots/slides.html#farbfehlsichtigkeiten",
@@ -789,5 +789,33 @@
     "title": "Einführung",
     "section": "plotly",
     "text": "plotly\n\nlibrary(plotly)\n\nfig &lt;- plot_ly(midwest, x = ~percollege, color = ~state, type = \"box\")\nfig"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#section-2",
+    "href": "sessions/good_plots/slides.html#section-2",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "Data from Rockefeller Institute and Wikipedia."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#funktionelles-design",
+    "href": "sessions/good_plots/slides.html#funktionelles-design",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Funktionelles Design",
+    "text": "Funktionelles Design\nWelche Funktion?\n\n\n\n\nFoto von BVG\n\n\n\n\nFoto von BVG"
+  },
+  {
+    "objectID": "sessions/example_slides.html#rezising-images",
+    "href": "sessions/example_slides.html#rezising-images",
+    "title": "Einführung",
+    "section": "Rezising images",
+    "text": "Rezising images"
+  },
+  {
+    "objectID": "sessions/example_slides.html#tabs-2",
+    "href": "sessions/example_slides.html#tabs-2",
+    "title": "Einführung",
+    "section": "Tabs 2",
+    "text": "Tabs 2\n\nGraphicCode\n\n\n\n\n\n\n\n\n\n\nset.seed(42)\nmy_weight &lt;- data.frame(\n  month = factor(c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"),\n                 levels = c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"), \n                 ordered = TRUE), \n  weight = rnorm(12, 90, 5)/1000, \n  group = rep(1, 12)\n)\n\nggplot(my_weight, \n       aes(x = month, y = weight, group = group)) +\n  geom_point() +\n  geom_line() +\n  labs(title = \"Mein Gewicht 2024\",\n       subtitle = \"In metrischen Tonnen\", \n       x = \"Monat\", \n       y = \"Gewicht in t\") +\n  ylim(0, 1000) + \n  theme_bw() +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))"
   }
 ]

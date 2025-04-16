@@ -92,6 +92,53 @@ ggplot(cars,
 
 :::
 
+## Tabs 2
+
+::: panel-tabset
+### Graphic
+
+
+```{r}
+#| label: example-weight
+#| fig-width: 14
+#| fig-height: 7
+#| echo: false
+
+set.seed(42)
+my_weight <- data.frame(
+  month = factor(c("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"),
+                 levels = c("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"), 
+                 ordered = TRUE), 
+  weight = rnorm(12, 90, 5)/1000, 
+  group = rep(1, 12)
+)
+
+ggplot(my_weight, 
+       aes(x = month, y = weight, group = group)) +
+  geom_point() +
+  geom_line() +
+  labs(title = "Mein Gewicht 2024",
+       subtitle = "In metrischen Tonnen", 
+       x = "Monat", 
+       y = "Gewicht in t") +
+  ylim(0, 1000) + 
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+
+### Code
+
+
+```{r}
+#| label: example-weight
+#| eval: false
+```
+
+:::
+
+
+
 # Bilder
 
 ##  {background-image="ggplot_intro/images/babyfeet.jpg" background-size="1225px"}
@@ -105,6 +152,7 @@ Background image
 
 Foto von <a href="https://unsplash.com/de/@omarlopez1?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Omar Lopez</a> auf <a href="https://unsplash.com/de/fotos/person-die-babyfusse-halt-vTknj2OxDVg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 :::
+
 
 ## Right-side image
 
