@@ -125,11 +125,14 @@ Foto von <a href="https://unsplash.com/de/@fabulu75?utm_content=creditCopyText&u
 :::: 
 
 
+
+
 ## gganimate
+
+
 ```{r}
 library(ggplot2)
 library(gganimate)
-library(gifski)
 
 p <- ggplot(mtcars, aes(factor(cyl), mpg)) + 
   geom_boxplot() + 
@@ -142,10 +145,14 @@ p <- ggplot(mtcars, aes(factor(cyl), mpg)) +
   enter_fade() + 
   exit_shrink() +
   ease_aes('sine-in-out')
-animate(p, renderer = gifski::gifski_renderer())
+animate(p, renderer = gganimate::gifski_renderer())
 ```
 
+
+
 ## plotly
+
+
 
 ```{r}
 library(plotly)
