@@ -15,6 +15,18 @@ jobs:
         run: sudo apt-get update
       - name: Install libcurl
         run: sudo apt-get install libudunits2-dev
+      - name: update packages
+        run: sudo apt-get update
+      - name: Install libcurl
+        run: sudo apt-get install libcurl4-openssl-dev
+      - name: Install libharfbuzz  
+        run: sudo apt-get install libharfbuzz-dev libfribidi-dev
+      - name: Install GSL development package
+        run: sudo apt install libgsl-dev
+      - name: Intsall libmagick
+        run: sudo apt-get install libmagick++-dev
+      - name: Install libglpk-dev
+        run: sudo apt-get install libglpk-dev
         
       - name: Check out repository
         uses: actions/checkout@v4
