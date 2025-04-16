@@ -1,0 +1,175 @@
+---
+title: "Einführung"
+format: letterbox-revealjs
+code-annotations: hover
+---
+
+
+
+
+# Title Slide
+
+## Normal Slide
+
+
+- Adding a website-link: [Wikipedia](https://de.wikipedia.org/wiki/Wikipedia:Hauptseite)
+- Link to specific chapter on other pages: [aes-mapping](https://nickhaf.github.io/PlotWorkshop/sessions/ggplot_intro/slides.html#/aesthetic-mapping)
+- This will [highlight]{.highlight} text
+
+::: {.fragment}
+- Fade in
+:::
+
+
+:::{.callout-tip}
+## Callout block header
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+:::
+
+
+## Columns
+
+:::: {.columns}
+
+::: {.column width="40%"}
+Lorem [ipsum dolor]{.highlight} sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+:::
+
+::: {.column width="60%"}
+
+::: small
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+:::
+
+:::
+
+::::
+
+## Columns with code
+
+
+
+```{r}
+#| echo: false
+
+library(ggplot2)
+```
+
+```{r}
+#| output-location: column
+#| code-line-numbers: "1,2|3"
+
+ggplot(cars, 
+       aes(x = speed, y = dist)) +
+  geom_point()
+```
+
+
+
+## Code Annotation
+
+
+```{r}
+#| output-location: column
+
+## (Empty line so the copy button doesn't overlays)
+ggplot(cars, # <1> 
+       aes(x = speed, y = dist)) + # <2>
+  geom_point() # <3>
+```
+
+
+1. Input data
+2. Define mapping
+3. Add layer
+
+## Tabs
+::: {.panel-tabset}
+
+## Aufgabe 
+Wir losen Gruppen aus, jede Gruppe bekommt eine eigene Plot-Art. Erst einmal Einzelarbeit.
+
+## Lösung
+
+
+
+```{r}
+#| output-location: column
+
+ggplot(cars, 
+       aes(x = speed, y = dist)) +
+  geom_point()
+```
+
+
+
+:::
+
+# Bilder
+
+##  {background-image="ggplot_intro/images/babyfeet.jpg" background-size="1225px"}
+
+::: {.absolute right="1.5%" top="1.5%" style="padding: 0.5em 0.5em; background-color: rgba(255, 255, 255, 0); backdrop-filter: blur(0px); box-shadow: 0 0 0rem 0 rgba(255, 255, 255, 0); color:#F8F8F8;"}
+Background image
+:::
+
+
+::: {.absolute right="0%" bottom="0%" style="font-size:0.25em; padding: 0.5em 0.5em; background-color: rgba(255, 255, 255, 0); backdrop-filter: blur(0px); box-shadow: 0 0 0rem 0 rgba(255, 255, 255, 0); color:#F8F8F8;"}
+
+Foto von <a href="https://unsplash.com/de/@omarlopez1?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Omar Lopez</a> auf <a href="https://unsplash.com/de/fotos/person-die-babyfusse-halt-vTknj2OxDVg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+
+## Right-side image
+
+
+:::: {.columns} 
+::: {.column width="50%"}
+I can also put images in a column and fill the right side of the slide with the image by using `{.image-right}`.
+
+Foto von <a href="https://unsplash.com/de/@fabulu75?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Fabrice Villard</a> auf <a href="https://unsplash.com/de/fotos/fotografie-des-baumes-Jrl_UQcZqOc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+      
+
+:::
+
+::: {.column width="50%"}
+
+![](tree.jpg){.image-right}
+::: 
+:::: 
+
+
+## gganimate
+
+
+```{r}
+library(ggplot2)
+library(gganimate)
+
+p <- ggplot(mtcars, aes(factor(cyl), mpg)) + 
+  geom_boxplot() + 
+  # Here comes the gganimate code
+  transition_states(
+    gear,
+    transition_length = 2,
+    state_length = 1
+  ) +
+  enter_fade() + 
+  exit_shrink() +
+  ease_aes('sine-in-out')
+animate(p, renderer = gifski_renderer())
+```
+
+
+
+## plotly
+
+
+
+```{r}
+library(plotly)
+
+fig <- plot_ly(midwest, x = ~percollege, color = ~state, type = "box")
+fig
+
+```
+
