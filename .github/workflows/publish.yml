@@ -13,8 +13,16 @@ jobs:
     steps:
       - name: update packages
         run: sudo apt-get update
-      - name: Install libcurl
+      - name: Install libstuff
         run: sudo apt-get install libudunits2-dev
+      - name: Install system dependencies for sf
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libproj-dev \
+            libgeos-dev \
+            libgdal-dev
+      
         
       - name: Check out repository
         uses: actions/checkout@v4
