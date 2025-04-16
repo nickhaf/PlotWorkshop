@@ -11,6 +11,11 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: update packages
+        run: sudo apt-get update
+      - name: Install libcurl
+        run: sudo apt-get install libudunits2-dev
+        
       - name: Check out repository
         uses: actions/checkout@v4
 
