@@ -56,6 +56,13 @@
     "text": "Tabs\n\nAufgabeLösung\n\n\nWir losen Gruppen aus, jede Gruppe bekommt eine eigene Plot-Art. Erst einmal Einzelarbeit.\n\n\n\n\nggplot(cars, \n       aes(x = speed, y = dist)) +\n  geom_point()"
   },
   {
+    "objectID": "sessions/example_slides.html#tabs-2",
+    "href": "sessions/example_slides.html#tabs-2",
+    "title": "Einführung",
+    "section": "Tabs 2",
+    "text": "Tabs 2\n\nGraphicCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nset.seed(42)\nmy_weight &lt;- data.frame(\n  month = factor(c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"),\n                 levels = c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"), \n                 ordered = TRUE), \n  weight = rnorm(12, 90, 5)/1000, \n  group = rep(1, 12)\n)\n\nggplot(my_weight, \n       aes(x = month, y = weight, group = group)) +\n  geom_point() +\n  geom_line() +\n  labs(title = \"Mein Gewicht 2024\",\n       subtitle = \"In metrischen Tonnen\", \n       x = \"Monat\", \n       y = \"Gewicht in t\") +\n  ylim(0, 1000) + \n  theme_bw() +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))"
+  },
+  {
     "objectID": "sessions/example_slides.html#section",
     "href": "sessions/example_slides.html#section",
     "title": "Einführung",
@@ -88,21 +95,21 @@
     "href": "sessions/good_plots/slides.html#section",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "::: aside\n:::"
+    "text": "::: image-ref\n:::"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#eine-gute-grafik-sollte",
-    "href": "sessions/good_plots/slides.html#eine-gute-grafik-sollte",
+    "objectID": "sessions/good_plots/slides.html#funktionelles-design",
+    "href": "sessions/good_plots/slides.html#funktionelles-design",
     "title": "Was ist eine gute Grafik?",
-    "section": "Eine gute Grafik sollte …",
-    "text": "Eine gute Grafik sollte …\n… eine Geschichte erzählen … helfen, auf das Wesentliche zu konzentrieren (datasaurus) … die Zusammenhänge möglichst “umfänglich” darzustellen. … (cool aussehen) … Kultur-, Personen-, Zeitunabhängig sein, soweit wie möglich"
+    "section": "Funktionelles Design",
+    "text": "Funktionelles Design\nWelche Funktion?\n\n\n\n\nFoto von BVG\n\n\n\n\nFoto von BVG"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#datasaurus-dozen-quartets-paket",
-    "href": "sessions/good_plots/slides.html#datasaurus-dozen-quartets-paket",
+    "objectID": "sessions/good_plots/slides.html#section-1",
+    "href": "sessions/good_plots/slides.html#section-1",
     "title": "Was ist eine gute Grafik?",
-    "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\ndataset\nmean_x\nvar_x\nmean_y\nvar_y\ncor\n\n\n\n\naway\n54.27\n281.23\n47.83\n725.75\n-0.06\n\n\nbullseye\n54.27\n281.21\n47.83\n725.53\n-0.07\n\n\ncircle\n54.27\n280.90\n47.84\n725.23\n-0.07\n\n\ndino\n54.26\n281.07\n47.83\n725.52\n-0.06\n\n\ndots\n54.26\n281.16\n47.84\n725.24\n-0.06\n\n\nh_lines\n54.26\n281.10\n47.83\n725.76\n-0.06\n\n\nhigh_lines\n54.27\n281.12\n47.84\n725.76\n-0.07\n\n\nslant_down\n54.27\n281.12\n47.84\n725.55\n-0.07\n\n\nslant_up\n54.27\n281.19\n47.83\n725.69\n-0.07\n\n\nstar\n54.27\n281.20\n47.84\n725.24\n-0.06\n\n\nv_lines\n54.27\n281.23\n47.84\n725.64\n-0.07\n\n\nwide_lines\n54.27\n281.23\n47.83\n725.65\n-0.07\n\n\nx_shape\n54.26\n281.23\n47.84\n725.22\n-0.07"
+    "section": "",
+    "text": "Dabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen."
   },
   {
     "objectID": "sessions/good_plots/slides.html#darstellung-von-größen",
@@ -123,7 +130,7 @@
     "href": "sessions/good_plots/slides.html#manipulation-des-bildformats",
     "title": "Was ist eine gute Grafik?",
     "section": "Manipulation des Bildformats",
-    "text": "Manipulation des Bildformats\n\nset.seed(42)\nmy_weight &lt;- data.frame(\n  month = factor(c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"),\n                 levels = c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"), \n                 ordered = TRUE), \n  weight = rnorm(12, 90, 5)/1000, \n  group = rep(1, 12)\n)\n\nggplot(my_weight, \n       aes(x = month, y = weight, group = group)) +\n  geom_point() +\n  geom_line() +\n  labs(title = \"Mein Gewicht 2024\",\n       subtitle = \"In metrischen Tonnen\", \n       x = \"Monat\", \n       y = \"Gewicht in t\") +\n  ylim(0, 1000) + \n  theme_bg() +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))"
+    "text": "Manipulation des Bildformats\n\nGraphicCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nset.seed(42)\nmy_weight &lt;- data.frame(\n  month = factor(c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"),\n                 levels = c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"), \n                 ordered = TRUE), \n  weight = rnorm(12, 90, 5)/1000, \n  group = rep(1, 12)\n)\n\nggplot(my_weight, \n       aes(x = month, y = weight, group = group)) +\n  geom_point() +\n  geom_line() +\n  labs(title = \"Mein Gewicht 2024\",\n       subtitle = \"In metrischen Tonnen\", \n       x = \"Monat\", \n       y = \"Gewicht in t\") +\n  ylim(0, 1000) + \n  theme_bg() +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))"
   },
   {
     "objectID": "sessions/good_plots/slides.html#election-plot",
@@ -203,8 +210,8 @@
     "text": "Purpose\n\nExploratory vs. Explanatory\nKann oft über reines Zeigen der Daten hinausgehen."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#section-3",
-    "href": "sessions/good_plots/slides.html#section-3",
+    "objectID": "sessions/good_plots/slides.html#section-2",
+    "href": "sessions/good_plots/slides.html#section-2",
     "title": "Was ist eine gute Grafik?",
     "section": "",
     "text": "Data from Rockefeller Institute and Wikipedia."
@@ -462,6 +469,13 @@
     "text": "View slides in full screen\n\nWahrnehmungspsychologie/Schlechte/Gute Grafiken + Sammeln?/ggplot-Anwendung direkt dazu (z.B. Farben, Annotation … -&gt; Also direkte Anwendung der Theorie) - Janine (+ Nicklas)\n\n\nÜbung\nSchlechte Grafiken diskutieren"
   },
   {
+    "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
+    "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
+    "title": "Einführung",
+    "section": "Datasaurus Dozen (quartets-Paket)",
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\ndataset\nmean_x\nvar_x\nmean_y\nvar_y\ncor\n\n\n\n\naway\n54.27\n281.23\n47.83\n725.75\n-0.06\n\n\nbullseye\n54.27\n281.21\n47.83\n725.53\n-0.07\n\n\ncircle\n54.27\n280.90\n47.84\n725.23\n-0.07\n\n\ndino\n54.26\n281.07\n47.83\n725.52\n-0.06\n\n\ndots\n54.26\n281.16\n47.84\n725.24\n-0.06\n\n\nh_lines\n54.26\n281.10\n47.83\n725.76\n-0.06\n\n\nhigh_lines\n54.27\n281.12\n47.84\n725.76\n-0.07\n\n\nslant_down\n54.27\n281.12\n47.84\n725.55\n-0.07\n\n\nslant_up\n54.27\n281.19\n47.83\n725.69\n-0.07\n\n\nstar\n54.27\n281.20\n47.84\n725.24\n-0.06\n\n\nv_lines\n54.27\n281.23\n47.84\n725.64\n-0.07\n\n\nwide_lines\n54.27\n281.23\n47.83\n725.65\n-0.07\n\n\nx_shape\n54.26\n281.23\n47.84\n725.22\n-0.07"
+  },
+  {
     "objectID": "sessions/Einführung/slides.html#warum-ggplot2",
     "href": "sessions/Einführung/slides.html#warum-ggplot2",
     "title": "Einführung",
@@ -483,22 +497,22 @@
     "text": "Beautiful\n\nBeispiele verschönert"
   },
   {
-    "objectID": "sessions/Einführung/slides.html#section",
-    "href": "sessions/Einführung/slides.html#section",
+    "objectID": "sessions/Einführung/slides.html#section-2",
+    "href": "sessions/Einführung/slides.html#section-2",
     "title": "Einführung",
     "section": "",
     "text": "Example from The R Graph Gallery."
   },
   {
-    "objectID": "sessions/Einführung/slides.html#section-1",
-    "href": "sessions/Einführung/slides.html#section-1",
+    "objectID": "sessions/Einführung/slides.html#section-3",
+    "href": "sessions/Einführung/slides.html#section-3",
     "title": "Einführung",
     "section": "",
     "text": "Image from Wikipedia."
   },
   {
-    "objectID": "sessions/Einführung/slides.html#section-3",
-    "href": "sessions/Einführung/slides.html#section-3",
+    "objectID": "sessions/Einführung/slides.html#section-5",
+    "href": "sessions/Einführung/slides.html#section-5",
     "title": "Einführung",
     "section": "",
     "text": "https://r-graph-gallery.com/best-r-chart-examples https://allisonhorst.com/r-packages-functions"
