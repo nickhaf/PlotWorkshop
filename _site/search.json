@@ -768,5 +768,26 @@
     "title": "ggplot2: Basics",
     "section": "Aestetics als Mapping oder Setting",
     "text": "Aestetics als Mapping oder Setting\n\n\nFür alle Layer\n\nggplot(\n  data = gapminder_dat,\n  aes(\n    x = pop,\n    y = co2_cons,\n    color = world_6region\n  )\n) +\n  geom_point() +\n  geom_smooth()\n\n\n\n\n\n\n\n\nFür spezifische Layer\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point(aes(color = world_6region)) +\n  geom_smooth()\n\n\n\n\n\n\n\n\n\nAls Setting\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point(color = \"#F4BA02\") +\n  geom_smooth()"
+  },
+  {
+    "objectID": "sessions/example_slides.html#plotlygganimate",
+    "href": "sessions/example_slides.html#plotlygganimate",
+    "title": "Einführung",
+    "section": "Plotly/gganimate",
+    "text": "Plotly/gganimate\n\nlibrary(ggplot2)\nlibrary(gganimate)\n\np &lt;- ggplot(mtcars, aes(factor(cyl), mpg)) + \n  geom_boxplot() + \n  # Here comes the gganimate code\n  transition_states(\n    gear,\n    transition_length = 2,\n    state_length = 1\n  ) +\n  enter_fade() + \n  exit_shrink() +\n  ease_aes('sine-in-out')\nanimate(p, renderer = gifski_renderer())"
+  },
+  {
+    "objectID": "sessions/example_slides.html#gganimate",
+    "href": "sessions/example_slides.html#gganimate",
+    "title": "Einführung",
+    "section": "gganimate",
+    "text": "gganimate\n\nlibrary(ggplot2)\nlibrary(gganimate)\n\np &lt;- ggplot(mtcars, aes(factor(cyl), mpg)) + \n  geom_boxplot() + \n  # Here comes the gganimate code\n  transition_states(\n    gear,\n    transition_length = 2,\n    state_length = 1\n  ) +\n  enter_fade() + \n  exit_shrink() +\n  ease_aes('sine-in-out')\nanimate(p, renderer = gifski_renderer())"
+  },
+  {
+    "objectID": "sessions/example_slides.html#plotly",
+    "href": "sessions/example_slides.html#plotly",
+    "title": "Einführung",
+    "section": "plotly",
+    "text": "plotly\n\nlibrary(plotly)\n\nfig &lt;- plot_ly(midwest, x = ~percollege, color = ~state, type = \"box\")\nfig"
   }
 ]
