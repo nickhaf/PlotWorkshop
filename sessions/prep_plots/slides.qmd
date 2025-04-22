@@ -1,0 +1,6 @@
+---
+title: "Wiederholung: Vorbereiten von Grafiken"
+format: letterbox-revealjs
+---
+
+Hier einfach nochmal Themen anschneiden wie Speichern, Themes, color scales mit jeweiligem Link zu den Folien

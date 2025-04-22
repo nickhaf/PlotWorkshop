@@ -97,11 +97,4 @@ ggplot(hex, aes(x, y)) +
 :::
 
 
-<!-- Tag 2: -->
-<!-- - Wissenschaftliche Grafiken (APA) - Janine -->
-<!-- - Übung: Grafiken Druckreif machen und vorstellen (verschiedene Ziele/Zielgruppen, Alle die den gleichen Plot-Typ haben gruppieren) -->
-<!-- - Explorative Grafiken - Janine -->
-<!-- - Was noch so möglich: gganimate/plotly - Janine (+ Nicklas) -->
-<!-- - (Übung: Grafik animieren/plotly) -->
-
 

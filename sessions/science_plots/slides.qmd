@@ -1,0 +1,4 @@
+---
+title: "Wissenschaftliche Grafiken (APA)"
+format: letterbox-revealjs
+---

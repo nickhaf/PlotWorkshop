@@ -22,11 +22,23 @@ website:
           icon: pie-chart-fill
       
       - text: Tag 2
-        icon: mortarboard-fill
+        icon: tree-fill
         menu:
         - text: "ggplot2: Advanced"
           href: sessions/more_ggplot/more_ggplot.qmd
           icon: bar-chart-steps
+        - text: "Wissenschaftliche Grafiken"
+          href: sessions/science_plots/science_plots.qmd
+          icon: mortarboard-fill
+        - text: "Explorative Grafiken"
+          href: sessions/explorative_plots/explorative_plots.qmd
+          icon: binoculars-fill
+        - text: "Grafiken Druckreif machen"
+          href: sessions/prep_plots/prep_plots.qmd
+          icon: printer-fill
+        - text: "gganimate & plotly"
+          href: sessions/animate_plotly/animate_plotly.qmd
+          icon: arrows-move
 
 
 format:

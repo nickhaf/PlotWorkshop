@@ -1,0 +1,5 @@
+---
+title: "Ausblick: `gganimate` und `plotly`"
+format: letterbox-revealjs
+---
+

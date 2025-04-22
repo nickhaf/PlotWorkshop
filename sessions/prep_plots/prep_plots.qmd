@@ -1,0 +1,19 @@
+---
+title: "Grafiken Druckreif machen"
+format: html
+author: 
+  - name: "Janine Buchholz"
+  - name: "Nicklas Hafiz"
+---
+
+
+
+
+```{=html}
+<iframe class="slide-deck" src="slides.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
+```
+
+[View slides in full screen](slides.html)
+
+# Übung
+- Grafiken Druckreif machen und vorstellen (verschiedene Ziele/Zielgruppen, Alle die den gleichen Plot-Typ haben gruppieren)
