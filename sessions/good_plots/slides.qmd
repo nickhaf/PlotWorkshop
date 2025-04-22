@@ -3,29 +3,264 @@ title: "Was ist eine gute Grafik?"
 format: letterbox-revealjs
 ---
 
+
 ```{r}
 #| echo: false
-library(tidyverse)
+
+library(here)
+library(janitor)
+library(ggwordcloud)
 source(here::here("src", "themes.R"))
+```
+
+```{r}
+#| echo: false
+#| message: false
+
+library(jsonlite)
+library(tidyverse)
+
+get_gapminder <- function(repo = "https://github.com/open-numbers/ddf--gapminder--fasttrack",
+                          keywords = "co2") {
+  ## Get json
+  ## Filter paths there
+  ## use them for download directly
+
+  path_json <- "/refs/heads/master/datapackage.json"
+  raw_url <- gsub("github.com", "raw.githubusercontent.com", "https://raw.githubusercontent.com/open-numbers/ddf--gapminder--fasttrack")
+  download.file(url = paste0(raw_url, path_json), destfile = "datapackage.json")
+
+  json_data <- jsonlite::fromJSON("datapackage.json")
+
+  csv_paths <- json_data$resources$path
+  matched_paths <- csv_paths[str_detect(csv_paths, str_c(keywords, collapse = "|"))]
+
+  if (length(matched_paths) == 0) {
+    stop("No files matched the specified keywords.")
+  }
+
+  matched_paths_url <- paste0(raw_url, "/refs/heads/master/", matched_paths)
+
+  merged_df <- read.csv(matched_paths_url[1])
+
+  # Loop through and merge the rest
+  if (length(matched_paths) > 1) {
+    for (i in 2:length(matched_paths)) {
+      message("Reading file: ", matched_paths_url[i])
+      temp_df <- read_csv(matched_paths_url[i])
+
+      merged_df <- full_join(merged_df, temp_df)
+      rm(temp_df)
+      gc()
+    }
+  }
+
+  if (file.exists("datapackage.json")) {
+    file.remove("datapackage.json")
+  }
+
+  return(merged_df)
+}
+
+gapminder_dat_full <- get_gapminder(keywords = c("pop--", "co2", "--geo--country"))
+
+gapminder_dat <- gapminder_dat_full %>% 
+  filter(time == "2020", !is.na(country)) 
 ```
 
 
 ## 
 
 ![](./images/mcCandless.png)
+
 ::: image-ref
+Darstellung von David McCandless in [Knowledge is Beautiful (2014)](https://informationisbeautiful.net/visualizations/what-makes-a-good-data-visualization/).
+:::
+
+
+
+
+# Integrität der Informationen
+
+## Darstellung von Größen
+
+:::{.columns}
+:::{.column widht="50%}
+
+```{r}
+#| echo: false
+
+# Define area ratios
+area_ratios <- c(1, 3, 1, 2, 1, 1.5)
+
+# Compute radii based on area and scale up
+scaled_radius <- sqrt(area_ratios) * 10
+
+# Create data frame
+circle_data <- data.frame(
+  x = c(1, 2.5, 1, 2.5, 1, 2.5),
+  y = c(3, 3, 2, 2, 1, 1),
+  size = scaled_radius
+)
+
+# Plot with proportional areas
+ggplot(circle_data, aes(x = x, y = y)) +
+  geom_point(aes(size = size), shape = 21, fill = "#F4BA02", color = "#01364C") +
+  scale_size_identity() +
+  coord_fixed() +
+  theme_minimal() +
+  theme(
+    axis.title = element_blank(),
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid = element_blank()
+  ) +
+  xlim(c(1, 3.5)) +
+  ylim(1, 3.5)+
+  theme_minimal_bg()
+
+
+
+```
+:::
+
+:::{.column widht="50%}
+
+```{r}
+#| echo: false
+library(ggplot2)
+library(dplyr)
+
+# Define area ratios and compute square side lengths
+area_ratios <- c(1, 3, 1, 2, 1, 1.5)
+scaled_side <- sqrt(area_ratios) * 10
+
+# Create data frame with side lengths
+square_data <- data.frame(
+  x = c(1, 2.5, 1, 2.5, 1, 2.5),
+  y = c(3, 3, 2, 2, 1, 1),
+  side = scaled_side
+)
+
+# Plot squares with correct proportional areas
+ggplot(square_data, aes(x = x, y = y)) +
+  geom_tile(aes(width = side, height = side), fill = "#F4BA02", color = "#01364C") +
+  coord_fixed() +
+  theme_minimal() +
+  theme(
+    axis.title = element_blank(),
+    axis.text = element_blank(),
+    axis.ticks = element_blank(),
+    panel.grid = element_blank()
+  ) +
+  xlim(c(1, 3.5)) +
+  ylim(1, 3.5)
+
+
+```
+
+:::
+:::
+
+## Finger weg von Pie Charts!
+
+::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| echo: false
+
+continent_co2 <- gapminder_dat %>% 
+  group_by(world_6region) %>% 
+  summarise(mean_co2_pcap_cons = mean(co2_pcap_cons, na.rm = TRUE))
+
+ggplot(continent_co2, 
+       aes(x = "", y = mean_co2_pcap_cons, fill = world_6region)) +
+  geom_bar(stat="identity", width = 1) +
+  coord_polar("y", start = 0) 
+
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+
+ggplot(continent_co2, 
+       aes(x = world_6region, y = mean_co2_pcap_cons, fill = world_6region)) +
+  geom_bar(stat = "identity", width = 1) 
+```
+
+:::
+:::
+
+
+## Manipulation von Achsen
+Beispiel aus der Einführung nehmen, aber Achse Cutten und oder nicht bei Null starten lassen. Dann eine weirde Message schreiben! 
+Am besten etwas mit hohen nominalen Zahlen. Vielleicht etwas das sich über die Jahre verbessert hat?
+Dann alternativen zeigen, z.B. Ranzoomen!
+
+
+https://www.data-to-viz.com/caveat/cut_y_axis.html
+
+## Manipulation des Bildformats
+
+::: panel-tabset
+### Grafik
+
+
+```{r}
+#| label: example-weight
+#| fig-width: 14
+#| fig-height: 7
+#| echo: false
+
+set.seed(42)
+my_weight <- data.frame(
+  month = factor(c("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"),
+                 levels = c("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"), 
+                 ordered = TRUE), 
+  weight = rnorm(12, 90, 5)/1000, 
+  group = rep(1, 12)
+)
+
+ggplot(my_weight, 
+       aes(x = month, y = weight, group = group)) +
+  geom_point() +
+  geom_line() +
+  labs(title = "Mein Gewicht 2024",
+       subtitle = "In metrischen Tonnen", 
+       x = "Monat", 
+       y = "Gewicht in t") +
+  ylim(0, 1000) + 
+  theme_bg() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+
+### Code
+
+
+```{r}
+#| label: example-weight
+#| eval: false
+```
 
 :::
 
 
-# Negativbeispiele
+## Election Plot
+https://storymaps.arcgis.com/stories/0e636a652d44484b9457f953994b212b
+Vielleicht mit Bundestagswahl?
 
-Beim Plotten kann auch ganz schön viel schief gehen.  
-Wir schauen uns mal ein worst of an!
+## Fehlender Kontext
+Ausschnitt aus Zeitreihe, ohne KOntext schwer zu Interpretieren. 
+Irgendwas mit Schuldenpaket z.B.?
+Am besten noch mit anderen Kategorien dazu
+- Co2 Data insgesamt ohne Population zeigen
 
 
 
-# Design von Grafiken
+# Nützlichkeit
 
 "Design is a requirement, not a cosmetic addition." [nature methods](https://www.nature.com/articles/nmeth.1783)
 
@@ -79,68 +314,57 @@ Foto von <a href="https://www.bvg.de/de/verbindungen/linienuebersicht">BVG</a>
 :::
 
 ## 
-Dabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen. 
+Dabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen.  
+Handschriftliche Skizze ist auch erstmal hilfreich!
 
 
-## Darstellung von Größen
 
-## Manipulation von Achsen
+## Simplify to clarify
 
-## Manipulation des Bildformats
+- Redundanzen Reduzieren
+- Fokus auf das Wesentliche
+https://www.data-to-viz.com/caveat/declutter.html
 
-::: panel-tabset
-### Graphic
-
-
+## 
+Beispiel von einem komplexen Plot bringen, den wir schon erzeugt haben, und dann reduzieren!
 ```{r}
-#| label: example-weight
-#| fig-width: 14
-#| fig-height: 7
-#| echo: false
 
-set.seed(42)
-my_weight <- data.frame(
-  month = factor(c("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"),
-                 levels = c("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"), 
-                 ordered = TRUE), 
-  weight = rnorm(12, 90, 5)/1000, 
-  group = rep(1, 12)
-)
-
-ggplot(my_weight, 
-       aes(x = month, y = weight, group = group)) +
-  geom_point() +
-  geom_line() +
-  labs(title = "Mein Gewicht 2024",
-       subtitle = "In metrischen Tonnen", 
-       x = "Monat", 
-       y = "Gewicht in t") +
-  ylim(0, 1000) + 
-  theme_bg() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
 
-
-### Code
-
-
-```{r}
-#| label: example-weight
-#| eval: false
-```
-
-:::
+## Salienz von Informationen
 
 
-## Election Plot
-https://storymaps.arcgis.com/stories/0e636a652d44484b9457f953994b212b
-Vielleicht mit Bundestagswahl?
+## Farben
+Ganglienzellen übertragen keine Informationen über absolute Helligkeit,
+sondern über relative Helligkeit.
+‣ Wie stark unterscheiden sich zwei Bereiche in ihrer Helligkeit?
+‣ Wie stark hat sich eine Helligkeit gerade geändert?
+Allgemeine Lehre daraus:
+‣ Visualisierung kann nicht gut darin sein, absolute Werte zu
+kommunizieren (Tabellen können das besser)
+‣ Hingegen ist das visuelle System (und das Gehirn allgemein) extrem gut
+darin, Unterschiede und Veränderungen zu erkennen
+--> Beispiel bringen (Simultankontrast)
 
-## Fehlender Kontext
-Ausschnitt aus Zeitreihe, ohne KOntext schwer zu Interpretieren. 
-Irgendwas mit Schuldenpaket z.B.?
-Am besten noch mit anderen Kategorien dazu
-- Co2 Data insgesamt ohne Population zeigen
+- Graustufen nicht für absolute oder kategorische Werte nutzen (mehr als vier können iwr nicht gut unterscheiden)
+- Welche Farben wir wahrnehmen können (Exkurs Tierwelt?)
+- Diese Webseite zur Auswahl von passenden Farben nutzen?
+- RGB erklären (und die Addition im Gehirn?
+
+## Farbfehlsichtigkeiten
+
+Farbsehtests
+
+
+- Farbwahrnehmung braucht Helligkeit und Fläche
+
+## Anwendung in ggplot2: Farbskalen wählen
+
+
+
+
+## Gruppieren
+
 
 ## Verteilungen Plotten
 
@@ -249,32 +473,6 @@ https://www.data-to-viz.com/caveats.html
 
 Immer einen Plot zeigen, dann zusammen überlgen was daran schlecht ist, was verbessert werden kann. 
 
-
-## Farben
-Ganglienzellen übertragen keine Informationen über absolute Helligkeit,
-sondern über relative Helligkeit.
-‣ Wie stark unterscheiden sich zwei Bereiche in ihrer Helligkeit?
-‣ Wie stark hat sich eine Helligkeit gerade geändert?
-Allgemeine Lehre daraus:
-‣ Visualisierung kann nicht gut darin sein, absolute Werte zu
-kommunizieren (Tabellen können das besser)
-‣ Hingegen ist das visuelle System (und das Gehirn allgemein) extrem gut
-darin, Unterschiede und Veränderungen zu erkennen
---> Beispiel bringen (Simultankontrast)
-
-- Graustufen nicht für absolute oder kategorische Werte nutzen (mehr als vier können iwr nicht gut unterscheiden)
-- Welche Farben wir wahrnehmen können (Exkurs Tierwelt?)
-- Diese Webseite zur Auswahl von passenden Farben nutzen?
-- RGB erklären (und die Addition im Gehirn?
-
-## Farbfehlsichtigkeiten
-
-Farbsehtests
-
-
-- Farbwahrnehmung braucht Helligkeit und Fläche
-
-## Anwendung in ggplot2: Farbskalen wählen
 
 ## Takeaways
 - Kommunizieren von der größtmöglichen Anzahl von Ideen in kürzester Zeit.
