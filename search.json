@@ -1,94 +1,10 @@
 [
   {
-    "objectID": "sessions/more_ggplot/more_ggplot.html",
-    "href": "sessions/more_ggplot/more_ggplot.html",
-    "title": "Mehr ggplot2!",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Datenvisualisierung in R",
     "section": "",
-    "text": "View slides in full screen\n\nAdvanced: Achsen, theme, Titel, Coords, scales, speichern - Nicklas (+Janine)"
-  },
-  {
-    "objectID": "sessions/r_basics/r_basics.html",
-    "href": "sessions/r_basics/r_basics.html",
-    "title": "R-Basics",
-    "section": "",
-    "text": "View slides in full screen\n\ntidyverse, Factors, long format - Nicklas"
-  },
-  {
-    "objectID": "sessions/Einführung/Einführung.html",
-    "href": "sessions/Einführung/Einführung.html",
-    "title": "Einführung",
-    "section": "",
-    "text": "View slides in full screen\n\nIntro/Beispiele/Motivation/Arten von Grafiken (1 Basic + 1 Schöne) - Janine (+Nicklas)"
-  },
-  {
-    "objectID": "sessions/example_slides.html#normal-slide",
-    "href": "sessions/example_slides.html#normal-slide",
-    "title": "Einführung",
-    "section": "Normal Slide",
-    "text": "Normal Slide\n\nAdding a website-link: Wikipedia\nLink to specific chapter on other pages: aes-mapping\nThis will highlight text\n\n\n\nFade in\n\n\n\n\n\n\n\n\nCallout block header\n\n\nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod"
-  },
-  {
-    "objectID": "sessions/example_slides.html#columns",
-    "href": "sessions/example_slides.html#columns",
-    "title": "Einführung",
-    "section": "Columns",
-    "text": "Columns\n\n\nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\n\n\nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et"
-  },
-  {
-    "objectID": "sessions/example_slides.html#columns-with-code",
-    "href": "sessions/example_slides.html#columns-with-code",
-    "title": "Einführung",
-    "section": "Columns with code",
-    "text": "Columns with code\n\n\nggplot(cars, \n       aes(x = speed, y = dist)) +\n  geom_point()"
-  },
-  {
-    "objectID": "sessions/example_slides.html#code-annotation",
-    "href": "sessions/example_slides.html#code-annotation",
-    "title": "Einführung",
-    "section": "Code Annotation",
-    "text": "Code Annotation\n\n\n## (Empty line so the copy button doesn't overlays)\n1ggplot(cars,\n2       aes(x = speed, y = dist)) +\n3  geom_point()\n\n\n\n1\n\nInput data\n\n2\n\nDefine mapping\n\n3\n\nAdd layer"
-  },
-  {
-    "objectID": "sessions/example_slides.html#tabs",
-    "href": "sessions/example_slides.html#tabs",
-    "title": "Einführung",
-    "section": "Tabs",
-    "text": "Tabs\n\nAufgabeLösung\n\n\nWir losen Gruppen aus, jede Gruppe bekommt eine eigene Plot-Art. Erst einmal Einzelarbeit.\n\n\n\n\nggplot(cars, \n       aes(x = speed, y = dist)) +\n  geom_point()"
-  },
-  {
-    "objectID": "sessions/example_slides.html#tabs-2",
-    "href": "sessions/example_slides.html#tabs-2",
-    "title": "Einführung",
-    "section": "Tabs 2",
-    "text": "Tabs 2\n\nGraphicCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nset.seed(42)\nmy_weight &lt;- data.frame(\n  month = factor(c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"),\n                 levels = c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"), \n                 ordered = TRUE), \n  weight = rnorm(12, 90, 5)/1000, \n  group = rep(1, 12)\n)\n\nggplot(my_weight, \n       aes(x = month, y = weight, group = group)) +\n  geom_point() +\n  geom_line() +\n  labs(title = \"Mein Gewicht 2024\",\n       subtitle = \"In metrischen Tonnen\", \n       x = \"Monat\", \n       y = \"Gewicht in t\") +\n  ylim(0, 1000) + \n  theme_bw() +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))"
-  },
-  {
-    "objectID": "sessions/example_slides.html#section",
-    "href": "sessions/example_slides.html#section",
-    "title": "Einführung",
-    "section": "",
-    "text": "Background image\n\n\nFoto von Omar Lopez auf Unsplash"
-  },
-  {
-    "objectID": "sessions/example_slides.html#right-side-image",
-    "href": "sessions/example_slides.html#right-side-image",
-    "title": "Einführung",
-    "section": "Right-side image",
-    "text": "Right-side image\n\n\nI can also put images in a column and fill the right side of the slide with the image by using {.image-right}.\nFoto von Fabrice Villard auf Unsplash"
-  },
-  {
-    "objectID": "sessions/example_slides.html#gganimate",
-    "href": "sessions/example_slides.html#gganimate",
-    "title": "Einführung",
-    "section": "gganimate",
-    "text": "gganimate\n\nlibrary(ggplot2)\nlibrary(gganimate)\n\np &lt;- ggplot(mtcars, aes(factor(cyl), mpg)) + \n  geom_boxplot() + \n  # Here comes the gganimate code\n  transition_states(\n    gear,\n    transition_length = 2,\n    state_length = 1\n  ) +\n  enter_fade() + \n  exit_shrink() +\n  ease_aes('sine-in-out')\nanimate(p, renderer = gganimate::gifski_renderer())"
-  },
-  {
-    "objectID": "sessions/example_slides.html#plotly",
-    "href": "sessions/example_slides.html#plotly",
-    "title": "Einführung",
-    "section": "plotly",
-    "text": "plotly\n\nlibrary(plotly)\n\nfig &lt;- plot_ly(midwest, x = ~percollege, color = ~state, type = \"box\")\nfig"
+    "text": "Kursübersicht\n\n  \n\n\n\nZeitplan\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTag 1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEinführung\n\n\n\n\n\nSession 1: Wieso? Weshalb? Warum?\n\n\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2: Die Basics\n\n\n\n\n\nSession 2: Wie?\n\n\n\n\n\nNicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nR für Grafiken\n\n\n\n\n\nSession 3: R für Grafiken\n\n\n\n\n\nNicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nGute Plots\n\n\n\n\n\nSession 4: Was ist eigentlich eine gute Grafik?\n\n\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\n\nTag 2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2: Advanced\n\n\nWeitere Funktionen\n\n\nSession 5: Mehr!\n\n\n\n\n\nNicklas Hafiz, Janine Buchholz\n\n\n\n\n\n\nKeine Treffer"
   },
   {
     "objectID": "sessions/good_plots/slides.html#section",
@@ -172,7 +88,7 @@
     "href": "sessions/good_plots/slides.html#salienz-von-informationen",
     "title": "Was ist eine gute Grafik?",
     "section": "Salienz von Informationen",
-    "text": "Salienz von Informationen"
+    "text": "Salienz von Informationen\nhttps://www.nature.com/articles/nmeth1010-773"
   },
   {
     "objectID": "sessions/good_plots/slides.html#farben",
@@ -336,6 +252,104 @@
     "text": "Übung\nSchlechte Grafiken verbessern: https://www.data-to-viz.com/caveats.html"
   },
   {
+    "objectID": "sessions/more_ggplot/more_ggplot.html",
+    "href": "sessions/more_ggplot/more_ggplot.html",
+    "title": "Mehr ggplot2!",
+    "section": "",
+    "text": "View slides in full screen\n\nAdvanced: Achsen, theme, Titel, Coords, scales, speichern - Nicklas (+Janine)"
+  },
+  {
+    "objectID": "sessions/explorative_plots/explorative_plots.html",
+    "href": "sessions/explorative_plots/explorative_plots.html",
+    "title": "Explorative Grafiken",
+    "section": "",
+    "text": "View slides in full screen\n\nÜbung\n\nExplorative Grafiken - Janine"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
+    "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
+    "title": "Einführung",
+    "section": "Datasaurus Dozen (quartets-Paket)",
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\ndataset\nmean_x\nvar_x\nmean_y\nvar_y\ncor\n\n\n\n\naway\n54.27\n281.23\n47.83\n725.75\n-0.06\n\n\nbullseye\n54.27\n281.21\n47.83\n725.53\n-0.07\n\n\ncircle\n54.27\n280.90\n47.84\n725.23\n-0.07\n\n\ndino\n54.26\n281.07\n47.83\n725.52\n-0.06\n\n\ndots\n54.26\n281.16\n47.84\n725.24\n-0.06\n\n\nh_lines\n54.26\n281.10\n47.83\n725.76\n-0.06\n\n\nhigh_lines\n54.27\n281.12\n47.84\n725.76\n-0.07\n\n\nslant_down\n54.27\n281.12\n47.84\n725.55\n-0.07\n\n\nslant_up\n54.27\n281.19\n47.83\n725.69\n-0.07\n\n\nstar\n54.27\n281.20\n47.84\n725.24\n-0.06\n\n\nv_lines\n54.27\n281.23\n47.84\n725.64\n-0.07\n\n\nwide_lines\n54.27\n281.23\n47.83\n725.65\n-0.07\n\n\nx_shape\n54.26\n281.23\n47.84\n725.22\n-0.07"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#warum-ggplot2",
+    "href": "sessions/Einführung/slides.html#warum-ggplot2",
+    "title": "Einführung",
+    "section": "Warum ggplot2?",
+    "text": "Warum ggplot2?"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#einfach",
+    "href": "sessions/Einführung/slides.html#einfach",
+    "title": "Einführung",
+    "section": "Einfach!",
+    "text": "Einfach!\n\nSimple, schnelle Beispiele"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#beautiful",
+    "href": "sessions/Einführung/slides.html#beautiful",
+    "title": "Einführung",
+    "section": "Beautiful",
+    "text": "Beautiful\n\nBeispiele verschönert"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#section-2",
+    "href": "sessions/Einführung/slides.html#section-2",
+    "title": "Einführung",
+    "section": "",
+    "text": "Example from The R Graph Gallery."
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#section-3",
+    "href": "sessions/Einführung/slides.html#section-3",
+    "title": "Einführung",
+    "section": "",
+    "text": "Image from Wikipedia."
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#section-5",
+    "href": "sessions/Einführung/slides.html#section-5",
+    "title": "Einführung",
+    "section": "",
+    "text": "https://r-graph-gallery.com/best-r-chart-examples https://allisonhorst.com/r-packages-functions"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#example-plot",
+    "href": "sessions/Einführung/slides.html#example-plot",
+    "title": "Einführung",
+    "section": "Example plot",
+    "text": "Example plot"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#gganimate",
+    "href": "sessions/Einführung/slides.html#gganimate",
+    "title": "Einführung",
+    "section": "gganimate",
+    "text": "gganimate"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#generative-art",
+    "href": "sessions/Einführung/slides.html#generative-art",
+    "title": "Einführung",
+    "section": "Generative Art",
+    "text": "Generative Art"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#step-by-step-example",
+    "href": "sessions/Einführung/slides.html#step-by-step-example",
+    "title": "Einführung",
+    "section": "Step By Step example",
+    "text": "Step By Step example"
+  },
+  {
+    "objectID": "sessions/science_plots/science_plots.html",
+    "href": "sessions/science_plots/science_plots.html",
+    "title": "Wissenschaftliche Grafiken (APA)",
+    "section": "",
+    "text": "View slides in full screen\n\nWissenschaftliche Grafiken (APA) - Janine"
+  },
+  {
     "objectID": "sessions/ggplot_intro/slides.html#section",
     "href": "sessions/ggplot_intro/slides.html#section",
     "title": "ggplot2: Basics",
@@ -483,11 +497,81 @@
     "text": "Farben\nhttps://questionsindataviz.com/2023/12/29/what-makes-a-truly-terrible-map/"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Datenvisualisierung in R",
+    "objectID": "sessions/animate_plotly/animate_plotly.html",
+    "href": "sessions/animate_plotly/animate_plotly.html",
+    "title": "Ausblick: gganimate und plotly",
     "section": "",
-    "text": "Kursübersicht\n\n  \n\n\n\nZeitplan\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTag 1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEinführung\n\n\n\n\n\nSession 1: Wieso? Weshalb? Warum?\n\n\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2: Die Basics\n\n\n\n\n\nSession 2: Wie?\n\n\n\n\n\nNicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nR für Grafiken\n\n\n\n\n\nSession 3: R für Grafiken\n\n\n\n\n\nNicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nGute Plots\n\n\n\n\n\nSession 4: Was ist eigentlich eine gute Grafik?\n\n\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\n\nTag 2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2: Advanced\n\n\nWeitere Funktionen\n\n\nSession 5: Mehr!\n\n\n\n\n\nNicklas Hafiz, Janine Buchholz\n\n\n\n\n\n\nKeine Treffer"
+    "text": "View slides in full screen - Was noch so möglich: gganimate/plotly - Janine (+ Nicklas)\n\nÜbung\n\nbisherige Grafik animieren/plotly"
+  },
+  {
+    "objectID": "sessions/example_slides.html#normal-slide",
+    "href": "sessions/example_slides.html#normal-slide",
+    "title": "Einführung",
+    "section": "Normal Slide",
+    "text": "Normal Slide\n\nAdding a website-link: Wikipedia\nLink to specific chapter on other pages: aes-mapping\nThis will highlight text\n\n\n\nFade in\n\n\n\n\n\n\n\n\nCallout block header\n\n\nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod"
+  },
+  {
+    "objectID": "sessions/example_slides.html#columns",
+    "href": "sessions/example_slides.html#columns",
+    "title": "Einführung",
+    "section": "Columns",
+    "text": "Columns\n\n\nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.\n\n\nLorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et"
+  },
+  {
+    "objectID": "sessions/example_slides.html#columns-with-code",
+    "href": "sessions/example_slides.html#columns-with-code",
+    "title": "Einführung",
+    "section": "Columns with code",
+    "text": "Columns with code\n\n\nggplot(cars, \n       aes(x = speed, y = dist)) +\n  geom_point()"
+  },
+  {
+    "objectID": "sessions/example_slides.html#code-annotation",
+    "href": "sessions/example_slides.html#code-annotation",
+    "title": "Einführung",
+    "section": "Code Annotation",
+    "text": "Code Annotation\n\n\n## (Empty line so the copy button doesn't overlays)\n1ggplot(cars,\n2       aes(x = speed, y = dist)) +\n3  geom_point()\n\n\n\n1\n\nInput data\n\n2\n\nDefine mapping\n\n3\n\nAdd layer"
+  },
+  {
+    "objectID": "sessions/example_slides.html#tabs",
+    "href": "sessions/example_slides.html#tabs",
+    "title": "Einführung",
+    "section": "Tabs",
+    "text": "Tabs\n\nAufgabeLösung\n\n\nWir losen Gruppen aus, jede Gruppe bekommt eine eigene Plot-Art. Erst einmal Einzelarbeit.\n\n\n\n\nggplot(cars, \n       aes(x = speed, y = dist)) +\n  geom_point()"
+  },
+  {
+    "objectID": "sessions/example_slides.html#tabs-2",
+    "href": "sessions/example_slides.html#tabs-2",
+    "title": "Einführung",
+    "section": "Tabs 2",
+    "text": "Tabs 2\n\nGraphicCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nset.seed(42)\nmy_weight &lt;- data.frame(\n  month = factor(c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"),\n                 levels = c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"), \n                 ordered = TRUE), \n  weight = rnorm(12, 90, 5)/1000, \n  group = rep(1, 12)\n)\n\nggplot(my_weight, \n       aes(x = month, y = weight, group = group)) +\n  geom_point() +\n  geom_line() +\n  labs(title = \"Mein Gewicht 2024\",\n       subtitle = \"In metrischen Tonnen\", \n       x = \"Monat\", \n       y = \"Gewicht in t\") +\n  ylim(0, 1000) + \n  theme_bw() +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))"
+  },
+  {
+    "objectID": "sessions/example_slides.html#section",
+    "href": "sessions/example_slides.html#section",
+    "title": "Einführung",
+    "section": "",
+    "text": "Background image\n\n\nFoto von Omar Lopez auf Unsplash"
+  },
+  {
+    "objectID": "sessions/example_slides.html#right-side-image",
+    "href": "sessions/example_slides.html#right-side-image",
+    "title": "Einführung",
+    "section": "Right-side image",
+    "text": "Right-side image\n\n\nI can also put images in a column and fill the right side of the slide with the image by using {.image-right}.\nFoto von Fabrice Villard auf Unsplash"
+  },
+  {
+    "objectID": "sessions/example_slides.html#gganimate",
+    "href": "sessions/example_slides.html#gganimate",
+    "title": "Einführung",
+    "section": "gganimate",
+    "text": "gganimate\n\nlibrary(ggplot2)\nlibrary(gganimate)\n\np &lt;- ggplot(mtcars, aes(factor(cyl), mpg)) + \n  geom_boxplot() + \n  # Here comes the gganimate code\n  transition_states(\n    gear,\n    transition_length = 2,\n    state_length = 1\n  ) +\n  enter_fade() + \n  exit_shrink() +\n  ease_aes('sine-in-out')\nanimate(p, renderer = gganimate::gifski_renderer())"
+  },
+  {
+    "objectID": "sessions/example_slides.html#plotly",
+    "href": "sessions/example_slides.html#plotly",
+    "title": "Einführung",
+    "section": "plotly",
+    "text": "plotly\n\nlibrary(plotly)\n\nfig &lt;- plot_ly(midwest, x = ~percollege, color = ~state, type = \"box\")\nfig"
   },
   {
     "objectID": "sessions/ggplot_intro/ggplot2_basics.html",
@@ -497,88 +581,25 @@
     "text": "View slides in full screen\n\nÜbung\n\nAufgabeLösung\n\n\nWir losen Gruppen aus, jede Gruppe bekommt eine eigene Plot-Art. Erst einmal Einzelarbeit.\n\n\n\nlibrary(ggplot2)\nggplot(data = movies_metadat, \n       mapping = aes(x = budget, \n                     y = vote_average)) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Getting a bang for your buck: Are Movies with higher budget also better?\",\n    subtitle = \"There doesn't seem to be a strong relation between movie budget and average rating.\",\n    x = \"Movie budget\",\n    y = \"Average vote\"\n  ) +\n  theme_classic()"
   },
   {
-    "objectID": "sessions/good_plots/good_plots.html",
-    "href": "sessions/good_plots/good_plots.html",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/prep_plots/prep_plots.html",
+    "href": "sessions/prep_plots/prep_plots.html",
+    "title": "Grafiken Druckreif machen",
     "section": "",
-    "text": "View slides in full screen\n\nWahrnehmungspsychologie/Schlechte/Gute Grafiken + Sammeln?/ggplot-Anwendung direkt dazu (z.B. Farben, Annotation … -&gt; Also direkte Anwendung der Theorie) - Janine (+ Nicklas)\n\n\nÜbung\nSchlechte Grafiken diskutieren"
+    "text": "View slides in full screen\n\nÜbung\n\nGrafiken Druckreif machen und vorstellen (verschiedene Ziele/Zielgruppen, Alle die den gleichen Plot-Typ haben gruppieren)"
   },
   {
-    "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
-    "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
-    "title": "Einführung",
-    "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\ndataset\nmean_x\nvar_x\nmean_y\nvar_y\ncor\n\n\n\n\naway\n54.27\n281.23\n47.83\n725.75\n-0.06\n\n\nbullseye\n54.27\n281.21\n47.83\n725.53\n-0.07\n\n\ncircle\n54.27\n280.90\n47.84\n725.23\n-0.07\n\n\ndino\n54.26\n281.07\n47.83\n725.52\n-0.06\n\n\ndots\n54.26\n281.16\n47.84\n725.24\n-0.06\n\n\nh_lines\n54.26\n281.10\n47.83\n725.76\n-0.06\n\n\nhigh_lines\n54.27\n281.12\n47.84\n725.76\n-0.07\n\n\nslant_down\n54.27\n281.12\n47.84\n725.55\n-0.07\n\n\nslant_up\n54.27\n281.19\n47.83\n725.69\n-0.07\n\n\nstar\n54.27\n281.20\n47.84\n725.24\n-0.06\n\n\nv_lines\n54.27\n281.23\n47.84\n725.64\n-0.07\n\n\nwide_lines\n54.27\n281.23\n47.83\n725.65\n-0.07\n\n\nx_shape\n54.26\n281.23\n47.84\n725.22\n-0.07"
+    "objectID": "sessions/r_basics/r_basics.html",
+    "href": "sessions/r_basics/r_basics.html",
+    "title": "R-Basics",
+    "section": "",
+    "text": "View slides in full screen\n\ntidyverse, Factors, long format - Nicklas"
   },
   {
-    "objectID": "sessions/Einführung/slides.html#warum-ggplot2",
-    "href": "sessions/Einführung/slides.html#warum-ggplot2",
-    "title": "Einführung",
-    "section": "Warum ggplot2?",
-    "text": "Warum ggplot2?"
-  },
-  {
-    "objectID": "sessions/Einführung/slides.html#einfach",
-    "href": "sessions/Einführung/slides.html#einfach",
-    "title": "Einführung",
-    "section": "Einfach!",
-    "text": "Einfach!\n\nSimple, schnelle Beispiele"
-  },
-  {
-    "objectID": "sessions/Einführung/slides.html#beautiful",
-    "href": "sessions/Einführung/slides.html#beautiful",
-    "title": "Einführung",
-    "section": "Beautiful",
-    "text": "Beautiful\n\nBeispiele verschönert"
-  },
-  {
-    "objectID": "sessions/Einführung/slides.html#section-2",
-    "href": "sessions/Einführung/slides.html#section-2",
+    "objectID": "sessions/Einführung/Einführung.html",
+    "href": "sessions/Einführung/Einführung.html",
     "title": "Einführung",
     "section": "",
-    "text": "Example from The R Graph Gallery."
-  },
-  {
-    "objectID": "sessions/Einführung/slides.html#section-3",
-    "href": "sessions/Einführung/slides.html#section-3",
-    "title": "Einführung",
-    "section": "",
-    "text": "Image from Wikipedia."
-  },
-  {
-    "objectID": "sessions/Einführung/slides.html#section-5",
-    "href": "sessions/Einführung/slides.html#section-5",
-    "title": "Einführung",
-    "section": "",
-    "text": "https://r-graph-gallery.com/best-r-chart-examples https://allisonhorst.com/r-packages-functions"
-  },
-  {
-    "objectID": "sessions/Einführung/slides.html#example-plot",
-    "href": "sessions/Einführung/slides.html#example-plot",
-    "title": "Einführung",
-    "section": "Example plot",
-    "text": "Example plot"
-  },
-  {
-    "objectID": "sessions/Einführung/slides.html#gganimate",
-    "href": "sessions/Einführung/slides.html#gganimate",
-    "title": "Einführung",
-    "section": "gganimate",
-    "text": "gganimate"
-  },
-  {
-    "objectID": "sessions/Einführung/slides.html#generative-art",
-    "href": "sessions/Einführung/slides.html#generative-art",
-    "title": "Einführung",
-    "section": "Generative Art",
-    "text": "Generative Art"
-  },
-  {
-    "objectID": "sessions/Einführung/slides.html#step-by-step-example",
-    "href": "sessions/Einführung/slides.html#step-by-step-example",
-    "title": "Einführung",
-    "section": "Step By Step example",
-    "text": "Step By Step example"
+    "text": "View slides in full screen\n\nIntro/Beispiele/Motivation/Arten von Grafiken (1 Basic + 1 Schöne) - Janine (+Nicklas)"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#faceting",
@@ -607,5 +628,12 @@
     "title": "Mehr ggplot2!",
     "section": "Abspeichern",
     "text": "Abspeichern\nVektor vs Raster (Rolfs 7)"
+  },
+  {
+    "objectID": "sessions/good_plots/good_plots.html",
+    "href": "sessions/good_plots/good_plots.html",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "View slides in full screen\n\nWahrnehmungspsychologie/Schlechte/Gute Grafiken + Sammeln?/ggplot-Anwendung direkt dazu (z.B. Farben, Annotation … -&gt; Also direkte Anwendung der Theorie) - Janine (+ Nicklas)\n\n\nÜbung\nSchlechte Grafiken diskutieren"
   }
 ]
