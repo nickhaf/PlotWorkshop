@@ -6,3 +6,375 @@ format: letterbox-revealjs
 source(here::here("src", "themes.R"))
 ```
 
+```{r}
+#| echo: false
+
+library(here)
+library(janitor)
+library(ggwordcloud)
+```
+
+```{r}
+#| echo: false
+#| message: false
+
+library(jsonlite)
+library(tidyverse)
+
+get_gapminder <- function(repo = "https://github.com/open-numbers/ddf--gapminder--fasttrack",
+                          keywords = "co2") {
+  ## Get json
+  ## Filter paths there
+  ## use them for download directly
+
+  path_json <- "/refs/heads/master/datapackage.json"
+  raw_url <- gsub("github.com", "raw.githubusercontent.com", "https://raw.githubusercontent.com/open-numbers/ddf--gapminder--fasttrack")
+  download.file(url = paste0(raw_url, path_json), destfile = "datapackage.json")
+
+  json_data <- jsonlite::fromJSON("datapackage.json")
+
+  csv_paths <- json_data$resources$path
+  matched_paths <- csv_paths[str_detect(csv_paths, str_c(keywords, collapse = "|"))]
+
+  if (length(matched_paths) == 0) {
+    stop("No files matched the specified keywords.")
+  }
+
+  matched_paths_url <- paste0(raw_url, "/refs/heads/master/", matched_paths)
+
+  merged_df <- read.csv(matched_paths_url[1])
+
+  # Loop through and merge the rest
+  if (length(matched_paths) > 1) {
+    for (i in 2:length(matched_paths)) {
+      message("Reading file: ", matched_paths_url[i])
+      temp_df <- read_csv(matched_paths_url[i])
+
+      merged_df <- full_join(merged_df, temp_df)
+      rm(temp_df)
+      gc()
+    }
+  }
+
+  if (file.exists("datapackage.json")) {
+    file.remove("datapackage.json")
+  }
+
+  return(merged_df)
+}
+
+gapminder_dat_full <- get_gapminder(keywords = c("pop--", "co2", "--geo--country"))
+```
+
+## Die Daten
+
+Zuerst schauen wir uns nur eins der Jahre genauer an, und zwar nur für die Länder im Datensatz:
+
+```{r}
+gapminder_dat <- gapminder_dat_full %>% 
+  filter(time == "2020", !is.na(country)) 
+```
+
+
+
+## {background-image="images/setup.jpg" background-size="1225px"}
+
+::: {.absolute left="5%" top="5%" style="color:#F8F8F8;"}
+
+Basic Setup
+:::
+
+::: image-ref
+Foto von <a href="https://unsplash.com/de/@adigold1?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Adi Goldstein</a> auf <a href="https://unsplash.com/de/fotos/graustufenfotografie-eines-mannes-im-gestreiften-hemd-rgkKFn5Ysb0?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+
+
+## RStudio Projekte
+
+Hilft ungemein beim Organisieren von Dateien und Code!
+
+:::{.callout-warning}
+## Übung
+Erstelle einen neuen Ordner (falls noch nicht getan) für diesen Workshop, und lege darin ein RStudio Projekt an (`File - New Project`).
+:::
+
+## Skripte
+
+Hier kommt der Code rein!
+
+:::{.callout-warning}
+## Übung
+Erstelle einen neuen Unterordner und lege darin ein R-Skript and (`File - New File - R Script`). In diesen kommen dann die Übungsaufgaben und Notizen aus dem Workshop. Leg am besten für jedes Thema ein eigenes Skript an, damit sie übersichtlich bleiben.
+:::
+
+
+
+## {background-image="images/path.jpg" background-size="1225px"}
+
+::: {.absolute right="5%" top="5%" style="font-size:2em; padding: 0.5em 0.5em; background-color: rgba(255, 255, 255 .7); backdrop-filter: blur(5px); box-shadow: 0 0 1rem 0 rgba(255, 255, 255 .5); border-radius: 5px;"}
+
+Daten und Pfade
+:::
+
+::: image-ref
+Foto von <a href="https://unsplash.com/de/@ugnehenriko?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Ugne Vasyliute</a> auf <a href="https://unsplash.com/de/fotos/gruner-wald-tagsuber-Dag9cv89jb4?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+
+## Einlesen von Daten
+```{css}
+#| echo: false
+
+.reveal table {
+  font-size: 30px;
+}
+
+```
+
+| Data type             | Import                    | Export                    |
+|-----------------------|---------------------------|---------------------------|
+| R objects (.Rdata, .rda) | `load()`                  | `save()`                  |
+| single R object (.rds) | `readRDS()`               | `saveRDS()`               |
+| text-files (.txt)     | `read.table()`            | `write.table()`           |
+| .csv-files (.csv)     | `read.csv()`              | `write.csv()`             |
+| Excel-files (.xlsx)   | `readxl::read_excel()`    | `writexl::write_xlsx()`   |
+| SPSS-files (.sav)     | `haven::read_sav()`       | `haven::write_sav()`      |
+| SAS-files (.sas)      | `haven::read_sas()`       | `haven::write_sas()`      |
+| Stata-files (.stata)  | `haven::read_dta()`       | `haven::write_dta()`      |
+
+: {.striped}
+
+## {background-color="#FFFFFF"}
+
+:::{.columns}
+:::{.column width="30%"}
+Schlecht:
+
+```{r}
+#| eval: false
+setwd()
+```
+
+
+Besser:
+
+Rstudio-Project + [here](https://here.r-lib.org/)
+
+:::
+:::{.column width="70%"}
+![](./images/rproj_here.png){fig-align="center"}
+
+::: image-ref
+Bild von [Alison Horst](https://allisonhorst.com/r-packages-functions).
+:::
+:::
+:::
+
+## {background-color="#FFFFFF"}
+![](./images/here.png){fig-align="center"}
+
+::: image-ref
+Bild von [Alison Horst](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/here.png).
+:::
+
+## [here](https://here.r-lib.org/)-Paket
+
+[here](https://here.r-lib.org/) ist ein Paket zum Erstellen von Dateipfaden. Dadurch können Probleme mit relativen und absoluten Pfaden vermieden werden. 
+
+`C:\Users\hafiznij\Documents\GitHub\IRT_workshop\raw_data\athletes.rds` wird zu:  
+`here::here("raw_data", "athletes.rds")`. 
+
+Also:
+```{r}
+#| eval: false
+# install.packages("here")
+athletes <- readRDS(here::here("raw_data", "athletes.rds"))
+```
+
+
+## Pakete
+
+:::: {.columns} 
+::: {.column width="50%"}
+Pakete sind Erweiterungen zum `base R` und funktionieren ein bisschen wie Apps im Playstore:
+
+- ![](./images/playstore.png){width="19"} Einmalig installieren: 
+
+```{r}  
+#| eval: false
+install.packages("packagename")
+```
+
+- ![](./images/app.png){width="19"} Bei jeder Nutzung in die R-Session laden:
+
+```{r}  
+#| eval: false
+library(packagename)
+```
+
+::: image-ref
+Icons von [icons8.de](https://icons8.de).
+
+:::
+
+:::
+
+::: {.column width="50%"}
+
+![](./images/pakete.jpg){.image-right}
+
+::: image-ref
+Foto von <a href="https://unsplash.com/de/@elnazasadi?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">elnaz asadi</a> auf <a href="https://unsplash.com/de/fotos/ein-mehrfarbiges-muster-aus-sechseckigen-formen-Ej50vyvxJ94?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+
+::: 
+:::: 
+
+## {background-image="images/tidy_universe.png" background-size="1225px"}
+
+::: image-ref
+https://allisonhorst.com/r-packages-functions
+:::
+
+
+## [tidyverse](https://www.tidyverse.org/) {style="text-align: right;"}
+:::: {.columns} 
+
+::: {.column width="40%"}
+![](./images/tidyverse_logo.png)
+
+::: image-ref
+https://upload.wikimedia.org/wikipedia/commons/f/ff/Tidyverse_hex_logo.png
+:::
+
+:::
+::: {.column width="60%"}
+Verbreitete Paketsammlung in R für so ziemlich jede Stufe der Datenauswertung. Der meiste Code den wird schreiben wird wahrscheinlich aus einer Mischung aus `base R` und `tidyverse` bestehen. 
+:::
+::::
+
+## [tidyverse](https://www.tidyverse.org/): Pipe Operator
+
+`%>%`
+
+
+```{r}
+sum(seq(from = 1, to = mean(c(45:100), na.rm = TRUE), by = 0.1))
+```
+
+wird zu:
+
+```{r}
+library(tidyverse)
+
+c(45:100) %>%
+  mean(na.rm = TRUE) %>%
+  seq(from = 1, to = ., by = 0.1) %>%
+  sum
+```
+
+
+## Komplexes konditionales Subsetting
+
+Diese Prinzip können wir uns zu Nutze machen, um mehrere Bedingungen zu verknüpfen:
+
+```{r, output.lines = 6}
+gapminder_dat <- gapminder_dat_full[(gapminder_dat_full$name == "Germany") & (gapminder_dat_full$time > 1990 | gapminder_dat_full$pop > 70000000), ]
+head(gapminder_dat)
+```
+
+:::{.callout-important}
+## `NA`
+Viele der Zeilen enthalten nur `NA` Werte. Das liegt daran, dass der Vergleich in einigen Zeilen nur auf `NAs` zugreifen kann, und dann einfach eine `NA`-Zeile ausgibt
+:::
+
+## Subsetting Zeilen: [Tidyverse](https://www.tidyverse.org/)
+
+```{r, output.lines=4}
+library(tidyverse)
+
+gapminder_dat_full %>%
+  filter(name == "Germany", (gapminder_dat_full$time > 1990 | gapminder_dat_full$pop > 70000000)) %>%
+  head
+```
+
+:::{.callout-tip}
+## `NA`
+Hier werden `NA` Werte automatisch ignoriert.
+:::
+
+## Subsetting Spalten: [Tidyverse](https://www.tidyverse.org/)
+```{r}
+gapminder_dat_full %>%
+  select(name, time) %>%
+  head
+```
+
+
+## Faktoren
+
+## {background-image="images/shadow.jpg" background-size="1225px"}
+
+::: {.absolute right="5%" top="5%" style="padding: 0.5em 0.5em; background-color: rgba(255, 255, 255, 0); backdrop-filter: blur(0px); box-shadow: 0 0 0rem 0 rgba(255, 255, 255, 0); font-size:2.5em;"}
+
+Reshaping
+:::
+
+::: image-ref
+Foto von <a href="https://unsplash.com/de/@steinart?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Steinar Engeland</a> auf <a href="https://unsplash.com/de/fotos/grauer-und-weisser-blumenvorhang-BfMbxUu0EGE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+
+## Wide-Format
+```{r}
+inhabitants_wide <- data.frame(
+  country = c("China", "India", "USA"),
+  inhabitants_2021 = c(1425893465 , 1407563842, NA),
+  inhabitants_2022 = c(1425857720, 1420939232, 338903174)
+)
+
+head(inhabitants_wide)
+```
+
+## Long-Format
+```{r}
+#| echo: false
+
+inhabitants_long <- inhabitants_wide %>%
+  mutate(inhabitants_2021 = c(9597000, 3287000, 9834000)) %>%
+  rename(area = inhabitants_2021) %>%
+  pivot_longer(!country, names_to = "variable", values_to = "value") %>%
+  data.frame()
+
+head(inhabitants_long)
+```
+
+
+## Von Wide zu Long
+
+```{r}
+inhabitants_long_2 <- inhabitants_wide %>%
+  pivot_longer(
+    ## Spalten die gereshaped werden sollen
+    cols = c("inhabitants_2022", "inhabitants_2021"),
+    ## Neue Spalte, in der die bisherigen Spaltennamen gespeichert werden
+    names_to = "year",
+    ## Neue Spalte, in der die bisherigen Werte gespeichert werden
+    values_to = "inhabitants"
+  )
+
+head(inhabitants_long_2)
+```
+
+## Von Long zu Wide
+
+```{r}
+inhabitants_wide_2 <- inhabitants_long %>%
+  pivot_wider(
+    id_cols = "country",
+    names_from = "variable",
+    values_from = "value"
+  )
+
+head(inhabitants_wide_2)
+```
+
+
