@@ -38,6 +38,19 @@ listing:
     - title: "ggplot2: Advanced"
       path: sessions/more_ggplot/more_ggplot.qmd
       description: "**Session 5**: Mehr!"
+    - title: "Wissenschaftliche Grafiken"
+      href: sessions/science_plots/science_plots.qmd
+      image: sessions/science_plots/images/science_plot.jpg
+      description: "**Session 6**: APA"
+    - title: "Explorative Grafiken"
+      href: sessions/explorative_plots/explorative_plots.qmd
+      description: "Muster in Daten erkennen"
+    - title: "**Session 7**: Grafiken Druckreif machen"
+      href: sessions/prep_plots/prep_plots.qmd
+      description: "Finalisieren und Abspeichern"
+    - title: "gganimate & plotly"
+      href: sessions/animate_plotly/animate_plotly.qmd
+      description: "**Session 8**: Ausblick, interaktive und animierte Plots"
 ---
 
 

@@ -1,13 +1,13 @@
 ---
 title: "Wissenschaftliche Grafiken (APA)"
 format: html
+image: ./images/science_plot.jpg
 author: 
   - name: "Janine Buchholz"
   - name: "Nicklas Hafiz"
 ---
 
-
-
+![](./images/science_plot.jpg)
 
 ```{=html}
 <iframe class="slide-deck" src="slides.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
