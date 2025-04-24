@@ -350,6 +350,160 @@
     "text": "View slides in full screen\n\nWissenschaftliche Grafiken (APA) - Janine"
   },
   {
+    "objectID": "sessions/r_basics/slides.html#die-daten",
+    "href": "sessions/r_basics/slides.html#die-daten",
+    "title": "Einführung",
+    "section": "Die Daten",
+    "text": "Die Daten\nZuerst schauen wir uns nur eins der Jahre genauer an, und zwar nur für die Länder im Datensatz:\n\ngapminder_dat &lt;- gapminder_dat_full %&gt;% \n  filter(time == \"2020\", !is.na(country))"
+  },
+  {
+    "objectID": "sessions/r_basics/slides.html#section",
+    "href": "sessions/r_basics/slides.html#section",
+    "title": "Einführung",
+    "section": "",
+    "text": "Basic Setup\n\n\nFoto von Adi Goldstein auf Unsplash"
+  },
+  {
+    "objectID": "sessions/r_basics/slides.html#rstudio-projekte",
+    "href": "sessions/r_basics/slides.html#rstudio-projekte",
+    "title": "Einführung",
+    "section": "RStudio Projekte",
+    "text": "RStudio Projekte\nHilft ungemein beim Organisieren von Dateien und Code!\n\n\n\n\n\n\nÜbung\n\n\nErstelle einen neuen Ordner (falls noch nicht getan) für diesen Workshop, und lege darin ein RStudio Projekt an (File - New Project)."
+  },
+  {
+    "objectID": "sessions/r_basics/slides.html#skripte",
+    "href": "sessions/r_basics/slides.html#skripte",
+    "title": "Einführung",
+    "section": "Skripte",
+    "text": "Skripte\nHier kommt der Code rein!\n\n\n\n\n\n\nÜbung\n\n\nErstelle einen neuen Unterordner und lege darin ein R-Skript and (File - New File - R Script). In diesen kommen dann die Übungsaufgaben und Notizen aus dem Workshop. Leg am besten für jedes Thema ein eigenes Skript an, damit sie übersichtlich bleiben."
+  },
+  {
+    "objectID": "sessions/r_basics/slides.html#section-1",
+    "href": "sessions/r_basics/slides.html#section-1",
+    "title": "Einführung",
+    "section": "",
+    "text": "Daten und Pfade\n\n\nFoto von Ugne Vasyliute auf Unsplash"
+  },
+  {
+    "objectID": "sessions/r_basics/slides.html#einlesen-von-daten",
+    "href": "sessions/r_basics/slides.html#einlesen-von-daten",
+    "title": "Einführung",
+    "section": "Einlesen von Daten",
+    "text": "Einlesen von Daten\n\n\n\n\n\n\n\n\n\n\n\nData type\nImport\nExport\n\n\n\n\nR objects (.Rdata, .rda)\nload()\nsave()\n\n\nsingle R object (.rds)\nreadRDS()\nsaveRDS()\n\n\ntext-files (.txt)\nread.table()\nwrite.table()\n\n\n.csv-files (.csv)\nread.csv()\nwrite.csv()\n\n\nExcel-files (.xlsx)\nreadxl::read_excel()\nwritexl::write_xlsx()\n\n\nSPSS-files (.sav)\nhaven::read_sav()\nhaven::write_sav()\n\n\nSAS-files (.sas)\nhaven::read_sas()\nhaven::write_sas()\n\n\nStata-files (.stata)\nhaven::read_dta()\nhaven::write_dta()"
+  },
+  {
+    "objectID": "sessions/r_basics/slides.html#section-2",
+    "href": "sessions/r_basics/slides.html#section-2",
+    "title": "Einführung",
+    "section": "",
+    "text": "Schlecht:\n\nsetwd()\n\nBesser:\nRstudio-Project + here\n\n\n\n\n\n\n\nBild von Alison Horst."
+  },
+  {
+    "objectID": "sessions/r_basics/slides.html#section-3",
+    "href": "sessions/r_basics/slides.html#section-3",
+    "title": "Einführung",
+    "section": "",
+    "text": "Bild von Alison Horst."
+  },
+  {
+    "objectID": "sessions/r_basics/slides.html#here-paket",
+    "href": "sessions/r_basics/slides.html#here-paket",
+    "title": "Einführung",
+    "section": "here-Paket",
+    "text": "here-Paket\nhere ist ein Paket zum Erstellen von Dateipfaden. Dadurch können Probleme mit relativen und absoluten Pfaden vermieden werden.\nC:\\Users\\hafiznij\\Documents\\GitHub\\IRT_workshop\\raw_data\\athletes.rds wird zu:\nhere::here(\"raw_data\", \"athletes.rds\").\nAlso:\n\n# install.packages(\"here\")\nathletes &lt;- readRDS(here::here(\"raw_data\", \"athletes.rds\"))"
+  },
+  {
+    "objectID": "sessions/r_basics/slides.html#pakete",
+    "href": "sessions/r_basics/slides.html#pakete",
+    "title": "Einführung",
+    "section": "Pakete",
+    "text": "Pakete\n\n\nPakete sind Erweiterungen zum base R und funktionieren ein bisschen wie Apps im Playstore:\n\n Einmalig installieren:\n\n\ninstall.packages(\"packagename\")\n\n\n Bei jeder Nutzung in die R-Session laden:\n\n\nlibrary(packagename)\n\n\nIcons von icons8.de.\n\n\n\n\nFoto von elnaz asadi auf Unsplash"
+  },
+  {
+    "objectID": "sessions/r_basics/slides.html#section-4",
+    "href": "sessions/r_basics/slides.html#section-4",
+    "title": "Einführung",
+    "section": "",
+    "text": "https://allisonhorst.com/r-packages-functions"
+  },
+  {
+    "objectID": "sessions/r_basics/slides.html#tidyverse",
+    "href": "sessions/r_basics/slides.html#tidyverse",
+    "title": "Einführung",
+    "section": "tidyverse",
+    "text": "tidyverse\n\n\n\n\nhttps://upload.wikimedia.org/wikipedia/commons/f/ff/Tidyverse_hex_logo.png\n\n\nVerbreitete Paketsammlung in R für so ziemlich jede Stufe der Datenauswertung. Der meiste Code den wird schreiben wird wahrscheinlich aus einer Mischung aus base R und tidyverse bestehen."
+  },
+  {
+    "objectID": "sessions/r_basics/slides.html#tidyverse-pipe-operator",
+    "href": "sessions/r_basics/slides.html#tidyverse-pipe-operator",
+    "title": "Einführung",
+    "section": "tidyverse: Pipe Operator",
+    "text": "tidyverse: Pipe Operator\n%&gt;%\n\nsum(seq(from = 1, to = mean(c(45:100), na.rm = TRUE), by = 0.1))\n\n[1] 26313\n\n\nwird zu:\n\nlibrary(tidyverse)\n\nc(45:100) %&gt;%\n  mean(na.rm = TRUE) %&gt;%\n  seq(from = 1, to = ., by = 0.1) %&gt;%\n  sum\n\n[1] 26313"
+  },
+  {
+    "objectID": "sessions/r_basics/slides.html#komplexes-konditionales-subsetting",
+    "href": "sessions/r_basics/slides.html#komplexes-konditionales-subsetting",
+    "title": "Einführung",
+    "section": "Komplexes konditionales Subsetting",
+    "text": "Komplexes konditionales Subsetting\nDiese Prinzip können wir uns zu Nutze machen, um mehrere Bedingungen zu verknüpfen:\n\ngapminder_dat &lt;- gapminder_dat_full[(gapminder_dat_full$name == \"Germany\") & (gapminder_dat_full$time &gt; 1990 | gapminder_dat_full$pop &gt; 70000000), ]\nhead(gapminder_dat)\n\n     country time co2_cons co2_pcap_cons co2_pcap_terr  co2_terr\n9951     deu 1938  610.411         8.582         8.407 597990567\n9952     deu 1939  658.472         9.210         9.022 645084955\n9953     deu 1940  664.244         9.259         9.071 650753358\n9954     deu 1941  670.812         9.336         9.147 657186238\n9955     deu 1942  678.009         9.439         9.248 664253692\n9956     deu 1943  689.722         9.622         9.427 675721467\n     cumulative_co2_emissions_tonnes      pop u5pop g77_and_oecd_countries\n9951                     23542560629 70009837    NA                   oecd\n9952                     24201032456 70374463    NA                   oecd\n9953                     24865276755 70611563    NA                   oecd\n9954                     25536089195 70720509    NA                   oecd\n9955                     26214098342 70700669    NA                   oecd\n9956                     26903819845 70551405    NA                   oecd\n     income_groups is--country iso3166_1_alpha2 unicode_region_subtag\n9951   high_income        TRUE               DE                    DE\n9952   high_income        TRUE               DE                    DE\n9953   high_income        TRUE               DE                    DE\n9954   high_income        TRUE               DE                    DE\n9955   high_income        TRUE               DE                    DE\n9956   high_income        TRUE               DE                    DE\n     iso3166_1_alpha3 iso3166_1_numeric iso3166_2 landlocked latitude longitude\n9951              DEU               276      &lt;NA&gt;  coastline     51.5      10.5\n9952              DEU               276      &lt;NA&gt;  coastline     51.5      10.5\n9953              DEU               276      &lt;NA&gt;  coastline     51.5      10.5\n9954              DEU               276      &lt;NA&gt;  coastline     51.5      10.5\n9955              DEU               276      &lt;NA&gt;  coastline     51.5      10.5\n9956              DEU               276      &lt;NA&gt;  coastline     51.5      10.5\n     main_religion_2008    name un_state world_4region       world_6region\n9951          christian Germany     TRUE        europe europe_central_asia\n9952          christian Germany     TRUE        europe europe_central_asia\n9953          christian Germany     TRUE        europe europe_central_asia\n9954          christian Germany     TRUE        europe europe_central_asia\n9955          christian Germany     TRUE        europe europe_central_asia\n9956          christian Germany     TRUE        europe europe_central_asia\n     unicef_region income_3groups                  un_sdg_region\n9951           eca    high_income un_europe_and_northern_america\n9952           eca    high_income un_europe_and_northern_america\n9953           eca    high_income un_europe_and_northern_america\n9954           eca    high_income un_europe_and_northern_america\n9955           eca    high_income un_europe_and_northern_america\n9956           eca    high_income un_europe_and_northern_america\n                 un_sdg_ldc unhcr_region west_and_rest global\n9951 un_not_least_developed unhcr_europe          west   &lt;NA&gt;\n9952 un_not_least_developed unhcr_europe          west   &lt;NA&gt;\n9953 un_not_least_developed unhcr_europe          west   &lt;NA&gt;\n9954 un_not_least_developed unhcr_europe          west   &lt;NA&gt;\n9955 un_not_least_developed unhcr_europe          west   &lt;NA&gt;\n9956 un_not_least_developed unhcr_europe          west   &lt;NA&gt;\n\n\n\n\n\n\n\n\nNA\n\n\nViele der Zeilen enthalten nur NA Werte. Das liegt daran, dass der Vergleich in einigen Zeilen nur auf NAs zugreifen kann, und dann einfach eine NA-Zeile ausgibt"
+  },
+  {
+    "objectID": "sessions/r_basics/slides.html#subsetting-zeilen-tidyverse",
+    "href": "sessions/r_basics/slides.html#subsetting-zeilen-tidyverse",
+    "title": "Einführung",
+    "section": "Subsetting Zeilen: Tidyverse",
+    "text": "Subsetting Zeilen: Tidyverse\n\nlibrary(tidyverse)\n\ngapminder_dat_full %&gt;%\n  filter(name == \"Germany\", (gapminder_dat_full$time &gt; 1990 | gapminder_dat_full$pop &gt; 70000000)) %&gt;%\n  head\n\n  country time co2_cons co2_pcap_cons co2_pcap_terr  co2_terr\n1     deu 1938  610.411         8.582         8.407 597990567\n2     deu 1939  658.472         9.210         9.022 645084955\n3     deu 1940  664.244         9.259         9.071 650753358\n4     deu 1941  670.812         9.336         9.147 657186238\n5     deu 1942  678.009         9.439         9.248 664253692\n6     deu 1943  689.722         9.622         9.427 675721467\n  cumulative_co2_emissions_tonnes      pop u5pop g77_and_oecd_countries\n1                     23542560629 70009837    NA                   oecd\n2                     24201032456 70374463    NA                   oecd\n3                     24865276755 70611563    NA                   oecd\n4                     25536089195 70720509    NA                   oecd\n5                     26214098342 70700669    NA                   oecd\n6                     26903819845 70551405    NA                   oecd\n  income_groups is--country iso3166_1_alpha2 unicode_region_subtag\n1   high_income        TRUE               DE                    DE\n2   high_income        TRUE               DE                    DE\n3   high_income        TRUE               DE                    DE\n4   high_income        TRUE               DE                    DE\n5   high_income        TRUE               DE                    DE\n6   high_income        TRUE               DE                    DE\n  iso3166_1_alpha3 iso3166_1_numeric iso3166_2 landlocked latitude longitude\n1              DEU               276      &lt;NA&gt;  coastline     51.5      10.5\n2              DEU               276      &lt;NA&gt;  coastline     51.5      10.5\n3              DEU               276      &lt;NA&gt;  coastline     51.5      10.5\n4              DEU               276      &lt;NA&gt;  coastline     51.5      10.5\n5              DEU               276      &lt;NA&gt;  coastline     51.5      10.5\n6              DEU               276      &lt;NA&gt;  coastline     51.5      10.5\n  main_religion_2008    name un_state world_4region       world_6region\n1          christian Germany     TRUE        europe europe_central_asia\n2          christian Germany     TRUE        europe europe_central_asia\n3          christian Germany     TRUE        europe europe_central_asia\n4          christian Germany     TRUE        europe europe_central_asia\n5          christian Germany     TRUE        europe europe_central_asia\n6          christian Germany     TRUE        europe europe_central_asia\n  unicef_region income_3groups                  un_sdg_region\n1           eca    high_income un_europe_and_northern_america\n2           eca    high_income un_europe_and_northern_america\n3           eca    high_income un_europe_and_northern_america\n4           eca    high_income un_europe_and_northern_america\n5           eca    high_income un_europe_and_northern_america\n6           eca    high_income un_europe_and_northern_america\n              un_sdg_ldc unhcr_region west_and_rest global\n1 un_not_least_developed unhcr_europe          west   &lt;NA&gt;\n2 un_not_least_developed unhcr_europe          west   &lt;NA&gt;\n3 un_not_least_developed unhcr_europe          west   &lt;NA&gt;\n4 un_not_least_developed unhcr_europe          west   &lt;NA&gt;\n5 un_not_least_developed unhcr_europe          west   &lt;NA&gt;\n6 un_not_least_developed unhcr_europe          west   &lt;NA&gt;\n\n\n\n\n\n\n\n\nNA\n\n\nHier werden NA Werte automatisch ignoriert."
+  },
+  {
+    "objectID": "sessions/r_basics/slides.html#subsetting-spalten-tidyverse",
+    "href": "sessions/r_basics/slides.html#subsetting-spalten-tidyverse",
+    "title": "Einführung",
+    "section": "Subsetting Spalten: Tidyverse",
+    "text": "Subsetting Spalten: Tidyverse\n\ngapminder_dat_full %&gt;%\n  select(name, time) %&gt;%\n  head\n\n         name time\n1 Afghanistan 1800\n2 Afghanistan 1801\n3 Afghanistan 1802\n4 Afghanistan 1803\n5 Afghanistan 1804\n6 Afghanistan 1805"
+  },
+  {
+    "objectID": "sessions/r_basics/slides.html#faktoren",
+    "href": "sessions/r_basics/slides.html#faktoren",
+    "title": "Einführung",
+    "section": "Faktoren",
+    "text": "Faktoren"
+  },
+  {
+    "objectID": "sessions/r_basics/slides.html#section-5",
+    "href": "sessions/r_basics/slides.html#section-5",
+    "title": "Einführung",
+    "section": "",
+    "text": "Reshaping\n\n\nFoto von Steinar Engeland auf Unsplash"
+  },
+  {
+    "objectID": "sessions/r_basics/slides.html#wide-format",
+    "href": "sessions/r_basics/slides.html#wide-format",
+    "title": "Einführung",
+    "section": "Wide-Format",
+    "text": "Wide-Format\n\ninhabitants_wide &lt;- data.frame(\n  country = c(\"China\", \"India\", \"USA\"),\n  inhabitants_2021 = c(1425893465 , 1407563842, NA),\n  inhabitants_2022 = c(1425857720, 1420939232, 338903174)\n)\n\nhead(inhabitants_wide)\n\n  country inhabitants_2021 inhabitants_2022\n1   China       1425893465       1425857720\n2   India       1407563842       1420939232\n3     USA               NA        338903174"
+  },
+  {
+    "objectID": "sessions/r_basics/slides.html#long-format",
+    "href": "sessions/r_basics/slides.html#long-format",
+    "title": "Einführung",
+    "section": "Long-Format",
+    "text": "Long-Format\n\n\n  country         variable      value\n1   China             area    9597000\n2   China inhabitants_2022 1425857720\n3   India             area    3287000\n4   India inhabitants_2022 1420939232\n5     USA             area    9834000\n6     USA inhabitants_2022  338903174"
+  },
+  {
+    "objectID": "sessions/r_basics/slides.html#von-wide-zu-long",
+    "href": "sessions/r_basics/slides.html#von-wide-zu-long",
+    "title": "Einführung",
+    "section": "Von Wide zu Long",
+    "text": "Von Wide zu Long\n\ninhabitants_long_2 &lt;- inhabitants_wide %&gt;%\n  pivot_longer(\n    ## Spalten die gereshaped werden sollen\n    cols = c(\"inhabitants_2022\", \"inhabitants_2021\"),\n    ## Neue Spalte, in der die bisherigen Spaltennamen gespeichert werden\n    names_to = \"year\",\n    ## Neue Spalte, in der die bisherigen Werte gespeichert werden\n    values_to = \"inhabitants\"\n  )\n\nhead(inhabitants_long_2)\n\n# A tibble: 6 × 3\n  country year             inhabitants\n  &lt;chr&gt;   &lt;chr&gt;                  &lt;dbl&gt;\n1 China   inhabitants_2022  1425857720\n2 China   inhabitants_2021  1425893465\n3 India   inhabitants_2022  1420939232\n4 India   inhabitants_2021  1407563842\n5 USA     inhabitants_2022   338903174\n6 USA     inhabitants_2021          NA"
+  },
+  {
+    "objectID": "sessions/r_basics/slides.html#von-long-zu-wide",
+    "href": "sessions/r_basics/slides.html#von-long-zu-wide",
+    "title": "Einführung",
+    "section": "Von Long zu Wide",
+    "text": "Von Long zu Wide\n\ninhabitants_wide_2 &lt;- inhabitants_long %&gt;%\n  pivot_wider(\n    id_cols = \"country\",\n    names_from = \"variable\",\n    values_from = \"value\"\n  )\n\nhead(inhabitants_wide_2)\n\n# A tibble: 3 × 3\n  country    area inhabitants_2022\n  &lt;chr&gt;     &lt;dbl&gt;            &lt;dbl&gt;\n1 China   9597000       1425857720\n2 India   3287000       1420939232\n3 USA     9834000        338903174"
+  },
+  {
     "objectID": "sessions/ggplot_intro/slides.html#section",
     "href": "sessions/ggplot_intro/slides.html#section",
     "title": "ggplot2: Basics",
