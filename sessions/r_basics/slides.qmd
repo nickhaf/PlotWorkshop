@@ -274,44 +274,63 @@ c(45:100) %>%
 ```
 
 
-## Komplexes konditionales Subsetting
+# Subsetting
+"Zeilen [z]{.highlight}uerst, Spalten [s]{.highlight}päter"
+`[Zeile, Spalte]`
+
+
+## Einfaches Subsetting
+\
+```{r}
+# Auswahl der Spalten
+gapminder_dat_full[c(1,4), c("country", "time")]
+```
+
+## Konditionales Subsettting
+```{r, output.lines = 2}
+gapminder_dat <- gapminder_dat_full[gapminder_dat_full$name == "Germany", ]
+head(gapminder_dat)
+```
+
+Im `tidyverse`:
+
+```{r, output.lines = 2}
+gapminder_dat <- gapminder_dat_full %>% 
+  filter(gapminder_dat_full$name == "Germany")
+head(gapminder_dat)
+```
+
+
+## Komplexes konditionales Subsetting: [tidyverse](https://www.tidyverse.org/)
 
 Diese Prinzip können wir uns zu Nutze machen, um mehrere Bedingungen zu verknüpfen:
 
 ```{r, output.lines = 6}
-gapminder_dat <- gapminder_dat_full[(gapminder_dat_full$name == "Germany") & (gapminder_dat_full$time > 1990 | gapminder_dat_full$pop > 70000000), ]
+gapminder_dat <- gapminder_dat_full %>% 
+  filter(name == "Germany" & (gapminder_dat_full$time > 1990 | gapminder_dat_full$pop > 70000000))
 head(gapminder_dat)
 ```
 
-:::{.callout-important}
-## `NA`
-Viele der Zeilen enthalten nur `NA` Werte. Das liegt daran, dass der Vergleich in einigen Zeilen nur auf `NAs` zugreifen kann, und dann einfach eine `NA`-Zeile ausgibt
-:::
 
-## Subsetting Zeilen: [Tidyverse](https://www.tidyverse.org/)
-
-```{r, output.lines=4}
-library(tidyverse)
-
-gapminder_dat_full %>%
-  filter(name == "Germany", (gapminder_dat_full$time > 1990 | gapminder_dat_full$pop > 70000000)) %>%
-  head
-```
-
-:::{.callout-tip}
-## `NA`
-Hier werden `NA` Werte automatisch ignoriert.
-:::
-
-## Subsetting Spalten: [Tidyverse](https://www.tidyverse.org/)
+## Subsetting Spalten: [tidyverse](https://www.tidyverse.org/)
 ```{r}
 gapminder_dat_full %>%
   select(name, time) %>%
   head
 ```
 
-
 ## Faktoren
+Eventuell auh einfach später einführen, wenn gebraucht!
+
+```{r}
+gapminder_dat_full$country
+```
+
+
+```{r}
+as.factor(gapminder_dat_full$country)
+```
+
 
 ## {background-image="images/shadow.jpg" background-size="1225px"}
 
@@ -323,6 +342,7 @@ Reshaping
 ::: image-ref
 Foto von <a href="https://unsplash.com/de/@steinart?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Steinar Engeland</a> auf <a href="https://unsplash.com/de/fotos/grauer-und-weisser-blumenvorhang-BfMbxUu0EGE?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 :::
+
 
 ## Wide-Format
 ```{r}
