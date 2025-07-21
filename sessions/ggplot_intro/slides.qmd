@@ -112,7 +112,10 @@ Foto von <a href="https://unsplash.com/de/@omarlopez1?utm_content=creditCopyText
 
 ```{r}
 #| output-location: column
-#| code-line-numbers: "1|2,3|4"
+
+#https://thebioengineer.github.io/camcorder/
+
+
 ```
 
 
@@ -120,23 +123,175 @@ Foto von <a href="https://unsplash.com/de/@omarlopez1?utm_content=creditCopyText
 
 ## Komponenten
 
-1. Daten.
-2. [Aesthetic mapping]{.highlight} zwischen Daten und visuellen Eigenschaften.
-3. [Layer(s)]{.highlight} zum rendern der Daten. 
+:::: {.columns}
+
+::: {.column width="33%"}
+### Daten
+
+\
+\
+
+```{r}
+#| echo: false
+
+df <- data.frame(
+  x = c(1, 2, 3, 4, 5, 2, 3, 4, 1.5, 4.5),
+  y = c(2, 3, 2.5, 4, 3, 1, 1.5, 2, 4.5, 1),
+  group = factor(c("A", "A", "A", "A", "A", "B", "B", "B", "C", "C")),
+  size = c(4, 5, 6, 7, 8, 3, 4, 3, 5, 6),
+  shape = factor(c("circle", "circle", "circle", "circle", "circle", 
+                   "circle", "circle", "circle", "triangle", "triangle"))
+)
+
+head(df)
+```
+
+:::
+
+::: {.column width="33%"}
+### Aestetic mapping
+
+```{r}
+#| echo: false
+
+# Plot
+ggplot(df, aes(x = x, y = y)) +
+  geom_point(aes(color = group, size = size, shape = shape), alpha = 0.8) +
+  scale_shape_manual(values = c(circle = 16, triangle = 17)) +
+  scale_color_manual(values = c("A" = "#1b9e77", "B" = "#7570b3", "C" = "#d95f02")) +
+
+  # Curved annotation arrows (thicker)
+  annotate("curve", x = 5.2, y = 3.5, xend = 5, yend = 3,
+           curvature = -0.3, 
+           arrow = arrow(length = unit(0.25, "cm")), 
+           color = "black", size = 0.9) +
+  annotate("text", x = 5.3, y = 3.6, label = "color aesthetic", 
+           hjust = 0, size = 5, fontface = "bold") +
+
+  annotate("curve", x = 3.5, y = 2.3, xend = 3, yend = 2.5,
+           curvature = 0.3, 
+           arrow = arrow(length = unit(0.25, "cm")), 
+           color = "black", size = 0.9) +
+  annotate("text", x = 3.6, y = 2.2, label = "size aesthetic", 
+           hjust = 0, size = 5, fontface = "bold") +
+
+  annotate("curve", x = 2.5, y = 4.8, xend = 1.5, yend = 4.5,
+           curvature = -0.4, 
+           arrow = arrow(length = unit(0.25, "cm")), 
+           color = "black", size = 0.9) +
+  annotate("text", x = 2.6, y = 4.9, label = "shape aesthetic", 
+           hjust = 0, size = 5, fontface = "bold") +
+
+  labs(
+    title = "ggplot2 Aesthetics",
+    x = "x aesthetic",
+    y = "y aesthetic"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    legend.position = "none"
+  ) +
+  xlim(0, 8)
+
+```
+
+
+:::
+
+::: {.column width="33%"}
+### Layers
+
+```{r}
+#| echo: false
+#| eval: false
+
+library(ggplot2)
+library(camcorder)
+
+gg_record(
+  dir = here::here("ggplot_intro", "images"), # where to save the recording
+  device = "png", # device to use to save images
+  width = 2,      # width of saved image
+  height = 3,     # height of saved image
+  units = "in",   # units for width and height
+  dpi = 300       # dpi to use when saving image
+)
+
+ggplot(df, aes(x = x, y = y)) +
+  geom_point()
+
+
+ggplot(df, aes(x = x, y = y)) +
+  geom_point(aes(color = group, size = size, shape = shape), alpha = 0.8)
+
+ggplot(df, aes(x = x, y = y)) +
+  geom_point(aes(color = group, size = size, shape = shape), alpha = 0.8) +
+  scale_shape_manual(values = c(circle = 16, triangle = 17))
+
+ggplot(df, aes(x = x, y = y)) +
+  geom_point(aes(color = group, size = size, shape = shape), alpha = 0.8) +
+  scale_shape_manual(values = c(circle = 16, triangle = 17)) +
+  scale_color_manual(values = c("A" = "#1b9e77", "B" = "#7570b3", "C" = "#d95f02"))
+
+
+ggplot(df, aes(x = x, y = y)) +
+  geom_point(aes(color = group, size = size, shape = shape), alpha = 0.8) +
+  scale_shape_manual(values = c(circle = 16, triangle = 17)) +
+  scale_color_manual(values = c("A" = "#1b9e77", "B" = "#7570b3", "C" = "#d95f02")) +
+  labs(
+    title = "ggplot2 Aesthetics",
+    x = "x aesthetic",
+    y = "y aesthetic"
+  ) 
+
+ggplot(df, aes(x = x, y = y)) +
+  geom_point(aes(color = group, size = size, shape = shape), alpha = 0.8) +
+  scale_shape_manual(values = c(circle = 16, triangle = 17)) +
+  scale_color_manual(values = c("A" = "#1b9e77", "B" = "#7570b3", "C" = "#d95f02")) +
+  labs(
+    title = "ggplot2 Aesthetics",
+    x = "x aesthetic",
+    y = "y aesthetic"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", hjust = 0.5),
+    legend.position = "none"
+  ) +
+  xlim(0, 8)
+
+gg_playback(
+  name = here::here("ggplot_intro", "images", "layers.gif"),
+  first_image_duration = 2,
+  last_image_duration = 2,
+  frame_duration = 4
+)
+
+gg_stop_recording()
+
+```
+
+![](./images/layers.gif)
+
+:::
+
+::::
+
 
 ## Die Daten
 
 Wir nutzen Daten von [Gapminder](https://www.gapminder.org/data/).  
 
 ::: {.callout-note}
-Gapminder sammelt diverse Indikatoren über viele Jahre aus allen Ländern weltweit, z.B. Lebenserwartung, GDP, CO2-Verbrauch und viele mehr. 
+Gapminder sammelt diverse Indikatoren aus allen Ländern weltweit, z.B. Lebenserwartung, GDP, CO2-Verbrauch und viele mehr. 
 :::
 
 Bekannt sind vor allem die [Bubble-Plots](https://www.gapminder.org/tools/#$chart-type=bubbles&url=v2).
 
 \
 
-![](./images/bubbleplot.png){height="95%" }
+![](./images/bubbleplot.png){width=60% }
 
 
 ## Die Daten
@@ -426,15 +581,3 @@ ggplot(
   theme_classic()
 ```
 
-
-
-## Übung
-
-
-## Abspeichern
-
-
-
-## Farben 
-
-https://questionsindataviz.com/2023/12/29/what-makes-a-truly-terrible-map/

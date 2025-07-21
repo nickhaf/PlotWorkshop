@@ -16,26 +16,39 @@ author:
 ::: {.panel-tabset}
 
 ## Aufgabe 
-Wir losen Gruppen aus, jede Gruppe bekommt eine eigene Plot-Art. Erst einmal Einzelarbeit.
+1. Auslosen von Gruppen. 
+2. Einzelarbeit: Jede*r erstellt in Einzelarbeit den zugewiesenen Plot (15 min). 
+
+- Lineplot
+- Barplot
+- Densityplot
+- Boxplot
+
+3. Gruppenarbeit: Zusammenfinden in den Gruppen, um einen finalen Plot zu küren/erstellen (10 min).  
+4. Plenum: Vorstellen der Gruppenplots. 
 
 ## Lösung
 
 ```{r}
 #| eval: false 
 library(ggplot2)
-ggplot(data = movies_metadat, 
-       mapping = aes(x = budget, 
-                     y = vote_average)) +
-  geom_point() +
-  geom_smooth() +
-  labs(
-    title = "Getting a bang for your buck: Are Movies with higher budget also better?",
-    subtitle = "There doesn't seem to be a strong relation between movie budget and average rating.",
-    x = "Movie budget",
-    y = "Average vote"
-  ) +
-  theme_classic()
+
+## Daten laden
+
 ```
+
+
+### Scatterplot
+
+
+### Barplot
+
+
+### Densityplot
+z.b. mit scatterplot kombinieren
+
+### Boxplot
+z.b. mit scatterplot verbinden
 
 :::
 
