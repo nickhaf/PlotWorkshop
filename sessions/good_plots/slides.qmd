@@ -80,7 +80,10 @@ Darstellung von David McCandless in [Knowledge is Beautiful (2014)](https://info
 
 
 
-# Integrität der Informationen
+# Informationen
+
+- Integrität der Datenquelle
+- Integrität der Darstellung
 
 ## Darstellung von Größen
 
@@ -260,6 +263,11 @@ Am besten noch mit anderen Kategorien dazu
 
 
 
+# Story
+
+
+# Goal
+
 # Nützlichkeit
 
 "Design is a requirement, not a cosmetic addition." [nature methods](https://www.nature.com/articles/nmeth.1783)
@@ -324,6 +332,10 @@ Handschriftliche Skizze ist auch erstmal hilfreich!
 - Redundanzen Reduzieren
 - Fokus auf das Wesentliche
 https://www.data-to-viz.com/caveat/declutter.html
+
+
+# Visual Form
+
 
 ## 
 Beispiel von einem komplexen Plot bringen, den wir schon erzeugt haben, und dann reduzieren!
