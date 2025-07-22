@@ -340,7 +340,7 @@
     "href": "sessions/good_plots/slides.html#section-3",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Joining with `by = join_by(country)`\n\n\n\n\nWarning: Removed 6 rows containing missing values or values outside the scale range\n(`geom_text()`).\n\n\n\n\n\n\n\nData from Rockefeller Institute and Wikipedia."
+    "text": "Data from Rockefeller Institute and Wikipedia."
   },
   {
     "objectID": "sessions/good_plots/slides.html#übung",
@@ -459,7 +459,7 @@
     "href": "sessions/good_plots/slides.html#darstellung-von-größen",
     "title": "Was ist eine gute Grafik?",
     "section": "Darstellung von Größen",
-    "text": "Darstellung von Größen\n\n\n\n\n\n\n\n\n\n\nWarning: Removed 6 rows containing missing values or values outside the scale range\n(`geom_tile()`)."
+    "text": "Darstellung von Größen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDie Größe von Kreisen einzuschätzen ist schwer!"
   },
   {
     "objectID": "sessions/good_plots/slides.html#manipulation-von-achsen",
@@ -473,7 +473,7 @@
     "href": "sessions/good_plots/slides.html#manipulation-des-bildformats",
     "title": "Was ist eine gute Grafik?",
     "section": "Manipulation des Bildformats",
-    "text": "Manipulation des Bildformats\n\n\nGrafik\nCode\n\n\n\n\n\nWarning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.\nℹ Please use the `linewidth` argument instead.\n\n\n\n\n\n\n\n\nset.seed(42)\nmy_weight &lt;- data.frame(\n  month = factor(c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"),\n                 levels = c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"), \n                 ordered = TRUE), \n  weight = rnorm(12, 90, 5)/1000, \n  group = rep(1, 12)\n)\n\nggplot(my_weight, \n       aes(x = month, y = weight, group = group)) +\n  geom_point() +\n  geom_line() +\n  labs(title = \"Mein Gewicht 2024\",\n       subtitle = \"In metrischen Tonnen\", \n       x = \"Monat\", \n       y = \"Gewicht in t\") +\n  ylim(0, 1000) + \n  theme_bg() +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))"
+    "text": "Manipulation des Bildformats\n\n\nGrafik\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nset.seed(42)\nmy_weight &lt;- data.frame(\n  month = factor(c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"),\n                 levels = c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"), \n                 ordered = TRUE), \n  weight = rnorm(12, 90, 5)/1000, \n  group = rep(1, 12)\n)\n\nggplot(my_weight, \n       aes(x = month, y = weight, group = group)) +\n  geom_point() +\n  geom_line() +\n  labs(title = \"Mein Gewicht 2024\",\n       subtitle = \"In metrischen Tonnen\", \n       x = \"Monat\", \n       y = \"Gewicht in t\") +\n  ylim(0, 1000) + \n  theme_bg() +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))"
   },
   {
     "objectID": "sessions/good_plots/slides.html#election-plot",
@@ -1097,5 +1097,12 @@
     "title": "ggplot2: Basics",
     "section": "1. Daten",
     "text": "1. Daten\n\n\nggplot(data = gapminder_dat)"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#deshalb-finger-weg-von-pie-charts",
+    "href": "sessions/good_plots/slides.html#deshalb-finger-weg-von-pie-charts",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Deshalb: Finger weg von Pie Charts!",
+    "text": "Deshalb: Finger weg von Pie Charts!\n\n\nVersuche, die Größen zu sortieren:"
   }
 ]

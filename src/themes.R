@@ -19,6 +19,8 @@ theme_minimal_bg <- function() {
       strip.background = element_rect(fill = "#F8F8F8", colour = "#01364C"),
       panel.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"),
       plot.background = element_rect(fill = "#F8F8F8", colour = "#F8F8F8"),
+      legend.background = element_rect(fill="#F8F8F8"), #transparent legend bg
+      legend.box.background = element_rect(fill="#F8F8F8"),  #transparent legend panel
       text = element_text(colour = "#01364C", size = 14),
       axis.title = element_blank(),
       axis.text = element_blank(),
@@ -26,3 +28,15 @@ theme_minimal_bg <- function() {
       panel.grid = element_blank()
     )
 }
+
+
+theme_colors <- c(
+  "#208C7A",   # darkened green (#269b88 darkened by 5%)
+  "#F4BA02",  # yellow
+  "#9B1B34",  # red
+  "#01364C",  # darkblue
+  "#472120",  # brown
+  "#E1E8EB",  # white
+  "#00e0e0"  # blue
+)
+
