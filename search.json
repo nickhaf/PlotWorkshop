@@ -231,20 +231,6 @@
     "text": "Darstellung von David McCandless in Knowledge is Beautiful (2014)."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#darstellung-von-größen",
-    "href": "sessions/good_plots/slides.html#darstellung-von-größen",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Darstellung von Größen",
-    "text": "Darstellung von Größen"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#finger-weg-von-pie-charts",
-    "href": "sessions/good_plots/slides.html#finger-weg-von-pie-charts",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Finger weg von Pie Charts!",
-    "text": "Finger weg von Pie Charts!"
-  },
-  {
     "objectID": "sessions/good_plots/slides.html#manipulation-von-achsen",
     "href": "sessions/good_plots/slides.html#manipulation-von-achsen",
     "title": "Was ist eine gute Grafik?",
@@ -271,6 +257,20 @@
     "title": "Was ist eine gute Grafik?",
     "section": "Fehlender Kontext",
     "text": "Fehlender Kontext\nAusschnitt aus Zeitreihe, ohne KOntext schwer zu Interpretieren. Irgendwas mit Schuldenpaket z.B.? Am besten noch mit anderen Kategorien dazu - Co2 Data insgesamt ohne Population zeigen"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#darstellung-von-größen",
+    "href": "sessions/good_plots/slides.html#darstellung-von-größen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Darstellung von Größen",
+    "text": "Darstellung von Größen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDie Größe von Kreisen einzuschätzen ist schwer!"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#das-gleiche-gilt-für-winkel",
+    "href": "sessions/good_plots/slides.html#das-gleiche-gilt-für-winkel",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Das gleiche gilt für Winkel!",
+    "text": "Das gleiche gilt für Winkel!\n\n\nVersuche, die Größen zu sortieren:"
   },
   {
     "objectID": "sessions/good_plots/slides.html#funktionelles-design",
