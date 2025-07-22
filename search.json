@@ -28,13 +28,6 @@
     "text": "Erste Schritte.\n\n\nFoto von Omar Lopez auf Unsplash"
   },
   {
-    "objectID": "sessions/ggplot_intro/slides.html#the-big-picture",
-    "href": "sessions/ggplot_intro/slides.html#the-big-picture",
-    "title": "ggplot2: Basics",
-    "section": "The Big picture",
-    "text": "The Big picture\n\n\n#https://thebioengineer.github.io/camcorder/"
-  },
-  {
     "objectID": "sessions/ggplot_intro/slides.html#komponenten",
     "href": "sessions/ggplot_intro/slides.html#komponenten",
     "title": "ggplot2: Basics",
@@ -98,6 +91,13 @@
     "text": "Layers: Punkte\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point()"
   },
   {
+    "objectID": "sessions/ggplot_intro/slides.html#übung-1",
+    "href": "sessions/ggplot_intro/slides.html#übung-1",
+    "title": "ggplot2: Basics",
+    "section": "Übung 1",
+    "text": "Übung 1\nJetzt wisst ihr genug, um einen ersten eigenen Plot zu erstellen.\n\nBeschreiben, was erstellt werden soll. Vielleicht ein anderer Plottyp? Oder eine andere Variable?"
+  },
+  {
     "objectID": "sessions/ggplot_intro/slides.html#mehr-aesthetics",
     "href": "sessions/ggplot_intro/slides.html#mehr-aesthetics",
     "title": "ggplot2: Basics",
@@ -110,6 +110,13 @@
     "title": "ggplot2: Basics",
     "section": "Mehr Layers!",
     "text": "Mehr Layers!\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons, \n    color = world_6region\n  )\n) +\n  geom_point() +\n  geom_smooth()"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#übung-2",
+    "href": "sessions/ggplot_intro/slides.html#übung-2",
+    "title": "ggplot2: Basics",
+    "section": "Übung 2",
+    "text": "Übung 2\nProbiert aus, wo in den ggplot-layers man die Farbe Ändern kann (es gibt 3 verschiedene Möglichkeiten, die sich alle unterschiedlich auf den Plot auswirken). Ziel: Nur die Punkte sollen farbig sein. Es soll dann nur eine geom-smooth für den gesamten Trend geben."
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#aestetics-als-mapping-oder-setting",
@@ -256,7 +263,14 @@
     "href": "sessions/good_plots/slides.html#fehlender-kontext",
     "title": "Was ist eine gute Grafik?",
     "section": "Fehlender Kontext",
-    "text": "Fehlender Kontext\nAusschnitt aus Zeitreihe, ohne KOntext schwer zu Interpretieren. Irgendwas mit Schuldenpaket z.B.? Am besten noch mit anderen Kategorien dazu - Co2 Data insgesamt ohne Population zeigen"
+    "text": "Fehlender Kontext\n\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;% \nfilter(time == 2020) %&gt;% \narrange(desc(co2_cons))\n\nggplot(gapminder_2020[1:10, ], \n       aes(x = reorder(country, co2_cons), y = co2_cons)) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\nlabs(title = \"China burns the most CO2!\", \nsubtitle = \"Total CO2 consumption in the biggest emmiting countries\") +\ntheme_bg()\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;% \nfilter(time == 2020) %&gt;% \narrange(desc(co2_pcap_cons) )\n\nggplot(gapminder_2020[1:10, ], \n       aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\nlabs(title = \"CO2 consumption per capita in the biggest emmiting countries\") +\ntheme_bg()"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#fehlender-kontext-1",
+    "href": "sessions/good_plots/slides.html#fehlender-kontext-1",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Fehlender Kontext",
+    "text": "Fehlender Kontext\nHaushalt so groß wie nie"
   },
   {
     "objectID": "sessions/good_plots/slides.html#darstellung-von-größen",
@@ -280,8 +294,8 @@
     "text": "Funktionelles Design\nWelche Funktion?\n\n\n\n\nFoto von BVG\n\n\n\n\nFoto von BVG"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#section-1",
-    "href": "sessions/good_plots/slides.html#section-1",
+    "objectID": "sessions/good_plots/slides.html#section-2",
+    "href": "sessions/good_plots/slides.html#section-2",
     "title": "Was ist eine gute Grafik?",
     "section": "",
     "text": "Dabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen.\nHandschriftliche Skizze ist auch erstmal hilfreich!"
@@ -294,8 +308,8 @@
     "text": "Simplify to clarify\n\nRedundanzen Reduzieren\nFokus auf das Wesentliche https://www.data-to-viz.com/caveat/declutter.html"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#section-2",
-    "href": "sessions/good_plots/slides.html#section-2",
+    "objectID": "sessions/good_plots/slides.html#section-3",
+    "href": "sessions/good_plots/slides.html#section-3",
     "title": "Was ist eine gute Grafik?",
     "section": "",
     "text": "Beispiel von einem komplexen Plot bringen, den wir schon erzeugt haben, und dann reduzieren!"
@@ -399,8 +413,8 @@
     "text": "Purpose\n\nExploratory vs. Explanatory\nKann oft über reines Zeigen der Daten hinausgehen."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#section-3",
-    "href": "sessions/good_plots/slides.html#section-3",
+    "objectID": "sessions/good_plots/slides.html#section-4",
+    "href": "sessions/good_plots/slides.html#section-4",
     "title": "Was ist eine gute Grafik?",
     "section": "",
     "text": "Data from Rockefeller Institute and Wikipedia."
