@@ -85,6 +85,79 @@ Darstellung von David McCandless in [Knowledge is Beautiful (2014)](https://info
 - Integrität der Datenquelle
 - Integrität der Darstellung
 
+
+
+## Manipulation von Achsen
+Beispiel aus der Einführung nehmen, aber Achse Cutten und oder nicht bei Null starten lassen. Dann eine weirde Message schreiben! 
+Am besten etwas mit hohen nominalen Zahlen. Vielleicht etwas das sich über die Jahre verbessert hat?
+Dann alternativen zeigen, z.B. Ranzoomen!
+
+
+https://www.data-to-viz.com/caveat/cut_y_axis.html
+
+## Manipulation des Bildformats
+
+::: panel-tabset
+### Grafik
+
+
+```{r}
+#| label: example-weight
+#| fig-width: 14
+#| fig-height: 7
+#| echo: false
+
+set.seed(42)
+my_weight <- data.frame(
+  month = factor(c("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"),
+                 levels = c("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"), 
+                 ordered = TRUE), 
+  weight = rnorm(12, 90, 5)/1000, 
+  group = rep(1, 12)
+)
+
+ggplot(my_weight, 
+       aes(x = month, y = weight, group = group)) +
+  geom_point() +
+  geom_line() +
+  labs(title = "Mein Gewicht 2024",
+       subtitle = "In metrischen Tonnen", 
+       x = "Monat", 
+       y = "Gewicht in t") +
+  ylim(0, 1000) + 
+  theme_bg() +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+
+### Code
+
+
+```{r}
+#| label: example-weight
+#| eval: false
+```
+
+:::
+
+
+## Election Plot
+https://storymaps.arcgis.com/stories/0e636a652d44484b9457f953994b212b
+Vielleicht mit Bundestagswahl?
+
+## Fehlender Kontext
+Ausschnitt aus Zeitreihe, ohne KOntext schwer zu Interpretieren. 
+Irgendwas mit Schuldenpaket z.B.?
+Am besten noch mit anderen Kategorien dazu
+- Co2 Data insgesamt ohne Population zeigen
+
+
+
+# Story
+
+
+# Goal
+
 ## Darstellung von Größen
 
 :::{.columns}
@@ -163,7 +236,7 @@ Die Größe von Kreisen einzuschätzen ist schwer!
 :::
 
 
-## Deshalb: Finger weg von Pie Charts!
+## Das gleiche gilt für Winkel!
 ::: {.slide data-background-color="white"}
 
 
@@ -246,87 +319,16 @@ ggplot(continent_co2_pct,
         legend.position = "bottom",
     legend.key.size = unit(0.4, "cm"),
     legend.text = element_text(size = 7),
-    legend.title = element_bl)
+    legend.title = element_blank())
 
 
 ```
 :::
 :::
 :::
-
-
-
-:::
-## Manipulation von Achsen
-Beispiel aus der Einführung nehmen, aber Achse Cutten und oder nicht bei Null starten lassen. Dann eine weirde Message schreiben! 
-Am besten etwas mit hohen nominalen Zahlen. Vielleicht etwas das sich über die Jahre verbessert hat?
-Dann alternativen zeigen, z.B. Ranzoomen!
-
-
-https://www.data-to-viz.com/caveat/cut_y_axis.html
-
-## Manipulation des Bildformats
-
-::: panel-tabset
-### Grafik
-
-
-```{r}
-#| label: example-weight
-#| fig-width: 14
-#| fig-height: 7
-#| echo: false
-
-set.seed(42)
-my_weight <- data.frame(
-  month = factor(c("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"),
-                 levels = c("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"), 
-                 ordered = TRUE), 
-  weight = rnorm(12, 90, 5)/1000, 
-  group = rep(1, 12)
-)
-
-ggplot(my_weight, 
-       aes(x = month, y = weight, group = group)) +
-  geom_point() +
-  geom_line() +
-  labs(title = "Mein Gewicht 2024",
-       subtitle = "In metrischen Tonnen", 
-       x = "Monat", 
-       y = "Gewicht in t") +
-  ylim(0, 1000) + 
-  theme_bg() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
-```
-
-
-### Code
-
-
-```{r}
-#| label: example-weight
-#| eval: false
-```
-
 :::
 
 
-## Election Plot
-https://storymaps.arcgis.com/stories/0e636a652d44484b9457f953994b212b
-Vielleicht mit Bundestagswahl?
-
-## Fehlender Kontext
-Ausschnitt aus Zeitreihe, ohne KOntext schwer zu Interpretieren. 
-Irgendwas mit Schuldenpaket z.B.?
-Am besten noch mit anderen Kategorien dazu
-- Co2 Data insgesamt ohne Population zeigen
-
-
-
-# Story
-
-
-# Goal
 
 # Nützlichkeit
 
