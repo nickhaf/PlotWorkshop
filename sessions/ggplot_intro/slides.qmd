@@ -107,19 +107,7 @@ Erste Schritte.
 Foto von <a href="https://unsplash.com/de/@omarlopez1?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Omar Lopez</a> auf <a href="https://unsplash.com/de/fotos/person-die-babyfusse-halt-vTknj2OxDVg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 :::
 
-## The Big picture
-
-
-```{r}
-#| output-location: column
-
-#https://thebioengineer.github.io/camcorder/
-
-
-```
-
-
-
+# Einen ggplot bauen
 
 ## Komponenten
 
@@ -304,8 +292,6 @@ gapminder_dat <- gapminder_dat_full %>%
 ```
 
 
-# Einen ggplot bauen
-
 ## Start: `ggplot()`
 ```{r}
 #| output-location: column
@@ -432,6 +418,13 @@ ggplot(
 ```
 
 
+## Übung 1
+Jetzt wisst ihr genug, um einen ersten eigenen Plot zu erstellen. 
+
+- Beschreiben, was erstellt werden soll. Vielleicht ein anderer Plottyp? Oder eine andere Variable? 
+
+
+
 ## Mehr Aesthetics!
 ```{r}
 #| output-location: column
@@ -465,6 +458,12 @@ ggplot(
   geom_point() +
   geom_smooth()
 ```
+
+
+## Übung 2
+Probiert aus, wo in den ggplot-layers man die Farbe Ändern kann (es gibt 3 verschiedene Möglichkeiten, die sich alle unterschiedlich auf den Plot auswirken). 
+Ziel: Nur die Punkte sollen farbig sein. Es soll dann nur eine geom-smooth für den gesamten Trend geben. 
+
 
 
 

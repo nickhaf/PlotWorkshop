@@ -36,7 +36,10 @@ theme_colors <- c(
   "#9B1B34",  # red
   "#01364C",  # darkblue
   "#472120",  # brown
-  "#E1E8EB",  # white
-  "#00e0e0"  # blue
+  "#C97E10",  # warm orange-brown — goes well with yellow and brown
+  "#476A92",  # steel blue — distinct from darkblue and cyan
+  "#6A9E76",  # muted olive green — distinguishable from teal (#208C7A)
+  "#B47EB3",  # muted purple — contrasts nicely with yellow and green
+  "#A7A9AC"   # medium cool gray — a stable, neutral tone
 )
 

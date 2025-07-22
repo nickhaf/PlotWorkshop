@@ -340,7 +340,7 @@
     "href": "sessions/good_plots/slides.html#section-3",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Data from Rockefeller Institute and Wikipedia."
+    "text": "Beispiel von einem komplexen Plot bringen, den wir schon erzeugt haben, und dann reduzieren!"
   },
   {
     "objectID": "sessions/good_plots/slides.html#übung",
@@ -795,7 +795,7 @@
     "href": "sessions/good_plots/slides.html#section-2",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Beispiel von einem komplexen Plot bringen, den wir schon erzeugt haben, und dann reduzieren!"
+    "text": "Dabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen.\nHandschriftliche Skizze ist auch erstmal hilfreich!"
   },
   {
     "objectID": "sessions/good_plots/slides.html#funktionelles-design",
@@ -1111,5 +1111,12 @@
     "title": "Was ist eine gute Grafik?",
     "section": "Das gleiche gilt für Winkel!",
     "text": "Das gleiche gilt für Winkel!\n\n\nVersuche, die Größen zu sortieren:"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#fehlenderfalscher-kontext",
+    "href": "sessions/good_plots/slides.html#fehlenderfalscher-kontext",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Fehlender/Falscher Kontext",
+    "text": "Fehlender/Falscher Kontext\n\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;% \nfilter(time == 2020) %&gt;% \narrange(desc(co2_cons))\n\nggplot(gapminder_2020[1:10, ], \n       aes(x = reorder(country, co2_cons), y = co2_cons)) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\nlabs(title = \"China burns the most CO2!\", \nsubtitle = \"Total CO2 consumption in the biggest emmiting countries\") +\ntheme_bg()\n\n\n\n\n\n\n\n\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;% \nfilter(time == 2020) %&gt;% \narrange(desc(co2_pcap_cons) )\n\nggplot(gapminder_2020[1:10, ], \n       aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\nlabs(title = \"CO2 consumption per capita in the biggest emmiting countries\") +\ntheme_bg()"
   }
 ]

@@ -146,10 +146,55 @@ https://storymaps.arcgis.com/stories/0e636a652d44484b9457f953994b212b
 Vielleicht mit Bundestagswahl?
 
 ## Fehlender Kontext
-Ausschnitt aus Zeitreihe, ohne KOntext schwer zu Interpretieren. 
-Irgendwas mit Schuldenpaket z.B.?
-Am besten noch mit anderen Kategorien dazu
-- Co2 Data insgesamt ohne Population zeigen
+
+::: {.columns}
+
+:::{.column widht="50%}
+
+```{r}
+gapminder_2020 <- gapminder_dat_full %>% 
+filter(time == 2020) %>% 
+arrange(desc(co2_cons))
+
+ggplot(gapminder_2020[1:10, ], 
+       aes(x = reorder(country, co2_cons), y = co2_cons)) +
+  geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+labs(title = "China burns the most CO2!", 
+subtitle = "Total CO2 consumption in the biggest emmiting countries") +
+theme_bg()
+
+```
+
+:::
+
+
+:::{.column widht="50%}
+::: {.fragment}
+```{r}
+gapminder_2020 <- gapminder_dat_full %>% 
+filter(time == 2020) %>% 
+arrange(desc(co2_pcap_cons) )
+
+ggplot(gapminder_2020[1:10, ], 
+       aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)) +
+  geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+labs(title = "CO2 consumption per capita in the biggest emmiting countries") +
+theme_bg()
+
+```
+:::
+:::
+:::
+
+## Fehlender Kontext
+Haushalt so groß wie nie
+
+##
+
+![](./images/florida.jpeg)
+
 
 
 
@@ -241,7 +286,7 @@ Die Größe von Kreisen einzuschätzen ist schwer!
 
 
 ::: {.columns}
-
+ 
 Versuche, die Größen zu sortieren: 
 
 ::: {.column width="50%"}
