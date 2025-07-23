@@ -109,6 +109,27 @@
     "href": "sessions/ggplot_intro/slides.html#mehr-layers",
     "title": "ggplot2: Basics",
     "section": "Mehr Layers!",
+    "text": "Mehr Layers!\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons, \n    color = world_6region\n  )\n) +\n  geom_jitter()"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#mehr-layers-1",
+    "href": "sessions/ggplot_intro/slides.html#mehr-layers-1",
+    "title": "ggplot2: Basics",
+    "section": "Mehr Layers!",
+    "text": "Mehr Layers!\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons, \n    color = world_6region\n  )\n) +\n  geom_jitter()"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#mehr-layers-2",
+    "href": "sessions/ggplot_intro/slides.html#mehr-layers-2",
+    "title": "ggplot2: Basics",
+    "section": "Mehr Layers!",
+    "text": "Mehr Layers!\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons, \n    color = world_6region\n  )\n) +\n  geom_hex()"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#mehr-layers-3",
+    "href": "sessions/ggplot_intro/slides.html#mehr-layers-3",
+    "title": "ggplot2: Basics",
+    "section": "Mehr Layers!",
     "text": "Mehr Layers!\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons, \n    color = world_6region\n  )\n) +\n  geom_point() +\n  geom_smooth()"
   },
   {
