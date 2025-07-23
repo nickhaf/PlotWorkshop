@@ -445,6 +445,56 @@ ggplot(
 ## Mehr Layers!
 ```{r}
 #| output-location: column
+#| code-line-numbers: "9"
+
+ggplot(
+  data = gapminder_dat,
+  mapping = aes(
+    x = pop,
+    y = co2_cons, 
+    color = world_6region
+  )
+) +
+  geom_jitter() 
+```
+
+
+
+## Mehr Layers!
+```{r}
+#| output-location: column
+#| code-line-numbers: "9"
+
+ggplot(
+  data = gapminder_dat,
+  mapping = aes(
+    x = pop,
+    y = co2_cons, 
+    color = world_6region
+  )
+) +
+  geom_jitter() 
+```
+
+
+## Mehr Layers!
+```{r}
+#| output-location: column
+#| code-line-numbers: "9"
+
+ggplot(
+  data = gapminder_dat,
+  mapping = aes(
+    x = pop,
+    y = co2_cons, 
+    color = world_6region
+  )
+) +
+  geom_hex() 
+```
+## Mehr Layers!
+```{r}
+#| output-location: column
 #| code-line-numbers: "10"
 
 ggplot(
