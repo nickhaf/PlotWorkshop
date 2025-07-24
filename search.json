@@ -116,7 +116,7 @@
     "href": "sessions/ggplot_intro/slides.html#mehr-layers-1",
     "title": "ggplot2: Basics",
     "section": "Mehr Layers!",
-    "text": "Mehr Layers!\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons, \n    color = world_6region\n  )\n) +\n  geom_jitter()"
+    "text": "Mehr Layers!\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons, \n    color = world_6region\n  )\n) +\n  geom_jitter(height = 500)"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#mehr-layers-2",
