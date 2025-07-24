@@ -473,7 +473,7 @@ ggplot(
     color = world_6region
   )
 ) +
-  geom_jitter() 
+  geom_jitter(height = 500) 
 ```
 
 

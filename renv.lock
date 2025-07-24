@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.5.0",
+    "Version": "4.5.1",
     "Repositories": [
       {
         "Name": "CRAN",
@@ -791,13 +791,6 @@
       ],
       "Hash": "fbbbc48eba7a6626a08bb365e44b563b"
     },
-    "gifski": {
-      "Package": "gifski",
-      "Version": "1.32.0-2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "7c58097dfa68463cd26f927f0a892031"
-    },
     "gitcreds": {
       "Package": "gitcreds",
       "Version": "0.1.2",
@@ -950,6 +943,23 @@
         "rprojroot"
       ],
       "Hash": "24b224366f9c2e7534d2344d10d59211"
+    },
+    "hexbin": {
+      "Package": "hexbin",
+      "Version": "1.28.5",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R",
+        "grDevices",
+        "graphics",
+        "grid",
+        "lattice",
+        "methods",
+        "stats",
+        "utils"
+      ],
+      "Hash": "10a44851f04ff2d0e26b1c84c38d914a"
     },
     "highr": {
       "Package": "highr",
@@ -1911,11 +1921,12 @@
     },
     "systemfonts": {
       "Package": "systemfonts",
-      "Version": "1.2.2",
+      "Version": "1.2.3",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
         "R",
+        "base64enc",
         "cpp11",
         "grid",
         "jsonlite",
@@ -1923,7 +1934,7 @@
         "tools",
         "utils"
       ],
-      "Hash": "904ca7d4100c0aa449e3d669d8df5fd1"
+      "Hash": "fe31683d2c6fd9a5724bcdf8ed44ded9"
     },
     "textshaping": {
       "Package": "textshaping",
