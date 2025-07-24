@@ -454,6 +454,22 @@ Beispiel von einem komplexen Plot bringen, den wir schon erzeugt haben, und dann
 https://www.nature.com/articles/nmeth1010-773
 
 ## Farben
+:::: {.columns} 
+::: {.column width="50%"}
+
+:::
+
+::: {.column width="50%"}
+![](./images/colors.jpg){.image-right}
+:::
+:::
+
+::: image-ref
+Foto von <a href="https://unsplash.com/de/@efekurnaz?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Efe Kurnaz</a> auf <a href="https://unsplash.com/de/fotos/multicolored-hallway-RnCPiXixooY?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+      
+:::
+
+## Farben
 Ganglienzellen übertragen keine Informationen über absolute Helligkeit,
 sondern über relative Helligkeit.
 ‣ Wie stark unterscheiden sich zwei Bereiche in ihrer Helligkeit?
@@ -466,7 +482,7 @@ darin, Unterschiede und Veränderungen zu erkennen
 --> Beispiel bringen (Simultankontrast)
 
 - Graustufen nicht für absolute oder kategorische Werte nutzen (mehr als vier können iwr nicht gut unterscheiden)
-- Welche Farben wir wahrnehmen können (Exkurs Tierwelt?)
+- Welche Farben wir wahrnehmen können (Exkurs Tierwelt? -> Siehe mein Tierbuch)
 - Diese Webseite zur Auswahl von passenden Farben nutzen?
 - RGB erklären (und die Addition im Gehirn?
 

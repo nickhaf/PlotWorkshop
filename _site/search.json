@@ -487,7 +487,7 @@
     "href": "sessions/good_plots/slides.html#fehlender-kontext",
     "title": "Was ist eine gute Grafik?",
     "section": "Fehlender Kontext",
-    "text": "Fehlender Kontext\nAusschnitt aus Zeitreihe, ohne KOntext schwer zu Interpretieren. Irgendwas mit Schuldenpaket z.B.? Am besten noch mit anderen Kategorien dazu - Co2 Data insgesamt ohne Population zeigen"
+    "text": "Fehlender Kontext\n\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;% \nfilter(time == 2020) %&gt;% \narrange(desc(co2_cons))\n\nggplot(gapminder_2020[1:10, ], \n       aes(x = reorder(country, co2_cons), y = co2_cons)) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\nlabs(title = \"China burns the most CO2!\", \nsubtitle = \"Total CO2 consumption in the biggest emmiting countries\") +\ntheme_bg()\n\n\n\n\n\n\n\n\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;% \nfilter(time == 2020) %&gt;% \narrange(desc(co2_pcap_cons) )\n\nggplot(gapminder_2020[1:10, ], \n       aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\nlabs(title = \"CO2 consumption per capita in the biggest emmiting countries\") +\ntheme_bg()"
   },
   {
     "objectID": "sessions/good_plots/slides.html#data-ink-ratio",
@@ -501,7 +501,7 @@
     "href": "sessions/good_plots/slides.html#farben",
     "title": "Was ist eine gute Grafik?",
     "section": "Farben",
-    "text": "Farben\nGanglienzellen übertragen keine Informationen über absolute Helligkeit, sondern über relative Helligkeit. ‣ Wie stark unterscheiden sich zwei Bereiche in ihrer Helligkeit? ‣ Wie stark hat sich eine Helligkeit gerade geändert? Allgemeine Lehre daraus: ‣ Visualisierung kann nicht gut darin sein, absolute Werte zu kommunizieren (Tabellen können das besser) ‣ Hingegen ist das visuelle System (und das Gehirn allgemein) extrem gut darin, Unterschiede und Veränderungen zu erkennen –&gt; Beispiel bringen (Simultankontrast)\n\nGraustufen nicht für absolute oder kategorische Werte nutzen (mehr als vier können iwr nicht gut unterscheiden)\nWelche Farben wir wahrnehmen können (Exkurs Tierwelt?)\nDiese Webseite zur Auswahl von passenden Farben nutzen?\nRGB erklären (und die Addition im Gehirn?"
+    "text": "Farben\n\n\n\n\n\n\n\nFoto von Efe Kurnaz auf Unsplash"
   },
   {
     "objectID": "sessions/good_plots/slides.html#takeaways",
@@ -1118,5 +1118,19 @@
     "title": "Was ist eine gute Grafik?",
     "section": "Fehlender/Falscher Kontext",
     "text": "Fehlender/Falscher Kontext\n\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;% \nfilter(time == 2020) %&gt;% \narrange(desc(co2_cons))\n\nggplot(gapminder_2020[1:10, ], \n       aes(x = reorder(country, co2_cons), y = co2_cons)) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\nlabs(title = \"China burns the most CO2!\", \nsubtitle = \"Total CO2 consumption in the biggest emmiting countries\") +\ntheme_bg()\n\n\n\n\n\n\n\n\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;% \nfilter(time == 2020) %&gt;% \narrange(desc(co2_pcap_cons) )\n\nggplot(gapminder_2020[1:10, ], \n       aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\nlabs(title = \"CO2 consumption per capita in the biggest emmiting countries\") +\ntheme_bg()"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#fehlender-kontext-1",
+    "href": "sessions/good_plots/slides.html#fehlender-kontext-1",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Fehlender Kontext",
+    "text": "Fehlender Kontext\nHaushalt so groß wie nie"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#farben-1",
+    "href": "sessions/good_plots/slides.html#farben-1",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Farben",
+    "text": "Farben\nGanglienzellen übertragen keine Informationen über absolute Helligkeit, sondern über relative Helligkeit. ‣ Wie stark unterscheiden sich zwei Bereiche in ihrer Helligkeit? ‣ Wie stark hat sich eine Helligkeit gerade geändert? Allgemeine Lehre daraus: ‣ Visualisierung kann nicht gut darin sein, absolute Werte zu kommunizieren (Tabellen können das besser) ‣ Hingegen ist das visuelle System (und das Gehirn allgemein) extrem gut darin, Unterschiede und Veränderungen zu erkennen –&gt; Beispiel bringen (Simultankontrast)\n\nGraustufen nicht für absolute oder kategorische Werte nutzen (mehr als vier können iwr nicht gut unterscheiden)\nWelche Farben wir wahrnehmen können (Exkurs Tierwelt? -&gt; Siehe mein Tierbuch)\nDiese Webseite zur Auswahl von passenden Farben nutzen?\nRGB erklären (und die Addition im Gehirn?"
   }
 ]
