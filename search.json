@@ -109,25 +109,18 @@
     "href": "sessions/ggplot_intro/slides.html#mehr-layers",
     "title": "ggplot2: Basics",
     "section": "Mehr Layers!",
-    "text": "Mehr Layers!\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons, \n    color = world_6region\n  )\n) +\n  geom_jitter()"
+    "text": "Mehr Layers!\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons, \n    color = world_6region\n  )\n) +\n  geom_jitter(height = 500)"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#mehr-layers-1",
     "href": "sessions/ggplot_intro/slides.html#mehr-layers-1",
     "title": "ggplot2: Basics",
     "section": "Mehr Layers!",
-    "text": "Mehr Layers!\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons, \n    color = world_6region\n  )\n) +\n  geom_jitter(height = 500)"
+    "text": "Mehr Layers!\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons, \n    color = world_6region\n  )\n) +\n  geom_hex()"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#mehr-layers-2",
     "href": "sessions/ggplot_intro/slides.html#mehr-layers-2",
-    "title": "ggplot2: Basics",
-    "section": "Mehr Layers!",
-    "text": "Mehr Layers!\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons, \n    color = world_6region\n  )\n) +\n  geom_hex()"
-  },
-  {
-    "objectID": "sessions/ggplot_intro/slides.html#mehr-layers-3",
-    "href": "sessions/ggplot_intro/slides.html#mehr-layers-3",
     "title": "ggplot2: Basics",
     "section": "Mehr Layers!",
     "text": "Mehr Layers!\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons, \n    color = world_6region\n  )\n) +\n  geom_point() +\n  geom_smooth()"
@@ -347,7 +340,14 @@
     "href": "sessions/good_plots/slides.html#farben",
     "title": "Was ist eine gute Grafik?",
     "section": "Farben",
-    "text": "Farben\nGanglienzellen übertragen keine Informationen über absolute Helligkeit, sondern über relative Helligkeit. ‣ Wie stark unterscheiden sich zwei Bereiche in ihrer Helligkeit? ‣ Wie stark hat sich eine Helligkeit gerade geändert? Allgemeine Lehre daraus: ‣ Visualisierung kann nicht gut darin sein, absolute Werte zu kommunizieren (Tabellen können das besser) ‣ Hingegen ist das visuelle System (und das Gehirn allgemein) extrem gut darin, Unterschiede und Veränderungen zu erkennen –&gt; Beispiel bringen (Simultankontrast)\n\nGraustufen nicht für absolute oder kategorische Werte nutzen (mehr als vier können iwr nicht gut unterscheiden)\nWelche Farben wir wahrnehmen können (Exkurs Tierwelt?)\nDiese Webseite zur Auswahl von passenden Farben nutzen?\nRGB erklären (und die Addition im Gehirn?"
+    "text": "Farben\n\n\n\n\n\n\n\nFoto von Efe Kurnaz auf Unsplash"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#farben-1",
+    "href": "sessions/good_plots/slides.html#farben-1",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Farben",
+    "text": "Farben\nGanglienzellen übertragen keine Informationen über absolute Helligkeit, sondern über relative Helligkeit. ‣ Wie stark unterscheiden sich zwei Bereiche in ihrer Helligkeit? ‣ Wie stark hat sich eine Helligkeit gerade geändert? Allgemeine Lehre daraus: ‣ Visualisierung kann nicht gut darin sein, absolute Werte zu kommunizieren (Tabellen können das besser) ‣ Hingegen ist das visuelle System (und das Gehirn allgemein) extrem gut darin, Unterschiede und Veränderungen zu erkennen –&gt; Beispiel bringen (Simultankontrast)\n\nGraustufen nicht für absolute oder kategorische Werte nutzen (mehr als vier können iwr nicht gut unterscheiden)\nWelche Farben wir wahrnehmen können (Exkurs Tierwelt? -&gt; Siehe mein Tierbuch)\nDiese Webseite zur Auswahl von passenden Farben nutzen?\nRGB erklären (und die Addition im Gehirn?"
   },
   {
     "objectID": "sessions/good_plots/slides.html#farbfehlsichtigkeiten",
