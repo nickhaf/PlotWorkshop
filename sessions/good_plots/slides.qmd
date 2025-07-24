@@ -64,8 +64,8 @@ get_gapminder <- function(repo = "https://github.com/open-numbers/ddf--gapminder
 
 gapminder_dat_full <- get_gapminder(keywords = c("pop--", "co2", "--geo--country"))
 
-gapminder_dat <- gapminder_dat_full %>% 
-  filter(time == "2020", !is.na(country)) 
+gapminder_dat <- gapminder_dat_full %>%
+  filter(time == "2020", !is.na(country))
 ```
 
 
@@ -110,23 +110,28 @@ https://www.data-to-viz.com/caveat/cut_y_axis.html
 set.seed(42)
 my_weight <- data.frame(
   month = factor(c("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"),
-                 levels = c("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"), 
-                 ordered = TRUE), 
-  weight = rnorm(12, 90, 5)/1000, 
+    levels = c("Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"),
+    ordered = TRUE
+  ),
+  weight = rnorm(12, 90, 5) / 1000,
   group = rep(1, 12)
 )
 
-ggplot(my_weight, 
-       aes(x = month, y = weight, group = group)) +
+ggplot(
+  my_weight,
+  aes(x = month, y = weight, group = group)
+) +
   geom_point() +
   geom_line() +
-  labs(title = "Mein Gewicht 2024",
-       subtitle = "In metrischen Tonnen", 
-       x = "Monat", 
-       y = "Gewicht in t") +
-  ylim(0, 1000) + 
+  labs(
+    title = "Mein Gewicht 2024",
+    subtitle = "In metrischen Tonnen",
+    x = "Monat",
+    y = "Gewicht in t"
+  ) +
+  ylim(0, 1000) +
   theme_bg() +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))
 ```
 
 
@@ -152,18 +157,21 @@ Vielleicht mit Bundestagswahl?
 :::{.column widht="50%}
 
 ```{r}
-gapminder_2020 <- gapminder_dat_full %>% 
-filter(time == 2020) %>% 
-arrange(desc(co2_cons))
+gapminder_2020 <- gapminder_dat_full %>%
+  filter(time == 2020) %>%
+  arrange(desc(co2_cons))
 
-ggplot(gapminder_2020[1:10, ], 
-       aes(x = reorder(country, co2_cons), y = co2_cons)) +
+ggplot(
+  gapminder_2020[1:10, ],
+  aes(x = reorder(country, co2_cons), y = co2_cons)
+) +
   geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-labs(title = "China burns the most CO2!", 
-subtitle = "Total CO2 consumption in the biggest emmiting countries") +
-theme_bg()
-
+  labs(
+    title = "China burns the most CO2!",
+    subtitle = "Total CO2 consumption in the biggest emmiting countries"
+  ) +
+  theme_bg()
 ```
 
 :::
@@ -172,17 +180,18 @@ theme_bg()
 :::{.column widht="50%}
 ::: {.fragment}
 ```{r}
-gapminder_2020 <- gapminder_dat_full %>% 
-filter(time == 2020) %>% 
-arrange(desc(co2_pcap_cons) )
+gapminder_2020 <- gapminder_dat_full %>%
+  filter(time == 2020) %>%
+  arrange(desc(co2_pcap_cons))
 
-ggplot(gapminder_2020[1:10, ], 
-       aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)) +
+ggplot(
+  gapminder_2020[1:10, ],
+  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)
+) +
   geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-labs(title = "CO2 consumption per capita in the biggest emmiting countries") +
-theme_bg()
-
+  labs(title = "CO2 consumption per capita in the biggest emmiting countries") +
+  theme_bg()
 ```
 :::
 :::
@@ -223,7 +232,7 @@ df <- data.frame(
 # Plot
 ggplot(df, aes(x = column, y = factor(row), size = size)) +
   geom_point(shape = 16, color = "#01364C") +
-  scale_size_area(max_size = 30) +  # keeps area proportional to value
+  scale_size_area(max_size = 30) + # keeps area proportional to value
   scale_y_discrete(name = NULL, limits = rev) +
   xlab(NULL) +
   theme_bg() +
@@ -231,11 +240,7 @@ ggplot(df, aes(x = column, y = factor(row), size = size)) +
     axis.text.y = element_text(hjust = 1),
     panel.grid = element_blank(),
     legend.position = "none"
-  ) 
-
-
-
-
+  )
 ```
 :::
 
@@ -256,8 +261,8 @@ df <- data.frame(
 
 # Plot with squares
 ggplot(df, aes(x = column, y = factor(row), size = size)) +
-  geom_point(shape = 15, color = "#01364C") +  # shape 15 = square
-  scale_size_area(max_size = 30) +  # still based on area
+  geom_point(shape = 15, color = "#01364C") + # shape 15 = square
+  scale_size_area(max_size = 30) + # still based on area
   scale_y_discrete(name = NULL, limits = rev) +
   xlab(NULL) +
   theme_bg() +
@@ -266,8 +271,6 @@ ggplot(df, aes(x = column, y = factor(row), size = size)) +
     panel.grid = element_blank(),
     legend.position = "none"
   )
-
-
 ```
 
 :::
@@ -293,8 +296,8 @@ Versuche, die Größen zu sortieren:
 ```{r }
 #| echo: false
 
-continent_co2 <- gapminder_dat %>% 
-  group_by(world_6region) %>% 
+continent_co2 <- gapminder_dat %>%
+  group_by(world_6region) %>%
   summarise(mean_co2_pcap_cons = mean(co2_pcap_cons, na.rm = TRUE))
 
 continent_co2$world_6region <- factor(
@@ -320,26 +323,28 @@ continent_co2$world_6region <- factor(
 continent_co2_pct <- continent_co2 %>%
   mutate(percentage = mean_co2_pcap_cons / sum(mean_co2_pcap_cons)) %>%
   arrange(desc(world_6region)) %>%
-  mutate(ymax = cumsum(percentage),
-         ymin = c(0, head(ymax, -1)))
+  mutate(
+    ymax = cumsum(percentage),
+    ymin = c(0, head(ymax, -1))
+  )
 
 
-ggplot(continent_co2_pct, 
-       aes(x = "", y = percentage * 100, fill = world_6region)) +
+ggplot(
+  continent_co2_pct,
+  aes(x = "", y = percentage * 100, fill = world_6region)
+) +
   geom_bar(stat = "identity", width = 1) +
   coord_polar("y") +
   scale_fill_manual(values = theme_colors) +
   labs(title = "Share of global per capita CO2 consumption") +
   theme_minimal() +
   theme(
-    axis.title = element_blank(), 
+    axis.title = element_blank(),
     legend.position = "bottom",
     legend.key.size = unit(0.4, "cm"),
     legend.text = element_text(size = 7),
     legend.title = element_blank()
   )
-
-
 ```
 :::
 
@@ -353,20 +358,22 @@ ggplot(continent_co2_pct,
 continent_co2_pct <- continent_co2 %>%
   mutate(percentage = mean_co2_pcap_cons / sum(mean_co2_pcap_cons) * 100)
 
-ggplot(continent_co2_pct, 
-       aes(x = world_6region, y = percentage, fill = world_6region)) +
+ggplot(
+  continent_co2_pct,
+  aes(x = world_6region, y = percentage, fill = world_6region)
+) +
   geom_bar(stat = "identity", width = 1) +
   scale_fill_manual(values = theme_colors) +
   theme_minimal() +
   labs(title = "Share of global per capita CO2 consumption") +
-  theme(axis.title.x = element_blank(), 
-        axis.text.x = element_blank(), 
-        legend.position = "bottom",
+  theme(
+    axis.title.x = element_blank(),
+    axis.text.x = element_blank(),
+    legend.position = "bottom",
     legend.key.size = unit(0.4, "cm"),
     legend.text = element_text(size = 7),
-    legend.title = element_blank())
-
-
+    legend.title = element_blank()
+  )
 ```
 :::
 :::
@@ -446,9 +453,6 @@ https://www.data-to-viz.com/caveat/declutter.html
 
 ## 
 Beispiel von einem komplexen Plot bringen, den wir schon erzeugt haben, und dann reduzieren!
-```{r}
-
-```
 
 ## Salienz von Informationen
 https://www.nature.com/articles/nmeth1010-773
@@ -468,6 +472,322 @@ https://www.nature.com/articles/nmeth1010-773
 Foto von <a href="https://unsplash.com/de/@efekurnaz?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Efe Kurnaz</a> auf <a href="https://unsplash.com/de/fotos/multicolored-hallway-RnCPiXixooY?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
       
 :::
+
+## Farbwahrnehmung beim Menschen
+
+## Zapfen
+
+- Vergleich Mensch und ein Tier (Siehe mein Buch)
+
+
+## Diskrete Farben vs. Farbverläufe
+- Vor allem für diskrete Gruppen geeignet
+- Farbverläufe schwieriger (aber es gibt color scales dafür)
+
+
+## Zu merken
+
+1. Unterscheidbar, aber ähnlich genug, um keinen Bias zu erzeugen. 
+
+## 1. Unterscheidbar, aber ähnlich
+
+```{r}
+#| label: color-plot
+#| echo: false
+
+gapminder_1020 <- gapminder_dat %>% 
+filter(time %in% 2010:2020)
+
+
+## Auch gut, weil man das dann verbinden kann um zu zeigen, dass Farben nur Bedingt helfen, Muster zu erkennen. 
+top5_co2 <- gapminder_1020 %>%
+  group_by(name) %>%
+  summarise(mean_co2 = mean(co2_pcap_cons, na.rm = TRUE)) %>%
+  arrange(desc(mean_co2)) %>%
+  slice_head(n = 5)
+
+## Vielleicht besser die 6 worldregions nehmen!
+## Dann zum Vergleich später zeigen, Wenn es länder wären. 
+
+
+
+color_plot <- ggplot(
+  gapminder_2020,
+  aes(x = pop, y = co2_pcap_cons, color = world_6region)
+) +
+  geom_point(size = 3) +
+  theme_minimal() +
+  labs(title = "Share of global per capita CO2 consumption")
+
+```
+
+
+Wie unten machen, aber mit den Balkendiagrammen
+::: {.columns}
+:::{.column widht="50%}
+
+```{r}
+#| label: color_bias_bar
+#| echo: false
+#| fig-width: 14
+#| fig-height: 7
+
+theme_colors_2 <- c(
+  "#9FAFC0", # entsättigtes Dunkelblau
+  "#B49B97", # ausgebleichtes Braun
+  "#F2E2A0", # ausgebleichtes Gelb (statt Rot)
+  "#D80027", # sehr leuchtendes Rot (statt Gelb)
+  "#A7C9C3", # stark aufgehelltes Türkis
+  "#D8B88C", # heller Orange-Braun-Ton
+  "#A6B7CA", # blasser Stahlblau-Ton
+  "#BFD4C2", # sehr blasses Olivgrün
+  "#D6C1D5", # blasses Flieder/Pastell-Lila
+  "#D8D9DB" # sehr heller, neutraler Grauton
+)
+
+color_plot +
+  scale_color_manual(values = theme_colors_2)
+```
+
+:::
+
+
+:::{.column widht="50%}
+```{r}
+#| label: color_balanced_bar
+#| echo: false
+#| fig-width: 14
+#| fig-height: 7
+
+theme_colors_balanced <- c(
+  "#4D9285",  # gedämpftes Türkisgrün – weniger satt als Original (#208C7A)
+  "#D89035",  # warmes Ocker-Orange – harmonischer als das grelle Gelb (#F4BA02)
+  "#B95454",  # weiches Rot – weniger dominant als #9B1B34
+  "#4E6D84",  # gemäßigtes Dunkelblau – weniger kalt als #01364C
+  "#7A5A53",  # milderes Braun – balanciert zu den anderen warmen Tönen
+  "#BC8B4C",  # orange-braun, passt zu Gelb & Braun (#C97E10 → abgemildert)
+  "#67829E",  # etwas entsättigtes Stahlblau (#476A92)
+  "#86A18C",  # grünlich-grau – Kombination aus Olive und Türkis
+  "#A68CA5",  # gedecktes Violett – deutlich ruhiger als Original (#B47EB3)
+  "#B7B9BC"   # kühles Hellgrau – dient als neutraler Ausgleich
+)
+
+
+color_plot +
+  scale_color_manual(values = theme_colors_balanced)
+
+# 
+#   scale_color_brewer(palette = "Dark2") +
+#   theme_minimal() +
+#   labs(title = "Share of global per capita CO2 consumption")
+
+```
+
+
+:::
+
+:::
+
+
+## Unterschiedlich, aber ähnlich
+::: {.columns}
+:::{.column widht="50%}
+
+```{r}
+#| label: color_bias_scatter
+#| echo: false
+#| fig-width: 14
+#| fig-height: 7
+
+theme_colors_2 <- c(
+  "#9FAFC0", # entsättigtes Dunkelblau
+  "#B49B97", # ausgebleichtes Braun
+  "#F2E2A0", # ausgebleichtes Gelb (statt Rot)
+  "#D80027", # sehr leuchtendes Rot (statt Gelb)
+  "#A7C9C3", # stark aufgehelltes Türkis
+  "#D8B88C", # heller Orange-Braun-Ton
+  "#A6B7CA", # blasser Stahlblau-Ton
+  "#BFD4C2", # sehr blasses Olivgrün
+  "#D6C1D5", # blasses Flieder/Pastell-Lila
+  "#D8D9DB" # sehr heller, neutraler Grauton
+)
+
+color_plot +
+  scale_color_manual(values = theme_colors_2)
+```
+
+:::
+
+
+:::{.column widht="50%}
+```{r}
+#| label: color_balanced_scatter
+#| echo: false
+#| fig-width: 14
+#| fig-height: 7
+
+theme_colors_balanced <- c(
+  "#4D9285",  # gedämpftes Türkisgrün – weniger satt als Original (#208C7A)
+  "#D89035",  # warmes Ocker-Orange – harmonischer als das grelle Gelb (#F4BA02)
+  "#B95454",  # weiches Rot – weniger dominant als #9B1B34
+  "#4E6D84",  # gemäßigtes Dunkelblau – weniger kalt als #01364C
+  "#7A5A53",  # milderes Braun – balanciert zu den anderen warmen Tönen
+  "#BC8B4C",  # orange-braun, passt zu Gelb & Braun (#C97E10 → abgemildert)
+  "#67829E",  # etwas entsättigtes Stahlblau (#476A92)
+  "#86A18C",  # grünlich-grau – Kombination aus Olive und Türkis
+  "#A68CA5",  # gedecktes Violett – deutlich ruhiger als Original (#B47EB3)
+  "#B7B9BC"   # kühles Hellgrau – dient als neutraler Ausgleich
+)
+
+
+color_plot +
+  scale_color_manual(values = theme_colors_balanced)
+
+# 
+#   scale_color_brewer(palette = "Dark2") +
+#   theme_minimal() +
+#   labs(title = "Share of global per capita CO2 consumption")
+
+```
+
+
+:::
+
+:::
+
+
+## Color Blindness
+- Take the above scale and show that it is not great for color blindness
+- https://www.color-blindness.com/coblis-color-blindness-simulator/
+
+## Farbe ist relativ
+Beispiel: 
+Grautöne vs Rottöne
+
+
+![](./images/color_perception.png)
+
+::: .image-ref
+Bild von [Nature Methods](https://www.nature.com/articles/nmeth0810-573/figures/1). 
+:::
+
+
+## Farbe ist relativ
+```{r}
+#| label: color_bias_reds
+#| echo: false
+#| fig-width: 14
+#| fig-height: 7
+#| 
+theme_colors_red <- c(
+  "#E28A8A",  # weiches Rosa-Rot
+  "#CF5C5C",  # mildes Mittelrot
+  "#D80027",  # dein kräftiges Signalrot (Zentrum)
+  "#B00022",  # etwas dunkler, tiefes Rubinrot
+  "#8C001B",  # noch dunkleres Weinrot
+  "#730016"  # fast Bordeaux
+)
+
+
+color_plot +
+  scale_color_manual(values = theme_colors_red)
+
+# 
+#   scale_color_brewer(palette = "Dark2") +
+#   theme_minimal() +
+#   labs(title = "Share of global per capita CO2 consumption")
+
+```
+
+
+## Fragen: Warum ist das noch eine schelchte Color scale? 
+![](./images/colorblindcheck.png)
+
+::: .image-ref
+Siehe [Colblindor](https://www.color-blindness.com/coblis-color-blindness-simulator/). 
+:::
+
+##
+```{r}
+  library(colorblindcheck)
+palette_check(theme_colors_red, plot = TRUE)  
+```
+
+
+## Das kann man sich natürlich auch zu Nutze machen (Passt aber vielleicht eher zu space? -> da nochmal zeigen, hier die Punkte enger zusammen )
+
+```{r}
+#| echo: false
+#| eval: false
+
+library(rvest)
+library(httr)
+library(polite)
+
+url <- "https://en.wikipedia.org/wiki/Gun_ownership"
+url_bow <- polite::bow(url)
+url_bow
+
+firearm_df <- polite::scrape(url_bow) %>%
+  rvest::html_nodes("table.wikitable") %>%
+  rvest::html_table(fill = TRUE) %>%
+  as.data.frame() %>%
+  rename(country = "Countries.and.territories", "guns" = "Estimate.of.civilian.firearms.per.100.people") %>%
+  select(country, guns)
+
+saveRDS(firearm_df, here::here("sessions", "good_plots", "data", "firearm_df.rds"))
+```
+
+```{r}
+#| echo: false
+
+firearm_df <- readRDS(here::here("sessions", "good_plots", "data", "firearm_df.rds"))
+df <- data.frame(
+  country = c("United States", "Germany", "France", "Canada", "Finland", "Austria", "Australia", "Italy", "Netherlands", "Switzerland"),
+  mass_shootings = c(109, 5, 6, 4, 3, 2, 1, 2, 2, 2)
+) %>%
+  left_join(firearm_df) %>%
+  mutate(labels = case_when(
+    country == "United States" ~ "USA",
+    country == "Germany" ~ "Germany",
+    country == "Switzerland" ~ "Switzerland",
+    country == "Netherlands" ~ "Netherlands",
+    TRUE ~ NA
+  ))
+```
+
+
+```{r}
+#| echo: false
+#| fig-height: 7
+#| fig-width: 12
+
+ggplot(
+  data = df,
+  aes(x = guns, y = mass_shootings, label = labels)
+) +
+  geom_point(aes(colour = ifelse(country == "United States", "USA", "noUSA")), size = 5) +
+  scale_colour_manual(values = c("lightgrey", "red")) +
+  geom_text(vjust = 2, size = 5, color = "#01364C") +
+  theme_bg() +
+  theme(legend.position = "none") +
+  xlab("Guns per 100 Civilians") +
+  ylab("Number of Mass Shootings 2002 - 2022")
+```
+
+
+::: aside
+Data from [Rockefeller Institute](https://rockinst.org/blog/public-mass-shootings-around-the-world-prevalence-context-and-prevention/) and [Wikipedia](https://en.wikipedia.org/wiki/Gun_ownership). 
+:::
+
+## Nicht zu viele!
+
+
+## Color for coding a third dimension
+- Wie viel macht sinn?
+- Scatterplot
+
+
 
 ## Farben
 Ganglienzellen übertragen keine Informationen über absolute Helligkeit,
@@ -494,9 +814,15 @@ Farbsehtests
 - Farbwahrnehmung braucht Helligkeit und Fläche
 
 ## Anwendung in ggplot2: Farbskalen wählen
+- palettteer
+- https://r-graph-gallery.com/color-palette-finder
 
+## Viele Möglichkeiten
+- pakete
+- Selbst stezten
 
-
+## Übung
+Baue eine eigene Color-Palette und wende sie auf deinen Plot an. Achte dabei auf Unterscheidbarkeit (Auch color blind), aber auch auf Design. 
 
 ## Gruppieren
 
@@ -530,67 +856,9 @@ https://www.data-to-viz.com/
 - Kann oft über reines Zeigen der Daten hinausgehen. 
 
 
-## 
 
-```{r}
-#| echo: false
-#| eval: false
-
-library(rvest)
-library(httr)
-library(polite)
-
-url <- "https://en.wikipedia.org/wiki/Gun_ownership"
-url_bow <- polite::bow(url)
-url_bow
-
-firearm_df <- polite::scrape(url_bow) %>% 
-  rvest::html_nodes("table.wikitable") %>% 
-  rvest::html_table(fill = TRUE) %>% 
-  as.data.frame() %>% 
-  rename(country = "Countries.and.territories", "guns" = "Estimate.of.civilian.firearms.per.100.people") %>% 
-  select(country, guns)
-
-saveRDS(firearm_df, here::here("sessions", "good_plots","data", "firearm_df.rds"))
-```
-
-```{r}
-#| echo: false
-
-firearm_df <- readRDS(here::here("sessions", "good_plots","data", "firearm_df.rds"))
-df <- data.frame(
-  country = c("United States", "Germany", "France", "Canada", "Finland", "Austria", "Australia", "Italy", "Netherlands", "Switzerland"), 
-  mass_shootings = c(109, 5, 6, 4, 3, 2, 1, 2, 2, 2)) %>% 
-  left_join(firearm_df) %>% 
-  mutate(labels = case_when(country == "United States" ~ "USA", 
-                            country == "Germany" ~ "Germany", 
-                            country == "Switzerland" ~ "Switzerland", 
-                            country == "Netherlands" ~ "Netherlands", 
-                            TRUE ~ NA))
-```
-
-
-```{r}
-#| echo: false
-#| fig-height: 7
-#| fig-width: 12
-
-ggplot(data = df, 
-       aes(x = guns, y = mass_shootings, label = labels)) +
-  geom_point(aes(colour = ifelse(country == "United States", "USA", "noUSA")), size = 5) +
-  scale_colour_manual(values = c("lightgrey", "red")) +
-  geom_text(vjust = 2, size = 5, color = '#01364C') +
-  theme_bg() +
-  theme(legend.position="none") +
-  xlab("Guns per 100 Civilians") +
-  ylab("Number of Mass Shootings 2002 - 2022")
-```
-
-
-::: aside
-Data from [Rockefeller Institute](https://rockinst.org/blog/public-mass-shootings-around-the-world-prevalence-context-and-prevention/) and [Wikipedia](https://en.wikipedia.org/wiki/Gun_ownership). 
-:::
-
+## Size
+Also include population size in the scatterplot
 
 ## Tufte
 - So wenig Tinte wie möglich nutzen
@@ -633,9 +901,3 @@ Rolfs 7
 
 ## Übung
 Schlechte Grafiken verbessern: https://www.data-to-viz.com/caveats.html
-
-
-
-
-
-
