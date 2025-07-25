@@ -1,6 +1,8 @@
 ---
 title: "Was ist eine gute Grafik?"
-format: letterbox-revealjs
+format: 
+  letterbox-revealjs:
+    code-block-height: 650px
 ---
 
 
@@ -87,6 +89,7 @@ Darstellung von David McCandless in [Knowledge is Beautiful (2014)](https://info
 - Integrität der Darstellung
 
 
+# AChsen 
 
 ## Manipulation von Achsen
 Beispiel aus der Einführung nehmen, aber Achse Cutten und oder nicht bei Null starten lassen. Dann eine weirde Message schreiben! 
@@ -95,6 +98,25 @@ Dann alternativen zeigen, z.B. Ranzoomen!
 
 
 https://www.data-to-viz.com/caveat/cut_y_axis.html
+
+
+## Konventionen
+
+::: {.columns}
+::: {.column width="50%"}
+![](./images/florida.jpeg)
+:::
+::: {.colum width="50%"}
+776.013 Home protection; use or threatened use of deadly force; presumption of fear of death or great bodily harm.—
+(1) A person who is in a dwelling or residence in which the person has a right to be has no duty to retreat and has the right to stand his or her ground and use or threaten to use:  
+(a) Nondeadly force against another when and to the extent that the person reasonably believes that such conduct is necessary to defend himself or herself or another against the other’s imminent use of unlawful force; or  
+(b) Deadly force if he or she reasonably believes that using or threatening to use such force is necessary to prevent imminent death or great bodily harm to himself or herself or another or to prevent the imminent commission of a forcible felony.
+
+http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0776/Sections/0776.013.html
+:::
+:::
+
+
 
 ## Manipulation des Bildformats
 
@@ -158,6 +180,8 @@ Vielleicht mit Bundestagswahl?
 :::{.column widht="50%}
 
 ```{r}
+#| echo: false
+
 gapminder_2020 <- gapminder_dat_full %>%
   filter(time == 2020) %>%
   arrange(desc(co2_cons))
@@ -181,6 +205,8 @@ ggplot(
 :::{.column widht="50%}
 ::: {.fragment}
 ```{r}
+#| echo: false
+
 gapminder_2020 <- gapminder_dat_full %>%
   filter(time == 2020) %>%
   arrange(desc(co2_pcap_cons))
@@ -201,11 +227,7 @@ ggplot(
 ## Fehlender Kontext
 Haushalt so groß wie nie
 
-##
-
-![](./images/florida.jpeg)
-
-
+## Irreführender Kontext
 
 
 # Story
@@ -476,28 +498,90 @@ Foto von <a href="https://unsplash.com/de/@efekurnaz?utm_content=creditCopyText&
 
 ## Farbwahrnehmung beim Menschen
 
+::: {.columns}
+::: {.column width="50%"}
+![](./images/electro_spec.svg)
+:::
+
+::: {.column widht="50%"}
+
+Primärfarben des Lichts: **R**ot, **G**rün, **B**lau
+
+:::
+:::
+
+:::{.image-ref}
+By <a href="//commons.wikimedia.org/wiki/File:Electromagnetic-Spectrum.png" title="File:Electromagnetic-Spectrum.png">Original: </a> <a href="//commons.wikimedia.org/wiki/User:Penubag" title="User:Penubag">Penubag</a> Vector: <a href="//commons.wikimedia.org/wiki/User:Victor_Blacus" title="User:Victor Blacus">Victor Blacus</a> - Own work based on: <a href="//commons.wikimedia.org/wiki/File:Electromagnetic-Spectrum.png" title="File:Electromagnetic-Spectrum.png">Electromagnetic-Spectrum.png</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=22428451">Link</a>
+:::
+
 ## Trichromatizität
-- Primärfarben des Lichts: **R**ot, **G**rün, **B**lau
-- Drei Zapfentypen, die unterschiedlich sensitiv für bestimmte Wellenlängen sind: 
-
-  - S: blau
-  - M: grün
-  - L: rot
-
-- Vergleich Mensch und ein Tier (Siehe mein Buch)
 
 
+Der Mensch hat in der Regel drei Zapfentypen, die unterschiedlich sensitiv für bestimmte Wellenlängen sind: 
+
+![](./images/cones_human.svg)
+
+- RGB erklären (und die Addition im Gehirn?
+
+
+::: {.image-ref}
+By <a href="//commons.wikimedia.org/wiki/User:BenRG" title="User:BenRG">BenRG</a> - <span class="int-own-work" lang="en">Own work</span>, Public Domain, <a href="https://commons.wikimedia.org/w/index.php?curid=7873848">Link</a>
+:::
+
+## 
+Andere Tiere können auch mal mehr oder weniger haben:
+
+![](./images/color_animals.png)
+
+:::{.image-ref}
+Bild aus [Farbsehen der Tiere](https://media.springernature.com/original/springer-static/image/art%3A10.1007%2Fs00347-017-0543-6/MediaObjects/347_2017_543_Fig1_HTML.gif?as=jpg)
+:::
+
+## 
+Viele Tiere sehen nur grau:
+
+- Wale
+- Haie
+- Waschbären
+- Faultiere
+- Armadillos
+- Oktopusse
+- Kraken
+
+Warum also überhaupt Farbwahrnehmung?
+
+- Ist subjektiv
+- Aber kann konsistent wahrgenommen werden: Eine Erdebeere im Schatten und im Sonnenlicht kann jeweils rot wahrgenommen werden. Grautöne sind stärker vom Licht abhängig. 
+- More is not always better: Affen vom Amerikanischen Kontinent sind teilweise die und teilweise tetra: di kann besser INsekten ausmachen, tri Früchte gegen grünen background. 
+- Farbwahrnehmung also abhängig vom Drumrum
+- Farben bringen nur einen Vorteil, wenn ein Individuum daraus meaning ableiten kann. 
 
 
 
-## Diskrete Farben vs. Farbverläufe
-- Vor allem für diskrete Gruppen geeignet
-- Farbverläufe schwieriger (aber es gibt color scales dafür)
+## Farben
+Ganglienzellen übertragen keine Informationen über absolute Helligkeit,
+sondern über relative Helligkeit.
+‣ Wie stark unterscheiden sich zwei Bereiche in ihrer Helligkeit?
+‣ Wie stark hat sich eine Helligkeit gerade geändert?
+Allgemeine Lehre daraus:
+‣ Visualisierung kann nicht gut darin sein, absolute Werte zu
+kommunizieren (Tabellen können das besser)
+‣ Hingegen ist das visuelle System (und das Gehirn allgemein) extrem gut
+darin, Unterschiede und Veränderungen zu erkennen
+--> Beispiel bringen (Simultankontrast)
+
+- Graustufen nicht für absolute oder kategorische Werte nutzen (mehr als vier können iwr nicht gut unterscheiden)
+
+## Farbton, Sättigung, Helligkeit
+
+![](./images/color_properties.png)
 
 
+# Was bringt uns das jetzt für unsere Abbildungen?
 
+# 1. Die Farben sollten unterscheidbar, aber ähnlich sein!
 
-## Unterschiedlich, aber ähnlich
+## 1. Unterscheidbar, aber ähnlich
 
 ```{r}
 #| echo: false
@@ -678,9 +762,6 @@ theme_bg()
 
 :::{.columns}
 :::{.column width="50%"}
-![](./images/color_properties.png)
-:::
-:::{.column widht="50%}
 ```{r}
 #| label: color_hue_only
 #| echo: false
@@ -707,6 +788,9 @@ color_plot +
 
 ```
 
+
+:::
+:::{.column widht="50%}
 
 ```{r}
 #| echo: false
@@ -771,6 +855,12 @@ color_plot_bar +
 ```
 :::
 :::
+
+
+## 2. Intuitives Verständnis: Diskrete Farben vs. Farbverläufe
+- Vor allem für diskrete Gruppen geeignet
+- Farbverläufe schwieriger (aber es gibt color scales dafür)
+- Bestimmte Farben (Grün = gut, Rot = Gefahr)
 
 ## Größe
 
@@ -910,6 +1000,14 @@ Siehe [Colblindor](https://www.color-blindness.com/coblis-color-blindness-simula
 
 ## Farbfehlsichtigkeit
 
+![](./images/cones_eye.jpeg)
+
+protanopic right side
+
+::: {.image-ref}
+By Mark Fairchild, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=32075732">Link</a>
+:::
+
 - Protanopie: Zapfentyp L (rot) fehlt: rot vs grün Schwäche
 - Deuteranopie: Zapfentyp M (grün) fehlt: rot vs grün Schwäche
 - Tritanopie: Zapfentyp S (blau) fehlt: blau vs grün, gelb vs violett Schwäche
@@ -1002,23 +1100,6 @@ Data from [Rockefeller Institute](https://rockinst.org/blog/public-mass-shooting
 
 
 
-## Farben
-Ganglienzellen übertragen keine Informationen über absolute Helligkeit,
-sondern über relative Helligkeit.
-‣ Wie stark unterscheiden sich zwei Bereiche in ihrer Helligkeit?
-‣ Wie stark hat sich eine Helligkeit gerade geändert?
-Allgemeine Lehre daraus:
-‣ Visualisierung kann nicht gut darin sein, absolute Werte zu
-kommunizieren (Tabellen können das besser)
-‣ Hingegen ist das visuelle System (und das Gehirn allgemein) extrem gut
-darin, Unterschiede und Veränderungen zu erkennen
---> Beispiel bringen (Simultankontrast)
-
-- Graustufen nicht für absolute oder kategorische Werte nutzen (mehr als vier können iwr nicht gut unterscheiden)
-- Welche Farben wir wahrnehmen können (Exkurs Tierwelt? -> Siehe mein Tierbuch)
-- Diese Webseite zur Auswahl von passenden Farben nutzen?
-- RGB erklären (und die Addition im Gehirn?
-
 ## Farbfehlsichtigkeiten
 
 Farbsehtests
@@ -1027,12 +1108,98 @@ Farbsehtests
 - Farbwahrnehmung braucht Helligkeit und Fläche
 
 ## Anwendung in ggplot2: Farbskalen wählen
+
+## Manuell
+
+::: {.columns}
+::: {.column width="50%"}
+
+::: panel-tabset
+
+### Code
+
+```{r}
+#| label: manual_color_scale
+#| code-line-numbers: "5,9"
+#| fig-show: hide
+
+ggplot(
+  continent_co2_pct,
+  aes(x = world_6region, 
+      y = percentage, 
+      fill = world_6region)) +
+  geom_bar(stat = "identity", width = 1) +
+  theme_minimal() +
+  labs(title = "Share of global per capita CO2 consumption") +
+  scale_fill_manual(values = c("red", "green", "blue", "yellow", "violet", "brown"))
+```
+
+### Plot
+
+```{r}
+#| label: manual_color_scale
+#| echo: false
+```
+
+:::
+:::
+
+:::{.column widht="50%"}
+
+
+::: panel-tabset
+
+### Code
+
+```{r}
+#| label: manual_color_scale_named
+#| code-line-numbers: "5,9"
+#| reults: hide
+#| fig-show: hide
+
+my_color_scale <- c("East Asia & Pacific" ="red", 
+                    "South Asia" = "green", 
+                    "Sub-Saharan Africa" = "blue", 
+                    "Europe & Central Asia" = "yellow", 
+                    "Middle East & North Africa" = "violet", 
+                    "Americas" = "brown")
+ggplot(
+  continent_co2_pct,
+  aes(x = world_6region, 
+      y = percentage, 
+      color = world_6region)) +
+  geom_bar(stat = "identity", width = 1) +
+  theme_minimal() +
+  labs(title = "Share of global per capita CO2 consumption") +
+  scale_color_manual(values = my_color_scale)
+```
+
+### Plot
+
+```{r}
+#| label: manual_color_scale_named
+#| echo: false
+```
+
+:::
+
+
+:::
+:::
+
+<!-- ::: {.callout-tip} -->
+<!-- Wenn du in einem Projekt die gleichen Gruppen in verschiedenen Plots zeigst, setze die Varbskala einmal mit den Gruppennamen, damit die Gruppen in allen Plots die selben Farben bekommen.  -->
+<!-- ::: -->
+
+
+## 
 - palettteer
 - https://r-graph-gallery.com/color-palette-finder
 - Intervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen
   - Kein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten
 - Ordinal: Richtung und gute Unterscheidbarkeit im Farbraum
 - Nominalskaliert: Spriale/Diagnoale im Farbraum
+
 
 ## Viele Möglichkeiten
 - pakete
@@ -1041,6 +1208,9 @@ Farbsehtests
 ## Tools
 - Colorbrewer
 - Huemint
+
+## Farben: Zusammenfassung
+
 
 ## Übung
 

@@ -340,7 +340,7 @@
     "href": "sessions/good_plots/slides.html#section-3",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Beispiel von einem komplexen Plot bringen, den wir schon erzeugt haben, und dann reduzieren!"
+    "text": "Andere Tiere können auch mal mehr oder weniger haben:\n\n\nBild aus Farbsehen der Tiere"
   },
   {
     "objectID": "sessions/good_plots/slides.html#übung",
@@ -487,7 +487,7 @@
     "href": "sessions/good_plots/slides.html#fehlender-kontext",
     "title": "Was ist eine gute Grafik?",
     "section": "Fehlender Kontext",
-    "text": "Fehlender Kontext\n\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;%\n  filter(time == 2020) %&gt;%\n  arrange(desc(co2_cons))\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_cons), y = co2_cons)\n) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  labs(\n    title = \"China burns the most CO2!\",\n    subtitle = \"Total CO2 consumption in the biggest emmiting countries\"\n  ) +\n  theme_bg()\n\n\n\n\n\n\n\n\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;%\n  filter(time == 2020) %&gt;%\n  arrange(desc(co2_pcap_cons))\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)\n) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  labs(title = \"CO2 consumption per capita in the biggest emmiting countries\") +\n  theme_bg()"
+    "text": "Fehlender Kontext"
   },
   {
     "objectID": "sessions/good_plots/slides.html#data-ink-ratio",
@@ -557,7 +557,7 @@
     "href": "sessions/good_plots/slides.html#anwendung-in-ggplot2-farbskalen-wählen",
     "title": "Was ist eine gute Grafik?",
     "section": "Anwendung in ggplot2: Farbskalen wählen",
-    "text": "Anwendung in ggplot2: Farbskalen wählen\n\npalettteer\nhttps://r-graph-gallery.com/color-palette-finder\nIntervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen\n\nKein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten\n\n\nOrdinal: Richtung und gute Unterscheidbarkeit im Farbraum\nNominalskaliert: Spriale/Diagnoale im Farbraum"
+    "text": "Anwendung in ggplot2: Farbskalen wählen"
   },
   {
     "objectID": "sessions/good_plots/slides.html#storytelling",
@@ -795,7 +795,7 @@
     "href": "sessions/good_plots/slides.html#section-2",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Dabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen.\nHandschriftliche Skizze ist auch erstmal hilfreich!"
+    "text": "Beispiel von einem komplexen Plot bringen, den wir schon erzeugt haben, und dann reduzieren!"
   },
   {
     "objectID": "sessions/good_plots/slides.html#funktionelles-design",
@@ -837,7 +837,7 @@
     "href": "sessions/good_plots/slides.html#section-4",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "library(colorblindcheck)\npalette_check(theme_colors_red, plot = TRUE)  \n\n\n          name n tolerance ncp ndcp min_dist mean_dist max_dist\n1       normal 6   4.95969  15   15 4.959690  19.65649 41.78456\n2 deuteranopia 6   4.95969  15   15 5.428903  19.54489 42.55279\n3   protanopia 6   4.95969  15   14 3.976233  19.39475 41.15790\n4   tritanopia 6   4.95969  15   15 5.557603  19.68098 40.93915"
+    "text": "Viele Tiere sehen nur grau:\n\nWale\nHaie\nWaschbären\nFaultiere\nArmadillos\nOktopusse\nKraken\n\nWarum also überhaupt Farbwahrnehmung?\n\nIst subjektiv\nAber kann konsistent wahrgenommen werden: Eine Erdebeere im Schatten und im Sonnenlicht kann jeweils rot wahrgenommen werden. Grautöne sind stärker vom Licht abhängig.\nMore is not always better: Affen vom Amerikanischen Kontinent sind teilweise die und teilweise tetra: di kann besser INsekten ausmachen, tri Früchte gegen grünen background.\nFarbwahrnehmung also abhängig vom Drumrum\nFarben bringen nur einen Vorteil, wenn ein Individuum daraus meaning ableiten kann."
   },
   {
     "objectID": "sessions/good_plots/slides.html#finger-weg-von-pie-charts",
@@ -1131,14 +1131,14 @@
     "href": "sessions/good_plots/slides.html#farben-1",
     "title": "Was ist eine gute Grafik?",
     "section": "Farben",
-    "text": "Farben\nGanglienzellen übertragen keine Informationen über absolute Helligkeit, sondern über relative Helligkeit. ‣ Wie stark unterscheiden sich zwei Bereiche in ihrer Helligkeit? ‣ Wie stark hat sich eine Helligkeit gerade geändert? Allgemeine Lehre daraus: ‣ Visualisierung kann nicht gut darin sein, absolute Werte zu kommunizieren (Tabellen können das besser) ‣ Hingegen ist das visuelle System (und das Gehirn allgemein) extrem gut darin, Unterschiede und Veränderungen zu erkennen –&gt; Beispiel bringen (Simultankontrast)\n\nGraustufen nicht für absolute oder kategorische Werte nutzen (mehr als vier können iwr nicht gut unterscheiden)\nWelche Farben wir wahrnehmen können (Exkurs Tierwelt? -&gt; Siehe mein Tierbuch)\nDiese Webseite zur Auswahl von passenden Farben nutzen?\nRGB erklären (und die Addition im Gehirn?"
+    "text": "Farben\nGanglienzellen übertragen keine Informationen über absolute Helligkeit, sondern über relative Helligkeit. ‣ Wie stark unterscheiden sich zwei Bereiche in ihrer Helligkeit? ‣ Wie stark hat sich eine Helligkeit gerade geändert? Allgemeine Lehre daraus: ‣ Visualisierung kann nicht gut darin sein, absolute Werte zu kommunizieren (Tabellen können das besser) ‣ Hingegen ist das visuelle System (und das Gehirn allgemein) extrem gut darin, Unterschiede und Veränderungen zu erkennen –&gt; Beispiel bringen (Simultankontrast)\n\nGraustufen nicht für absolute oder kategorische Werte nutzen (mehr als vier können iwr nicht gut unterscheiden)"
   },
   {
     "objectID": "sessions/good_plots/slides.html#farbwahrnehmung-beim-menschen",
     "href": "sessions/good_plots/slides.html#farbwahrnehmung-beim-menschen",
     "title": "Was ist eine gute Grafik?",
     "section": "Farbwahrnehmung beim Menschen",
-    "text": "Farbwahrnehmung beim Menschen"
+    "text": "Farbwahrnehmung beim Menschen\n\n\n\n\nPrimärfarben des Lichts: Rot, Grün, Blau\n\n\nBy Original:  Penubag Vector: Victor Blacus - Own work based on: Electromagnetic-Spectrum.png, CC BY-SA 3.0, Link"
   },
   {
     "objectID": "sessions/good_plots/slides.html#zapfen",
@@ -1257,7 +1257,7 @@
     "href": "sessions/good_plots/slides.html#farbton-sättigung-und-helligkeit",
     "title": "Was ist eine gute Grafik?",
     "section": "Farbton, Sättigung und Helligkeit",
-    "text": "Farbton, Sättigung und Helligkeit\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVariiert immer Farbton, Sättigung und Helligkeit gleichzeitig."
+    "text": "Farbton, Sättigung und Helligkeit\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVariiert immer Farbton, Sättigung und Helligkeit gleichzeitig."
   },
   {
     "objectID": "sessions/good_plots/slides.html#section-5",
@@ -1271,7 +1271,7 @@
     "href": "sessions/good_plots/slides.html#trichromatizität",
     "title": "Was ist eine gute Grafik?",
     "section": "Trichromatizität",
-    "text": "Trichromatizität\n\nPrimärfarben des Lichts: Rot, Grün, Blau\n\nDrei Zapfentypen, die unterschiedlich sensitiv für bestimmte Wellenlängen sind:\n\nS: blau\nM: grün\nL: rot\n\n\nVergleich Mensch und ein Tier (Siehe mein Buch)"
+    "text": "Trichromatizität\nDer Mensch hat in der Regel drei Zapfentypen, die unterschiedlich sensitiv für bestimmte Wellenlängen sind:\n\n\nRGB erklären (und die Addition im Gehirn?\n\n\nBy BenRG - Own work, Public Domain, Link"
   },
   {
     "objectID": "sessions/good_plots/slides.html#größe",
@@ -1285,7 +1285,7 @@
     "href": "sessions/good_plots/slides.html#farbfehlsichtigkeit",
     "title": "Was ist eine gute Grafik?",
     "section": "Farbfehlsichtigkeit",
-    "text": "Farbfehlsichtigkeit\n\nProtanopie: Zapfentyp L (rot) fehlt: rot vs grün Schwäche\nDeuteranopie: Zapfentyp M (grün) fehlt: rot vs grün Schwäche\nTritanopie: Zapfentyp S (blau) fehlt: blau vs grün, gelb vs violett Schwäche\nTake the above scale and show that it is not great for color blindness\nhttps://www.color-blindness.com/coblis-color-blindness-simulator/"
+    "text": "Farbfehlsichtigkeit\n\nprotanopic right side\n\nBy Mark Fairchild, CC BY-SA 3.0, Link\n\n\nProtanopie: Zapfentyp L (rot) fehlt: rot vs grün Schwäche\nDeuteranopie: Zapfentyp M (grün) fehlt: rot vs grün Schwäche\nTritanopie: Zapfentyp S (blau) fehlt: blau vs grün, gelb vs violett Schwäche\nTake the above scale and show that it is not great for color blindness\nhttps://www.color-blindness.com/coblis-color-blindness-simulator/"
   },
   {
     "objectID": "sessions/good_plots/slides.html#tools",
@@ -1307,5 +1307,68 @@
     "title": "Was ist eine gute Grafik?",
     "section": "Grau",
     "text": "Grau"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#konventionen",
+    "href": "sessions/good_plots/slides.html#konventionen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Konventionen",
+    "text": "Konventionen\n\n\n\n\n776.013 Home protection; use or threatened use of deadly force; presumption of fear of death or great bodily harm.— (1) A person who is in a dwelling or residence in which the person has a right to be has no duty to retreat and has the right to stand his or her ground and use or threaten to use:\n(a) Nondeadly force against another when and to the extent that the person reasonably believes that such conduct is necessary to defend himself or herself or another against the other’s imminent use of unlawful force; or\n(b) Deadly force if he or she reasonably believes that using or threatening to use such force is necessary to prevent imminent death or great bodily harm to himself or herself or another or to prevent the imminent commission of a forcible felony.\nhttp://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0776/Sections/0776.013.html"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#irreführender-kontext",
+    "href": "sessions/good_plots/slides.html#irreführender-kontext",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Irreführender Kontext",
+    "text": "Irreführender Kontext"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#intuitives-verständnis-diskrete-farben-vs.-farbverläufe",
+    "href": "sessions/good_plots/slides.html#intuitives-verständnis-diskrete-farben-vs.-farbverläufe",
+    "title": "Was ist eine gute Grafik?",
+    "section": "2. Intuitives Verständnis: Diskrete Farben vs. Farbverläufe",
+    "text": "2. Intuitives Verständnis: Diskrete Farben vs. Farbverläufe\n\nVor allem für diskrete Gruppen geeignet\nFarbverläufe schwieriger (aber es gibt color scales dafür)\nBestimmte Farben (Grün = gut, Rot = Gefahr)"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#farbton-sättigung-helligkeit",
+    "href": "sessions/good_plots/slides.html#farbton-sättigung-helligkeit",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Farbton, Sättigung, Helligkeit",
+    "text": "Farbton, Sättigung, Helligkeit"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#unterscheidbar-aber-ähnlich-1",
+    "href": "sessions/good_plots/slides.html#unterscheidbar-aber-ähnlich-1",
+    "title": "Was ist eine gute Grafik?",
+    "section": "1. Unterscheidbar, aber ähnlich",
+    "text": "1. Unterscheidbar, aber ähnlich"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#manuell",
+    "href": "sessions/good_plots/slides.html#manuell",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Manuell",
+    "text": "Manuell\n\n\n\n\nCode\nPlot\n\n\n\n\nggplot(\n  continent_co2_pct,\n  aes(x = world_6region, \n      y = percentage, \n      fill = world_6region)) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_manual(values = c(\"red\", \"green\", \"blue\", \"yellow\", \"violet\", \"brown\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nPlot\n\n\n\n\nmy_color_scale &lt;- c(\"East Asia & Pacific\" =\"red\", \n                    \"South Asia\" = \"green\", \n                    \"Sub-Saharan Africa\" = \"blue\", \n                    \"Europe & Central Asia\" = \"yellow\", \n                    \"Middle East & North Africa\" = \"violet\", \n                    \"Americas\" = \"brown\")\nggplot(\n  continent_co2_pct,\n  aes(x = world_6region, \n      y = percentage, \n      color = world_6region)) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_color_manual(values = my_color_scale)"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#farben-zusammenfassung",
+    "href": "sessions/good_plots/slides.html#farben-zusammenfassung",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Farben: Zusammenfassung",
+    "text": "Farben: Zusammenfassung"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#section-6",
+    "href": "sessions/good_plots/slides.html#section-6",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "palettteer\nhttps://r-graph-gallery.com/color-palette-finder\nIntervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen\n\nKein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten\n\n\nOrdinal: Richtung und gute Unterscheidbarkeit im Farbraum\nNominalskaliert: Spriale/Diagnoale im Farbraum"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#test-code-size",
+    "href": "sessions/good_plots/slides.html#test-code-size",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Test code size",
+    "text": "Test code size\n\nmy_color_scale &lt;- c(\"East Asia & Pacific\" =\"red\", \n                    \"South Asia\" = \"green\", \n                    \"Sub-Saharan Africa\" = \"blue\", \n                    \"Europe & Central Asia\" = \"yellow\", \n                    \"Middle East & North Africa\" = \"violet\", \n                    \"Americas\" = \"brown\")\nggplot(\n  continent_co2_pct,\n  aes(x = world_6region, \n      y = percentage, \n      color = world_6region)) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_color_manual(values = my_color_scale)"
   }
 ]
