@@ -263,7 +263,7 @@
     "href": "sessions/good_plots/slides.html#manipulation-des-bildformats",
     "title": "Was ist eine gute Grafik?",
     "section": "Manipulation des Bildformats",
-    "text": "Manipulation des Bildformats\n\nGrafikCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nset.seed(42)\nmy_weight &lt;- data.frame(\n  month = factor(c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"),\n                 levels = c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"), \n                 ordered = TRUE), \n  weight = rnorm(12, 90, 5)/1000, \n  group = rep(1, 12)\n)\n\nggplot(my_weight, \n       aes(x = month, y = weight, group = group)) +\n  geom_point() +\n  geom_line() +\n  labs(title = \"Mein Gewicht 2024\",\n       subtitle = \"In metrischen Tonnen\", \n       x = \"Monat\", \n       y = \"Gewicht in t\") +\n  ylim(0, 1000) + \n  theme_bg() +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))"
+    "text": "Manipulation des Bildformats\n\nGrafikCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nset.seed(42)\nmy_weight &lt;- data.frame(\n  month = factor(c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"),\n    levels = c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"),\n    ordered = TRUE\n  ),\n  weight = rnorm(12, 90, 5) / 1000,\n  group = rep(1, 12)\n)\n\nggplot(\n  my_weight,\n  aes(x = month, y = weight, group = group)\n) +\n  geom_point() +\n  geom_line() +\n  labs(\n    title = \"Mein Gewicht 2024\",\n    subtitle = \"In metrischen Tonnen\",\n    x = \"Monat\",\n    y = \"Gewicht in t\"\n  ) +\n  ylim(0, 1000) +\n  theme_bg() +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))"
   },
   {
     "objectID": "sessions/good_plots/slides.html#election-plot",
@@ -277,7 +277,7 @@
     "href": "sessions/good_plots/slides.html#fehlender-kontext",
     "title": "Was ist eine gute Grafik?",
     "section": "Fehlender Kontext",
-    "text": "Fehlender Kontext\n\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;% \nfilter(time == 2020) %&gt;% \narrange(desc(co2_cons))\n\nggplot(gapminder_2020[1:10, ], \n       aes(x = reorder(country, co2_cons), y = co2_cons)) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\nlabs(title = \"China burns the most CO2!\", \nsubtitle = \"Total CO2 consumption in the biggest emmiting countries\") +\ntheme_bg()\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;% \nfilter(time == 2020) %&gt;% \narrange(desc(co2_pcap_cons) )\n\nggplot(gapminder_2020[1:10, ], \n       aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\nlabs(title = \"CO2 consumption per capita in the biggest emmiting countries\") +\ntheme_bg()"
+    "text": "Fehlender Kontext\n\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;%\n  filter(time == 2020) %&gt;%\n  arrange(desc(co2_cons))\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_cons), y = co2_cons)\n) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  labs(\n    title = \"China burns the most CO2!\",\n    subtitle = \"Total CO2 consumption in the biggest emmiting countries\"\n  ) +\n  theme_bg()\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;%\n  filter(time == 2020) %&gt;%\n  arrange(desc(co2_pcap_cons))\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)\n) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  labs(title = \"CO2 consumption per capita in the biggest emmiting countries\") +\n  theme_bg()"
   },
   {
     "objectID": "sessions/good_plots/slides.html#fehlender-kontext-1",
@@ -343,6 +343,104 @@
     "text": "Farben\n\n\n\n\n\n\n\nFoto von Efe Kurnaz auf Unsplash"
   },
   {
+    "objectID": "sessions/good_plots/slides.html#farbwahrnehmung-beim-menschen",
+    "href": "sessions/good_plots/slides.html#farbwahrnehmung-beim-menschen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Farbwahrnehmung beim Menschen",
+    "text": "Farbwahrnehmung beim Menschen"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#zapfen",
+    "href": "sessions/good_plots/slides.html#zapfen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Zapfen",
+    "text": "Zapfen\n\nVergleich Mensch und ein Tier (Siehe mein Buch)"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#diskrete-farben-vs.-farbverläufe",
+    "href": "sessions/good_plots/slides.html#diskrete-farben-vs.-farbverläufe",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Diskrete Farben vs. Farbverläufe",
+    "text": "Diskrete Farben vs. Farbverläufe\n\nVor allem für diskrete Gruppen geeignet\nFarbverläufe schwieriger (aber es gibt color scales dafür)"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#zu-merken",
+    "href": "sessions/good_plots/slides.html#zu-merken",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Zu merken",
+    "text": "Zu merken\n\nUnterscheidbar, aber ähnlich genug, um keinen Bias zu erzeugen."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#unterscheidbar-aber-ähnlich",
+    "href": "sessions/good_plots/slides.html#unterscheidbar-aber-ähnlich",
+    "title": "Was ist eine gute Grafik?",
+    "section": "1. Unterscheidbar, aber ähnlich",
+    "text": "1. Unterscheidbar, aber ähnlich\nWie unten machen, aber mit den Balkendiagrammen ::: {.columns} :::{.column widht=“50%}\n\n\n\n\n\n\n\n\n\n:::\n\n\n\n\n\n\n\n\n\n\n:::"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#unterschiedlich-aber-ähnlich",
+    "href": "sessions/good_plots/slides.html#unterschiedlich-aber-ähnlich",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Unterschiedlich, aber ähnlich",
+    "text": "Unterschiedlich, aber ähnlich"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#color-blindness",
+    "href": "sessions/good_plots/slides.html#color-blindness",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Color Blindness",
+    "text": "Color Blindness\n\nTake the above scale and show that it is not great for color blindness\nhttps://www.color-blindness.com/coblis-color-blindness-simulator/"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#farbe-ist-relativ",
+    "href": "sessions/good_plots/slides.html#farbe-ist-relativ",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Farbe ist relativ",
+    "text": "Farbe ist relativ\nBeispiel: Grautöne vs Rottöne\n\n\nBild von Nature Methods."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#farbe-ist-relativ-1",
+    "href": "sessions/good_plots/slides.html#farbe-ist-relativ-1",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Farbe ist relativ",
+    "text": "Farbe ist relativ"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#fragen-warum-ist-das-noch-eine-schelchte-color-scale",
+    "href": "sessions/good_plots/slides.html#fragen-warum-ist-das-noch-eine-schelchte-color-scale",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Fragen: Warum ist das noch eine schelchte Color scale?",
+    "text": "Fragen: Warum ist das noch eine schelchte Color scale?\n\n\nSiehe Colblindor."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#section-4",
+    "href": "sessions/good_plots/slides.html#section-4",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "library(colorblindcheck)\npalette_check(theme_colors_red, plot = TRUE)  \n\n\n          name n tolerance ncp ndcp min_dist mean_dist max_dist\n1       normal 6   4.95969  15   15 4.959690  19.65649 41.78456\n2 deuteranopia 6   4.95969  15   15 5.428903  19.54489 42.55279\n3   protanopia 6   4.95969  15   14 3.976233  19.39475 41.15790\n4   tritanopia 6   4.95969  15   15 5.557603  19.68098 40.93915"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#das-kann-man-sich-natürlich-auch-zu-nutze-machen-passt-aber-vielleicht-eher-zu-space---da-nochmal-zeigen-hier-die-punkte-enger-zusammen",
+    "href": "sessions/good_plots/slides.html#das-kann-man-sich-natürlich-auch-zu-nutze-machen-passt-aber-vielleicht-eher-zu-space---da-nochmal-zeigen-hier-die-punkte-enger-zusammen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Das kann man sich natürlich auch zu Nutze machen (Passt aber vielleicht eher zu space? -> da nochmal zeigen, hier die Punkte enger zusammen )",
+    "text": "Das kann man sich natürlich auch zu Nutze machen (Passt aber vielleicht eher zu space? -&gt; da nochmal zeigen, hier die Punkte enger zusammen )\n\n\n\n\n\n\n\n\n\n\n\nData from Rockefeller Institute and Wikipedia."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#nicht-zu-viele",
+    "href": "sessions/good_plots/slides.html#nicht-zu-viele",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Nicht zu viele!",
+    "text": "Nicht zu viele!"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#color-for-coding-a-third-dimension",
+    "href": "sessions/good_plots/slides.html#color-for-coding-a-third-dimension",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Color for coding a third dimension",
+    "text": "Color for coding a third dimension\n\nWie viel macht sinn?\nScatterplot"
+  },
+  {
     "objectID": "sessions/good_plots/slides.html#farben-1",
     "href": "sessions/good_plots/slides.html#farben-1",
     "title": "Was ist eine gute Grafik?",
@@ -361,7 +459,21 @@
     "href": "sessions/good_plots/slides.html#anwendung-in-ggplot2-farbskalen-wählen",
     "title": "Was ist eine gute Grafik?",
     "section": "Anwendung in ggplot2: Farbskalen wählen",
-    "text": "Anwendung in ggplot2: Farbskalen wählen"
+    "text": "Anwendung in ggplot2: Farbskalen wählen\n\npalettteer\nhttps://r-graph-gallery.com/color-palette-finder"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#viele-möglichkeiten",
+    "href": "sessions/good_plots/slides.html#viele-möglichkeiten",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Viele Möglichkeiten",
+    "text": "Viele Möglichkeiten\n\npakete\nSelbst stezten"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#übung",
+    "href": "sessions/good_plots/slides.html#übung",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Übung",
+    "text": "Übung\nBaue eine eigene Color-Palette und wende sie auf deinen Plot an. Achte dabei auf Unterscheidbarkeit (Auch color blind), aber auch auf Design."
   },
   {
     "objectID": "sessions/good_plots/slides.html#gruppieren",
@@ -434,11 +546,11 @@
     "text": "Purpose\n\nExploratory vs. Explanatory\nKann oft über reines Zeigen der Daten hinausgehen."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#section-4",
-    "href": "sessions/good_plots/slides.html#section-4",
+    "objectID": "sessions/good_plots/slides.html#size",
+    "href": "sessions/good_plots/slides.html#size",
     "title": "Was ist eine gute Grafik?",
-    "section": "",
-    "text": "Data from Rockefeller Institute and Wikipedia."
+    "section": "Size",
+    "text": "Size\nAlso include population size in the scatterplot"
   },
   {
     "objectID": "sessions/good_plots/slides.html#tufte",
@@ -497,8 +609,8 @@
     "text": "Nutzen von Eigenschaften der Wahrnehmung\n\nBewusste Wahrnehmung ignoriert Informationen und fügt hinzu\nNähe\nSalienz (Farbe, Größe, Neigung) (Szaﬁr, Haroz, Gleicher & Franconeri (2016))\nHier würde das USA Bild passen (evtl. mit einem anderen Beispiel, das den Unterschied deutlich macht, z.B. keine andere Farbe, näher dran durch andere Achse)\nHarold et al., 2016: Lenken von Aufmerksamkeit\nNothelfer et al., 2017: Redundatne Kodierung führt zu deutlich höherer Genauigkeit der Antworten und kürzeren Reaktionszeiten"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#übung",
-    "href": "sessions/good_plots/slides.html#übung",
+    "objectID": "sessions/good_plots/slides.html#übung-1",
+    "href": "sessions/good_plots/slides.html#übung-1",
     "title": "Was ist eine gute Grafik?",
     "section": "Übung",
     "text": "Übung\nSchlechte Grafiken verbessern: https://www.data-to-viz.com/caveats.html"
