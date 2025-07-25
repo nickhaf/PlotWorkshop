@@ -350,11 +350,11 @@
     "text": "Farbwahrnehmung beim Menschen"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#zapfen",
-    "href": "sessions/good_plots/slides.html#zapfen",
+    "objectID": "sessions/good_plots/slides.html#trichromatizität",
+    "href": "sessions/good_plots/slides.html#trichromatizität",
     "title": "Was ist eine gute Grafik?",
-    "section": "Zapfen",
-    "text": "Zapfen\n\nVergleich Mensch und ein Tier (Siehe mein Buch)"
+    "section": "Trichromatizität",
+    "text": "Trichromatizität\n\nPrimärfarben des Lichts: Rot, Grün, Blau\nDrei Zapfentypen, die unterschiedlich sensitiv für bestimmte Wellenlängen sind:\n\nS: blau\nM: grün\nL: rot\n\nVergleich Mensch und ein Tier (Siehe mein Buch)"
   },
   {
     "objectID": "sessions/good_plots/slides.html#diskrete-farben-vs.-farbverläufe",
@@ -364,20 +364,6 @@
     "text": "Diskrete Farben vs. Farbverläufe\n\nVor allem für diskrete Gruppen geeignet\nFarbverläufe schwieriger (aber es gibt color scales dafür)"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#zu-merken",
-    "href": "sessions/good_plots/slides.html#zu-merken",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Zu merken",
-    "text": "Zu merken\n\nUnterscheidbar, aber ähnlich genug, um keinen Bias zu erzeugen."
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#unterscheidbar-aber-ähnlich",
-    "href": "sessions/good_plots/slides.html#unterscheidbar-aber-ähnlich",
-    "title": "Was ist eine gute Grafik?",
-    "section": "1. Unterscheidbar, aber ähnlich",
-    "text": "1. Unterscheidbar, aber ähnlich\nWie unten machen, aber mit den Balkendiagrammen ::: {.columns} :::{.column widht=“50%}\n\n\n\n\n\n\n\n\n\n:::\n\n\n\n\n\n\n\n\n\n\n:::"
-  },
-  {
     "objectID": "sessions/good_plots/slides.html#unterschiedlich-aber-ähnlich",
     "href": "sessions/good_plots/slides.html#unterschiedlich-aber-ähnlich",
     "title": "Was ist eine gute Grafik?",
@@ -385,11 +371,32 @@
     "text": "Unterschiedlich, aber ähnlich"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#color-blindness",
-    "href": "sessions/good_plots/slides.html#color-blindness",
+    "objectID": "sessions/good_plots/slides.html#unterscheidbar-aber-ähnlich",
+    "href": "sessions/good_plots/slides.html#unterscheidbar-aber-ähnlich",
     "title": "Was ist eine gute Grafik?",
-    "section": "Color Blindness",
-    "text": "Color Blindness\n\nTake the above scale and show that it is not great for color blindness\nhttps://www.color-blindness.com/coblis-color-blindness-simulator/"
+    "section": "1. Unterscheidbar, aber ähnlich",
+    "text": "1. Unterscheidbar, aber ähnlich"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#farbton-sättigung-und-helligkeit",
+    "href": "sessions/good_plots/slides.html#farbton-sättigung-und-helligkeit",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Farbton, Sättigung und Helligkeit",
+    "text": "Farbton, Sättigung und Helligkeit\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVariiert immer Farbton, Sättigung und Helligkeit gleichzeitig."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#grau",
+    "href": "sessions/good_plots/slides.html#grau",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Grau",
+    "text": "Grau"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#größe",
+    "href": "sessions/good_plots/slides.html#größe",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Größe",
+    "text": "Größe"
   },
   {
     "objectID": "sessions/good_plots/slides.html#farbe-ist-relativ",
@@ -411,6 +418,13 @@
     "title": "Was ist eine gute Grafik?",
     "section": "Fragen: Warum ist das noch eine schelchte Color scale?",
     "text": "Fragen: Warum ist das noch eine schelchte Color scale?\n\n\nSiehe Colblindor."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#farbfehlsichtigkeit",
+    "href": "sessions/good_plots/slides.html#farbfehlsichtigkeit",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Farbfehlsichtigkeit",
+    "text": "Farbfehlsichtigkeit\n\nProtanopie: Zapfentyp L (rot) fehlt: rot vs grün Schwäche\nDeuteranopie: Zapfentyp M (grün) fehlt: rot vs grün Schwäche\nTritanopie: Zapfentyp S (blau) fehlt: blau vs grün, gelb vs violett Schwäche\nTake the above scale and show that it is not great for color blindness\nhttps://www.color-blindness.com/coblis-color-blindness-simulator/"
   },
   {
     "objectID": "sessions/good_plots/slides.html#section-4",
@@ -438,7 +452,7 @@
     "href": "sessions/good_plots/slides.html#color-for-coding-a-third-dimension",
     "title": "Was ist eine gute Grafik?",
     "section": "Color for coding a third dimension",
-    "text": "Color for coding a third dimension\n\nWie viel macht sinn?\nScatterplot"
+    "text": "Color for coding a third dimension\n\nWie viel macht sinn?\nScatterplot\nSättigung um dimensionalität der Farben darzustellen"
   },
   {
     "objectID": "sessions/good_plots/slides.html#farben-1",
@@ -459,7 +473,7 @@
     "href": "sessions/good_plots/slides.html#anwendung-in-ggplot2-farbskalen-wählen",
     "title": "Was ist eine gute Grafik?",
     "section": "Anwendung in ggplot2: Farbskalen wählen",
-    "text": "Anwendung in ggplot2: Farbskalen wählen\n\npalettteer\nhttps://r-graph-gallery.com/color-palette-finder"
+    "text": "Anwendung in ggplot2: Farbskalen wählen\n\npalettteer\nhttps://r-graph-gallery.com/color-palette-finder\nIntervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen\n\nKein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten\n\nOrdinal: Richtung und gute Unterscheidbarkeit im Farbraum\nNominalskaliert: Spriale/Diagnoale im Farbraum"
   },
   {
     "objectID": "sessions/good_plots/slides.html#viele-möglichkeiten",
@@ -469,11 +483,18 @@
     "text": "Viele Möglichkeiten\n\npakete\nSelbst stezten"
   },
   {
+    "objectID": "sessions/good_plots/slides.html#tools",
+    "href": "sessions/good_plots/slides.html#tools",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Tools",
+    "text": "Tools\n\nColorbrewer\nHuemint"
+  },
+  {
     "objectID": "sessions/good_plots/slides.html#übung",
     "href": "sessions/good_plots/slides.html#übung",
     "title": "Was ist eine gute Grafik?",
     "section": "Übung",
-    "text": "Übung\nBaue eine eigene Color-Palette und wende sie auf deinen Plot an. Achte dabei auf Unterscheidbarkeit (Auch color blind), aber auch auf Design."
+    "text": "Übung\n\nTeste, ob deine bisherige Abbildung für Menschen mit Farbfehlsichtigkeit lesbar ist.\nBaue eine eigene Color-Palette und wende sie auf deinen Plot an. Achte dabei auf Unterscheidbarkeit (Auch color blind), aber auch auf Design."
   },
   {
     "objectID": "sessions/good_plots/slides.html#gruppieren",
