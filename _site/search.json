@@ -347,7 +347,7 @@
     "href": "sessions/good_plots/slides.html#übung",
     "title": "Was ist eine gute Grafik?",
     "section": "Übung",
-    "text": "Übung\nBaue eine eigene Color-Palette und wende sie auf deinen Plot an. Achte dabei auf Unterscheidbarkeit (Auch color blind), aber auch auf Design."
+    "text": "Übung\n\nTeste, ob deine bisherige Abbildung für Menschen mit Farbfehlsichtigkeit lesbar ist.\nBaue eine eigene Color-Palette und wende sie auf deinen Plot an. Achte dabei auf Unterscheidbarkeit (Auch color blind), aber auch auf Design."
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#lets-take-a-deeper-dive",
@@ -557,7 +557,7 @@
     "href": "sessions/good_plots/slides.html#anwendung-in-ggplot2-farbskalen-wählen",
     "title": "Was ist eine gute Grafik?",
     "section": "Anwendung in ggplot2: Farbskalen wählen",
-    "text": "Anwendung in ggplot2: Farbskalen wählen\n\npalettteer\nhttps://r-graph-gallery.com/color-palette-finder"
+    "text": "Anwendung in ggplot2: Farbskalen wählen\n\npalettteer\nhttps://r-graph-gallery.com/color-palette-finder\nIntervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen\n\nKein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten\n\n\nOrdinal: Richtung und gute Unterscheidbarkeit im Farbraum\nNominalskaliert: Spriale/Diagnoale im Farbraum"
   },
   {
     "objectID": "sessions/good_plots/slides.html#storytelling",
@@ -1180,14 +1180,14 @@
     "href": "sessions/good_plots/slides.html#zu-merken",
     "title": "Was ist eine gute Grafik?",
     "section": "Zu merken",
-    "text": "Zu merken\n\nUnterscheidbar, aber ähnlich genug, um keinen Bias zu erzeugen."
+    "text": "Zu merken"
   },
   {
     "objectID": "sessions/good_plots/slides.html#unterscheidbar-aber-ähnlich",
     "href": "sessions/good_plots/slides.html#unterscheidbar-aber-ähnlich",
     "title": "Was ist eine gute Grafik?",
     "section": "1. Unterscheidbar, aber ähnlich",
-    "text": "1. Unterscheidbar, aber ähnlich\nWie unten machen, aber mit den Balkendiagrammen ::: {.columns} :::{.column widht=“50%}\n\n\n\n\n\n\n\n\n:::\n\n\n\n\n\n\n\n\n\n:::"
+    "text": "1. Unterscheidbar, aber ähnlich"
   },
   {
     "objectID": "sessions/good_plots/slides.html#unterschiedlich-aber-ähnlich",
@@ -1229,7 +1229,7 @@
     "href": "sessions/good_plots/slides.html#color-for-coding-a-third-dimension",
     "title": "Was ist eine gute Grafik?",
     "section": "Color for coding a third dimension",
-    "text": "Color for coding a third dimension\n\nWie viel macht sinn?\nScatterplot"
+    "text": "Color for coding a third dimension\n\nWie viel macht sinn?\nScatterplot\nSättigung um dimensionalität der Farben darzustellen"
   },
   {
     "objectID": "sessions/good_plots/slides.html#viele-möglichkeiten",
@@ -1257,6 +1257,55 @@
     "href": "sessions/good_plots/slides.html#farbton-sättigung-und-helligkeit",
     "title": "Was ist eine gute Grafik?",
     "section": "Farbton, Sättigung und Helligkeit",
-    "text": "Farbton, Sättigung und Helligkeit"
+    "text": "Farbton, Sättigung und Helligkeit\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVariiert immer Farbton, Sättigung und Helligkeit gleichzeitig."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#section-5",
+    "href": "sessions/good_plots/slides.html#section-5",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "library(colorblindcheck)\npalette_check(theme_colors_red, plot = TRUE)  \n\n\n          name n tolerance ncp ndcp min_dist mean_dist max_dist\n1       normal 6   4.95969  15   15 4.959690  19.65649 41.78456\n2 deuteranopia 6   4.95969  15   15 5.428903  19.54489 42.55279\n3   protanopia 6   4.95969  15   14 3.976233  19.39475 41.15790\n4   tritanopia 6   4.95969  15   15 5.557603  19.68098 40.93915"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#trichromatizität",
+    "href": "sessions/good_plots/slides.html#trichromatizität",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Trichromatizität",
+    "text": "Trichromatizität\n\nPrimärfarben des Lichts: Rot, Grün, Blau\n\nDrei Zapfentypen, die unterschiedlich sensitiv für bestimmte Wellenlängen sind:\n\nS: blau\nM: grün\nL: rot\n\n\nVergleich Mensch und ein Tier (Siehe mein Buch)"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#größe",
+    "href": "sessions/good_plots/slides.html#größe",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Größe",
+    "text": "Größe"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#farbfehlsichtigkeit",
+    "href": "sessions/good_plots/slides.html#farbfehlsichtigkeit",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Farbfehlsichtigkeit",
+    "text": "Farbfehlsichtigkeit\n\nProtanopie: Zapfentyp L (rot) fehlt: rot vs grün Schwäche\nDeuteranopie: Zapfentyp M (grün) fehlt: rot vs grün Schwäche\nTritanopie: Zapfentyp S (blau) fehlt: blau vs grün, gelb vs violett Schwäche\nTake the above scale and show that it is not great for color blindness\nhttps://www.color-blindness.com/coblis-color-blindness-simulator/"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#tools",
+    "href": "sessions/good_plots/slides.html#tools",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Tools",
+    "text": "Tools\n\nColorbrewer\nHuemint"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#unterschiedlich-aber-ähnlich-1",
+    "href": "sessions/good_plots/slides.html#unterschiedlich-aber-ähnlich-1",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Unterschiedlich, aber ähnlich",
+    "text": "Unterschiedlich, aber ähnlich"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#grau",
+    "href": "sessions/good_plots/slides.html#grau",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Grau",
+    "text": "Grau"
   }
 ]

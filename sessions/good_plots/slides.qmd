@@ -11,6 +11,7 @@ library(here)
 library(janitor)
 library(ggwordcloud)
 source(here::here("src", "themes.R"))
+source(here::here("src", "functions.R"))
 ```
 
 ```{r}
@@ -475,9 +476,18 @@ Foto von <a href="https://unsplash.com/de/@efekurnaz?utm_content=creditCopyText&
 
 ## Farbwahrnehmung beim Menschen
 
-## Zapfen
+## Trichromatizität
+- Primärfarben des Lichts: **R**ot, **G**rün, **B**lau
+- Drei Zapfentypen, die unterschiedlich sensitiv für bestimmte Wellenlängen sind: 
+
+  - S: blau
+  - M: grün
+  - L: rot
 
 - Vergleich Mensch und ein Tier (Siehe mein Buch)
+
+
+
 
 
 ## Diskrete Farben vs. Farbverläufe
@@ -485,9 +495,87 @@ Foto von <a href="https://unsplash.com/de/@efekurnaz?utm_content=creditCopyText&
 - Farbverläufe schwieriger (aber es gibt color scales dafür)
 
 
-## Zu merken
 
-1. Unterscheidbar, aber ähnlich genug, um keinen Bias zu erzeugen. 
+
+## Unterschiedlich, aber ähnlich
+
+```{r}
+#| echo: false
+
+color_plot_bar <- ggplot(
+  continent_co2_pct,
+  aes(x = world_6region, y = percentage, fill = world_6region)
+) +
+  geom_bar(stat = "identity", width = 1) +
+  theme_minimal() +
+  labs(title = "Share of global per capita CO2 consumption") +
+  theme(
+    axis.title.x = element_blank(),
+    axis.text.x = element_blank(),
+    legend.position = "bottom",
+    legend.key.size = unit(0.4, "cm"),
+    legend.text = element_text(size = 7),
+    legend.title = element_blank()
+  ) 
+```
+
+
+::: {.columns}
+:::{.column widht="50%}
+
+```{r}
+#| label: color_bias__scatter_bar
+#| echo: false
+
+theme_colors_2 <- c(
+  "#9FAFC0", # entsättigtes Dunkelblau
+  "#B49B97", # ausgebleichtes Braun
+  "#F2E2A0", # ausgebleichtes Gelb (statt Rot)
+  "#D80027", # sehr leuchtendes Rot (statt Gelb)
+  "#A7C9C3", # stark aufgehelltes Türkis
+  "#D8B88C", # heller Orange-Braun-Ton
+  "#A6B7CA", # blasser Stahlblau-Ton
+  "#BFD4C2", # sehr blasses Olivgrün
+  "#D6C1D5", # blasses Flieder/Pastell-Lila
+  "#D8D9DB" # sehr heller, neutraler Grauton
+)
+
+
+color_plot_bar +
+  scale_fill_manual(values = theme_colors_2)
+```
+
+:::
+
+
+:::{.column widht="50%}
+```{r}
+#| label: color_balanced__scatter_bar
+#| echo: false
+
+
+theme_colors_balanced <- c(
+  "#4D9285",  # gedämpftes Türkisgrün – weniger satt als Original (#208C7A)
+  "#D89035",  # warmes Ocker-Orange – harmonischer als das grelle Gelb (#F4BA02)
+  "#B95454",  # weiches Rot – weniger dominant als #9B1B34
+  "#4E6D84",  # gemäßigtes Dunkelblau – weniger kalt als #01364C
+  "#7A5A53",  # milderes Braun – balanciert zu den anderen warmen Tönen
+  "#BC8B4C",  # orange-braun, passt zu Gelb & Braun (#C97E10 → abgemildert)
+  "#67829E",  # etwas entsättigtes Stahlblau (#476A92)
+  "#86A18C",  # grünlich-grau – Kombination aus Olive und Türkis
+  "#A68CA5",  # gedecktes Violett – deutlich ruhiger als Original (#B47EB3)
+  "#B7B9BC"   # kühles Hellgrau – dient als neutraler Ausgleich
+)
+
+color_plot_bar +
+  scale_fill_manual(values = theme_colors_balanced)
+```
+
+
+:::
+
+:::
+
 
 ## 1. Unterscheidbar, aber ähnlich
 
@@ -517,19 +605,17 @@ color_plot <- ggplot(
 ) +
   geom_point(size = 3) +
   theme_minimal() +
-  labs(title = "Share of global per capita CO2 consumption")
+  labs(title = "Share of global per capita CO2 consumption") +
+  xlim(0, 1.5*10^9)
 
 ```
 
-
-Wie unten machen, aber mit den Balkendiagrammen
 ::: {.columns}
 :::{.column widht="50%}
-
 ```{r}
 #| label: color_bias_bar
 #| echo: false
-#| fig-width: 14
+#| fig-width: 7
 #| fig-height: 7
 
 theme_colors_2 <- c(
@@ -546,17 +632,16 @@ theme_colors_2 <- c(
 )
 
 color_plot +
-  scale_color_manual(values = theme_colors_2)
+  scale_color_manual(values = theme_colors_2) +
+theme_bg()
 ```
-
 :::
-
 
 :::{.column widht="50%}
 ```{r}
 #| label: color_balanced_bar
 #| echo: false
-#| fig-width: 14
+#| fig-width: 7
 #| fig-height: 7
 
 theme_colors_balanced <- c(
@@ -574,12 +659,76 @@ theme_colors_balanced <- c(
 
 
 color_plot +
-  scale_color_manual(values = theme_colors_balanced)
+  scale_color_manual(values = theme_colors_balanced) +
+theme_bg()
 
 # 
 #   scale_color_brewer(palette = "Dark2") +
 #   theme_minimal() +
 #   labs(title = "Share of global per capita CO2 consumption")
+
+```
+
+:::
+:::
+
+
+
+## Farbton, Sättigung und Helligkeit
+
+:::{.columns}
+:::{.column width="50%"}
+![](./images/color_properties.png)
+:::
+:::{.column widht="50%}
+```{r}
+#| label: color_hue_only
+#| echo: false
+
+
+theme_colors_hue_only <- c(
+  "#D88585",  # muted red
+  "#D89D85",  # warm orange
+  "#CDD885",  # soft olive
+  "#A9D885",  # light green
+  "#85D89D",  # aquamarine
+  "#85D8D8",  # turquoise
+  "#85A9D8",  # muted blue
+  "#9D85D8",  # lavender
+  "#D885CD",  # dusty pink-purple
+  "#D8859D"   # rosy mauve
+)
+
+
+
+color_plot +
+  scale_color_manual(values = theme_colors_hue_only)
+
+
+```
+
+
+```{r}
+#| echo: false
+
+
+theme_colors_hue_varied <- c(
+  "#C15A5A",  # red – more saturated & slightly darker
+  "#DA935A",  # orange – a bit lighter
+  "#D4DA5A",  # olive – higher lightness, less saturation
+  "#92DA5A",  # light green – more saturated
+  "#5ADAA0",  # aquamarine – brighter & lighter
+  "#5ADADA",  # turquoise – more saturated & icy
+  "#5A92DA",  # blue – stronger contrast
+  "#7A5ADA",  # lavender – richer, darker
+  "#DA5AC5",  # pink-purple – vivid, high saturation
+  "#DA5A8F"   # mauve – mid-lightness, saturated
+)
+
+color_plot +
+  scale_color_manual(values = theme_colors_hue_varied)
+
+
 
 ```
 
@@ -589,76 +738,127 @@ color_plot +
 :::
 
 
-## Unterschiedlich, aber ähnlich
+::: {.callout-tip}
+Variiert immer Farbton, Sättigung und Helligkeit gleichzeitig. 
+:::
+
+## Grau
+
 ::: {.columns}
-:::{.column widht="50%}
+::: {.column width="50%}
 
 ```{r}
-#| label: color_bias_scatter
 #| echo: false
-#| fig-width: 14
-#| fig-height: 7
 
-theme_colors_2 <- c(
-  "#9FAFC0", # entsättigtes Dunkelblau
-  "#B49B97", # ausgebleichtes Braun
-  "#F2E2A0", # ausgebleichtes Gelb (statt Rot)
-  "#D80027", # sehr leuchtendes Rot (statt Gelb)
-  "#A7C9C3", # stark aufgehelltes Türkis
-  "#D8B88C", # heller Orange-Braun-Ton
-  "#A6B7CA", # blasser Stahlblau-Ton
-  "#BFD4C2", # sehr blasses Olivgrün
-  "#D6C1D5", # blasses Flieder/Pastell-Lila
-  "#D8D9DB" # sehr heller, neutraler Grauton
-)
+theme_colors_gray <- gray_hex(theme_colors_hue_only)
 
-color_plot +
-  scale_color_manual(values = theme_colors_2)
+color_plot_bar +
+  scale_fill_manual(values = theme_colors_gray)
+
 ```
 
 :::
+::: {.column width="50%}
 
-
-:::{.column widht="50%}
 ```{r}
-#| label: color_balanced_scatter
 #| echo: false
-#| fig-width: 14
-#| fig-height: 7
 
-theme_colors_balanced <- c(
-  "#4D9285",  # gedämpftes Türkisgrün – weniger satt als Original (#208C7A)
-  "#D89035",  # warmes Ocker-Orange – harmonischer als das grelle Gelb (#F4BA02)
-  "#B95454",  # weiches Rot – weniger dominant als #9B1B34
-  "#4E6D84",  # gemäßigtes Dunkelblau – weniger kalt als #01364C
-  "#7A5A53",  # milderes Braun – balanciert zu den anderen warmen Tönen
-  "#BC8B4C",  # orange-braun, passt zu Gelb & Braun (#C97E10 → abgemildert)
-  "#67829E",  # etwas entsättigtes Stahlblau (#476A92)
-  "#86A18C",  # grünlich-grau – Kombination aus Olive und Türkis
-  "#A68CA5",  # gedecktes Violett – deutlich ruhiger als Original (#B47EB3)
-  "#B7B9BC"   # kühles Hellgrau – dient als neutraler Ausgleich
-)
+theme_colors_gray_varied <- gray_hex(theme_colors_hue_varied)
 
-
-color_plot +
-  scale_color_manual(values = theme_colors_balanced)
-
-# 
-#   scale_color_brewer(palette = "Dark2") +
-#   theme_minimal() +
-#   labs(title = "Share of global per capita CO2 consumption")
+color_plot_bar +
+  scale_fill_manual(values = theme_colors_gray_varied)
 
 ```
-
-
+:::
 :::
 
+## Größe
+
+:::{.columns}
+:::{.column width="33%"}
+
+```{r}
+#| echo: false
+#| fig-width: 6
+#| fig-height: 8
+
+
+ggplot(
+  gapminder_2020,
+  aes(x = pop, y = co2_pcap_cons, color = world_6region)
+) +
+  geom_point(size = 4) +
+  theme_minimal() +
+  labs(title = "Share of global per capita CO2 consumption") +
+  xlim(0, 1.5*10^9) +
+theme_bg() +
+scale_color_manual(values = theme_colors_balanced) +
+  theme(
+    axis.title.x = element_blank(),
+    axis.text.x = element_blank(),
+    legend.position = "bottom",
+    legend.key.size = unit(0.4, "cm"),
+    legend.text = element_text(size = 9),
+    legend.title = element_blank()
+  )
+```
 :::
 
+:::{.column width="33%"}
+```{r}
+#| echo: false
+#| fig-width: 6
+#| fig-height: 8
 
-## Color Blindness
-- Take the above scale and show that it is not great for color blindness
-- https://www.color-blindness.com/coblis-color-blindness-simulator/
+ggplot(
+  gapminder_2020,
+  aes(x = pop, y = co2_pcap_cons, color = world_6region)
+) +
+  geom_point(size = 2) +
+  theme_minimal() +
+  labs(title = "Share of global per capita CO2 consumption") +
+  xlim(0, 1.5*10^9) +
+theme_bg() +
+scale_color_manual(values = theme_colors_balanced) +
+  theme(
+    axis.title.x = element_blank(),
+    axis.text.x = element_blank(),
+    legend.position = "bottom",
+    legend.key.size = unit(0.4, "cm"),
+    legend.text = element_text(size = 9),
+    legend.title = element_blank()
+  )
+```
+:::
+
+:::{.column width="33%"}
+```{r}
+#| echo: false
+#| fig-width: 6
+#| fig-height: 8
+
+ggplot(
+  gapminder_2020,
+  aes(x = pop, y = co2_pcap_cons, color = world_6region)
+) +
+  geom_point(size = 0.5) +
+  theme_minimal() +
+  labs(title = "Share of global per capita CO2 consumption") +
+  xlim(0, 1.5*10^9) + 
+theme_bg() +
+scale_color_manual(values = theme_colors_balanced) +
+    theme(
+    axis.title.x = element_blank(),
+    axis.text.x = element_blank(),
+    legend.position = "bottom",
+    legend.key.size = unit(0.4, "cm"),
+    legend.text = element_text(size = 9),
+    legend.title = element_blank()
+  )
+```
+:::
+:::
+
 
 ## Farbe ist relativ
 Beispiel: 
@@ -701,18 +901,30 @@ color_plot +
 
 
 ## Fragen: Warum ist das noch eine schelchte Color scale? 
-![](./images/colorblindcheck.png)
+![](./images/colorblind_check.png)
 
 ::: .image-ref
 Siehe [Colblindor](https://www.color-blindness.com/coblis-color-blindness-simulator/). 
 :::
 
+
+## Farbfehlsichtigkeit
+
+- Protanopie: Zapfentyp L (rot) fehlt: rot vs grün Schwäche
+- Deuteranopie: Zapfentyp M (grün) fehlt: rot vs grün Schwäche
+- Tritanopie: Zapfentyp S (blau) fehlt: blau vs grün, gelb vs violett Schwäche
+
+
+- Take the above scale and show that it is not great for color blindness
+- https://www.color-blindness.com/coblis-color-blindness-simulator/
+
+
 ##
+
 ```{r}
-  library(colorblindcheck)
+library(colorblindcheck)
 palette_check(theme_colors_red, plot = TRUE)  
 ```
-
 
 ## Das kann man sich natürlich auch zu Nutze machen (Passt aber vielleicht eher zu space? -> da nochmal zeigen, hier die Punkte enger zusammen )
 
@@ -786,6 +998,7 @@ Data from [Rockefeller Institute](https://rockinst.org/blog/public-mass-shooting
 ## Color for coding a third dimension
 - Wie viel macht sinn?
 - Scatterplot
+- Sättigung um dimensionalität der Farben darzustellen
 
 
 
@@ -816,13 +1029,23 @@ Farbsehtests
 ## Anwendung in ggplot2: Farbskalen wählen
 - palettteer
 - https://r-graph-gallery.com/color-palette-finder
+- Intervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen
+  - Kein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten
+- Ordinal: Richtung und gute Unterscheidbarkeit im Farbraum
+- Nominalskaliert: Spriale/Diagnoale im Farbraum
 
 ## Viele Möglichkeiten
 - pakete
 - Selbst stezten
 
+## Tools
+- Colorbrewer
+- Huemint
+
 ## Übung
-Baue eine eigene Color-Palette und wende sie auf deinen Plot an. Achte dabei auf Unterscheidbarkeit (Auch color blind), aber auch auf Design. 
+
+1. Teste, ob deine bisherige Abbildung für Menschen mit Farbfehlsichtigkeit lesbar ist. 
+2. Baue eine eigene Color-Palette und wende sie auf deinen Plot an. Achte dabei auf Unterscheidbarkeit (Auch color blind), aber auch auf Design. 
 
 ## Gruppieren
 
