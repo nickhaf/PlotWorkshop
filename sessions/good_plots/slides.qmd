@@ -1000,7 +1000,7 @@ Siehe [Colblindor](https://www.color-blindness.com/coblis-color-blindness-simula
 
 ## Farbfehlsichtigkeit
 
-![](./images/cones_eye.jpeg)
+![](./images/cones_eye.jpg)
 
 protanopic right side
 
@@ -1107,7 +1107,19 @@ Farbsehtests
 
 - Farbwahrnehmung braucht Helligkeit und Fläche
 
-## Anwendung in ggplot2: Farbskalen wählen
+
+# Anwendung in ggplot2
+
+
+## Farben whlen
+- Name
+- rgb()
+- Nummer
+- Hex code
+
+## scale_color vs scale_fill
+
+## Farbskalen wählen
 
 ## Manuell
 
@@ -1192,20 +1204,149 @@ ggplot(
 <!-- ::: -->
 
 
-## 
-- palettteer
-- https://r-graph-gallery.com/color-palette-finder
+## Graustufen 
+
+```{r}
+#| reults: hide
+#| fig-show: hide
+#| code-line-numbers: "9"
+
+
+ggplot(
+  continent_co2_pct,
+  aes(x = world_6region, 
+      y = percentage, 
+      fill = world_6region)) +
+  geom_bar(stat = "identity", width = 1) +
+  theme_minimal() +
+  labs(title = "Share of global per capita CO2 consumption") +
+  scale_fill_grey()
+```
+
+
+
+
+## Externe Farb-Paletten
+
+::: {.columns}
+::: {.column width="50%"}
+[**R Color Brewer**](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html)
+
+```{r}
+library(RColorBrewer)
+display.brewer.all(colorblindFriendly=FALSE)
+```
+
+:::
+::: {.column width="50%"}
+
+
+::: panel-tabset
+
+### Code
+
+```{r}
+#| label: color_brewer
+#| reults: hide
+#| fig-show: hide
+#| code-line-numbers: "1,11"
+
+library(RColorBrewer)
+
+ggplot(
+  continent_co2_pct,
+  aes(x = world_6region, 
+      y = percentage, 
+      fill = world_6region)) +
+  geom_bar(stat = "identity", width = 1) +
+  theme_minimal() +
+  labs(title = "Share of global per capita CO2 consumption") +
+  scale_fill_brewer(palette = "PuOr")
+```
+
+
+### Plot
+
+```{r}
+#| label: color_brewer
+#| echo: false
+```
+
+:::
+:::
+:::
+
+## Externe Farb-Paletten
+::: {.columns}
+::: {.column width="50%"}
+[**paletteer**](https://r-graph-gallery.com/package/paletteer.html)
+
+Sammlung von Paletten aus diversen Paketen
+
+- [Palette-Finder](https://r-graph-gallery.com/color-palette-finder)
+- [Gallerie](https://pmassicotte.github.io/paletteer_gallery/#sequential)
+
+:::
+
+::: {.column width="50%"}
+
+::: panel-tabset
+
+### Code
+
+```{r}
+#| label: paletteer
+#| reults: hide
+#| fig-show: hide
+#| code-line-numbers: "1,11"
+
+library(paletteer)
+
+ggplot(
+  continent_co2_pct,
+  aes(x = world_6region, 
+      y = percentage, 
+      fill = world_6region)) +
+  geom_bar(stat = "identity", width = 1) +
+  theme_minimal() +
+  labs(title = "Share of global per capita CO2 consumption") +
+  scale_fill_paletteer_d("LaCroixColoR::Orange")
+```
+
+
+### Plot
+
+```{r}
+#| label: paletteer
+#| echo: false
+```
+
+:::
+:::
+
+:::
+
+
+## Arten von Skalen
 - Intervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen
   - Kein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten
 - Ordinal: Richtung und gute Unterscheidbarkeit im Farbraum
 - Nominalskaliert: Spriale/Diagnoale im Farbraum
 
 
-## Viele Möglichkeiten
-- pakete
-- Selbst stezten
+- Diskret
+- Continuous
+- Binned
+Vorgefertigte Paletten:
 
-## Tools
+Sequenziell
+\
+Qualitativ
+\
+Diverging
+
+
+## Weiter Tools
 - Colorbrewer
 - Huemint
 
