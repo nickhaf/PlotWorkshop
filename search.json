@@ -504,11 +504,25 @@
     "text": "Farbfehlsichtigkeiten\nFarbsehtests\n\nFarbwahrnehmung braucht Helligkeit und Fläche"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#anwendung-in-ggplot2-farbskalen-wählen",
-    "href": "sessions/good_plots/slides.html#anwendung-in-ggplot2-farbskalen-wählen",
+    "objectID": "sessions/good_plots/slides.html#farben-whlen",
+    "href": "sessions/good_plots/slides.html#farben-whlen",
     "title": "Was ist eine gute Grafik?",
-    "section": "Anwendung in ggplot2: Farbskalen wählen",
-    "text": "Anwendung in ggplot2: Farbskalen wählen"
+    "section": "Farben whlen",
+    "text": "Farben whlen\n\nName\nrgb()\nNummer\nHex code"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#scale_color-vs-scale_fill",
+    "href": "sessions/good_plots/slides.html#scale_color-vs-scale_fill",
+    "title": "Was ist eine gute Grafik?",
+    "section": "scale_color vs scale_fill",
+    "text": "scale_color vs scale_fill"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#farbskalen-wählen",
+    "href": "sessions/good_plots/slides.html#farbskalen-wählen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Farbskalen wählen",
+    "text": "Farbskalen wählen"
   },
   {
     "objectID": "sessions/good_plots/slides.html#manuell",
@@ -518,25 +532,39 @@
     "text": "Manuell\n\n\n\nCodePlot\n\n\n\nggplot(\n  continent_co2_pct,\n  aes(x = world_6region, \n      y = percentage, \n      fill = world_6region)) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_manual(values = c(\"red\", \"green\", \"blue\", \"yellow\", \"violet\", \"brown\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCodePlot\n\n\n\nmy_color_scale &lt;- c(\"East Asia & Pacific\" =\"red\", \n                    \"South Asia\" = \"green\", \n                    \"Sub-Saharan Africa\" = \"blue\", \n                    \"Europe & Central Asia\" = \"yellow\", \n                    \"Middle East & North Africa\" = \"violet\", \n                    \"Americas\" = \"brown\")\nggplot(\n  continent_co2_pct,\n  aes(x = world_6region, \n      y = percentage, \n      color = world_6region)) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_color_manual(values = my_color_scale)"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#section-6",
-    "href": "sessions/good_plots/slides.html#section-6",
+    "objectID": "sessions/good_plots/slides.html#graustufen",
+    "href": "sessions/good_plots/slides.html#graustufen",
     "title": "Was ist eine gute Grafik?",
-    "section": "",
-    "text": "palettteer\nhttps://r-graph-gallery.com/color-palette-finder\nIntervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen\n\nKein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten\n\nOrdinal: Richtung und gute Unterscheidbarkeit im Farbraum\nNominalskaliert: Spriale/Diagnoale im Farbraum"
+    "section": "Graustufen",
+    "text": "Graustufen\n\nggplot(\n  continent_co2_pct,\n  aes(x = world_6region, \n      y = percentage, \n      fill = world_6region)) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_grey()"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#viele-möglichkeiten",
-    "href": "sessions/good_plots/slides.html#viele-möglichkeiten",
+    "objectID": "sessions/good_plots/slides.html#externe-farb-paletten",
+    "href": "sessions/good_plots/slides.html#externe-farb-paletten",
     "title": "Was ist eine gute Grafik?",
-    "section": "Viele Möglichkeiten",
-    "text": "Viele Möglichkeiten\n\npakete\nSelbst stezten"
+    "section": "Externe Farb-Paletten",
+    "text": "Externe Farb-Paletten\n\n\nR Color Brewer\n\nlibrary(RColorBrewer)\ndisplay.brewer.all(colorblindFriendly=FALSE)\n\n\n\n\n\n\n\n\n\n\nCodePlot\n\n\n\nlibrary(RColorBrewer)\n\nggplot(\n  continent_co2_pct,\n  aes(x = world_6region, \n      y = percentage, \n      fill = world_6region)) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_brewer(palette = \"PuOr\")"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#tools",
-    "href": "sessions/good_plots/slides.html#tools",
+    "objectID": "sessions/good_plots/slides.html#externe-farb-paletten-1",
+    "href": "sessions/good_plots/slides.html#externe-farb-paletten-1",
     "title": "Was ist eine gute Grafik?",
-    "section": "Tools",
-    "text": "Tools\n\nColorbrewer\nHuemint"
+    "section": "Externe Farb-Paletten",
+    "text": "Externe Farb-Paletten\n\n\npaletteer\nSammlung von Paletten aus diversen Paketen\n\nPalette-Finder\nGallerie\n\n\n\nCodePlot\n\n\n\nlibrary(paletteer)\n\nggplot(\n  continent_co2_pct,\n  aes(x = world_6region, \n      y = percentage, \n      fill = world_6region)) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_paletteer_d(\"LaCroixColoR::Orange\")"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#arten-von-skalen",
+    "href": "sessions/good_plots/slides.html#arten-von-skalen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Arten von Skalen",
+    "text": "Arten von Skalen\n\nIntervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen\n\nKein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten\n\nOrdinal: Richtung und gute Unterscheidbarkeit im Farbraum\nNominalskaliert: Spriale/Diagnoale im Farbraum\nDiskret\nContinuous\nBinned Vorgefertigte Paletten:\n\nSequenziell\nQualitativ\nDiverging"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#weiter-tools",
+    "href": "sessions/good_plots/slides.html#weiter-tools",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Weiter Tools",
+    "text": "Weiter Tools\n\nColorbrewer\nHuemint"
   },
   {
     "objectID": "sessions/good_plots/slides.html#farben-zusammenfassung",
