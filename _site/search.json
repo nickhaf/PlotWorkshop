@@ -1425,13 +1425,34 @@
     "href": "sessions/good_plots/slides.html#weiter-tools",
     "title": "Was ist eine gute Grafik?",
     "section": "Weiter Tools",
-    "text": "Weiter Tools\n\nColorbrewer\nHuemint"
+    "text": "Weiter Tools\n\n\nColorbrewer\nHuemint"
   },
   {
     "objectID": "sessions/good_plots/slides.html#externe-farb-paletten-1",
     "href": "sessions/good_plots/slides.html#externe-farb-paletten-1",
     "title": "Was ist eine gute Grafik?",
     "section": "Externe Farb-Paletten",
-    "text": "Externe Farb-Paletten\n\n\npaletteer\nSammlung von Paletten aus diversen Paketen\n\nPalette-Finder\nGallerie\n\n\n\n\n\nCode\nPlot\n\n\n\n\nlibrary(paletteer)\n\nggplot(\n  continent_co2_pct,\n  aes(x = world_6region, \n      y = percentage, \n      fill = world_6region)) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_paletteer_d(\"LaCroixColoR::Orange\")"
+    "text": "Externe Farb-Paletten\n\n\npaletteer\nSammlung von Paletten aus diversen Paketen\n\nPalette-Finder\nGallerie\n\n\n\n\nCode\nPlot\n\n\n\n\nlibrary(paletteer)\n\nggplot(\n  continent_co2_pct,\n  aes(x = world_6region, \n      y = percentage, \n      fill = world_6region)) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_paletteer_d(\"LaCroixColoR::Orange\")"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#kleine-farblehre",
+    "href": "sessions/good_plots/slides.html#kleine-farblehre",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Kleine Farblehre",
+    "text": "Kleine Farblehre\n“All colors are the friends of their neighbors and the lovers of their opposites.” - Marc Chagall\n\n\nNach MalteAhrens at de.wikipedia. Vectorization by User:SidShakal - Raster version from Wikimedia Commons., Gemeinfrei, Link"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#kleine-farbenlehre",
+    "href": "sessions/good_plots/slides.html#kleine-farbenlehre",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Kleine Farbenlehre",
+    "text": "Kleine Farbenlehre\n\n\n\n\nVincent van Gogh, Public domain, via Wikimedia Commons\n\n\n\nGegenüberliegende Farben intensivieren sich gegenseitig: eine Primärfarbe, und eine Sekundärfarbe, die aus den anderen beiden Primärfarben gemischt wird. Das erzeugt stärkere Kontraste. (Van Gogh bild)\nMit weiß und schwarz lassen sich die Schattierungen hinzumischen\ntriadisches Farbschema: Fom MIttelpunkt des Farbkreises Strahlen mit gleichem Winkel abgehen lassen (So viele, wie man Farben haben will). Das wählt dann Farben mit dem größten Kontrast aus. (https://www.kunstplaza.de/fashion-design/farbenlehre-farbtheorie-styleguides-fashion-design/)"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#farbräume",
+    "href": "sessions/good_plots/slides.html#farbräume",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Farbräume",
+    "text": "Farbräume\n\nRGB: Zusammenmischen von Licht der unterschiedlichen Farben. Alle drei zusammen ergeben weiß.\nCMYK: Ausblenden aus dem weißen Farbspektrum durch Filter. Grundfarben: Gelb, Magenta (Purpur), Cyan (Blaugrün) (+K - Key (also Schwarz))"
   }
 ]

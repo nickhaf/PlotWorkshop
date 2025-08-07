@@ -576,6 +576,52 @@ darin, Unterschiede und Veränderungen zu erkennen
 
 ![](./images/color_properties.png)
 
+## Kleine Farblehre
+
+"All colors are the friends of their neighbors and the lovers of their opposites." - Marc Chagall 
+
+
+![](./images/farbkreis.png)
+
+::: image-ref
+Nach <a href="https://de.wikipedia.org/wiki/User:MalteAhrens" class="extiw" title="de:User:MalteAhrens">MalteAhrens</a> at <a class="external text" href="https://de.wikipedia.org">de.wikipedia</a>. Vectorization by <a href="//commons.wikimedia.org/wiki/User:SidShakal" title="User:SidShakal">User:SidShakal</a> - Raster version from Wikimedia Commons., Gemeinfrei, <a href="https://commons.wikimedia.org/w/index.php?curid=3574696">Link</a>
+:::
+
+## Kleine Farbenlehre
+
+:::{.columns}
+:::{.column width="50%"}
+
+![](./images/zoeaaf.jpg)
+
+::: image-ref
+<a href="https://commons.wikimedia.org/wiki/File:De_zoeaaf_-_s0067V1962_-_Van_Gogh_Museum.jpg">Vincent van Gogh</a>, Public domain, via Wikimedia Commons
+:::
+:::
+
+:::{.column width="50%"}
+- Gegenüberliegende Farben intensivieren sich gegenseitig: eine Primärfarbe, und eine Sekundärfarbe, die aus den anderen beiden Primärfarben gemischt wird. Das erzeugt stärkere Kontraste. (Van Gogh bild)
+- Mit weiß und schwarz lassen sich die Schattierungen hinzumischen
+- triadisches Farbschema: Fom MIttelpunkt des Farbkreises Strahlen mit gleichem Winkel abgehen lassen (So viele, wie man Farben haben will). Das wählt dann Farben mit dem größten Kontrast aus. 
+(https://www.kunstplaza.de/fashion-design/farbenlehre-farbtheorie-styleguides-fashion-design/)
+
+:::
+:::
+
+
+
+
+
+
+
+
+
+## Farbräume
+- RGB: **Zusammen**mischen von Licht der unterschiedlichen Farben. Alle drei zusammen ergeben weiß. 
+- CMYK: **Ausblenden** aus dem weißen Farbspektrum durch Filter. Grundfarben: Gelb, Magenta (Purpur), Cyan (Blaugrün) (+K - Key (also Schwarz))
+
+
+
 
 # Was bringt uns das jetzt für unsere Abbildungen?
 
@@ -1347,6 +1393,10 @@ Diverging
 
 
 ## Weiter Tools
+
+![](./images/hue_box.jpg)
+
+
 - Colorbrewer
 - Huemint
 
