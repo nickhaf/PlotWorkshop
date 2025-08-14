@@ -66,7 +66,8 @@ get_gapminder <- function(repo = "https://github.com/open-numbers/ddf--gapminder
 }
 
 gapminder_dat_full <- get_gapminder(keywords = c("pop--", "co2", "--geo--country"))
-
+#, "--lex", "--gdp", "--mincpcap", "employ", "--geo", "--hapi", "demox", "--gini"))
+# life expectancy, gdp, minimum income per capita, employment, geography, happiness, democraty index, gini index 
 gapminder_dat <- gapminder_dat_full %>%
   filter(time == "2020", !is.na(country))
 ```
@@ -89,7 +90,7 @@ Darstellung von David McCandless in [Knowledge is Beautiful (2014)](https://info
 - Integrität der Darstellung
 
 
-# AChsen 
+# Achsen 
 
 ## Manipulation von Achsen
 Beispiel aus der Einführung nehmen, aber Achse Cutten und oder nicht bei Null starten lassen. Dann eine weirde Message schreiben! 
