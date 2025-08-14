@@ -89,7 +89,6 @@ Darstellung von David McCandless in [Knowledge is Beautiful (2014)](https://info
 - Integrität der Datenquelle
 - Integrität der Darstellung
 
-
 # Achsen 
 
 ## Manipulation von Achsen
@@ -1444,6 +1443,10 @@ https://www.data-to-viz.com/
 
 ## Size
 Also include population size in the scatterplot
+- Was will ich hier sagen?
+- Beachten: Oben hatte ich auch schon was zu size, bei den Kreisen. 
+
+
 
 ## Tufte
 - So wenig Tinte wie möglich nutzen
@@ -1463,6 +1466,7 @@ Immer einen Plot zeigen, dann zusammen überlgen was daran schlecht ist, was ver
 
 
 ## Takeaways
+Nochmal bei Tufte nachschauen
 - Kommunizieren von der größtmöglichen Anzahl von Ideen in kürzester Zeit.
 - Maximieren von Data-ink ratio
 - Minimieren von Chart-junk
@@ -1472,6 +1476,8 @@ Immer einen Plot zeigen, dann zusammen überlgen was daran schlecht ist, was ver
 
 ## Storytelling
 Rolfs 7
+Nature
+
 
 ## Using Text/Annotations
 

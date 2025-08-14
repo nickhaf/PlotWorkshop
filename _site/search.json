@@ -508,7 +508,7 @@
     "href": "sessions/good_plots/slides.html#takeaways",
     "title": "Was ist eine gute Grafik?",
     "section": "Takeaways",
-    "text": "Takeaways\n\nKommunizieren von der größtmöglichen Anzahl von Ideen in kürzester Zeit.\nMaximieren von Data-ink ratio\nMinimieren von Chart-junk\nErhöhe Datendichte, Vervielfältige kleine Versionen der Abbildung für verschiedene Gruppen"
+    "text": "Takeaways\nNochmal bei Tufte nachschauen - Kommunizieren von der größtmöglichen Anzahl von Ideen in kürzester Zeit. - Maximieren von Data-ink ratio - Minimieren von Chart-junk - Erhöhe Datendichte, Vervielfältige kleine Versionen der Abbildung für verschiedene Gruppen"
   },
   {
     "objectID": "sessions/good_plots/slides.html#caveat-plots-see-data-to-viz",
@@ -564,7 +564,7 @@
     "href": "sessions/good_plots/slides.html#storytelling",
     "title": "Was ist eine gute Grafik?",
     "section": "Storytelling",
-    "text": "Storytelling\nRolfs 7"
+    "text": "Storytelling\nRolfs 7 Nature"
   },
   {
     "objectID": "sessions/good_plots/slides.html#using-textannotations",
@@ -1243,7 +1243,7 @@
     "href": "sessions/good_plots/slides.html#size",
     "title": "Was ist eine gute Grafik?",
     "section": "Size",
-    "text": "Size\nAlso include population size in the scatterplot"
+    "text": "Size\nAlso include population size in the scatterplot - Was will ich hier sagen? - Beachten: Oben hatte ich auch schon was zu size, bei den Kreisen."
   },
   {
     "objectID": "sessions/good_plots/slides.html#übung-1",

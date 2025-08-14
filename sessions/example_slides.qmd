@@ -181,6 +181,7 @@ Foto von <a href="https://unsplash.com/de/@fabulu75?utm_content=creditCopyText&u
 ```{r}
 library(ggplot2)
 library(gganimate)
+library(gifski)
 
 p <- ggplot(mtcars, aes(factor(cyl), mpg)) + 
   geom_boxplot() + 
