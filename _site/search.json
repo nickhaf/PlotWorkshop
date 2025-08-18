@@ -340,7 +340,7 @@
     "href": "sessions/good_plots/slides.html#section-3",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": ":::{.column width=“50%} \n\n\n\n\n:::\n\nParteihochburgen"
+    "text": "geom_elect_max &lt;- geom_elect_dat %&gt;% \n  pivot_longer(cols = c(\"cdu_csu\", \"spd\", \"gruene\", \"afd\", \"bsw\", \"linke_pds\", \"fdp\"), values_to = \"result\", \n               names_to = \"partei\") %&gt;% \n  filter(!is.na(result)) %&gt;% \n  group_by(AGS) %&gt;% \n  slice_max(result) \n  \n  \n ggplot() +\n    geom_sf(data = geom_elect_max, mapping = aes(fill = partei), colour = NA) +\n    geom_sf(data = geom_dat_lan, fill = NA, colour = \"grey30\", linewidth = 0.2) +\n    coord_sf() +\n    theme_minimal() +\n    theme(\n      panel.grid.major = element_blank(),\n      panel.grid.minor = element_blank(),\n      title = element_text(size = 9),\n      axis.title.x = element_blank(), axis.text.x = element_blank(), axis.ticks.x = element_blank(),\n      axis.title.y = element_blank(), axis.text.y = element_blank(), axis.ticks.y = element_blank(),\n      legend.position = \"bottom\", legend.text = element_text(size = 14), legend.key.size = unit(0.6, \"cm\"),\n      plot.margin = margin(t = 0, r = 0, b = 0, l = 0),\n      legend.box.margin = margin(t = -25, r = 0, b = 0, l = 0)\n    ) +\n    scale_fill_manual(values = c(\"cdu_csu\" = \"black\", \n                           \"spd\" = \"red\", \n                            \"gruene\" = \"green\", \n                           \"linke_pds\" = \"purple\", \n                            \"fdp\" =  \"yellow\", \n                            \"afd\" = \"blue\")) +\n    labs(title = \"Partei mit den meisten Zweitstimmen per Gemeinde\")"
   },
   {
     "objectID": "sessions/good_plots/slides.html#übung",
@@ -795,7 +795,7 @@
     "href": "sessions/good_plots/slides.html#section-2",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "library(ggbreak)\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;%\n  filter(time == 2020) %&gt;%\n  arrange(desc(co2_cons))\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_cons), y = co2_cons)\n) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  labs(title = \"CO2 consumption per capita in the biggest emmiting countries\") +\n  theme_bg() +\n  scale_y_break(c(1500, 5000)) \n\n\n\n\n\n\n\n\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;%\n  filter(time == 2020) %&gt;%\n  arrange(desc(co2_cons))\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_cons), y = co2_cons)\n) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  labs(title = \"CO2 consumption per capita in the biggest emmiting countries\") +\n  theme_bg()"
+    "text": "## https://dataverse.harvard.edu/file.xhtml?fileId=10851934&version=9.1\n\nlibrary(gerda)\nlibrary(sf)\n\n# List available datasets\navailable_data &lt;- gerda_data_list()\n\n|data_name           |description                                                                         |\n|:-------------------|:-----------------------------------------------------------------------------------|\n|municipal_unharm    |Local elections at the municipal level (1990-2020, unharmonized).                   |\n|municipal_harm      |Local elections at the municipal level (1990-2020, harmonized).                     |\n|state_unharm        |State elections at the municipal level (2006-2019, unharmonized).                   |\n|state_harm          |State elections at the municipal level (2006-2019, harmonized).                     |\n|federal_muni_raw    |Federal elections at the municipal level (1980-2021, raw data).                     |\n|federal_muni_unharm |Federal elections at the municipal level (1980-2021, unharmonized).                 |\n|federal_muni_harm   |Federal elections at the municipal level (1990-2021, harmonized).                   |\n|federal_cty_unharm  |Federal elections at the county level (1953-2021, unharmonized).                    |\n|federal_cty_harm    |Federal elections at the county level (1990-2021, harmonized).                      |\n|ags_crosswalks      |Crosswalks for municipalities (1990-2021).                                          |\n|cty_crosswalks      |Crosswalks for counties (1990-2021).                                                |\n|ags_area_pop_emp    |Crosswalk covariates (area, population, employment) for municipalities (1990-2021). |\n|cty_area_pop_emp    |Crosswalk covariates (area, population, employment) for counties (1990-2021).       |\n\ngeom_dat &lt;- sf::read_sf(here::here(\"sessions\", \"good_plots\", \"data\", \"shapefiles\"), layer = \"VG250_GEM\" )\ngeom_dat_lan &lt;- sf::read_sf(here::here(\"sessions\", \"good_plots\", \"data\", \"shapefiles\"), layer = \"VG250_LAN\" ) %&gt;% \n  dplyr::filter(GF == 4)\n\n\nelect_dat &lt;- load_gerda_web(\"federal_muni_unharm\", verbose = FALSE, file_format = \"rds\") %&gt;% \n  dplyr::filter(election_year == 2025) %&gt;% \n  dplyr::select(ags, county, cdu_csu, spd, gruene, afd, bsw, fdp, linke_pds, number_voters, eligible_voters) \n\ngeom_elect_dat &lt;- geom_dat %&gt;%\n  left_join(elect_dat, by = c(\"AGS\" = \"ags\")) %&gt;%\n  dplyr::filter(GF == 4)\n\n\nplot_fed_map &lt;- function(fill_var, legend_label, fill_palette, limits, plot_title = NULL) {\n  ggplot() +\n    geom_sf(data = geom_elect_dat, mapping = aes(fill = .data[[fill_var]]), colour = NA) +\n    geom_sf(data = geom_dat_lan, fill = NA, colour = \"grey30\", linewidth = 0.2) +\n    coord_sf() +\n    theme_minimal() +\n    theme(\n      panel.grid.major = element_blank(),\n      panel.grid.minor = element_blank(),\n      title = element_text(size = 9),\n      axis.title.x = element_blank(), axis.text.x = element_blank(), axis.ticks.x = element_blank(),\n      axis.title.y = element_blank(), axis.text.y = element_blank(), axis.ticks.y = element_blank(),\n      legend.position = \"bottom\", legend.text = element_text(size = 14), legend.key.size = unit(0.6, \"cm\"),\n      plot.margin = margin(t = 0, r = 0, b = 0, l = 0),\n      legend.box.margin = margin(t = -25, r = 0, b = 0, l = 0)\n    ) +\n    scale_fill_distiller(NULL,\n                         palette = fill_palette,\n                         na.value = \"white\",\n                         direction = 1,\n                         limits = limits,\n                         guide = guide_legend(\n                           keyheight = unit(4, units = \"mm\"), keywidth = unit(18, units = \"mm\"),\n                           label.position = \"bottom\", title.position = \"top\", nrow = 1\n                         )\n    ) +\n    # Add title if provided\n    labs(title = plot_title)\n}\n\nplot_fed_map(\"afd\", \"spd\", \"Blues\", c(0,1))"
   },
   {
     "objectID": "sessions/good_plots/slides.html#funktionelles-design",
@@ -837,7 +837,7 @@
     "href": "sessions/good_plots/slides.html#section-4",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "library(ggbreak)\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;%\n  filter(time == 2020) %&gt;%\n  arrange(desc(co2_cons))\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_cons), y = co2_cons)\n) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  labs(title = \"CO2 consumption per capita in the biggest emmiting countries\") +\n  theme_bg() +\n  scale_y_break(c(1500, 5000)) \n\n\n\n\n\n\n\n\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;%\n  filter(time == 2020) %&gt;%\n  arrange(desc(co2_cons))\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_cons), y = co2_cons)\n) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  labs(title = \"CO2 consumption per capita in the biggest emmiting countries\") +\n  theme_bg()"
+    "text": ":::{.column width=“50%} \n\n\n\n\n:::\n\nGrafiken von zeit.de."
   },
   {
     "objectID": "sessions/good_plots/slides.html#finger-weg-von-pie-charts",
@@ -1264,7 +1264,7 @@
     "href": "sessions/good_plots/slides.html#section-5",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Dabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen.\nHandschriftliche Skizze ist auch erstmal hilfreich!"
+    "text": "library(ggbreak)\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;%\n  filter(time == 2020) %&gt;%\n  arrange(desc(co2_cons))\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_cons), y = co2_cons)\n) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  labs(title = \"CO2 consumption per capita in the biggest emmiting countries\") +\n  theme_bg() +\n  scale_y_break(c(1500, 5000)) \n\n\n\n\n\n\n\n\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;%\n  filter(time == 2020) %&gt;%\n  arrange(desc(co2_cons))\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_cons), y = co2_cons)\n) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  labs(title = \"CO2 consumption per capita in the biggest emmiting countries\") +\n  theme_bg()"
   },
   {
     "objectID": "sessions/good_plots/slides.html#trichromatizität",
@@ -1362,7 +1362,7 @@
     "href": "sessions/good_plots/slides.html#section-6",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Beispiel von einem komplexen Plot bringen, den wir schon erzeugt haben, und dann reduzieren!"
+    "text": "Dabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen.\nHandschriftliche Skizze ist auch erstmal hilfreich!"
   },
   {
     "objectID": "sessions/good_plots/slides.html#test-code-size",
@@ -1488,18 +1488,46 @@
     "href": "sessions/good_plots/slides.html#section-7",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Andere Tiere können auch mal mehr oder weniger haben:\n\n\nBild aus Farbsehen der Tiere"
+    "text": "Beispiel von einem komplexen Plot bringen, den wir schon erzeugt haben, und dann reduzieren!"
   },
   {
     "objectID": "sessions/good_plots/slides.html#section-8",
     "href": "sessions/good_plots/slides.html#section-8",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Viele Tiere sehen nur grau:\n\nWale\nHaie\nWaschbären\nFaultiere\nArmadillos\nOktopusse\nKraken\n\nWarum also überhaupt Farbwahrnehmung?\n\nIst subjektiv\nAber kann konsistent wahrgenommen werden: Eine Erdebeere im Schatten und im Sonnenlicht kann jeweils rot wahrgenommen werden. Grautöne sind stärker vom Licht abhängig.\nMore is not always better: Affen vom Amerikanischen Kontinent sind teilweise die und teilweise tetra: di kann besser INsekten ausmachen, tri Früchte gegen grünen background.\nFarbwahrnehmung also abhängig vom Drumrum\nFarben bringen nur einen Vorteil, wenn ein Individuum daraus meaning ableiten kann."
+    "text": "Andere Tiere können auch mal mehr oder weniger haben:\n\n\nBild aus Farbsehen der Tiere"
   },
   {
     "objectID": "sessions/good_plots/slides.html#section-9",
     "href": "sessions/good_plots/slides.html#section-9",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "Viele Tiere sehen nur grau:\n\nWale\nHaie\nWaschbären\nFaultiere\nArmadillos\nOktopusse\nKraken\n\nWarum also überhaupt Farbwahrnehmung?\n\nIst subjektiv\nAber kann konsistent wahrgenommen werden: Eine Erdebeere im Schatten und im Sonnenlicht kann jeweils rot wahrgenommen werden. Grautöne sind stärker vom Licht abhängig.\nMore is not always better: Affen vom Amerikanischen Kontinent sind teilweise die und teilweise tetra: di kann besser INsekten ausmachen, tri Früchte gegen grünen background.\nFarbwahrnehmung also abhängig vom Drumrum\nFarben bringen nur einen Vorteil, wenn ein Individuum daraus meaning ableiten kann."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#alternativen",
+    "href": "sessions/good_plots/slides.html#alternativen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Alternativen",
+    "text": "Alternativen\n\n\nBild von stroymaps."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#kartogramm",
+    "href": "sessions/good_plots/slides.html#kartogramm",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Kartogramm",
+    "text": "Kartogramm\n\nlibrary(cartogram)\n\n## Ansonsten mit county oder sogar nur Bundesland?\n\ncartogram_dat &lt;- cartogram_cont(geom_elect_max,\n                 weight = \"number_voters\")\n\nsaveRDS(here::here(\"sessions\", \"good_plots\", \"data\", \"cartogram_dat.rds\"))\n\n\n# https://r-charts.com/spatial/cartogram-ggplot2/\n\nlibrary(cartogram)\n\nreadRDS(here::here(\"sessions\", \"good_plots\", \"data\", \"cartogram_dat.rds\"))\n\nggplot(cartogram_dat) +\n  geom_sf()\n\n\n\nVon Costamiri - Eigenes WerkMap based on: Shapefiles by bundeswahlleiterin.de (Geometrie der Wahlkreise im Koordinatensystem UTM32 generalisiert) © Die Bundeswahlleiterin, Statistisches Bundesamt, Wiesbaden 2024, Wahlkreiskarte für die Wahl zum 21. Deutschen Bundestag; Grundlage der Geoinformationen © Geobasis-DE / BKG 2024Data based on: Bundestagswahl 2025: Open-Data-Angebot der Bundeswahlleiterin by bundeswahlleiterin.de, CC BY-SA 4.0, Link"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#alternativen-1",
+    "href": "sessions/good_plots/slides.html#alternativen-1",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Alternativen",
+    "text": "Alternativen\nDafür die Plots selber nachbauen?"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#section-10",
+    "href": "sessions/good_plots/slides.html#section-10",
     "title": "Was ist eine gute Grafik?",
     "section": "",
     "text": "library(colorblindcheck)\npalette_check(theme_colors_red, plot = TRUE)  \n\n\n          name n tolerance ncp ndcp min_dist mean_dist max_dist\n1       normal 6   4.95969  15   15 4.959690  19.65649 41.78456\n2 deuteranopia 6   4.95969  15   15 5.428903  19.54489 42.55279\n3   protanopia 6   4.95969  15   14 3.976233  19.39475 41.15790\n4   tritanopia 6   4.95969  15   15 5.557603  19.68098 40.93915"

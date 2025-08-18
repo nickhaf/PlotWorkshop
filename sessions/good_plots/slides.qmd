@@ -13,6 +13,7 @@ bibliography: refs.bib
 library(here)
 library(janitor)
 library(ggwordcloud)
+library(tidyverse)
 source(here::here("src", "themes.R"))
 source(here::here("src", "functions.R"))
 ```
@@ -173,10 +174,9 @@ ggplot(
 :::
 
 
-
 ## Election Plot
 
-![](impeach.png)
+![](./images/impeach.png)
 
 
 https://storymaps.arcgis.com/stories/0e636a652d44484b9457f953994b212b
@@ -185,25 +185,137 @@ https://storymaps.arcgis.com/stories/0e636a652d44484b9457f953994b212b
 ##
 
 ```{r}
+
+## https://dataverse.harvard.edu/file.xhtml?fileId=10851934&version=9.1
+
 library(gerda)
-library(DEplotting)
 library(sf)
-
-
-
-sf::st_layers(here::here("sessions", "good_plots", "data", "VG250_GEM.shp"))
 
 # List available datasets
 available_data <- gerda_data_list()
 
-elect_dat <- load_gerda_web("federal_muni_raw", verbose = FALSE, file_format = "rds") %>% 
-  filter(election_year == 2025)
+geom_dat <- sf::read_sf(here::here("sessions", "good_plots", "data", "shapefiles"), layer = "VG250_GEM" )
+geom_dat_lan <- sf::read_sf(here::here("sessions", "good_plots", "data", "shapefiles"), layer = "VG250_LAN" ) %>% 
+  dplyr::filter(GF == 4)
 
-ags_crosswalks <- load_gerda_web("ags_crosswalks", verbose = FALSE, file_format = "rds")
+
+elect_dat <- load_gerda_web("federal_muni_unharm", verbose = FALSE, file_format = "rds") %>% 
+  dplyr::filter(election_year == 2025) %>% 
+  dplyr::select(ags, county, cdu_csu, spd, gruene, afd, bsw, fdp, linke_pds, number_voters, eligible_voters) 
+
+geom_elect_dat <- geom_dat %>%
+  left_join(elect_dat, by = c("AGS" = "ags")) %>%
+  dplyr::filter(GF == 4)
+
+
+plot_fed_map <- function(fill_var, legend_label, fill_palette, limits, plot_title = NULL) {
+  ggplot() +
+    geom_sf(data = geom_elect_dat, mapping = aes(fill = .data[[fill_var]]), colour = NA) +
+    geom_sf(data = geom_dat_lan, fill = NA, colour = "grey30", linewidth = 0.2) +
+    coord_sf() +
+    theme_minimal() +
+    theme(
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(),
+      title = element_text(size = 9),
+      axis.title.x = element_blank(), axis.text.x = element_blank(), axis.ticks.x = element_blank(),
+      axis.title.y = element_blank(), axis.text.y = element_blank(), axis.ticks.y = element_blank(),
+      legend.position = "bottom", legend.text = element_text(size = 14), legend.key.size = unit(0.6, "cm"),
+      plot.margin = margin(t = 0, r = 0, b = 0, l = 0),
+      legend.box.margin = margin(t = -25, r = 0, b = 0, l = 0)
+    ) +
+    scale_fill_distiller(NULL,
+                         palette = fill_palette,
+                         na.value = "white",
+                         direction = 1,
+                         limits = limits,
+                         guide = guide_legend(
+                           keyheight = unit(4, units = "mm"), keywidth = unit(18, units = "mm"),
+                           label.position = "bottom", title.position = "top", nrow = 1
+                         )
+    ) +
+    # Add title if provided
+    labs(title = plot_title)
+}
+
+plot_fed_map("afd", "spd", "Blues", c(0,1))
 
 ```
 
 ## 
+
+```{r}
+geom_elect_max <- geom_elect_dat %>% 
+  pivot_longer(cols = c("cdu_csu", "spd", "gruene", "afd", "bsw", "linke_pds", "fdp"), values_to = "result", 
+               names_to = "partei") %>% 
+  filter(!is.na(result)) %>% 
+  group_by(AGS) %>% 
+  slice_max(result) 
+  
+  
+ ggplot() +
+    geom_sf(data = geom_elect_max, mapping = aes(fill = partei), colour = NA) +
+    geom_sf(data = geom_dat_lan, fill = NA, colour = "grey30", linewidth = 0.2) +
+    coord_sf() +
+    theme_minimal() +
+    theme(
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(),
+      title = element_text(size = 9),
+      axis.title.x = element_blank(), axis.text.x = element_blank(), axis.ticks.x = element_blank(),
+      axis.title.y = element_blank(), axis.text.y = element_blank(), axis.ticks.y = element_blank(),
+      legend.position = "bottom", legend.text = element_text(size = 14), legend.key.size = unit(0.6, "cm"),
+      plot.margin = margin(t = 0, r = 0, b = 0, l = 0),
+      legend.box.margin = margin(t = -25, r = 0, b = 0, l = 0)
+    ) +
+    scale_fill_manual(values = c("cdu_csu" = "black", 
+                           "spd" = "red", 
+                            "gruene" = "green", 
+                           "linke_pds" = "purple", 
+                            "fdp" =  "yellow", 
+                            "afd" = "blue")) +
+    labs(title = "Partei mit den meisten Zweitstimmen per Gemeinde")
+
+```
+
+## Alternativen
+
+![](./data/map_options.png)
+
+::: image-ref
+Bild von [stroymaps](https://storymaps.arcgis.com/stories/0e636a652d44484b9457f953994b212b). 
+:::
+
+
+## Kartogramm
+
+```{r}
+#| eval: false
+
+library(cartogram)
+
+## Ansonsten mit county oder sogar nur Bundesland?
+
+cartogram_dat <- cartogram_cont(geom_elect_max,
+                 weight = "number_voters")
+
+saveRDS(here::here("sessions", "good_plots", "data", "cartogram_dat.rds"))
+```
+
+```{r}
+#| eval: false
+# https://r-charts.com/spatial/cartogram-ggplot2/
+
+library(cartogram)
+
+readRDS(here::here("sessions", "good_plots", "data", "cartogram_dat.rds"))
+
+ggplot(cartogram_dat) +
+  geom_sf()
+
+
+```
+
 ![](./images/bundestagswahl.svg)
 
 ::: image-ref
