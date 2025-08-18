@@ -340,7 +340,7 @@
     "href": "sessions/good_plots/slides.html#section-3",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Andere Tiere können auch mal mehr oder weniger haben:\n\n\nBild aus Farbsehen der Tiere"
+    "text": ":::{.column width=“50%} \n\n\n\n\n:::\n\nParteihochburgen"
   },
   {
     "objectID": "sessions/good_plots/slides.html#übung",
@@ -480,7 +480,7 @@
     "href": "sessions/good_plots/slides.html#election-plot",
     "title": "Was ist eine gute Grafik?",
     "section": "Election Plot",
-    "text": "Election Plot\nhttps://storymaps.arcgis.com/stories/0e636a652d44484b9457f953994b212b Vielleicht mit Bundestagswahl?"
+    "text": "Election Plot\n\nhttps://storymaps.arcgis.com/stories/0e636a652d44484b9457f953994b212b"
   },
   {
     "objectID": "sessions/good_plots/slides.html#fehlender-kontext",
@@ -543,7 +543,7 @@
     "href": "sessions/good_plots/slides.html#section-1",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Dabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen.\nHandschriftliche Skizze ist auch erstmal hilfreich!"
+    "text": "Garbage in, Garbage out\n\n\nFoto von Jilbert Ebrahimi auf Unsplash."
   },
   {
     "objectID": "sessions/good_plots/slides.html#farbfehlsichtigkeiten",
@@ -795,7 +795,7 @@
     "href": "sessions/good_plots/slides.html#section-2",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Beispiel von einem komplexen Plot bringen, den wir schon erzeugt haben, und dann reduzieren!"
+    "text": "library(ggbreak)\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;%\n  filter(time == 2020) %&gt;%\n  arrange(desc(co2_cons))\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_cons), y = co2_cons)\n) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  labs(title = \"CO2 consumption per capita in the biggest emmiting countries\") +\n  theme_bg() +\n  scale_y_break(c(1500, 5000)) \n\n\n\n\n\n\n\n\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;%\n  filter(time == 2020) %&gt;%\n  arrange(desc(co2_cons))\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_cons), y = co2_cons)\n) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  labs(title = \"CO2 consumption per capita in the biggest emmiting countries\") +\n  theme_bg()"
   },
   {
     "objectID": "sessions/good_plots/slides.html#funktionelles-design",
@@ -837,7 +837,7 @@
     "href": "sessions/good_plots/slides.html#section-4",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Viele Tiere sehen nur grau:\n\nWale\nHaie\nWaschbären\nFaultiere\nArmadillos\nOktopusse\nKraken\n\nWarum also überhaupt Farbwahrnehmung?\n\nIst subjektiv\nAber kann konsistent wahrgenommen werden: Eine Erdebeere im Schatten und im Sonnenlicht kann jeweils rot wahrgenommen werden. Grautöne sind stärker vom Licht abhängig.\nMore is not always better: Affen vom Amerikanischen Kontinent sind teilweise die und teilweise tetra: di kann besser INsekten ausmachen, tri Früchte gegen grünen background.\nFarbwahrnehmung also abhängig vom Drumrum\nFarben bringen nur einen Vorteil, wenn ein Individuum daraus meaning ableiten kann."
+    "text": "library(ggbreak)\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;%\n  filter(time == 2020) %&gt;%\n  arrange(desc(co2_cons))\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_cons), y = co2_cons)\n) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  labs(title = \"CO2 consumption per capita in the biggest emmiting countries\") +\n  theme_bg() +\n  scale_y_break(c(1500, 5000)) \n\n\n\n\n\n\n\n\n\n\ngapminder_2020 &lt;- gapminder_dat_full %&gt;%\n  filter(time == 2020) %&gt;%\n  arrange(desc(co2_cons))\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_cons), y = co2_cons)\n) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\", fill = \"#208C7A\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  labs(title = \"CO2 consumption per capita in the biggest emmiting countries\") +\n  theme_bg()"
   },
   {
     "objectID": "sessions/good_plots/slides.html#finger-weg-von-pie-charts",
@@ -1250,7 +1250,7 @@
     "href": "sessions/good_plots/slides.html#übung-1",
     "title": "Was ist eine gute Grafik?",
     "section": "Übung",
-    "text": "Übung\nSchlechte Grafiken verbessern: https://www.data-to-viz.com/caveats.html"
+    "text": "Übung\nSchlechte Grafiken verbessern: https://www.data-to-viz.com/caveats.html\n\n\n\n\nCorrell, M., Bertini, E., & Franconeri, S. (2020). Truncating the y-axis: Threat or menace? Proceedings of the 2020 CHI conference on human factors in computing systems, 1–12.\n\n\nHuff, D. (1979). How to lie with statistics / by Darrell Huff."
   },
   {
     "objectID": "sessions/good_plots/slides.html#farbton-sättigung-und-helligkeit",
@@ -1264,7 +1264,7 @@
     "href": "sessions/good_plots/slides.html#section-5",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "library(colorblindcheck)\npalette_check(theme_colors_red, plot = TRUE)  \n\n\n          name n tolerance ncp ndcp min_dist mean_dist max_dist\n1       normal 6   4.95969  15   15 4.959690  19.65649 41.78456\n2 deuteranopia 6   4.95969  15   15 5.428903  19.54489 42.55279\n3   protanopia 6   4.95969  15   14 3.976233  19.39475 41.15790\n4   tritanopia 6   4.95969  15   15 5.557603  19.68098 40.93915"
+    "text": "Dabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen.\nHandschriftliche Skizze ist auch erstmal hilfreich!"
   },
   {
     "objectID": "sessions/good_plots/slides.html#trichromatizität",
@@ -1362,7 +1362,7 @@
     "href": "sessions/good_plots/slides.html#section-6",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "palettteer\nhttps://r-graph-gallery.com/color-palette-finder\nIntervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen\n\nKein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten\n\n\nOrdinal: Richtung und gute Unterscheidbarkeit im Farbraum\nNominalskaliert: Spriale/Diagnoale im Farbraum"
+    "text": "Beispiel von einem komplexen Plot bringen, den wir schon erzeugt haben, und dann reduzieren!"
   },
   {
     "objectID": "sessions/good_plots/slides.html#test-code-size",
@@ -1454,5 +1454,54 @@
     "title": "Was ist eine gute Grafik?",
     "section": "Farbräume",
     "text": "Farbräume\n\nRGB: Zusammenmischen von Licht der unterschiedlichen Farben. Alle drei zusammen ergeben weiß.\nCMYK: Ausblenden aus dem weißen Farbspektrum durch Filter. Grundfarben: Gelb, Magenta (Purpur), Cyan (Blaugrün) (+K - Key (also Schwarz))"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#übung-what-makes-a-bad-plot",
+    "href": "sessions/good_plots/slides.html#übung-what-makes-a-bad-plot",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Übung: What makes a bad plot?",
+    "text": "Übung: What makes a bad plot?\n\n\n\nJede Gruppe bekommt eine Abbildung.\n\nDiskutiert in der Gruppe, was bei der Visualisierung schief läuft.\nStellt den anderen Gruppen eure Ergebnisse vor.\n\n\n\n\n\n\nBild gefunden auf Reddit."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#sollte-die-y-achse-immer-bei-0-beginnen",
+    "href": "sessions/good_plots/slides.html#sollte-die-y-achse-immer-bei-0-beginnen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Sollte die y-Achse immer bei 0 beginnen?",
+    "text": "Sollte die y-Achse immer bei 0 beginnen?\n“The designer of the visualization, by selecting a y-axis starting point, has control over the subjective importance of the resulting differences.” (Correll et al., 2020)\n ::: images-ref\nGrafik aus Huff (1979), heruntergeladen von Observable blog.\n:::"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#absolute-werte",
+    "href": "sessions/good_plots/slides.html#absolute-werte",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Absolute Werte",
+    "text": "Absolute Werte\nin der Regel ja"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#veränderung-der-werte",
+    "href": "sessions/good_plots/slides.html#veränderung-der-werte",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Veränderung der Werte",
+    "text": "Veränderung der Werte\nErmessensfrage:\n“If zero is in the neighborhood, invite it in!”Andrew Gelman\n\ngapminder_2020_de &lt;- gapminder_dat_full %&gt;%\n  filter(time &gt;= 2000, time &lt;= 2022, country == \"deu\") %&gt;%\n  arrange(desc(co2_pcap_cons))\n\n\nggplot(\n  gapminder_2020_de, \n  aes(x = time, y = co2_pcap_cons, group = country, colour = country)\n) +\n  geom_line(linewidth = 1.5) +\n  theme_bg() + \n  ylim(9, 14) +\n  scale_color_manual(values = \"#208C7A\") +\n  labs(title = \"CO2 consumption per capita in Germany\")\n\n\n\n\n\n\n\n\nggplot(\n  gapminder_2020_de, \n  aes(x = time, y = co2_pcap_cons, group = country, colour = country)\n) +\n  geom_line(linewidth = 1.5) +\n  theme_bg() + \n  ylim(0, 15) +\n  scale_color_manual(values = \"#208C7A\") +\n  labs(title = \"CO2 consumption per capita in Germany\")"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#section-7",
+    "href": "sessions/good_plots/slides.html#section-7",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "Andere Tiere können auch mal mehr oder weniger haben:\n\n\nBild aus Farbsehen der Tiere"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#section-8",
+    "href": "sessions/good_plots/slides.html#section-8",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "Viele Tiere sehen nur grau:\n\nWale\nHaie\nWaschbären\nFaultiere\nArmadillos\nOktopusse\nKraken\n\nWarum also überhaupt Farbwahrnehmung?\n\nIst subjektiv\nAber kann konsistent wahrgenommen werden: Eine Erdebeere im Schatten und im Sonnenlicht kann jeweils rot wahrgenommen werden. Grautöne sind stärker vom Licht abhängig.\nMore is not always better: Affen vom Amerikanischen Kontinent sind teilweise die und teilweise tetra: di kann besser INsekten ausmachen, tri Früchte gegen grünen background.\nFarbwahrnehmung also abhängig vom Drumrum\nFarben bringen nur einen Vorteil, wenn ein Individuum daraus meaning ableiten kann."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#section-9",
+    "href": "sessions/good_plots/slides.html#section-9",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "library(colorblindcheck)\npalette_check(theme_colors_red, plot = TRUE)  \n\n\n          name n tolerance ncp ndcp min_dist mean_dist max_dist\n1       normal 6   4.95969  15   15 4.959690  19.65649 41.78456\n2 deuteranopia 6   4.95969  15   15 5.428903  19.54489 42.55279\n3   protanopia 6   4.95969  15   14 3.976233  19.39475 41.15790\n4   tritanopia 6   4.95969  15   15 5.557603  19.68098 40.93915"
   }
 ]

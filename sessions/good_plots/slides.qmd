@@ -3,6 +3,7 @@ title: "Was ist eine gute Grafik?"
 format: 
   letterbox-revealjs:
     code-block-height: 650px
+bibliography: refs.bib
 ---
 
 
@@ -65,7 +66,7 @@ get_gapminder <- function(repo = "https://github.com/open-numbers/ddf--gapminder
   return(merged_df)
 }
 
-gapminder_dat_full <- get_gapminder(keywords = c("pop--", "co2", "--geo--country"))
+gapminder_dat_full <- get_gapminder(keywords = c("pop--", "co2", "--geo--country", "--lex"))
 #, "--lex", "--gdp", "--mincpcap", "employ", "--geo", "--hapi", "demox", "--gini"))
 # life expectancy, gdp, minimum income per capita, employment, geography, happiness, democraty index, gini index 
 gapminder_dat <- gapminder_dat_full %>%
@@ -83,22 +84,156 @@ Darstellung von David McCandless in [Knowledge is Beautiful (2014)](https://info
 
 
 
+## Übung: What makes a bad plot? 
+
+::: {.callout}
+Jede Gruppe bekommt eine Abbildung. 
+
+1. Diskutiert in der Gruppe, was bei der Visualisierung schief läuft. 
+1. Stellt den anderen Gruppen eure Ergebnisse vor.
+
+:::
+
+
+![](./images/star_plot.jpeg)
+
+
+::: {.image-ref}
+Bild gefunden auf [Reddit](https://www.reddit.com/r/dataisugly/comments/1msd4v2/its_not_wrong_but_i_still_hate_it/). 
+:::
+
+
 
 # Informationen
 
 - Integrität der Datenquelle
 - Integrität der Darstellung
 
+## {background-image="./images/garbage.jpg" background-size="1225px"}
+
+::: {.absolute left="5%" top="5%" style="color:#269b88;backdrop-filter: blur(0px);"}
+Garbage in, Garbage out
+:::
+
+
+::: image-ref
+Foto von <a href="https://unsplash.com/de/@jilburr?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Jilbert Ebrahimi</a> auf <a href="https://unsplash.com/de/fotos/schwarzer-plastikmulleimer-mit-radern-neben-der-wand-b0p818k8Ok8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>. 
+:::
+
+
+
+## Fehlender Kontext
+
+::: {.columns}
+:::{.column width="50%}
+
+```{r}
+#| echo: false
+
+gapminder_2020 <- gapminder_dat_full %>%
+  filter(time == 2020) %>%
+  arrange(desc(co2_cons))
+
+ggplot(
+  gapminder_2020[1:10, ],
+  aes(x = reorder(country, co2_cons), y = co2_cons)
+) +
+  geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(
+    title = "China burns the most CO2!",
+    subtitle = "Total CO2 consumption in the biggest emmiting countries"
+  ) +
+  theme_bg()
+```
+
+:::
+
+
+:::{.column width="50%}
+::: {.fragment}
+```{r}
+#| echo: false
+
+gapminder_2020 <- gapminder_dat_full %>%
+  filter(time == 2020) %>%
+  arrange(desc(co2_pcap_cons))
+
+ggplot(
+  gapminder_2020[1:10, ],
+  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)
+) +
+  geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "CO2 consumption per capita in the biggest emmiting countries") +
+  theme_bg()
+```
+:::
+:::
+:::
+
+
+
+## Election Plot
+
+![](impeach.png)
+
+
+https://storymaps.arcgis.com/stories/0e636a652d44484b9457f953994b212b
+
+
+##
+
+```{r}
+library(gerda)
+library(DEplotting)
+library(sf)
+
+
+
+sf::st_layers(here::here("sessions", "good_plots", "data", "VG250_GEM.shp"))
+
+# List available datasets
+available_data <- gerda_data_list()
+
+elect_dat <- load_gerda_web("federal_muni_raw", verbose = FALSE, file_format = "rds") %>% 
+  filter(election_year == 2025)
+
+ags_crosswalks <- load_gerda_web("ags_crosswalks", verbose = FALSE, file_format = "rds")
+
+```
+
+## 
+![](./images/bundestagswahl.svg)
+
+::: image-ref
+Von <a href="//commons.wikimedia.org/wiki/User:Costamiri" title="User:Costamiri">Costamiri</a> - <span class="int-own-work" lang="de">Eigenes Werk</span>Map based on: <a rel="nofollow" class="external text" href="https://www.bundeswahlleiterin.de/bundestagswahlen/2025/wahlkreiseinteilung/downloads.html">Shapefiles by bundeswahlleiterin.de (Geometrie der Wahlkreise im Koordinatensystem UTM32 generalisiert)</a> © Die Bundeswahlleiterin, Statistisches Bundesamt, Wiesbaden 2024, Wahlkreiskarte für die Wahl zum 21. Deutschen Bundestag; Grundlage der Geoinformationen © Geobasis-DE / BKG 2024Data based on: <a rel="nofollow" class="external text" href="https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/opendata.html">Bundestagswahl 2025: Open-Data-Angebot der Bundeswahlleiterin</a> by bundeswahlleiterin.de, <a href="https://creativecommons.org/licenses/by-sa/4.0" title="Creative Commons Attribution-Share Alike 4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=160429060">Link</a>
+:::
+
+##
+
+::: {.columns}
+:::{.column width="50%}
+![](./images/bundestagswahl_2a.png)
+:::
+:::{.column width="50%}
+::: fragment
+![](./images/bundestagswahl_2.png)
+:::
+:::
+:::
+
+::: image-ref
+Grafiken von [zeit.de](https://www.zeit.de/politik/deutschland/2025-02/bundestagswahl-2025-wahlergebnisse-wahlkreise-live). 
+
+:::
+
+
+## Alternativen 
+Dafür die Plots selber nachbauen?
+
+
 # Achsen 
-
-## Manipulation von Achsen
-Beispiel aus der Einführung nehmen, aber Achse Cutten und oder nicht bei Null starten lassen. Dann eine weirde Message schreiben! 
-Am besten etwas mit hohen nominalen Zahlen. Vielleicht etwas das sich über die Jahre verbessert hat?
-Dann alternativen zeigen, z.B. Ranzoomen!
-
-
-https://www.data-to-viz.com/caveat/cut_y_axis.html
-
 
 ## Konventionen
 
@@ -106,7 +241,7 @@ https://www.data-to-viz.com/caveat/cut_y_axis.html
 ::: {.column width="50%"}
 ![](./images/florida.jpeg)
 :::
-::: {.colum width="50%"}
+::: {.column width="50%"}
 776.013 Home protection; use or threatened use of deadly force; presumption of fear of death or great bodily harm.—
 (1) A person who is in a dwelling or residence in which the person has a right to be has no duty to retreat and has the right to stand his or her ground and use or threaten to use:  
 (a) Nondeadly force against another when and to the extent that the person reasonably believes that such conduct is necessary to defend himself or herself or another against the other’s imminent use of unlawful force; or  
@@ -116,6 +251,148 @@ http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0700-
 :::
 :::
 
+
+## Sollte die y-Achse immer bei 0 beginnen?
+
+“The designer of the visualization, by selecting a y-axis starting point, has control over the subjective importance of the resulting differences.” [@correll2020truncating]
+
+
+![](./images/gee-whiz.png)
+::: images-ref
+
+Grafik aus @HuffDarrell1979Htlw, heruntergeladen von [Observable blog](https://observablehq.com/blog/never-okay-crop-y-axis-except-when-it-is).
+
+:::
+
+
+## Absolute Werte
+
+**in der Regel ja**
+
+:::{.columns}
+:::{.column width="50%"}
+
+```{r}
+#| echo: false
+
+gapminder_2020 <- gapminder_dat_full %>%
+  filter(time == 2020) %>%
+  arrange(desc(co2_pcap_cons))
+
+ggplot(
+  gapminder_2020[1:10, ],
+  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)
+) +
+  geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "CO2 consumption per capita in the biggest emmiting countries") +
+  theme_bg() +
+  coord_cartesian(ylim = c(15, 25))
+```
+
+:::
+:::{.column width="50%"}
+```{r}
+#| echo: false
+
+ggplot(
+  gapminder_2020[1:10, ],
+  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)
+) +
+  geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "CO2 consumption per capita in the biggest emmiting countries") +
+  theme_bg() 
+```
+
+:::
+:::
+
+## Veränderung der Werte
+**Ermessensfrage**:
+
+"If zero is in the neighborhood, invite it in!"[Andrew Gelman](https://statmodeling.stat.columbia.edu/2021/12/17/graphing-advice-if-zero-is-in-the-neighborhood-invite-it-in/)
+
+
+```{r}
+gapminder_2020_de <- gapminder_dat_full %>%
+  filter(time >= 2000, time <= 2022, country == "deu") %>%
+  arrange(desc(co2_pcap_cons))
+
+
+ggplot(
+  gapminder_2020_de, 
+  aes(x = time, y = co2_pcap_cons, group = country, colour = country)
+) +
+  geom_line(linewidth = 1.5) +
+  theme_bg() + 
+  ylim(9, 14) +
+  scale_color_manual(values = "#208C7A") +
+  labs(title = "CO2 consumption per capita in Germany")
+
+```
+
+```{r}
+
+ggplot(
+  gapminder_2020_de, 
+  aes(x = time, y = co2_pcap_cons, group = country, colour = country)
+) +
+  geom_line(linewidth = 1.5) +
+  theme_bg() + 
+  ylim(0, 15) +
+  scale_color_manual(values = "#208C7A") +
+  labs(title = "CO2 consumption per capita in Germany")
+
+```
+
+
+## 
+
+:::{.columns}
+:::{.column width="50%}
+
+```{r}
+library(ggbreak)
+
+
+gapminder_2020 <- gapminder_dat_full %>%
+  filter(time == 2020) %>%
+  arrange(desc(co2_cons))
+
+ggplot(
+  gapminder_2020[1:10, ],
+  aes(x = reorder(country, co2_cons), y = co2_cons)
+) +
+  geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "CO2 consumption per capita in the biggest emmiting countries") +
+  theme_bg() +
+  scale_y_break(c(1500, 5000)) 
+```
+:::
+
+
+:::{.column width="50%}
+::: fragment
+```{r}
+
+gapminder_2020 <- gapminder_dat_full %>%
+  filter(time == 2020) %>%
+  arrange(desc(co2_cons))
+
+ggplot(
+  gapminder_2020[1:10, ],
+  aes(x = reorder(country, co2_cons), y = co2_cons)
+) +
+  geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "CO2 consumption per capita in the biggest emmiting countries") +
+  theme_bg()
+```
+:::
+:::
+:::
 
 
 ## Manipulation des Bildformats
@@ -167,67 +444,6 @@ ggplot(
 ```
 
 :::
-
-
-## Election Plot
-https://storymaps.arcgis.com/stories/0e636a652d44484b9457f953994b212b
-Vielleicht mit Bundestagswahl?
-
-## Fehlender Kontext
-
-::: {.columns}
-
-:::{.column widht="50%}
-
-```{r}
-#| echo: false
-
-gapminder_2020 <- gapminder_dat_full %>%
-  filter(time == 2020) %>%
-  arrange(desc(co2_cons))
-
-ggplot(
-  gapminder_2020[1:10, ],
-  aes(x = reorder(country, co2_cons), y = co2_cons)
-) +
-  geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  labs(
-    title = "China burns the most CO2!",
-    subtitle = "Total CO2 consumption in the biggest emmiting countries"
-  ) +
-  theme_bg()
-```
-
-:::
-
-
-:::{.column widht="50%}
-::: {.fragment}
-```{r}
-#| echo: false
-
-gapminder_2020 <- gapminder_dat_full %>%
-  filter(time == 2020) %>%
-  arrange(desc(co2_pcap_cons))
-
-ggplot(
-  gapminder_2020[1:10, ],
-  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)
-) +
-  geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  labs(title = "CO2 consumption per capita in the biggest emmiting countries") +
-  theme_bg()
-```
-:::
-:::
-:::
-
-## Fehlender Kontext
-Haushalt so groß wie nie
-
-## Irreführender Kontext
 
 
 # Story
