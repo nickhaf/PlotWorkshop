@@ -94,6 +94,25 @@
       ],
       "Hash": "e7bdd9ee90e96921ca8a0f1972d66682"
     },
+    "aplot": {
+      "Package": "aplot",
+      "Version": "0.2.8",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "ggfun",
+        "ggplot2",
+        "ggplotify",
+        "magrittr",
+        "methods",
+        "patchwork",
+        "pillar",
+        "utils",
+        "yulab.utils"
+      ],
+      "Hash": "6b6fc10655330e20ac3ddd5e30e7132a"
+    },
     "askpass": {
       "Package": "askpass",
       "Version": "1.2.1",
@@ -624,6 +643,21 @@
       ],
       "Hash": "15e9634c0fcd294799e9b2e929ed1b86"
     },
+    "gerda": {
+      "Package": "gerda",
+      "Version": "0.1.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "dplyr",
+        "knitr",
+        "readr",
+        "stringdist",
+        "tibble"
+      ],
+      "Hash": "4f8d1a56d9a0d0e29af8d326d7897b5c"
+    },
     "gert": {
       "Package": "gert",
       "Version": "2.1.5",
@@ -661,6 +695,23 @@
         "vctrs"
       ],
       "Hash": "c6e8a7ff1b78529309cb2186ec1e3d38"
+    },
+    "ggbreak": {
+      "Package": "ggbreak",
+      "Version": "0.1.5",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "aplot",
+        "ggfun",
+        "ggplot2",
+        "ggplotify",
+        "grid",
+        "rlang",
+        "stats",
+        "yulab.utils"
+      ],
+      "Hash": "21e31094ed27963b83dc4d6af71a49e4"
     },
     "ggfun": {
       "Package": "ggfun",
@@ -802,6 +853,13 @@
         "rlang"
       ],
       "Hash": "fbbbc48eba7a6626a08bb365e44b563b"
+    },
+    "gifski": {
+      "Package": "gifski",
+      "Version": "1.32.0-2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "7c58097dfa68463cd26f927f0a892031"
     },
     "gitcreds": {
       "Package": "gitcreds",
@@ -1869,7 +1927,7 @@
     },
     "sf": {
       "Package": "sf",
-      "Version": "1.0-20",
+      "Version": "1.0-21",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -1888,7 +1946,7 @@
         "units",
         "utils"
       ],
-      "Hash": "b99bc68a928d7d9aea4aad10d970edf1"
+      "Hash": "14a8dae2a678fa953907893a9df561c0"
     },
     "showtext": {
       "Package": "showtext",
@@ -1935,6 +1993,17 @@
         "logger"
       ],
       "Hash": "9161478a40420b97e9fdd0a55efb89b9"
+    },
+    "stringdist": {
+      "Package": "stringdist",
+      "Version": "0.9.15",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "parallel"
+      ],
+      "Hash": "749b8805a3026202a959edbf790425b0"
     },
     "stringi": {
       "Package": "stringi",

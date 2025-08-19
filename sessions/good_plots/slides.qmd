@@ -238,7 +238,7 @@ plot_fed_map <- function(fill_var, legend_label, fill_palette, limits, plot_titl
     labs(title = plot_title)
 }
 
-plot_fed_map("afd", "spd", "Blues", c(0,1))
+plot_fed_map("spd", "spd", "Reds", c(0,1))
 
 ```
 
