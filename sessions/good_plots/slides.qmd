@@ -34,6 +34,20 @@ gapminder_dat <- gapminder_dat_full %>%
   filter(time == "2020", !is.na(country))
 ```
 
+## 
+Excellence in statistical graphics consists of complex ideas communicated with clarity, precision, and efficiency. [@tufte2001visualizing]
+
+- show the data
+- induce the viewer to think about the substance rather than about methodology, graphic design, the technology of graphic production, or something else
+- avoid distorting what the data have to say
+- present many numbers in a small space
+- make large datasets coherent
+- encourage the eye to compare different pieces of data
+- Reveal the data at several levels of detail, from a broad overview to the fine structure
+- serve a reasonably clear purpose: description, exploration, tabulation, or decoration
+- be closely integrated with the statistical and verbal descriptions of a data set
+
+
 
 ## 
 
@@ -45,35 +59,69 @@ Darstellung von David McCandless in [Knowledge is Beautiful (2014)](https://info
 
 
 
+
 ## Übung: What makes a bad plot? 
 
-::: {.callout}
+::: {.columns}
+::: {.column width="50%"}
+
 Jede Gruppe bekommt eine Abbildung. 
 
 1. Diskutiert in der Gruppe, was bei der Visualisierung schief läuft. 
-1. Stellt den anderen Gruppen eure Ergebnisse vor.
+1. Session
+1. Kurze Diskussion. Stellt den anderen Gruppen eure Ergebnisse vor.
+
+::: 
+::: {.column width="50%"}
+![](./images/star_plot.jpeg)
 
 :::
-
-
-![](./images/star_plot.jpeg)
+:::
 
 
 ::: {.image-ref}
 Bild gefunden auf [Reddit](https://www.reddit.com/r/dataisugly/comments/1msd4v2/its_not_wrong_but_i_still_hate_it/). 
 :::
 
+## Gliederung?
 
 
 # Informationen
 
-- Integrität der Datenquelle
-- Integrität der Darstellung
+::: {.columns}
+:::{.column width="50%"}
 
-## {background-image="./images/garbage.jpg" background-size="1225px"}
+- Integrität der [Datenquelle]{.highlight}
+- Integrität der [Darstellung]{.highlight}
 
-::: {.absolute left="5%" top="5%" style="color:#269b88;backdrop-filter: blur(0px);"}
-Garbage in, Garbage out
+:::
+::: {.column width="50%"}
+![](./images/news.jpg){.image-right}
+:::
+:::
+
+::: {.image-ref}
+Foto von <a href="https://unsplash.com/de/@humayardim?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Hümâ H. Yardım</a> auf <a href="https://unsplash.com/de/fotos/menschen-die-tagsuber-auf-schneebedecktem-boden-spazieren-gehen-gfZZViTxuqw?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+
+:::
+
+
+## Integrität der Daten: Garbage in, garbage out
+
+::: {.columns}
+:::{.column width="50%"}
+![](./images/garbage_hochkant.jpg){.image-left}
+
+:::
+::: {.column width="50%"}
+
+- [Scheinkorrelationen](https://tylervigen.com/spurious-correlations)
+- [Wrong data, wrong measurements, wrong interpretations ...](https://www.businessinsider.com/spinach-iron-levels-nutrition-myths-2017-6)
+- [Sloppy reserach](https://journals.sagepub.com/doi/full/10.1177/0306312714535679)
+  - P-Hacking
+  - Cherry Picking
+  
+:::
 :::
 
 
@@ -82,12 +130,10 @@ Foto von <a href="https://unsplash.com/de/@jilburr?utm_content=creditCopyText&ut
 :::
 
 
-
 ## Fehlender Kontext
 
 ::: {.columns}
 :::{.column width="50%}
-
 ```{r}
 #| echo: false
 
@@ -102,14 +148,12 @@ ggplot(
   geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   labs(
-    title = "China burns the most CO2!",
-    subtitle = "Total CO2 consumption in the biggest emmiting countries"
-  ) +
+    x = "Land", 
+    y = "CO2 Consumption in 1000 t",
+    title = "China burns the most CO2!" ) +
   theme_bg()
 ```
-
 :::
-
 
 :::{.column width="50%}
 ::: {.fragment}
@@ -126,7 +170,10 @@ ggplot(
 ) +
   geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  labs(title = "CO2 consumption per capita in the biggest emmiting countries") +
+labs(
+    x = "Land", 
+    y = "CO2 Consumption per capita in t",
+    title = ""  ) +
   theme_bg()
 ```
 :::
@@ -134,209 +181,35 @@ ggplot(
 :::
 
 
-## Election Plot
+## Fehlender Kontext  {.center}
 
 ![](./images/impeach.png)
-
-
-https://storymaps.arcgis.com/stories/0e636a652d44484b9457f953994b212b
-
-
-
-## 
-
-```{r}
-#| label: Load election data
-#| echo: false
-
-## https://dataverse.harvard.edu/file.xhtml?fileId=10851934&version=9.1
-
-library(gerda)
-library(sf)
-
-# List available datasets
-available_data <- gerda_data_list()
-
-geom_dat <- sf::read_sf(here::here("sessions", "good_plots", "data", "shapefiles"), layer = "VG250_GEM" )
-geom_dat_lan <- sf::read_sf(here::here("sessions", "good_plots", "data", "shapefiles"), layer = "VG250_LAN" ) %>% 
-  dplyr::filter(GF == 4)
-
-
-elect_dat <- load_gerda_web("federal_muni_unharm", verbose = FALSE, file_format = "rds") %>% 
-  dplyr::filter(election_year == 2025) %>% 
-  dplyr::select(ags, county, cdu_csu, spd, gruene, afd, bsw, fdp, linke_pds, number_voters, eligible_voters) 
-
-geom_elect_dat <- geom_dat %>%
-  left_join(elect_dat, by = c("AGS" = "ags")) %>%
-  dplyr::filter(GF == 4)
-
-```
-
-:::{.columns}
-:::{.column-width="50%"}
-
-```{r}
-#| echo: false
-
-geom_elect_max <- geom_elect_dat %>% 
-  pivot_longer(cols = c("cdu_csu", "spd", "gruene", "afd", "bsw", "linke_pds", "fdp"), values_to = "result", 
-               names_to = "partei") %>% 
-  filter(!is.na(result)) %>% 
-  group_by(AGS) %>% 
-  slice_max(result) 
-  
-  
- ggplot() +
-    geom_sf(data = geom_elect_max, mapping = aes(fill = partei), colour = NA) +
-    geom_sf(data = geom_dat_lan, fill = NA, colour = "grey30", linewidth = 0.2) +
-    coord_sf() +
-    theme_minimal() +
-    theme(
-      panel.grid.major = element_blank(),
-      panel.grid.minor = element_blank(),
-      title = element_text(size = 9),
-      axis.title.x = element_blank(), axis.text.x = element_blank(), axis.ticks.x = element_blank(),
-      axis.title.y = element_blank(), axis.text.y = element_blank(), axis.ticks.y = element_blank(),
-      legend.position = "bottom", legend.text = element_text(size = 14), legend.key.size = unit(0.6, "cm"),
-      plot.margin = margin(t = 0, r = 0, b = 0, l = 0),
-      legend.box.margin = margin(t = -25, r = 0, b = 0, l = 0)
-    ) +
-    scale_fill_manual(values = c("cdu_csu" = "black", 
-                           "spd" = "red", 
-                            "gruene" = "green", 
-                           "linke_pds" = "purple", 
-                            "fdp" =  "yellow", 
-                            "afd" = "blue")) +
-    labs(title = "Partei mit den meisten Zweitstimmen per Gemeinde")
-
-```
-
-:::
-:::{.column-width="50%}
-
-Zeigen von Kreisen, wo es sehr eng war 
-
-:::
+::: images-ref
+Sie [storymaps](https://storymaps.arcgis.com/stories/0e636a652d44484b9457f953994b212b).
 :::
 
 
+## Fehlender Kontext
 
-
-## Alternativen
-
-
-
-
-![](./data/map_options.png)
-
-::: image-ref
-Bild von [storymaps](https://storymaps.arcgis.com/stories/0e636a652d44484b9457f953994b212b). 
+::: {.quote}
+"Land doesn't vote ... People Do."
 :::
 
 
-## Kartogramm
+![](images/land_doesnt_vote.png)
 
-```{r}
-#| eval: false
-
-library(cartogram)
-
-## Ansonsten mit county oder sogar nur Bundesland?
-
-cartogram_dat <- cartogram_cont(geom_elect_max,
-                 weight = "number_voters")
-
-saveRDS(here::here("sessions", "good_plots", "data", "cartogram_dat.rds"))
-```
-
-```{r}
-#| eval: false
-# https://r-charts.com/spatial/cartogram-ggplot2/
-
-library(cartogram)
-
-readRDS(here::here("sessions", "good_plots", "data", "cartogram_dat.rds"))
-
-ggplot(cartogram_dat) +
-  geom_sf()
-
-
-```
-
-![](./images/bundestagswahl.svg)
-
-::: image-ref
-Von <a href="//commons.wikimedia.org/wiki/User:Costamiri" title="User:Costamiri">Costamiri</a> - <span class="int-own-work" lang="de">Eigenes Werk</span>Map based on: <a rel="nofollow" class="external text" href="https://www.bundeswahlleiterin.de/bundestagswahlen/2025/wahlkreiseinteilung/downloads.html">Shapefiles by bundeswahlleiterin.de (Geometrie der Wahlkreise im Koordinatensystem UTM32 generalisiert)</a> © Die Bundeswahlleiterin, Statistisches Bundesamt, Wiesbaden 2024, Wahlkreiskarte für die Wahl zum 21. Deutschen Bundestag; Grundlage der Geoinformationen © Geobasis-DE / BKG 2024Data based on: <a rel="nofollow" class="external text" href="https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/opendata.html">Bundestagswahl 2025: Open-Data-Angebot der Bundeswahlleiterin</a> by bundeswahlleiterin.de, <a href="https://creativecommons.org/licenses/by-sa/4.0" title="Creative Commons Attribution-Share Alike 4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=160429060">Link</a>
+:::{.image-ref}
+Sie [storymaps](https://storymaps.arcgis.com/stories/0e636a652d44484b9457f953994b212b).
 :::
 
 
-##
+## Achsen 
 
-```{r}
-#| echo: false
+### Konventionen
 
-plot_fed_map <- function(fill_var, legend_label, fill_palette, limits, plot_title = NULL) {
-  ggplot() +
-    geom_sf(data = geom_elect_dat, mapping = aes(fill = .data[[fill_var]]), colour = NA) +
-    geom_sf(data = geom_dat_lan, fill = NA, colour = "grey30", linewidth = 0.2) +
-    coord_sf() +
-    theme_minimal() +
-    theme(
-      panel.grid.major = element_blank(),
-      panel.grid.minor = element_blank(),
-      title = element_text(size = 9),
-      axis.title.x = element_blank(), axis.text.x = element_blank(), axis.ticks.x = element_blank(),
-      axis.title.y = element_blank(), axis.text.y = element_blank(), axis.ticks.y = element_blank(),
-      legend.position = "bottom", legend.text = element_text(size = 14), legend.key.size = unit(0.6, "cm"),
-      plot.margin = margin(t = 0, r = 0, b = 0, l = 0),
-      legend.box.margin = margin(t = -25, r = 0, b = 0, l = 0)
-    ) +
-    scale_fill_distiller(NULL,
-                         palette = fill_palette,
-                         na.value = "white",
-                         direction = 1,
-                         limits = limits,
-                         guide = guide_legend(
-                           keyheight = unit(4, units = "mm"), keywidth = unit(18, units = "mm"),
-                           label.position = "bottom", title.position = "top", nrow = 1
-                         )
-    ) +
-    # Add title if provided
-    labs(title = plot_title)
-}
-
-plot_fed_map("spd", "spd", "Reds", c(0,1))
-
-```
-
-
-
-##
-
-::: {.columns}
-:::{.column width="50%}
-![](./images/bundestagswahl_2a.png)
-:::
-:::{.column width="50%}
 ::: fragment
-![](./images/bundestagswahl_2.png)
+Verdrehte y-Achse
 :::
-:::
-:::
-
-::: image-ref
-Grafiken von [zeit.de](https://www.zeit.de/politik/deutschland/2025-02/bundestagswahl-2025-wahlergebnisse-wahlkreise-live). 
-
-:::
-
-
-## Alternativen 
-Dafür die Plots selber nachbauen?
-
-
-# Achsen 
-
-## Konventionen
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -353,153 +226,10 @@ http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0700-
 :::
 
 
-## Sollte die y-Achse immer bei 0 beginnen?
-
-“The designer of the visualization, by selecting a y-axis starting point, has control over the subjective importance of the resulting differences.” [@correll2020truncating]
-
-
-![](./images/gee-whiz.png)
-::: images-ref
-
-Grafik aus @HuffDarrell1979Htlw, heruntergeladen von [Observable blog](https://observablehq.com/blog/never-okay-crop-y-axis-except-when-it-is).
-
-:::
-
-
-## Absolute Werte
-
-**in der Regel ja**
-
-:::{.columns}
-:::{.column width="50%"}
-
-```{r}
-#| echo: false
-
-gapminder_2020 <- gapminder_dat_full %>%
-  filter(time == 2020) %>%
-  arrange(desc(co2_pcap_cons))
-
-ggplot(
-  gapminder_2020[1:10, ],
-  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)
-) +
-  geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  labs(title = "CO2 consumption per capita in the biggest emmiting countries") +
-  theme_bg() +
-  coord_cartesian(ylim = c(15, 25))
-```
-
-:::
-:::{.column width="50%"}
-```{r}
-#| echo: false
-
-ggplot(
-  gapminder_2020[1:10, ],
-  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)
-) +
-  geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  labs(title = "CO2 consumption per capita in the biggest emmiting countries") +
-  theme_bg() 
-```
-
-:::
-:::
-
-## Veränderung der Werte
-**Ermessensfrage**:
-
-"If zero is in the neighborhood, invite it in!"[Andrew Gelman](https://statmodeling.stat.columbia.edu/2021/12/17/graphing-advice-if-zero-is-in-the-neighborhood-invite-it-in/)
-
-
-```{r}
-gapminder_2020_de <- gapminder_dat_full %>%
-  filter(time >= 2000, time <= 2022, country == "deu") %>%
-  arrange(desc(co2_pcap_cons))
-
-
-ggplot(
-  gapminder_2020_de, 
-  aes(x = time, y = co2_pcap_cons, group = country, colour = country)
-) +
-  geom_line(linewidth = 1.5) +
-  theme_bg() + 
-  ylim(9, 14) +
-  scale_color_manual(values = "#208C7A") +
-  labs(title = "CO2 consumption per capita in Germany")
-
-```
-
-```{r}
-
-ggplot(
-  gapminder_2020_de, 
-  aes(x = time, y = co2_pcap_cons, group = country, colour = country)
-) +
-  geom_line(linewidth = 1.5) +
-  theme_bg() + 
-  ylim(0, 15) +
-  scale_color_manual(values = "#208C7A") +
-  labs(title = "CO2 consumption per capita in Germany")
-
-```
-
-
-## 
-
-:::{.columns}
-:::{.column width="50%}
-
-```{r}
-library(ggbreak)
-
-
-gapminder_2020 <- gapminder_dat_full %>%
-  filter(time == 2020) %>%
-  arrange(desc(co2_cons))
-
-ggplot(
-  gapminder_2020[1:10, ],
-  aes(x = reorder(country, co2_cons), y = co2_cons)
-) +
-  geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  labs(title = "CO2 consumption per capita in the biggest emmiting countries") +
-  theme_bg() +
-  scale_y_break(c(1500, 5000)) 
-```
-:::
-
-
-:::{.column width="50%}
-::: fragment
-```{r}
-
-gapminder_2020 <- gapminder_dat_full %>%
-  filter(time == 2020) %>%
-  arrange(desc(co2_cons))
-
-ggplot(
-  gapminder_2020[1:10, ],
-  aes(x = reorder(country, co2_cons), y = co2_cons)
-) +
-  geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  labs(title = "CO2 consumption per capita in the biggest emmiting countries") +
-  theme_bg()
-```
-:::
-:::
-:::
-
-
 ## Manipulation des Bildformats
 
 ::: panel-tabset
-### Grafik
+#### Grafik
 
 
 ```{r}
@@ -536,7 +266,7 @@ ggplot(
 ```
 
 
-### Code
+#### Code
 
 
 ```{r}
@@ -547,10 +277,218 @@ ggplot(
 :::
 
 
-# Story
+## Reales Beispiel für Manipulation des Bildformates
 
+
+### Sollte die y-Achse immer bei 0 beginnen?
+
+“The designer of the visualization, by selecting a y-axis starting point, has control over the subjective importance of the resulting differences.” [@correll2020truncating]
+
+
+![](./images/gee-whiz.png)
+::: images-ref
+Grafik aus @HuffDarrell1979Htlw, heruntergeladen von [Observable blog](https://observablehq.com/blog/never-okay-crop-y-axis-except-when-it-is).
+:::
+
+
+### Absolute Werte
+
+**in der Regel ja**
+
+:::{.columns}
+:::{.column width="50%"}
+
+```{r}
+#| echo: false
+
+gapminder_2020 <- gapminder_dat_full %>%
+  filter(time == 2020) %>%
+  arrange(desc(co2_pcap_cons))
+
+ggplot(
+  gapminder_2020[1:10, ],
+  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)
+) +
+  geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "CO2 consumption per capita in the biggest emmiting countries") +
+  coord_cartesian(ylim = c(15, 25)) +
+  theme_bg()
+```
+
+:::
+:::{.column width="50%"}
+```{r}
+#| echo: false
+
+ggplot(
+  gapminder_2020[1:10, ],
+  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)
+) +
+  geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "CO2 consumption per capita in the biggest emmiting countries") +
+  theme_bg() 
+```
+
+:::
+:::
+
+### Veränderung der Werte
+**Ermessensfrage**:
+
+"If zero is in the neighborhood, invite it in!"[Andrew Gelman](https://statmodeling.stat.columbia.edu/2021/12/17/graphing-advice-if-zero-is-in-the-neighborhood-invite-it-in/)
+
+::: {.columns}
+:::{.column width="50%"}
+
+```{r}
+#| echo: false
+
+gapminder_2020_de <- gapminder_dat_full %>%
+  filter(time >= 2000, time <= 2022, country == "deu") %>%
+  arrange(desc(co2_pcap_cons))
+
+
+ggplot(
+  gapminder_2020_de, 
+  aes(x = time, y = co2_pcap_cons, group = country, colour = country)
+) +
+  geom_line(linewidth = 1.5) +
+  theme_bg() + 
+  ylim(9, 14) +
+  scale_color_manual(values = "#208C7A") +
+  labs(title = "CO2 consumption per capita in Germany")
+
+```
+
+:::
+
+:::{.column width="50%"}
+
+```{r}
+#| echo: false
+
+ggplot(
+  gapminder_2020_de, 
+  aes(x = time, y = co2_pcap_cons, group = country, colour = country)
+) +
+  geom_line(linewidth = 1.5) +
+  theme_bg() + 
+  ylim(0, 15) +
+  scale_color_manual(values = "#208C7A") +
+  labs(title = "CO2 consumption per capita in Germany")
+
+```
+
+:::
+:::
+
+### Schneiden von Achsen
+
+
+:::{.columns}
+:::{.column width="50%}
+
+```{r}
+#| echo: false
+
+library(ggbreak)
+
+
+gapminder_2020 <- gapminder_dat_full %>%
+  filter(time == 2020) %>%
+  arrange(desc(co2_cons))
+
+ggplot(
+  gapminder_2020[1:10, ],
+  aes(x = reorder(country, co2_cons), y = co2_cons)
+) +
+  geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "CO2 consumption per capita in the biggest emmiting countries") +
+  scale_y_break(c(1500, 5000)) +
+  theme_bg()
+```
+:::
+
+
+:::{.column width="50%}
+::: fragment
+```{r}
+#| echo: false
+
+
+gapminder_2020 <- gapminder_dat_full %>%
+  filter(time == 2020) %>%
+  arrange(desc(co2_cons))
+
+ggplot(
+  gapminder_2020[1:10, ],
+  aes(x = reorder(country, co2_cons), y = co2_cons)
+) +
+  geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(title = "CO2 consumption per capita in the biggest emmiting countries") +
+  theme_bg()
+```
+:::
+:::
+:::
+
+::: {.callout-warning}
+In der Regel keine gute Idee. 
+:::
+
+
+
+# Story
+Rolfs 7
+Nature https://www.nature.com/articles/nmeth.2571
 
 # Goal
+- Usefulness
+- usable
+- fitting
+- efficient
+
+
+Tufte Zitat
+
+
+## Pulikum
+
+
+## Purpose
+- Exploratory vs. Explanatory
+- Kann oft über reines Zeigen der Daten hinausgehen. 
+
+
+
+# Effizienz: Salienz von Informationen
+
+Man soll raufschauen könnenn, und verschiedene Informationen möglichst schnell aufnehmen, ohne lange zu überlgen. Deshalb hier!
+
+
+https://www.nature.com/articles/nmeth1010-773
+Unterscheiden von Gruppen: 
+- Gruppierung
+- Größe
+- Farbe
+- Form
+
+- Bewusste Wahrnehmung ignoriert Informationen und fügt hinzu
+- Nähe
+- Salienz (Farbe, Größe, Neigung) (Szaﬁr, Haroz, Gleicher & Franconeri
+(2016))
+- Hier würde das USA Bild passen (evtl. mit einem anderen Beispiel, das den Unterschied deutlich macht, z.B. keine andere Farbe, näher dran durch andere Achse)
+- Harold et al., 2016: Lenken von Aufmerksamkeit
+- Nothelfer et al., 2017: Redundatne Kodierung führt zu deutlich höherer Genauigkeit der Antworten und kürzeren Reaktionszeiten
+
+
+## Gruppieren
+
+## Formen
 
 ## Darstellung von Größen
 
@@ -722,81 +660,6 @@ ggplot(
 
 
 
-# Nützlichkeit
-
-"Design is a requirement, not a cosmetic addition." [nature methods](https://www.nature.com/articles/nmeth.1783)
-
-
-:::{.columns}
-
-::: {.column width="50%"}
-![](./images/remote.jpg)
-
-::: image-ref
-Foto von <a href="https://unsplash.com/de/@kellysikkema?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Kelly Sikkema</a> auf <a href="https://unsplash.com/de/fotos/drei-schwarze-fernbedienungen-auf-holztisch-HprPUHnjDgk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-:::
-
-:::
-
-:::{.column width="50%"}
-![](./images/remote_2.jpg)
-
-::: image-ref
-Foto von <a href="https://unsplash.com/de/@ymoran?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Yucel Moran</a> auf <a href="https://unsplash.com/de/fotos/schwarze-fernbedienung-auf-weissem-textil-LJW-blAKI98?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-:::
-
-:::
-:::
-
-
-
-## Funktionelles Design {.nostretch}
-
-Welche Funktion?
-
-:::{.columns}
-
-::: {.column width="67.5%"}
-![](./images/map.png)
-
-::: image-ref
-Foto von <a href="https://www.bvg.de/.imaging/mte/bvg-theme/zoomed3000w/dam/BVG-Bilder/Verbindungen/netz-ab-01-a.jpg/jcr:content/netz-ab-01-a.jpg">BVG</a>
-:::
-
-:::
-
-:::{.column width="32.5%"}
-![](./images/fahrplan-tabelle.png)
-
-::: image-ref
-Foto von <a href="https://www.bvg.de/de/verbindungen/linienuebersicht">BVG</a>
-:::
-
-:::
-:::
-
-## 
-Dabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen.  
-Handschriftliche Skizze ist auch erstmal hilfreich!
-
-
-
-## Simplify to clarify
-
-- Redundanzen Reduzieren
-- Fokus auf das Wesentliche
-https://www.data-to-viz.com/caveat/declutter.html
-
-
-# Visual Form
-
-
-## 
-Beispiel von einem komplexen Plot bringen, den wir schon erzeugt haben, und dann reduzieren!
-
-## Salienz von Informationen
-https://www.nature.com/articles/nmeth1010-773
-
 ## Farben
 :::: {.columns} 
 ::: {.column width="50%"}
@@ -813,7 +676,7 @@ Foto von <a href="https://unsplash.com/de/@efekurnaz?utm_content=creditCopyText&
       
 :::
 
-## Farbwahrnehmung beim Menschen
+### Farbwahrnehmung beim Menschen
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -831,7 +694,7 @@ Primärfarben des Lichts: **R**ot, **G**rün, **B**lau
 By <a href="//commons.wikimedia.org/wiki/File:Electromagnetic-Spectrum.png" title="File:Electromagnetic-Spectrum.png">Original: </a> <a href="//commons.wikimedia.org/wiki/User:Penubag" title="User:Penubag">Penubag</a> Vector: <a href="//commons.wikimedia.org/wiki/User:Victor_Blacus" title="User:Victor Blacus">Victor Blacus</a> - Own work based on: <a href="//commons.wikimedia.org/wiki/File:Electromagnetic-Spectrum.png" title="File:Electromagnetic-Spectrum.png">Electromagnetic-Spectrum.png</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=22428451">Link</a>
 :::
 
-## Trichromatizität
+### Trichromatizität
 
 
 Der Mensch hat in der Regel drei Zapfentypen, die unterschiedlich sensitiv für bestimmte Wellenlängen sind: 
@@ -845,7 +708,7 @@ Der Mensch hat in der Regel drei Zapfentypen, die unterschiedlich sensitiv für 
 By <a href="//commons.wikimedia.org/wiki/User:BenRG" title="User:BenRG">BenRG</a> - <span class="int-own-work" lang="en">Own work</span>, Public Domain, <a href="https://commons.wikimedia.org/w/index.php?curid=7873848">Link</a>
 :::
 
-## 
+### 
 Andere Tiere können auch mal mehr oder weniger haben:
 
 ![](./images/color_animals.png)
@@ -854,7 +717,7 @@ Andere Tiere können auch mal mehr oder weniger haben:
 Bild aus [Farbsehen der Tiere](https://media.springernature.com/original/springer-static/image/art%3A10.1007%2Fs00347-017-0543-6/MediaObjects/347_2017_543_Fig1_HTML.gif?as=jpg)
 :::
 
-## 
+###
 Viele Tiere sehen nur grau:
 
 - Wale
@@ -875,7 +738,7 @@ Warum also überhaupt Farbwahrnehmung?
 
 
 
-## Farben
+### Farben
 Ganglienzellen übertragen keine Informationen über absolute Helligkeit,
 sondern über relative Helligkeit.
 ‣ Wie stark unterscheiden sich zwei Bereiche in ihrer Helligkeit?
@@ -889,62 +752,18 @@ darin, Unterschiede und Veränderungen zu erkennen
 
 - Graustufen nicht für absolute oder kategorische Werte nutzen (mehr als vier können iwr nicht gut unterscheiden)
 
-## Farbton, Sättigung, Helligkeit
+### Farbton, Sättigung, Helligkeit
 
 ![](./images/color_properties.png)
 
-## Kleine Farblehre
-
-"All colors are the friends of their neighbors and the lovers of their opposites." - Marc Chagall 
-
-
-![](./images/farbkreis.png)
-
-::: image-ref
-Nach <a href="https://de.wikipedia.org/wiki/User:MalteAhrens" class="extiw" title="de:User:MalteAhrens">MalteAhrens</a> at <a class="external text" href="https://de.wikipedia.org">de.wikipedia</a>. Vectorization by <a href="//commons.wikimedia.org/wiki/User:SidShakal" title="User:SidShakal">User:SidShakal</a> - Raster version from Wikimedia Commons., Gemeinfrei, <a href="https://commons.wikimedia.org/w/index.php?curid=3574696">Link</a>
-:::
-
-## Kleine Farbenlehre
-
-:::{.columns}
-:::{.column width="50%"}
-
-![](./images/zoeaaf.jpg)
-
-::: image-ref
-<a href="https://commons.wikimedia.org/wiki/File:De_zoeaaf_-_s0067V1962_-_Van_Gogh_Museum.jpg">Vincent van Gogh</a>, Public domain, via Wikimedia Commons
-:::
-:::
-
-:::{.column width="50%"}
-- Gegenüberliegende Farben intensivieren sich gegenseitig: eine Primärfarbe, und eine Sekundärfarbe, die aus den anderen beiden Primärfarben gemischt wird. Das erzeugt stärkere Kontraste. (Van Gogh bild)
-- Mit weiß und schwarz lassen sich die Schattierungen hinzumischen
-- triadisches Farbschema: Fom MIttelpunkt des Farbkreises Strahlen mit gleichem Winkel abgehen lassen (So viele, wie man Farben haben will). Das wählt dann Farben mit dem größten Kontrast aus. 
-(https://www.kunstplaza.de/fashion-design/farbenlehre-farbtheorie-styleguides-fashion-design/)
-
-:::
-:::
-
-
-
-
-
-
-
-
-
-## Farbräume
+### Farbräume
 - RGB: **Zusammen**mischen von Licht der unterschiedlichen Farben. Alle drei zusammen ergeben weiß. 
 - CMYK: **Ausblenden** aus dem weißen Farbspektrum durch Filter. Grundfarben: Gelb, Magenta (Purpur), Cyan (Blaugrün) (+K - Key (also Schwarz))
 
 
+### Was bringt uns das jetzt für unsere Abbildungen?
 
-
-# Was bringt uns das jetzt für unsere Abbildungen?
-
-# 1. Die Farben sollten unterscheidbar, aber ähnlich sein!
-
-## 1. Unterscheidbar, aber ähnlich
+### 1. Unterscheidbar, aber ähnlich
 
 ```{r}
 #| echo: false
@@ -1024,7 +843,7 @@ color_plot_bar +
 :::
 
 
-## 1. Unterscheidbar, aber ähnlich
+### 1. Unterscheidbar, aber ähnlich
 
 ```{r}
 #| label: color-plot
@@ -1121,7 +940,7 @@ theme_bg()
 
 
 
-## Farbton, Sättigung und Helligkeit
+### Farbton, Sättigung und Helligkeit
 
 :::{.columns}
 :::{.column width="50%"}
@@ -1189,7 +1008,7 @@ color_plot +
 Variiert immer Farbton, Sättigung und Helligkeit gleichzeitig. 
 :::
 
-## Grau
+### Grau
 
 ::: {.columns}
 ::: {.column width="50%}
@@ -1220,12 +1039,12 @@ color_plot_bar +
 :::
 
 
-## 2. Intuitives Verständnis: Diskrete Farben vs. Farbverläufe
+### 2. Intuitives Verständnis: Diskrete Farben vs. Farbverläufe
 - Vor allem für diskrete Gruppen geeignet
 - Farbverläufe schwieriger (aber es gibt color scales dafür)
 - Bestimmte Farben (Grün = gut, Rot = Gefahr)
 
-## Größe
+### Größe
 
 :::{.columns}
 :::{.column width="33%"}
@@ -1313,7 +1132,7 @@ scale_color_manual(values = theme_colors_balanced) +
 :::
 
 
-## Farbe ist relativ
+### Farbe ist relativ
 Beispiel: 
 Grautöne vs Rottöne
 
@@ -1325,7 +1144,7 @@ Bild von [Nature Methods](https://www.nature.com/articles/nmeth0810-573/figures/
 :::
 
 
-## Farbe ist relativ
+### Farbe ist relativ
 ```{r}
 #| label: color_bias_reds
 #| echo: false
@@ -1353,7 +1172,7 @@ color_plot +
 ```
 
 
-## Fragen: Warum ist das noch eine schelchte Color scale? 
+### Fragen: Warum ist das noch eine schelchte Color scale? 
 ![](./images/colorblind_check.png)
 
 ::: .image-ref
@@ -1361,7 +1180,7 @@ Siehe [Colblindor](https://www.color-blindness.com/coblis-color-blindness-simula
 :::
 
 
-## Farbfehlsichtigkeit
+### Farbfehlsichtigkeit
 
 ![](./images/cones_eye.jpg)
 
@@ -1380,14 +1199,14 @@ By Mark Fairchild, <a href="https://creativecommons.org/licenses/by-sa/3.0" titl
 - https://www.color-blindness.com/coblis-color-blindness-simulator/
 
 
-##
+###
 
 ```{r}
 library(colorblindcheck)
 palette_check(theme_colors_red, plot = TRUE)  
 ```
 
-## Das kann man sich natürlich auch zu Nutze machen (Passt aber vielleicht eher zu space? -> da nochmal zeigen, hier die Punkte enger zusammen )
+### Das kann man sich natürlich auch zu Nutze machen (Passt aber vielleicht eher zu space? -> da nochmal zeigen, hier die Punkte enger zusammen )
 
 ```{r}
 #| echo: false
@@ -1453,17 +1272,17 @@ ggplot(
 Data from [Rockefeller Institute](https://rockinst.org/blog/public-mass-shootings-around-the-world-prevalence-context-and-prevention/) and [Wikipedia](https://en.wikipedia.org/wiki/Gun_ownership). 
 :::
 
-## Nicht zu viele!
+### Nicht zu viele!
 
 
-## Color for coding a third dimension
+### Color for coding a third dimension
 - Wie viel macht sinn?
 - Scatterplot
 - Sättigung um dimensionalität der Farben darzustellen
 
 
 
-## Farbfehlsichtigkeiten
+### Farbfehlsichtigkeiten
 
 Farbsehtests
 
@@ -1471,27 +1290,27 @@ Farbsehtests
 - Farbwahrnehmung braucht Helligkeit und Fläche
 
 
-# Anwendung in ggplot2
+### Anwendung in ggplot2
 
 
-## Farben whlen
+### Farben whlen
 - Name
 - rgb()
 - Nummer
 - Hex code
 
-## scale_color vs scale_fill
+### scale_color vs scale_fill
 
-## Farbskalen wählen
+### Farbskalen wählen
 
-## Manuell
+### Manuell
 
 ::: {.columns}
 ::: {.column width="50%"}
 
 ::: panel-tabset
 
-### Code
+#### Code
 
 ```{r}
 #| label: manual_color_scale
@@ -1509,7 +1328,7 @@ ggplot(
   scale_fill_manual(values = c("red", "green", "blue", "yellow", "violet", "brown"))
 ```
 
-### Plot
+#### Plot
 
 ```{r}
 #| label: manual_color_scale
@@ -1524,7 +1343,7 @@ ggplot(
 
 ::: panel-tabset
 
-### Code
+#### Code
 
 ```{r}
 #| label: manual_color_scale_named
@@ -1549,7 +1368,7 @@ ggplot(
   scale_color_manual(values = my_color_scale)
 ```
 
-### Plot
+#### Plot
 
 ```{r}
 #| label: manual_color_scale_named
@@ -1567,7 +1386,7 @@ ggplot(
 <!-- ::: -->
 
 
-## Graustufen 
+### Graustufen 
 
 ```{r}
 #| reults: hide
@@ -1589,7 +1408,7 @@ ggplot(
 
 
 
-## Externe Farb-Paletten
+### Externe Farb-Paletten
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -1606,7 +1425,7 @@ display.brewer.all(colorblindFriendly=FALSE)
 
 ::: panel-tabset
 
-### Code
+#### Code
 
 ```{r}
 #| label: color_brewer
@@ -1628,7 +1447,7 @@ ggplot(
 ```
 
 
-### Plot
+#### Plot
 
 ```{r}
 #| label: color_brewer
@@ -1639,7 +1458,7 @@ ggplot(
 :::
 :::
 
-## Externe Farb-Paletten
+### Externe Farb-Paletten
 ::: {.columns}
 ::: {.column width="50%"}
 [**paletteer**](https://r-graph-gallery.com/package/paletteer.html)
@@ -1655,7 +1474,7 @@ Sammlung von Paletten aus diversen Paketen
 
 ::: panel-tabset
 
-### Code
+#### Code
 
 ```{r}
 #| label: paletteer
@@ -1677,7 +1496,7 @@ ggplot(
 ```
 
 
-### Plot
+#### Plot
 
 ```{r}
 #| label: paletteer
@@ -1690,7 +1509,7 @@ ggplot(
 :::
 
 
-## Arten von Skalen
+### Arten von Skalen
 - Intervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen
   - Kein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten
 - Ordinal: Richtung und gute Unterscheidbarkeit im Farbraum
@@ -1709,7 +1528,7 @@ Qualitativ
 Diverging
 
 
-## Weiter Tools
+### Weiter Tools
 
 ![](./images/hue_box.jpg)
 
@@ -1717,7 +1536,7 @@ Diverging
 - Colorbrewer
 - Huemint
 
-## Farben: Zusammenfassung
+### Farben: Zusammenfassung
 
 
 ## Übung
@@ -1725,61 +1544,132 @@ Diverging
 1. Teste, ob deine bisherige Abbildung für Menschen mit Farbfehlsichtigkeit lesbar ist. 
 2. Baue eine eigene Color-Palette und wende sie auf deinen Plot an. Achte dabei auf Unterscheidbarkeit (Auch color blind), aber auch auf Design. 
 
-## Gruppieren
+
+# Visual Form
+
+
+## Nützlichkeit
+
+"Design is a requirement, not a cosmetic addition." [nature methods](https://www.nature.com/articles/nmeth.1783)
+
+
+:::{.columns}
+
+::: {.column width="50%"}
+![](./images/remote.jpg)
+
+::: image-ref
+Foto von <a href="https://unsplash.com/de/@kellysikkema?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Kelly Sikkema</a> auf <a href="https://unsplash.com/de/fotos/drei-schwarze-fernbedienungen-auf-holztisch-HprPUHnjDgk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+
+:::
+
+:::{.column width="50%"}
+![](./images/remote_2.jpg)
+
+::: image-ref
+Foto von <a href="https://unsplash.com/de/@ymoran?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Yucel Moran</a> auf <a href="https://unsplash.com/de/fotos/schwarze-fernbedienung-auf-weissem-textil-LJW-blAKI98?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+
+:::
+:::
+
+
+
+## Funktionelles Design {.nostretch}
+
+Welche Funktion?
+
+:::{.columns}
+
+::: {.column width="67.5%"}
+![](./images/map.png)
+
+::: image-ref
+Foto von <a href="https://www.bvg.de/.imaging/mte/bvg-theme/zoomed3000w/dam/BVG-Bilder/Verbindungen/netz-ab-01-a.jpg/jcr:content/netz-ab-01-a.jpg">BVG</a>
+:::
+
+:::
+
+:::{.column width="32.5%"}
+![](./images/fahrplan-tabelle.png)
+
+::: image-ref
+Foto von <a href="https://www.bvg.de/de/verbindungen/linienuebersicht">BVG</a>
+:::
+
+:::
+:::
+
+::: {.callout-tip}
+Dabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen.  
+Handschriftliche Skizze ist auch erstmal hilfreich!
+:::
+
+
+
+## Simplify to clarify
+
+- Redundanzen Reduzieren
+- Fokus auf das Wesentliche
+https://www.data-to-viz.com/caveat/declutter.html
+
+
 
 
 ## Verteilungen Plotten
-
-## Eine Grafik ist kann nur einen Teil der Zusammenhänge darstellen
-
-Im  Schlechtesten Fall für Manipulation nutzbar
-
-
-
-## Black swann
-
-## Was mögt ihr an dieser Grafik/nicht?
-
-
-## Plot-Typen
-
-## Choosing the correct plot
-https://www.data-to-viz.com/
-
-## Pulikum
-
-## Geschichte
-- Gleiche sache auf verschiedene Arten darstellen -> was wirkt am meisten?  
-
-
-## Purpose
-- Exploratory vs. Explanatory
-- Kann oft über reines Zeigen der Daten hinausgehen. 
+Aber: Simplify heißt nicht immer, Informationen zu reduzieren. Eher den Clutter!
+Versuchen, möglichst Verteilungen/ Spannweiten anstatt nur zusammengefasster Werte zu plotten. Evtl. IQB-Mittelwertsgrafik zeigen?
+Eine Grafik ist kann nur einen Teil der Zusammenhänge darstellen
+Im  Schlechtesten Fall für Manipulation nutzbar. 
 
 
 
-## Size
-Also include population size in the scatterplot
-- Was will ich hier sagen?
-- Beachten: Oben hatte ich auch schon was zu size, bei den Kreisen. 
-
-
-
-## Tufte
+## Tuftes Data Ink ratio
 - So wenig Tinte wie möglich nutzen
 - Alles nicht essentielle entfernen
 - Redundanzen entferenen  
 
 Beispiel zeigen: Eins ist aufgeblasen, man braucht Zeit zur Orientierung. Ein anderes theme_tufte
-
-## Data-ink ratio
 Beispiel zum Minimieren zeigen
 - Raincloud plots
 
-## Caveats
-https://www.data-to-viz.com/caveats.html
 
-Immer einen Plot zeigen, dann zusammen überlgen was daran schlecht ist, was verbessert werden kann. 
+## Nochmal Farben!
+
+### Kleine Farblehre
+
+"All colors are the friends of their neighbors and the lovers of their opposites." - Marc Chagall 
+
+
+![](./images/farbkreis.png)
+
+::: image-ref
+Nach <a href="https://de.wikipedia.org/wiki/User:MalteAhrens" class="extiw" title="de:User:MalteAhrens">MalteAhrens</a> at <a class="external text" href="https://de.wikipedia.org">de.wikipedia</a>. Vectorization by <a href="//commons.wikimedia.org/wiki/User:SidShakal" title="User:SidShakal">User:SidShakal</a> - Raster version from Wikimedia Commons., Gemeinfrei, <a href="https://commons.wikimedia.org/w/index.php?curid=3574696">Link</a>
+:::
+
+### Kleine Farbenlehre
+
+:::{.columns}
+:::{.column width="50%"}
+
+![](./images/zoeaaf.jpg)
+
+::: image-ref
+<a href="https://commons.wikimedia.org/wiki/File:De_zoeaaf_-_s0067V1962_-_Van_Gogh_Museum.jpg">Vincent van Gogh</a>, Public domain, via Wikimedia Commons
+:::
+:::
+
+:::{.column width="50%"}
+- Gegenüberliegende Farben intensivieren sich gegenseitig: eine Primärfarbe, und eine Sekundärfarbe, die aus den anderen beiden Primärfarben gemischt wird. Das erzeugt stärkere Kontraste. (Van Gogh bild)
+- Mit weiß und schwarz lassen sich die Schattierungen hinzumischen
+- triadisches Farbschema: Fom MIttelpunkt des Farbkreises Strahlen mit gleichem Winkel abgehen lassen (So viele, wie man Farben haben will). Das wählt dann Farben mit dem größten Kontrast aus. 
+(https://www.kunstplaza.de/fashion-design/farbenlehre-farbtheorie-styleguides-fashion-design/)
+
+:::
+:::
+
+
 
 
 ## Takeaways
@@ -1789,23 +1679,8 @@ Nochmal bei Tufte nachschauen
 - Minimieren von Chart-junk
 - Erhöhe Datendichte, Vervielfältige kleine Versionen der Abbildung für verschiedene Gruppen
 
-## Caveat Plots: See data to viz
-
-## Storytelling
-Rolfs 7
-Nature
 
 
-## Using Text/Annotations
 
-## Nutzen von Eigenschaften der Wahrnehmung
-- Bewusste Wahrnehmung ignoriert Informationen und fügt hinzu
-- Nähe
-- Salienz (Farbe, Größe, Neigung) (Szaﬁr, Haroz, Gleicher & Franconeri
-(2016))
-- Hier würde das USA Bild passen (evtl. mit einem anderen Beispiel, das den Unterschied deutlich macht, z.B. keine andere Farbe, näher dran durch andere Achse)
-- Harold et al., 2016: Lenken von Aufmerksamkeit
-- Nothelfer et al., 2017: Redundatne Kodierung führt zu deutlich höherer Genauigkeit der Antworten und kürzeren Reaktionszeiten
-
-## Übung
+# Übung
 Schlechte Grafiken verbessern: https://www.data-to-viz.com/caveats.html

@@ -43,6 +43,13 @@ $presentation-heading-font: 'Roboto Condensed', san-serif;
     border-radius: 5px;
 }
 
+.quote {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-style: italic;
+  color: $theme-red; // adjust as needed
+}
+
+
 .highlight{
     color: $theme-highlight !important;
     font-weight: bold !important;
