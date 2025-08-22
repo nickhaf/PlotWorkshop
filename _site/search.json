@@ -67,7 +67,7 @@
     "href": "sessions/Einführung/slides.html#section-3",
     "title": "Einführung",
     "section": "",
-    "text": "Image from Wikipedia."
+    "text": "https://static.ksta.de/__images/2025/04/24/b3b17a0b-1da5-4e0f-9d6e-d321b248e1fa.jpeg?q=75&q=70&rect=0,259,4000,2250&w=2000&h=1334&fm=jpeg&s=cd6fd9eb8760f10aad114f59d21d74ce"
   },
   {
     "objectID": "sessions/good_plots/good_plots.html",
@@ -130,7 +130,7 @@
     "href": "sessions/Einführung/slides.html#section-2",
     "title": "Einführung",
     "section": "",
-    "text": "Lade nötiges Paket: sysfonts\n\n\nLade nötiges Paket: showtextdb\n\n\nRows: 507 Columns: 9\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (3): password, category, time_unit\ndbl (6): rank, value, offline_crack_sec, rank_alt, strength, font_size\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\n\nWarning in scale_y_log10(expand = c(0, 0)): log-10 transformation introduced infinite values.\nlog-10 transformation introduced infinite values.\n\n\nWarning: Removed 1 row containing missing values or values outside the scale range\n(`geom_point()`).\n\n\nWarning in scale_y_log10(expand = c(0, 0)): log-10 transformation introduced infinite values.\nlog-10 transformation introduced infinite values.\n\n\nWarning: Removed 10 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\nExample from The R Graph Gallery."
+    "text": "Example from The R Graph Gallery."
   },
   {
     "objectID": "sessions/Einführung/slides.html#gganimate",
@@ -781,7 +781,7 @@
     "href": "sessions/example_slides.html#gganimate",
     "title": "Einführung",
     "section": "gganimate",
-    "text": "gganimate\n\nlibrary(ggplot2)\nlibrary(gganimate)\n\np &lt;- ggplot(mtcars, aes(factor(cyl), mpg)) + \n  geom_boxplot() + \n  # Here comes the gganimate code\n  transition_states(\n    gear,\n    transition_length = 2,\n    state_length = 1\n  ) +\n  enter_fade() + \n  exit_shrink() +\n  ease_aes('sine-in-out')\nanimate(p, renderer = gganimate::gifski_renderer())"
+    "text": "gganimate\n\nlibrary(ggplot2)\nlibrary(gganimate)\nlibrary(gifski)\n\np &lt;- ggplot(mtcars, aes(factor(cyl), mpg)) + \n  geom_boxplot() + \n  # Here comes the gganimate code\n  transition_states(\n    gear,\n    transition_length = 2,\n    state_length = 1\n  ) +\n  enter_fade() + \n  exit_shrink() +\n  ease_aes('sine-in-out')\nanimate(p, renderer = gganimate::gifski_renderer())"
   },
   {
     "objectID": "sessions/example_slides.html#plotly",
@@ -816,7 +816,7 @@
     "href": "sessions/example_slides.html#tabs-2",
     "title": "Einführung",
     "section": "Tabs 2",
-    "text": "Tabs 2\n\nGraphicCode\n\n\n\n\n\n\n\n\n\n\nset.seed(42)\nmy_weight &lt;- data.frame(\n  month = factor(c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"),\n                 levels = c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"), \n                 ordered = TRUE), \n  weight = rnorm(12, 90, 5)/1000, \n  group = rep(1, 12)\n)\n\nggplot(my_weight, \n       aes(x = month, y = weight, group = group)) +\n  geom_point() +\n  geom_line() +\n  labs(title = \"Mein Gewicht 2024\",\n       subtitle = \"In metrischen Tonnen\", \n       x = \"Monat\", \n       y = \"Gewicht in t\") +\n  ylim(0, 1000) + \n  theme_bw() +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))"
+    "text": "Tabs 2\n\nGraphicCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nset.seed(42)\nmy_weight &lt;- data.frame(\n  month = factor(c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"),\n                 levels = c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"), \n                 ordered = TRUE), \n  weight = rnorm(12, 90, 5)/1000, \n  group = rep(1, 12)\n)\n\nggplot(my_weight, \n       aes(x = month, y = weight, group = group)) +\n  geom_point() +\n  geom_line() +\n  labs(title = \"Mein Gewicht 2024\",\n       subtitle = \"In metrischen Tonnen\", \n       x = \"Monat\", \n       y = \"Gewicht in t\") +\n  ylim(0, 1000) + \n  theme_bw() +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))"
   },
   {
     "objectID": "sessions/good_plots/slides.html#simplify-to-clarify",
@@ -886,7 +886,7 @@
     "href": "sessions/Einführung/slides.html#section-4",
     "title": "Einführung",
     "section": "",
-    "text": "Scale for x is already present.\nAdding another scale for x, which will replace the existing scale.\n\n\nWarning: Removed 310 rows containing missing values or values outside the scale range\n(`geom_line()`)."
+    "text": "Image from Wikipedia."
   },
   {
     "objectID": "sessions/Einführung/slides.html#section-5",
@@ -1531,5 +1531,12 @@
     "title": "Was ist eine gute Grafik?",
     "section": "",
     "text": "library(colorblindcheck)\npalette_check(theme_colors_red, plot = TRUE)  \n\n\n          name n tolerance ncp ndcp min_dist mean_dist max_dist\n1       normal 6   4.95969  15   15 4.959690  19.65649 41.78456\n2 deuteranopia 6   4.95969  15   15 5.428903  19.54489 42.55279\n3   protanopia 6   4.95969  15   14 3.976233  19.39475 41.15790\n4   tritanopia 6   4.95969  15   15 5.557603  19.68098 40.93915"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#section-6",
+    "href": "sessions/Einführung/slides.html#section-6",
+    "title": "Einführung",
+    "section": "",
+    "text": "https://r-graph-gallery.com/best-r-chart-examples https://allisonhorst.com/r-packages-functions"
   }
 ]

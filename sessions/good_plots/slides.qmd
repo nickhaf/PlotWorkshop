@@ -8,6 +8,7 @@ bibliography: refs.bib
 
 
 ```{r}
+#| label: Load pacakges
 #| echo: false
 
 library(here)
@@ -21,6 +22,7 @@ source(here::here("src", "functions.R"))
 ```{r}
 #| echo: false
 #| message: false
+#| label: Load gapminder data
 
 library(jsonlite)
 library(tidyverse)
