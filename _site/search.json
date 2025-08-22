@@ -1538,5 +1538,33 @@
     "title": "Einführung",
     "section": "",
     "text": "https://r-graph-gallery.com/best-r-chart-examples https://allisonhorst.com/r-packages-functions"
+  },
+  {
+    "objectID": "sessions/good_plots/maps.html#section",
+    "href": "sessions/good_plots/maps.html#section",
+    "title": "Karten",
+    "section": "",
+    "text": "|data_name           |description                                                                         |\n|:-------------------|:-----------------------------------------------------------------------------------|\n|municipal_unharm    |Local elections at the municipal level (1990-2020, unharmonized).                   |\n|municipal_harm      |Local elections at the municipal level (1990-2020, harmonized).                     |\n|state_unharm        |State elections at the municipal level (2006-2019, unharmonized).                   |\n|state_harm          |State elections at the municipal level (2006-2019, harmonized).                     |\n|federal_muni_raw    |Federal elections at the municipal level (1980-2021, raw data).                     |\n|federal_muni_unharm |Federal elections at the municipal level (1980-2021, unharmonized).                 |\n|federal_muni_harm   |Federal elections at the municipal level (1990-2021, harmonized).                   |\n|federal_cty_unharm  |Federal elections at the county level (1953-2021, unharmonized).                    |\n|federal_cty_harm    |Federal elections at the county level (1990-2021, harmonized).                      |\n|ags_crosswalks      |Crosswalks for municipalities (1990-2021).                                          |\n|cty_crosswalks      |Crosswalks for counties (1990-2021).                                                |\n|ags_area_pop_emp    |Crosswalk covariates (area, population, employment) for municipalities (1990-2021). |\n|cty_area_pop_emp    |Crosswalk covariates (area, population, employment) for counties (1990-2021).       |\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nZeigen von Kreisen, wo es sehr eng war"
+  },
+  {
+    "objectID": "sessions/good_plots/maps.html#alternativen",
+    "href": "sessions/good_plots/maps.html#alternativen",
+    "title": "Karten",
+    "section": "Alternativen",
+    "text": "Alternativen\n\n\nBild von storymaps."
+  },
+  {
+    "objectID": "sessions/good_plots/maps.html#kartogramm",
+    "href": "sessions/good_plots/maps.html#kartogramm",
+    "title": "Karten",
+    "section": "Kartogramm",
+    "text": "Kartogramm\n\nlibrary(cartogram)\n\n## Ansonsten mit county oder sogar nur Bundesland?\n\ncartogram_dat &lt;- cartogram_cont(geom_elect_max,\n                 weight = \"number_voters\")\n\nsaveRDS(here::here(\"sessions\", \"good_plots\", \"data\", \"cartogram_dat.rds\"))\n\n\n# https://r-charts.com/spatial/cartogram-ggplot2/\n\nlibrary(cartogram)\n\nreadRDS(here::here(\"sessions\", \"good_plots\", \"data\", \"cartogram_dat.rds\"))\n\nggplot(cartogram_dat) +\n  geom_sf()\n\n\n\nVon Costamiri - Eigenes WerkMap based on: Shapefiles by bundeswahlleiterin.de (Geometrie der Wahlkreise im Koordinatensystem UTM32 generalisiert) © Die Bundeswahlleiterin, Statistisches Bundesamt, Wiesbaden 2024, Wahlkreiskarte für die Wahl zum 21. Deutschen Bundestag; Grundlage der Geoinformationen © Geobasis-DE / BKG 2024Data based on: Bundestagswahl 2025: Open-Data-Angebot der Bundeswahlleiterin by bundeswahlleiterin.de, CC BY-SA 4.0, Link"
+  },
+  {
+    "objectID": "sessions/good_plots/maps.html#section-2",
+    "href": "sessions/good_plots/maps.html#section-2",
+    "title": "Karten",
+    "section": "",
+    "text": ":::{.column width=“50%} \n\n\n\n\n:::\n\nGrafiken von zeit.de."
   }
 ]
