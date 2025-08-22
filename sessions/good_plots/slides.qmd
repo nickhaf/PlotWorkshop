@@ -34,6 +34,20 @@ gapminder_dat <- gapminder_dat_full %>%
   filter(time == "2020", !is.na(country))
 ```
 
+## 
+Excellence in statistical graphics consists of complex ideas communicated with clarity, precision, and efficiency. [@tufte2001visualizing]
+
+- show the data
+- induce the viewer to think about the substance rather than about methodology, graphic design, the technology of graphic production, or something else
+- avoid distorting what the data have to say
+- present many numbers in a small space
+- make large datasets coherent
+- encourage the eye to compare different pieces of data
+- Reveal the data at several levels of detail, from a broad overview to the fine structure
+- serve a reasonably clear purpose: description, exploration, tabulation, or decoration
+- be closely integrated with the statistical and verbal descriptions of a data set
+
+
 
 ## 
 
@@ -45,42 +59,71 @@ Darstellung von David McCandless in [Knowledge is Beautiful (2014)](https://info
 
 
 
+
 ## Übung: What makes a bad plot? 
 
-::: {.callout}
+::: {.columns}
+::: {.column width="50%"}
+
 Jede Gruppe bekommt eine Abbildung. 
 
 1. Diskutiert in der Gruppe, was bei der Visualisierung schief läuft. 
-1. Stellt den anderen Gruppen eure Ergebnisse vor.
+1. Session
+1. Kurze Diskussion. Stellt den anderen Gruppen eure Ergebnisse vor.
+
+::: 
+::: {.column width="50%"}
+![](./images/star_plot.jpeg)
 
 :::
-
-
-![](./images/star_plot.jpeg)
+:::
 
 
 ::: {.image-ref}
 Bild gefunden auf [Reddit](https://www.reddit.com/r/dataisugly/comments/1msd4v2/its_not_wrong_but_i_still_hate_it/). 
 :::
 
+## Gliederung?
 
 
 # Informationen
 
-- Integrität der Datenquelle
-- Integrität der Darstellung
+::: {.columns}
+:::{.column width="50%"}
+
+- Integrität der [Datenquelle]{.highlight}
+- Integrität der [Darstellung]{.highlight}
+
+:::
+::: {.column width="50%"}
+![](./images/news.jpg){.image-right}
+:::
+:::
+
+::: {.image-ref}
+Foto von <a href="https://unsplash.com/de/@humayardim?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Hümâ H. Yardım</a> auf <a href="https://unsplash.com/de/fotos/menschen-die-tagsuber-auf-schneebedecktem-boden-spazieren-gehen-gfZZViTxuqw?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+
+:::
+
 
 ## {background-image="./images/garbage.jpg" background-size="1225px"}
 
 ::: {.absolute left="5%" top="5%" style="color:#269b88;backdrop-filter: blur(0px);"}
 Garbage in, Garbage out
+
+- [Scheinkorrelationen](https://tylervigen.com/spurious-correlations)
+- [Wrong data, wrong measurements, wrong interpretations ...](https://www.businessinsider.com/spinach-iron-levels-nutrition-myths-2017-6)
+- [Sloppy reserach](https://journals.sagepub.com/doi/full/10.1177/0306312714535679)
+  - P-Hacking
+  - Cherry Picking
 :::
+
+
 
 
 ::: image-ref
 Foto von <a href="https://unsplash.com/de/@jilburr?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Jilbert Ebrahimi</a> auf <a href="https://unsplash.com/de/fotos/schwarzer-plastikmulleimer-mit-radern-neben-der-wand-b0p818k8Ok8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>. 
 :::
-
 
 
 ## Fehlender Kontext
@@ -153,6 +196,10 @@ Dafür die Plots selber nachbauen?
 
 ## Konventionen
 
+::: fragment
+Verdrehte y-Achse
+:::
+
 ::: {.columns}
 ::: {.column width="50%"}
 ![](./images/florida.jpeg)
@@ -175,9 +222,7 @@ http://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0700-
 
 ![](./images/gee-whiz.png)
 ::: images-ref
-
 Grafik aus @HuffDarrell1979Htlw, heruntergeladen von [Observable blog](https://observablehq.com/blog/never-okay-crop-y-axis-except-when-it-is).
-
 :::
 
 
@@ -231,6 +276,8 @@ ggplot(
 
 
 ```{r}
+#| echo: false
+
 gapminder_2020_de <- gapminder_dat_full %>%
   filter(time >= 2000, time <= 2022, country == "deu") %>%
   arrange(desc(co2_pcap_cons))
@@ -249,6 +296,7 @@ ggplot(
 ```
 
 ```{r}
+#| echo: false
 
 ggplot(
   gapminder_2020_de, 
@@ -265,10 +313,17 @@ ggplot(
 
 ## 
 
+
+:::{.absolute left="5%" top="5%" style="color:#269b88;backdrop-filter: blur(0px);"}
+Test2
+:::
+
 :::{.columns}
 :::{.column width="50%}
 
 ```{r}
+#| echo: false
+
 library(ggbreak)
 
 
@@ -292,6 +347,8 @@ ggplot(
 :::{.column width="50%}
 ::: fragment
 ```{r}
+#| echo: false
+
 
 gapminder_2020 <- gapminder_dat_full %>%
   filter(time == 2020) %>%
@@ -363,9 +420,36 @@ ggplot(
 
 
 # Story
-
+Rolfs 7
+Nature
 
 # Goal
+- Usefulness
+- usable
+- fitting
+- efficient
+
+
+Tufte Zitat
+
+
+
+# Effizienz: Salienz von Informationen
+https://www.nature.com/articles/nmeth1010-773
+Unterscheiden von Gruppen: 
+- Gruppierung
+- Größe
+- Farbe
+- Form
+
+- Bewusste Wahrnehmung ignoriert Informationen und fügt hinzu
+- Nähe
+- Salienz (Farbe, Größe, Neigung) (Szaﬁr, Haroz, Gleicher & Franconeri
+(2016))
+- Hier würde das USA Bild passen (evtl. mit einem anderen Beispiel, das den Unterschied deutlich macht, z.B. keine andere Farbe, näher dran durch andere Achse)
+- Harold et al., 2016: Lenken von Aufmerksamkeit
+- Nothelfer et al., 2017: Redundatne Kodierung führt zu deutlich höherer Genauigkeit der Antworten und kürzeren Reaktionszeiten
+
 
 ## Darstellung von Größen
 
@@ -536,81 +620,6 @@ ggplot(
 :::
 
 
-
-# Nützlichkeit
-
-"Design is a requirement, not a cosmetic addition." [nature methods](https://www.nature.com/articles/nmeth.1783)
-
-
-:::{.columns}
-
-::: {.column width="50%"}
-![](./images/remote.jpg)
-
-::: image-ref
-Foto von <a href="https://unsplash.com/de/@kellysikkema?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Kelly Sikkema</a> auf <a href="https://unsplash.com/de/fotos/drei-schwarze-fernbedienungen-auf-holztisch-HprPUHnjDgk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-:::
-
-:::
-
-:::{.column width="50%"}
-![](./images/remote_2.jpg)
-
-::: image-ref
-Foto von <a href="https://unsplash.com/de/@ymoran?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Yucel Moran</a> auf <a href="https://unsplash.com/de/fotos/schwarze-fernbedienung-auf-weissem-textil-LJW-blAKI98?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-:::
-
-:::
-:::
-
-
-
-## Funktionelles Design {.nostretch}
-
-Welche Funktion?
-
-:::{.columns}
-
-::: {.column width="67.5%"}
-![](./images/map.png)
-
-::: image-ref
-Foto von <a href="https://www.bvg.de/.imaging/mte/bvg-theme/zoomed3000w/dam/BVG-Bilder/Verbindungen/netz-ab-01-a.jpg/jcr:content/netz-ab-01-a.jpg">BVG</a>
-:::
-
-:::
-
-:::{.column width="32.5%"}
-![](./images/fahrplan-tabelle.png)
-
-::: image-ref
-Foto von <a href="https://www.bvg.de/de/verbindungen/linienuebersicht">BVG</a>
-:::
-
-:::
-:::
-
-## 
-Dabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen.  
-Handschriftliche Skizze ist auch erstmal hilfreich!
-
-
-
-## Simplify to clarify
-
-- Redundanzen Reduzieren
-- Fokus auf das Wesentliche
-https://www.data-to-viz.com/caveat/declutter.html
-
-
-# Visual Form
-
-
-## 
-Beispiel von einem komplexen Plot bringen, den wir schon erzeugt haben, und dann reduzieren!
-
-## Salienz von Informationen
-https://www.nature.com/articles/nmeth1010-773
 
 ## Farben
 :::: {.columns} 
@@ -1543,28 +1552,8 @@ Diverging
 ## Gruppieren
 
 
-## Verteilungen Plotten
-
-## Eine Grafik ist kann nur einen Teil der Zusammenhänge darstellen
-
-Im  Schlechtesten Fall für Manipulation nutzbar
-
-
-
-## Black swann
-
-## Was mögt ihr an dieser Grafik/nicht?
-
-
-## Plot-Typen
-
-## Choosing the correct plot
-https://www.data-to-viz.com/
 
 ## Pulikum
-
-## Geschichte
-- Gleiche sache auf verschiedene Arten darstellen -> was wirkt am meisten?  
 
 
 ## Purpose
@@ -1572,29 +1561,94 @@ https://www.data-to-viz.com/
 - Kann oft über reines Zeigen der Daten hinausgehen. 
 
 
-
-## Size
-Also include population size in the scatterplot
-- Was will ich hier sagen?
-- Beachten: Oben hatte ich auch schon was zu size, bei den Kreisen. 
+# Visual Form
 
 
+# Nützlichkeit
 
-## Tufte
+"Design is a requirement, not a cosmetic addition." [nature methods](https://www.nature.com/articles/nmeth.1783)
+
+
+:::{.columns}
+
+::: {.column width="50%"}
+![](./images/remote.jpg)
+
+::: image-ref
+Foto von <a href="https://unsplash.com/de/@kellysikkema?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Kelly Sikkema</a> auf <a href="https://unsplash.com/de/fotos/drei-schwarze-fernbedienungen-auf-holztisch-HprPUHnjDgk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+
+:::
+
+:::{.column width="50%"}
+![](./images/remote_2.jpg)
+
+::: image-ref
+Foto von <a href="https://unsplash.com/de/@ymoran?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Yucel Moran</a> auf <a href="https://unsplash.com/de/fotos/schwarze-fernbedienung-auf-weissem-textil-LJW-blAKI98?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+
+:::
+:::
+
+
+
+## Funktionelles Design {.nostretch}
+
+Welche Funktion?
+
+:::{.columns}
+
+::: {.column width="67.5%"}
+![](./images/map.png)
+
+::: image-ref
+Foto von <a href="https://www.bvg.de/.imaging/mte/bvg-theme/zoomed3000w/dam/BVG-Bilder/Verbindungen/netz-ab-01-a.jpg/jcr:content/netz-ab-01-a.jpg">BVG</a>
+:::
+
+:::
+
+:::{.column width="32.5%"}
+![](./images/fahrplan-tabelle.png)
+
+::: image-ref
+Foto von <a href="https://www.bvg.de/de/verbindungen/linienuebersicht">BVG</a>
+:::
+
+:::
+:::
+
+::: {.callout-tip}
+Dabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen.  
+Handschriftliche Skizze ist auch erstmal hilfreich!
+:::
+
+
+## Simplify to clarify
+
+- Redundanzen Reduzieren
+- Fokus auf das Wesentliche
+https://www.data-to-viz.com/caveat/declutter.html
+
+
+
+
+## Verteilungen Plotten
+Aber: Simplify heißt nicht immer, Informationen zu reduzieren. Eher den Clutter!
+Versuchen, möglichst Verteilungen/ Spannweiten anstatt nur zusammengefasster Werte zu plotten. Evtl. IQB-Mittelwertsgrafik zeigen?
+Eine Grafik ist kann nur einen Teil der Zusammenhänge darstellen
+Im  Schlechtesten Fall für Manipulation nutzbar. 
+
+
+
+## Tuftes Data Ink ratio
 - So wenig Tinte wie möglich nutzen
 - Alles nicht essentielle entfernen
 - Redundanzen entferenen  
 
 Beispiel zeigen: Eins ist aufgeblasen, man braucht Zeit zur Orientierung. Ein anderes theme_tufte
-
-## Data-ink ratio
 Beispiel zum Minimieren zeigen
 - Raincloud plots
 
-## Caveats
-https://www.data-to-viz.com/caveats.html
-
-Immer einen Plot zeigen, dann zusammen überlgen was daran schlecht ist, was verbessert werden kann. 
 
 
 ## Takeaways
@@ -1604,23 +1658,8 @@ Nochmal bei Tufte nachschauen
 - Minimieren von Chart-junk
 - Erhöhe Datendichte, Vervielfältige kleine Versionen der Abbildung für verschiedene Gruppen
 
-## Caveat Plots: See data to viz
-
-## Storytelling
-Rolfs 7
-Nature
 
 
-## Using Text/Annotations
-
-## Nutzen von Eigenschaften der Wahrnehmung
-- Bewusste Wahrnehmung ignoriert Informationen und fügt hinzu
-- Nähe
-- Salienz (Farbe, Größe, Neigung) (Szaﬁr, Haroz, Gleicher & Franconeri
-(2016))
-- Hier würde das USA Bild passen (evtl. mit einem anderen Beispiel, das den Unterschied deutlich macht, z.B. keine andere Farbe, näher dran durch andere Achse)
-- Harold et al., 2016: Lenken von Aufmerksamkeit
-- Nothelfer et al., 2017: Redundatne Kodierung führt zu deutlich höherer Genauigkeit der Antworten und kürzeren Reaktionszeiten
 
 ## Übung
 Schlechte Grafiken verbessern: https://www.data-to-viz.com/caveats.html
