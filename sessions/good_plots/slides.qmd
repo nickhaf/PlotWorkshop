@@ -182,9 +182,12 @@ ggplot(
 https://storymaps.arcgis.com/stories/0e636a652d44484b9457f953994b212b
 
 
-##
+
+## 
 
 ```{r}
+#| label: Load election data
+#| echo: false
 
 ## https://dataverse.harvard.edu/file.xhtml?fileId=10851934&version=9.1
 
@@ -207,44 +210,14 @@ geom_elect_dat <- geom_dat %>%
   left_join(elect_dat, by = c("AGS" = "ags")) %>%
   dplyr::filter(GF == 4)
 
-
-plot_fed_map <- function(fill_var, legend_label, fill_palette, limits, plot_title = NULL) {
-  ggplot() +
-    geom_sf(data = geom_elect_dat, mapping = aes(fill = .data[[fill_var]]), colour = NA) +
-    geom_sf(data = geom_dat_lan, fill = NA, colour = "grey30", linewidth = 0.2) +
-    coord_sf() +
-    theme_minimal() +
-    theme(
-      panel.grid.major = element_blank(),
-      panel.grid.minor = element_blank(),
-      title = element_text(size = 9),
-      axis.title.x = element_blank(), axis.text.x = element_blank(), axis.ticks.x = element_blank(),
-      axis.title.y = element_blank(), axis.text.y = element_blank(), axis.ticks.y = element_blank(),
-      legend.position = "bottom", legend.text = element_text(size = 14), legend.key.size = unit(0.6, "cm"),
-      plot.margin = margin(t = 0, r = 0, b = 0, l = 0),
-      legend.box.margin = margin(t = -25, r = 0, b = 0, l = 0)
-    ) +
-    scale_fill_distiller(NULL,
-                         palette = fill_palette,
-                         na.value = "white",
-                         direction = 1,
-                         limits = limits,
-                         guide = guide_legend(
-                           keyheight = unit(4, units = "mm"), keywidth = unit(18, units = "mm"),
-                           label.position = "bottom", title.position = "top", nrow = 1
-                         )
-    ) +
-    # Add title if provided
-    labs(title = plot_title)
-}
-
-plot_fed_map("spd", "spd", "Reds", c(0,1))
-
 ```
 
-## 
+:::{.columns}
+:::{.column-width="50%"}
 
 ```{r}
+#| echo: false
+
 geom_elect_max <- geom_elect_dat %>% 
   pivot_longer(cols = c("cdu_csu", "spd", "gruene", "afd", "bsw", "linke_pds", "fdp"), values_to = "result", 
                names_to = "partei") %>% 
@@ -278,12 +251,26 @@ geom_elect_max <- geom_elect_dat %>%
 
 ```
 
+:::
+:::{.column-width="50%}
+
+Zeigen von Kreisen, wo es sehr eng war 
+
+:::
+:::
+
+
+
+
 ## Alternativen
+
+
+
 
 ![](./data/map_options.png)
 
 ::: image-ref
-Bild von [stroymaps](https://storymaps.arcgis.com/stories/0e636a652d44484b9457f953994b212b). 
+Bild von [storymaps](https://storymaps.arcgis.com/stories/0e636a652d44484b9457f953994b212b). 
 :::
 
 
@@ -321,6 +308,48 @@ ggplot(cartogram_dat) +
 ::: image-ref
 Von <a href="//commons.wikimedia.org/wiki/User:Costamiri" title="User:Costamiri">Costamiri</a> - <span class="int-own-work" lang="de">Eigenes Werk</span>Map based on: <a rel="nofollow" class="external text" href="https://www.bundeswahlleiterin.de/bundestagswahlen/2025/wahlkreiseinteilung/downloads.html">Shapefiles by bundeswahlleiterin.de (Geometrie der Wahlkreise im Koordinatensystem UTM32 generalisiert)</a> © Die Bundeswahlleiterin, Statistisches Bundesamt, Wiesbaden 2024, Wahlkreiskarte für die Wahl zum 21. Deutschen Bundestag; Grundlage der Geoinformationen © Geobasis-DE / BKG 2024Data based on: <a rel="nofollow" class="external text" href="https://www.bundeswahlleiterin.de/bundestagswahlen/2025/ergebnisse/opendata.html">Bundestagswahl 2025: Open-Data-Angebot der Bundeswahlleiterin</a> by bundeswahlleiterin.de, <a href="https://creativecommons.org/licenses/by-sa/4.0" title="Creative Commons Attribution-Share Alike 4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=160429060">Link</a>
 :::
+
+
+##
+
+```{r}
+#| echo: false
+
+plot_fed_map <- function(fill_var, legend_label, fill_palette, limits, plot_title = NULL) {
+  ggplot() +
+    geom_sf(data = geom_elect_dat, mapping = aes(fill = .data[[fill_var]]), colour = NA) +
+    geom_sf(data = geom_dat_lan, fill = NA, colour = "grey30", linewidth = 0.2) +
+    coord_sf() +
+    theme_minimal() +
+    theme(
+      panel.grid.major = element_blank(),
+      panel.grid.minor = element_blank(),
+      title = element_text(size = 9),
+      axis.title.x = element_blank(), axis.text.x = element_blank(), axis.ticks.x = element_blank(),
+      axis.title.y = element_blank(), axis.text.y = element_blank(), axis.ticks.y = element_blank(),
+      legend.position = "bottom", legend.text = element_text(size = 14), legend.key.size = unit(0.6, "cm"),
+      plot.margin = margin(t = 0, r = 0, b = 0, l = 0),
+      legend.box.margin = margin(t = -25, r = 0, b = 0, l = 0)
+    ) +
+    scale_fill_distiller(NULL,
+                         palette = fill_palette,
+                         na.value = "white",
+                         direction = 1,
+                         limits = limits,
+                         guide = guide_legend(
+                           keyheight = unit(4, units = "mm"), keywidth = unit(18, units = "mm"),
+                           label.position = "bottom", title.position = "top", nrow = 1
+                         )
+    ) +
+    # Add title if provided
+    labs(title = plot_title)
+}
+
+plot_fed_map("spd", "spd", "Reds", c(0,1))
+
+```
+
+
 
 ##
 
