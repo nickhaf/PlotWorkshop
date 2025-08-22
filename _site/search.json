@@ -340,7 +340,7 @@
     "href": "sessions/good_plots/slides.html#section-3",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Test2"
+    "text": "Viele Tiere sehen nur grau:\n\nWale\nHaie\nWaschbären\nFaultiere\nArmadillos\nOktopusse\nKraken\n\nWarum also überhaupt Farbwahrnehmung?\n\nIst subjektiv\nAber kann konsistent wahrgenommen werden: Eine Erdebeere im Schatten und im Sonnenlicht kann jeweils rot wahrgenommen werden. Grautöne sind stärker vom Licht abhängig.\nMore is not always better: Affen vom Amerikanischen Kontinent sind teilweise die und teilweise tetra: di kann besser INsekten ausmachen, tri Früchte gegen grünen background.\nFarbwahrnehmung also abhängig vom Drumrum\nFarben bringen nur einen Vorteil, wenn ein Individuum daraus meaning ableiten kann."
   },
   {
     "objectID": "sessions/good_plots/slides.html#übung",
@@ -795,7 +795,7 @@
     "href": "sessions/good_plots/slides.html#section-2",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Garbage in, Garbage out\n\n\nFoto von Jilbert Ebrahimi auf Unsplash."
+    "text": "Andere Tiere können auch mal mehr oder weniger haben:\n\n\nBild aus Farbsehen der Tiere"
   },
   {
     "objectID": "sessions/good_plots/slides.html#funktionelles-design",
@@ -837,7 +837,7 @@
     "href": "sessions/good_plots/slides.html#section-4",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Andere Tiere können auch mal mehr oder weniger haben:\n\n\nBild aus Farbsehen der Tiere"
+    "text": "library(colorblindcheck)\npalette_check(theme_colors_red, plot = TRUE)  \n\n\n          name n tolerance ncp ndcp min_dist mean_dist max_dist\n1       normal 6   4.95969  15   15 4.959690  19.65649 41.78456\n2 deuteranopia 6   4.95969  15   15 5.428903  19.54489 42.55279\n3   protanopia 6   4.95969  15   14 3.976233  19.39475 41.15790\n4   tritanopia 6   4.95969  15   15 5.557603  19.68098 40.93915"
   },
   {
     "objectID": "sessions/good_plots/slides.html#finger-weg-von-pie-charts",
@@ -1124,7 +1124,7 @@
     "href": "sessions/good_plots/slides.html#fehlender-kontext-1",
     "title": "Was ist eine gute Grafik?",
     "section": "Fehlender Kontext",
-    "text": "Fehlender Kontext\nHaushalt so groß wie nie"
+    "text": "Fehlender Kontext\n ::: images-ref Sie storymaps. :::"
   },
   {
     "objectID": "sessions/good_plots/slides.html#farben-1",
@@ -1264,7 +1264,7 @@
     "href": "sessions/good_plots/slides.html#section-5",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Viele Tiere sehen nur grau:\n\nWale\nHaie\nWaschbären\nFaultiere\nArmadillos\nOktopusse\nKraken\n\nWarum also überhaupt Farbwahrnehmung?\n\nIst subjektiv\nAber kann konsistent wahrgenommen werden: Eine Erdebeere im Schatten und im Sonnenlicht kann jeweils rot wahrgenommen werden. Grautöne sind stärker vom Licht abhängig.\nMore is not always better: Affen vom Amerikanischen Kontinent sind teilweise die und teilweise tetra: di kann besser INsekten ausmachen, tri Früchte gegen grünen background.\nFarbwahrnehmung also abhängig vom Drumrum\nFarben bringen nur einen Vorteil, wenn ein Individuum daraus meaning ableiten kann."
+    "text": "library(colorblindcheck)\npalette_check(theme_colors_red, plot = TRUE)  \n\n\n          name n tolerance ncp ndcp min_dist mean_dist max_dist\n1       normal 6   4.95969  15   15 4.959690  19.65649 41.78456\n2 deuteranopia 6   4.95969  15   15 5.428903  19.54489 42.55279\n3   protanopia 6   4.95969  15   14 3.976233  19.39475 41.15790\n4   tritanopia 6   4.95969  15   15 5.557603  19.68098 40.93915"
   },
   {
     "objectID": "sessions/good_plots/slides.html#trichromatizität",
@@ -1587,5 +1587,61 @@
     "title": "Was ist eine gute Grafik?",
     "section": "Tuftes Data Ink ratio",
     "text": "Tuftes Data Ink ratio\n\nSo wenig Tinte wie möglich nutzen\nAlles nicht essentielle entfernen\nRedundanzen entferenen\n\nBeispiel zeigen: Eins ist aufgeblasen, man braucht Zeit zur Orientierung. Ein anderes theme_tufte Beispiel zum Minimieren zeigen - Raincloud plots"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#garbage-in-garbage-out",
+    "href": "sessions/good_plots/slides.html#garbage-in-garbage-out",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Garbage in, garbage out",
+    "text": "Garbage in, garbage out\n\n\n\n\n\nScheinkorrelationen\nWrong data, wrong measurements, wrong interpretations …\n\nSloppy reserach\n\nP-Hacking\nCherry Picking\n\n\n\n\n\nFoto von Jilbert Ebrahimi auf Unsplash."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#fehlender-kontext-2",
+    "href": "sessions/good_plots/slides.html#fehlender-kontext-2",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Fehlender Kontext",
+    "text": "Fehlender Kontext\n\n“Land doesn’t vote … People Do.”\n\n\n\nSie storymaps."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#integrität-der-daten-garbage-in-garbage-out",
+    "href": "sessions/good_plots/slides.html#integrität-der-daten-garbage-in-garbage-out",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Integrität der Daten: Garbage in, garbage out",
+    "text": "Integrität der Daten: Garbage in, garbage out\n\n\n\n\n\nScheinkorrelationen\nWrong data, wrong measurements, wrong interpretations …\n\nSloppy reserach\n\nP-Hacking\nCherry Picking\n\n\n\n\n\nFoto von Jilbert Ebrahimi auf Unsplash."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#achsen",
+    "href": "sessions/good_plots/slides.html#achsen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Achsen",
+    "text": "Achsen"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#schneiden-von-achsen",
+    "href": "sessions/good_plots/slides.html#schneiden-von-achsen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Schneiden von Achsen",
+    "text": "Schneiden von Achsen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn der Regel keine gute Idee."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#reales-beispiel-für-manipulation-des-bildformates",
+    "href": "sessions/good_plots/slides.html#reales-beispiel-für-manipulation-des-bildformates",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Reales Beispiel für Manipulation des Bildformates",
+    "text": "Reales Beispiel für Manipulation des Bildformates"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#formen",
+    "href": "sessions/good_plots/slides.html#formen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Formen",
+    "text": "Formen"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#nochmal-farben",
+    "href": "sessions/good_plots/slides.html#nochmal-farben",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Nochmal Farben!",
+    "text": "Nochmal Farben!"
   }
 ]
