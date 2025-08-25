@@ -3,7 +3,183 @@ title: "Mehr ggplot2!"
 format: letterbox-revealjs
 ---
 
+```{r}
+#| label: Load pacakges
+#| echo: false
+
+library(here)
+library(janitor)
+library(ggwordcloud)
+library(tidyverse)
+source(here::here("src", "themes.R"))
+source(here::here("src", "functions.R"))
+```
+
+## 
+```{r}
+#| label: Load gapminder data
+
+library(tidyverse)
+
+gapminder_dat_full <- readRDS(here::here("data", "gapminder_dat.rds"))
+
+gapminder_dat_trend <- gapminder_dat_full %>% 
+  filter(time > 1990, time < 2022, country %in% c("nga", "zaf", "deu", "rus", "chn", "ind", "bra", "usa", "egy", "aus", "mex", "jpn")) 
+  
+
+```
+
+## Facetting
+```{r}
+ggplot(data = gapminder_dat_trend, 
+       mapping = aes(x = time, 
+                     y = co2_pcap_cons, 
+                     color = country)) +
+  geom_point() + 
+  geom_line() +
+  theme_bg()
+```
+
 ## Faceting
+Anordnen von einer *einzelnen* Variable in einem Raster:
+
+::: {.columns}
+::: {.column width="50%"}
+#### `facet_wrap()`
+
+```{r}
+
+ggplot(data = gapminder_dat_trend, 
+       mapping = aes(x = time, 
+                     y = co2_pcap_cons, 
+                     color = country)) +
+  geom_point() + 
+  geom_line() +
+  facet_wrap(vars(country), nrow = 4) +
+  theme_bg()
+```
+
+:::
+::: {.column width="50%"}
+#### facet_grid
+
+```{r}
+
+ggplot(data = gapminder_dat_trend, 
+       mapping = aes(x = time, 
+                     y = co2_pcap_cons, 
+                     color = country)) +
+  geom_point() + 
+  geom_line() +
+  facet_grid(country ~ .) +
+  theme_bg()
+```
+
+:::
+:::
+
+## Facetting - Mehrere Variablen
+Anordnen von einer *mehreren* Variable in einem Raster:
+::: {.columns}
+
+::: {.column width="50%"}
+#### `facet_wrap()`
+
+```{r}
+
+ggplot(data = gapminder_dat_trend, 
+       mapping = aes(x = time, 
+                     y = co2_pcap_cons, 
+                     color = country)) +
+  geom_point() + 
+  geom_line() +
+  facet_wrap(vars(country, world_4region), nrow = 4) +
+  theme_bg()
+```
+
+:::
+::: {.column width="50%"}
+#### facet_grid
+
+```{r}
+
+ggplot(data = gapminder_dat_trend, 
+       mapping = aes(x = time, 
+                     y = co2_pcap_cons, 
+                     color = country)) +
+  geom_point() + 
+  geom_line() +
+  facet_grid(country ~ world_4region) +
+  theme_bg()
+```
+
+:::
+:::
+
+## Facetting - Tipps
+
+https://ggplot2-book.org/facet.html#sec-facet-wrap
+
+Plott alle Punkte
+```{r}
+
+
+gapminder_dat_trend_all <- gapminder_dat_trend %>% 
+  select(-country)
+
+
+ggplot(data = gapminder_dat_trend, 
+       mapping = aes(x = time, 
+                     y = co2_pcap_cons, 
+                     color = country)) +
+  geom_point(data = gapminder_dat_trend_all, colour = "grey") +
+  geom_point() + 
+  geom_line() +
+  facet_wrap(vars(country)) +
+  theme_bg()
+```
+
+```{r}
+bg <- gapminder_dat_trend %>%
+  mutate(country_bg = country) %>%
+  select(-country)
+
+ggplot(gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country, group = country)) +
+  # background lines: drawn in every facet, grouped by country_bg
+  geom_line(
+    data = bg,
+    aes(x = time, y = co2_pcap_cons, group = country_bg),
+    inherit.aes = FALSE,
+    color = "grey70",
+    alpha = 0.5,
+    linewidth = 0.4
+  ) +
+  # foreground points/lines for the focal country in each facet
+  geom_line(linewidth = 0.6) +
+  geom_point(size = 1) +
+  facet_wrap(vars(country)) +
+  guides(color = "none") +
+  theme_bg()
+```
+
+
+## Facetting - Tipps
+Plot Mittelwerte
+
+```{r}
+
+ggplot(data = gapminder_dat_trend, 
+       mapping = aes(x = time, 
+                     y = co2_pcap_cons, 
+                     color = country)) +
+  geom_point() + 
+  geom_line() +
+  geom_smooth(aes(group = income_groups), color = "grey") +
+  facet_wrap(vars(income_groups)) +
+  theme_bg()
+```
+
+
 
 ## Scales
 Logarithmisch vs linear
