@@ -53,7 +53,7 @@ format:
     highlight-style: dark.theme
     fontsize: 20pt
     code-block-height: 100px
-    slide-level: 3
+    slide-level: 2
     toc-depth: 3
 
 code-link: true
