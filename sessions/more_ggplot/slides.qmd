@@ -226,8 +226,9 @@ ggplot(
 
 
 
+# Skalen und Legenden
 
-## Scales
+## Skalen
 "Scales in ggplot2 control the [mapping from data to aesthetics]{.highlight}. They take your data and turn it into something that you can see, like size, colour, position or shape." [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/scales.html)
 
 Link to aes slide. 
@@ -237,14 +238,13 @@ Link to aes slide.
 ## Legenden
 
 Legenden werden [automatisch]{.highlight} erzeugt. Dafür werden die [aestetics]{.highlight} genutzt, also das mapping von Daten zu grafischen Elementen. 
+[Jede]{.highlight} Skala bekommt eine Legende zugeordnet. 
 
+![](./images/scales_legends.png)
 
 ::: {.callout-info}
-Legenden und Achsen sind funktional äquivalent und werden in ggplot2 unter dem Begriff [guides]{.highlight} zusammengefasst. Während Scales die Daten auf grafische Eigenschaften wie Position oder Farbe abbilden, machen Guides diese Abbildung wieder verständlich: Achsen übersetzen Positionen zurück in Zahlen, Legenden ordnen Farben oder Symbole den entsprechenden Datenwerten zu. Man kann sie daher als die [„Umkehrfunktion“]{.highlight} der jeweiligen Scales verstehen.
+Legenden und Achsen sind funktional äquivalent und werden in ggplot2 unter dem Begriff [guides]{.highlight} zusammengefasst. Während Skalen die Daten auf grafische Eigenschaften wie Position oder Farbe abbilden, machen Guides diese Abbildung wieder verständlich: Achsen übersetzen Positionen zurück in Zahlen, Legenden ordnen Farben oder Symbole den entsprechenden Datenwerten zu. Man kann sie daher als die [„Umkehrfunktion“]{.highlight} der jeweiligen Scales verstehen.
 :::
-
-## 
-![](./images/scales_legends.png)
 
 
 ## 
@@ -304,11 +304,126 @@ ggplot(
   data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +
   geom_line() +
   scale_x_continuous(name = "Jahr") + 
-  scale_y_log(name = "CO2 Verbrauch pro Kopf") + 
-  scale_colour_brewer()
-  
+  scale_y_log10(name = "CO2 Verbrauch pro Kopf") +
   scale_colour_discrete(name = "Länder")
 ```
+
+
+::: {.callout-tip}
+Eine Übersicht über die möglichen Skalentypen findet sich [hier])https://ggplot2tor.com/scales/). 
+
+:::
+
+
+## Einige Anwendungsfälle
+
+
+:::{.columns}
+
+### Farben
+
+
+```{r}
+ggplot(
+  data = gapminder_dat_trend, 
+  aes(x = time, y = co2_pcap_cons, color = country)) +
+  geom_line() +
+  scale_colour_manual(values = c("deu" = "black", "usa" = "blue", "chn" = "red", "ind" = "orange", "bra" = "green", "zaf" = "purple", "rus" = "brown", "egy" = "yellow", "aus" = "pink", "mex" = "cyan", "jpn" = "grey"), name = "Länder")
+```
+
+:::
+
+:::{.column width="50%}
+
+### Skalen-Ticks
+
+```{r}
+ggplot(
+  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +
+  geom_line() +
+  scale_x_continuous(name = "Jahr") + 
+  scale_y_log10(name = "CO2 Verbrauch pro Kopf") +
+  scale_colour_discrete(name = "Länder")
+```
+
+
+:::
+:::
+
+
+## Scale Guides
+
+Jede Skala (und damit jede Aesthetic) bekommt einen Guide zugeordnet. 
+Intern passiert das über `guides()`. Wir können `guides()` also nutzen, um die Legende zu manipulieren:
+
+
+```{r}
+ggplot(
+  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +
+  geom_line() +
+  scale_x_continuous(name = "Jahr") + 
+  scale_y_log10(name = "CO2 Verbrauch pro Kopf") +
+  scale_colour_discrete(name = "Länder") +
+  guides(color = guide_legend(title = "Staaten", ncol = 3, reverse = TRUE, override.aes = list(linewidth = 3)))
+
+```
+
+#### Mögliche guide-Funktionen
+
+::: {.columns}
+
+:::{.column width="50%"}
+- `guide_colourbar()`
+- `guide_coloursteps()`
+- `guide_axis()`
+::: 
+:::{.column width="50%"}
+- `guide_legend()`
+- `guide_bins()`
+:::
+:::
+
+
+##
+
+
+::: {.column}
+::: {.column width = "50%}
+
+```{r}
+ggplot(
+  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +
+  geom_line() +
+  scale_x_continuous(name = "Jahr") + 
+  scale_y_log10(name = "CO2 Verbrauch pro Kopf") +
+  scale_colour_discrete(name = "Länder") +
+  guides(x = guide_axis(angle = 90))
+
+```
+
+
+:::
+::: {.column width="50%"}
+
+```{r}
+#| code-line-numbers: "4"
+
+ggplot(
+  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +
+  geom_line() +
+  scale_x_continuous(name = "Jahr", guide = guide_axis(angle = 90))
+```
+:::
+:::
+
+
+## Legenden mergen
+
+
+
+## Themes
+
+Da würde man ja auch viel zur Legende ändern? 
 
 ## Koordinatensytem
 
@@ -316,3 +431,6 @@ ggplot(
 
 ## Abspeichern
 Vektor vs Raster (Rolfs 7)
+
+
+Use characters data for demonstration or for exercise? 

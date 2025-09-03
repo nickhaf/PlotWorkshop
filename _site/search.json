@@ -179,7 +179,7 @@
     "href": "sessions/ggplot_intro/slides.html#ggplot2-das-paket",
     "title": "ggplot2: Basics",
     "section": "ggplot2: Das Paket",
-    "text": "ggplot2: Das Paket\n\n\nggplot2 gehört zum tidyverse\n\n# install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n\n\n… kann aber natürlich auch seperat geladen werden:\n\n# install.packages(\"ggplot2\")\nlibrary(ggplot2)"
+    "text": "ggplot2: Das Paket\n\nggplot2 gehört zum tidyverse\n\n# install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n\n… kann aber natürlich auch seperat geladen werden:\n\n# install.packages(\"ggplot2\")\nlibrary(ggplot2)"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#section-1",
@@ -193,7 +193,7 @@
     "href": "sessions/ggplot_intro/slides.html#komponenten",
     "title": "ggplot2: Basics",
     "section": "Komponenten",
-    "text": "Komponenten\n\n\nDaten\n\n\n\n\n\n  x   y group size  shape\n1 1 2.0     A    4 circle\n2 2 3.0     A    5 circle\n3 3 2.5     A    6 circle\n4 4 4.0     A    7 circle\n5 5 3.0     A    8 circle\n6 2 1.0     B    3 circle\n\n\n\nAestetic mapping\n\n\n\n\n\n\n\n\n\n\nLayers"
+    "text": "Komponenten\n\n\nDaten\n\n\n\n  x   y group size  shape\n1 1 2.0     A    4 circle\n2 2 3.0     A    5 circle\n3 3 2.5     A    6 circle\n4 4 4.0     A    7 circle\n5 5 3.0     A    8 circle\n6 2 1.0     B    3 circle\n\n\n\nAestetic mapping\n\n\n\n\n\n\n\n\n\nLayers"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#daten-vorstellen",
@@ -375,7 +375,7 @@
     "href": "sessions/ggplot_intro/slides.html#aesthetic-mapping",
     "title": "ggplot2: Basics",
     "section": "2. Aesthetic mapping",
-    "text": "2. Aesthetic mapping\n\n\n\n\n\n\nVerknüpfen von Spalten im Datensatz mit visuellen Eigenschaften:\nmapping =  aes()\n\n\n\n\nDie wichtigsten Aestetics\n\n\nArgument\nAesthetic\n\n\n\n\nx\nx-Achse\n\n\ny\ny-Achse\n\n\ncolor\nFarbe\n\n\nfill\nFüllfarbe\n\n\nshape\nForm\n\n\nsize\nGröße\n\n\nalpha\nTransparenz\n\n\ngroup\nGruppe\n\n\n\n\n\n\n\n\n\n\nUmfangreicherer Überblick über mögliche Aestethics."
+    "text": "2. Aesthetic mapping\n\n\n\nVerknüpfen von Spalten im Datensatz mit visuellen Eigenschaften:\nmapping =  aes()\n\n\n\nDie wichtigsten Aestetics\n\nArgument\nAesthetic\n\n\n\nx\nx-Achse\n\n\ny\ny-Achse\n\n\ncolor\nFarbe\n\n\nfill\nFüllfarbe\n\n\nshape\nForm\n\n\nsize\nGröße\n\n\nalpha\nTransparenz\n\n\ngroup\nGruppe\n\n\n\n\n\n\n\n\n\n\nUmfangreicherer Überblick über mögliche Aestethics."
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#aesthetic-mapping-achsen",
@@ -396,7 +396,7 @@
     "href": "sessions/ggplot_intro/slides.html#geometric-layers",
     "title": "ggplot2: Basics",
     "section": "3. Geometric Layers",
-    "text": "3. Geometric Layers\n\n\n\n\n\n\nVerschiedene Layers (geoms) werden übereinandergelegt:\n  geom_&lt;layer1&gt;() + \n  geom_&lt;layer2&gt;() + \n  ...\n\n\n\n\nDie wichtigsten Layers\n\n\nArgument\nAesthetic\n\n\n\n\ngeom_point()\nPunkte\n\n\ngeom_line()\nLinien\n\n\ngeom_histogram()\nHistogramm\n\n\ngeom_text()\nText\n\n\ngeom_boxplot()\nBoxplot\n\n\n\n\n\n\n\n\n\n\nUmfangreicherer Überblick über mögliche Geoms."
+    "text": "3. Geometric Layers\n\n\n\nVerschiedene Layers (geoms) werden übereinandergelegt:\n  geom_&lt;layer1&gt;() + \n  geom_&lt;layer2&gt;() + \n  ...\n\n\n\nDie wichtigsten Layers\n\nArgument\nAesthetic\n\n\n\ngeom_point()\nPunkte\n\n\ngeom_line()\nLinien\n\n\ngeom_histogram()\nHistogramm\n\n\ngeom_text()\nText\n\n\ngeom_boxplot()\nBoxplot\n\n\n\n\n\n\n\n\n\n\nUmfangreicherer Überblick über mögliche Geoms."
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#übung",
@@ -424,7 +424,7 @@
     "href": "sessions/ggplot_intro/slides.html#mehr-layers",
     "title": "ggplot2: Basics",
     "section": "Mehr Layers!",
-    "text": "Mehr Layers!\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons, \n    color = world_6region\n  )\n) +\n  geom_point() +\n  geom_smooth()"
+    "text": "Mehr Layers!\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons, \n    color = world_6region\n  )\n) +\n  geom_jitter(height = 500)"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#titlelabels",
@@ -633,8 +633,8 @@
     "objectID": "sessions/ggplot_intro/slides.html#start-ggplot",
     "href": "sessions/ggplot_intro/slides.html#start-ggplot",
     "title": "ggplot2: Basics",
-    "section": "Start: ggplot()",
-    "text": "Start: ggplot()\n\n\nggplot()"
+    "section": "Start: ggplot()\n",
+    "text": "Start: ggplot()\n\n\n\nggplot()"
   },
   {
     "objectID": "sessions/example_slides.html#normal-slide",
@@ -767,7 +767,7 @@
     "href": "sessions/ggplot_intro/slides.html#aestetics-als-mapping-oder-setting",
     "title": "ggplot2: Basics",
     "section": "Aestetics als Mapping oder Setting",
-    "text": "Aestetics als Mapping oder Setting\n\n\nFür alle Layer\n\nggplot(\n  data = gapminder_dat,\n  aes(\n    x = pop,\n    y = co2_cons,\n    color = world_6region\n  )\n) +\n  geom_point() +\n  geom_smooth()\n\n\n\n\n\n\n\n\n\nFür spezifische Layer\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point(aes(color = world_6region)) +\n  geom_smooth()\n\n\n\n\n\n\n\n\n\n\nAls Setting\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point(color = \"#F4BA02\") +\n  geom_smooth()"
+    "text": "Aestetics als Mapping oder Setting\n\n\nFür alle Layer\n\nggplot(\n  data = gapminder_dat,\n  aes(\n    x = pop,\n    y = co2_cons,\n    color = world_6region\n  )\n) +\n  geom_point() +\n  geom_smooth()\n\n\n\n\n\n\n\n\nFür spezifische Layer\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point(aes(color = world_6region)) +\n  geom_smooth()\n\n\n\n\n\n\n\n\n\nAls Setting\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point(color = \"#F4BA02\") +\n  geom_smooth()"
   },
   {
     "objectID": "sessions/example_slides.html#plotlygganimate",
@@ -1649,69 +1649,146 @@
     "href": "sessions/more_ggplot/slides.html#section",
     "title": "Mehr ggplot2!",
     "section": "",
-    "text": "library(tidyverse)\n\ngapminder_dat_full &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\ngapminder_dat_trend &lt;- gapminder_dat_full %&gt;% \n  filter(time &gt; 1990, time &lt; 2022, country %in% c(\"nga\", \"zaf\", \"deu\", \"rus\", \"chn\", \"ind\", \"bra\", \"usa\", \"egy\", \"aus\", \"mex\", \"jpn\"))"
+    "text": "library(tidyverse)\n\ngapminder_dat_full &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\ngapminder_dat_trend &lt;- gapminder_dat_full %&gt;%\n  filter(time &gt; 1990, time &lt; 2022, country %in% c(\"nga\", \"zaf\", \"deu\", \"rus\", \"chn\", \"ind\", \"bra\", \"usa\", \"egy\", \"aus\", \"mex\", \"jpn\"))"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#facetting",
     "href": "sessions/more_ggplot/slides.html#facetting",
     "title": "Mehr ggplot2!",
     "section": "Facetting",
-    "text": "Facetting\n\n\nggplot(data = gapminder_dat_trend, \n       mapping = aes(x = time, \n                     y = co2_pcap_cons, \n                     color = country)) +\n  geom_point() + \n  geom_line() +\n  theme_bg()\n\n\n\n\n\n\n\n\nLösung: Faceting"
+    "text": "Facetting\n\n\nggplot(\n  data = gapminder_dat_trend,\n  mapping = aes(\n    x = time,\n    y = co2_pcap_cons,\n    color = country\n  )\n) +\n  geom_line(linewidth = 1.4) +\n  theme_bg()\n\n\n\n\n\n\n\n\nLösung: Faceting"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#faceting",
     "href": "sessions/more_ggplot/slides.html#faceting",
     "title": "Mehr ggplot2!",
     "section": "Faceting",
-    "text": "Faceting\nAnordnen von einer einzelnen Variable in einem Raster:\n\n\nfacet_wrap()\n\nggplot(data = gapminder_dat_trend, \n       mapping = aes(x = time, \n                     y = co2_pcap_cons, \n                     color = country)) +\n  geom_point() + \n  geom_line() +\n  facet_wrap(vars(country), nrow = 4) +\n  theme_bg()\n\n\n\n\n\n\n\n\nfacet_grid\n\nggplot(data = gapminder_dat_trend, \n       mapping = aes(x = time, \n                     y = co2_pcap_cons, \n                     color = country)) +\n  geom_point() + \n  geom_line() +\n  facet_grid(country ~ .) +\n  theme_bg()"
+    "text": "Faceting\nAnordnen von einer einzelnen Variable in einem Raster:\n\n\nfacet_wrap()\n\nggplot(\n  data = gapminder_dat_trend,\n  mapping = aes(\n    x = time,\n    y = co2_pcap_cons,\n    color = country\n  )\n) +\n  geom_line(linewidth = 1.4) +\n  facet_wrap(vars(country), nrow = 4) +\n  theme_bg()\n\n\n\n\n\n\n\n\nfacet_grid\n\nggplot(\n  data = gapminder_dat_trend,\n  mapping = aes(\n    x = time,\n    y = co2_pcap_cons,\n    color = country\n  )\n) +\n  geom_line(linewidth = 1.4) +\n  facet_grid(country ~ .) +\n  theme_bg()"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#facetting---mehrere-variablen",
     "href": "sessions/more_ggplot/slides.html#facetting---mehrere-variablen",
     "title": "Mehr ggplot2!",
     "section": "Facetting - Mehrere Variablen",
-    "text": "Facetting - Mehrere Variablen\nAnordnen von mehreren Variable in einem Raster:\n\n\nfacet_wrap()\n\nggplot(data = gapminder_dat_trend, \n       mapping = aes(x = time, \n                     y = co2_pcap_cons, \n                     color = country)) +\n  geom_point() + \n  geom_line() +\n  facet_wrap(vars(country, world_4region), nrow = 4) +\n  theme_bg()\n\n\n\n\n\n\n\n\nfacet_grid()\n\nggplot(data = gapminder_dat_trend, \n       mapping = aes(x = time, \n                     y = co2_pcap_cons, \n                     color = country)) +\n  geom_point() + \n  geom_line() +\n  facet_grid(country ~ world_4region) +\n  theme_bg()"
+    "text": "Facetting - Mehrere Variablen\nAnordnen von mehreren Variable in einem Raster:\n\n\nfacet_wrap()\n\nggplot(\n  data = gapminder_dat_trend,\n  mapping = aes(\n    x = time,\n    y = co2_pcap_cons,\n    color = country\n  )\n) +\n  geom_point() +\n  geom_line() +\n  facet_wrap(vars(country, world_4region), nrow = 4) +\n  theme_bg()\n\n\n\n\n\n\n\n\nfacet_grid()\n\nggplot(\n  data = gapminder_dat_trend,\n  mapping = aes(\n    x = time,\n    y = co2_pcap_cons,\n    color = country\n  )\n) +\n  geom_line(linewidth = 1.4) +\n  facet_grid(country ~ world_4region) +\n  theme_bg()"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#facetting---tipps",
     "href": "sessions/more_ggplot/slides.html#facetting---tipps",
     "title": "Mehr ggplot2!",
     "section": "Facetting - Tipps",
-    "text": "Facetting - Tipps\nPlot alle Punkte\n\n\nbg &lt;- gapminder_dat_trend %&gt;%\n  mutate(country_bg = country) %&gt;%\n  select(-country)\n\nggplot(gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country, group = country)) +\n  # background lines: drawn in every facet, grouped by country_bg\n  geom_line(\n    data = bg,\n    aes(x = time, y = co2_pcap_cons, group = country_bg),\n    inherit.aes = FALSE,\n    color = \"grey70\",\n    alpha = 0.5,\n    linewidth = 0.4\n  ) +\n  # foreground points/lines for the focal country in each facet\n  geom_line(linewidth = 0.6) +\n  geom_line(linewidth = 1.5) +\n  facet_wrap(vars(country)) +\n  guides(color = \"none\") +\n  theme_bg()"
+    "text": "Facetting - Tipps\nPlot alle Punkte\n\n\nbg &lt;- gapminder_dat_trend %&gt;%\n  mutate(country_bg = country) %&gt;%\n  select(-country)\n\nggplot(gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country, group = country)) +\n  # background lines: drawn in every facet, grouped by country_bg\n  geom_line(\n    data = bg,\n    aes(x = time, y = co2_pcap_cons, group = country_bg),\n    inherit.aes = FALSE,\n    color = \"grey70\",\n    alpha = 0.5,\n    linewidth = 0.4\n  ) +\n  # foreground points/lines for the focal country in each facet\n  geom_line(linewidth = 1.5) +\n  facet_wrap(vars(country)) +\n  guides(color = \"none\") +\n  theme_bg()"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#facetting---tipps-1",
     "href": "sessions/more_ggplot/slides.html#facetting---tipps-1",
     "title": "Mehr ggplot2!",
     "section": "Facetting - Tipps",
-    "text": "Facetting - Tipps\nPlot Mittelwerte\n\n\nggplot(data = gapminder_dat_trend, \n       mapping = aes(x = time, \n                     y = co2_pcap_cons, \n                     color = country)) +\n  geom_line(linewidth = 1) +\n  geom_smooth(aes(group = income_groups), color = \"grey\") +\n  facet_wrap(vars(income_groups)) +\n  theme_bg()"
+    "text": "Facetting - Tipps\nPlot Mittelwerte\n\n\nggplot(\n  data = gapminder_dat_trend,\n  mapping = aes(\n    x = time,\n    y = co2_pcap_cons,\n    color = country\n  )\n) +\n  geom_line(linewidth = 1) +\n  geom_smooth(aes(group = income_groups), color = \"grey\") +\n  facet_wrap(vars(income_groups)) +\n  theme_bg()"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#sortieren",
     "href": "sessions/more_ggplot/slides.html#sortieren",
     "title": "Mehr ggplot2!",
     "section": "Sortieren",
-    "text": "Sortieren\nSortieren, läuft in ggplot2 generell über factor():\n\ngapminder_dat_trend$income_groups_fac &lt;- factor(gapminder_dat_trend$income_groups, \n                                               levels = c(\"lower_middle_income\", \"upper_middle_income\", \"high_income\")\n                                               )\n\n\n\nggplot(data = gapminder_dat_trend, \n       mapping = aes(x = time, \n                     y = co2_pcap_cons, \n                     color = country)) +\n  geom_line(linewidth = 1) +\n  geom_smooth(aes(group = income_groups), color = \"grey\") +\n  facet_wrap(vars(income_groups_fac)) +\n  theme_bg()"
+    "text": "Sortieren\nSortieren, läuft in ggplot2 generell über factor():\n\ngapminder_dat_trend$income_groups_fac &lt;- factor(gapminder_dat_trend$income_groups,\n  levels = c(\"lower_middle_income\", \"upper_middle_income\", \"high_income\")\n)\n\n\n\nggplot(\n  data = gapminder_dat_trend,\n  mapping = aes(\n    x = time,\n    y = co2_pcap_cons,\n    color = country\n  )\n) +\n  geom_line(linewidth = 1) +\n  geom_smooth(aes(group = income_groups), color = \"grey\") +\n  facet_wrap(vars(income_groups_fac)) +\n  theme_bg()"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#legenden",
     "href": "sessions/more_ggplot/slides.html#legenden",
     "title": "Mehr ggplot2!",
     "section": "Legenden",
-    "text": "Legenden\nLegenden werden automatisch erzeugt. Dafür werden die aestetics genutzt, also das mapping von Daten zu grafischen Elementen.\n\nLegenden und Achsen sind funktional äquivalent und werden in ggplot2 unter dem Begriff guides zusammengefasst. Während Scales die Daten auf grafische Eigenschaften wie Position oder Farbe abbilden, machen Guides diese Abbildung wieder verständlich: Achsen übersetzen Positionen zurück in Zahlen, Legenden ordnen Farben oder Symbole den entsprechenden Datenwerten zu. Man kann sie daher als die „Umkehrfunktion“ der jeweiligen Scales verstehen."
+    "text": "Legenden\nLegenden werden automatisch erzeugt. Dafür werden die aestetics genutzt, also das mapping von Daten zu grafischen Elementen. Jede Skala bekommt eine Legende zugeordnet.\n\n\nLegenden und Achsen sind funktional äquivalent und werden in ggplot2 unter dem Begriff guides zusammengefasst. Während Skalen die Daten auf grafische Eigenschaften wie Position oder Farbe abbilden, machen Guides diese Abbildung wieder verständlich: Achsen übersetzen Positionen zurück in Zahlen, Legenden ordnen Farben oder Symbole den entsprechenden Datenwerten zu. Man kann sie daher als die „Umkehrfunktion“ der jeweiligen Scales verstehen."
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#section-1",
     "href": "sessions/more_ggplot/slides.html#section-1",
     "title": "Mehr ggplot2!",
     "section": "",
-    "text": "Jede aesthetic im Plot ist mit genau einer scale verbunden:\n\n\nImplizite Definition\n\nWird intern zu:"
+    "text": "Jede aesthetic im Plot ist mit genau einer scale verbunden:\n\n\nImplizite Definition\n\nggplot(\n  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +\n  geom_line()\n\n\n\n\n\n\n\n\nWird intern zu:\n\nggplot(\n  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +\n  geom_line() +\n  scale_x_continuous() + \n  scale_y_continuous() + \n  scale_colour_discrete()\n\n\n\n\n\n\n\n\n\n\ntime und co2_pcacp_cons sind beide kontinuierliche Variablen: scale_x_continuous(), scale_x_continuous()\n\n\ncountry ist diskret: scale_colour_discrete()\n\n\nDas können wir uns zunutze machen, um manuell Scales zu definieren."
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#section-2",
     "href": "sessions/more_ggplot/slides.html#section-2",
     "title": "Mehr ggplot2!",
     "section": "",
-    "text": "Das können wir uns zunutze machen, um manuel Skalen zu definieren."
+    "text": "ggplot(\n  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +\n  geom_line() +\n  scale_x_continuous(name = \"Jahr\") + \n  scale_y_continuous(name = \"CO2 Verbrauch pro Kopf\") + \n  scale_colour_discrete(name = \"Länder\")\n\n\n\n\n\n\n\n\nIn der Praxis würden wir dafür labs(x = \"Jahr\", y = \"CO2 Verbrauch pro Kopf\", color = \"Länder\") nutzen. Wir sehen so aber, dass Achsen- und Legendentitel jeweils Skalennamen sind."
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#übung-1",
+    "href": "sessions/ggplot_intro/slides.html#übung-1",
+    "title": "ggplot2: Basics",
+    "section": "Übung 1",
+    "text": "Übung 1\nJetzt wisst ihr genug, um einen ersten eigenen Plot zu erstellen.\n\nBeschreiben, was erstellt werden soll. Vielleicht ein anderer Plottyp? Oder eine andere Variable?"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#mehr-layers-1",
+    "href": "sessions/ggplot_intro/slides.html#mehr-layers-1",
+    "title": "ggplot2: Basics",
+    "section": "Mehr Layers!",
+    "text": "Mehr Layers!\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons, \n    color = world_6region\n  )\n) +\n  geom_hex()"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#mehr-layers-2",
+    "href": "sessions/ggplot_intro/slides.html#mehr-layers-2",
+    "title": "ggplot2: Basics",
+    "section": "Mehr Layers!",
+    "text": "Mehr Layers!\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons, \n    color = world_6region\n  )\n) +\n  geom_point() +\n  geom_smooth()"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#übung-2",
+    "href": "sessions/ggplot_intro/slides.html#übung-2",
+    "title": "ggplot2: Basics",
+    "section": "Übung 2",
+    "text": "Übung 2\nProbiert aus, wo in den ggplot-layers man die Farbe Ändern kann (es gibt 3 verschiedene Möglichkeiten, die sich alle unterschiedlich auf den Plot auswirken). Ziel: Nur die Punkte sollen farbig sein. Es soll dann nur eine geom-smooth für den gesamten Trend geben."
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#skalen",
+    "href": "sessions/more_ggplot/slides.html#skalen",
+    "title": "Mehr ggplot2!",
+    "section": "Skalen",
+    "text": "Skalen\n“Scales in ggplot2 control the mapping from data to aesthetics. They take your data and turn it into something that you can see, like size, colour, position or shape.” ggplot2: Elegant Graphics for Data Analysis\nLink to aes slide."
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#section-3",
+    "href": "sessions/more_ggplot/slides.html#section-3",
+    "title": "Mehr ggplot2!",
+    "section": "",
+    "text": "ggplot(\n  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +\n  geom_line() +\n  scale_x_continuous(name = \"Jahr\") + \n  scale_y_log10(name = \"CO2 Verbrauch pro Kopf\") +\n  scale_colour_discrete(name = \"Länder\")\n\n\n\n\n\n\n\n\nEine Übersicht über die möglichen Skalentypen findet sich [hier])https://ggplot2tor.com/scales/)."
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#einige-anwendungsfälle",
+    "href": "sessions/more_ggplot/slides.html#einige-anwendungsfälle",
+    "title": "Mehr ggplot2!",
+    "section": "Einige Anwendungsfälle",
+    "text": "Einige Anwendungsfälle\n\nFarben\n\nggplot(\n  data = gapminder_dat_trend, \n  aes(x = time, y = co2_pcap_cons, color = country)) +\n  geom_line() +\n  scale_colour_manual(values = c(\"deu\" = \"black\", \"usa\" = \"blue\", \"chn\" = \"red\", \"ind\" = \"orange\", \"bra\" = \"green\", \"zaf\" = \"purple\", \"rus\" = \"brown\", \"egy\" = \"yellow\", \"aus\" = \"pink\", \"mex\" = \"cyan\", \"jpn\" = \"grey\"), name = \"Länder\")\n\n\n\n\n\n\n\n\nSkalen-Ticks\n\nggplot(\n  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +\n  geom_line() +\n  scale_x_continuous(name = \"Jahr\") + \n  scale_y_log10(name = \"CO2 Verbrauch pro Kopf\") +\n  scale_colour_discrete(name = \"Länder\")\n\n\n\n\n\n\n\n:::"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#scale-guides",
+    "href": "sessions/more_ggplot/slides.html#scale-guides",
+    "title": "Mehr ggplot2!",
+    "section": "Scale Guides",
+    "text": "Scale Guides\nJede Skala (und damit jede Aesthetic) bekommt einen Guide zugeordnet. Intern passiert das über guides(). Wir können guides() also nutzen, um die Legende zu manipulieren:\n\nggplot(\n  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +\n  geom_line() +\n  scale_x_continuous(name = \"Jahr\") + \n  scale_y_log10(name = \"CO2 Verbrauch pro Kopf\") +\n  scale_colour_discrete(name = \"Länder\") +\n  guides(color = guide_legend(title = \"Staaten\", ncol = 3, reverse = TRUE, override.aes = list(linewidth = 3)))\n\n\nMögliche guide-Funktionen\n\n\n\nguide_colourbar()\nguide_coloursteps()\nguide_axis()\n\n\n\nguide_legend()\nguide_bins()"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#themes",
+    "href": "sessions/more_ggplot/slides.html#themes",
+    "title": "Mehr ggplot2!",
+    "section": "Themes",
+    "text": "Themes\nDa würde man ja auch viel zur Legende ändern?"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#section-4",
+    "href": "sessions/more_ggplot/slides.html#section-4",
+    "title": "Mehr ggplot2!",
+    "section": "",
+    "text": "::: {.column width = “50%}\n\nggplot(\n  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +\n  geom_line() +\n  scale_x_continuous(name = \"Jahr\") + \n  scale_y_log10(name = \"CO2 Verbrauch pro Kopf\") +\n  scale_colour_discrete(name = \"Länder\") +\n  guides(x = guide_axis(angle = 90))\n\n\n\n\n\n\n\n\n\nggplot(\n  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +\n  geom_line() +\n  scale_x_continuous(name = \"Jahr\", guide = guide_axis(angle = 90))\n\n\n\n\n\n\n\n:::"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#legenden-mergen",
+    "href": "sessions/more_ggplot/slides.html#legenden-mergen",
+    "title": "Mehr ggplot2!",
+    "section": "Legenden mergen",
+    "text": "Legenden mergen"
   }
 ]
