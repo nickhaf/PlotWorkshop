@@ -10,43 +10,80 @@ format:
 #| echo: false
 
 library(here)
-library(janitor)
-library(ggwordcloud)
 library(tidyverse)
 source(here::here("src", "themes.R"))
 source(here::here("src", "functions.R"))
 ```
 
-## 
+## Datensatz {backround-image="./images/central_perk.jpg"}
+
+
 ```{r}
-#| label: Load gapminder data
+# ## Keep in mind!
+# ## Eventuell für die Übung? 
+# tuesdata <- tidytuesdayR::tt_load('2025-08-26')
+# tuesdata$billboard %>% 
+#   filter(song == "Love the Way You Lie") %>% 
+#   select(danceability, energy, happiness)
+# 
+# 
+# ## Netflix
+# tuesdata <- tidytuesdayR::tt_load('2025-07-29')
+# 
+# ## Gutenberg project
+# tuesdata <- tidytuesdayR::tt_load('2025-06-03')
 
-library(tidyverse)
 
-gapminder_dat_full <- readRDS(here::here("data", "gapminder_dat.rds"))
+characters <- tidytuesdayR::tt_load('2022-08-16')
 
-gapminder_dat_trend <- gapminder_dat_full %>%
-  filter(time > 1990, time < 2022, country %in% c("nga", "zaf", "deu", "rus", "chn", "ind", "bra", "usa", "egy", "aus", "mex", "jpn"))
 ```
 
-## Facetting
+## 
+```{r}
+char_dat <- characters$characters
+psych_dat <- characters$psych_stats
+
+
+
+dat_merged <- char_dat %>% 
+  rename(char_name = name) %>% 
+  left_join(psych_dat) 
+
+
+dat_prepped <-  dat_merged %>% 
+  filter(uni_name %in% c("How I Met Your Mother", "Friends")) %>% 
+  filter(question %in% c("doer/thinker", "jock/nerd", "cold/warm", "main character/side character", "crazy/sane"))
+
+## Cold warm: Geschlecht? Could get ChatGPT to code
+
+## Eventuell inside standardisieren, um spezifische Abweichung zu zeigen? 
+```
+
+
+
+
+
+
+::: image-ref
+Foto von <a href="https://unsplash.com/de/@lgtts?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Ilse Orsel</a> auf <a href="https://unsplash.com/de/fotos/rot-weisses-unks-cafe-fwPHQB4kGzA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+
+
+## Charaktereigenschaften in HIMYM
+
 ```{r}
 #| output-location: column
 
-ggplot(
-  data = gapminder_dat_trend,
-  mapping = aes(
-    x = time,
-    y = co2_pcap_cons,
-    color = country
-  )
-) +
-  geom_line(linewidth = 1.4) +
-  theme_bg()
+ggplot(data = dat_prepped, 
+        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  geom_point()
 ```
 
-
+Wir vergleichen jetzt einige Charaktereigenschaften in HIMYM und Friends. 
+Gerade noch etwas schwierig. 
 Lösung: [Faceting](https://ggplot2-book.org/facet.html#sec-facet-wrap)
+
+# Facetting
 
 ## Faceting
 Anordnen von einer *einzelnen* Variable in einem Raster:
@@ -60,16 +97,10 @@ Anordnen von einer *einzelnen* Variable in einem Raster:
 #| code-line-numbers: "7"
 #| fig-height: 4
 
-ggplot(
-  data = gapminder_dat_trend,
-  mapping = aes(
-    x = time,
-    y = co2_pcap_cons,
-    color = country
-  )
-) +
-  geom_line(linewidth = 1.4) +
-  facet_wrap(vars(country), nrow = 4) +
+ggplot(data = dat_prepped, 
+        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  geom_point() +
+  facet_wrap(vars(char_name), nrow = 4) +
   theme_bg()
 ```
 
@@ -82,16 +113,10 @@ ggplot(
 #| code-line-numbers: "7"
 #| fig-height: 4
 
-ggplot(
-  data = gapminder_dat_trend,
-  mapping = aes(
-    x = time,
-    y = co2_pcap_cons,
-    color = country
-  )
-) +
-  geom_line(linewidth = 1.4) +
-  facet_grid(country ~ .) +
+ggplot(data = dat_prepped, 
+        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  geom_point() +
+  facet_grid(char_name ~ .) +
   theme_bg()
 ```
 
@@ -110,17 +135,10 @@ Anordnen von *mehreren* Variable in einem Raster:
 #| code-line-numbers: "7"
 #| fig-height: 4
 
-ggplot(
-  data = gapminder_dat_trend,
-  mapping = aes(
-    x = time,
-    y = co2_pcap_cons,
-    color = country
-  )
-) +
+ggplot(data = dat_prepped, 
+        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
   geom_point() +
-  geom_line() +
-  facet_wrap(vars(country, world_4region), nrow = 4) +
+  facet_wrap(vars(char_name, uni_name), nrow = 4) +
   theme_bg()
 ```
 
@@ -132,16 +150,10 @@ ggplot(
 #| code-line-numbers: "7"
 #| fig-height: 4
 
-ggplot(
-  data = gapminder_dat_trend,
-  mapping = aes(
-    x = time,
-    y = co2_pcap_cons,
-    color = country
-  )
-) +
-  geom_line(linewidth = 1.4) +
-  facet_grid(country ~ world_4region) +
+ggplot(data = dat_prepped, 
+        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  geom_point() +
+  facet_grid(char_name ~ uni_name) +
   theme_bg()
 ```
 
