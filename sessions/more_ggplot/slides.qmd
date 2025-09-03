@@ -25,22 +25,23 @@ library(tidyverse)
 
 gapminder_dat_full <- readRDS(here::here("data", "gapminder_dat.rds"))
 
-gapminder_dat_trend <- gapminder_dat_full %>% 
-  filter(time > 1990, time < 2022, country %in% c("nga", "zaf", "deu", "rus", "chn", "ind", "bra", "usa", "egy", "aus", "mex", "jpn")) 
-  
-
+gapminder_dat_trend <- gapminder_dat_full %>%
+  filter(time > 1990, time < 2022, country %in% c("nga", "zaf", "deu", "rus", "chn", "ind", "bra", "usa", "egy", "aus", "mex", "jpn"))
 ```
 
 ## Facetting
 ```{r}
 #| output-location: column
 
-ggplot(data = gapminder_dat_trend, 
-       mapping = aes(x = time, 
-                     y = co2_pcap_cons, 
-                     color = country)) +
-  geom_point() + 
-  geom_line() +
+ggplot(
+  data = gapminder_dat_trend,
+  mapping = aes(
+    x = time,
+    y = co2_pcap_cons,
+    color = country
+  )
+) +
+  geom_line(linewidth = 1.4) +
   theme_bg()
 ```
 
@@ -59,12 +60,15 @@ Anordnen von einer *einzelnen* Variable in einem Raster:
 #| code-line-numbers: "7"
 #| fig-height: 4
 
-ggplot(data = gapminder_dat_trend, 
-       mapping = aes(x = time, 
-                     y = co2_pcap_cons, 
-                     color = country)) +
-  geom_point() + 
-  geom_line() +
+ggplot(
+  data = gapminder_dat_trend,
+  mapping = aes(
+    x = time,
+    y = co2_pcap_cons,
+    color = country
+  )
+) +
+  geom_line(linewidth = 1.4) +
   facet_wrap(vars(country), nrow = 4) +
   theme_bg()
 ```
@@ -78,12 +82,15 @@ ggplot(data = gapminder_dat_trend,
 #| code-line-numbers: "7"
 #| fig-height: 4
 
-ggplot(data = gapminder_dat_trend, 
-       mapping = aes(x = time, 
-                     y = co2_pcap_cons, 
-                     color = country)) +
-  geom_point() + 
-  geom_line() +
+ggplot(
+  data = gapminder_dat_trend,
+  mapping = aes(
+    x = time,
+    y = co2_pcap_cons,
+    color = country
+  )
+) +
+  geom_line(linewidth = 1.4) +
   facet_grid(country ~ .) +
   theme_bg()
 ```
@@ -103,11 +110,15 @@ Anordnen von *mehreren* Variable in einem Raster:
 #| code-line-numbers: "7"
 #| fig-height: 4
 
-ggplot(data = gapminder_dat_trend, 
-       mapping = aes(x = time, 
-                     y = co2_pcap_cons, 
-                     color = country)) +
-  geom_point() + 
+ggplot(
+  data = gapminder_dat_trend,
+  mapping = aes(
+    x = time,
+    y = co2_pcap_cons,
+    color = country
+  )
+) +
+  geom_point() +
   geom_line() +
   facet_wrap(vars(country, world_4region), nrow = 4) +
   theme_bg()
@@ -120,13 +131,16 @@ ggplot(data = gapminder_dat_trend,
 ```{r}
 #| code-line-numbers: "7"
 #| fig-height: 4
- 
-ggplot(data = gapminder_dat_trend, 
-       mapping = aes(x = time, 
-                     y = co2_pcap_cons, 
-                     color = country)) +
-  geom_point() + 
-  geom_line() +
+
+ggplot(
+  data = gapminder_dat_trend,
+  mapping = aes(
+    x = time,
+    y = co2_pcap_cons,
+    color = country
+  )
+) +
+  geom_line(linewidth = 1.4) +
   facet_grid(country ~ world_4region) +
   theme_bg()
 ```
@@ -155,7 +169,6 @@ ggplot(gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country, gr
     linewidth = 0.4
   ) +
   # foreground points/lines for the focal country in each facet
-  geom_line(linewidth = 0.6) +
   geom_line(linewidth = 1.5) +
   facet_wrap(vars(country)) +
   guides(color = "none") +
@@ -169,10 +182,14 @@ Plot Mittelwerte
 ```{r}
 #| output-location: column
 
-ggplot(data = gapminder_dat_trend, 
-       mapping = aes(x = time, 
-                     y = co2_pcap_cons, 
-                     color = country)) +
+ggplot(
+  data = gapminder_dat_trend,
+  mapping = aes(
+    x = time,
+    y = co2_pcap_cons,
+    color = country
+  )
+) +
   geom_line(linewidth = 1) +
   geom_smooth(aes(group = income_groups), color = "grey") +
   facet_wrap(vars(income_groups)) +
@@ -184,20 +201,23 @@ Sortieren, läuft in ggplot2 generell über `factor()`:
 
 
 ```{r}
-
-gapminder_dat_trend$income_groups_fac <- factor(gapminder_dat_trend$income_groups, 
-                                               levels = c("lower_middle_income", "upper_middle_income", "high_income")
-                                               )
+gapminder_dat_trend$income_groups_fac <- factor(gapminder_dat_trend$income_groups,
+  levels = c("lower_middle_income", "upper_middle_income", "high_income")
+)
 ```
 
 
 ```{r}
 #| output-location: column
 
-ggplot(data = gapminder_dat_trend, 
-       mapping = aes(x = time, 
-                     y = co2_pcap_cons, 
-                     color = country)) +
+ggplot(
+  data = gapminder_dat_trend,
+  mapping = aes(
+    x = time,
+    y = co2_pcap_cons,
+    color = country
+  )
+) +
   geom_line(linewidth = 1) +
   geom_smooth(aes(group = income_groups), color = "grey") +
   facet_wrap(vars(income_groups_fac)) +
@@ -208,39 +228,10 @@ ggplot(data = gapminder_dat_trend,
 
 
 ## Scales
-
 "Scales in ggplot2 control the [mapping from data to aesthetics]{.highlight}. They take your data and turn it into something that you can see, like size, colour, position or shape." [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/scales.html)
-
 
 Link to aes slide. 
 
-
-## 
-
-Jede aesthetic im Plot ist mit genau einer scale verbunden: 
-
-
-:::{.columns}
-
-:::{.column width="50%"}
-### Implizite Definition
-
-```{r}
-
-```
-:::
-:::{.column width="50%"}
-### Wird intern zu: 
-
-```{r}
-
-```
-:::
-:::
-
-
-## 
-Das können wir uns zunutze machen, um manuel Skalen zu definieren. 
 
 
 ## Legenden
@@ -254,6 +245,70 @@ Legenden und Achsen sind funktional äquivalent und werden in ggplot2 unter dem 
 
 ## 
 ![](./images/scales_legends.png)
+
+
+## 
+
+Jede aesthetic im Plot ist mit genau einer scale verbunden: 
+
+
+:::{.columns}
+
+:::{.column width="50%"}
+### Implizite Definition
+
+```{r}
+ggplot(
+  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +
+  geom_line()
+```
+:::
+:::{.column width="50%"}
+### Wird intern zu: 
+
+```{r}
+ggplot(
+  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +
+  geom_line() +
+  scale_x_continuous() + 
+  scale_y_continuous() + 
+  scale_colour_discrete()
+```
+:::
+:::
+
+- `time` und `co2_pcacp_cons` sind beide kontinuierliche Variablen: `scale_x_continuous()`, `scale_x_continuous()`
+- `country` ist diskret: `scale_colour_discrete()`
+
+Das können wir uns zunutze machen, um manuell Scales zu definieren. 
+
+
+## 
+```{r}
+ggplot(
+  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +
+  geom_line() +
+  scale_x_continuous(name = "Jahr") + 
+  scale_y_continuous(name = "CO2 Verbrauch pro Kopf") + 
+  scale_colour_discrete(name = "Länder")
+```
+
+:::{.callout-warning}
+In der Praxis würden wir dafür `labs(x = "Jahr", y = "CO2 Verbrauch pro Kopf", color = "Länder")` nutzen. Wir sehen so aber, dass Achsen- und Legendentitel jeweils Skalennamen sind.  
+:::
+
+##
+
+```{r}
+ggplot(
+  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +
+  geom_line() +
+  scale_x_continuous(name = "Jahr") + 
+  scale_y_log(name = "CO2 Verbrauch pro Kopf") + 
+  scale_colour_brewer()
+  
+  scale_colour_discrete(name = "Länder")
+```
 
 ## Koordinatensytem
 

@@ -585,7 +585,7 @@
     "href": "sessions/more_ggplot/slides.html#scales",
     "title": "Mehr ggplot2!",
     "section": "Scales",
-    "text": "Scales\n“Scales in ggplot2 control the mapping from data to aesthetics. They take your data and turn it into something that you can see, like size, colour, position or shape.” ggplot2: Elegant Graphics for Data Ana"
+    "text": "Scales\n“Scales in ggplot2 control the mapping from data to aesthetics. They take your data and turn it into something that you can see, like size, colour, position or shape.” ggplot2: Elegant Graphics for Data Analysis\nLink to aes slide."
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#koordinatensytem",
@@ -1698,6 +1698,20 @@
     "href": "sessions/more_ggplot/slides.html#legenden",
     "title": "Mehr ggplot2!",
     "section": "Legenden",
-    "text": "Legenden\nLegenden werden automatisch erzeugt. Dafür werden die aestetics genutzt, also das mapping von Daten zu grafischen Elementen."
+    "text": "Legenden\nLegenden werden automatisch erzeugt. Dafür werden die aestetics genutzt, also das mapping von Daten zu grafischen Elementen.\n\nLegenden und Achsen sind funktional äquivalent und werden in ggplot2 unter dem Begriff guides zusammengefasst. Während Scales die Daten auf grafische Eigenschaften wie Position oder Farbe abbilden, machen Guides diese Abbildung wieder verständlich: Achsen übersetzen Positionen zurück in Zahlen, Legenden ordnen Farben oder Symbole den entsprechenden Datenwerten zu. Man kann sie daher als die „Umkehrfunktion“ der jeweiligen Scales verstehen."
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#section-1",
+    "href": "sessions/more_ggplot/slides.html#section-1",
+    "title": "Mehr ggplot2!",
+    "section": "",
+    "text": "Jede aesthetic im Plot ist mit genau einer scale verbunden:\n\n\nImplizite Definition\n\nWird intern zu:"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#section-2",
+    "href": "sessions/more_ggplot/slides.html#section-2",
+    "title": "Mehr ggplot2!",
+    "section": "",
+    "text": "Das können wir uns zunutze machen, um manuel Skalen zu definieren."
   }
 ]
