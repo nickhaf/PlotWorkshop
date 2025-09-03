@@ -209,13 +209,48 @@ ggplot(data = gapminder_dat_trend,
 
 ## Scales
 
-"Scales in ggplot2 control the [mapping from data to aesthetics]{.highlight}. They take your data and turn it into something that you can see, like size, colour, position or shape." [ggplot2: Elegant Graphics for Data Ana](https://ggplot2-book.org/scales.html)
+"Scales in ggplot2 control the [mapping from data to aesthetics]{.highlight}. They take your data and turn it into something that you can see, like size, colour, position or shape." [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/scales.html)
+
+
+Link to aes slide. 
+
+
+## 
+
+Jede aesthetic im Plot ist mit genau einer scale verbunden: 
+
+
+:::{.columns}
+
+:::{.column width="50%"}
+### Implizite Definition
+
+```{r}
+
+```
+:::
+:::{.column width="50%"}
+### Wird intern zu: 
+
+```{r}
+
+```
+:::
+:::
+
+
+## 
+Das können wir uns zunutze machen, um manuel Skalen zu definieren. 
+
 
 ## Legenden
 
 Legenden werden [automatisch]{.highlight} erzeugt. Dafür werden die [aestetics]{.highlight} genutzt, also das mapping von Daten zu grafischen Elementen. 
 
 
+::: {.callout-info}
+Legenden und Achsen sind funktional äquivalent und werden in ggplot2 unter dem Begriff [guides]{.highlight} zusammengefasst. Während Scales die Daten auf grafische Eigenschaften wie Position oder Farbe abbilden, machen Guides diese Abbildung wieder verständlich: Achsen übersetzen Positionen zurück in Zahlen, Legenden ordnen Farben oder Symbole den entsprechenden Datenwerten zu. Man kann sie daher als die [„Umkehrfunktion“]{.highlight} der jeweiligen Scales verstehen.
+:::
 
 ## 
 ![](./images/scales_legends.png)

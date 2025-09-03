@@ -585,14 +585,14 @@
     "href": "sessions/more_ggplot/slides.html#scales",
     "title": "Mehr ggplot2!",
     "section": "Scales",
-    "text": "Scales\nLogarithmisch vs linear"
+    "text": "Scales\n“Scales in ggplot2 control the mapping from data to aesthetics. They take your data and turn it into something that you can see, like size, colour, position or shape.” ggplot2: Elegant Graphics for Data Ana"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#koordinatensytem",
     "href": "sessions/more_ggplot/slides.html#koordinatensytem",
     "title": "Mehr ggplot2!",
     "section": "Koordinatensytem",
-    "text": "Koordinatensytem"
+    "text": "Koordinatensytem\n\nPolar, evtl. characters plot oder weltraumplot als beispiel"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#abspeichern",
@@ -1692,5 +1692,12 @@
     "title": "Mehr ggplot2!",
     "section": "Sortieren",
     "text": "Sortieren\nSortieren, läuft in ggplot2 generell über factor():\n\ngapminder_dat_trend$income_groups_fac &lt;- factor(gapminder_dat_trend$income_groups, \n                                               levels = c(\"lower_middle_income\", \"upper_middle_income\", \"high_income\")\n                                               )\n\n\n\nggplot(data = gapminder_dat_trend, \n       mapping = aes(x = time, \n                     y = co2_pcap_cons, \n                     color = country)) +\n  geom_line(linewidth = 1) +\n  geom_smooth(aes(group = income_groups), color = \"grey\") +\n  facet_wrap(vars(income_groups_fac)) +\n  theme_bg()"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#legenden",
+    "href": "sessions/more_ggplot/slides.html#legenden",
+    "title": "Mehr ggplot2!",
+    "section": "Legenden",
+    "text": "Legenden\nLegenden werden automatisch erzeugt. Dafür werden die aestetics genutzt, also das mapping von Daten zu grafischen Elementen."
   }
 ]
