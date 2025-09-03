@@ -1656,7 +1656,7 @@
     "href": "sessions/more_ggplot/slides.html#facetting",
     "title": "Mehr ggplot2!",
     "section": "Facetting",
-    "text": "Facetting\n\nggplot(data = gapminder_dat_trend, \n       mapping = aes(x = time, \n                     y = co2_pcap_cons, \n                     color = country)) +\n  geom_point() + \n  geom_line() +\n  theme_bg()"
+    "text": "Facetting\n\n\nggplot(data = gapminder_dat_trend, \n       mapping = aes(x = time, \n                     y = co2_pcap_cons, \n                     color = country)) +\n  geom_point() + \n  geom_line() +\n  theme_bg()\n\n\n\n\n\n\n\n\nLösung: Faceting"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#faceting",
@@ -1670,20 +1670,27 @@
     "href": "sessions/more_ggplot/slides.html#facetting---mehrere-variablen",
     "title": "Mehr ggplot2!",
     "section": "Facetting - Mehrere Variablen",
-    "text": "Facetting - Mehrere Variablen\nAnordnen von einer mehreren Variable in einem Raster: ::: {.columns}\n\nfacet_wrap()\n\nggplot(data = gapminder_dat_trend, \n       mapping = aes(x = time, \n                     y = co2_pcap_cons, \n                     color = country)) +\n  geom_point() + \n  geom_line() +\n  facet_wrap(vars(country, world_4region), nrow = 4) +\n  theme_bg()\n\n\n\n\n\n\n\n\nfacet_grid\n\nggplot(data = gapminder_dat_trend, \n       mapping = aes(x = time, \n                     y = co2_pcap_cons, \n                     color = country)) +\n  geom_point() + \n  geom_line() +\n  facet_grid(country ~ world_4region) +\n  theme_bg()\n\n\n\n\n\n\n\n:::"
+    "text": "Facetting - Mehrere Variablen\nAnordnen von mehreren Variable in einem Raster:\n\n\nfacet_wrap()\n\nggplot(data = gapminder_dat_trend, \n       mapping = aes(x = time, \n                     y = co2_pcap_cons, \n                     color = country)) +\n  geom_point() + \n  geom_line() +\n  facet_wrap(vars(country, world_4region), nrow = 4) +\n  theme_bg()\n\n\n\n\n\n\n\n\nfacet_grid()\n\nggplot(data = gapminder_dat_trend, \n       mapping = aes(x = time, \n                     y = co2_pcap_cons, \n                     color = country)) +\n  geom_point() + \n  geom_line() +\n  facet_grid(country ~ world_4region) +\n  theme_bg()"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#facetting---tipps",
     "href": "sessions/more_ggplot/slides.html#facetting---tipps",
     "title": "Mehr ggplot2!",
     "section": "Facetting - Tipps",
-    "text": "Facetting - Tipps\nhttps://ggplot2-book.org/facet.html#sec-facet-wrap\nPlott alle Punkte\n\ngapminder_dat_trend_all &lt;- gapminder_dat_trend %&gt;% \n  select(-country)\n\n\nggplot(data = gapminder_dat_trend, \n       mapping = aes(x = time, \n                     y = co2_pcap_cons, \n                     color = country)) +\n  geom_point(data = gapminder_dat_trend_all, colour = \"grey\") +\n  geom_point() + \n  geom_line() +\n  facet_wrap(vars(country)) +\n  theme_bg()\n\n\n\n\n\n\n\n\nbg &lt;- gapminder_dat_trend %&gt;%\n  mutate(country_bg = country) %&gt;%\n  select(-country)\n\nggplot(gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country, group = country)) +\n  # background lines: drawn in every facet, grouped by country_bg\n  geom_line(\n    data = bg,\n    aes(x = time, y = co2_pcap_cons, group = country_bg),\n    inherit.aes = FALSE,\n    color = \"grey70\",\n    alpha = 0.5,\n    linewidth = 0.4\n  ) +\n  # foreground points/lines for the focal country in each facet\n  geom_line(linewidth = 0.6) +\n  geom_point(size = 1) +\n  facet_wrap(vars(country)) +\n  guides(color = \"none\") +\n  theme_bg()"
+    "text": "Facetting - Tipps\nPlot alle Punkte\n\n\nbg &lt;- gapminder_dat_trend %&gt;%\n  mutate(country_bg = country) %&gt;%\n  select(-country)\n\nggplot(gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country, group = country)) +\n  # background lines: drawn in every facet, grouped by country_bg\n  geom_line(\n    data = bg,\n    aes(x = time, y = co2_pcap_cons, group = country_bg),\n    inherit.aes = FALSE,\n    color = \"grey70\",\n    alpha = 0.5,\n    linewidth = 0.4\n  ) +\n  # foreground points/lines for the focal country in each facet\n  geom_line(linewidth = 0.6) +\n  geom_line(linewidth = 1.5) +\n  facet_wrap(vars(country)) +\n  guides(color = \"none\") +\n  theme_bg()"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#facetting---tipps-1",
     "href": "sessions/more_ggplot/slides.html#facetting---tipps-1",
     "title": "Mehr ggplot2!",
     "section": "Facetting - Tipps",
-    "text": "Facetting - Tipps\nPlot Mittelwerte\n\nggplot(data = gapminder_dat_trend, \n       mapping = aes(x = time, \n                     y = co2_pcap_cons, \n                     color = country)) +\n  geom_point() + \n  geom_line() +\n  geom_smooth(aes(group = income_groups), color = \"grey\") +\n  facet_wrap(vars(income_groups)) +\n  theme_bg()"
+    "text": "Facetting - Tipps\nPlot Mittelwerte\n\n\nggplot(data = gapminder_dat_trend, \n       mapping = aes(x = time, \n                     y = co2_pcap_cons, \n                     color = country)) +\n  geom_line(linewidth = 1) +\n  geom_smooth(aes(group = income_groups), color = \"grey\") +\n  facet_wrap(vars(income_groups)) +\n  theme_bg()"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#sortieren",
+    "href": "sessions/more_ggplot/slides.html#sortieren",
+    "title": "Mehr ggplot2!",
+    "section": "Sortieren",
+    "text": "Sortieren\nSortieren, läuft in ggplot2 generell über factor():\n\ngapminder_dat_trend$income_groups_fac &lt;- factor(gapminder_dat_trend$income_groups, \n                                               levels = c(\"lower_middle_income\", \"upper_middle_income\", \"high_income\")\n                                               )\n\n\n\nggplot(data = gapminder_dat_trend, \n       mapping = aes(x = time, \n                     y = co2_pcap_cons, \n                     color = country)) +\n  geom_line(linewidth = 1) +\n  geom_smooth(aes(group = income_groups), color = \"grey\") +\n  facet_wrap(vars(income_groups_fac)) +\n  theme_bg()"
   }
 ]
