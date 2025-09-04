@@ -599,7 +599,7 @@
     "href": "sessions/more_ggplot/slides.html#abspeichern",
     "title": "Mehr ggplot2!",
     "section": "Abspeichern",
-    "text": "Abspeichern\nVektor vs Raster (Rolfs 7)"
+    "text": "Abspeichern\nVektor vs Raster (Rolfs 7)\nUse characters data for demonstration or for exercise?"
   },
   {
     "objectID": "index.html#tag-1",
@@ -1649,7 +1649,7 @@
     "href": "sessions/more_ggplot/slides.html#section",
     "title": "Mehr ggplot2!",
     "section": "",
-    "text": "library(tidyverse)\n\ngapminder_dat_full &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\ngapminder_dat_trend &lt;- gapminder_dat_full %&gt;%\n  filter(time &gt; 1990, time &lt; 2022, country %in% c(\"nga\", \"zaf\", \"deu\", \"rus\", \"chn\", \"ind\", \"bra\", \"usa\", \"egy\", \"aus\", \"mex\", \"jpn\"))"
+    "text": "char_dat &lt;- characters$characters\npsych_dat &lt;- characters$psych_stats\n\n\n\ndat_merged &lt;- char_dat %&gt;% \n  rename(char_name = name) %&gt;% \n  left_join(psych_dat) \n\n\ndat_prepped &lt;-  dat_merged %&gt;% \n  filter(uni_name %in% c(\"How I Met Your Mother\", \"Friends\")) %&gt;% \n  filter(question %in% c(\"doer/thinker\", \"jock/nerd\", \"cold/warm\", \"main character/side character\", \"crazy/sane\"))\n\n## Cold warm: Geschlecht? Could get ChatGPT to code\n\n## Eventuell inside standardisieren, um spezifische Abweichung zu zeigen? \n\n\nFoto von Ilse Orsel auf Unsplash"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#facetting",
@@ -1663,35 +1663,35 @@
     "href": "sessions/more_ggplot/slides.html#faceting",
     "title": "Mehr ggplot2!",
     "section": "Faceting",
-    "text": "Faceting\nAnordnen von einer einzelnen Variable in einem Raster:\n\n\nfacet_wrap()\n\nggplot(\n  data = gapminder_dat_trend,\n  mapping = aes(\n    x = time,\n    y = co2_pcap_cons,\n    color = country\n  )\n) +\n  geom_line(linewidth = 1.4) +\n  facet_wrap(vars(country), nrow = 4) +\n  theme_bg()\n\n\n\n\n\n\n\n\nfacet_grid\n\nggplot(\n  data = gapminder_dat_trend,\n  mapping = aes(\n    x = time,\n    y = co2_pcap_cons,\n    color = country\n  )\n) +\n  geom_line(linewidth = 1.4) +\n  facet_grid(country ~ .) +\n  theme_bg()"
+    "text": "Faceting\nAnordnen von einer einzelnen Variable in einem Raster:\n\n\nfacet_wrap()\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +\n  geom_point() +\n  facet_wrap(vars(char_name), nrow = 4) +\n  theme_bg()\n\n\n\n\n\n\n\n\nfacet_grid\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +\n  geom_point() +\n  facet_grid(char_name ~ .) +\n  theme_bg()"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#facetting---mehrere-variablen",
     "href": "sessions/more_ggplot/slides.html#facetting---mehrere-variablen",
     "title": "Mehr ggplot2!",
     "section": "Facetting - Mehrere Variablen",
-    "text": "Facetting - Mehrere Variablen\nAnordnen von mehreren Variable in einem Raster:\n\n\nfacet_wrap()\n\nggplot(\n  data = gapminder_dat_trend,\n  mapping = aes(\n    x = time,\n    y = co2_pcap_cons,\n    color = country\n  )\n) +\n  geom_point() +\n  geom_line() +\n  facet_wrap(vars(country, world_4region), nrow = 4) +\n  theme_bg()\n\n\n\n\n\n\n\n\nfacet_grid()\n\nggplot(\n  data = gapminder_dat_trend,\n  mapping = aes(\n    x = time,\n    y = co2_pcap_cons,\n    color = country\n  )\n) +\n  geom_line(linewidth = 1.4) +\n  facet_grid(country ~ world_4region) +\n  theme_bg()"
+    "text": "Facetting - Mehrere Variablen\nAnordnen von mehreren Variable in einem Raster:\n\n\nfacet_wrap()\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +\n  geom_point() +\n  facet_wrap(vars(char_name, uni_name), nrow = 4) +\n  theme_bg()\n\n\n\n\n\n\n\n\nfacet_grid()\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +\n  geom_point() +\n  facet_grid(char_name ~ uni_name) +\n  theme_bg()"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#facetting---tipps",
     "href": "sessions/more_ggplot/slides.html#facetting---tipps",
     "title": "Mehr ggplot2!",
     "section": "Facetting - Tipps",
-    "text": "Facetting - Tipps\nPlot alle Punkte\n\n\nbg &lt;- gapminder_dat_trend %&gt;%\n  mutate(country_bg = country) %&gt;%\n  select(-country)\n\nggplot(gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country, group = country)) +\n  # background lines: drawn in every facet, grouped by country_bg\n  geom_line(\n    data = bg,\n    aes(x = time, y = co2_pcap_cons, group = country_bg),\n    inherit.aes = FALSE,\n    color = \"grey70\",\n    alpha = 0.5,\n    linewidth = 0.4\n  ) +\n  # foreground points/lines for the focal country in each facet\n  geom_line(linewidth = 1.5) +\n  facet_wrap(vars(country)) +\n  guides(color = \"none\") +\n  theme_bg()"
+    "text": "Facetting - Tipps\nPlot alle Punkte\n\n\ndat_prepped_background &lt;- dat_prepped %&gt;% \n  mutate(char_name_bg = char_name) %&gt;%\n  select(-char_name)\n\nggplot(dat_prepped,  aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +\n  # background lines: drawn in every facet, grouped by country_bg\n  geom_point(\n    data = dat_prepped_background,\n    aes(x = question, y = avg_rating, group = char_name_bg),\n    inherit.aes = FALSE,\n    color = \"grey70\",\n    alpha = 0.5,\n    size = 0.4\n  ) +\n  geom_point() + \n  facet_wrap(vars(char_name)) +\n  guides(color = \"none\") +\n  theme_bg()"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#facetting---tipps-1",
     "href": "sessions/more_ggplot/slides.html#facetting---tipps-1",
     "title": "Mehr ggplot2!",
     "section": "Facetting - Tipps",
-    "text": "Facetting - Tipps\nPlot Mittelwerte\n\n\nggplot(\n  data = gapminder_dat_trend,\n  mapping = aes(\n    x = time,\n    y = co2_pcap_cons,\n    color = country\n  )\n) +\n  geom_line(linewidth = 1) +\n  geom_smooth(aes(group = income_groups), color = \"grey\") +\n  facet_wrap(vars(income_groups)) +\n  theme_bg()"
+    "text": "Facetting - Tipps\nPlot Mittelwerte\n\n\ndat_mean &lt;- dat_prepped %&gt;% \n  group_by(question) %&gt;%\n  summarise(avg_rating = mean(avg_rating))\n  \n\nggplot(dat_prepped,  aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +\n  # background lines: drawn in every facet, grouped by country_bg\n  geom_point(\n    data = dat_mean,\n    aes(x = question, y = avg_rating),\n    inherit.aes = FALSE,\n    color = \"grey70\",\n    size = 1\n  ) +\n  geom_point() + \n  facet_wrap(vars(char_name)) +\n  guides(color = \"none\") +\n  theme_bg()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStandardisierung könnte beim Vergleich zwischen den Fragen helfen - das kommt aber auf die finale Fragestellung an. Ist aber ein Punkt, den man zumindest im Hinterkopf behalten sollte."
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#sortieren",
     "href": "sessions/more_ggplot/slides.html#sortieren",
     "title": "Mehr ggplot2!",
     "section": "Sortieren",
-    "text": "Sortieren\nSortieren, läuft in ggplot2 generell über factor():\n\ngapminder_dat_trend$income_groups_fac &lt;- factor(gapminder_dat_trend$income_groups,\n  levels = c(\"lower_middle_income\", \"upper_middle_income\", \"high_income\")\n)\n\n\n\nggplot(\n  data = gapminder_dat_trend,\n  mapping = aes(\n    x = time,\n    y = co2_pcap_cons,\n    color = country\n  )\n) +\n  geom_line(linewidth = 1) +\n  geom_smooth(aes(group = income_groups), color = \"grey\") +\n  facet_wrap(vars(income_groups_fac)) +\n  theme_bg()"
+    "text": "Sortieren\nSortieren, läuft in ggplot2 generell über factor(). Manchmal kann es hilfreich sein, sich eine eigene ID-Variable zum Sortieren zu erstellen\n\ndat_prepped$uni_name_fac &lt;- factor(dat_prepped$uni_name, levels = c(\"How I Met Your Mother\", \"Friends\"))\n\n\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +\n  geom_point() +\n  facet_wrap(vars(uni_name_fac), nrow = 4) +\n  theme_bg()"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#legenden",
@@ -1705,14 +1705,14 @@
     "href": "sessions/more_ggplot/slides.html#section-1",
     "title": "Mehr ggplot2!",
     "section": "",
-    "text": "Jede aesthetic im Plot ist mit genau einer scale verbunden:\n\n\nImplizite Definition\n\nggplot(\n  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +\n  geom_line()\n\n\n\n\n\n\n\n\nWird intern zu:\n\nggplot(\n  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +\n  geom_line() +\n  scale_x_continuous() + \n  scale_y_continuous() + \n  scale_colour_discrete()\n\n\n\n\n\n\n\n\n\n\ntime und co2_pcacp_cons sind beide kontinuierliche Variablen: scale_x_continuous(), scale_x_continuous()\n\n\ncountry ist diskret: scale_colour_discrete()\n\n\nDas können wir uns zunutze machen, um manuell Scales zu definieren."
+    "text": "Jede aesthetic im Plot ist mit genau einer scale verbunden:\n\n\nImplizite Definition\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +\n  geom_point() \n\n\n\n\n\n\n\n\nWird intern zu:\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +\n  geom_point() +\n  scale_x_discrete() + \n  scale_y_continuous() + \n  scale_colour_discrete() +\n  scale_shape_discrete()\n\n\n\n\n\n\n\n\n\n\ntime und co2_pcacp_cons sind beide kontinuierliche Variablen: scale_x_continuous(), scale_x_continuous()\n\n\ncountry ist diskret: scale_colour_discrete()\n\n\nDas können wir uns zunutze machen, um manuell Scales zu definieren."
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#section-2",
     "href": "sessions/more_ggplot/slides.html#section-2",
     "title": "Mehr ggplot2!",
     "section": "",
-    "text": "ggplot(\n  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +\n  geom_line() +\n  scale_x_continuous(name = \"Jahr\") + \n  scale_y_continuous(name = \"CO2 Verbrauch pro Kopf\") + \n  scale_colour_discrete(name = \"Länder\")\n\n\n\n\n\n\n\n\nIn der Praxis würden wir dafür labs(x = \"Jahr\", y = \"CO2 Verbrauch pro Kopf\", color = \"Länder\") nutzen. Wir sehen so aber, dass Achsen- und Legendentitel jeweils Skalennamen sind."
+    "text": "ggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +\n  geom_point() +\n  scale_x_discrete(name = \"Eigenschaft\") + \n  scale_y_continuous(\"Mittleres Rating\") + \n  scale_colour_discrete(\"Character\") +\n  scale_shape_discrete(name = \"Serie\")\n\n\n\n\n\n\n\n\nIn der Praxis würden wir dafür labs(x = \"Jahr\", y = \"CO2 Verbrauch pro Kopf\", color = \"Länder\", shape = \"Serie\") nutzen. Wir sehen so aber, dass Achsen- und Legendentitel jeweils Skalennamen sind."
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#übung-1",
@@ -1754,7 +1754,7 @@
     "href": "sessions/more_ggplot/slides.html#section-3",
     "title": "Mehr ggplot2!",
     "section": "",
-    "text": "ggplot(\n  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +\n  geom_line() +\n  scale_x_continuous(name = \"Jahr\") + \n  scale_y_log10(name = \"CO2 Verbrauch pro Kopf\") +\n  scale_colour_discrete(name = \"Länder\")\n\n\n\n\n\n\n\n\nEine Übersicht über die möglichen Skalentypen findet sich [hier])https://ggplot2tor.com/scales/)."
+    "text": "ggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = avg_rating, shape = uni_name_fac)) +\n  geom_point() +\n  scale_y_log10(name = \"Mittleren Rating log\") +\n  scale_colour_continuous()\n\n\n\n\n\n\n\n\nEine Übersicht über die möglichen Skalentypen findet sich [hier])https://ggplot2tor.com/scales/)."
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#einige-anwendungsfälle",
@@ -1768,7 +1768,7 @@
     "href": "sessions/more_ggplot/slides.html#scale-guides",
     "title": "Mehr ggplot2!",
     "section": "Scale Guides",
-    "text": "Scale Guides\nJede Skala (und damit jede Aesthetic) bekommt einen Guide zugeordnet. Intern passiert das über guides(). Wir können guides() also nutzen, um die Legende zu manipulieren:\n\nggplot(\n  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +\n  geom_line() +\n  scale_x_continuous(name = \"Jahr\") + \n  scale_y_log10(name = \"CO2 Verbrauch pro Kopf\") +\n  scale_colour_discrete(name = \"Länder\") +\n  guides(color = guide_legend(title = \"Staaten\", ncol = 3, reverse = TRUE, override.aes = list(linewidth = 3)))\n\n\nMögliche guide-Funktionen\n\n\n\nguide_colourbar()\nguide_coloursteps()\nguide_axis()\n\n\n\nguide_legend()\nguide_bins()"
+    "text": "Scale Guides\nJede Skala (und damit jede Aesthetic) bekommt einen Guide zugeordnet. Intern passiert das über guides(). Wir können guides() also nutzen, um die Legende zu manipulieren:\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +\n  geom_point() +\n  guides(color = guide_legend(title = \"Charaktere\", ncol = 3, reverse = TRUE, override.aes = list(size = 3)))"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#themes",
@@ -1790,5 +1790,40 @@
     "title": "Mehr ggplot2!",
     "section": "Legenden mergen",
     "text": "Legenden mergen"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#datensatz",
+    "href": "sessions/more_ggplot/slides.html#datensatz",
+    "title": "Mehr ggplot2!",
+    "section": "Datensatz",
+    "text": "Datensatz\n\n# ## Keep in mind!\n# ## Eventuell für die Übung? \n# tuesdata &lt;- tidytuesdayR::tt_load('2025-08-26')\n# tuesdata$billboard %&gt;% \n#   filter(song == \"Love the Way You Lie\") %&gt;% \n#   select(danceability, energy, happiness)\n# \n# \n# ## Netflix\n# tuesdata &lt;- tidytuesdayR::tt_load('2025-07-29')\n# \n# ## Gutenberg project\n# tuesdata &lt;- tidytuesdayR::tt_load('2025-06-03')\n\n\ncharacters &lt;- tidytuesdayR::tt_load('2022-08-16')"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#charaktereigenschaften-in-himym",
+    "href": "sessions/more_ggplot/slides.html#charaktereigenschaften-in-himym",
+    "title": "Mehr ggplot2!",
+    "section": "Charaktereigenschaften in HIMYM",
+    "text": "Charaktereigenschaften in HIMYM\n\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +\n  geom_point()\n\n\n\n\n\n\n\n\nWir vergleichen jetzt einige Charaktereigenschaften in HIMYM und Friends. Gerade noch etwas schwierig. Lösung: Faceting"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#anwendungsfälle-farben",
+    "href": "sessions/more_ggplot/slides.html#anwendungsfälle-farben",
+    "title": "Mehr ggplot2!",
+    "section": "Anwendungsfälle: Farben",
+    "text": "Anwendungsfälle: Farben\n\nFarben\nOft macht es Sinn, die Farben direkt über einen named vector zu definieren. Dadurch wird jedem Element in der color-variable genau die gewünschte Farbe zugeordnetÖ\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +\n  geom_point(size = 3) +\n  scale_shape_manual(values = c(\"Friends\" = 12, \"How I Met Your Mother\" = 18)) +\n  scale_colour_manual(values = c(\"Ted Mosby\" = \"blue\", \n                                   \"Robin Scherbatsky\" = \"red\", \n                                   \"Barney Stinson\" = \"green\", \n                                   \"Lily Aldrin\" = \"purple\", \n                                   \"Marshall Eriksen\" = \"orange\", \n                                   \"Rachel Green\" = \"pink\", \n                                   \"Monica Geller\" = \"brown\", \n                                   \"Phoebe Buffay\" = \"yellow\", \n                                   \"Joey Tribbiani\" = \"cyan\"))\n\n\n\n\n\n\n\n\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +\n  geom_point() +\n  scale_colour_brewer(palette = \"Set3\")\n\n\n\n\n\n\n\n:::"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#anwendungsfälle-skalen-ticks",
+    "href": "sessions/more_ggplot/slides.html#anwendungsfälle-skalen-ticks",
+    "title": "Mehr ggplot2!",
+    "section": "Anwendungsfälle: Skalen-Ticks",
+    "text": "Anwendungsfälle: Skalen-Ticks\n\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +\n  geom_point() +\n  scale_y_continuous(name = \"Mittleres Rating\", breaks = seq(0, 100, by = 10), limits = c(0, 100))"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#mögliche-guide-funktionen",
+    "href": "sessions/more_ggplot/slides.html#mögliche-guide-funktionen",
+    "title": "Mehr ggplot2!",
+    "section": "Mögliche guide-Funktionen",
+    "text": "Mögliche guide-Funktionen\n: ::: {.columns}\n\n\nguide_colourbar()\nguide_coloursteps()\nguide_axis()\nguide_legend()\nguide_bins()\n\n\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +\n  geom_point() +\n  guides(x = guide_axis(angle = 90))\n\n\n\n\n\n\n\n:::"
   }
 ]

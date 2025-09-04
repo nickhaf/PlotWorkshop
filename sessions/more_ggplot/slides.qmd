@@ -59,11 +59,6 @@ dat_prepped <-  dat_merged %>%
 ## Eventuell inside standardisieren, um spezifische Abweichung zu zeigen? 
 ```
 
-
-
-
-
-
 ::: image-ref
 Foto von <a href="https://unsplash.com/de/@lgtts?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Ilse Orsel</a> auf <a href="https://unsplash.com/de/fotos/rot-weisses-unks-cafe-fwPHQB4kGzA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 :::
@@ -166,23 +161,22 @@ Plot alle Punkte
 ```{r}
 #| output-location: column
 
-bg <- gapminder_dat_trend %>%
-  mutate(country_bg = country) %>%
-  select(-country)
+dat_prepped_background <- dat_prepped %>% 
+  mutate(char_name_bg = char_name) %>%
+  select(-char_name)
 
-ggplot(gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country, group = country)) +
+ggplot(dat_prepped,  aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
   # background lines: drawn in every facet, grouped by country_bg
-  geom_line(
-    data = bg,
-    aes(x = time, y = co2_pcap_cons, group = country_bg),
+  geom_point(
+    data = dat_prepped_background,
+    aes(x = question, y = avg_rating, group = char_name_bg),
     inherit.aes = FALSE,
     color = "grey70",
     alpha = 0.5,
-    linewidth = 0.4
+    size = 0.4
   ) +
-  # foreground points/lines for the focal country in each facet
-  geom_line(linewidth = 1.5) +
-  facet_wrap(vars(country)) +
+  geom_point() + 
+  facet_wrap(vars(char_name)) +
   guides(color = "none") +
   theme_bg()
 ```
@@ -194,45 +188,51 @@ Plot Mittelwerte
 ```{r}
 #| output-location: column
 
-ggplot(
-  data = gapminder_dat_trend,
-  mapping = aes(
-    x = time,
-    y = co2_pcap_cons,
-    color = country
-  )
-) +
-  geom_line(linewidth = 1) +
-  geom_smooth(aes(group = income_groups), color = "grey") +
-  facet_wrap(vars(income_groups)) +
+dat_mean <- dat_prepped %>% 
+  group_by(question) %>%
+  summarise(avg_rating = mean(avg_rating))
+  
+
+ggplot(dat_prepped,  aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  # background lines: drawn in every facet, grouped by country_bg
+  geom_point(
+    data = dat_mean,
+    aes(x = question, y = avg_rating),
+    inherit.aes = FALSE,
+    color = "grey70",
+    size = 1
+  ) +
+  geom_point() + 
+  facet_wrap(vars(char_name)) +
+  guides(color = "none") +
   theme_bg()
+
 ```
 
+:::{.callout-warning}
+Standardisierung könnte beim Vergleich zwischen den Fragen helfen - das kommt aber auf die finale Fragestellung an. 
+Ist aber ein Punkt, den man zumindest im Hinterkopf behalten sollte.
+:::
+
 ## Sortieren
-Sortieren, läuft in ggplot2 generell über `factor()`:
+Sortieren, läuft in ggplot2 generell über `factor()`. 
+Manchmal kann es hilfreich sein, sich eine eigene ID-Variable zum Sortieren zu erstellen
 
 
 ```{r}
-gapminder_dat_trend$income_groups_fac <- factor(gapminder_dat_trend$income_groups,
-  levels = c("lower_middle_income", "upper_middle_income", "high_income")
-)
+
+dat_prepped$uni_name_fac <- factor(dat_prepped$uni_name, levels = c("How I Met Your Mother", "Friends"))
+
 ```
 
 
 ```{r}
 #| output-location: column
 
-ggplot(
-  data = gapminder_dat_trend,
-  mapping = aes(
-    x = time,
-    y = co2_pcap_cons,
-    color = country
-  )
-) +
-  geom_line(linewidth = 1) +
-  geom_smooth(aes(group = income_groups), color = "grey") +
-  facet_wrap(vars(income_groups_fac)) +
+ggplot(data = dat_prepped, 
+        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +
+  geom_point() +
+  facet_wrap(vars(uni_name_fac), nrow = 4) +
   theme_bg()
 ```
 
@@ -270,21 +270,22 @@ Jede aesthetic im Plot ist mit genau einer scale verbunden:
 ### Implizite Definition
 
 ```{r}
-ggplot(
-  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +
-  geom_line()
+ggplot(data = dat_prepped, 
+        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +
+  geom_point() 
 ```
 :::
 :::{.column width="50%"}
 ### Wird intern zu: 
 
 ```{r}
-ggplot(
-  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +
-  geom_line() +
-  scale_x_continuous() + 
+ggplot(data = dat_prepped, 
+        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +
+  geom_point() +
+  scale_x_discrete() + 
   scale_y_continuous() + 
-  scale_colour_discrete()
+  scale_colour_discrete() +
+  scale_shape_discrete()
 ```
 :::
 :::
@@ -297,27 +298,28 @@ Das können wir uns zunutze machen, um manuell Scales zu definieren.
 
 ## 
 ```{r}
-ggplot(
-  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +
-  geom_line() +
-  scale_x_continuous(name = "Jahr") + 
-  scale_y_continuous(name = "CO2 Verbrauch pro Kopf") + 
-  scale_colour_discrete(name = "Länder")
+ggplot(data = dat_prepped, 
+        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +
+  geom_point() +
+  scale_x_discrete(name = "Eigenschaft") + 
+  scale_y_continuous("Mittleres Rating") + 
+  scale_colour_discrete("Character") +
+  scale_shape_discrete(name = "Serie")
 ```
 
 :::{.callout-warning}
-In der Praxis würden wir dafür `labs(x = "Jahr", y = "CO2 Verbrauch pro Kopf", color = "Länder")` nutzen. Wir sehen so aber, dass Achsen- und Legendentitel jeweils Skalennamen sind.  
+In der Praxis würden wir dafür `labs(x = "Jahr", y = "CO2 Verbrauch pro Kopf", color = "Länder", shape = "Serie")` nutzen. 
+Wir sehen so aber, dass Achsen- und Legendentitel jeweils Skalennamen sind.  
 :::
 
 ##
 
 ```{r}
-ggplot(
-  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +
-  geom_line() +
-  scale_x_continuous(name = "Jahr") + 
-  scale_y_log10(name = "CO2 Verbrauch pro Kopf") +
-  scale_colour_discrete(name = "Länder")
+ggplot(data = dat_prepped, 
+        mapping = aes(x = question, y = avg_rating, colour = avg_rating, shape = uni_name_fac)) +
+  geom_point() +
+  scale_y_log10(name = "Mittleren Rating log") +
+  scale_colour_continuous()
 ```
 
 
@@ -327,40 +329,58 @@ Eine Übersicht über die möglichen Skalentypen findet sich [hier])https://ggpl
 :::
 
 
-## Einige Anwendungsfälle
+## Anwendungsfälle: Farben
 
 
 :::{.columns}
 
 ### Farben
 
+Oft macht es Sinn, die Farben direkt über einen named vector zu definieren. 
+Dadurch wird jedem Element in der color-variable genau die gewünschte Farbe zugeordnetÖ 
+
 
 ```{r}
-ggplot(
-  data = gapminder_dat_trend, 
-  aes(x = time, y = co2_pcap_cons, color = country)) +
-  geom_line() +
-  scale_colour_manual(values = c("deu" = "black", "usa" = "blue", "chn" = "red", "ind" = "orange", "bra" = "green", "zaf" = "purple", "rus" = "brown", "egy" = "yellow", "aus" = "pink", "mex" = "cyan", "jpn" = "grey"), name = "Länder")
+ggplot(data = dat_prepped, 
+        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +
+  geom_point(size = 3) +
+  scale_shape_manual(values = c("Friends" = 12, "How I Met Your Mother" = 18)) +
+  scale_colour_manual(values = c("Ted Mosby" = "blue", 
+                                   "Robin Scherbatsky" = "red", 
+                                   "Barney Stinson" = "green", 
+                                   "Lily Aldrin" = "purple", 
+                                   "Marshall Eriksen" = "orange", 
+                                   "Rachel Green" = "pink", 
+                                   "Monica Geller" = "brown", 
+                                   "Phoebe Buffay" = "yellow", 
+                                   "Joey Tribbiani" = "cyan"))
 ```
 
 :::
 
 :::{.column width="50%}
+```{r}
+ggplot(data = dat_prepped, 
+        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +
+  geom_point() +
+  scale_colour_brewer(palette = "Set3")
+```
+:::
+:::
 
-### Skalen-Ticks
+
+
+## Anwendungsfälle: Skalen-Ticks
 
 ```{r}
-ggplot(
-  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +
-  geom_line() +
-  scale_x_continuous(name = "Jahr") + 
-  scale_y_log10(name = "CO2 Verbrauch pro Kopf") +
-  scale_colour_discrete(name = "Länder")
+#| output-location: column
+
+ggplot(data = dat_prepped, 
+        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +
+  geom_point() +
+  scale_y_continuous(name = "Mittleres Rating", breaks = seq(0, 100, by = 10), limits = c(0, 100))
 ```
 
-
-:::
-:::
 
 
 ## Scale Guides
@@ -370,67 +390,39 @@ Intern passiert das über `guides()`. Wir können `guides()` also nutzen, um die
 
 
 ```{r}
-ggplot(
-  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +
-  geom_line() +
-  scale_x_continuous(name = "Jahr") + 
-  scale_y_log10(name = "CO2 Verbrauch pro Kopf") +
-  scale_colour_discrete(name = "Länder") +
-  guides(color = guide_legend(title = "Staaten", ncol = 3, reverse = TRUE, override.aes = list(linewidth = 3)))
+ggplot(data = dat_prepped, 
+        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +
+  geom_point() +
+  guides(color = guide_legend(title = "Charaktere", ncol = 3, reverse = TRUE, override.aes = list(size = 3)))
 
 ```
 
-#### Mögliche guide-Funktionen
+## Mögliche guide-Funktionen
 
+:
 ::: {.columns}
 
 :::{.column width="50%"}
 - `guide_colourbar()`
 - `guide_coloursteps()`
 - `guide_axis()`
-::: 
-:::{.column width="50%"}
 - `guide_legend()`
 - `guide_bins()`
-:::
-:::
+::: 
+:::{.column width="50%"}
 
-
-##
-
-
-::: {.column}
-::: {.column width = "50%}
-
-```{r}
-ggplot(
-  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +
-  geom_line() +
-  scale_x_continuous(name = "Jahr") + 
-  scale_y_log10(name = "CO2 Verbrauch pro Kopf") +
-  scale_colour_discrete(name = "Länder") +
-  guides(x = guide_axis(angle = 90))
-
-```
-
-
-:::
-::: {.column width="50%"}
 
 ```{r}
 #| code-line-numbers: "4"
 
-ggplot(
-  data = gapminder_dat_trend, aes(x = time, y = co2_pcap_cons, color = country)) +
-  geom_line() +
-  scale_x_continuous(name = "Jahr", guide = guide_axis(angle = 90))
+ggplot(data = dat_prepped, 
+        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +
+  geom_point() +
+  guides(x = guide_axis(angle = 90))
 ```
+
 :::
 :::
-
-
-## Legenden mergen
-
 
 
 ## Themes
