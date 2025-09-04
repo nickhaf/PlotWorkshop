@@ -494,6 +494,10 @@ Winkel sind oft nicht so einfach zu interpretieren.
 Nichtsdestotrotz kann es gerade zur Gestaltung nett sein!
 :::
 
+## Realistischer Anwendunge
+- Zeitreihen
+- Strecken
+
 ## Labels
 
 # Let's bring it together: Spider-Chat
@@ -531,6 +535,8 @@ ggplot(dat_prepped,
 Dafür erzeuge ich eine eigene Variable
 
 ```{r}
+#| output-location: column
+
 dat_prepped2 <- dat_prepped %>% 
   mutate(facet_id = case_when(
     char_name %in% c("Barney Stinson", "Joey Tribbiani") ~ "Barney & Joey",
@@ -544,35 +550,42 @@ dat_prepped2 <- dat_prepped %>%
 ggplot(dat_prepped2, 
        aes(x=question, y=avg_rating, group=char_name, color = uni_name)) +
   geom_point() +
-  facet_wrap(vars(facet_id), ncol=4)
+  facet_wrap(vars(facet_id), ncol=4) +
+  ylim(0, 100)
 
 ```
 
 ##
 
 ```{r}
-# traits <- c("doer/thinker", "jock/nerd", "cold/warm", "main character/side character", "crazy/sane")
-# line<-data.frame(x=rep(traits,2),y=c(rep(0, length(traits)),rep(100, length(traits))))
+#| output-location: column
 
-
-ggplot(dat_prepped %>% filter(char_name == "Barney Stinson") %>% arrange(question), aes(y=avg_rating, x=question, group=char_name))+
-  geom_polygon(fill="#44C7EA", color="#44C7EA", alpha=0.35)+
-  geom_point(color="#44C7EA", size=3) +
-  #geom_line(data=line, mapping=aes(x=x,y=y, group=x), color="white",alpha=0.5) +
-  # geom_point(inherit.aes=FALSE, data=data.frame(x=traits, y=rep(100,length(traits))),
-  #            mapping=aes(x=x, y=y),
-  #            shape=21, fill="#1D3540", color="white", size=3)+
- # geom_image(aes(x=1, y=-40,image=image), size=0.18)+
-  # geom_richtext(aes(label=label, y=130),label.color = NA, fill=NA, family="teko")+
-  # facet_wrap(~character, ncol=4)+
-  scale_y_continuous(limits=c(-40,130), breaks=c(0,20,40,60,80,100)) +
-  coord_polar() +
-  NULL
+ggplot(dat_prepped2, 
+       aes(x=question, y=avg_rating, group=char_name, color = uni_name)) +
+  geom_point() +
+  facet_wrap(vars(facet_id), ncol=4) +
+  ylim(0, 100) +
+  coord_polar()
 ```
 
 
 
+##
 
+```{r}
+#| output-location: column
+
+ggplot(dat_prepped2, 
+       aes(x=question, y=avg_rating, group=char_name, color = uni_name)) +
+  geom_point() +
+  geom_polygon(alpha = 0.5) +
+  facet_wrap(vars(facet_id), ncol=4) +
+  ylim(0, 100) +
+  coord_polar()
+```
+
+
+## 
 
 ## 
 
@@ -654,6 +667,146 @@ coord_radar <- function (theta = "x", start = 0, direction = 1) {
 }
 
 ```
+
+```{r}
+#| output-location: column
+dat_prepped3 <- arrange(dat_prepped2, question)
+
+ggplot(dat_prepped3, 
+       aes(x=question, y=avg_rating, group=char_name, color = uni_name, fill = char_name)) +
+  geom_point() +
+  geom_polygon(alpha = 0.5) +
+  facet_wrap(vars(facet_id), ncol=4) +
+  ylim(0, 100) +
+  coord_radar()
+```
+
+
+##
+
+https://de.pinterest.com/pin/friends-colors--2955556002181108/
+
+```{r}
+#| output-location: column
+
+ggplot(dat_prepped3, 
+       aes(x=question, y=avg_rating, group=char_name, color = uni_name, fill = uni_name)) +
+  geom_point() +
+  geom_polygon(alpha = 0.1) +
+  facet_wrap(vars(facet_id), ncol=4) +
+  ylim(0, 100) +
+  coord_radar() +
+  scale_fill_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
+  scale_color_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
+  theme_bg()
+```
+
+##
+
+```{r}
+#| output-location: column
+
+ggplot(dat_prepped3, 
+       aes(x=question, y=avg_rating, group=char_name, color = uni_name, fill = uni_name)) +
+  geom_point() +
+  geom_polygon(alpha = 0.1) +
+  facet_wrap(vars(facet_id), ncol=4) +
+  ylim(0, 100) +
+  coord_radar() +
+  scale_fill_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
+  scale_color_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
+  theme_bg() +
+  labs(title = "The one where Ross and Ted meet")
+```
+
+
+
+##
+
+```{r}
+#| output-location: column
+
+library(ggimage)
+
+dat_prepped3 <- dat_prepped3 %>% 
+  mutate(image_x = ifelse(uni_name == "Friends", -1, 1), 
+         image_x_coord = ifelse(uni_name == "Friends", "doer/thinker", "crazy/sane"))
+
+ggplot(dat_prepped3, 
+       aes(x=question, y=avg_rating, group=char_name, color = uni_name, fill = uni_name)) +
+  geom_point() +
+  geom_polygon(alpha = 0.1) +
+  facet_wrap(vars(facet_id), ncol=4) +
+  ylim(0, 100) +
+  coord_radar() +
+  scale_fill_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
+  scale_color_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
+  theme_bg() +
+  labs(title = "The one where Everyone meets") +
+  geom_image(aes(x = image_x_coord, y = 100, image = image_link), 
+             nudge_x = c(0.5, -0.5), 
+             size=0.1, inherit.aes = FALSE,   asp = 1,
+  mask = "circle") +
+  NULL
+```
+
+
+##
+
+Precut the images
+
+```{r}
+#| output-location: column
+
+library(ggimage)
+
+dat_prepped3 <- dat_prepped3 %>% 
+  mutate(image_x = ifelse(uni_name == "Friends", -1, 1), 
+         image_x_coord = ifelse(uni_name == "Friends", "doer/thinker", "crazy/sane"))
+
+ggplot(dat_prepped3, 
+       aes(x=question, y=avg_rating, group=char_name, color = uni_name, fill = uni_name)) +
+  geom_point() +
+  geom_polygon(alpha = 0.1) +
+  facet_wrap(vars(facet_id), ncol=4) +
+  ylim(0, 100) +
+  coord_radar() +
+  scale_fill_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
+  scale_color_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
+  theme_bg() +
+  labs(title = "The one where Everyone meets") +
+  geom_image(aes(x = image_x_coord, y = 100, image = image_link), 
+             nudge_x = c(0.5, -0.5), 
+             size=0.1, inherit.aes = FALSE,   asp = 1,
+  mask = "circle") +
+  NULL
+```
+## 
+
+
+```{r}
+# traits <- c("doer/thinker", "jock/nerd", "cold/warm", "main character/side character", "crazy/sane")
+# line<-data.frame(x=rep(traits,2),y=c(rep(0, length(traits)),rep(100, length(traits))))
+
+
+ggplot(dat_prepped %>% filter(char_name == "Barney Stinson") %>% arrange(question), aes(y=avg_rating, x=question, group=char_name))+
+  geom_polygon(fill="#44C7EA", color="#44C7EA", alpha=0.35)+
+  geom_point(color="#44C7EA", size=3) +
+  #geom_line(data=line, mapping=aes(x=x,y=y, group=x), color="white",alpha=0.5) +
+  # geom_point(inherit.aes=FALSE, data=data.frame(x=traits, y=rep(100,length(traits))),
+  #            mapping=aes(x=x, y=y),
+  #            shape=21, fill="#1D3540", color="white", size=3)+
+ # geom_image(aes(x=1, y=-40,image=image), size=0.18)+
+  # geom_richtext(aes(label=label, y=130),label.color = NA, fill=NA, family="teko")+
+  # facet_wrap(~character, ncol=4)+
+  scale_y_continuous(limits=c(-40,130), breaks=c(0,20,40,60,80,100)) +
+  coord_radar() +
+  NULL
+```
+
+
+## Patchwork
+- One big plot, four small ones
 
 ## Abspeichern
 Vektor vs Raster (Rolfs 7)
