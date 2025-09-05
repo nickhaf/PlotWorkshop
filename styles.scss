@@ -165,3 +165,105 @@ h1, h2, h3, h4 {
   background-color: #f8f8f8; /* Optional: background color */
 }
 
+.plot-steckbrief {
+  --pb-bg: #fff;
+  --pb-text: #0f172a;
+  --pb-accent: #053625; /* dein Dunkelgrün */
+  --pb-pill-bg: #e6f2ee;
+  --pb-radius: 12px;
+
+  background: var(--pb-bg);
+  color: var(--pb-text);
+  border: 2px solid var(--pb-accent);
+  border-radius: var(--pb-radius);
+  padding: .9rem 1rem;
+  box-shadow: 0 4px 14px rgba(0,0,0,.06);
+  max-width: 34rem;
+
+  .plot-steckbrief__title {
+    margin: 0 0 .5rem 0;
+    font-weight: 800;
+    color: var(--pb-accent);
+    line-height: 1.2;
+  }
+
+  dl {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    gap: .35rem .75rem;
+    margin: 0 0 .5rem 0;
+  }
+
+  dt {
+    margin: 0;
+    font-weight: 700;
+    color: var(--pb-accent);
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    font-size: .85rem;
+    white-space: nowrap;
+  }
+
+  dd {
+    margin: 0;
+  }
+
+  /* Tags/Pills für kurze Stichpunkte */
+  .plot-steckbrief__tags {
+    display: flex; flex-wrap: wrap; gap: .35rem;
+    margin: .25rem 0 0 0; padding: 0; list-style: none;
+  }
+  .plot-steckbrief__tag {
+    background: var(--pb-pill-bg);
+    border: 1px solid var(--pb-accent);
+    padding: .15rem .5rem;
+    border-radius: 999px;
+    font-size: .85rem;
+    font-weight: 600;
+  }
+
+  /* kompakter Modus */
+  &--compact { font-size: .92rem; padding: .7rem .85rem; }
+  /* dunkler Modus (für dunkle Slides) */
+  &.is-dark {
+    --pb-bg: #053625; --pb-text: #fff; --pb-pill-bg: rgba(255,255,255,.08);
+    border-color: #36d1ab;
+    .plot-steckbrief__title, dt { color: #36d1ab; }
+  }
+}
+
+
+.steckbrief {
+    border: 2px solid $theme-highlight;
+    font-family: 'Roboto Condensed', san-serif;
+    font-size: 0.75em;
+    padding: 0.5em 0.5em;
+    background-color: $theme-darkblue;
+    color: $theme-timberwolf;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 1rem 0 rgba(248, 248, 248, .5);
+    border-radius: 5px;
+    height: 450px;
+    min-height: 450px;
+    max-height: 450px;
+    overflow: auto;
+    
+}
+
+.tag {
+  --tag-bg: #e6f2ee;
+  --tag-border: $theme-highlight;
+
+  display: inline-block;        
+  padding: 0.5em 0.5em;
+  border: 1px solid var(--tag-border);
+  border-radius: 6px;             /* nur leicht gerundet */
+  background: var(--tag-bg);
+  color: $theme-darkblue;
+
+  font-weight: 600;
+  font-size: .75em;               /* kleiner */
+  white-space: nowrap;
+  vertical-align: baseline;
+}
+

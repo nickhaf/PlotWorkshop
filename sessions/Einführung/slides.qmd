@@ -431,7 +431,7 @@ https://allisonhorst.com/r-packages-functions
 
 
 :::{.columns}
-:::{.column width = "50%}
+:::{.column width = "50%"}
 ```{r}
 gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
 ```
@@ -449,27 +449,165 @@ gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
 Bild von [Amazon][(https://m.media-amazon.com/images/I/71KH-wJcv3L.jpg). 
 :::
 
-## Scatterplot
-```{r}
-gapminder_2024 <- gapminder %>% 
-  filter(time == 2024)
 
-ggplot(data = gapminder, aes(x = , y = lex, color = world_6region)) +
-  geom_point() +
+
+## Scatterplot
+
+::: {.panel-tabset}
+
+### Plot
+```{r}
+#| label: example-scatter
+#| fig-width: 14
+#| fig-height: 7
+#| echo: false
+
+gapminder_2019 <- gapminder %>% 
+  filter(time == 2019) 
+
+p_scatter <- ggplot(data = gapminder_2019, aes(x = demox_eiu, y = gini, color = world_6region)) +
+  geom_point(size = 3) +
   theme_bg()
+
+p_scatter
 
 ```
 
+### Code
 
-- Co2 with grey scale
-- greens with green scale
+```{r}
+#| label: example-scatter
+#| eval: false
+```
+
+
+:::
+
+## Scatterplot
+::: {.columns}
+:::{.column width = "50%"}
+
+:::{.steckbrief}
+[Datentyp]{.highlight}  Numerisch
+
+[Achtung]{.highlight} Overplotting
+
+
+:::
+
+:::{.tag}
+[Link test](https://quarto.org/docs/reference/formats/html.html)
+:::
+
+:::
+:::{.column width = "50%"}
+```{r}
+#| echo: false
+
+p_scatter
+
+```
+:::
+:::
+
 
 
 ## Barplot
+::: {.panel-tabset}
+
+### Plot
+```{r}
+#| label: example-bar
+#| fig-width: 14
+#| fig-height: 7
+#| echo: false
+
+gapminder_2019_bar <- gapminder_2019 %>% 
+  filter(world_6region == "europe_central_asia") %>% 
+drop_na(unicode_region_subtag, gini)
+
+p_bar <- ggplot(data = gapminder_2019_bar, aes(x = reorder(unicode_region_subtag, gini), y = gini)) +
+  geom_bar(stat = "identity", color = "black", fill = "#F4BA02") +
+  theme_bg()
+
+p_bar
+
+```
+
+### Code
+
+```{r}
+#| label: example-bar
+#| eval: false
+```
+
+
+:::
+
+## Barplot
+::: {.columns}
+:::{.column width = "50%"}
+
+:::{.steckbrief}
+[Datentyp]{.highlight}  
+
+[Achtung]{.highlight} 
+
+:::
+
 
 ## Histogram
 
 ## Lineplot
+
+::: {.panel-tabset}
+
+### Plot
+```{r}
+#| label: example-line
+#| fig-width: 14
+#| fig-height: 7
+#| echo: false
+
+gapminder_line <- gapminder %>% 
+  filter(country %in% c("deu"), time >=1900, time <= 2024) %>% 
+  drop_na(gini)
+
+p_line <- ggplot(data = gapminder_line, aes(x = time, y = gini, color = country)) +
+geom_line() +  
+theme_bg() +
+labs(title = "Ungleichheit in Deutschland On the Rise", 
+     subtitle = "Gini-Koeffizient von 1900 bis 2024",
+     x = "Jahr",
+     y = "Gini-Koeffizient")
+
+p_line
+
+```
+
+### Code
+
+```{r}
+#| label: example-line
+#| eval: false
+```
+
+
+:::
+
+
+## Lineplot
+::: {.columns}
+:::{.column width = "50%"}
+
+:::{.steckbrief}
+[Datentyp]{.highlight}  
+
+[Gut für]{.highlight} Zeitreihen
+
+[Achtung]{.highlight} 
+
+:::
 
 ## Boxplot
 
@@ -478,7 +616,8 @@ ggplot(data = gapminder, aes(x = , y = lex, color = world_6region)) +
 ## Spider-Chart
 
 ## Kombiniert
-
+- Co2 with grey scale
+- greens with green scale
 
 # Plotly
 
