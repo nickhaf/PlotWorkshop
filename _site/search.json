@@ -2069,7 +2069,7 @@
     "href": "sessions/Einführung/slides.html#scatterplot",
     "title": "Einführung",
     "section": "Scatterplot",
-    "text": "Scatterplot\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2019 &lt;- gapminder %&gt;% \n  filter(time == 2019\n)\n\np_scatter &lt;- ggplot(data = gapminder_2019, aes(x = demox_eiu, y = gini, color = world_6region)) +\n  geom_point(size = 3) +\n  theme_bg()\n\np_scatter"
+    "text": "Scatterplot\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2019 &lt;- gapminder %&gt;% \n  filter(time == 2019) \n\np_scatter &lt;- ggplot(data = gapminder_2019, aes(x = demox_eiu, y = gini, color = world_6region)) +\n  geom_point(size = 3) +\n  theme_bg()\n\np_scatter"
   },
   {
     "objectID": "sessions/Einführung/slides.html#scatterplot-1",
@@ -2083,7 +2083,7 @@
     "href": "sessions/Einführung/slides.html#barplot",
     "title": "Einführung",
     "section": "Barplot",
-    "text": "Barplot"
+    "text": "Barplot\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2019_bar &lt;- gapminder_2019 %&gt;% \n  filter(world_6region == \"europe_central_asia\") %&gt;% \ndrop_na(unicode_region_subtag, gini)\n\np_bar &lt;- ggplot(data = gapminder_2019_bar, aes(x = reorder(unicode_region_subtag, gini), y = gini)) +\n  geom_bar(stat = \"identity\", color = \"black\", fill = \"#F4BA02\") +\n  theme_bg()\n\np_bar"
   },
   {
     "objectID": "sessions/Einführung/slides.html#histogram",
@@ -2097,7 +2097,7 @@
     "href": "sessions/Einführung/slides.html#lineplot",
     "title": "Einführung",
     "section": "Lineplot",
-    "text": "Lineplot"
+    "text": "Lineplot\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;% \n  filter(country %in% c(\"deu\", \"usa\"), time &gt;=1900, time &lt;= 2024) %&gt;% \n  drop_na(gini)\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini, color = country)) +\ngeom_line() +  \ntheme_bg() +\nlabs(title = \"Ungleichheit On the Rise\", \n     subtitle = \"Gini-Koeffizient von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\")\n\np_line"
   },
   {
     "objectID": "sessions/Einführung/slides.html#boxplot",
@@ -2133,5 +2133,19 @@
     "title": "Einführung",
     "section": "Scatterplot",
     "text": "Scatterplot\n\n\nScatterplot – Steckbrief\n\n\n\nTyp\n\n\nScatterplot (Punkte)\n\n\nZweck\n\n\nZusammenhang x–y, Cluster/Ausreißer\n\n\nGut für\n\n\nKorrelation/Trend, Gruppen via Farbe\n\n\nAchtung\n\n\nOverplotting, keine Kausalität\n\n\nAlternativen\n\n\ngeom_hex(), geom_bin2d()\n\n\n\n\ngeom_hex()\n\n\ngeom_bin2d()\n\n\nGGally::ggpairs()"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#barplot-1",
+    "href": "sessions/Einführung/slides.html#barplot-1",
+    "title": "Einführung",
+    "section": "Barplot",
+    "text": "Barplot\n\n\n\nDatentyp\nAchtung\n\nHistogram\nLineplot\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;% \n  filter(country %in% c(\"deu\", \"usa\"), time &gt;=1900, time &lt;= 2024) %&gt;% \n  drop_na(gini)\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini, color = country)) +\ngeom_line() +  \ntheme_bg() +\nlabs(title = \"Ungleichheit On the Rise\", \n     subtitle = \"Gini-Koeffizient von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\")\n\np_line\n\n\n\n\nLineplot\n\n\n\nDatentyp\nGut für Zeitreihen\nAchtung\n\nBoxplot\nKarten\nSpider-Chart\nKombiniert\n\nCo2 with grey scale\ngreens with green scale\nPlotly\n\ngganimate\nGenerative Art"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#lineplot-1",
+    "href": "sessions/Einführung/slides.html#lineplot-1",
+    "title": "Einführung",
+    "section": "Lineplot",
+    "text": "Lineplot\n\n\n\nDatentyp\nGut für Zeitreihen\nAchtung\n\nBoxplot\nKarten\nSpider-Chart\nKombiniert\n\nCo2 with grey scale\ngreens with green scale\nPlotly\n\ngganimate\nGenerative Art"
   }
 ]
