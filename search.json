@@ -7,6 +7,356 @@
     "text": "Kursübersicht\n\n  \n\n\n\nZeitplan\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTag 1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEinführung\n\n\n\n\n\nSession 1: Wieso? Weshalb? Warum?\n\n\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2: Die Basics\n\n\n\n\n\nSession 2: Wie?\n\n\n\n\n\nNicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nR für Grafiken\n\n\n\n\n\nSession 3: R für Grafiken\n\n\n\n\n\nNicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nGute Plots\n\n\n\n\n\nSession 4: Was ist eigentlich eine gute Grafik?\n\n\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nTag 2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2: Advanced\n\n\nWeitere Funktionen\n\n\nSession 5: Mehr!\n\n\n\n\n\nNicklas Hafiz, Janine Buchholz\n\n\n\n\n\n\n\n\n\n\n\n\nWissenschaftliche Grafiken\n\n\n\n\n\nSession 6: APA\n\n\n\n\n\n\n\n\n\n\n\n\n\nExplorative Grafiken\n\n\n\n\n\nMuster in Daten erkennen\n\n\n\n\n\n\n\n\n\n\n\n\n\nSession 7: Grafiken Druckreif machen\n\n\n\n\n\nFinalisieren und Abspeichern\n\n\n\n\n\n\n\n\n\n\n\n\n\ngganimate & plotly\n\n\n\n\n\nSession 8: Ausblick, interaktive und animierte Plots\n\n\n\n\n\n\n\n\nKeine Treffer"
   },
   {
+    "objectID": "sessions/more_ggplot/slides.html#datensatz",
+    "href": "sessions/more_ggplot/slides.html#datensatz",
+    "title": "Mehr ggplot2!",
+    "section": "Datensatz",
+    "text": "Datensatz\n\n# ## Keep in mind!\n# ## Eventuell für die Übung?\n# tuesdata &lt;- tidytuesdayR::tt_load('2025-08-26')\n# tuesdata$billboard %&gt;%\n#   filter(song == \"Love the Way You Lie\") %&gt;%\n#   select(danceability, energy, happiness)\n#\n#\n# ## Netflix\n# tuesdata &lt;- tidytuesdayR::tt_load('2025-07-29')\n#\n# ## Gutenberg project\n# tuesdata &lt;- tidytuesdayR::tt_load('2025-06-03')\n\n\ncharacters &lt;- tidytuesdayR::tt_load(\"2022-08-16\")"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#section",
+    "href": "sessions/more_ggplot/slides.html#section",
+    "title": "Mehr ggplot2!",
+    "section": "",
+    "text": "char_dat &lt;- characters$characters\npsych_dat &lt;- characters$psych_stats\n\n\n\ndat_merged &lt;- char_dat %&gt;%\n  rename(char_name = name) %&gt;%\n  left_join(psych_dat)\n\n\ndat_prepped &lt;- dat_merged %&gt;%\n  filter(uni_name %in% c(\"How I Met Your Mother\", \"Friends\")) %&gt;%\n  filter(question %in% c(\"doer/thinker\", \"jock/nerd\", \"cold/warm\", \"main character/side character\", \"crazy/sane\", \"dispassionate/romantic\", \"high IQ/low IQ\", \"heroic/villainous\", \"funny/humorless\", \"chaotic/orderly\")) %&gt;%\n  ## Rating always between 50 and 100. Use the personality trait for correct scaling\n\n  mutate(\n    top_trait = str_split_i(question, pattern = \"/\", i = 2),\n    bottom_trait = str_split_i(question, pattern = \"/\", i = 1)\n  ) %&gt;%\n  mutate(avg_rating = case_when(\n    personality == top_trait ~ avg_rating,\n    personality == bottom_trait ~ 100 - avg_rating\n  ))\n\n## Cold warm: Geschlecht? Could get ChatGPT to code\n\n## Eventuell inside standardisieren, um spezifische Abweichung zu zeigen?\n\n\nFoto von Ilse Orsel auf Unsplash"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#charaktereigenschaften-in-himym",
+    "href": "sessions/more_ggplot/slides.html#charaktereigenschaften-in-himym",
+    "title": "Mehr ggplot2!",
+    "section": "Charaktereigenschaften in HIMYM",
+    "text": "Charaktereigenschaften in HIMYM\n\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)\n) +\n  geom_point()\n\n\n\n\n\n\n\n\n\nWir vergleichen jetzt einige Charaktereigenschaften in HIMYM und Friends. Gerade noch etwas schwierig. Lösung: Faceting"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#faceting",
+    "href": "sessions/more_ggplot/slides.html#faceting",
+    "title": "Mehr ggplot2!",
+    "section": "Faceting",
+    "text": "Faceting\nAnordnen von einer einzelnen Variable in einem Raster:\n\n\nfacet_wrap()\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)\n) +\n  geom_point() +\n  facet_wrap(vars(char_name), nrow = 4) +\n  theme_bg()\n\n\n\n\n\n\n\n\n\nfacet_grid\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)\n) +\n  geom_point() +\n  facet_grid(char_name ~ .) +\n  theme_bg()"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#facetting---mehrere-variablen",
+    "href": "sessions/more_ggplot/slides.html#facetting---mehrere-variablen",
+    "title": "Mehr ggplot2!",
+    "section": "Facetting - Mehrere Variablen",
+    "text": "Facetting - Mehrere Variablen\nAnordnen von mehreren Variable in einem Raster:\n\n\nfacet_wrap()\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)\n) +\n  geom_point() +\n  facet_wrap(vars(char_name, uni_name), nrow = 4) +\n  theme_bg()\n\n\n\n\n\n\n\n\n\nfacet_grid()\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)\n) +\n  geom_point() +\n  facet_grid(char_name ~ uni_name) +\n  theme_bg()"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#facetting---tipps",
+    "href": "sessions/more_ggplot/slides.html#facetting---tipps",
+    "title": "Mehr ggplot2!",
+    "section": "Facetting - Tipps",
+    "text": "Facetting - Tipps\nPlot alle Punkte\n\n\ndat_prepped_background &lt;- dat_prepped %&gt;%\n  mutate(char_name_bg = char_name) %&gt;%\n  select(-char_name)\n\nggplot(dat_prepped, aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +\n  # background lines: drawn in every facet, grouped by country_bg\n  geom_point(\n    data = dat_prepped_background,\n    aes(x = question, y = avg_rating, group = char_name_bg),\n    inherit.aes = FALSE,\n    color = \"grey70\",\n    alpha = 0.5,\n    size = 0.4\n  ) +\n  geom_point() +\n  facet_wrap(vars(char_name)) +\n  guides(color = \"none\") +\n  theme_bg()"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#facetting---tipps-1",
+    "href": "sessions/more_ggplot/slides.html#facetting---tipps-1",
+    "title": "Mehr ggplot2!",
+    "section": "Facetting - Tipps",
+    "text": "Facetting - Tipps\nPlot Mittelwerte\n\n\ndat_mean &lt;- dat_prepped %&gt;%\n  group_by(question) %&gt;%\n  summarise(avg_rating = mean(avg_rating))\n\n\nggplot(dat_prepped, aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +\n  # background lines: drawn in every facet, grouped by country_bg\n  geom_point(\n    data = dat_mean,\n    aes(x = question, y = avg_rating),\n    inherit.aes = FALSE,\n    color = \"grey70\",\n    size = 1\n  ) +\n  geom_point() +\n  facet_wrap(vars(char_name)) +\n  guides(color = \"none\") +\n  theme_bg()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStandardisierung könnte beim Vergleich zwischen den Fragen helfen - das kommt aber auf die finale Fragestellung an. Ist aber ein Punkt, den man zumindest im Hinterkopf behalten sollte."
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#sortieren",
+    "href": "sessions/more_ggplot/slides.html#sortieren",
+    "title": "Mehr ggplot2!",
+    "section": "Sortieren",
+    "text": "Sortieren\nSortieren, läuft in ggplot2 generell über factor(). Manchmal kann es hilfreich sein, sich eine eigene ID-Variable zum Sortieren zu erstellen\n\ndat_prepped$uni_name_fac &lt;- factor(dat_prepped$uni_name, levels = c(\"How I Met Your Mother\", \"Friends\"))\n\n\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)\n) +\n  geom_point() +\n  facet_wrap(vars(uni_name_fac), nrow = 4) +\n  theme_bg()"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#skalen",
+    "href": "sessions/more_ggplot/slides.html#skalen",
+    "title": "Mehr ggplot2!",
+    "section": "Skalen",
+    "text": "Skalen\n“Scales in ggplot2 control the mapping from data to aesthetics. They take your data and turn it into something that you can see, like size, colour, position or shape.” ggplot2: Elegant Graphics for Data Analysis\nLink to aes slide."
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#legenden",
+    "href": "sessions/more_ggplot/slides.html#legenden",
+    "title": "Mehr ggplot2!",
+    "section": "Legenden",
+    "text": "Legenden\nLegenden werden automatisch erzeugt. Dafür werden die aestetics genutzt, also das mapping von Daten zu grafischen Elementen. Jede Skala bekommt eine Legende zugeordnet.\n\n\nLegenden und Achsen sind funktional äquivalent und werden in ggplot2 unter dem Begriff guides zusammengefasst. Während Skalen die Daten auf grafische Eigenschaften wie Position oder Farbe abbilden, machen Guides diese Abbildung wieder verständlich: Achsen übersetzen Positionen zurück in Zahlen, Legenden ordnen Farben oder Symbole den entsprechenden Datenwerten zu. Man kann sie daher als die „Umkehrfunktion“ der jeweiligen Scales verstehen."
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#section-1",
+    "href": "sessions/more_ggplot/slides.html#section-1",
+    "title": "Mehr ggplot2!",
+    "section": "",
+    "text": "Jede aesthetic im Plot ist mit genau einer scale verbunden:\n\n\nImplizite Definition\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)\n) +\n  geom_point()\n\n\n\n\n\n\n\n\n\nWird intern zu:\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)\n) +\n  geom_point() +\n  scale_x_discrete() +\n  scale_y_continuous() +\n  scale_colour_discrete() +\n  scale_shape_discrete()\n\n\n\n\n\n\n\n\n\n\ntime und co2_pcacp_cons sind beide kontinuierliche Variablen: scale_x_continuous(), scale_x_continuous()\ncountry ist diskret: scale_colour_discrete()\n\nDas können wir uns zunutze machen, um manuell Scales zu definieren."
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#section-2",
+    "href": "sessions/more_ggplot/slides.html#section-2",
+    "title": "Mehr ggplot2!",
+    "section": "",
+    "text": "ggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)\n) +\n  geom_point() +\n  scale_x_discrete(name = \"Eigenschaft\") +\n  scale_y_continuous(\"Mittleres Rating\") +\n  scale_colour_discrete(\"Character\") +\n  scale_shape_discrete(name = \"Serie\")\n\n\n\n\n\n\n\n\nIn der Praxis würden wir dafür labs(x = \"Jahr\", y = \"CO2 Verbrauch pro Kopf\", color = \"Länder\", shape = \"Serie\") nutzen. Wir sehen so aber, dass Achsen- und Legendentitel jeweils Skalennamen sind."
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#section-3",
+    "href": "sessions/more_ggplot/slides.html#section-3",
+    "title": "Mehr ggplot2!",
+    "section": "",
+    "text": "ggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  scale_y_log10(name = \"Mittleren Rating log\") +\n  scale_colour_continuous()\n\n\n\n\n\n\n\n\nEine Übersicht über die möglichen Skalentypen findet sich [hier])https://ggplot2tor.com/scales/)."
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#anwendungsfälle-farben",
+    "href": "sessions/more_ggplot/slides.html#anwendungsfälle-farben",
+    "title": "Mehr ggplot2!",
+    "section": "Anwendungsfälle: Farben",
+    "text": "Anwendungsfälle: Farben\n\nFarben\nOft macht es Sinn, die Farben direkt über einen named vector zu definieren. Dadurch wird jedem Element in der color-variable genau die gewünschte Farbe zugeordnetÖ\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)\n) +\n  geom_point(size = 3) +\n  scale_shape_manual(values = c(\"Friends\" = 12, \"How I Met Your Mother\" = 18)) +\n  scale_colour_manual(values = c(\n    \"Ted Mosby\" = \"blue\",\n    \"Robin Scherbatsky\" = \"red\",\n    \"Barney Stinson\" = \"green\",\n    \"Lily Aldrin\" = \"purple\",\n    \"Marshall Eriksen\" = \"orange\",\n    \"Rachel Green\" = \"pink\",\n    \"Monica Geller\" = \"brown\",\n    \"Phoebe Buffay\" = \"yellow\",\n    \"Joey Tribbiani\" = \"cyan\"\n  ))\n\n\n\n\n\n\n\n\n\n\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)\n) +\n  geom_point() +\n  scale_colour_brewer(palette = \"Set3\")\n\n\n\n\n\n\n\n\n:::"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#anwendungsfälle-skalen-ticks",
+    "href": "sessions/more_ggplot/slides.html#anwendungsfälle-skalen-ticks",
+    "title": "Mehr ggplot2!",
+    "section": "Anwendungsfälle: Skalen-Ticks",
+    "text": "Anwendungsfälle: Skalen-Ticks\n\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)\n) +\n  geom_point() +\n  scale_y_continuous(name = \"Mittleres Rating\", breaks = seq(0, 100, by = 10), limits = c(0, 100))"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#scale-guides",
+    "href": "sessions/more_ggplot/slides.html#scale-guides",
+    "title": "Mehr ggplot2!",
+    "section": "Scale Guides",
+    "text": "Scale Guides\nJede Skala (und damit jede Aesthetic) bekommt einen Guide zugeordnet. Intern passiert das über guides(). Wir können guides() also nutzen, um die Legende zu manipulieren:\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)\n) +\n  geom_point() +\n  guides(color = guide_legend(title = \"Charaktere\", ncol = 3, reverse = TRUE, override.aes = list(size = 3)))"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#mögliche-guide-funktionen",
+    "href": "sessions/more_ggplot/slides.html#mögliche-guide-funktionen",
+    "title": "Mehr ggplot2!",
+    "section": "Mögliche guide-Funktionen",
+    "text": "Mögliche guide-Funktionen\n: ::: {.columns}\n\n\nguide_colourbar()\nguide_coloursteps()\nguide_axis()\nguide_legend()\nguide_bins()\n\n\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)\n) +\n  geom_point() +\n  guides(x = guide_axis(angle = 90))\n\n\n\n\n\n\n\n\n:::"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#themes",
+    "href": "sessions/more_ggplot/slides.html#themes",
+    "title": "Mehr ggplot2!",
+    "section": "Themes",
+    "text": "Themes\nDa würde man ja auch viel zur Legende ändern?"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#koordinatensysteme",
+    "href": "sessions/more_ggplot/slides.html#koordinatensysteme",
+    "title": "Mehr ggplot2!",
+    "section": "Koordinatensysteme",
+    "text": "Koordinatensysteme\nZwei Aufgaben:\n\nKombinieren der Positions-Aesthetics (Positions 1 & Position 2) zu einem 2d Raum.\n\nLinear: x & y\nPolar: Winkel und Radius\nKarte: Breite und Länge\n\nZeichnen der Achsen und Rasterlinien"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#typen",
+    "href": "sessions/more_ggplot/slides.html#typen",
+    "title": "Mehr ggplot2!",
+    "section": "Typen",
+    "text": "Typen\n\n\nLinear\n\ncoord_cartesian(): Default\ncoord_flip: Tauscht x und y Achse\ncoord_fixed(): Fixes Seitenverhältnis.\n\n\nNicht-linear\n\ncoord_map: Kartenprojektion\ncoord_polar: Polar-Koordinaten (Kreise)\ncoord_trans: Transformation der Positionen"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#polar-koordinaten",
+    "href": "sessions/more_ggplot/slides.html#polar-koordinaten",
+    "title": "Mehr ggplot2!",
+    "section": "Polar-Koordinaten",
+    "text": "Polar-Koordinaten\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac, group = question)\n) +\n  geom_point() +\n  geom_segment(\n    aes(\n      x = question, xend = question,\n      y = 0, yend = avg_rating,\n      group = interaction(char_name, uni_name_fac)\n    ),\n    linewidth = 0.5\n  ) +\n  ylim(0, 100) +\n  facet_wrap(vars(char_name)) +\n  coord_polar(theta = \"x\") +\n  theme_bg()\n\n\n\n\n\n\n\n\nVorsicht damit! In vielen Fällen ist ein lineares Koordinatensystem einfacher zu interpretieren. Winkel sind oft nicht so einfach zu interpretieren. Nichtsdestotrotz kann es gerade zur Gestaltung nett sein!"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#realistischer-anwendungen",
+    "href": "sessions/more_ggplot/slides.html#realistischer-anwendungen",
+    "title": "Mehr ggplot2!",
+    "section": "Realistischer Anwendungen",
+    "text": "Realistischer Anwendungen\n\nZeitreihen\nStrecken"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#labels",
+    "href": "sessions/more_ggplot/slides.html#labels",
+    "title": "Mehr ggplot2!",
+    "section": "Labels",
+    "text": "Labels"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#patchwork",
+    "href": "sessions/more_ggplot/slides.html#patchwork",
+    "title": "Mehr ggplot2!",
+    "section": "Patchwork",
+    "text": "Patchwork\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)\n) +\n  geom_point() +\n  facet_wrap(vars(char_name))\n\n\n\ndat_prepped_robin &lt;- dat_prepped %&gt;%\n  filter(char_name == \"Robin Scherbatsky\")\n\n\np_robin &lt;- ggplot(\n  data = dat_prepped_robin,\n  mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  facet_wrap(vars(char_name)) +\n  ylim(0, 100)\n\n\n\np_rest &lt;- ggplot(\n  data = dat_prepped %&gt;% filter(char_name != \"Robin Scherbatsky\"),\n  mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  facet_wrap(vars(char_name), nrow = 2) +\n  ylim(0, 100)"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#patchwork-1",
+    "href": "sessions/more_ggplot/slides.html#patchwork-1",
+    "title": "Mehr ggplot2!",
+    "section": "Patchwork",
+    "text": "Patchwork\nPatchwork erlaubt es, Plots zu kombinieren.\n\nlibrary(patchwork)\n\np_robin +\n  p_rest"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#patchwork-stylen",
+    "href": "sessions/more_ggplot/slides.html#patchwork-stylen",
+    "title": "Mehr ggplot2!",
+    "section": "Patchwork: Stylen",
+    "text": "Patchwork: Stylen\n\nlibrary(patchwork)\n\np_robin +\n  p_rest +\n  plot_layout(widths = c(2, 2), guides = \"collect\")\n\n\nHmm, das hat noch nicht funktioniert."
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#section-4",
+    "href": "sessions/more_ggplot/slides.html#section-4",
+    "title": "Mehr ggplot2!",
+    "section": "",
+    "text": "Abschalten der Legende im ersten Plot.\n\n\np_robin &lt;- ggplot(\n  data = dat_prepped_robin,\n  mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  facet_wrap(vars(char_name)) +\n  ylim(0, 100) +\n  theme(legend.position = \"none\")\n\n\n\np_rest &lt;- ggplot(\n  data = dat_prepped %&gt;% filter(char_name != \"Robin Scherbatsky\"),\n  mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  facet_wrap(vars(char_name), nrow = 2) +\n  ylim(0, 100)\n\n\np_robin +\n  p_rest +\n  plot_layout(widths = c(2, 2), guides = \"collect\")"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#labeling",
+    "href": "sessions/more_ggplot/slides.html#labeling",
+    "title": "Mehr ggplot2!",
+    "section": "Labeling",
+    "text": "Labeling\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_label(aes(label = char_name))\n\n\n\n\n\n\n\n\n\nlibrary(ggrepel)\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  geom_text_repel(aes(label = char_name))"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#labeling-von-einzelnen-punkten",
+    "href": "sessions/more_ggplot/slides.html#labeling-von-einzelnen-punkten",
+    "title": "Mehr ggplot2!",
+    "section": "Labeling von einzelnen Punkten",
+    "text": "Labeling von einzelnen Punkten\nErzeugen einer eigenen Spalte, die nur auf den gewünschten Punkten den Text enthält.\n\ndat_prepped_2 &lt;- dat_prepped %&gt;%\n  mutate(char_name_label = case_when(\n    char_name == \"Monica Geller\" & top_trait == \"orderly\" ~ \"Monica ist sehr ordentlich\",\n    TRUE ~ NA\n  ))\n\nggplot(\n  data = dat_prepped_2,\n  mapping = aes(x = top_trait, y = avg_rating, shape = uni_name_fac, label = char_name_label, color = char_name)\n) +\n  geom_point() +\n  geom_text_repel(nudge_x = 0.75, nudge_y = 1)"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#ggtext",
+    "href": "sessions/more_ggplot/slides.html#ggtext",
+    "title": "Mehr ggplot2!",
+    "section": "ggtext",
+    "text": "ggtext\nggtext erlaubt es, Markdown und HTML-Code in ggplot2 zu nutzen.\n\nlibrary(ggtext)\n\ndat_prepped_2 &lt;- dat_prepped %&gt;%\n  mutate(char_name_label = case_when(\n    char_name == \"Monica Geller\" & top_trait == \"orderly\" ~ \"Monica ist sehr &lt;span style='color:black'&gt;ordentlich&lt;/span&gt;\",\n    TRUE ~ NA\n  ))\n\nggplot(\n  data = dat_prepped_2,\n  mapping = aes(x = top_trait, y = avg_rating, shape = uni_name_fac, label = char_name_label, color = char_name)\n) +\n  geom_point() +\n  geom_richtext(\n    nudge_x = 0.75, nudge_y = 1, fill = NA, label.color = NA, # remove background and outline\n    label.padding = grid::unit(rep(0, 4), \"pt\")\n  )"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#section-5",
+    "href": "sessions/more_ggplot/slides.html#section-5",
+    "title": "Mehr ggplot2!",
+    "section": "",
+    "text": "dat_prepped_2 &lt;- dat_prepped %&gt;%\n  mutate(char_name_bold = paste0(\"**\", char_name, \"**\"))\n\n\nggplot(\n  data = dat_prepped_2,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)\n) +\n  geom_point() +\n  facet_wrap(vars(char_name_bold)) +\n  theme(\n    strip.text = element_markdown()\n  )"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#hjust",
+    "href": "sessions/more_ggplot/slides.html#hjust",
+    "title": "Mehr ggplot2!",
+    "section": "hjust",
+    "text": "hjust\n\n::: {.column width=“33%”}}\nggplot( \n  data = dat_prepped,\n  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  geom_text(aes(label = char_name), hjust = 0.5)\n\n\n\n\n\n\n\n\n\n::: {.column width=“33%”}}\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  geom_text(aes(label = char_name), hjust = 0)\n\n\n\n\n\n\n\n\n:::\n::: {.column width=“33%”}}\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  geom_text(aes(label = char_name), hjust = 1)\n\n\n\n\n\n\n\n\n::: :::"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#vjust",
+    "href": "sessions/more_ggplot/slides.html#vjust",
+    "title": "Mehr ggplot2!",
+    "section": "vjust",
+    "text": "vjust\n\n\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  geom_text(aes(label = char_name), vjust = 1)\n\n\n\n\n\n\n\n\n\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  geom_text(aes(label = char_name), vjust = 0)\n\n\n\n\n\n\n\n\n\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  geom_text(aes(label = char_name), vjust = -1)"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#nudge",
+    "href": "sessions/more_ggplot/slides.html#nudge",
+    "title": "Mehr ggplot2!",
+    "section": "nudge",
+    "text": "nudge\nNudging erfolgt auf der gleichen Skala wie die Werte.\n\n::: {.column width=“50%”}}Nudge um eine halbe Einheit nach rechts.\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  geom_text(aes(label = char_name), nudge_x = 0.5)\n\n\n\n\n\n\n\n\n\n::: {.column width=“50%”}}\nNudge um 5 Einheiten nach unten.\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  geom_text(aes(label = char_name), nudge_y = -5)\n\n\n\n\n\n\n\n\n::: :::"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#section-6",
+    "href": "sessions/more_ggplot/slides.html#section-6",
+    "title": "Mehr ggplot2!",
+    "section": "",
+    "text": "library(tidyverse)\nlibrary(ggtext)\nlibrary(glue)\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = image_link, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  facet_wrap(vars(question), nrow = 2) +\n  ylim(0, 100) +\n  scale_x_discrete(\n    labels = \\(x) glue(\"&lt;img src='{x}' height='24' /&gt;\")\n  ) +\n  theme(\n    axis.text.x = element_markdown()\n  ) +\n  coord_cartesian(clip = \"off\") # falls Bilder abgeschnitten werden"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#themes-2",
+    "href": "sessions/more_ggplot/slides.html#themes-2",
+    "title": "Mehr ggplot2!",
+    "section": "Themes",
+    "text": "Themes\n\nlibrary(tidyverse)\nlibrary(ggtext)\nlibrary(glue)\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = image_link, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  facet_wrap(vars(question), nrow = 2) +\n  ylim(0, 100) +\n  scale_x_discrete(\n    labels = \\(x) glue(\"&lt;img src='{x}' height='24' /&gt;\")\n  ) +\n  theme(\n    axis.text.x = element_markdown()\n  ) +\n  coord_cartesian(clip = \"off\") # falls Bilder abgeschnitten werden"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#spider-chart",
+    "href": "sessions/more_ggplot/slides.html#spider-chart",
+    "title": "Mehr ggplot2!",
+    "section": "Spider-Chart",
+    "text": "Spider-Chart\n\n\nggplot(\n  dat_prepped,\n  aes(x = question, y = avg_rating, group = char_name)\n) +\n  geom_point() +\n  facet_wrap(vars(char_name), ncol = 4)"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#vergleichen-von-ähnlichen-charakteren",
+    "href": "sessions/more_ggplot/slides.html#vergleichen-von-ähnlichen-charakteren",
+    "title": "Mehr ggplot2!",
+    "section": "Vergleichen von ähnlichen Charakteren",
+    "text": "Vergleichen von ähnlichen Charakteren\nDafür erzeuge ich eine eigene Variable\n\n\ndat_prepped2 &lt;- dat_prepped %&gt;%\n  mutate(facet_id = case_when(\n    char_name %in% c(\"Barney Stinson\", \"Joey Tribbiani\") ~ \"Barney & Joey\",\n    char_name %in% c(\"Ted Mosby\", \"Ross Geller\") ~ \"Ted & Ross\",\n    char_name %in% c(\"Robin Scherbatsky\", \"Rachel Green\") ~ \"Robin & Rachel\",\n    char_name %in% c(\"Lily Aldrin\", \"Monica Geller\") ~ \"Lily & Monica\",\n    char_name %in% c(\"Marshall Eriksen\", \"Chandler Bing\") ~ \"Marshall & Chandler\"\n  )) %&gt;%\n  filter(!is.na(facet_id)) ## Sorry Phoebe :(\n\nggplot(\n  dat_prepped2,\n  aes(x = question, y = avg_rating, group = char_name, color = uni_name)\n) +\n  geom_point() +\n  facet_wrap(vars(facet_id), ncol = 4) +\n  ylim(0, 100)"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#section-7",
+    "href": "sessions/more_ggplot/slides.html#section-7",
+    "title": "Mehr ggplot2!",
+    "section": "",
+    "text": "ggplot(\n  dat_prepped2,\n  aes(x = question, y = avg_rating, group = char_name, color = uni_name)\n) +\n  geom_point() +\n  facet_wrap(vars(facet_id), ncol = 4) +\n  ylim(0, 100) +\n  coord_polar()"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#section-8",
+    "href": "sessions/more_ggplot/slides.html#section-8",
+    "title": "Mehr ggplot2!",
+    "section": "",
+    "text": "ggplot(\n  dat_prepped2,\n  aes(x = question, y = avg_rating, group = char_name, color = uni_name)\n) +\n  geom_point() +\n  geom_polygon(alpha = 0.5) +\n  facet_wrap(vars(facet_id), ncol = 4) +\n  ylim(0, 100) +\n  coord_polar()"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#section-10",
+    "href": "sessions/more_ggplot/slides.html#section-10",
+    "title": "Mehr ggplot2!",
+    "section": "",
+    "text": "Radar coords from Tanya Shapiro\n\n\nCode\ncoord_radar &lt;- function(theta = \"x\", start = 0, direction = 1) {\n  theta &lt;- match.arg(theta, c(\"x\", \"y\"))\n  r &lt;- if (theta == \"x\") {\n    \"y\"\n  } else {\n    \"x\"\n  }\n\n  # dirty\n  rename_data &lt;- function(coord, data) {\n    if (coord$theta == \"y\") {\n      plyr::rename(data, c(\"y\" = \"theta\", \"x\" = \"r\"), warn_missing = FALSE)\n    } else {\n      plyr::rename(data, c(\"y\" = \"r\", \"x\" = \"theta\"), warn_missing = FALSE)\n    }\n  }\n  theta_rescale &lt;- function(coord, x, scale_details) {\n    rotate &lt;- function(x) (x + coord$start) %% (2 * pi) * coord$direction\n    rotate(scales::rescale(x, c(0, 2 * pi), scale_details$theta.range))\n  }\n\n  r_rescale &lt;- function(coord, x, scale_details) {\n    scales::rescale(x, c(0, 0.4), scale_details$r.range)\n  }\n\n  ggproto(\"CordRadar\", CoordPolar,\n    theta = theta, r = r, start = start,\n    direction = sign(direction),\n    is_linear = function(coord) TRUE,\n    render_bg = function(self, scale_details, theme) {\n      scale_details &lt;- rename_data(self, scale_details)\n\n      theta &lt;- if (length(scale_details$theta.major) &gt; 0) {\n        theta_rescale(self, scale_details$theta.major, scale_details)\n      }\n      thetamin &lt;- if (length(scale_details$theta.minor) &gt; 0) {\n        theta_rescale(self, scale_details$theta.minor, scale_details)\n      }\n      thetafine &lt;- seq(0, 2 * pi, length.out = 100)\n\n      rfine &lt;- c(r_rescale(self, scale_details$r.major, scale_details))\n\n      # This gets the proper theme element for theta and r grid lines:\n      #   panel.grid.major.x or .y\n      majortheta &lt;- paste(\"panel.grid.major.\", self$theta, sep = \"\")\n      minortheta &lt;- paste(\"panel.grid.minor.\", self$theta, sep = \"\")\n      majorr &lt;- paste(\"panel.grid.major.\", self$r, sep = \"\")\n\n      ggplot2:::ggname(\"grill\", grid::grobTree(\n        ggplot2:::element_render(theme, \"panel.background\"),\n        if (length(theta) &gt; 0) {\n          ggplot2:::element_render(\n            theme, majortheta,\n            name = \"angle\",\n            x = c(rbind(0, 0.4 * sin(theta))) + 0.5,\n            y = c(rbind(0, 0.4 * cos(theta))) + 0.5,\n            id.lengths = rep(2, length(theta)),\n            default.units = \"native\"\n          )\n        },\n        if (length(thetamin) &gt; 0) {\n          ggplot2:::element_render(\n            theme, minortheta,\n            name = \"angle\",\n            x = c(rbind(0, 0.4 * sin(thetamin))) + 0.5,\n            y = c(rbind(0, 0.4 * cos(thetamin))) + 0.5,\n            id.lengths = rep(2, length(thetamin)),\n            default.units = \"native\"\n          )\n        },\n        ggplot2:::element_render(\n          theme, majorr,\n          name = \"radius\",\n          x = rep(rfine, each = length(thetafine)) * sin(thetafine) + 0.5,\n          y = rep(rfine, each = length(thetafine)) * cos(thetafine) + 0.5,\n          id.lengths = rep(length(thetafine), length(rfine)),\n          default.units = \"native\"\n        )\n      ))\n    }\n  )\n}\n\n\n\n\ndat_prepped3 &lt;- arrange(dat_prepped2, question)\n\nggplot(\n  dat_prepped3,\n  aes(x = question, y = avg_rating, group = char_name, color = uni_name, fill = char_name)\n) +\n  geom_point() +\n  geom_polygon(alpha = 0.5) +\n  facet_wrap(vars(facet_id), ncol = 4) +\n  ylim(0, 100) +\n  coord_radar()"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#section-11",
+    "href": "sessions/more_ggplot/slides.html#section-11",
+    "title": "Mehr ggplot2!",
+    "section": "",
+    "text": "https://de.pinterest.com/pin/friends-colors–2955556002181108/\n\n\nggplot(\n  dat_prepped3,\n  aes(x = question, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)\n) +\n  geom_point() +\n  geom_polygon(alpha = 0.1) +\n  facet_wrap(vars(facet_id), ncol = 4) +\n  ylim(0, 100) +\n  coord_radar() +\n  scale_fill_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  scale_color_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  theme_bg()"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#section-12",
+    "href": "sessions/more_ggplot/slides.html#section-12",
+    "title": "Mehr ggplot2!",
+    "section": "",
+    "text": "ggplot(\n  dat_prepped3,\n  aes(x = question, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)\n) +\n  geom_point() +\n  geom_polygon(alpha = 0.1) +\n  facet_wrap(vars(facet_id), ncol = 4) +\n  ylim(0, 100) +\n  coord_radar() +\n  scale_fill_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  scale_color_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  theme_bg() +\n  labs(title = \"The one where Everyone meets\", )"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#section-13",
+    "href": "sessions/more_ggplot/slides.html#section-13",
+    "title": "Mehr ggplot2!",
+    "section": "",
+    "text": "library(ggimage)\n\ndat_prepped3 &lt;- dat_prepped3 %&gt;%\n  mutate(\n    image_x = ifelse(uni_name == \"Friends\", -1, 1),\n    image_x_coord = ifelse(uni_name == \"Friends\", \"doer/thinker\", \"crazy/sane\")\n  )\n\nggplot(\n  dat_prepped3,\n  aes(x = question, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)\n) +\n  geom_point() +\n  geom_polygon(alpha = 0.1) +\n  facet_wrap(vars(facet_id), ncol = 4) +\n  ylim(0, 100) +\n  coord_radar() +\n  scale_fill_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  scale_color_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  theme_bg() +\n  labs(title = \"The one where Everyone meets\") +\n  geom_image(aes(x = image_x_coord, y = 100, image = image_link),\n    nudge_x = c(0.5, -0.5),\n    size = 0.1, inherit.aes = FALSE\n  ) +\n  NULL"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#adding-a-frame-around-the-picture",
+    "href": "sessions/more_ggplot/slides.html#adding-a-frame-around-the-picture",
+    "title": "Mehr ggplot2!",
+    "section": "Adding a frame around the picture",
+    "text": "Adding a frame around the picture\n\n\nlibrary(ggimage)\n\ndat_prepped3 &lt;- dat_prepped3 %&gt;%\n  mutate(\n    image_x = ifelse(uni_name == \"Friends\", -1, 1),\n    image_x_coord = ifelse(uni_name == \"Friends\", \"doer/thinker\", \"crazy/sane\")\n  )\n\nggplot(\n  dat_prepped3,\n  aes(x = question, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)\n) +\n  geom_point() +\n  geom_polygon(alpha = 0.1) +\n  facet_wrap(vars(facet_id), ncol = 4) +\n  ylim(0, 100) +\n  coord_radar() +\n  scale_fill_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  scale_color_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  theme_bg() +\n  labs(title = \"The one where Everyone meets\") +\n  geom_image(aes(x = image_x_coord, y = 100, image = image_link),\n    nudge_x = c(0.5, -0.5),\n    size = 0.12\n  ) +\n  geom_image(aes(x = image_x_coord, y = 100, image = image_link),\n    nudge_x = c(0.5, -0.5),\n    size = 0.1, inherit.aes = FALSE\n  ) +\n  NULL"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#styling",
+    "href": "sessions/more_ggplot/slides.html#styling",
+    "title": "Mehr ggplot2!",
+    "section": "Styling",
+    "text": "Styling\n\nAnchor points on top to show max\nStyle\nNudge pictures further out\n\n\n\ndat_prepped3 &lt;- dat_prepped3 %&gt;%\n  mutate(\n    image_x = ifelse(uni_name == \"Friends\", -1, 1),\n    image_x_coord = ifelse(uni_name == \"Friends\", \"low IQ\", \"side character\")\n  ) %&gt;%\n  arrange(top_trait)\n\nouter_points &lt;- dat_prepped3 %&gt;%\n  mutate(\n    max_rating = 100,\n    label_y = 90, \n    nudge_x = ifelse(uni_name == \"Friends\", -0.14, 0.14)\n  )\n\nggplot(\n  dat_prepped3,\n  aes(x = top_trait, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)\n) +\n  geom_point(data = outer_points, aes(top_trait, max_rating), color = \"white\", inherit.aes = FALSE) +\n  geom_richtext(\n    data = outer_points, aes(top_trait, label_y, label = round(avg_rating, 0), color = uni_name), inherit.aes = FALSE, fill = NA, label.color = NA,\n    label.padding = grid::unit(rep(0, 4), \"pt\"), nudge_x = outer_points$nudge_x, size = 2\n  ) +\n  geom_point() +\n  geom_polygon(alpha = 0.1) +\n  facet_wrap(vars(facet_id), ncol = 4) +\n  ylim(0, 100) +\n  coord_radar() +\n  scale_fill_manual(values = c(\"Friends\" = \"#36d1ab\", \"How I Met Your Mother\" = \"#FFED29\")) +\n  scale_color_manual(values = c(\"Friends\" = \"#9C8CD4\", \"How I Met Your Mother\" = \"#FFED29\")) +\n  theme_bw() +\n  labs(title = \"The one where Everyone meets\") +\n    geom_image(aes(x = image_x_coord, y = 100, image = image_link),\n             nudge_x = -0.35,\n             nudge_y = 30,\n             size=0.12) +\n  geom_image(aes(x = image_x_coord, y = 100, image = image_link),\n             nudge_x = -0.35,\n             nudge_y = 30,\n             size=0.1, inherit.aes = FALSE) +\n  theme(\n    axis.ticks = element_blank(),\n    axis.text.x = element_text(color = \"white\", face = \"bold\"), \n    axis.text.y = element_blank(), \n    axis.title = element_blank(), \n    panel.background = element_rect(fill = \"#06402B\"), \n    plot.background = element_rect(fill = '#06402B'), \n    title = element_text(color = \"white\", size = 16, face = \"bold\"), \n    strip.background = element_rect(fill = \"#06402B\"), \n    strip.text = element_text(color = \"white\", face = \"bold\"), \n    legend.background = element_rect(fill = \"#06402B\"), \n    legend.text = element_text(color = \"white\")\n  )"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#section-14",
+    "href": "sessions/more_ggplot/slides.html#section-14",
+    "title": "Mehr ggplot2!",
+    "section": "",
+    "text": "dat_joey_barney &lt;- dat_prepped3 %&gt;%\n  filter(char_name %in% c(\"Barney Stinson\", \"Joey Tribbiani\"))\n\n\n  outer_points_joey_barney &lt;- dat_joey_barney %&gt;%\n  mutate(\n    max_rating = 100,\n    label_y = 95, \n    nudge_x = ifelse(uni_name == \"Friends\", -0.1, 0.1)\n  )\n    \np_left &lt;- ggplot(\n  dat_joey_barney,\n  aes(x = top_trait, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)\n) +\n  geom_point(data = outer_points_joey_barney, aes(top_trait, max_rating), color = \"white\", inherit.aes = FALSE) +\n  geom_richtext(\n    data = outer_points_joey_barney, aes(top_trait, label_y, label = round(avg_rating, 0), color = uni_name), inherit.aes = FALSE, fill = NA, label.color = NA,\n    label.padding = grid::unit(rep(0, 4), \"pt\"), nudge_x = outer_points_joey_barney$nudge_x, size = 2.75\n  ) +\n  geom_point(size = 3) +\n  geom_polygon(alpha = 0.2, linewidth = 1.5) +\n  facet_wrap(vars(facet_id), ncol = 2) +\n  ylim(0, 100) +\n  coord_radar() +\n  scale_fill_manual(values = c(\"Friends\" = \"#36d1ab\", \"How I Met Your Mother\" = \"#FFED29\")) +\n  scale_color_manual(values = c(\"Friends\" = \"#9C8CD4\", \"How I Met Your Mother\" = \"#FFED29\")) +\n  theme_bw() +\n  labs(title = \"The one where Everyone meets\", \n       subtitle = \"Character ratings from 0 to 100\") +\n    geom_image(aes(x = image_x_coord, y = 100, image = image_link),\n             nudge_x = -0.35,\n             nudge_y = 30,\n             size=0.12) +\n  geom_image(aes(x = image_x_coord, y = 100, image = image_link),\n             nudge_x = -0.35,\n             nudge_y = 30,\n             size=0.1, inherit.aes = FALSE) +\n  theme(\n    axis.ticks = element_blank(),\n    axis.text.x = element_text(color = \"white\", face = \"bold\"), \n    axis.text.y = element_blank(), \n    axis.title = element_blank(), \n    panel.background = element_rect(fill = \"#06402B\"), \n    plot.background = element_rect(fill = '#06402B'), \n    title = element_text(color = \"white\", size = 16, face = \"bold\"), \n    strip.background = element_rect(fill = \"#06402B\"), \n    strip.text = element_text(color = \"white\", face = \"bold\"), \n    legend.background = element_rect(fill = \"#06402B\"), \n    legend.position = \"none\"\n  ) \n\n\nouter_points2 &lt;- outer_points %&gt;%\n  filter(!char_name %in% c(\"Barney Stinson\", \"Joey Tribbiani\"))\n\np_right &lt;- ggplot(\n  dat_prepped3 %&gt;% filter(!char_name %in% c(\"Barney Stinson\", \"Joey Tribbiani\")),\n  aes(x = top_trait, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)\n) +\n  geom_point(data = outer_points2, aes(top_trait, max_rating), color = \"white\", inherit.aes = FALSE) +\n  geom_richtext(\n    data = outer_points2, aes(top_trait, label_y, label = round(avg_rating, 0), color = uni_name), inherit.aes = FALSE, fill = NA, label.color = NA,\n    label.padding = grid::unit(rep(0, 4), \"pt\"), nudge_x = outer_points2$nudge_x, size = 2.75\n  ) +\n  geom_point(size = 3) +\n  geom_polygon(alpha = 0.2, linewidth = 1) +\n  facet_wrap(vars(facet_id), ncol = 2) +\n  ylim(0, 100) +\n  coord_radar() +\n  scale_fill_manual(values = c(\"Friends\" = \"#36d1ab\", \"How I Met Your Mother\" = \"#FFED29\")) +\n  scale_color_manual(values = c(\"Friends\" = \"#9C8CD4\", \"How I Met Your Mother\" = \"#FFED29\")) +\n  theme_bw() +\n    geom_image(aes(x = image_x_coord, y = 100, image = image_link),\n             nudge_x = -0.35,\n             nudge_y = 30,\n             size=0.12) +\n  geom_image(aes(x = image_x_coord, y = 100, image = image_link),\n             nudge_x = -0.35,\n             nudge_y = 30,\n             size=0.1, inherit.aes = FALSE) +\n  theme(\n    axis.ticks = element_blank(),\n    axis.text.x = element_text(color = \"white\"), \n    axis.text.y = element_blank(), \n    axis.title = element_blank(), \n    panel.background = element_rect(fill = \"#053625\"), \n    plot.background = element_rect(fill = '#053625'), \n    strip.background = element_rect(fill = \"#053625\"), \n    strip.text = element_text(color = \"white\", face = \"bold\"), \n    legend.position = \"none\"\n  ) \n\n\nEventuell in Funktionen packen was geht"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#patch-together",
+    "href": "sessions/more_ggplot/slides.html#patch-together",
+    "title": "Mehr ggplot2!",
+    "section": "Patch together",
+    "text": "Patch together\n\np_left +\n  p_right"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#abspeichern",
+    "href": "sessions/more_ggplot/slides.html#abspeichern",
+    "title": "Mehr ggplot2!",
+    "section": "Abspeichern",
+    "text": "Abspeichern\nVektor vs Raster (Rolfs 7)\nUse characters data for demonstration or for exercise?"
+  },
+  {
+    "objectID": "sessions/explorative_plots/explorative_plots.html",
+    "href": "sessions/explorative_plots/explorative_plots.html",
+    "title": "Explorative Grafiken",
+    "section": "",
+    "text": "View slides in full screen\n\nÜbung\n\nExplorative Grafiken - Janine"
+  },
+  {
     "objectID": "sessions/good_plots/good_plots.html",
     "href": "sessions/good_plots/good_plots.html",
     "title": "Was ist eine gute Grafik?",
@@ -14,60 +364,193 @@
     "text": "View slides in full screen\n\nWahrnehmungspsychologie/Schlechte/Gute Grafiken + Sammeln?/ggplot-Anwendung direkt dazu (z.B. Farben, Annotation … -&gt; Also direkte Anwendung der Theorie) - Janine (+ Nicklas)\n\n\nÜbung\nSchlechte Grafiken diskutieren"
   },
   {
-    "objectID": "sessions/good_plots/maps.html#section",
-    "href": "sessions/good_plots/maps.html#section",
-    "title": "Karten",
+    "objectID": "sessions/good_plots/slides.html#section",
+    "href": "sessions/good_plots/slides.html#section",
+    "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "|data_name           |description                                                                         |\n|:-------------------|:-----------------------------------------------------------------------------------|\n|municipal_unharm    |Local elections at the municipal level (1990-2020, unharmonized).                   |\n|municipal_harm      |Local elections at the municipal level (1990-2020, harmonized).                     |\n|state_unharm        |State elections at the municipal level (2006-2019, unharmonized).                   |\n|state_harm          |State elections at the municipal level (2006-2019, harmonized).                     |\n|federal_muni_raw    |Federal elections at the municipal level (1980-2021, raw data).                     |\n|federal_muni_unharm |Federal elections at the municipal level (1980-2021, unharmonized).                 |\n|federal_muni_harm   |Federal elections at the municipal level (1990-2021, harmonized).                   |\n|federal_cty_unharm  |Federal elections at the county level (1953-2021, unharmonized).                    |\n|federal_cty_harm    |Federal elections at the county level (1990-2021, harmonized).                      |\n|ags_crosswalks      |Crosswalks for municipalities (1990-2021).                                          |\n|cty_crosswalks      |Crosswalks for counties (1990-2021).                                                |\n|ags_area_pop_emp    |Crosswalk covariates (area, population, employment) for municipalities (1990-2021). |\n|cty_area_pop_emp    |Crosswalk covariates (area, population, employment) for counties (1990-2021).       |\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nZeigen von Kreisen, wo es sehr eng war"
+    "text": "Excellence in statistical graphics consists of complex ideas communicated with clarity, precision, and efficiency. (tufte2001visualizing?)\n\nshow the data\ninduce the viewer to think about the substance rather than about methodology, graphic design, the technology of graphic production, or something else\navoid distorting what the data have to say\npresent many numbers in a small space\nmake large datasets coherent\nencourage the eye to compare different pieces of data\nReveal the data at several levels of detail, from a broad overview to the fine structure\nserve a reasonably clear purpose: description, exploration, tabulation, or decoration\nbe closely integrated with the statistical and verbal descriptions of a data set"
   },
   {
-    "objectID": "sessions/good_plots/maps.html#alternativen",
-    "href": "sessions/good_plots/maps.html#alternativen",
-    "title": "Karten",
-    "section": "Alternativen",
-    "text": "Alternativen\n\n\nBild von storymaps."
-  },
-  {
-    "objectID": "sessions/good_plots/maps.html#kartogramm",
-    "href": "sessions/good_plots/maps.html#kartogramm",
-    "title": "Karten",
-    "section": "Kartogramm",
-    "text": "Kartogramm\n\nlibrary(cartogram)\n\n## Ansonsten mit county oder sogar nur Bundesland?\n\ncartogram_dat &lt;- cartogram_cont(geom_elect_max,\n                 weight = \"number_voters\")\n\nsaveRDS(here::here(\"sessions\", \"good_plots\", \"data\", \"cartogram_dat.rds\"))\n\n\n# https://r-charts.com/spatial/cartogram-ggplot2/\n\nlibrary(cartogram)\n\nreadRDS(here::here(\"sessions\", \"good_plots\", \"data\", \"cartogram_dat.rds\"))\n\nggplot(cartogram_dat) +\n  geom_sf()\n\n\n\nVon Costamiri - Eigenes WerkMap based on: Shapefiles by bundeswahlleiterin.de (Geometrie der Wahlkreise im Koordinatensystem UTM32 generalisiert) © Die Bundeswahlleiterin, Statistisches Bundesamt, Wiesbaden 2024, Wahlkreiskarte für die Wahl zum 21. Deutschen Bundestag; Grundlage der Geoinformationen © Geobasis-DE / BKG 2024Data based on: Bundestagswahl 2025: Open-Data-Angebot der Bundeswahlleiterin by bundeswahlleiterin.de, CC BY-SA 4.0, Link"
-  },
-  {
-    "objectID": "sessions/good_plots/maps.html#section-2",
-    "href": "sessions/good_plots/maps.html#section-2",
-    "title": "Karten",
+    "objectID": "sessions/good_plots/slides.html#section-1",
+    "href": "sessions/good_plots/slides.html#section-1",
+    "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": ":::{.column width=“50%} \n\n\n\n\n\n:::\n\nGrafiken von zeit.de."
+    "text": "Darstellung von David McCandless in Knowledge is Beautiful (2014)."
   },
   {
-    "objectID": "sessions/more_ggplot/slides.html#faceting",
-    "href": "sessions/more_ggplot/slides.html#faceting",
-    "title": "Mehr ggplot2!",
-    "section": "Faceting",
-    "text": "Faceting"
+    "objectID": "sessions/good_plots/slides.html#übung-what-makes-a-bad-plot",
+    "href": "sessions/good_plots/slides.html#übung-what-makes-a-bad-plot",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Übung: What makes a bad plot?",
+    "text": "Übung: What makes a bad plot?\n\n\nJede Gruppe bekommt eine Abbildung.\n\nDiskutiert in der Gruppe, was bei der Visualisierung schief läuft.\nSession\nKurze Diskussion. Stellt den anderen Gruppen eure Ergebnisse vor.\n\n\n\n\n\nBild gefunden auf Reddit."
   },
   {
-    "objectID": "sessions/more_ggplot/slides.html#scales",
-    "href": "sessions/more_ggplot/slides.html#scales",
-    "title": "Mehr ggplot2!",
-    "section": "Scales",
-    "text": "Scales\nLogarithmisch vs linear"
+    "objectID": "sessions/good_plots/slides.html#gliederung",
+    "href": "sessions/good_plots/slides.html#gliederung",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Gliederung?",
+    "text": "Gliederung?"
   },
   {
-    "objectID": "sessions/more_ggplot/slides.html#koordinatensytem",
-    "href": "sessions/more_ggplot/slides.html#koordinatensytem",
-    "title": "Mehr ggplot2!",
-    "section": "Koordinatensytem",
-    "text": "Koordinatensytem"
+    "objectID": "sessions/good_plots/slides.html#integrität-der-daten-garbage-in-garbage-out",
+    "href": "sessions/good_plots/slides.html#integrität-der-daten-garbage-in-garbage-out",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Integrität der Daten: Garbage in, garbage out",
+    "text": "Integrität der Daten: Garbage in, garbage out\n\n\n\n\n\nScheinkorrelationen\nWrong data, wrong measurements, wrong interpretations …\nSloppy reserach\n\nP-Hacking\nCherry Picking\n\n\n\n\nFoto von Jilbert Ebrahimi auf Unsplash."
   },
   {
-    "objectID": "sessions/more_ggplot/slides.html#abspeichern",
-    "href": "sessions/more_ggplot/slides.html#abspeichern",
-    "title": "Mehr ggplot2!",
-    "section": "Abspeichern",
-    "text": "Abspeichern\nVektor vs Raster (Rolfs 7)"
+    "objectID": "sessions/good_plots/slides.html#fehlender-kontext",
+    "href": "sessions/good_plots/slides.html#fehlender-kontext",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Fehlender Kontext",
+    "text": "Fehlender Kontext"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#fehlender-kontext-1",
+    "href": "sessions/good_plots/slides.html#fehlender-kontext-1",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Fehlender Kontext",
+    "text": "Fehlender Kontext\n ::: images-ref Sie storymaps. :::"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#fehlender-kontext-2",
+    "href": "sessions/good_plots/slides.html#fehlender-kontext-2",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Fehlender Kontext",
+    "text": "Fehlender Kontext\n\n“Land doesn’t vote … People Do.”\n\n\n\nSie storymaps."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#achsen",
+    "href": "sessions/good_plots/slides.html#achsen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Achsen",
+    "text": "Achsen\nKonventionen\n\nVerdrehte y-Achse\n\n\n\n\n\n776.013 Home protection; use or threatened use of deadly force; presumption of fear of death or great bodily harm.— (1) A person who is in a dwelling or residence in which the person has a right to be has no duty to retreat and has the right to stand his or her ground and use or threaten to use:\n(a) Nondeadly force against another when and to the extent that the person reasonably believes that such conduct is necessary to defend himself or herself or another against the other’s imminent use of unlawful force; or\n(b) Deadly force if he or she reasonably believes that using or threatening to use such force is necessary to prevent imminent death or great bodily harm to himself or herself or another or to prevent the imminent commission of a forcible felony.\nhttp://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0776/Sections/0776.013.html"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#manipulation-des-bildformats",
+    "href": "sessions/good_plots/slides.html#manipulation-des-bildformats",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Manipulation des Bildformats",
+    "text": "Manipulation des Bildformats\n\nGrafikCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nset.seed(42)\nmy_weight &lt;- data.frame(\n  month = factor(c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"),\n    levels = c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"),\n    ordered = TRUE\n  ),\n  weight = rnorm(12, 90, 5) / 1000,\n  group = rep(1, 12)\n)\n\nggplot(\n  my_weight,\n  aes(x = month, y = weight, group = group)\n) +\n  geom_point() +\n  geom_line() +\n  labs(\n    title = \"Mein Gewicht 2024\",\n    subtitle = \"In metrischen Tonnen\",\n    x = \"Monat\",\n    y = \"Gewicht in t\"\n  ) +\n  ylim(0, 1000) +\n  theme_bg() +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#reales-beispiel-für-manipulation-des-bildformates",
+    "href": "sessions/good_plots/slides.html#reales-beispiel-für-manipulation-des-bildformates",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Reales Beispiel für Manipulation des Bildformates",
+    "text": "Reales Beispiel für Manipulation des Bildformates\nSollte die y-Achse immer bei 0 beginnen?\n“The designer of the visualization, by selecting a y-axis starting point, has control over the subjective importance of the resulting differences.” (Correll et al., 2020)\n ::: images-ref Grafik aus Huff (1979), heruntergeladen von Observable blog. :::\nAbsolute Werte\nin der Regel ja\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVeränderung der Werte\nErmessensfrage:\n“If zero is in the neighborhood, invite it in!”Andrew Gelman\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSchneiden von Achsen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn der Regel keine gute Idee."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#pulikum",
+    "href": "sessions/good_plots/slides.html#pulikum",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Pulikum",
+    "text": "Pulikum"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#purpose",
+    "href": "sessions/good_plots/slides.html#purpose",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Purpose",
+    "text": "Purpose\n\nExploratory vs. Explanatory\nKann oft über reines Zeigen der Daten hinausgehen."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#gruppieren",
+    "href": "sessions/good_plots/slides.html#gruppieren",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Gruppieren",
+    "text": "Gruppieren"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#formen",
+    "href": "sessions/good_plots/slides.html#formen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Formen",
+    "text": "Formen"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#darstellung-von-größen",
+    "href": "sessions/good_plots/slides.html#darstellung-von-größen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Darstellung von Größen",
+    "text": "Darstellung von Größen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDie Größe von Kreisen einzuschätzen ist schwer!"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#das-gleiche-gilt-für-winkel",
+    "href": "sessions/good_plots/slides.html#das-gleiche-gilt-für-winkel",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Das gleiche gilt für Winkel!",
+    "text": "Das gleiche gilt für Winkel!\n\n\nVersuche, die Größen zu sortieren:"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#farben",
+    "href": "sessions/good_plots/slides.html#farben",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Farben",
+    "text": "Farben\n\n\n\n\n\n\n\nFoto von Efe Kurnaz auf Unsplash\n\nFarbwahrnehmung beim Menschen\n\n\n\n\nPrimärfarben des Lichts: Rot, Grün, Blau\n\n\nBy Original:  Penubag Vector: Victor Blacus - Own work based on: Electromagnetic-Spectrum.png, CC BY-SA 3.0, Link\n\nTrichromatizität\nDer Mensch hat in der Regel drei Zapfentypen, die unterschiedlich sensitiv für bestimmte Wellenlängen sind:\n\n\nRGB erklären (und die Addition im Gehirn?\n\n\nBy BenRG - Own work, Public Domain, Link\n\n\nAndere Tiere können auch mal mehr oder weniger haben:\n\n\nBild aus Farbsehen der Tiere\n\n\nViele Tiere sehen nur grau:\n\nWale\nHaie\nWaschbären\nFaultiere\nArmadillos\nOktopusse\nKraken\n\nWarum also überhaupt Farbwahrnehmung?\n\nIst subjektiv\nAber kann konsistent wahrgenommen werden: Eine Erdebeere im Schatten und im Sonnenlicht kann jeweils rot wahrgenommen werden. Grautöne sind stärker vom Licht abhängig.\nMore is not always better: Affen vom Amerikanischen Kontinent sind teilweise die und teilweise tetra: di kann besser INsekten ausmachen, tri Früchte gegen grünen background.\nFarbwahrnehmung also abhängig vom Drumrum\nFarben bringen nur einen Vorteil, wenn ein Individuum daraus meaning ableiten kann.\n\nFarben\nGanglienzellen übertragen keine Informationen über absolute Helligkeit, sondern über relative Helligkeit. ‣ Wie stark unterscheiden sich zwei Bereiche in ihrer Helligkeit? ‣ Wie stark hat sich eine Helligkeit gerade geändert? Allgemeine Lehre daraus: ‣ Visualisierung kann nicht gut darin sein, absolute Werte zu kommunizieren (Tabellen können das besser) ‣ Hingegen ist das visuelle System (und das Gehirn allgemein) extrem gut darin, Unterschiede und Veränderungen zu erkennen –&gt; Beispiel bringen (Simultankontrast)\n\nGraustufen nicht für absolute oder kategorische Werte nutzen (mehr als vier können iwr nicht gut unterscheiden)\n\nFarbton, Sättigung, Helligkeit\n\nFarbräume\n\nRGB: Zusammenmischen von Licht der unterschiedlichen Farben. Alle drei zusammen ergeben weiß.\nCMYK: Ausblenden aus dem weißen Farbspektrum durch Filter. Grundfarben: Gelb, Magenta (Purpur), Cyan (Blaugrün) (+K - Key (also Schwarz))\n\nWas bringt uns das jetzt für unsere Abbildungen?\n1. Unterscheidbar, aber ähnlich\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1. Unterscheidbar, aber ähnlich\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFarbton, Sättigung und Helligkeit\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVariiert immer Farbton, Sättigung und Helligkeit gleichzeitig.\n\n\n\nGrau\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2. Intuitives Verständnis: Diskrete Farben vs. Farbverläufe\n\nVor allem für diskrete Gruppen geeignet\nFarbverläufe schwieriger (aber es gibt color scales dafür)\nBestimmte Farben (Grün = gut, Rot = Gefahr)\n\nGröße\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFarbe ist relativ\nBeispiel: Grautöne vs Rottöne\n\n\nBild von Nature Methods.\n\nFarbe ist relativ\n\n\n\n\n\n\n\n\n\nFragen: Warum ist das noch eine schelchte Color scale?\n\n\nSiehe Colblindor.\n\nFarbfehlsichtigkeit\n\nprotanopic right side\n\nBy Mark Fairchild, CC BY-SA 3.0, Link\n\n\nProtanopie: Zapfentyp L (rot) fehlt: rot vs grün Schwäche\nDeuteranopie: Zapfentyp M (grün) fehlt: rot vs grün Schwäche\nTritanopie: Zapfentyp S (blau) fehlt: blau vs grün, gelb vs violett Schwäche\nTake the above scale and show that it is not great for color blindness\nhttps://www.color-blindness.com/coblis-color-blindness-simulator/\n\n\n\nlibrary(colorblindcheck)\npalette_check(theme_colors_red, plot = TRUE)  \n\n\n\n\n\n\n\n\n          name n tolerance ncp ndcp min_dist mean_dist max_dist\n1       normal 6   4.95969  15   15 4.959690  19.65649 41.78456\n2 deuteranopia 6   4.95969  15   15 5.428903  19.54489 42.55279\n3   protanopia 6   4.95969  15   14 3.976233  19.39475 41.15790\n4   tritanopia 6   4.95969  15   15 5.557603  19.68098 40.93915\n\n\nDas kann man sich natürlich auch zu Nutze machen (Passt aber vielleicht eher zu space? -&gt; da nochmal zeigen, hier die Punkte enger zusammen )\n\n\n\n\n\n\n\n\n\n\nNicht zu viele!\nColor for coding a third dimension\n\nWie viel macht sinn?\nScatterplot\nSättigung um dimensionalität der Farben darzustellen\n\nFarbfehlsichtigkeiten\nFarbsehtests\n\nFarbwahrnehmung braucht Helligkeit und Fläche\n\nAnwendung in ggplot2\nFarben whlen\n\nName\nrgb()\nNummer\nHex code\n\nscale_color vs scale_fill\nFarbskalen wählen\nManuell\n\n\n\nCodePlot\n\n\n\nggplot(\n  continent_co2_pct,\n  aes(x = world_6region, \n      y = percentage, \n      fill = world_6region)) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_manual(values = c(\"red\", \"green\", \"blue\", \"yellow\", \"violet\", \"brown\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCodePlot\n\n\n\nmy_color_scale &lt;- c(\"East Asia & Pacific\" =\"red\", \n                    \"South Asia\" = \"green\", \n                    \"Sub-Saharan Africa\" = \"blue\", \n                    \"Europe & Central Asia\" = \"yellow\", \n                    \"Middle East & North Africa\" = \"violet\", \n                    \"Americas\" = \"brown\")\nggplot(\n  continent_co2_pct,\n  aes(x = world_6region, \n      y = percentage, \n      color = world_6region)) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_color_manual(values = my_color_scale)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGraustufen\n\nggplot(\n  continent_co2_pct,\n  aes(x = world_6region, \n      y = percentage, \n      fill = world_6region)) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_grey()\n\nExterne Farb-Paletten\n\n\nR Color Brewer\n\nlibrary(RColorBrewer)\ndisplay.brewer.all(colorblindFriendly=FALSE)\n\n\n\n\n\n\n\n\n\n\nCodePlot\n\n\n\nlibrary(RColorBrewer)\n\nggplot(\n  continent_co2_pct,\n  aes(x = world_6region, \n      y = percentage, \n      fill = world_6region)) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_brewer(palette = \"PuOr\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExterne Farb-Paletten\n\n\npaletteer\nSammlung von Paletten aus diversen Paketen\n\nPalette-Finder\nGallerie\n\n\n\nCodePlot\n\n\n\nlibrary(paletteer)\n\nggplot(\n  continent_co2_pct,\n  aes(x = world_6region, \n      y = percentage, \n      fill = world_6region)) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_paletteer_d(\"LaCroixColoR::Orange\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nArten von Skalen\n\nIntervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen\n\nKein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten\n\nOrdinal: Richtung und gute Unterscheidbarkeit im Farbraum\nNominalskaliert: Spriale/Diagnoale im Farbraum\nDiskret\nContinuous\nBinned Vorgefertigte Paletten:\n\nSequenziell\nQualitativ\nDiverging\nWeiter Tools\n\n\nColorbrewer\nHuemint\n\nFarben: Zusammenfassung\n\nData from Rockefeller Institute and Wikipedia."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#übung",
+    "href": "sessions/good_plots/slides.html#übung",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Übung",
+    "text": "Übung\n\nTeste, ob deine bisherige Abbildung für Menschen mit Farbfehlsichtigkeit lesbar ist.\nBaue eine eigene Color-Palette und wende sie auf deinen Plot an. Achte dabei auf Unterscheidbarkeit (Auch color blind), aber auch auf Design."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#nützlichkeit",
+    "href": "sessions/good_plots/slides.html#nützlichkeit",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Nützlichkeit",
+    "text": "Nützlichkeit\n“Design is a requirement, not a cosmetic addition.” nature methods\n\n\n\n\nFoto von Kelly Sikkema auf Unsplash\n\n\n\n\nFoto von Yucel Moran auf Unsplash"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#funktionelles-design",
+    "href": "sessions/good_plots/slides.html#funktionelles-design",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Funktionelles Design",
+    "text": "Funktionelles Design\nWelche Funktion?\n\n\n\n\nFoto von BVG\n\n\n\n\nFoto von BVG\n\n\n\n\n\n\n\n\nDabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen.\nHandschriftliche Skizze ist auch erstmal hilfreich!"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#simplify-to-clarify",
+    "href": "sessions/good_plots/slides.html#simplify-to-clarify",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Simplify to clarify",
+    "text": "Simplify to clarify\n\nRedundanzen Reduzieren\nFokus auf das Wesentliche https://www.data-to-viz.com/caveat/declutter.html"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#verteilungen-plotten",
+    "href": "sessions/good_plots/slides.html#verteilungen-plotten",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Verteilungen Plotten",
+    "text": "Verteilungen Plotten\nAber: Simplify heißt nicht immer, Informationen zu reduzieren. Eher den Clutter! Versuchen, möglichst Verteilungen/ Spannweiten anstatt nur zusammengefasster Werte zu plotten. Evtl. IQB-Mittelwertsgrafik zeigen? Eine Grafik ist kann nur einen Teil der Zusammenhänge darstellen Im Schlechtesten Fall für Manipulation nutzbar."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#tuftes-data-ink-ratio",
+    "href": "sessions/good_plots/slides.html#tuftes-data-ink-ratio",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Tuftes Data Ink ratio",
+    "text": "Tuftes Data Ink ratio\n\nSo wenig Tinte wie möglich nutzen\nAlles nicht essentielle entfernen\nRedundanzen entferenen\n\nBeispiel zeigen: Eins ist aufgeblasen, man braucht Zeit zur Orientierung. Ein anderes theme_tufte Beispiel zum Minimieren zeigen - Raincloud plots"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#nochmal-farben",
+    "href": "sessions/good_plots/slides.html#nochmal-farben",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Nochmal Farben!",
+    "text": "Nochmal Farben!\nKleine Farblehre\n“All colors are the friends of their neighbors and the lovers of their opposites.” - Marc Chagall\n\n\nNach MalteAhrens at de.wikipedia. Vectorization by User:SidShakal - Raster version from Wikimedia Commons., Gemeinfrei, Link\n\nKleine Farbenlehre\n\n\n\n\nVincent van Gogh, Public domain, via Wikimedia Commons\n\n\n\nGegenüberliegende Farben intensivieren sich gegenseitig: eine Primärfarbe, und eine Sekundärfarbe, die aus den anderen beiden Primärfarben gemischt wird. Das erzeugt stärkere Kontraste. (Van Gogh bild)\nMit weiß und schwarz lassen sich die Schattierungen hinzumischen\ntriadisches Farbschema: Fom MIttelpunkt des Farbkreises Strahlen mit gleichem Winkel abgehen lassen (So viele, wie man Farben haben will). Das wählt dann Farben mit dem größten Kontrast aus. (https://www.kunstplaza.de/fashion-design/farbenlehre-farbtheorie-styleguides-fashion-design/)"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#takeaways",
+    "href": "sessions/good_plots/slides.html#takeaways",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Takeaways",
+    "text": "Takeaways\nNochmal bei Tufte nachschauen - Kommunizieren von der größtmöglichen Anzahl von Ideen in kürzester Zeit. - Maximieren von Data-ink ratio - Minimieren von Chart-junk - Erhöhe Datendichte, Vervielfältige kleine Versionen der Abbildung für verschiedene Gruppen"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#show-variation",
+    "href": "sessions/good_plots/slides.html#show-variation",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Show variation!",
+    "text": "Show variation!"
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
@@ -126,11 +609,88 @@
     "text": "https://r-graph-gallery.com/best-r-chart-examples https://allisonhorst.com/r-packages-functions"
   },
   {
-    "objectID": "sessions/Einführung/slides.html#example-plot",
-    "href": "sessions/Einführung/slides.html#example-plot",
+    "objectID": "sessions/Einführung/slides.html#daten",
+    "href": "sessions/Einführung/slides.html#daten",
     "title": "Einführung",
-    "section": "Example plot",
-    "text": "Example plot"
+    "section": "Daten",
+    "text": "Daten\n\n\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\n\n\n\n\nBild von [Amazon][(https://m.media-amazon.com/images/I/71KH-wJcv3L.jpg)."
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#scatterplot",
+    "href": "sessions/Einführung/slides.html#scatterplot",
+    "title": "Einführung",
+    "section": "Scatterplot",
+    "text": "Scatterplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2019 &lt;- gapminder %&gt;% \n  filter(time == 2019) \n\np_scatter &lt;- ggplot(data = gapminder_2019, aes(x = demox_eiu, y = gini, color = world_6region)) +\n  geom_point(size = 3) +\n  theme_bg()\n\np_scatter"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#scatterplot-1",
+    "href": "sessions/Einführung/slides.html#scatterplot-1",
+    "title": "Einführung",
+    "section": "Scatterplot",
+    "text": "Scatterplot\n\n\n\nDatentyp Numerisch\nAchtung Overplotting\n\n\nLink test"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#barplot",
+    "href": "sessions/Einführung/slides.html#barplot",
+    "title": "Einführung",
+    "section": "Barplot",
+    "text": "Barplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2019_bar &lt;- gapminder_2019 %&gt;% \n  filter(world_6region == \"europe_central_asia\") %&gt;% \ndrop_na(unicode_region_subtag, gini)\n\np_bar &lt;- ggplot(data = gapminder_2019_bar, aes(x = reorder(unicode_region_subtag, gini), y = gini)) +\n  geom_bar(stat = \"identity\", color = \"black\", fill = \"#F4BA02\") +\n  theme_bg()\n\np_bar"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#barplot-1",
+    "href": "sessions/Einführung/slides.html#barplot-1",
+    "title": "Einführung",
+    "section": "Barplot",
+    "text": "Barplot\n\n\n\nDatentyp\nAchtung\n\n\nHistogram\n\n\nLineplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;% \n  filter(country %in% c(\"deu\"), time &gt;=1900, time &lt;= 2024) %&gt;% \n  drop_na(gini)\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini, color = country)) +\ngeom_line() +  \ntheme_bg() +\nlabs(title = \"Ungleichheit in Deutschland On the Rise\", \n     subtitle = \"Gini-Koeffizient von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\")\n\np_line\n\n\n\n\n\n\nLineplot\n\n\n\nDatentyp\nGut für Zeitreihen\nAchtung\n\n\nBoxplot\n\n\nKarten\n\n\nSpider-Chart\n\n\nKombiniert\n\nCo2 with grey scale\ngreens with green scale\n\n\n\nPlotly\n\n\n\ngganimate\n\n\nGenerative Art"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#histogram",
+    "href": "sessions/Einführung/slides.html#histogram",
+    "title": "Einführung",
+    "section": "Histogram",
+    "text": "Histogram"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#lineplot",
+    "href": "sessions/Einführung/slides.html#lineplot",
+    "title": "Einführung",
+    "section": "Lineplot",
+    "text": "Lineplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;% \n  filter(country %in% c(\"deu\"), time &gt;=1900, time &lt;= 2024) %&gt;% \n  drop_na(gini)\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini, color = country)) +\ngeom_line() +  \ntheme_bg() +\nlabs(title = \"Ungleichheit in Deutschland On the Rise\", \n     subtitle = \"Gini-Koeffizient von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\")\n\np_line"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#lineplot-1",
+    "href": "sessions/Einführung/slides.html#lineplot-1",
+    "title": "Einführung",
+    "section": "Lineplot",
+    "text": "Lineplot\n\n\n\nDatentyp\nGut für Zeitreihen\nAchtung\n\n\nBoxplot\n\n\nKarten\n\n\nSpider-Chart\n\n\nKombiniert\n\nCo2 with grey scale\ngreens with green scale\n\n\n\nPlotly\n\n\n\ngganimate\n\n\nGenerative Art"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#boxplot",
+    "href": "sessions/Einführung/slides.html#boxplot",
+    "title": "Einführung",
+    "section": "Boxplot",
+    "text": "Boxplot"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#karten",
+    "href": "sessions/Einführung/slides.html#karten",
+    "title": "Einführung",
+    "section": "Karten",
+    "text": "Karten"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#spider-chart",
+    "href": "sessions/Einführung/slides.html#spider-chart",
+    "title": "Einführung",
+    "section": "Spider-Chart",
+    "text": "Spider-Chart"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#kombiniert",
+    "href": "sessions/Einführung/slides.html#kombiniert",
+    "title": "Einführung",
+    "section": "Kombiniert",
+    "text": "Kombiniert\n\nCo2 with grey scale\ngreens with green scale"
   },
   {
     "objectID": "sessions/Einführung/slides.html#gganimate",
@@ -147,11 +707,11 @@
     "text": "Generative Art"
   },
   {
-    "objectID": "sessions/Einführung/slides.html#step-by-step-example",
-    "href": "sessions/Einführung/slides.html#step-by-step-example",
-    "title": "Einführung",
-    "section": "Step By Step example",
-    "text": "Step By Step example"
+    "objectID": "sessions/ggplot_intro/ggplot2_basics.html",
+    "href": "sessions/ggplot_intro/ggplot2_basics.html",
+    "title": "ggplot2 Basics",
+    "section": "",
+    "text": "View slides in full screen\n\nÜbung\n\nAufgabeLösung\n\n\n\nAuslosen von Gruppen.\nEinzelarbeit: Jede*r erstellt in Einzelarbeit den zugewiesenen Plot (15 min).\n\n\nLineplot\nBarplot\nDensityplot\nBoxplot\n\n\nGruppenarbeit: Zusammenfinden in den Gruppen, um einen finalen Plot zu küren/erstellen (10 min).\n\nPlenum: Vorstellen der Gruppenplots.\n\n\n\n\nlibrary(ggplot2)\n\n## Daten laden\n\n\nScatterplot\n\n\nBarplot\n\n\nDensityplot\nz.b. mit scatterplot kombinieren\n\n\nBoxplot\nz.b. mit scatterplot verbinden"
   },
   {
     "objectID": "sessions/animate_plotly/animate_plotly.html",
@@ -159,13 +719,6 @@
     "title": "Ausblick: gganimate und plotly",
     "section": "",
     "text": "View slides in full screen - Was noch so möglich: gganimate/plotly - Janine (+ Nicklas)\n\nÜbung\n\nbisherige Grafik animieren/plotly"
-  },
-  {
-    "objectID": "sessions/ggplot_intro/ggplot2_basics.html",
-    "href": "sessions/ggplot_intro/ggplot2_basics.html",
-    "title": "ggplot2 Basics",
-    "section": "",
-    "text": "View slides in full screen\n\nÜbung\n\nAufgabeLösung\n\n\n\nAuslosen von Gruppen.\nEinzelarbeit: Jede*r erstellt in Einzelarbeit den zugewiesenen Plot (15 min).\n\n\nLineplot\nBarplot\nDensityplot\nBoxplot\n\n\nGruppenarbeit: Zusammenfinden in den Gruppen, um einen finalen Plot zu küren/erstellen (10 min).\n\nPlenum: Vorstellen der Gruppenplots.\n\n\n\n\nlibrary(ggplot2)\n\n## Daten laden\n\n\nScatterplot\n\n\nBarplot\n\n\nDensityplot\nz.b. mit scatterplot kombinieren\n\n\nBoxplot\nz.b. mit scatterplot verbinden"
   },
   {
     "objectID": "sessions/r_basics/r_basics.html",
@@ -336,6 +889,13 @@
     "text": "Von Long zu Wide\n\ninhabitants_wide_2 &lt;- inhabitants_long %&gt;%\n  pivot_wider(\n    id_cols = \"country\",\n    names_from = \"variable\",\n    values_from = \"value\"\n  )\n\nhead(inhabitants_wide_2)\n\n# A tibble: 3 × 3\n  country    area inhabitants_2022\n  &lt;chr&gt;     &lt;dbl&gt;            &lt;dbl&gt;\n1 China   9597000       1425857720\n2 India   3287000       1420939232\n3 USA     9834000        338903174"
   },
   {
+    "objectID": "sessions/prep_plots/prep_plots.html",
+    "href": "sessions/prep_plots/prep_plots.html",
+    "title": "Grafiken Druckreif machen",
+    "section": "",
+    "text": "View slides in full screen\n\nÜbung\n\nGrafiken Druckreif machen und vorstellen (verschiedene Ziele/Zielgruppen, Alle die den gleichen Plot-Typ haben gruppieren)"
+  },
+  {
     "objectID": "sessions/ggplot_intro/slides.html#section",
     "href": "sessions/ggplot_intro/slides.html#section",
     "title": "ggplot2: Basics",
@@ -361,7 +921,7 @@
     "href": "sessions/ggplot_intro/slides.html#komponenten",
     "title": "ggplot2: Basics",
     "section": "Komponenten",
-    "text": "Komponenten"
+    "text": "Komponenten\n\n\nDaten\n\n\n\n\n\n  x   y group size  shape\n1 1 2.0     A    4 circle\n2 2 3.0     A    5 circle\n3 3 2.5     A    6 circle\n4 4 4.0     A    7 circle\n5 5 3.0     A    8 circle\n6 2 1.0     B    3 circle\n\n\n\nAestetic mapping\n\n\n\n\n\n\n\n\n\n\nLayers"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#die-daten",
@@ -466,7 +1026,7 @@
     "href": "sessions/ggplot_intro/slides.html#aestetics-als-mapping-oder-setting",
     "title": "ggplot2: Basics",
     "section": "Aestetics als Mapping oder Setting",
-    "text": "Aestetics als Mapping oder Setting"
+    "text": "Aestetics als Mapping oder Setting\n\n\nFür alle Layer\n\nggplot(\n  data = gapminder_dat,\n  aes(\n    x = pop,\n    y = co2_cons,\n    color = world_6region\n  )\n) +\n  geom_point() +\n  geom_smooth()\n\n\n\n\n\n\n\n\n\nFür spezifische Layer\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point(aes(color = world_6region)) +\n  geom_smooth()\n\n\n\n\n\n\n\n\n\n\nAls Setting\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point(color = \"#F4BA02\") +\n  geom_smooth()"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#labels",
@@ -483,25 +1043,39 @@
     "text": "Style deinen Plot: Themes\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Größere Bevölkerung führt zu mehr CO2-Ausstoß!\",\n    subtitle = \"CO2-Ausstoß diverser Länder in 2020\",\n    x = \"Bevölkerungzahl\",\n    y = \"CO2-Ausstoß in Tonnen\"\n  ) +\n  theme_classic()"
   },
   {
-    "objectID": "sessions/science_plots/science_plots.html",
-    "href": "sessions/science_plots/science_plots.html",
-    "title": "Wissenschaftliche Grafiken (APA)",
-    "section": "",
-    "text": "View slides in full screen\n\nWissenschaftliche Grafiken (APA) - Janine"
-  },
-  {
-    "objectID": "sessions/prep_plots/prep_plots.html",
-    "href": "sessions/prep_plots/prep_plots.html",
-    "title": "Grafiken Druckreif machen",
-    "section": "",
-    "text": "View slides in full screen\n\nÜbung\n\nGrafiken Druckreif machen und vorstellen (verschiedene Ziele/Zielgruppen, Alle die den gleichen Plot-Typ haben gruppieren)"
-  },
-  {
     "objectID": "sessions/Einführung/Einführung.html",
     "href": "sessions/Einführung/Einführung.html",
     "title": "Einführung",
     "section": "",
     "text": "View slides in full screen\n\nIntro/Beispiele/Motivation/Arten von Grafiken (1 Basic + 1 Schöne) - Janine (+Nicklas)"
+  },
+  {
+    "objectID": "sessions/good_plots/maps.html#section",
+    "href": "sessions/good_plots/maps.html#section",
+    "title": "Karten",
+    "section": "",
+    "text": "|data_name            |description                                                                          |\n|:--------------------|:------------------------------------------------------------------------------------|\n|municipal_unharm     |Local elections at the municipal level (1990-2020, unharmonized).                    |\n|municipal_harm       |Local elections at the municipal level (1990-2020, harmonized).                      |\n|state_unharm         |State elections at the municipal level (2006-2019, unharmonized).                    |\n|state_harm           |State elections at the municipal level (2006-2019, harmonized).                      |\n|federal_muni_raw     |Federal elections at the municipal level (1980-2025, raw data).                      |\n|federal_muni_unharm  |Federal elections at the municipal level (1980-2025, unharmonized).                  |\n|federal_muni_harm_21 |Federal elections at the municipal level (1990-2025, harmonized to 2021 boundaries). |\n|federal_muni_harm_25 |Federal elections at the municipal level (1990-2025, harmonized to 2025 boundaries). |\n|federal_cty_unharm   |Federal elections at the county level (1953-2021, unharmonized).                     |\n|federal_cty_harm     |Federal elections at the county level (1990-2021, harmonized).                       |\n|ags_crosswalks       |Crosswalks for municipalities (1990-2025).                                           |\n|cty_crosswalks       |Crosswalks for counties (1990-2025).                                                 |\n|ags_area_pop_emp     |Crosswalk covariates (area, population, employment) for municipalities (1990-2025).  |\n|cty_area_pop_emp     |Crosswalk covariates (area, population, employment) for counties (1990-2025).        |\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nZeigen von Kreisen, wo es sehr eng war"
+  },
+  {
+    "objectID": "sessions/good_plots/maps.html#alternativen",
+    "href": "sessions/good_plots/maps.html#alternativen",
+    "title": "Karten",
+    "section": "Alternativen",
+    "text": "Alternativen\n\n\nBild von storymaps."
+  },
+  {
+    "objectID": "sessions/good_plots/maps.html#kartogramm",
+    "href": "sessions/good_plots/maps.html#kartogramm",
+    "title": "Karten",
+    "section": "Kartogramm",
+    "text": "Kartogramm\n\nlibrary(cartogram)\n\n## Ansonsten mit county oder sogar nur Bundesland?\n\ncartogram_dat &lt;- cartogram_cont(geom_elect_max,\n                 weight = \"number_voters\")\n\nsaveRDS(here::here(\"sessions\", \"good_plots\", \"data\", \"cartogram_dat.rds\"))\n\n\n# https://r-charts.com/spatial/cartogram-ggplot2/\n\nlibrary(cartogram)\n\nreadRDS(here::here(\"sessions\", \"good_plots\", \"data\", \"cartogram_dat.rds\"))\n\nggplot(cartogram_dat) +\n  geom_sf()\n\n\n\nVon Costamiri - Eigenes WerkMap based on: Shapefiles by bundeswahlleiterin.de (Geometrie der Wahlkreise im Koordinatensystem UTM32 generalisiert) © Die Bundeswahlleiterin, Statistisches Bundesamt, Wiesbaden 2024, Wahlkreiskarte für die Wahl zum 21. Deutschen Bundestag; Grundlage der Geoinformationen © Geobasis-DE / BKG 2024Data based on: Bundestagswahl 2025: Open-Data-Angebot der Bundeswahlleiterin by bundeswahlleiterin.de, CC BY-SA 4.0, Link"
+  },
+  {
+    "objectID": "sessions/good_plots/maps.html#section-2",
+    "href": "sessions/good_plots/maps.html#section-2",
+    "title": "Karten",
+    "section": "",
+    "text": ":::{.column width=“50%} \n\n\n\n\n\n:::\n\nGrafiken von zeit.de."
   },
   {
     "objectID": "sessions/more_ggplot/more_ggplot.html",
@@ -511,186 +1085,11 @@
     "text": "View slides in full screen\n\nAdvanced: Achsen, theme, Titel, Coords, scales, speichern - Nicklas (+Janine)"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#section",
-    "href": "sessions/good_plots/slides.html#section",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/science_plots/science_plots.html",
+    "href": "sessions/science_plots/science_plots.html",
+    "title": "Wissenschaftliche Grafiken (APA)",
     "section": "",
-    "text": "Excellence in statistical graphics consists of complex ideas communicated with clarity, precision, and efficiency. (tufte2001visualizing?)\n\nshow the data\ninduce the viewer to think about the substance rather than about methodology, graphic design, the technology of graphic production, or something else\navoid distorting what the data have to say\npresent many numbers in a small space\nmake large datasets coherent\nencourage the eye to compare different pieces of data\nReveal the data at several levels of detail, from a broad overview to the fine structure\nserve a reasonably clear purpose: description, exploration, tabulation, or decoration\nbe closely integrated with the statistical and verbal descriptions of a data set"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#section-1",
-    "href": "sessions/good_plots/slides.html#section-1",
-    "title": "Was ist eine gute Grafik?",
-    "section": "",
-    "text": "Darstellung von David McCandless in Knowledge is Beautiful (2014)."
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#übung-what-makes-a-bad-plot",
-    "href": "sessions/good_plots/slides.html#übung-what-makes-a-bad-plot",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Übung: What makes a bad plot?",
-    "text": "Übung: What makes a bad plot?\n\n\nJede Gruppe bekommt eine Abbildung.\n\nDiskutiert in der Gruppe, was bei der Visualisierung schief läuft.\nSession\nKurze Diskussion. Stellt den anderen Gruppen eure Ergebnisse vor.\n\n\n\n\n\nBild gefunden auf Reddit."
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#gliederung",
-    "href": "sessions/good_plots/slides.html#gliederung",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Gliederung?",
-    "text": "Gliederung?"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#integrität-der-daten-garbage-in-garbage-out",
-    "href": "sessions/good_plots/slides.html#integrität-der-daten-garbage-in-garbage-out",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Integrität der Daten: Garbage in, garbage out",
-    "text": "Integrität der Daten: Garbage in, garbage out\n\n\n\n\n\nScheinkorrelationen\nWrong data, wrong measurements, wrong interpretations …\nSloppy reserach\n\nP-Hacking\nCherry Picking\n\n\n\n\nFoto von Jilbert Ebrahimi auf Unsplash."
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#fehlender-kontext",
-    "href": "sessions/good_plots/slides.html#fehlender-kontext",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Fehlender Kontext",
-    "text": "Fehlender Kontext"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#fehlender-kontext-1",
-    "href": "sessions/good_plots/slides.html#fehlender-kontext-1",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Fehlender Kontext",
-    "text": "Fehlender Kontext\n ::: images-ref Sie storymaps. :::"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#fehlender-kontext-2",
-    "href": "sessions/good_plots/slides.html#fehlender-kontext-2",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Fehlender Kontext",
-    "text": "Fehlender Kontext\n\n“Land doesn’t vote … People Do.”\n\n\n\nSie storymaps."
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#achsen",
-    "href": "sessions/good_plots/slides.html#achsen",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Achsen",
-    "text": "Achsen"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#manipulation-des-bildformats",
-    "href": "sessions/good_plots/slides.html#manipulation-des-bildformats",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Manipulation des Bildformats",
-    "text": "Manipulation des Bildformats\n\nGrafikCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nset.seed(42)\nmy_weight &lt;- data.frame(\n  month = factor(c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"),\n    levels = c(\"Januar\", \"Februar\", \"März\", \"April\", \"Mai\", \"Juni\", \"Juli\", \"August\", \"September\", \"Oktober\", \"November\", \"Dezember\"),\n    ordered = TRUE\n  ),\n  weight = rnorm(12, 90, 5) / 1000,\n  group = rep(1, 12)\n)\n\nggplot(\n  my_weight,\n  aes(x = month, y = weight, group = group)\n) +\n  geom_point() +\n  geom_line() +\n  labs(\n    title = \"Mein Gewicht 2024\",\n    subtitle = \"In metrischen Tonnen\",\n    x = \"Monat\",\n    y = \"Gewicht in t\"\n  ) +\n  ylim(0, 1000) +\n  theme_bg() +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#reales-beispiel-für-manipulation-des-bildformates",
-    "href": "sessions/good_plots/slides.html#reales-beispiel-für-manipulation-des-bildformates",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Reales Beispiel für Manipulation des Bildformates",
-    "text": "Reales Beispiel für Manipulation des Bildformates"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#pulikum",
-    "href": "sessions/good_plots/slides.html#pulikum",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Pulikum",
-    "text": "Pulikum"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#purpose",
-    "href": "sessions/good_plots/slides.html#purpose",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Purpose",
-    "text": "Purpose\n\nExploratory vs. Explanatory\nKann oft über reines Zeigen der Daten hinausgehen."
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#gruppieren",
-    "href": "sessions/good_plots/slides.html#gruppieren",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Gruppieren",
-    "text": "Gruppieren"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#formen",
-    "href": "sessions/good_plots/slides.html#formen",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Formen",
-    "text": "Formen"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#darstellung-von-größen",
-    "href": "sessions/good_plots/slides.html#darstellung-von-größen",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Darstellung von Größen",
-    "text": "Darstellung von Größen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDie Größe von Kreisen einzuschätzen ist schwer!"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#das-gleiche-gilt-für-winkel",
-    "href": "sessions/good_plots/slides.html#das-gleiche-gilt-für-winkel",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Das gleiche gilt für Winkel!",
-    "text": "Das gleiche gilt für Winkel!\n\n\nVersuche, die Größen zu sortieren:"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#farben",
-    "href": "sessions/good_plots/slides.html#farben",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Farben",
-    "text": "Farben\n\n\n\n\n\n\n\nFoto von Efe Kurnaz auf Unsplash"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#übung",
-    "href": "sessions/good_plots/slides.html#übung",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Übung",
-    "text": "Übung\n\nTeste, ob deine bisherige Abbildung für Menschen mit Farbfehlsichtigkeit lesbar ist.\nBaue eine eigene Color-Palette und wende sie auf deinen Plot an. Achte dabei auf Unterscheidbarkeit (Auch color blind), aber auch auf Design."
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#nützlichkeit",
-    "href": "sessions/good_plots/slides.html#nützlichkeit",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Nützlichkeit",
-    "text": "Nützlichkeit\n“Design is a requirement, not a cosmetic addition.” nature methods\n\n\n\n\nFoto von Kelly Sikkema auf Unsplash\n\n\n\n\nFoto von Yucel Moran auf Unsplash"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#funktionelles-design",
-    "href": "sessions/good_plots/slides.html#funktionelles-design",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Funktionelles Design",
-    "text": "Funktionelles Design\nWelche Funktion?\n\n\n\n\nFoto von BVG\n\n\n\n\nFoto von BVG\n\n\n\n\n\n\n\n\nDabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen.\nHandschriftliche Skizze ist auch erstmal hilfreich!"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#simplify-to-clarify",
-    "href": "sessions/good_plots/slides.html#simplify-to-clarify",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Simplify to clarify",
-    "text": "Simplify to clarify\n\nRedundanzen Reduzieren\nFokus auf das Wesentliche https://www.data-to-viz.com/caveat/declutter.html"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#verteilungen-plotten",
-    "href": "sessions/good_plots/slides.html#verteilungen-plotten",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Verteilungen Plotten",
-    "text": "Verteilungen Plotten\nAber: Simplify heißt nicht immer, Informationen zu reduzieren. Eher den Clutter! Versuchen, möglichst Verteilungen/ Spannweiten anstatt nur zusammengefasster Werte zu plotten. Evtl. IQB-Mittelwertsgrafik zeigen? Eine Grafik ist kann nur einen Teil der Zusammenhänge darstellen Im Schlechtesten Fall für Manipulation nutzbar."
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#tuftes-data-ink-ratio",
-    "href": "sessions/good_plots/slides.html#tuftes-data-ink-ratio",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Tuftes Data Ink ratio",
-    "text": "Tuftes Data Ink ratio\n\nSo wenig Tinte wie möglich nutzen\nAlles nicht essentielle entfernen\nRedundanzen entferenen\n\nBeispiel zeigen: Eins ist aufgeblasen, man braucht Zeit zur Orientierung. Ein anderes theme_tufte Beispiel zum Minimieren zeigen - Raincloud plots"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#nochmal-farben",
-    "href": "sessions/good_plots/slides.html#nochmal-farben",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Nochmal Farben!",
-    "text": "Nochmal Farben!"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#takeaways",
-    "href": "sessions/good_plots/slides.html#takeaways",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Takeaways",
-    "text": "Takeaways\nNochmal bei Tufte nachschauen - Kommunizieren von der größtmöglichen Anzahl von Ideen in kürzester Zeit. - Maximieren von Data-ink ratio - Minimieren von Chart-junk - Erhöhe Datendichte, Vervielfältige kleine Versionen der Abbildung für verschiedene Gruppen"
+    "text": "View slides in full screen\n\nWissenschaftliche Grafiken (APA) - Janine"
   },
   {
     "objectID": "sessions/example_slides.html#normal-slide",
@@ -761,12 +1160,5 @@
     "title": "Einführung",
     "section": "plotly",
     "text": "plotly\n\nlibrary(plotly)\n\nfig &lt;- plot_ly(midwest, x = ~percollege, color = ~state, type = \"box\")\nfig"
-  },
-  {
-    "objectID": "sessions/explorative_plots/explorative_plots.html",
-    "href": "sessions/explorative_plots/explorative_plots.html",
-    "title": "Explorative Grafiken",
-    "section": "",
-    "text": "View slides in full screen\n\nÜbung\n\nExplorative Grafiken - Janine"
   }
 ]
