@@ -52,7 +52,13 @@ dat_merged <- char_dat %>%
 
 dat_prepped <-  dat_merged %>% 
   filter(uni_name %in% c("How I Met Your Mother", "Friends")) %>% 
-  filter(question %in% c("doer/thinker", "jock/nerd", "cold/warm", "main character/side character", "crazy/sane"))
+  filter(question %in% c("doer/thinker", "jock/nerd", "cold/warm", "main character/side character", "crazy/sane", "dispassionate/romantic", "high IQ/low IQ", "heroic/villainous", "funny/humorless", "chaotic/orderly")) %>% 
+  ## Rating always between 50 and 100. Use the personality trait for correct scaling
+  
+  mutate(top_trait = str_split_i(question, pattern = "/", i = 2), 
+         bottom_trait = str_split_i(question, pattern = "/", i = 1)) %>% 
+  mutate(avg_rating = case_when(personality == top_trait ~ avg_rating, 
+                                personality == bottom_trait ~ 100 - avg_rating))
 
 ## Cold warm: Geschlecht? Could get ChatGPT to code
 
@@ -494,11 +500,135 @@ Winkel sind oft nicht so einfach zu interpretieren.
 Nichtsdestotrotz kann es gerade zur Gestaltung nett sein!
 :::
 
-## Realistischer Anwendunge
+## Realistischer Anwendungen
 - Zeitreihen
 - Strecken
 
+
 ## Labels
+
+# Kombinieren von Plots
+
+## Patchwork
+
+
+```{r}
+ggplot(data = dat_prepped, 
+        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +
+  geom_point() +
+  facet_wrap(vars(char_name))
+```
+
+
+
+```{r}
+dat_prepped_robin <- dat_prepped %>% 
+  filter(char_name == "Robin Scherbatsky")
+
+
+p_robin <- ggplot(data = dat_prepped_robin, 
+        mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)) +
+  geom_point() +
+  facet_wrap(vars(char_name)) +
+  ylim(0, 100)
+  
+
+
+p_rest <- ggplot(data = dat_prepped %>% filter(char_name != "Robin Scherbatsky"), 
+        mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)) +
+  geom_point() +
+  facet_wrap(vars(char_name), nrow = 2) +
+  ylim(0, 100) 
+
+```
+
+## Patchwork
+
+[Patchwork](https://patchwork.data-imaginist.com/) erlaubt es, Plots zu kombinieren.
+
+```{r}
+library(patchwork)
+
+p_robin + 
+  p_rest 
+
+```
+
+
+
+## Patchwork: Stylen
+
+```{r}
+library(patchwork)
+
+p_robin + 
+  p_rest + 
+  plot_layout(widths = c(2, 2), guides = "collect")
+
+```
+
+Hmm, das hat noch nicht funktioniert. 
+
+## 
+
+Abschalten der Legende im ersten Plot. 
+
+```{r}
+#| output-location: column
+
+p_robin <- ggplot(data = dat_prepped_robin, 
+        mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)) +
+  geom_point() +
+  facet_wrap(vars(char_name)) +
+  ylim(0, 100) +
+  theme(legend.position = "none")
+  
+
+
+p_rest <- ggplot(data = dat_prepped %>% filter(char_name != "Robin Scherbatsky"), 
+        mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)) +
+  geom_point() +
+  facet_wrap(vars(char_name), nrow = 2) +
+  ylim(0, 100) 
+
+
+p_robin + 
+  p_rest + 
+  plot_layout(widths = c(2, 2), guides = "collect")
+
+
+```
+
+
+# Text
+## ggtext
+
+# Bilder
+
+## 
+```{r}
+library(tidyverse)
+library(ggtext)
+library(glue)
+
+ggplot(
+  data = dat_prepped, 
+  mapping = aes(x = image_link, y = avg_rating, shape = uni_name_fac)
+) +
+  geom_point() +
+  facet_wrap(vars(question), nrow = 2) +
+  ylim(0, 100) +
+  scale_x_discrete(
+    labels = \(x) glue("<img src='{x}' height='24' />")
+  ) +
+  theme(
+    axis.text.x = element_markdown()
+  ) +
+  coord_cartesian(clip = "off")   # falls Bilder abgeschnitten werden
+
+```
+
+
 
 # Let's bring it together: Spider-Chat
 
@@ -716,7 +846,8 @@ ggplot(dat_prepped3,
   scale_fill_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
   scale_color_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
   theme_bg() +
-  labs(title = "The one where Ross and Ted meet")
+  labs(title = "The one where Everyone meets", 
+       )
 ```
 
 
@@ -751,9 +882,7 @@ ggplot(dat_prepped3,
 ```
 
 
-##
-
-Precut the images
+## Adding a frame around the picture
 
 ```{r}
 #| output-location: column
@@ -775,15 +904,26 @@ ggplot(dat_prepped3,
   scale_color_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
   theme_bg() +
   labs(title = "The one where Everyone meets") +
-  geom_image(aes(x = image_x_coord, y = 100, image = image_link), 
-             nudge_x = c(0.5, -0.5), 
-             size=0.1, inherit.aes = FALSE,   asp = 1,
-  mask = "circle") +
+    geom_image(aes(x = image_x_coord, y = 100, image = image_link),
+             nudge_x = c(0.5, -0.5),
+             size=0.12) +
+  geom_image(aes(x = image_x_coord, y = 100, image = image_link),
+             nudge_x = c(0.5, -0.5),
+             size=0.1, inherit.aes = FALSE) +
   NULL
 ```
+
+
+##
+
+
+```{r}
+
+
+```
+
+
 ## 
-
-
 ```{r}
 # traits <- c("doer/thinker", "jock/nerd", "cold/warm", "main character/side character", "crazy/sane")
 # line<-data.frame(x=rep(traits,2),y=c(rep(0, length(traits)),rep(100, length(traits))))
