@@ -148,9 +148,10 @@ ggplot(
   geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   labs(
-    x = "Land", 
+    x = "Land",
     y = "CO2 Consumption in 1000 t",
-    title = "China burns the most CO2!" ) +
+    title = "China burns the most CO2!"
+  ) +
   theme_bg()
 ```
 :::
@@ -170,10 +171,11 @@ ggplot(
 ) +
   geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-labs(
-    x = "Land", 
+  labs(
+    x = "Land",
     y = "CO2 Consumption per capita in t",
-    title = ""  ) +
+    title = ""
+  ) +
   theme_bg()
 ```
 :::
@@ -328,7 +330,7 @@ ggplot(
   geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   labs(title = "CO2 consumption per capita in the biggest emmiting countries") +
-  theme_bg() 
+  theme_bg()
 ```
 
 :::
@@ -351,15 +353,14 @@ gapminder_2020_de <- gapminder_dat_full %>%
 
 
 ggplot(
-  gapminder_2020_de, 
+  gapminder_2020_de,
   aes(x = time, y = co2_pcap_cons, group = country, colour = country)
 ) +
   geom_line(linewidth = 1.5) +
-  theme_bg() + 
+  theme_bg() +
   ylim(9, 14) +
   scale_color_manual(values = "#208C7A") +
   labs(title = "CO2 consumption per capita in Germany")
-
 ```
 
 :::
@@ -370,15 +371,14 @@ ggplot(
 #| echo: false
 
 ggplot(
-  gapminder_2020_de, 
+  gapminder_2020_de,
   aes(x = time, y = co2_pcap_cons, group = country, colour = country)
 ) +
   geom_line(linewidth = 1.5) +
-  theme_bg() + 
+  theme_bg() +
   ylim(0, 15) +
   scale_color_manual(values = "#208C7A") +
   labs(title = "CO2 consumption per capita in Germany")
-
 ```
 
 :::
@@ -445,6 +445,53 @@ In der Regel keine gute Idee.
 # Story
 Rolfs 7
 Nature https://www.nature.com/articles/nmeth.2571
+
+
+## Erkläre Auffälligkeiten
+
+```{r}
+#| label: example-line
+#| fig-width: 14
+#| fig-height: 7
+#| echo: false
+
+gapminder_line <- gapminder_dat_full %>%
+  filter(country %in% c("deu"), time >= 1850, time <= 2024) %>%
+  drop_na(gini)
+
+
+steuer <- gapminder_line %>% 
+filter(time %in% c(1883, 1923, 1952, 1974, 1990, 1997, 2020)) %>% 
+arrange(time) %>% 
+mutate(label = c("Einführung des Preußischen Ergänzungsgesetz",  "Einführung der Vermögenssteuer nach preußischem Vorbild", "Vermögenssteuergestz", "Heutiges Gesetz", "Wiedervereinigung", "Aussetzung der Vermögenssteuer", "Corona"))
+
+p_line <- ggplot(data = gapminder_line, aes(x = time, y = gini)) +
+  geom_line() +
+  geom_point(data = steuer) +
+  geom_text_repel(data = steuer, aes(label = label), nudge_x = c(20, 25, 10, -5, 0, 0, -10), nudge_y = c(2, 2, 2, -2, 1, -2, 1)) +
+  theme_bg() +
+  labs(
+    title = "Ungleichheit in Deutschland On the Rise?",
+    subtitle = "Gini-Koeffizient von 1850 bis 2024",
+    x = "Jahr",
+    y = "Gini-Koeffizient"
+  ) +
+ annotate(
+    "label",
+    x = 1850, y = 30,        # Ecke unten links
+    hjust = 0, vjust = 0,      # innen ausrichten
+    label = "\bold(Gini-Koeffizient): Maß für Ungleichheit.\n0 = vollkommen gleich, 100 = maximal ungleich.",
+    size = 4,                  # Textgröße
+    label.size = 0.5,          # Rahmenstärke (0 = ohne)
+    label.r = grid::unit(3, "pt"),
+    fill = "white",            # oder scales::alpha("white", 0.9)
+    colour = "black")
+
+p_line
+```
+
+Zweiten Plot hierdraus!
+- https://www.boeckler.de/de/boeckler-impuls-ist-deutschland-ein-ungleiches-land-3658.htm
 
 # Goal
 - Usefulness
@@ -782,7 +829,7 @@ color_plot_bar <- ggplot(
     legend.key.size = unit(0.4, "cm"),
     legend.text = element_text(size = 7),
     legend.title = element_blank()
-  ) 
+  )
 ```
 
 
@@ -821,16 +868,16 @@ color_plot_bar +
 
 
 theme_colors_balanced <- c(
-  "#4D9285",  # gedämpftes Türkisgrün – weniger satt als Original (#208C7A)
-  "#D89035",  # warmes Ocker-Orange – harmonischer als das grelle Gelb (#F4BA02)
-  "#B95454",  # weiches Rot – weniger dominant als #9B1B34
-  "#4E6D84",  # gemäßigtes Dunkelblau – weniger kalt als #01364C
-  "#7A5A53",  # milderes Braun – balanciert zu den anderen warmen Tönen
-  "#BC8B4C",  # orange-braun, passt zu Gelb & Braun (#C97E10 → abgemildert)
-  "#67829E",  # etwas entsättigtes Stahlblau (#476A92)
-  "#86A18C",  # grünlich-grau – Kombination aus Olive und Türkis
-  "#A68CA5",  # gedecktes Violett – deutlich ruhiger als Original (#B47EB3)
-  "#B7B9BC"   # kühles Hellgrau – dient als neutraler Ausgleich
+  "#4D9285", # gedämpftes Türkisgrün – weniger satt als Original (#208C7A)
+  "#D89035", # warmes Ocker-Orange – harmonischer als das grelle Gelb (#F4BA02)
+  "#B95454", # weiches Rot – weniger dominant als #9B1B34
+  "#4E6D84", # gemäßigtes Dunkelblau – weniger kalt als #01364C
+  "#7A5A53", # milderes Braun – balanciert zu den anderen warmen Tönen
+  "#BC8B4C", # orange-braun, passt zu Gelb & Braun (#C97E10 → abgemildert)
+  "#67829E", # etwas entsättigtes Stahlblau (#476A92)
+  "#86A18C", # grünlich-grau – Kombination aus Olive und Türkis
+  "#A68CA5", # gedecktes Violett – deutlich ruhiger als Original (#B47EB3)
+  "#B7B9BC" # kühles Hellgrau – dient als neutraler Ausgleich
 )
 
 color_plot_bar +
@@ -849,11 +896,11 @@ color_plot_bar +
 #| label: color-plot
 #| echo: false
 
-gapminder_1020 <- gapminder_dat %>% 
-filter(time %in% 2010:2020)
+gapminder_1020 <- gapminder_dat %>%
+  filter(time %in% 2010:2020)
 
 
-## Auch gut, weil man das dann verbinden kann um zu zeigen, dass Farben nur Bedingt helfen, Muster zu erkennen. 
+## Auch gut, weil man das dann verbinden kann um zu zeigen, dass Farben nur Bedingt helfen, Muster zu erkennen.
 top5_co2 <- gapminder_1020 %>%
   group_by(name) %>%
   summarise(mean_co2 = mean(co2_pcap_cons, na.rm = TRUE)) %>%
@@ -861,7 +908,7 @@ top5_co2 <- gapminder_1020 %>%
   slice_head(n = 5)
 
 ## Vielleicht besser die 6 worldregions nehmen!
-## Dann zum Vergleich später zeigen, Wenn es länder wären. 
+## Dann zum Vergleich später zeigen, Wenn es länder wären.
 
 
 
@@ -872,8 +919,7 @@ color_plot <- ggplot(
   geom_point(size = 3) +
   theme_minimal() +
   labs(title = "Share of global per capita CO2 consumption") +
-  xlim(0, 1.5*10^9)
-
+  xlim(0, 1.5 * 10^9)
 ```
 
 ::: {.columns}
@@ -899,7 +945,7 @@ theme_colors_2 <- c(
 
 color_plot +
   scale_color_manual(values = theme_colors_2) +
-theme_bg()
+  theme_bg()
 ```
 :::
 
@@ -911,28 +957,27 @@ theme_bg()
 #| fig-height: 7
 
 theme_colors_balanced <- c(
-  "#4D9285",  # gedämpftes Türkisgrün – weniger satt als Original (#208C7A)
-  "#D89035",  # warmes Ocker-Orange – harmonischer als das grelle Gelb (#F4BA02)
-  "#B95454",  # weiches Rot – weniger dominant als #9B1B34
-  "#4E6D84",  # gemäßigtes Dunkelblau – weniger kalt als #01364C
-  "#7A5A53",  # milderes Braun – balanciert zu den anderen warmen Tönen
-  "#BC8B4C",  # orange-braun, passt zu Gelb & Braun (#C97E10 → abgemildert)
-  "#67829E",  # etwas entsättigtes Stahlblau (#476A92)
-  "#86A18C",  # grünlich-grau – Kombination aus Olive und Türkis
-  "#A68CA5",  # gedecktes Violett – deutlich ruhiger als Original (#B47EB3)
-  "#B7B9BC"   # kühles Hellgrau – dient als neutraler Ausgleich
+  "#4D9285", # gedämpftes Türkisgrün – weniger satt als Original (#208C7A)
+  "#D89035", # warmes Ocker-Orange – harmonischer als das grelle Gelb (#F4BA02)
+  "#B95454", # weiches Rot – weniger dominant als #9B1B34
+  "#4E6D84", # gemäßigtes Dunkelblau – weniger kalt als #01364C
+  "#7A5A53", # milderes Braun – balanciert zu den anderen warmen Tönen
+  "#BC8B4C", # orange-braun, passt zu Gelb & Braun (#C97E10 → abgemildert)
+  "#67829E", # etwas entsättigtes Stahlblau (#476A92)
+  "#86A18C", # grünlich-grau – Kombination aus Olive und Türkis
+  "#A68CA5", # gedecktes Violett – deutlich ruhiger als Original (#B47EB3)
+  "#B7B9BC" # kühles Hellgrau – dient als neutraler Ausgleich
 )
 
 
 color_plot +
   scale_color_manual(values = theme_colors_balanced) +
-theme_bg()
+  theme_bg()
 
-# 
+#
 #   scale_color_brewer(palette = "Dark2") +
 #   theme_minimal() +
 #   labs(title = "Share of global per capita CO2 consumption")
-
 ```
 
 :::
@@ -950,24 +995,22 @@ theme_bg()
 
 
 theme_colors_hue_only <- c(
-  "#D88585",  # muted red
-  "#D89D85",  # warm orange
-  "#CDD885",  # soft olive
-  "#A9D885",  # light green
-  "#85D89D",  # aquamarine
-  "#85D8D8",  # turquoise
-  "#85A9D8",  # muted blue
-  "#9D85D8",  # lavender
-  "#D885CD",  # dusty pink-purple
-  "#D8859D"   # rosy mauve
+  "#D88585", # muted red
+  "#D89D85", # warm orange
+  "#CDD885", # soft olive
+  "#A9D885", # light green
+  "#85D89D", # aquamarine
+  "#85D8D8", # turquoise
+  "#85A9D8", # muted blue
+  "#9D85D8", # lavender
+  "#D885CD", # dusty pink-purple
+  "#D8859D" # rosy mauve
 )
 
 
 
 color_plot +
   scale_color_manual(values = theme_colors_hue_only)
-
-
 ```
 
 
@@ -979,23 +1022,20 @@ color_plot +
 
 
 theme_colors_hue_varied <- c(
-  "#C15A5A",  # red – more saturated & slightly darker
-  "#DA935A",  # orange – a bit lighter
-  "#D4DA5A",  # olive – higher lightness, less saturation
-  "#92DA5A",  # light green – more saturated
-  "#5ADAA0",  # aquamarine – brighter & lighter
-  "#5ADADA",  # turquoise – more saturated & icy
-  "#5A92DA",  # blue – stronger contrast
-  "#7A5ADA",  # lavender – richer, darker
-  "#DA5AC5",  # pink-purple – vivid, high saturation
-  "#DA5A8F"   # mauve – mid-lightness, saturated
+  "#C15A5A", # red – more saturated & slightly darker
+  "#DA935A", # orange – a bit lighter
+  "#D4DA5A", # olive – higher lightness, less saturation
+  "#92DA5A", # light green – more saturated
+  "#5ADAA0", # aquamarine – brighter & lighter
+  "#5ADADA", # turquoise – more saturated & icy
+  "#5A92DA", # blue – stronger contrast
+  "#7A5ADA", # lavender – richer, darker
+  "#DA5AC5", # pink-purple – vivid, high saturation
+  "#DA5A8F" # mauve – mid-lightness, saturated
 )
 
 color_plot +
   scale_color_manual(values = theme_colors_hue_varied)
-
-
-
 ```
 
 
@@ -1020,7 +1060,6 @@ theme_colors_gray <- gray_hex(theme_colors_hue_only)
 
 color_plot_bar +
   scale_fill_manual(values = theme_colors_gray)
-
 ```
 
 :::
@@ -1033,7 +1072,6 @@ theme_colors_gray_varied <- gray_hex(theme_colors_hue_varied)
 
 color_plot_bar +
   scale_fill_manual(values = theme_colors_gray_varied)
-
 ```
 :::
 :::
@@ -1062,9 +1100,9 @@ ggplot(
   geom_point(size = 4) +
   theme_minimal() +
   labs(title = "Share of global per capita CO2 consumption") +
-  xlim(0, 1.5*10^9) +
-theme_bg() +
-scale_color_manual(values = theme_colors_balanced) +
+  xlim(0, 1.5 * 10^9) +
+  theme_bg() +
+  scale_color_manual(values = theme_colors_balanced) +
   theme(
     axis.title.x = element_blank(),
     axis.text.x = element_blank(),
@@ -1089,9 +1127,9 @@ ggplot(
   geom_point(size = 2) +
   theme_minimal() +
   labs(title = "Share of global per capita CO2 consumption") +
-  xlim(0, 1.5*10^9) +
-theme_bg() +
-scale_color_manual(values = theme_colors_balanced) +
+  xlim(0, 1.5 * 10^9) +
+  theme_bg() +
+  scale_color_manual(values = theme_colors_balanced) +
   theme(
     axis.title.x = element_blank(),
     axis.text.x = element_blank(),
@@ -1116,10 +1154,10 @@ ggplot(
   geom_point(size = 0.5) +
   theme_minimal() +
   labs(title = "Share of global per capita CO2 consumption") +
-  xlim(0, 1.5*10^9) + 
-theme_bg() +
-scale_color_manual(values = theme_colors_balanced) +
-    theme(
+  xlim(0, 1.5 * 10^9) +
+  theme_bg() +
+  scale_color_manual(values = theme_colors_balanced) +
+  theme(
     axis.title.x = element_blank(),
     axis.text.x = element_blank(),
     legend.position = "bottom",
@@ -1150,25 +1188,24 @@ Bild von [Nature Methods](https://www.nature.com/articles/nmeth0810-573/figures/
 #| echo: false
 #| fig-width: 14
 #| fig-height: 7
-#| 
+#|
 theme_colors_red <- c(
-  "#E28A8A",  # weiches Rosa-Rot
-  "#CF5C5C",  # mildes Mittelrot
-  "#D80027",  # dein kräftiges Signalrot (Zentrum)
-  "#B00022",  # etwas dunkler, tiefes Rubinrot
-  "#8C001B",  # noch dunkleres Weinrot
-  "#730016"  # fast Bordeaux
+  "#E28A8A", # weiches Rosa-Rot
+  "#CF5C5C", # mildes Mittelrot
+  "#D80027", # dein kräftiges Signalrot (Zentrum)
+  "#B00022", # etwas dunkler, tiefes Rubinrot
+  "#8C001B", # noch dunkleres Weinrot
+  "#730016" # fast Bordeaux
 )
 
 
 color_plot +
   scale_color_manual(values = theme_colors_red)
 
-# 
+#
 #   scale_color_brewer(palette = "Dark2") +
 #   theme_minimal() +
 #   labs(title = "Share of global per capita CO2 consumption")
-
 ```
 
 
@@ -1203,7 +1240,7 @@ By Mark Fairchild, <a href="https://creativecommons.org/licenses/by-sa/3.0" titl
 
 ```{r}
 library(colorblindcheck)
-palette_check(theme_colors_red, plot = TRUE)  
+palette_check(theme_colors_red, plot = TRUE)
 ```
 
 ### Das kann man sich natürlich auch zu Nutze machen (Passt aber vielleicht eher zu space? -> da nochmal zeigen, hier die Punkte enger zusammen )
@@ -1319,9 +1356,12 @@ Farbsehtests
 
 ggplot(
   continent_co2_pct,
-  aes(x = world_6region, 
-      y = percentage, 
-      fill = world_6region)) +
+  aes(
+    x = world_6region,
+    y = percentage,
+    fill = world_6region
+  )
+) +
   geom_bar(stat = "identity", width = 1) +
   theme_minimal() +
   labs(title = "Share of global per capita CO2 consumption") +
@@ -1351,17 +1391,22 @@ ggplot(
 #| reults: hide
 #| fig-show: hide
 
-my_color_scale <- c("East Asia & Pacific" ="red", 
-                    "South Asia" = "green", 
-                    "Sub-Saharan Africa" = "blue", 
-                    "Europe & Central Asia" = "yellow", 
-                    "Middle East & North Africa" = "violet", 
-                    "Americas" = "brown")
+my_color_scale <- c(
+  "East Asia & Pacific" = "red",
+  "South Asia" = "green",
+  "Sub-Saharan Africa" = "blue",
+  "Europe & Central Asia" = "yellow",
+  "Middle East & North Africa" = "violet",
+  "Americas" = "brown"
+)
 ggplot(
   continent_co2_pct,
-  aes(x = world_6region, 
-      y = percentage, 
-      color = world_6region)) +
+  aes(
+    x = world_6region,
+    y = percentage,
+    color = world_6region
+  )
+) +
   geom_bar(stat = "identity", width = 1) +
   theme_minimal() +
   labs(title = "Share of global per capita CO2 consumption") +
@@ -1396,9 +1441,12 @@ ggplot(
 
 ggplot(
   continent_co2_pct,
-  aes(x = world_6region, 
-      y = percentage, 
-      fill = world_6region)) +
+  aes(
+    x = world_6region,
+    y = percentage,
+    fill = world_6region
+  )
+) +
   geom_bar(stat = "identity", width = 1) +
   theme_minimal() +
   labs(title = "Share of global per capita CO2 consumption") +
@@ -1416,7 +1464,7 @@ ggplot(
 
 ```{r}
 library(RColorBrewer)
-display.brewer.all(colorblindFriendly=FALSE)
+display.brewer.all(colorblindFriendly = FALSE)
 ```
 
 :::
@@ -1437,9 +1485,12 @@ library(RColorBrewer)
 
 ggplot(
   continent_co2_pct,
-  aes(x = world_6region, 
-      y = percentage, 
-      fill = world_6region)) +
+  aes(
+    x = world_6region,
+    y = percentage,
+    fill = world_6region
+  )
+) +
   geom_bar(stat = "identity", width = 1) +
   theme_minimal() +
   labs(title = "Share of global per capita CO2 consumption") +
@@ -1486,9 +1537,12 @@ library(paletteer)
 
 ggplot(
   continent_co2_pct,
-  aes(x = world_6region, 
-      y = percentage, 
-      fill = world_6region)) +
+  aes(
+    x = world_6region,
+    y = percentage,
+    fill = world_6region
+  )
+) +
   geom_bar(stat = "identity", width = 1) +
   theme_minimal() +
   labs(title = "Share of global per capita CO2 consumption") +
