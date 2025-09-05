@@ -1,13 +1,1405 @@
 ---
 title: "Mehr ggplot2!"
-format: letterbox-revealjs
+format: 
+  letterbox-revealjs:
+    code-block-height: 400px
 ---
 
+```{r}
+#| label: Load pacakges
+#| echo: false
+
+library(here)
+library(tidyverse)
+source(here::here("src", "themes.R"))
+source(here::here("src", "functions.R"))
+```
+
+## Datensatz {backround-image="./images/central_perk.jpg"}
+
+
+```{r}
+# ## Keep in mind!
+# ## Eventuell für die Übung?
+# tuesdata <- tidytuesdayR::tt_load('2025-08-26')
+# tuesdata$billboard %>%
+#   filter(song == "Love the Way You Lie") %>%
+#   select(danceability, energy, happiness)
+#
+#
+# ## Netflix
+# tuesdata <- tidytuesdayR::tt_load('2025-07-29')
+#
+# ## Gutenberg project
+# tuesdata <- tidytuesdayR::tt_load('2025-06-03')
+
+
+characters <- tidytuesdayR::tt_load("2022-08-16")
+```
+
+## 
+```{r}
+char_dat <- characters$characters
+psych_dat <- characters$psych_stats
+
+
+
+dat_merged <- char_dat %>%
+  rename(char_name = name) %>%
+  left_join(psych_dat)
+
+
+dat_prepped <- dat_merged %>%
+  filter(uni_name %in% c("How I Met Your Mother", "Friends")) %>%
+  filter(question %in% c("doer/thinker", "jock/nerd", "cold/warm", "main character/side character", "crazy/sane", "dispassionate/romantic", "high IQ/low IQ", "heroic/villainous", "funny/humorless", "chaotic/orderly")) %>%
+  ## Rating always between 50 and 100. Use the personality trait for correct scaling
+
+  mutate(
+    top_trait = str_split_i(question, pattern = "/", i = 2),
+    bottom_trait = str_split_i(question, pattern = "/", i = 1)
+  ) %>%
+  mutate(avg_rating = case_when(
+    personality == top_trait ~ avg_rating,
+    personality == bottom_trait ~ 100 - avg_rating
+  ))
+
+## Cold warm: Geschlecht? Could get ChatGPT to code
+
+## Eventuell inside standardisieren, um spezifische Abweichung zu zeigen?
+```
+
+::: image-ref
+Foto von <a href="https://unsplash.com/de/@lgtts?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Ilse Orsel</a> auf <a href="https://unsplash.com/de/fotos/rot-weisses-unks-cafe-fwPHQB4kGzA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+
+
+## Charaktereigenschaften in HIMYM
+
+```{r}
+#| output-location: column
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
+) +
+  geom_point()
+```
+
+Wir vergleichen jetzt einige Charaktereigenschaften in HIMYM und Friends. 
+Gerade noch etwas schwierig. 
+Lösung: [Faceting](https://ggplot2-book.org/facet.html#sec-facet-wrap)
+
+# Facetting
+
 ## Faceting
+Anordnen von einer *einzelnen* Variable in einem Raster:
 
-## Scales
-Logarithmisch vs linear
+:::{.columns}
+:::{.column width="50%"}
 
-## Koordinatensytem
+#### `facet_wrap()`
+
+```{r}
+#| code-line-numbers: "7"
+#| fig-height: 4
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
+) +
+  geom_point() +
+  facet_wrap(vars(char_name), nrow = 4) +
+  theme_bg()
+```
+
+:::
+::: {.column width="50%"}
+
+#### facet_grid
+
+```{r}
+#| code-line-numbers: "7"
+#| fig-height: 4
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
+) +
+  geom_point() +
+  facet_grid(char_name ~ .) +
+  theme_bg()
+```
+
+:::
+:::
+
+## Facetting - Mehrere Variablen
+Anordnen von *mehreren* Variable in einem Raster:
+
+::: {.columns}
+
+::: {.column width="50%"}
+#### `facet_wrap()`
+
+```{r}
+#| code-line-numbers: "7"
+#| fig-height: 4
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
+) +
+  geom_point() +
+  facet_wrap(vars(char_name, uni_name), nrow = 4) +
+  theme_bg()
+```
+
+:::
+::: {.column width="50%"}
+#### `facet_grid()`
+
+```{r}
+#| code-line-numbers: "7"
+#| fig-height: 4
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
+) +
+  geom_point() +
+  facet_grid(char_name ~ uni_name) +
+  theme_bg()
+```
+
+:::
+:::
+
+## Facetting - Tipps
+Plot alle Punkte
+
+```{r}
+#| output-location: column
+
+dat_prepped_background <- dat_prepped %>%
+  mutate(char_name_bg = char_name) %>%
+  select(-char_name)
+
+ggplot(dat_prepped, aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  # background lines: drawn in every facet, grouped by country_bg
+  geom_point(
+    data = dat_prepped_background,
+    aes(x = question, y = avg_rating, group = char_name_bg),
+    inherit.aes = FALSE,
+    color = "grey70",
+    alpha = 0.5,
+    size = 0.4
+  ) +
+  geom_point() +
+  facet_wrap(vars(char_name)) +
+  guides(color = "none") +
+  theme_bg()
+```
+
+
+## Facetting - Tipps
+Plot Mittelwerte
+
+```{r}
+#| output-location: column
+
+dat_mean <- dat_prepped %>%
+  group_by(question) %>%
+  summarise(avg_rating = mean(avg_rating))
+
+
+ggplot(dat_prepped, aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  # background lines: drawn in every facet, grouped by country_bg
+  geom_point(
+    data = dat_mean,
+    aes(x = question, y = avg_rating),
+    inherit.aes = FALSE,
+    color = "grey70",
+    size = 1
+  ) +
+  geom_point() +
+  facet_wrap(vars(char_name)) +
+  guides(color = "none") +
+  theme_bg()
+```
+
+:::{.callout-warning}
+Standardisierung könnte beim Vergleich zwischen den Fragen helfen - das kommt aber auf die finale Fragestellung an. 
+Ist aber ein Punkt, den man zumindest im Hinterkopf behalten sollte.
+:::
+
+## Sortieren
+Sortieren, läuft in ggplot2 generell über `factor()`. 
+Manchmal kann es hilfreich sein, sich eine eigene ID-Variable zum Sortieren zu erstellen
+
+
+```{r}
+dat_prepped$uni_name_fac <- factor(dat_prepped$uni_name, levels = c("How I Met Your Mother", "Friends"))
+```
+
+
+```{r}
+#| output-location: column
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)
+) +
+  geom_point() +
+  facet_wrap(vars(uni_name_fac), nrow = 4) +
+  theme_bg()
+```
+
+
+
+# Skalen und Legenden
+
+## Skalen
+"Scales in ggplot2 control the [mapping from data to aesthetics]{.highlight}. They take your data and turn it into something that you can see, like size, colour, position or shape." [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/scales.html)
+
+Link to aes slide. 
+
+
+
+## Legenden
+
+Legenden werden [automatisch]{.highlight} erzeugt. Dafür werden die [aestetics]{.highlight} genutzt, also das mapping von Daten zu grafischen Elementen. 
+[Jede]{.highlight} Skala bekommt eine Legende zugeordnet. 
+
+![](./images/scales_legends.png)
+
+::: {.callout-info}
+Legenden und Achsen sind funktional äquivalent und werden in ggplot2 unter dem Begriff [guides]{.highlight} zusammengefasst. Während Skalen die Daten auf grafische Eigenschaften wie Position oder Farbe abbilden, machen Guides diese Abbildung wieder verständlich: Achsen übersetzen Positionen zurück in Zahlen, Legenden ordnen Farben oder Symbole den entsprechenden Datenwerten zu. Man kann sie daher als die [„Umkehrfunktion“]{.highlight} der jeweiligen Scales verstehen.
+:::
+
+
+## 
+
+Jede aesthetic im Plot ist mit genau einer scale verbunden: 
+
+
+:::{.columns}
+
+:::{.column width="50%"}
+### Implizite Definition
+
+```{r}
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)
+) +
+  geom_point()
+```
+:::
+:::{.column width="50%"}
+### Wird intern zu: 
+
+```{r}
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)
+) +
+  geom_point() +
+  scale_x_discrete() +
+  scale_y_continuous() +
+  scale_colour_discrete() +
+  scale_shape_discrete()
+```
+:::
+:::
+
+- `time` und `co2_pcacp_cons` sind beide kontinuierliche Variablen: `scale_x_continuous()`, `scale_x_continuous()`
+- `country` ist diskret: `scale_colour_discrete()`
+
+Das können wir uns zunutze machen, um manuell Scales zu definieren. 
+
+
+## 
+```{r}
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)
+) +
+  geom_point() +
+  scale_x_discrete(name = "Eigenschaft") +
+  scale_y_continuous("Mittleres Rating") +
+  scale_colour_discrete("Character") +
+  scale_shape_discrete(name = "Serie")
+```
+
+:::{.callout-warning}
+In der Praxis würden wir dafür `labs(x = "Jahr", y = "CO2 Verbrauch pro Kopf", color = "Länder", shape = "Serie")` nutzen. 
+Wir sehen so aber, dass Achsen- und Legendentitel jeweils Skalennamen sind.  
+:::
+
+##
+
+```{r}
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = avg_rating, shape = uni_name_fac)
+) +
+  geom_point() +
+  scale_y_log10(name = "Mittleren Rating log") +
+  scale_colour_continuous()
+```
+
+
+::: {.callout-tip}
+Eine Übersicht über die möglichen Skalentypen findet sich [hier])https://ggplot2tor.com/scales/). 
+
+:::
+
+
+## Anwendungsfälle: Farben
+
+
+:::{.columns}
+
+### Farben
+
+Oft macht es Sinn, die Farben direkt über einen named vector zu definieren. 
+Dadurch wird jedem Element in der color-variable genau die gewünschte Farbe zugeordnetÖ 
+
+
+```{r}
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)
+) +
+  geom_point(size = 3) +
+  scale_shape_manual(values = c("Friends" = 12, "How I Met Your Mother" = 18)) +
+  scale_colour_manual(values = c(
+    "Ted Mosby" = "blue",
+    "Robin Scherbatsky" = "red",
+    "Barney Stinson" = "green",
+    "Lily Aldrin" = "purple",
+    "Marshall Eriksen" = "orange",
+    "Rachel Green" = "pink",
+    "Monica Geller" = "brown",
+    "Phoebe Buffay" = "yellow",
+    "Joey Tribbiani" = "cyan"
+  ))
+```
+
+:::
+
+:::{.column width="50%}
+```{r}
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)
+) +
+  geom_point() +
+  scale_colour_brewer(palette = "Set3")
+```
+:::
+:::
+
+
+
+## Anwendungsfälle: Skalen-Ticks
+
+```{r}
+#| output-location: column
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)
+) +
+  geom_point() +
+  scale_y_continuous(name = "Mittleres Rating", breaks = seq(0, 100, by = 10), limits = c(0, 100))
+```
+
+
+
+## Scale Guides
+
+Jede Skala (und damit jede Aesthetic) bekommt einen Guide zugeordnet. 
+Intern passiert das über `guides()`. Wir können `guides()` also nutzen, um die Legende zu manipulieren:
+
+
+```{r}
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)
+) +
+  geom_point() +
+  guides(color = guide_legend(title = "Charaktere", ncol = 3, reverse = TRUE, override.aes = list(size = 3)))
+```
+
+## Mögliche guide-Funktionen
+
+:
+::: {.columns}
+
+:::{.column width="50%"}
+- `guide_colourbar()`
+- `guide_coloursteps()`
+- `guide_axis()`
+- `guide_legend()`
+- `guide_bins()`
+::: 
+:::{.column width="50%"}
+
+
+```{r}
+#| code-line-numbers: "4"
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)
+) +
+  geom_point() +
+  guides(x = guide_axis(angle = 90))
+```
+
+:::
+:::
+
+
+## Themes
+
+Da würde man ja auch viel zur Legende ändern? 
+
+# Koordinatensyteme
+
+
+## Koordinatensysteme
+
+
+Zwei Aufgaben: 
+
+- Kombinieren der Positions-Aesthetics (Positions 1 & Position 2) zu einem 2d Raum. 
+  - Linear: x & y
+  - Polar: Winkel und Radius
+  - Karte: Breite und Länge
+- Zeichnen der Achsen und Rasterlinien
+
+## Typen
+
+::: {.columns}
+::: {.column width="50%"}
+### Linear
+
+- `coord_cartesian()`: Default
+- `coord_flip`: Tauscht x und y Achse
+- `coord_fixed()`: Fixes Seitenverhältnis. 
+
+
+:::
+
+::: {.column width="50%"}
+### Nicht-linear
+
+- `coord_map`: Kartenprojektion
+- `coord_polar`: Polar-Koordinaten (Kreise)
+- `coord_trans`: Transformation der Positionen
+
+
+:::
+:::
+
+
+## Polar-Koordinaten
+
+```{r}
+#| code-line-numbers: "4"
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac, group = question)
+) +
+  geom_point() +
+  geom_segment(
+    aes(
+      x = question, xend = question,
+      y = 0, yend = avg_rating,
+      group = interaction(char_name, uni_name_fac)
+    ),
+    linewidth = 0.5
+  ) +
+  ylim(0, 100) +
+  facet_wrap(vars(char_name)) +
+  coord_polar(theta = "x") +
+  theme_bg()
+```
+
+
+
+::: {.callout-warning}
+Vorsicht damit! In vielen Fällen ist ein lineares Koordinatensystem einfacher zu interpretieren. 
+Winkel sind oft nicht so einfach zu interpretieren. 
+Nichtsdestotrotz kann es gerade zur Gestaltung nett sein!
+:::
+
+## Realistischer Anwendungen
+- Zeitreihen
+- Strecken
+
+
+## Labels
+
+# Kombinieren von Plots
+
+## Patchwork
+
+
+```{r}
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)
+) +
+  geom_point() +
+  facet_wrap(vars(char_name))
+```
+
+
+
+```{r}
+dat_prepped_robin <- dat_prepped %>%
+  filter(char_name == "Robin Scherbatsky")
+
+
+p_robin <- ggplot(
+  data = dat_prepped_robin,
+  mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)
+) +
+  geom_point() +
+  facet_wrap(vars(char_name)) +
+  ylim(0, 100)
+
+
+
+p_rest <- ggplot(
+  data = dat_prepped %>% filter(char_name != "Robin Scherbatsky"),
+  mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)
+) +
+  geom_point() +
+  facet_wrap(vars(char_name), nrow = 2) +
+  ylim(0, 100)
+```
+
+## Patchwork
+
+[Patchwork](https://patchwork.data-imaginist.com/) erlaubt es, Plots zu kombinieren.
+
+```{r}
+library(patchwork)
+
+p_robin +
+  p_rest
+```
+
+
+
+## Patchwork: Stylen
+
+```{r}
+library(patchwork)
+
+p_robin +
+  p_rest +
+  plot_layout(widths = c(2, 2), guides = "collect")
+```
+
+Hmm, das hat noch nicht funktioniert. 
+
+## 
+
+Abschalten der Legende im ersten Plot. 
+
+```{r}
+#| output-location: column
+
+p_robin <- ggplot(
+  data = dat_prepped_robin,
+  mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)
+) +
+  geom_point() +
+  facet_wrap(vars(char_name)) +
+  ylim(0, 100) +
+  theme(legend.position = "none")
+
+
+
+p_rest <- ggplot(
+  data = dat_prepped %>% filter(char_name != "Robin Scherbatsky"),
+  mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)
+) +
+  geom_point() +
+  facet_wrap(vars(char_name), nrow = 2) +
+  ylim(0, 100)
+
+
+p_robin +
+  p_rest +
+  plot_layout(widths = c(2, 2), guides = "collect")
+```
+
+
+# Text
+
+## Labeling
+
+```{r}
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)
+) +
+  geom_label(aes(label = char_name))
+```
+
+
+
+```{r}
+library(ggrepel)
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
+) +
+  geom_point() +
+  geom_text_repel(aes(label = char_name))
+```
+
+## Labeling von einzelnen Punkten
+
+Erzeugen einer eigenen Spalte, die nur auf den gewünschten Punkten den Text enthält.
+
+```{r}
+dat_prepped_2 <- dat_prepped %>%
+  mutate(char_name_label = case_when(
+    char_name == "Monica Geller" & top_trait == "orderly" ~ "Monica ist sehr ordentlich",
+    TRUE ~ NA
+  ))
+
+ggplot(
+  data = dat_prepped_2,
+  mapping = aes(x = top_trait, y = avg_rating, shape = uni_name_fac, label = char_name_label, color = char_name)
+) +
+  geom_point() +
+  geom_text_repel(nudge_x = 0.75, nudge_y = 1)
+```
+
+
+## ggtext
+
+[ggtext](https://wilkelab.org/ggtext/) erlaubt es, Markdown und HTML-Code in ggplot2 zu nutzen. 
+
+```{r}
+library(ggtext)
+
+dat_prepped_2 <- dat_prepped %>%
+  mutate(char_name_label = case_when(
+    char_name == "Monica Geller" & top_trait == "orderly" ~ "Monica ist sehr <span style='color:black'>ordentlich</span>",
+    TRUE ~ NA
+  ))
+
+ggplot(
+  data = dat_prepped_2,
+  mapping = aes(x = top_trait, y = avg_rating, shape = uni_name_fac, label = char_name_label, color = char_name)
+) +
+  geom_point() +
+  geom_richtext(
+    nudge_x = 0.75, nudge_y = 1, fill = NA, label.color = NA, # remove background and outline
+    label.padding = grid::unit(rep(0, 4), "pt")
+  )
+```
+
+## 
+
+```{r}
+dat_prepped_2 <- dat_prepped %>%
+  mutate(char_name_bold = paste0("**", char_name, "**"))
+
+
+ggplot(
+  data = dat_prepped_2,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)
+) +
+  geom_point() +
+  facet_wrap(vars(char_name_bold)) +
+  theme(
+    strip.text = element_markdown()
+  )
+```
+
+
+# Adjustment: hjust/vjust vs. nudge_x/nudge_y
+
+## hjust
+
+::: {.columns}
+
+::: {.column width="33%"}}
+```{r}
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
+) +
+  geom_point() +
+  geom_text(aes(label = char_name), hjust = 0.5)
+```
+
+:::
+
+::: {.column width="33%"}}
+```{r}
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
+) +
+  geom_point() +
+  geom_text(aes(label = char_name), hjust = 0)
+```
+:::
+
+::: {.column width="33%"}}
+```{r}
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
+) +
+  geom_point() +
+  geom_text(aes(label = char_name), hjust = 1)
+```
+:::
+:::
+
+## vjust
+::: {.columns}
+
+::: {.column width="33%"}
+```{r}
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
+) +
+  geom_point() +
+  geom_text(aes(label = char_name), vjust = 1)
+```
+
+:::
+
+::: {.column width="33%"}
+```{r}
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
+) +
+  geom_point() +
+  geom_text(aes(label = char_name), vjust = 0)
+```
+:::
+
+::: {.column width="33%"}
+```{r}
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
+) +
+  geom_point() +
+  geom_text(aes(label = char_name), vjust = -1)
+```
+:::
+:::
+
+
+
+
+## nudge
+
+Nudging erfolgt auf der gleichen Skala wie die Werte. 
+
+::: {.columns}
+
+::: {.column width="50%"}}
+
+Nudge um eine halbe Einheit nach rechts. 
+```{r}
+#| code-line-numbers: "4"
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
+) +
+  geom_point() +
+  geom_text(aes(label = char_name), nudge_x = 0.5)
+```
+
+:::
+
+::: {.column width="50%"}}
+
+Nudge um 5 Einheiten nach unten.
+
+```{r}
+#| code-line-numbers: "4"
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
+) +
+  geom_point() +
+  geom_text(aes(label = char_name), nudge_y = -5)
+```
+
+:::
+:::
+
+# Bilder
+
+## 
+```{r}
+library(tidyverse)
+library(ggtext)
+library(glue)
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = image_link, y = avg_rating, shape = uni_name_fac)
+) +
+  geom_point() +
+  facet_wrap(vars(question), nrow = 2) +
+  ylim(0, 100) +
+  scale_x_discrete(
+    labels = \(x) glue("<img src='{x}' height='24' />")
+  ) +
+  theme(
+    axis.text.x = element_markdown()
+  ) +
+  coord_cartesian(clip = "off") # falls Bilder abgeschnitten werden
+```
+
+# Themes
+
+## Themes
+```{r}
+library(tidyverse)
+library(ggtext)
+library(glue)
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = image_link, y = avg_rating, shape = uni_name_fac)
+) +
+  geom_point() +
+  facet_wrap(vars(question), nrow = 2) +
+  ylim(0, 100) +
+  scale_x_discrete(
+    labels = \(x) glue("<img src='{x}' height='24' />")
+  ) +
+  theme(
+    axis.text.x = element_markdown()
+  ) +
+  coord_cartesian(clip = "off") # falls Bilder abgeschnitten werden
+```
+
+# Let's bring it together: Spider-Chat
+
+Step by step
+
+```{r}
+#| output-location: column
+
+# traits <- c("doer/thinker", "jock/nerd", "cold/warm", "main character/side character", "crazy/sane")
+# line<-data.frame(x=rep(traits,2),y=c(rep(0, length(traits)),rep(100, length(traits))))
+
+
+ggplot(
+  dat_prepped,
+  aes(x = question, y = avg_rating, group = char_name)
+) +
+  geom_point()
+```
+
+## Spider-Chart
+
+```{r}
+#| output-location: column
+
+ggplot(
+  dat_prepped,
+  aes(x = question, y = avg_rating, group = char_name)
+) +
+  geom_point() +
+  facet_wrap(vars(char_name), ncol = 4)
+```
+
+
+## Vergleichen von ähnlichen Charakteren
+
+Dafür erzeuge ich eine eigene Variable
+
+```{r}
+#| output-location: column
+
+dat_prepped2 <- dat_prepped %>%
+  mutate(facet_id = case_when(
+    char_name %in% c("Barney Stinson", "Joey Tribbiani") ~ "Barney & Joey",
+    char_name %in% c("Ted Mosby", "Ross Geller") ~ "Ted & Ross",
+    char_name %in% c("Robin Scherbatsky", "Rachel Green") ~ "Robin & Rachel",
+    char_name %in% c("Lily Aldrin", "Monica Geller") ~ "Lily & Monica",
+    char_name %in% c("Marshall Eriksen", "Chandler Bing") ~ "Marshall & Chandler"
+  )) %>%
+  filter(!is.na(facet_id)) ## Sorry Phoebe :(
+
+ggplot(
+  dat_prepped2,
+  aes(x = question, y = avg_rating, group = char_name, color = uni_name)
+) +
+  geom_point() +
+  facet_wrap(vars(facet_id), ncol = 4) +
+  ylim(0, 100)
+```
+
+##
+
+```{r}
+#| output-location: column
+
+ggplot(
+  dat_prepped2,
+  aes(x = question, y = avg_rating, group = char_name, color = uni_name)
+) +
+  geom_point() +
+  facet_wrap(vars(facet_id), ncol = 4) +
+  ylim(0, 100) +
+  coord_polar()
+```
+
+
+
+##
+
+```{r}
+#| output-location: column
+
+ggplot(
+  dat_prepped2,
+  aes(x = question, y = avg_rating, group = char_name, color = uni_name)
+) +
+  geom_point() +
+  geom_polygon(alpha = 0.5) +
+  facet_wrap(vars(facet_id), ncol = 4) +
+  ylim(0, 100) +
+  coord_polar()
+```
+
+
+## 
+
+## 
+
+Radar coords from  [Tanya Shapiro](https://github.com/tashapiro/tanya-data-viz/blob/main/westworld/code/ww-radar-plot.R)
+
+
+```{r}
+#| code-fold: true
+
+coord_radar <- function(theta = "x", start = 0, direction = 1) {
+  theta <- match.arg(theta, c("x", "y"))
+  r <- if (theta == "x") {
+    "y"
+  } else {
+    "x"
+  }
+
+  # dirty
+  rename_data <- function(coord, data) {
+    if (coord$theta == "y") {
+      plyr::rename(data, c("y" = "theta", "x" = "r"), warn_missing = FALSE)
+    } else {
+      plyr::rename(data, c("y" = "r", "x" = "theta"), warn_missing = FALSE)
+    }
+  }
+  theta_rescale <- function(coord, x, scale_details) {
+    rotate <- function(x) (x + coord$start) %% (2 * pi) * coord$direction
+    rotate(scales::rescale(x, c(0, 2 * pi), scale_details$theta.range))
+  }
+
+  r_rescale <- function(coord, x, scale_details) {
+    scales::rescale(x, c(0, 0.4), scale_details$r.range)
+  }
+
+  ggproto("CordRadar", CoordPolar,
+    theta = theta, r = r, start = start,
+    direction = sign(direction),
+    is_linear = function(coord) TRUE,
+    render_bg = function(self, scale_details, theme) {
+      scale_details <- rename_data(self, scale_details)
+
+      theta <- if (length(scale_details$theta.major) > 0) {
+        theta_rescale(self, scale_details$theta.major, scale_details)
+      }
+      thetamin <- if (length(scale_details$theta.minor) > 0) {
+        theta_rescale(self, scale_details$theta.minor, scale_details)
+      }
+      thetafine <- seq(0, 2 * pi, length.out = 100)
+
+      rfine <- c(r_rescale(self, scale_details$r.major, scale_details))
+
+      # This gets the proper theme element for theta and r grid lines:
+      #   panel.grid.major.x or .y
+      majortheta <- paste("panel.grid.major.", self$theta, sep = "")
+      minortheta <- paste("panel.grid.minor.", self$theta, sep = "")
+      majorr <- paste("panel.grid.major.", self$r, sep = "")
+
+      ggplot2:::ggname("grill", grid::grobTree(
+        ggplot2:::element_render(theme, "panel.background"),
+        if (length(theta) > 0) {
+          ggplot2:::element_render(
+            theme, majortheta,
+            name = "angle",
+            x = c(rbind(0, 0.4 * sin(theta))) + 0.5,
+            y = c(rbind(0, 0.4 * cos(theta))) + 0.5,
+            id.lengths = rep(2, length(theta)),
+            default.units = "native"
+          )
+        },
+        if (length(thetamin) > 0) {
+          ggplot2:::element_render(
+            theme, minortheta,
+            name = "angle",
+            x = c(rbind(0, 0.4 * sin(thetamin))) + 0.5,
+            y = c(rbind(0, 0.4 * cos(thetamin))) + 0.5,
+            id.lengths = rep(2, length(thetamin)),
+            default.units = "native"
+          )
+        },
+        ggplot2:::element_render(
+          theme, majorr,
+          name = "radius",
+          x = rep(rfine, each = length(thetafine)) * sin(thetafine) + 0.5,
+          y = rep(rfine, each = length(thetafine)) * cos(thetafine) + 0.5,
+          id.lengths = rep(length(thetafine), length(rfine)),
+          default.units = "native"
+        )
+      ))
+    }
+  )
+}
+```
+
+```{r}
+#| output-location: column
+dat_prepped3 <- arrange(dat_prepped2, question)
+
+ggplot(
+  dat_prepped3,
+  aes(x = question, y = avg_rating, group = char_name, color = uni_name, fill = char_name)
+) +
+  geom_point() +
+  geom_polygon(alpha = 0.5) +
+  facet_wrap(vars(facet_id), ncol = 4) +
+  ylim(0, 100) +
+  coord_radar()
+```
+
+
+##
+
+https://de.pinterest.com/pin/friends-colors--2955556002181108/
+
+```{r}
+#| output-location: column
+
+ggplot(
+  dat_prepped3,
+  aes(x = question, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)
+) +
+  geom_point() +
+  geom_polygon(alpha = 0.1) +
+  facet_wrap(vars(facet_id), ncol = 4) +
+  ylim(0, 100) +
+  coord_radar() +
+  scale_fill_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
+  scale_color_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
+  theme_bg()
+```
+
+##
+
+```{r}
+#| output-location: column
+
+ggplot(
+  dat_prepped3,
+  aes(x = question, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)
+) +
+  geom_point() +
+  geom_polygon(alpha = 0.1) +
+  facet_wrap(vars(facet_id), ncol = 4) +
+  ylim(0, 100) +
+  coord_radar() +
+  scale_fill_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
+  scale_color_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
+  theme_bg() +
+  labs(title = "The one where Everyone meets", )
+```
+
+
+
+##
+
+```{r}
+#| output-location: column
+
+library(ggimage)
+
+dat_prepped3 <- dat_prepped3 %>%
+  mutate(
+    image_x = ifelse(uni_name == "Friends", -1, 1),
+    image_x_coord = ifelse(uni_name == "Friends", "doer/thinker", "crazy/sane")
+  )
+
+ggplot(
+  dat_prepped3,
+  aes(x = question, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)
+) +
+  geom_point() +
+  geom_polygon(alpha = 0.1) +
+  facet_wrap(vars(facet_id), ncol = 4) +
+  ylim(0, 100) +
+  coord_radar() +
+  scale_fill_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
+  scale_color_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
+  theme_bg() +
+  labs(title = "The one where Everyone meets") +
+  geom_image(aes(x = image_x_coord, y = 100, image = image_link),
+    nudge_x = c(0.5, -0.5),
+    size = 0.1, inherit.aes = FALSE
+  ) +
+  NULL
+```
+
+
+## Adding a frame around the picture
+
+```{r}
+#| output-location: column
+
+library(ggimage)
+
+dat_prepped3 <- dat_prepped3 %>%
+  mutate(
+    image_x = ifelse(uni_name == "Friends", -1, 1),
+    image_x_coord = ifelse(uni_name == "Friends", "doer/thinker", "crazy/sane")
+  )
+
+ggplot(
+  dat_prepped3,
+  aes(x = question, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)
+) +
+  geom_point() +
+  geom_polygon(alpha = 0.1) +
+  facet_wrap(vars(facet_id), ncol = 4) +
+  ylim(0, 100) +
+  coord_radar() +
+  scale_fill_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
+  scale_color_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
+  theme_bg() +
+  labs(title = "The one where Everyone meets") +
+  geom_image(aes(x = image_x_coord, y = 100, image = image_link),
+    nudge_x = c(0.5, -0.5),
+    size = 0.12
+  ) +
+  geom_image(aes(x = image_x_coord, y = 100, image = image_link),
+    nudge_x = c(0.5, -0.5),
+    size = 0.1, inherit.aes = FALSE
+  ) +
+  NULL
+```
+
+
+## Styling
+
+
+- Anchor points on top to show max
+- Style
+- Nudge pictures further out
+
+```{r}
+#| output-location: column
+
+dat_prepped3 <- dat_prepped3 %>%
+  mutate(
+    image_x = ifelse(uni_name == "Friends", -1, 1),
+    image_x_coord = ifelse(uni_name == "Friends", "low IQ", "side character")
+  ) %>%
+  arrange(top_trait)
+
+outer_points <- dat_prepped3 %>%
+  mutate(
+    max_rating = 100,
+    label_y = 90, 
+    nudge_x = ifelse(uni_name == "Friends", -0.14, 0.14)
+  )
+
+ggplot(
+  dat_prepped3,
+  aes(x = top_trait, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)
+) +
+  geom_point(data = outer_points, aes(top_trait, max_rating), color = "white", inherit.aes = FALSE) +
+  geom_richtext(
+    data = outer_points, aes(top_trait, label_y, label = round(avg_rating, 0), color = uni_name), inherit.aes = FALSE, fill = NA, label.color = NA,
+    label.padding = grid::unit(rep(0, 4), "pt"), nudge_x = outer_points$nudge_x, size = 2
+  ) +
+  geom_point() +
+  geom_polygon(alpha = 0.1) +
+  facet_wrap(vars(facet_id), ncol = 4) +
+  ylim(0, 100) +
+  coord_radar() +
+  scale_fill_manual(values = c("Friends" = "#36d1ab", "How I Met Your Mother" = "#FFED29")) +
+  scale_color_manual(values = c("Friends" = "#9C8CD4", "How I Met Your Mother" = "#FFED29")) +
+  theme_bw() +
+  labs(title = "The one where Everyone meets") +
+    geom_image(aes(x = image_x_coord, y = 100, image = image_link),
+             nudge_x = -0.35,
+             nudge_y = 30,
+             size=0.12) +
+  geom_image(aes(x = image_x_coord, y = 100, image = image_link),
+             nudge_x = -0.35,
+             nudge_y = 30,
+             size=0.1, inherit.aes = FALSE) +
+  theme(
+    axis.ticks = element_blank(),
+    axis.text.x = element_text(color = "white", face = "bold"), 
+    axis.text.y = element_blank(), 
+    axis.title = element_blank(), 
+    panel.background = element_rect(fill = "#06402B"), 
+    plot.background = element_rect(fill = '#06402B'), 
+    title = element_text(color = "white", size = 16, face = "bold"), 
+    strip.background = element_rect(fill = "#06402B"), 
+    strip.text = element_text(color = "white", face = "bold"), 
+    legend.background = element_rect(fill = "#06402B"), 
+    legend.text = element_text(color = "white")
+  )
+```
+
+
+
+
+
+##
+
+
+```{r}
+dat_joey_barney <- dat_prepped3 %>%
+  filter(char_name %in% c("Barney Stinson", "Joey Tribbiani"))
+
+
+  outer_points_joey_barney <- dat %>%
+  mutate(
+    max_rating = 100,
+    label_y = 95, 
+    nudge_x = ifelse(uni_name == "Friends", -0.1, 0.1)
+  )
+    
+p_left <- ggplot(
+  dat_joey_barney,
+  aes(x = top_trait, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)
+) +
+  geom_point(data = outer_points_joey_barney, aes(top_trait, max_rating), color = "white", inherit.aes = FALSE) +
+  geom_richtext(
+    data = outer_points_joey_barney, aes(top_trait, label_y, label = round(avg_rating, 0), color = uni_name), inherit.aes = FALSE, fill = NA, label.color = NA,
+    label.padding = grid::unit(rep(0, 4), "pt"), nudge_x = outer_points_joey_barney$nudge_x, size = 2.75
+  ) +
+  geom_point(size = 3) +
+  geom_polygon(alpha = 0.2, linewidth = 1.5) +
+  facet_wrap(vars(facet_id), ncol = 2) +
+  ylim(0, 100) +
+  coord_radar() +
+  scale_fill_manual(values = c("Friends" = "#36d1ab", "How I Met Your Mother" = "#FFED29")) +
+  scale_color_manual(values = c("Friends" = "#9C8CD4", "How I Met Your Mother" = "#FFED29")) +
+  theme_bw() +
+  labs(title = "The one where Everyone meets", 
+       subtitle = "Character ratings from 0 to 100") +
+    geom_image(aes(x = image_x_coord, y = 100, image = image_link),
+             nudge_x = -0.35,
+             nudge_y = 30,
+             size=0.12) +
+  geom_image(aes(x = image_x_coord, y = 100, image = image_link),
+             nudge_x = -0.35,
+             nudge_y = 30,
+             size=0.1, inherit.aes = FALSE) +
+  theme(
+    axis.ticks = element_blank(),
+    axis.text.x = element_text(color = "white", face = "bold"), 
+    axis.text.y = element_blank(), 
+    axis.title = element_blank(), 
+    panel.background = element_rect(fill = "#06402B"), 
+    plot.background = element_rect(fill = '#06402B'), 
+    title = element_text(color = "white", size = 16, face = "bold"), 
+    strip.background = element_rect(fill = "#06402B"), 
+    strip.text = element_text(color = "white", face = "bold"), 
+    legend.background = element_rect(fill = "#06402B"), 
+    legend.position = "none"
+  ) 
+
+```
+
+
+```{r}
+
+outer_points2 <- outer_points %>%
+  filter(!char_name %in% c("Barney Stinson", "Joey Tribbiani"))
+
+p_right <- ggplot(
+  dat_prepped3 %>% filter(!char_name %in% c("Barney Stinson", "Joey Tribbiani")),
+  aes(x = top_trait, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)
+) +
+  geom_point(data = outer_points2, aes(top_trait, max_rating), color = "white", inherit.aes = FALSE) +
+  geom_richtext(
+    data = outer_points2, aes(top_trait, label_y, label = round(avg_rating, 0), color = uni_name), inherit.aes = FALSE, fill = NA, label.color = NA,
+    label.padding = grid::unit(rep(0, 4), "pt"), nudge_x = outer_points2$nudge_x, size = 2.75
+  ) +
+  geom_point(size = 3) +
+  geom_polygon(alpha = 0.2, linewidth = 1) +
+  facet_wrap(vars(facet_id), ncol = 2) +
+  ylim(0, 100) +
+  coord_radar() +
+  scale_fill_manual(values = c("Friends" = "#36d1ab", "How I Met Your Mother" = "#FFED29")) +
+  scale_color_manual(values = c("Friends" = "#9C8CD4", "How I Met Your Mother" = "#FFED29")) +
+  theme_bw() +
+    geom_image(aes(x = image_x_coord, y = 100, image = image_link),
+             nudge_x = -0.35,
+             nudge_y = 30,
+             size=0.12) +
+  geom_image(aes(x = image_x_coord, y = 100, image = image_link),
+             nudge_x = -0.35,
+             nudge_y = 30,
+             size=0.1, inherit.aes = FALSE) +
+  theme(
+    axis.ticks = element_blank(),
+    axis.text.x = element_text(color = "white"), 
+    axis.text.y = element_blank(), 
+    axis.title = element_blank(), 
+    panel.background = element_rect(fill = "#053625"), 
+    plot.background = element_rect(fill = '#053625'), 
+    strip.background = element_rect(fill = "#053625"), 
+    strip.text = element_text(color = "white", face = "bold"), 
+    legend.position = "none"
+  ) 
+```
+
+
+- Eventuell in Funktionen packen was geht
+
+## Patch together
+```{r}
+p_left +
+  p_right
+```
+
+
 ## Abspeichern
 Vektor vs Raster (Rolfs 7)
+
+
+Use characters data for demonstration or for exercise? 
