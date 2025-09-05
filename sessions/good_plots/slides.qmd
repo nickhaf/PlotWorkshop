@@ -476,22 +476,24 @@ p_line <- ggplot(data = gapminder_line, aes(x = time, y = gini)) +
     x = "Jahr",
     y = "Gini-Koeffizient"
   ) +
- annotate(
-    "label",
-    x = 1850, y = 30,        # Ecke unten links
-    hjust = 0, vjust = 0,      # innen ausrichten
-    label = "\bold(Gini-Koeffizient): Maß für Ungleichheit.\n0 = vollkommen gleich, 100 = maximal ungleich.",
-    size = 4,                  # Textgröße
-    label.size = 0.5,          # Rahmenstärke (0 = ohne)
-    label.r = grid::unit(3, "pt"),
-    fill = "white",            # oder scales::alpha("white", 0.9)
-    colour = "black")
+ geom_richtext(
+  data = data.frame(
+    x = 1850, y = 30,
+    label = "<b>Gini-Koeffizient</b>: Maß für Ungleichheit.<br>0 = vollkommen gleich, 100 = maximal ungleich."
+  ),
+  aes(x, y, label = label),
+  hjust = 0, vjust = 0,
+  fill = "white", label.color = "black",
+  label.r = grid::unit(3, "pt"),
+  size = 3.5
+)
 
 p_line
 ```
 
 Zweiten Plot hierdraus!
 - https://www.boeckler.de/de/boeckler-impuls-ist-deutschland-ein-ungleiches-land-3658.htm
+- Hintergrundlinien Europa + geom_smooth
 
 # Goal
 - Usefulness
