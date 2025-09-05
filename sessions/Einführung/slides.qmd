@@ -431,7 +431,7 @@ https://allisonhorst.com/r-packages-functions
 
 
 :::{.columns}
-:::{.column width = "50%}
+:::{.column width = "50%"}
 ```{r}
 gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
 ```
@@ -449,23 +449,72 @@ gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
 Bild von [Amazon][(https://m.media-amazon.com/images/I/71KH-wJcv3L.jpg). 
 :::
 
-## Scatterplot
-```{r}
-gapminder_2024 <- gapminder %>% 
-  filter(time == 2024)
 
-ggplot(data = gapminder, aes(x = , y = lex, color = world_6region)) +
-  geom_point() +
+
+## Scatterplot
+
+::: {.panel-tabset}
+
+### Plot
+```{r}
+#| label: example-scatter
+#| fig-width: 14
+#| fig-height: 7
+#| echo: false
+
+gapminder_2019 <- gapminder %>% 
+  filter(time == 2019
+)
+
+p_scatter <- ggplot(data = gapminder_2019, aes(x = demox_eiu, y = gini, color = world_6region)) +
+  geom_point(size = 3) +
   theme_bg()
+
+p_scatter
 
 ```
 
+### Code
 
-- Co2 with grey scale
-- greens with green scale
+```{r}
+#| label: example-scatter
+#| eval: false
+```
+
+
+:::
+
+## Scatterplot
+::: {.columns}
+:::{.column width = "50%"}
+
+:::{.steckbrief}
+[Datentyp]{.highlight}  Numerisch
+
+[Achtung]{.highlight} Overplotting
+
+:::{.tag}
+[Link test](https://quarto.org/docs/reference/formats/html.html)
+:::
+:::
+:::
+:::{.column width = "50%"}
+```{r}
+#| echo: false
+
+p_scatter
+
+```
+:::
+:::
+
 
 
 ## Barplot
+```{r}
+
+```
+
 
 ## Histogram
 
@@ -478,7 +527,8 @@ ggplot(data = gapminder, aes(x = , y = lex, color = world_6region)) +
 ## Spider-Chart
 
 ## Kombiniert
-
+- Co2 with grey scale
+- greens with green scale
 
 # Plotly
 

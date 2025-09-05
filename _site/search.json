@@ -2056,5 +2056,82 @@
     "title": "Mehr ggplot2!",
     "section": "Patch together",
     "text": "Patch together\n\np_left +\n  p_right"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#daten",
+    "href": "sessions/Einführung/slides.html#daten",
+    "title": "Einführung",
+    "section": "Daten",
+    "text": "Daten\n\n\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\n\n\n\n\nBild von [Amazon][(https://m.media-amazon.com/images/I/71KH-wJcv3L.jpg)."
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#scatterplot",
+    "href": "sessions/Einführung/slides.html#scatterplot",
+    "title": "Einführung",
+    "section": "Scatterplot",
+    "text": "Scatterplot\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2019 &lt;- gapminder %&gt;% \n  filter(time == 2019\n)\n\np_scatter &lt;- ggplot(data = gapminder_2019, aes(x = demox_eiu, y = gini, color = world_6region)) +\n  geom_point(size = 3) +\n  theme_bg()\n\np_scatter"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#scatterplot-1",
+    "href": "sessions/Einführung/slides.html#scatterplot-1",
+    "title": "Einführung",
+    "section": "Scatterplot",
+    "text": "Scatterplot\n\n\n\nDatentyp Numerisch\nAchtung Overplotting\n\nLink test"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#barplot",
+    "href": "sessions/Einführung/slides.html#barplot",
+    "title": "Einführung",
+    "section": "Barplot",
+    "text": "Barplot"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#histogram",
+    "href": "sessions/Einführung/slides.html#histogram",
+    "title": "Einführung",
+    "section": "Histogram",
+    "text": "Histogram"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#lineplot",
+    "href": "sessions/Einführung/slides.html#lineplot",
+    "title": "Einführung",
+    "section": "Lineplot",
+    "text": "Lineplot"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#boxplot",
+    "href": "sessions/Einführung/slides.html#boxplot",
+    "title": "Einführung",
+    "section": "Boxplot",
+    "text": "Boxplot"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#karten",
+    "href": "sessions/Einführung/slides.html#karten",
+    "title": "Einführung",
+    "section": "Karten",
+    "text": "Karten"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#spider-chart",
+    "href": "sessions/Einführung/slides.html#spider-chart",
+    "title": "Einführung",
+    "section": "Spider-Chart",
+    "text": "Spider-Chart"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#kombiniert",
+    "href": "sessions/Einführung/slides.html#kombiniert",
+    "title": "Einführung",
+    "section": "Kombiniert",
+    "text": "Kombiniert\n\nCo2 with grey scale\ngreens with green scale"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#scatterplot-2",
+    "href": "sessions/Einführung/slides.html#scatterplot-2",
+    "title": "Einführung",
+    "section": "Scatterplot",
+    "text": "Scatterplot\n\n\nScatterplot – Steckbrief\n\n\n\nTyp\n\n\nScatterplot (Punkte)\n\n\nZweck\n\n\nZusammenhang x–y, Cluster/Ausreißer\n\n\nGut für\n\n\nKorrelation/Trend, Gruppen via Farbe\n\n\nAchtung\n\n\nOverplotting, keine Kausalität\n\n\nAlternativen\n\n\ngeom_hex(), geom_bin2d()\n\n\n\n\ngeom_hex()\n\n\ngeom_bin2d()\n\n\nGGally::ggpairs()"
   }
 ]
