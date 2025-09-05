@@ -5,6 +5,7 @@ format: letterbox-revealjs
 ```{r}
 library(quartets)
 library(tidyverse)
+library(ggrepel)
 source(here::here("src", "themes.R"))
 ```
 
