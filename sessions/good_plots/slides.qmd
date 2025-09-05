@@ -1681,6 +1681,8 @@ Nochmal bei Tufte nachschauen
 
 
 
+## Show variation!
+
 
 # Übung
 Schlechte Grafiken verbessern: https://www.data-to-viz.com/caveats.html

@@ -388,9 +388,10 @@ saveRDS(data_ready_plot, "./sessions/Einführung/surfdata.rds")
 
 ```{r}
 #| echo: false
+#| eval: false
 
 # Load picture and render
-earth <- jpeg::readJPEG("images/worldmap.jpg", native = TRUE)
+earth <- jpeg::readJPEG("./images/worldmap.jpg", native = TRUE)
 earth <- grid::rasterGrob(earth, interpolate = TRUE)
 
 data_ready_plot <- readRDS("./surfdata.rds")
@@ -423,17 +424,60 @@ https://r-graph-gallery.com/best-r-chart-examples
 https://allisonhorst.com/r-packages-functions
 
 
-## Example plot
-```{r}
-#| echo: false
 
-library(ggplot2)
-ggplot(data = cars, 
-       mapping = aes(x = speed, y = dist)) +
-  geom_point(colour = "#F4BA02", alpha = 1.5, size = 3) +
-  theme_bg()
+# Plot-Typen
+
+## Daten
+
+
+:::{.columns}
+:::{.column width = "50%}
+```{r}
+gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
 ```
 
+:::
+:::{.column width = "50%"}
+
+
+![](./images/factfulness.jpg){.image-right}
+
+:::
+:::
+
+::: image-ref
+Bild von [Amazon][(https://m.media-amazon.com/images/I/71KH-wJcv3L.jpg). 
+:::
+
+## Scatterplot
+```{r}
+gapminder_2024 <- gapminder %>% 
+  filter(time == 2024)
+
+ggplot(data = gapminder, aes(x = , y = lex, color = world_6region)) +
+  geom_point() +
+  theme_bg()
+
+```
+
+
+- Co2 with grey scale
+- greens with green scale
+
+
+## Barplot
+
+## Histogram
+
+## Lineplot
+
+## Boxplot
+
+## Karten
+
+## Spider-Chart
+
+## Kombiniert
 
 
 # Plotly
@@ -442,5 +486,4 @@ ggplot(data = cars,
 
 ## Generative Art
 
-## Step By Step example
 

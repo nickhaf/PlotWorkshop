@@ -1649,7 +1649,7 @@
     "href": "sessions/more_ggplot/slides.html#section",
     "title": "Mehr ggplot2!",
     "section": "",
-    "text": "char_dat &lt;- characters$characters\npsych_dat &lt;- characters$psych_stats\n\n\n\ndat_merged &lt;- char_dat %&gt;% \n  rename(char_name = name) %&gt;% \n  left_join(psych_dat) \n\n\ndat_prepped &lt;-  dat_merged %&gt;% \n  filter(uni_name %in% c(\"How I Met Your Mother\", \"Friends\")) %&gt;% \n  filter(question %in% c(\"doer/thinker\", \"jock/nerd\", \"cold/warm\", \"main character/side character\", \"crazy/sane\", \"dispassionate/romantic\", \"high IQ/low IQ\", \"heroic/villainous\", \"funny/humorless\", \"chaotic/orderly\")) %&gt;% \n  ## Rating always between 50 and 100. Use the personality trait for correct scaling\n  \n  mutate(top_trait = str_split_i(question, pattern = \"/\", i = 2), \n         bottom_trait = str_split_i(question, pattern = \"/\", i = 1)) %&gt;% \n  mutate(avg_rating = case_when(personality == top_trait ~ avg_rating, \n                                personality == bottom_trait ~ 100 - avg_rating))\n\n## Cold warm: Geschlecht? Could get ChatGPT to code\n\n## Eventuell inside standardisieren, um spezifische Abweichung zu zeigen? \n\n\nFoto von Ilse Orsel auf Unsplash"
+    "text": "char_dat &lt;- characters$characters\npsych_dat &lt;- characters$psych_stats\n\n\n\ndat_merged &lt;- char_dat %&gt;%\n  rename(char_name = name) %&gt;%\n  left_join(psych_dat)\n\n\ndat_prepped &lt;- dat_merged %&gt;%\n  filter(uni_name %in% c(\"How I Met Your Mother\", \"Friends\")) %&gt;%\n  filter(question %in% c(\"doer/thinker\", \"jock/nerd\", \"cold/warm\", \"main character/side character\", \"crazy/sane\", \"dispassionate/romantic\", \"high IQ/low IQ\", \"heroic/villainous\", \"funny/humorless\", \"chaotic/orderly\")) %&gt;%\n  ## Rating always between 50 and 100. Use the personality trait for correct scaling\n\n  mutate(\n    top_trait = str_split_i(question, pattern = \"/\", i = 2),\n    bottom_trait = str_split_i(question, pattern = \"/\", i = 1)\n  ) %&gt;%\n  mutate(avg_rating = case_when(\n    personality == top_trait ~ avg_rating,\n    personality == bottom_trait ~ 100 - avg_rating\n  ))\n\n## Cold warm: Geschlecht? Could get ChatGPT to code\n\n## Eventuell inside standardisieren, um spezifische Abweichung zu zeigen?\n\n\nFoto von Ilse Orsel auf Unsplash"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#facetting",
@@ -1663,35 +1663,35 @@
     "href": "sessions/more_ggplot/slides.html#faceting",
     "title": "Mehr ggplot2!",
     "section": "Faceting",
-    "text": "Faceting\nAnordnen von einer einzelnen Variable in einem Raster:\n\n\nfacet_wrap()\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +\n  geom_point() +\n  facet_wrap(vars(char_name), nrow = 4) +\n  theme_bg()\n\n\n\n\n\n\n\n\nfacet_grid\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +\n  geom_point() +\n  facet_grid(char_name ~ .) +\n  theme_bg()"
+    "text": "Faceting\nAnordnen von einer einzelnen Variable in einem Raster:\n\n\nfacet_wrap()\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)\n) +\n  geom_point() +\n  facet_wrap(vars(char_name), nrow = 4) +\n  theme_bg()\n\n\n\n\n\n\n\n\nfacet_grid\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)\n) +\n  geom_point() +\n  facet_grid(char_name ~ .) +\n  theme_bg()"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#facetting---mehrere-variablen",
     "href": "sessions/more_ggplot/slides.html#facetting---mehrere-variablen",
     "title": "Mehr ggplot2!",
     "section": "Facetting - Mehrere Variablen",
-    "text": "Facetting - Mehrere Variablen\nAnordnen von mehreren Variable in einem Raster:\n\n\nfacet_wrap()\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +\n  geom_point() +\n  facet_wrap(vars(char_name, uni_name), nrow = 4) +\n  theme_bg()\n\n\n\n\n\n\n\n\nfacet_grid()\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +\n  geom_point() +\n  facet_grid(char_name ~ uni_name) +\n  theme_bg()"
+    "text": "Facetting - Mehrere Variablen\nAnordnen von mehreren Variable in einem Raster:\n\n\nfacet_wrap()\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)\n) +\n  geom_point() +\n  facet_wrap(vars(char_name, uni_name), nrow = 4) +\n  theme_bg()\n\n\n\n\n\n\n\n\nfacet_grid()\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)\n) +\n  geom_point() +\n  facet_grid(char_name ~ uni_name) +\n  theme_bg()"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#facetting---tipps",
     "href": "sessions/more_ggplot/slides.html#facetting---tipps",
     "title": "Mehr ggplot2!",
     "section": "Facetting - Tipps",
-    "text": "Facetting - Tipps\nPlot alle Punkte\n\n\ndat_prepped_background &lt;- dat_prepped %&gt;% \n  mutate(char_name_bg = char_name) %&gt;%\n  select(-char_name)\n\nggplot(dat_prepped,  aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +\n  # background lines: drawn in every facet, grouped by country_bg\n  geom_point(\n    data = dat_prepped_background,\n    aes(x = question, y = avg_rating, group = char_name_bg),\n    inherit.aes = FALSE,\n    color = \"grey70\",\n    alpha = 0.5,\n    size = 0.4\n  ) +\n  geom_point() + \n  facet_wrap(vars(char_name)) +\n  guides(color = \"none\") +\n  theme_bg()"
+    "text": "Facetting - Tipps\nPlot alle Punkte\n\n\ndat_prepped_background &lt;- dat_prepped %&gt;%\n  mutate(char_name_bg = char_name) %&gt;%\n  select(-char_name)\n\nggplot(dat_prepped, aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +\n  # background lines: drawn in every facet, grouped by country_bg\n  geom_point(\n    data = dat_prepped_background,\n    aes(x = question, y = avg_rating, group = char_name_bg),\n    inherit.aes = FALSE,\n    color = \"grey70\",\n    alpha = 0.5,\n    size = 0.4\n  ) +\n  geom_point() +\n  facet_wrap(vars(char_name)) +\n  guides(color = \"none\") +\n  theme_bg()"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#facetting---tipps-1",
     "href": "sessions/more_ggplot/slides.html#facetting---tipps-1",
     "title": "Mehr ggplot2!",
     "section": "Facetting - Tipps",
-    "text": "Facetting - Tipps\nPlot Mittelwerte\n\n\ndat_mean &lt;- dat_prepped %&gt;% \n  group_by(question) %&gt;%\n  summarise(avg_rating = mean(avg_rating))\n  \n\nggplot(dat_prepped,  aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +\n  # background lines: drawn in every facet, grouped by country_bg\n  geom_point(\n    data = dat_mean,\n    aes(x = question, y = avg_rating),\n    inherit.aes = FALSE,\n    color = \"grey70\",\n    size = 1\n  ) +\n  geom_point() + \n  facet_wrap(vars(char_name)) +\n  guides(color = \"none\") +\n  theme_bg()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStandardisierung könnte beim Vergleich zwischen den Fragen helfen - das kommt aber auf die finale Fragestellung an. Ist aber ein Punkt, den man zumindest im Hinterkopf behalten sollte."
+    "text": "Facetting - Tipps\nPlot Mittelwerte\n\n\ndat_mean &lt;- dat_prepped %&gt;%\n  group_by(question) %&gt;%\n  summarise(avg_rating = mean(avg_rating))\n\n\nggplot(dat_prepped, aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +\n  # background lines: drawn in every facet, grouped by country_bg\n  geom_point(\n    data = dat_mean,\n    aes(x = question, y = avg_rating),\n    inherit.aes = FALSE,\n    color = \"grey70\",\n    size = 1\n  ) +\n  geom_point() +\n  facet_wrap(vars(char_name)) +\n  guides(color = \"none\") +\n  theme_bg()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nStandardisierung könnte beim Vergleich zwischen den Fragen helfen - das kommt aber auf die finale Fragestellung an. Ist aber ein Punkt, den man zumindest im Hinterkopf behalten sollte."
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#sortieren",
     "href": "sessions/more_ggplot/slides.html#sortieren",
     "title": "Mehr ggplot2!",
     "section": "Sortieren",
-    "text": "Sortieren\nSortieren, läuft in ggplot2 generell über factor(). Manchmal kann es hilfreich sein, sich eine eigene ID-Variable zum Sortieren zu erstellen\n\ndat_prepped$uni_name_fac &lt;- factor(dat_prepped$uni_name, levels = c(\"How I Met Your Mother\", \"Friends\"))\n\n\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +\n  geom_point() +\n  facet_wrap(vars(uni_name_fac), nrow = 4) +\n  theme_bg()"
+    "text": "Sortieren\nSortieren, läuft in ggplot2 generell über factor(). Manchmal kann es hilfreich sein, sich eine eigene ID-Variable zum Sortieren zu erstellen\n\ndat_prepped$uni_name_fac &lt;- factor(dat_prepped$uni_name, levels = c(\"How I Met Your Mother\", \"Friends\"))\n\n\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)\n) +\n  geom_point() +\n  facet_wrap(vars(uni_name_fac), nrow = 4) +\n  theme_bg()"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#legenden",
@@ -1705,14 +1705,14 @@
     "href": "sessions/more_ggplot/slides.html#section-1",
     "title": "Mehr ggplot2!",
     "section": "",
-    "text": "Jede aesthetic im Plot ist mit genau einer scale verbunden:\n\n\nImplizite Definition\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +\n  geom_point() \n\n\n\n\n\n\n\n\nWird intern zu:\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +\n  geom_point() +\n  scale_x_discrete() + \n  scale_y_continuous() + \n  scale_colour_discrete() +\n  scale_shape_discrete()\n\n\n\n\n\n\n\n\n\n\ntime und co2_pcacp_cons sind beide kontinuierliche Variablen: scale_x_continuous(), scale_x_continuous()\n\n\ncountry ist diskret: scale_colour_discrete()\n\n\nDas können wir uns zunutze machen, um manuell Scales zu definieren."
+    "text": "Jede aesthetic im Plot ist mit genau einer scale verbunden:\n\n\nImplizite Definition\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)\n) +\n  geom_point()\n\n\n\n\n\n\n\n\nWird intern zu:\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)\n) +\n  geom_point() +\n  scale_x_discrete() +\n  scale_y_continuous() +\n  scale_colour_discrete() +\n  scale_shape_discrete()\n\n\n\n\n\n\n\n\n\n\ntime und co2_pcacp_cons sind beide kontinuierliche Variablen: scale_x_continuous(), scale_x_continuous()\n\n\ncountry ist diskret: scale_colour_discrete()\n\n\nDas können wir uns zunutze machen, um manuell Scales zu definieren."
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#section-2",
     "href": "sessions/more_ggplot/slides.html#section-2",
     "title": "Mehr ggplot2!",
     "section": "",
-    "text": "ggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +\n  geom_point() +\n  scale_x_discrete(name = \"Eigenschaft\") + \n  scale_y_continuous(\"Mittleres Rating\") + \n  scale_colour_discrete(\"Character\") +\n  scale_shape_discrete(name = \"Serie\")\n\n\n\n\n\n\n\n\nIn der Praxis würden wir dafür labs(x = \"Jahr\", y = \"CO2 Verbrauch pro Kopf\", color = \"Länder\", shape = \"Serie\") nutzen. Wir sehen so aber, dass Achsen- und Legendentitel jeweils Skalennamen sind."
+    "text": "ggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)\n) +\n  geom_point() +\n  scale_x_discrete(name = \"Eigenschaft\") +\n  scale_y_continuous(\"Mittleres Rating\") +\n  scale_colour_discrete(\"Character\") +\n  scale_shape_discrete(name = \"Serie\")\n\n\n\n\n\n\n\n\nIn der Praxis würden wir dafür labs(x = \"Jahr\", y = \"CO2 Verbrauch pro Kopf\", color = \"Länder\", shape = \"Serie\") nutzen. Wir sehen so aber, dass Achsen- und Legendentitel jeweils Skalennamen sind."
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#übung-1",
@@ -1754,7 +1754,7 @@
     "href": "sessions/more_ggplot/slides.html#section-3",
     "title": "Mehr ggplot2!",
     "section": "",
-    "text": "ggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = avg_rating, shape = uni_name_fac)) +\n  geom_point() +\n  scale_y_log10(name = \"Mittleren Rating log\") +\n  scale_colour_continuous()\n\n\n\n\n\n\n\n\nEine Übersicht über die möglichen Skalentypen findet sich [hier])https://ggplot2tor.com/scales/)."
+    "text": "ggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  scale_y_log10(name = \"Mittleren Rating log\") +\n  scale_colour_continuous()\n\n\n\n\n\n\n\n\nEine Übersicht über die möglichen Skalentypen findet sich [hier])https://ggplot2tor.com/scales/)."
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#einige-anwendungsfälle",
@@ -1768,7 +1768,7 @@
     "href": "sessions/more_ggplot/slides.html#scale-guides",
     "title": "Mehr ggplot2!",
     "section": "Scale Guides",
-    "text": "Scale Guides\nJede Skala (und damit jede Aesthetic) bekommt einen Guide zugeordnet. Intern passiert das über guides(). Wir können guides() also nutzen, um die Legende zu manipulieren:\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +\n  geom_point() +\n  guides(color = guide_legend(title = \"Charaktere\", ncol = 3, reverse = TRUE, override.aes = list(size = 3)))"
+    "text": "Scale Guides\nJede Skala (und damit jede Aesthetic) bekommt einen Guide zugeordnet. Intern passiert das über guides(). Wir können guides() also nutzen, um die Legende zu manipulieren:\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)\n) +\n  geom_point() +\n  guides(color = guide_legend(title = \"Charaktere\", ncol = 3, reverse = TRUE, override.aes = list(size = 3)))"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#themes",
@@ -1782,7 +1782,7 @@
     "href": "sessions/more_ggplot/slides.html#section-4",
     "title": "Mehr ggplot2!",
     "section": "",
-    "text": "Abschalten der Legende im ersten Plot.\n\n\np_robin &lt;- ggplot(data = dat_prepped_robin, \n        mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)) +\n  geom_point() +\n  facet_wrap(vars(char_name)) +\n  ylim(0, 100) +\n  theme(legend.position = \"none\")\n  \n\n\np_rest &lt;- ggplot(data = dat_prepped %&gt;% filter(char_name != \"Robin Scherbatsky\"), \n        mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)) +\n  geom_point() +\n  facet_wrap(vars(char_name), nrow = 2) +\n  ylim(0, 100) \n\n\np_robin + \n  p_rest + \n  plot_layout(widths = c(2, 2), guides = \"collect\")"
+    "text": "Abschalten der Legende im ersten Plot.\n\n\np_robin &lt;- ggplot(\n  data = dat_prepped_robin,\n  mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  facet_wrap(vars(char_name)) +\n  ylim(0, 100) +\n  theme(legend.position = \"none\")\n\n\n\np_rest &lt;- ggplot(\n  data = dat_prepped %&gt;% filter(char_name != \"Robin Scherbatsky\"),\n  mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  facet_wrap(vars(char_name), nrow = 2) +\n  ylim(0, 100)\n\n\np_robin +\n  p_rest +\n  plot_layout(widths = c(2, 2), guides = \"collect\")"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#legenden-mergen",
@@ -1796,35 +1796,35 @@
     "href": "sessions/more_ggplot/slides.html#datensatz",
     "title": "Mehr ggplot2!",
     "section": "Datensatz",
-    "text": "Datensatz\n\n# ## Keep in mind!\n# ## Eventuell für die Übung? \n# tuesdata &lt;- tidytuesdayR::tt_load('2025-08-26')\n# tuesdata$billboard %&gt;% \n#   filter(song == \"Love the Way You Lie\") %&gt;% \n#   select(danceability, energy, happiness)\n# \n# \n# ## Netflix\n# tuesdata &lt;- tidytuesdayR::tt_load('2025-07-29')\n# \n# ## Gutenberg project\n# tuesdata &lt;- tidytuesdayR::tt_load('2025-06-03')\n\n\ncharacters &lt;- tidytuesdayR::tt_load('2022-08-16')"
+    "text": "Datensatz\n\n# ## Keep in mind!\n# ## Eventuell für die Übung?\n# tuesdata &lt;- tidytuesdayR::tt_load('2025-08-26')\n# tuesdata$billboard %&gt;%\n#   filter(song == \"Love the Way You Lie\") %&gt;%\n#   select(danceability, energy, happiness)\n#\n#\n# ## Netflix\n# tuesdata &lt;- tidytuesdayR::tt_load('2025-07-29')\n#\n# ## Gutenberg project\n# tuesdata &lt;- tidytuesdayR::tt_load('2025-06-03')\n\n\ncharacters &lt;- tidytuesdayR::tt_load(\"2022-08-16\")"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#charaktereigenschaften-in-himym",
     "href": "sessions/more_ggplot/slides.html#charaktereigenschaften-in-himym",
     "title": "Mehr ggplot2!",
     "section": "Charaktereigenschaften in HIMYM",
-    "text": "Charaktereigenschaften in HIMYM\n\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +\n  geom_point()\n\n\n\n\n\n\n\n\nWir vergleichen jetzt einige Charaktereigenschaften in HIMYM und Friends. Gerade noch etwas schwierig. Lösung: Faceting"
+    "text": "Charaktereigenschaften in HIMYM\n\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)\n) +\n  geom_point()\n\n\n\n\n\n\n\n\nWir vergleichen jetzt einige Charaktereigenschaften in HIMYM und Friends. Gerade noch etwas schwierig. Lösung: Faceting"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#anwendungsfälle-farben",
     "href": "sessions/more_ggplot/slides.html#anwendungsfälle-farben",
     "title": "Mehr ggplot2!",
     "section": "Anwendungsfälle: Farben",
-    "text": "Anwendungsfälle: Farben\n\nFarben\nOft macht es Sinn, die Farben direkt über einen named vector zu definieren. Dadurch wird jedem Element in der color-variable genau die gewünschte Farbe zugeordnetÖ\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +\n  geom_point(size = 3) +\n  scale_shape_manual(values = c(\"Friends\" = 12, \"How I Met Your Mother\" = 18)) +\n  scale_colour_manual(values = c(\"Ted Mosby\" = \"blue\", \n                                   \"Robin Scherbatsky\" = \"red\", \n                                   \"Barney Stinson\" = \"green\", \n                                   \"Lily Aldrin\" = \"purple\", \n                                   \"Marshall Eriksen\" = \"orange\", \n                                   \"Rachel Green\" = \"pink\", \n                                   \"Monica Geller\" = \"brown\", \n                                   \"Phoebe Buffay\" = \"yellow\", \n                                   \"Joey Tribbiani\" = \"cyan\"))\n\n\n\n\n\n\n\n\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +\n  geom_point() +\n  scale_colour_brewer(palette = \"Set3\")\n\n\n\n\n\n\n\n:::"
+    "text": "Anwendungsfälle: Farben\n\nFarben\nOft macht es Sinn, die Farben direkt über einen named vector zu definieren. Dadurch wird jedem Element in der color-variable genau die gewünschte Farbe zugeordnetÖ\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)\n) +\n  geom_point(size = 3) +\n  scale_shape_manual(values = c(\"Friends\" = 12, \"How I Met Your Mother\" = 18)) +\n  scale_colour_manual(values = c(\n    \"Ted Mosby\" = \"blue\",\n    \"Robin Scherbatsky\" = \"red\",\n    \"Barney Stinson\" = \"green\",\n    \"Lily Aldrin\" = \"purple\",\n    \"Marshall Eriksen\" = \"orange\",\n    \"Rachel Green\" = \"pink\",\n    \"Monica Geller\" = \"brown\",\n    \"Phoebe Buffay\" = \"yellow\",\n    \"Joey Tribbiani\" = \"cyan\"\n  ))\n\n\n\n\n\n\n\n\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)\n) +\n  geom_point() +\n  scale_colour_brewer(palette = \"Set3\")\n\n\n\n\n\n\n\n:::"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#anwendungsfälle-skalen-ticks",
     "href": "sessions/more_ggplot/slides.html#anwendungsfälle-skalen-ticks",
     "title": "Mehr ggplot2!",
     "section": "Anwendungsfälle: Skalen-Ticks",
-    "text": "Anwendungsfälle: Skalen-Ticks\n\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +\n  geom_point() +\n  scale_y_continuous(name = \"Mittleres Rating\", breaks = seq(0, 100, by = 10), limits = c(0, 100))"
+    "text": "Anwendungsfälle: Skalen-Ticks\n\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)\n) +\n  geom_point() +\n  scale_y_continuous(name = \"Mittleres Rating\", breaks = seq(0, 100, by = 10), limits = c(0, 100))"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#mögliche-guide-funktionen",
     "href": "sessions/more_ggplot/slides.html#mögliche-guide-funktionen",
     "title": "Mehr ggplot2!",
     "section": "Mögliche guide-Funktionen",
-    "text": "Mögliche guide-Funktionen\n: ::: {.columns}\n\n\nguide_colourbar()\nguide_coloursteps()\nguide_axis()\nguide_legend()\nguide_bins()\n\n\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +\n  geom_point() +\n  guides(x = guide_axis(angle = 90))\n\n\n\n\n\n\n\n:::"
+    "text": "Mögliche guide-Funktionen\n: ::: {.columns}\n\n\nguide_colourbar()\nguide_coloursteps()\nguide_axis()\nguide_legend()\nguide_bins()\n\n\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)\n) +\n  geom_point() +\n  guides(x = guide_axis(angle = 90))\n\n\n\n\n\n\n\n:::"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#koordinatensysteme",
@@ -1845,7 +1845,7 @@
     "href": "sessions/more_ggplot/slides.html#polar-koordinaten",
     "title": "Mehr ggplot2!",
     "section": "Polar-Koordinaten",
-    "text": "Polar-Koordinaten\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac, group = question)) +\n  geom_point() +\n  geom_segment(aes(x = question, xend = question, \n                   y = 0, yend = avg_rating, \n                   group = interaction(char_name, uni_name_fac)), \n               linewidth = 0.5) +\n  ylim(0, 100) +\n  facet_wrap(vars(char_name)) +\n  coord_polar(theta = \"x\") +\n  theme_bg()\n\n\n\n\n\n\n\n\nVorsicht damit! In vielen Fällen ist ein lineares Koordinatensystem einfacher zu interpretieren. Winkel sind oft nicht so einfach zu interpretieren. Nichtsdestotrotz kann es gerade zur Gestaltung nett sein!"
+    "text": "Polar-Koordinaten\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac, group = question)\n) +\n  geom_point() +\n  geom_segment(\n    aes(\n      x = question, xend = question,\n      y = 0, yend = avg_rating,\n      group = interaction(char_name, uni_name_fac)\n    ),\n    linewidth = 0.5\n  ) +\n  ylim(0, 100) +\n  facet_wrap(vars(char_name)) +\n  coord_polar(theta = \"x\") +\n  theme_bg()\n\n\n\n\n\n\n\n\nVorsicht damit! In vielen Fällen ist ein lineares Koordinatensystem einfacher zu interpretieren. Winkel sind oft nicht so einfach zu interpretieren. Nichtsdestotrotz kann es gerade zur Gestaltung nett sein!"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#realistischer-anwendunge",
@@ -1866,35 +1866,35 @@
     "href": "sessions/more_ggplot/slides.html#spider-chart",
     "title": "Mehr ggplot2!",
     "section": "Spider-Chart",
-    "text": "Spider-Chart\n\n\nggplot(dat_prepped, \n       aes(x=question, y=avg_rating, group=char_name)) +\n  geom_point() +\n  facet_wrap(vars(char_name), ncol=4)"
+    "text": "Spider-Chart\n\n\nggplot(\n  dat_prepped,\n  aes(x = question, y = avg_rating, group = char_name)\n) +\n  geom_point() +\n  facet_wrap(vars(char_name), ncol = 4)"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#vergleichen-von-ähnlichen-charakteren",
     "href": "sessions/more_ggplot/slides.html#vergleichen-von-ähnlichen-charakteren",
     "title": "Mehr ggplot2!",
     "section": "Vergleichen von ähnlichen Charakteren",
-    "text": "Vergleichen von ähnlichen Charakteren\nDafür erzeuge ich eine eigene Variable\n\n\ndat_prepped2 &lt;- dat_prepped %&gt;% \n  mutate(facet_id = case_when(\n    char_name %in% c(\"Barney Stinson\", \"Joey Tribbiani\") ~ \"Barney & Joey\",\n    char_name %in% c(\"Ted Mosby\", \"Ross Geller\") ~ \"Ted & Ross\",\n    char_name %in% c(\"Robin Scherbatsky\", \"Rachel Green\") ~ \"Robin & Rachel\",\n    char_name %in% c(\"Lily Aldrin\", \"Monica Geller\") ~ \"Lily & Monica\",\n    char_name %in% c(\"Marshall Eriksen\", \"Chandler Bing\") ~ \"Marshall & Chandler\"\n  )) %&gt;% \n  filter(!is.na(facet_id)) ## Sorry Phoebe :(\n \nggplot(dat_prepped2, \n       aes(x=question, y=avg_rating, group=char_name, color = uni_name)) +\n  geom_point() +\n  facet_wrap(vars(facet_id), ncol=4) +\n  ylim(0, 100)"
+    "text": "Vergleichen von ähnlichen Charakteren\nDafür erzeuge ich eine eigene Variable\n\n\ndat_prepped2 &lt;- dat_prepped %&gt;%\n  mutate(facet_id = case_when(\n    char_name %in% c(\"Barney Stinson\", \"Joey Tribbiani\") ~ \"Barney & Joey\",\n    char_name %in% c(\"Ted Mosby\", \"Ross Geller\") ~ \"Ted & Ross\",\n    char_name %in% c(\"Robin Scherbatsky\", \"Rachel Green\") ~ \"Robin & Rachel\",\n    char_name %in% c(\"Lily Aldrin\", \"Monica Geller\") ~ \"Lily & Monica\",\n    char_name %in% c(\"Marshall Eriksen\", \"Chandler Bing\") ~ \"Marshall & Chandler\"\n  )) %&gt;%\n  filter(!is.na(facet_id)) ## Sorry Phoebe :(\n\nggplot(\n  dat_prepped2,\n  aes(x = question, y = avg_rating, group = char_name, color = uni_name)\n) +\n  geom_point() +\n  facet_wrap(vars(facet_id), ncol = 4) +\n  ylim(0, 100)"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#section-5",
     "href": "sessions/more_ggplot/slides.html#section-5",
     "title": "Mehr ggplot2!",
     "section": "",
-    "text": "dat_prepped_2 &lt;- dat_prepped %&gt;% \n  mutate(char_name_bold = paste0(\"**\", char_name, \"**\"))\n\n\nggplot(data = dat_prepped_2, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +\n  geom_point() +\n  facet_wrap(vars(char_name_bold)) +\n  theme(\n    strip.text = element_markdown()\n  )"
+    "text": "dat_prepped_2 &lt;- dat_prepped %&gt;%\n  mutate(char_name_bold = paste0(\"**\", char_name, \"**\"))\n\n\nggplot(\n  data = dat_prepped_2,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)\n) +\n  geom_point() +\n  facet_wrap(vars(char_name_bold)) +\n  theme(\n    strip.text = element_markdown()\n  )"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#section-7",
     "href": "sessions/more_ggplot/slides.html#section-7",
     "title": "Mehr ggplot2!",
     "section": "",
-    "text": "ggplot(dat_prepped2, \n       aes(x=question, y=avg_rating, group=char_name, color = uni_name)) +\n  geom_point() +\n  facet_wrap(vars(facet_id), ncol=4) +\n  ylim(0, 100) +\n  coord_polar()"
+    "text": "ggplot(\n  dat_prepped2,\n  aes(x = question, y = avg_rating, group = char_name, color = uni_name)\n) +\n  geom_point() +\n  facet_wrap(vars(facet_id), ncol = 4) +\n  ylim(0, 100) +\n  coord_polar()"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#section-8",
     "href": "sessions/more_ggplot/slides.html#section-8",
     "title": "Mehr ggplot2!",
     "section": "",
-    "text": "ggplot(dat_prepped2, \n       aes(x=question, y=avg_rating, group=char_name, color = uni_name)) +\n  geom_point() +\n  geom_polygon(alpha = 0.5) +\n  facet_wrap(vars(facet_id), ncol=4) +\n  ylim(0, 100) +\n  coord_polar()"
+    "text": "ggplot(\n  dat_prepped2,\n  aes(x = question, y = avg_rating, group = char_name, color = uni_name)\n) +\n  geom_point() +\n  geom_polygon(alpha = 0.5) +\n  facet_wrap(vars(facet_id), ncol = 4) +\n  ylim(0, 100) +\n  coord_polar()"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#section-9",
@@ -1908,28 +1908,28 @@
     "href": "sessions/more_ggplot/slides.html#section-10",
     "title": "Mehr ggplot2!",
     "section": "",
-    "text": "Radar coords from Tanya Shapiro\n\nCodecoord_radar &lt;- function (theta = \"x\", start = 0, direction = 1) {\n  theta &lt;- match.arg(theta, c(\"x\", \"y\"))\n  r &lt;- if (theta == \"x\") \n    \"y\"\n  else \"x\"\n  \n  #dirty\n  rename_data &lt;- function(coord, data) {\n    if (coord$theta == \"y\") {\n      plyr::rename(data, c(\"y\" = \"theta\", \"x\" = \"r\"), warn_missing = FALSE)\n    } else {\n      plyr::rename(data, c(\"y\" = \"r\", \"x\" = \"theta\"), warn_missing = FALSE)\n    }\n  }\n  theta_rescale &lt;- function(coord, x, scale_details) {\n    rotate &lt;- function(x) (x + coord$start) %% (2 * pi) * coord$direction\n    rotate(scales::rescale(x, c(0, 2 * pi), scale_details$theta.range))\n  }\n  \n  r_rescale &lt;- function(coord, x, scale_details) {\n    scales::rescale(x, c(0, 0.4), scale_details$r.range)\n  }\n  \n  ggproto(\"CordRadar\", CoordPolar, theta = theta, r = r, start = start, \n          direction = sign(direction),\n          is_linear = function(coord) TRUE,\n          render_bg = function(self, scale_details, theme) {\n            scale_details &lt;- rename_data(self, scale_details)\n            \n            theta &lt;- if (length(scale_details$theta.major) &gt; 0)\n              theta_rescale(self, scale_details$theta.major, scale_details)\n            thetamin &lt;- if (length(scale_details$theta.minor) &gt; 0)\n              theta_rescale(self, scale_details$theta.minor, scale_details)\n            thetafine &lt;- seq(0, 2 * pi, length.out = 100)\n            \n            rfine &lt;- c(r_rescale(self, scale_details$r.major, scale_details))\n            \n            # This gets the proper theme element for theta and r grid lines:\n            #   panel.grid.major.x or .y\n            majortheta &lt;- paste(\"panel.grid.major.\", self$theta, sep = \"\")\n            minortheta &lt;- paste(\"panel.grid.minor.\", self$theta, sep = \"\")\n            majorr     &lt;- paste(\"panel.grid.major.\", self$r,     sep = \"\")\n            \n            ggplot2:::ggname(\"grill\", grid::grobTree(\n              ggplot2:::element_render(theme, \"panel.background\"),\n              if (length(theta) &gt; 0) ggplot2:::element_render(\n                theme, majortheta, name = \"angle\",\n                x = c(rbind(0, 0.45 * sin(theta))) + 0.5,\n                y = c(rbind(0, 0.45 * cos(theta))) + 0.5,\n                id.lengths = rep(2, length(theta)),\n                default.units = \"native\"\n              ),\n              if (length(thetamin) &gt; 0) ggplot2:::element_render(\n                theme, minortheta, name = \"angle\",\n                x = c(rbind(0, 0.45 * sin(thetamin))) + 0.5,\n                y = c(rbind(0, 0.45 * cos(thetamin))) + 0.5,\n                id.lengths = rep(2, length(thetamin)),\n                default.units = \"native\"\n              ),\n              \n              ggplot2:::element_render(\n                theme, majorr, name = \"radius\",\n                x = rep(rfine, each = length(thetafine)) * sin(thetafine) + 0.5,\n                y = rep(rfine, each = length(thetafine)) * cos(thetafine) + 0.5,\n                id.lengths = rep(length(thetafine), length(rfine)),\n                default.units = \"native\"\n              )\n            ))\n          })\n}\n\n\n\n\ndat_prepped3 &lt;- arrange(dat_prepped2, question)\n\nggplot(dat_prepped3, \n       aes(x=question, y=avg_rating, group=char_name, color = uni_name, fill = char_name)) +\n  geom_point() +\n  geom_polygon(alpha = 0.5) +\n  facet_wrap(vars(facet_id), ncol=4) +\n  ylim(0, 100) +\n  coord_radar()"
+    "text": "Radar coords from Tanya Shapiro\n\nCodecoord_radar &lt;- function(theta = \"x\", start = 0, direction = 1) {\n  theta &lt;- match.arg(theta, c(\"x\", \"y\"))\n  r &lt;- if (theta == \"x\") {\n    \"y\"\n  } else {\n    \"x\"\n  }\n\n  # dirty\n  rename_data &lt;- function(coord, data) {\n    if (coord$theta == \"y\") {\n      plyr::rename(data, c(\"y\" = \"theta\", \"x\" = \"r\"), warn_missing = FALSE)\n    } else {\n      plyr::rename(data, c(\"y\" = \"r\", \"x\" = \"theta\"), warn_missing = FALSE)\n    }\n  }\n  theta_rescale &lt;- function(coord, x, scale_details) {\n    rotate &lt;- function(x) (x + coord$start) %% (2 * pi) * coord$direction\n    rotate(scales::rescale(x, c(0, 2 * pi), scale_details$theta.range))\n  }\n\n  r_rescale &lt;- function(coord, x, scale_details) {\n    scales::rescale(x, c(0, 0.4), scale_details$r.range)\n  }\n\n  ggproto(\"CordRadar\", CoordPolar,\n    theta = theta, r = r, start = start,\n    direction = sign(direction),\n    is_linear = function(coord) TRUE,\n    render_bg = function(self, scale_details, theme) {\n      scale_details &lt;- rename_data(self, scale_details)\n\n      theta &lt;- if (length(scale_details$theta.major) &gt; 0) {\n        theta_rescale(self, scale_details$theta.major, scale_details)\n      }\n      thetamin &lt;- if (length(scale_details$theta.minor) &gt; 0) {\n        theta_rescale(self, scale_details$theta.minor, scale_details)\n      }\n      thetafine &lt;- seq(0, 2 * pi, length.out = 100)\n\n      rfine &lt;- c(r_rescale(self, scale_details$r.major, scale_details))\n\n      # This gets the proper theme element for theta and r grid lines:\n      #   panel.grid.major.x or .y\n      majortheta &lt;- paste(\"panel.grid.major.\", self$theta, sep = \"\")\n      minortheta &lt;- paste(\"panel.grid.minor.\", self$theta, sep = \"\")\n      majorr &lt;- paste(\"panel.grid.major.\", self$r, sep = \"\")\n\n      ggplot2:::ggname(\"grill\", grid::grobTree(\n        ggplot2:::element_render(theme, \"panel.background\"),\n        if (length(theta) &gt; 0) {\n          ggplot2:::element_render(\n            theme, majortheta,\n            name = \"angle\",\n            x = c(rbind(0, 0.4 * sin(theta))) + 0.5,\n            y = c(rbind(0, 0.4 * cos(theta))) + 0.5,\n            id.lengths = rep(2, length(theta)),\n            default.units = \"native\"\n          )\n        },\n        if (length(thetamin) &gt; 0) {\n          ggplot2:::element_render(\n            theme, minortheta,\n            name = \"angle\",\n            x = c(rbind(0, 0.4 * sin(thetamin))) + 0.5,\n            y = c(rbind(0, 0.4 * cos(thetamin))) + 0.5,\n            id.lengths = rep(2, length(thetamin)),\n            default.units = \"native\"\n          )\n        },\n        ggplot2:::element_render(\n          theme, majorr,\n          name = \"radius\",\n          x = rep(rfine, each = length(thetafine)) * sin(thetafine) + 0.5,\n          y = rep(rfine, each = length(thetafine)) * cos(thetafine) + 0.5,\n          id.lengths = rep(length(thetafine), length(rfine)),\n          default.units = \"native\"\n        )\n      ))\n    }\n  )\n}\n\n\n\n\ndat_prepped3 &lt;- arrange(dat_prepped2, question)\n\nggplot(\n  dat_prepped3,\n  aes(x = question, y = avg_rating, group = char_name, color = uni_name, fill = char_name)\n) +\n  geom_point() +\n  geom_polygon(alpha = 0.5) +\n  facet_wrap(vars(facet_id), ncol = 4) +\n  ylim(0, 100) +\n  coord_radar()"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#section-11",
     "href": "sessions/more_ggplot/slides.html#section-11",
     "title": "Mehr ggplot2!",
     "section": "",
-    "text": "https://de.pinterest.com/pin/friends-colors–2955556002181108/\n\n\nggplot(dat_prepped3, \n       aes(x=question, y=avg_rating, group=char_name, color = uni_name, fill = uni_name)) +\n  geom_point() +\n  geom_polygon(alpha = 0.1) +\n  facet_wrap(vars(facet_id), ncol=4) +\n  ylim(0, 100) +\n  coord_radar() +\n  scale_fill_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  scale_color_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  theme_bg()"
+    "text": "https://de.pinterest.com/pin/friends-colors–2955556002181108/\n\n\nggplot(\n  dat_prepped3,\n  aes(x = question, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)\n) +\n  geom_point() +\n  geom_polygon(alpha = 0.1) +\n  facet_wrap(vars(facet_id), ncol = 4) +\n  ylim(0, 100) +\n  coord_radar() +\n  scale_fill_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  scale_color_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  theme_bg()"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#section-12",
     "href": "sessions/more_ggplot/slides.html#section-12",
     "title": "Mehr ggplot2!",
     "section": "",
-    "text": "ggplot(dat_prepped3, \n       aes(x=question, y=avg_rating, group=char_name, color = uni_name, fill = uni_name)) +\n  geom_point() +\n  geom_polygon(alpha = 0.1) +\n  facet_wrap(vars(facet_id), ncol=4) +\n  ylim(0, 100) +\n  coord_radar() +\n  scale_fill_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  scale_color_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  theme_bg() +\n  labs(title = \"The one where Everyone meets\", \n       )"
+    "text": "ggplot(\n  dat_prepped3,\n  aes(x = question, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)\n) +\n  geom_point() +\n  geom_polygon(alpha = 0.1) +\n  facet_wrap(vars(facet_id), ncol = 4) +\n  ylim(0, 100) +\n  coord_radar() +\n  scale_fill_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  scale_color_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  theme_bg() +\n  labs(title = \"The one where Everyone meets\", )"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#patchwork",
     "href": "sessions/more_ggplot/slides.html#patchwork",
     "title": "Mehr ggplot2!",
     "section": "Patchwork",
-    "text": "Patchwork\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)) +\n  geom_point() +\n  facet_wrap(vars(char_name))\n\n\n\ndat_prepped_robin &lt;- dat_prepped %&gt;% \n  filter(char_name == \"Robin Scherbatsky\")\n\n\np_robin &lt;- ggplot(data = dat_prepped_robin, \n        mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)) +\n  geom_point() +\n  facet_wrap(vars(char_name)) +\n  ylim(0, 100)\n  \n\n\np_rest &lt;- ggplot(data = dat_prepped %&gt;% filter(char_name != \"Robin Scherbatsky\"), \n        mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)) +\n  geom_point() +\n  facet_wrap(vars(char_name), nrow = 2) +\n  ylim(0, 100)"
+    "text": "Patchwork\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)\n) +\n  geom_point() +\n  facet_wrap(vars(char_name))\n\n\n\ndat_prepped_robin &lt;- dat_prepped %&gt;%\n  filter(char_name == \"Robin Scherbatsky\")\n\n\np_robin &lt;- ggplot(\n  data = dat_prepped_robin,\n  mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  facet_wrap(vars(char_name)) +\n  ylim(0, 100)\n\n\n\np_rest &lt;- ggplot(\n  data = dat_prepped %&gt;% filter(char_name != \"Robin Scherbatsky\"),\n  mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  facet_wrap(vars(char_name), nrow = 2) +\n  ylim(0, 100)"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#realistischer-anwendungen",
@@ -1943,56 +1943,56 @@
     "href": "sessions/more_ggplot/slides.html#patchwork-1",
     "title": "Mehr ggplot2!",
     "section": "Patchwork",
-    "text": "Patchwork\nPatchwork erlaubt es, Plots zu kombinieren.\n\nlibrary(patchwork)\n\np_robin + \n  p_rest"
+    "text": "Patchwork\nPatchwork erlaubt es, Plots zu kombinieren.\n\nlibrary(patchwork)\n\np_robin +\n  p_rest"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#patchwork-stylen",
     "href": "sessions/more_ggplot/slides.html#patchwork-stylen",
     "title": "Mehr ggplot2!",
     "section": "Patchwork: Stylen",
-    "text": "Patchwork: Stylen\n\nlibrary(patchwork)\n\np_robin + \n  p_rest + \n  plot_layout(widths = c(2, 2), guides = \"collect\")\n\n\nHmm, das hat noch nicht funktioniert."
+    "text": "Patchwork: Stylen\n\nlibrary(patchwork)\n\np_robin +\n  p_rest +\n  plot_layout(widths = c(2, 2), guides = \"collect\")\n\n\nHmm, das hat noch nicht funktioniert."
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#labeling",
     "href": "sessions/more_ggplot/slides.html#labeling",
     "title": "Mehr ggplot2!",
     "section": "Labeling",
-    "text": "Labeling\n\nggplot(data = dat_prepped, \n        mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)) +\n  geom_label(aes(label = char_name))\n\n\n\n\n\n\n\n\nlibrary(ggrepel)\n\nggplot(data = dat_prepped, \n        mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)) +\n  geom_point() +\n  geom_text_repel(aes(label = char_name))"
+    "text": "Labeling\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_label(aes(label = char_name))\n\n\n\n\n\n\n\n\nlibrary(ggrepel)\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  geom_text_repel(aes(label = char_name))"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#labeling-von-einzelnen-punkten",
     "href": "sessions/more_ggplot/slides.html#labeling-von-einzelnen-punkten",
     "title": "Mehr ggplot2!",
     "section": "Labeling von einzelnen Punkten",
-    "text": "Labeling von einzelnen Punkten\nErzeugen einer eigenen Spalte, die nur auf den gewünschten Punkten den Text enthält.\n\ndat_prepped_2 &lt;- dat_prepped %&gt;% \n  mutate(char_name_label = case_when(char_name == \"Monica Geller\" & top_trait == \"orderly\" ~ \"Monica ist sehr ordentlich\" , \n                                     TRUE ~ NA))\n  \nggplot(data = dat_prepped_2, \n        mapping = aes(x = top_trait, y = avg_rating, shape = uni_name_fac, label = char_name_label, color = char_name)) +  \n  geom_point() +\n  geom_text_repel(nudge_x = 0.75, nudge_y = 1)"
+    "text": "Labeling von einzelnen Punkten\nErzeugen einer eigenen Spalte, die nur auf den gewünschten Punkten den Text enthält.\n\ndat_prepped_2 &lt;- dat_prepped %&gt;%\n  mutate(char_name_label = case_when(\n    char_name == \"Monica Geller\" & top_trait == \"orderly\" ~ \"Monica ist sehr ordentlich\",\n    TRUE ~ NA\n  ))\n\nggplot(\n  data = dat_prepped_2,\n  mapping = aes(x = top_trait, y = avg_rating, shape = uni_name_fac, label = char_name_label, color = char_name)\n) +\n  geom_point() +\n  geom_text_repel(nudge_x = 0.75, nudge_y = 1)"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#ggtext",
     "href": "sessions/more_ggplot/slides.html#ggtext",
     "title": "Mehr ggplot2!",
     "section": "ggtext",
-    "text": "ggtext\nggtext erlaubt es, Markdown und HTML-Code in ggplot2 zu nutzen.\n\nlibrary(ggtext)\n\ndat_prepped_2 &lt;- dat_prepped %&gt;% \n  mutate(char_name_label = case_when(char_name == \"Monica Geller\" & top_trait == \"orderly\" ~ \"Monica ist sehr &lt;span style='color:black'&gt;ordentlich&lt;/span&gt;\" , \n                                     TRUE ~ NA))\n  \nggplot(data = dat_prepped_2, \n        mapping = aes(x = top_trait, y = avg_rating, shape = uni_name_fac, label = char_name_label, color = char_name)) +  \n  geom_point() +\n  geom_richtext(nudge_x = 0.75, nudge_y = 1,   fill = NA, label.color = NA, # remove background and outline\n    label.padding = grid::unit(rep(0, 4), \"pt\"))"
+    "text": "ggtext\nggtext erlaubt es, Markdown und HTML-Code in ggplot2 zu nutzen.\n\nlibrary(ggtext)\n\ndat_prepped_2 &lt;- dat_prepped %&gt;%\n  mutate(char_name_label = case_when(\n    char_name == \"Monica Geller\" & top_trait == \"orderly\" ~ \"Monica ist sehr &lt;span style='color:black'&gt;ordentlich&lt;/span&gt;\",\n    TRUE ~ NA\n  ))\n\nggplot(\n  data = dat_prepped_2,\n  mapping = aes(x = top_trait, y = avg_rating, shape = uni_name_fac, label = char_name_label, color = char_name)\n) +\n  geom_point() +\n  geom_richtext(\n    nudge_x = 0.75, nudge_y = 1, fill = NA, label.color = NA, # remove background and outline\n    label.padding = grid::unit(rep(0, 4), \"pt\")\n  )"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#section-6",
     "href": "sessions/more_ggplot/slides.html#section-6",
     "title": "Mehr ggplot2!",
     "section": "",
-    "text": "library(tidyverse)\nlibrary(ggtext)\nlibrary(glue)\n\nggplot(\n  data = dat_prepped, \n  mapping = aes(x = image_link, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  facet_wrap(vars(question), nrow = 2) +\n  ylim(0, 100) +\n  scale_x_discrete(\n    labels = \\(x) glue(\"&lt;img src='{x}' height='24' /&gt;\")\n  ) +\n  theme(\n    axis.text.x = element_markdown()\n  ) +\n  coord_cartesian(clip = \"off\")   # falls Bilder abgeschnitten werden"
+    "text": "library(tidyverse)\nlibrary(ggtext)\nlibrary(glue)\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = image_link, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  facet_wrap(vars(question), nrow = 2) +\n  ylim(0, 100) +\n  scale_x_discrete(\n    labels = \\(x) glue(\"&lt;img src='{x}' height='24' /&gt;\")\n  ) +\n  theme(\n    axis.text.x = element_markdown()\n  ) +\n  coord_cartesian(clip = \"off\") # falls Bilder abgeschnitten werden"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#section-13",
     "href": "sessions/more_ggplot/slides.html#section-13",
     "title": "Mehr ggplot2!",
     "section": "",
-    "text": "library(ggimage)\n\ndat_prepped3 &lt;- dat_prepped3 %&gt;% \n  mutate(image_x = ifelse(uni_name == \"Friends\", -1, 1), \n         image_x_coord = ifelse(uni_name == \"Friends\", \"doer/thinker\", \"crazy/sane\"))\n\nggplot(dat_prepped3, \n       aes(x=question, y=avg_rating, group=char_name, color = uni_name, fill = uni_name)) +\n  geom_point() +\n  geom_polygon(alpha = 0.1) +\n  facet_wrap(vars(facet_id), ncol=4) +\n  ylim(0, 100) +\n  coord_radar() +\n  scale_fill_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  scale_color_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  theme_bg() +\n  labs(title = \"The one where Everyone meets\") +\n  geom_image(aes(x = image_x_coord, y = 100, image = image_link), \n             nudge_x = c(0.5, -0.5), \n             size=0.1, inherit.aes = FALSE,   asp = 1,\n  mask = \"circle\") +\n  NULL"
+    "text": "library(ggimage)\n\ndat_prepped3 &lt;- dat_prepped3 %&gt;%\n  mutate(\n    image_x = ifelse(uni_name == \"Friends\", -1, 1),\n    image_x_coord = ifelse(uni_name == \"Friends\", \"doer/thinker\", \"crazy/sane\")\n  )\n\nggplot(\n  dat_prepped3,\n  aes(x = question, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)\n) +\n  geom_point() +\n  geom_polygon(alpha = 0.1) +\n  facet_wrap(vars(facet_id), ncol = 4) +\n  ylim(0, 100) +\n  coord_radar() +\n  scale_fill_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  scale_color_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  theme_bg() +\n  labs(title = \"The one where Everyone meets\") +\n  geom_image(aes(x = image_x_coord, y = 100, image = image_link),\n    nudge_x = c(0.5, -0.5),\n    size = 0.1, inherit.aes = FALSE\n  ) +\n  NULL"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#adding-a-frame-around-the-picture",
     "href": "sessions/more_ggplot/slides.html#adding-a-frame-around-the-picture",
     "title": "Mehr ggplot2!",
     "section": "Adding a frame around the picture",
-    "text": "Adding a frame around the picture\n\n\nlibrary(ggimage)\n\ndat_prepped3 &lt;- dat_prepped3 %&gt;% \n  mutate(image_x = ifelse(uni_name == \"Friends\", -1, 1), \n         image_x_coord = ifelse(uni_name == \"Friends\", \"doer/thinker\", \"crazy/sane\"))\n\nggplot(dat_prepped3, \n       aes(x=question, y=avg_rating, group=char_name, color = uni_name, fill = uni_name)) +\n  geom_point() +\n  geom_polygon(alpha = 0.1) +\n  facet_wrap(vars(facet_id), ncol=4) +\n  ylim(0, 100) +\n  coord_radar() +\n  scale_fill_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  scale_color_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  theme_bg() +\n  labs(title = \"The one where Everyone meets\") +\n    geom_image(aes(x = image_x_coord, y = 100, image = image_link),\n             nudge_x = c(0.5, -0.5),\n             size=0.12) +\n  geom_image(aes(x = image_x_coord, y = 100, image = image_link),\n             nudge_x = c(0.5, -0.5),\n             size=0.1, inherit.aes = FALSE) +\n  NULL"
+    "text": "Adding a frame around the picture\n\n\nlibrary(ggimage)\n\ndat_prepped3 &lt;- dat_prepped3 %&gt;%\n  mutate(\n    image_x = ifelse(uni_name == \"Friends\", -1, 1),\n    image_x_coord = ifelse(uni_name == \"Friends\", \"doer/thinker\", \"crazy/sane\")\n  )\n\nggplot(\n  dat_prepped3,\n  aes(x = question, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)\n) +\n  geom_point() +\n  geom_polygon(alpha = 0.1) +\n  facet_wrap(vars(facet_id), ncol = 4) +\n  ylim(0, 100) +\n  coord_radar() +\n  scale_fill_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  scale_color_manual(values = c(\"Friends\" = \"#00009E\", \"How I Met Your Mother\" = \"yellow\")) +\n  theme_bg() +\n  labs(title = \"The one where Everyone meets\") +\n  geom_image(aes(x = image_x_coord, y = 100, image = image_link),\n    nudge_x = c(0.5, -0.5),\n    size = 0.12\n  ) +\n  geom_image(aes(x = image_x_coord, y = 100, image = image_link),\n    nudge_x = c(0.5, -0.5),\n    size = 0.1, inherit.aes = FALSE\n  ) +\n  NULL"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#section-15",
@@ -2013,20 +2013,48 @@
     "href": "sessions/more_ggplot/slides.html#hjust",
     "title": "Mehr ggplot2!",
     "section": "hjust",
-    "text": "hjust\n\n::: {.column width=“33%”}}\n\nggplot(data = dat_prepped, \n        mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)) +\n  geom_point() +\n  geom_text(aes(label = char_name), hjust = 0.5)\n\n\n\n\n\n\n\n\n::: {.column width=“33%”}}\n\nggplot(data = dat_prepped, \n        mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)) +\n  geom_point() +\n  geom_text(aes(label = char_name), hjust = 0)\n\n\n\n\n\n\n\n:::\n::: {.column width=“33%”}}\n\nggplot(data = dat_prepped, \n        mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)) +\n  geom_point() +\n  geom_text(aes(label = char_name), hjust = 1)\n\n\n\n\n\n\n\n::: :::"
+    "text": "hjust\n\n::: {.column width=“33%”}}\n\nggplot( \n  data = dat_prepped,\n  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  geom_text(aes(label = char_name), hjust = 0.5)\n\n\n\n\n\n\n\n\n::: {.column width=“33%”}}\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  geom_text(aes(label = char_name), hjust = 0)\n\n\n\n\n\n\n\n:::\n::: {.column width=“33%”}}\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  geom_text(aes(label = char_name), hjust = 1)\n\n\n\n\n\n\n\n::: :::"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#vjust",
     "href": "sessions/more_ggplot/slides.html#vjust",
     "title": "Mehr ggplot2!",
     "section": "vjust",
-    "text": "vjust\n\n\n\nggplot(data = dat_prepped, \n        mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)) +\n  geom_point() +\n  geom_text(aes(label = char_name), vjust = 1)\n\n\n\n\n\n\n\n\n\nggplot(data = dat_prepped, \n        mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)) +\n  geom_point() +\n  geom_text(aes(label = char_name), vjust = 0)\n\n\n\n\n\n\n\n\n\nggplot(data = dat_prepped, \n        mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)) +\n  geom_point() +\n  geom_text(aes(label = char_name), vjust = -1)"
+    "text": "vjust\n\n\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  geom_text(aes(label = char_name), vjust = 1)\n\n\n\n\n\n\n\n\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  geom_text(aes(label = char_name), vjust = 0)\n\n\n\n\n\n\n\n\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  geom_text(aes(label = char_name), vjust = -1)"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#nudge",
     "href": "sessions/more_ggplot/slides.html#nudge",
     "title": "Mehr ggplot2!",
     "section": "nudge",
-    "text": "nudge\nNudging erfolgt auf der gleichen Skala wie die Werte.\n\n::: {.column width=“50%”}}\nNudge um eine halbe Einheit nach rechts.\n\nggplot(data = dat_prepped, \n        mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)) +\n  geom_point() +\n  geom_text(aes(label = char_name), nudge_x = 0.5)\n\n\n\n\n\n\n\n\n::: {.column width=“50%”}}\nNudge um 5 Einheiten nach unten.\n\nggplot(data = dat_prepped, \n        mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)) +\n  geom_point() +\n  geom_text(aes(label = char_name), nudge_y = -5)\n\n\n\n\n\n\n\n::: :::"
+    "text": "nudge\nNudging erfolgt auf der gleichen Skala wie die Werte.\n\n::: {.column width=“50%”}}\nNudge um eine halbe Einheit nach rechts.\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  geom_text(aes(label = char_name), nudge_x = 0.5)\n\n\n\n\n\n\n\n\n::: {.column width=“50%”}}\nNudge um 5 Einheiten nach unten.\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  geom_text(aes(label = char_name), nudge_y = -5)\n\n\n\n\n\n\n\n::: :::"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#themes-2",
+    "href": "sessions/more_ggplot/slides.html#themes-2",
+    "title": "Mehr ggplot2!",
+    "section": "Themes",
+    "text": "Themes\n\nlibrary(tidyverse)\nlibrary(ggtext)\nlibrary(glue)\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = image_link, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  facet_wrap(vars(question), nrow = 2) +\n  ylim(0, 100) +\n  scale_x_discrete(\n    labels = \\(x) glue(\"&lt;img src='{x}' height='24' /&gt;\")\n  ) +\n  theme(\n    axis.text.x = element_markdown()\n  ) +\n  coord_cartesian(clip = \"off\") # falls Bilder abgeschnitten werden"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#styling",
+    "href": "sessions/more_ggplot/slides.html#styling",
+    "title": "Mehr ggplot2!",
+    "section": "Styling",
+    "text": "Styling\n\nAnchor points on top to show max\nStyle\nNudge pictures further out\n\n\n\ndat_prepped3 &lt;- dat_prepped3 %&gt;%\n  mutate(\n    image_x = ifelse(uni_name == \"Friends\", -1, 1),\n    image_x_coord = ifelse(uni_name == \"Friends\", \"low IQ\", \"side character\")\n  ) %&gt;%\n  arrange(top_trait)\n\nouter_points &lt;- dat_prepped3 %&gt;%\n  mutate(\n    max_rating = 100,\n    label_y = 90, \n    nudge_x = ifelse(uni_name == \"Friends\", -0.14, 0.14)\n  )\n\nggplot(\n  dat_prepped3,\n  aes(x = top_trait, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)\n) +\n  geom_point(data = outer_points, aes(top_trait, max_rating), color = \"white\", inherit.aes = FALSE) +\n  geom_richtext(\n    data = outer_points, aes(top_trait, label_y, label = round(avg_rating, 0), color = uni_name), inherit.aes = FALSE, fill = NA, label.color = NA,\n    label.padding = grid::unit(rep(0, 4), \"pt\"), nudge_x = outer_points$nudge_x, size = 2\n  ) +\n  geom_point() +\n  geom_polygon(alpha = 0.1) +\n  facet_wrap(vars(facet_id), ncol = 4) +\n  ylim(0, 100) +\n  coord_radar() +\n  scale_fill_manual(values = c(\"Friends\" = \"#36d1ab\", \"How I Met Your Mother\" = \"#FFED29\")) +\n  scale_color_manual(values = c(\"Friends\" = \"#9C8CD4\", \"How I Met Your Mother\" = \"#FFED29\")) +\n  theme_bw() +\n  labs(title = \"The one where Everyone meets\") +\n    geom_image(aes(x = image_x_coord, y = 100, image = image_link),\n             nudge_x = -0.35,\n             nudge_y = 30,\n             size=0.12) +\n  geom_image(aes(x = image_x_coord, y = 100, image = image_link),\n             nudge_x = -0.35,\n             nudge_y = 30,\n             size=0.1, inherit.aes = FALSE) +\n  theme(\n    axis.ticks = element_blank(),\n    axis.text.x = element_text(color = \"white\", face = \"bold\"), \n    axis.text.y = element_blank(), \n    axis.title = element_blank(), \n    panel.background = element_rect(fill = \"#06402B\"), \n    plot.background = element_rect(fill = '#06402B'), \n    title = element_text(color = \"white\", size = 16, face = \"bold\"), \n    strip.background = element_rect(fill = \"#06402B\"), \n    strip.text = element_text(color = \"white\", face = \"bold\"), \n    legend.background = element_rect(fill = \"#06402B\"), \n    legend.text = element_text(color = \"white\")\n  )"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#section-14",
+    "href": "sessions/more_ggplot/slides.html#section-14",
+    "title": "Mehr ggplot2!",
+    "section": "",
+    "text": "dat_joey_barney &lt;- dat_prepped3 %&gt;%\n  filter(char_name %in% c(\"Barney Stinson\", \"Joey Tribbiani\"))\n\n\n  outer_points_joey_barney &lt;- dat_joey_barney %&gt;%\n  mutate(\n    max_rating = 100,\n    label_y = 95, \n    nudge_x = ifelse(uni_name == \"Friends\", -0.1, 0.1)\n  )\n    \np_left &lt;- ggplot(\n  dat_joey_barney,\n  aes(x = top_trait, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)\n) +\n  geom_point(data = outer_points_joey_barney, aes(top_trait, max_rating), color = \"white\", inherit.aes = FALSE) +\n  geom_richtext(\n    data = outer_points_joey_barney, aes(top_trait, label_y, label = round(avg_rating, 0), color = uni_name), inherit.aes = FALSE, fill = NA, label.color = NA,\n    label.padding = grid::unit(rep(0, 4), \"pt\"), nudge_x = outer_points_joey_barney$nudge_x, size = 2.75\n  ) +\n  geom_point(size = 3) +\n  geom_polygon(alpha = 0.2, linewidth = 1.5) +\n  facet_wrap(vars(facet_id), ncol = 2) +\n  ylim(0, 100) +\n  coord_radar() +\n  scale_fill_manual(values = c(\"Friends\" = \"#36d1ab\", \"How I Met Your Mother\" = \"#FFED29\")) +\n  scale_color_manual(values = c(\"Friends\" = \"#9C8CD4\", \"How I Met Your Mother\" = \"#FFED29\")) +\n  theme_bw() +\n  labs(title = \"The one where Everyone meets\", \n       subtitle = \"Character ratings from 0 to 100\") +\n    geom_image(aes(x = image_x_coord, y = 100, image = image_link),\n             nudge_x = -0.35,\n             nudge_y = 30,\n             size=0.12) +\n  geom_image(aes(x = image_x_coord, y = 100, image = image_link),\n             nudge_x = -0.35,\n             nudge_y = 30,\n             size=0.1, inherit.aes = FALSE) +\n  theme(\n    axis.ticks = element_blank(),\n    axis.text.x = element_text(color = \"white\", face = \"bold\"), \n    axis.text.y = element_blank(), \n    axis.title = element_blank(), \n    panel.background = element_rect(fill = \"#06402B\"), \n    plot.background = element_rect(fill = '#06402B'), \n    title = element_text(color = \"white\", size = 16, face = \"bold\"), \n    strip.background = element_rect(fill = \"#06402B\"), \n    strip.text = element_text(color = \"white\", face = \"bold\"), \n    legend.background = element_rect(fill = \"#06402B\"), \n    legend.position = \"none\"\n  ) \n\n\nouter_points2 &lt;- outer_points %&gt;%\n  filter(!char_name %in% c(\"Barney Stinson\", \"Joey Tribbiani\"))\n\np_right &lt;- ggplot(\n  dat_prepped3 %&gt;% filter(!char_name %in% c(\"Barney Stinson\", \"Joey Tribbiani\")),\n  aes(x = top_trait, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)\n) +\n  geom_point(data = outer_points2, aes(top_trait, max_rating), color = \"white\", inherit.aes = FALSE) +\n  geom_richtext(\n    data = outer_points2, aes(top_trait, label_y, label = round(avg_rating, 0), color = uni_name), inherit.aes = FALSE, fill = NA, label.color = NA,\n    label.padding = grid::unit(rep(0, 4), \"pt\"), nudge_x = outer_points2$nudge_x, size = 2.75\n  ) +\n  geom_point(size = 3) +\n  geom_polygon(alpha = 0.2, linewidth = 1) +\n  facet_wrap(vars(facet_id), ncol = 2) +\n  ylim(0, 100) +\n  coord_radar() +\n  scale_fill_manual(values = c(\"Friends\" = \"#36d1ab\", \"How I Met Your Mother\" = \"#FFED29\")) +\n  scale_color_manual(values = c(\"Friends\" = \"#9C8CD4\", \"How I Met Your Mother\" = \"#FFED29\")) +\n  theme_bw() +\n    geom_image(aes(x = image_x_coord, y = 100, image = image_link),\n             nudge_x = -0.35,\n             nudge_y = 30,\n             size=0.12) +\n  geom_image(aes(x = image_x_coord, y = 100, image = image_link),\n             nudge_x = -0.35,\n             nudge_y = 30,\n             size=0.1, inherit.aes = FALSE) +\n  theme(\n    axis.ticks = element_blank(),\n    axis.text.x = element_text(color = \"white\"), \n    axis.text.y = element_blank(), \n    axis.title = element_blank(), \n    panel.background = element_rect(fill = \"#053625\"), \n    plot.background = element_rect(fill = '#053625'), \n    strip.background = element_rect(fill = \"#053625\"), \n    strip.text = element_text(color = \"white\", face = \"bold\"), \n    legend.position = \"none\"\n  ) \n\n\nEventuell in Funktionen packen was geht"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#patch-together",
+    "href": "sessions/more_ggplot/slides.html#patch-together",
+    "title": "Mehr ggplot2!",
+    "section": "Patch together",
+    "text": "Patch together\n\np_left +\n  p_right"
   }
 ]

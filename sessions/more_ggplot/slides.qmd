@@ -738,7 +738,7 @@ ggplot(
 
 ::: {.column width="33%"}}
 ```{r}
-ggplot(
+ggplot( 
   data = dat_prepped,
   mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
 ) +
@@ -1294,7 +1294,7 @@ dat_joey_barney <- dat_prepped3 %>%
   filter(char_name %in% c("Barney Stinson", "Joey Tribbiani"))
 
 
-  outer_points_joey_barney <- dat %>%
+  outer_points_joey_barney <- dat_joey_barney %>%
   mutate(
     max_rating = 100,
     label_y = 95, 
