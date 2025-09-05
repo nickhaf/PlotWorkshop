@@ -253,25 +253,17 @@ h1, h2, h3, h4 {
 .tag {
   --tag-bg: #e6f2ee;
   --tag-border: $theme-highlight;
-  --tag-radius: 500px;
-  --tag-py: 0rem;  
-  --tag-px: .45rem;
 
-  display: inline-flex;
-  align-items: center;
-  gap: .05em;
-
-  /* logische Padding-Props: gezielt vertikal schrumpfen */
-  padding-block: var(--tag-py);
-  padding-inline: var(--tag-px);
-
+  display: inline-block;        
+  padding: 0.5em 0.5em;
   border: 1px solid var(--tag-border);
-  border-radius: var(--tag-radius);
+  border-radius: 6px;             /* nur leicht gerundet */
   background: var(--tag-bg);
   color: $theme-darkblue;
 
   font-weight: 600;
-  font-size: .82em;  /* leicht kleiner */
+  font-size: .75em;               /* kleiner */
   white-space: nowrap;
   vertical-align: baseline;
 }
+
