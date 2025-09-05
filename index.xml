@@ -10,13 +10,13 @@
 <atom:link href="https://nickhaf.github.io/PlotWorkshop/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.7.34</generator>
-<lastBuildDate>Fri, 05 Sep 2025 16:13:39 GMT</lastBuildDate>
+<lastBuildDate>Fri, 05 Sep 2025 20:16:32 GMT</lastBuildDate>
 <item>
   <title>&lt;h3 style=&#39;color: #01364C;&#39;&gt;Tag 1&lt;/h3&gt;</title>
   <link>https://nickhaf.github.io/PlotWorkshop/</link>
   <description></description>
   <guid>https://nickhaf.github.io/PlotWorkshop/</guid>
-  <pubDate>Fri, 05 Sep 2025 16:13:39 GMT</pubDate>
+  <pubDate>Fri, 05 Sep 2025 20:16:32 GMT</pubDate>
 </item>
 <item>
   <title>Einführung</title>
@@ -38,7 +38,7 @@
 
  ]]></description>
   <guid>https://nickhaf.github.io/PlotWorkshop/sessions/Einführung/Einführung.html</guid>
-  <pubDate>Fri, 05 Sep 2025 16:13:39 GMT</pubDate>
+  <pubDate>Fri, 05 Sep 2025 20:16:32 GMT</pubDate>
   <media:content url="https://nickhaf.github.io/PlotWorkshop/sessions/Einführung/images/worldmap.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -107,7 +107,7 @@ font-style: italic;">## Daten laden</span></span></code></pre></div>
 
  ]]></description>
   <guid>https://nickhaf.github.io/PlotWorkshop/sessions/ggplot_intro/ggplot2_basics.html</guid>
-  <pubDate>Fri, 05 Sep 2025 16:13:39 GMT</pubDate>
+  <pubDate>Fri, 05 Sep 2025 20:16:32 GMT</pubDate>
   <media:content url="https://nickhaf.github.io/PlotWorkshop/sessions/ggplot_intro/images/ggplot_art.png" medium="image" type="image/png" height="108" width="144"/>
 </item>
 <item>
@@ -129,7 +129,7 @@ font-style: italic;">## Daten laden</span></span></code></pre></div>
 
  ]]></description>
   <guid>https://nickhaf.github.io/PlotWorkshop/sessions/r_basics/r_basics.html</guid>
-  <pubDate>Fri, 05 Sep 2025 16:13:39 GMT</pubDate>
+  <pubDate>Fri, 05 Sep 2025 20:16:32 GMT</pubDate>
   <media:content url="https://nickhaf.github.io/PlotWorkshop/sessions/r_basics/images/coder.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -156,7 +156,7 @@ font-style: italic;">## Daten laden</span></span></code></pre></div>
 
  ]]></description>
   <guid>https://nickhaf.github.io/PlotWorkshop/sessions/good_plots/good_plots.html</guid>
-  <pubDate>Fri, 05 Sep 2025 16:13:39 GMT</pubDate>
+  <pubDate>Fri, 05 Sep 2025 20:16:32 GMT</pubDate>
   <media:content url="https://nickhaf.github.io/PlotWorkshop/sessions/good_plots/images/mcCandless.png" medium="image" type="image/png" height="95" width="144"/>
 </item>
 <item>
@@ -179,7 +179,7 @@ font-style: italic;">## Daten laden</span></span></code></pre></div>
 
  ]]></description>
   <guid>https://nickhaf.github.io/PlotWorkshop/sessions/more_ggplot/more_ggplot.html</guid>
-  <pubDate>Fri, 05 Sep 2025 16:13:39 GMT</pubDate>
+  <pubDate>Fri, 05 Sep 2025 20:16:32 GMT</pubDate>
 </item>
 </channel>
 </rss>
