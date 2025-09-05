@@ -14,6 +14,7 @@ bibliography: refs.bib
 library(here)
 library(janitor)
 library(ggwordcloud)
+library(ggrepel)
 library(tidyverse)
 source(here::here("src", "themes.R"))
 source(here::here("src", "functions.R"))
