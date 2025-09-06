@@ -15,45 +15,62 @@ source(here::here("src", "themes.R"))
 source(here::here("src", "functions.R"))
 ```
 
-## Datensatz {backround-image="./images/central_perk.jpg"}
+## Datensatz {background-image="./images/central_perk.jpg" background-size="1225px" background-opacity="0.2"}
 
+:::{.columns}
+
+::: {.column width="50%"}
 
 ```{r}
-# ## Keep in mind!
-# ## Eventuell für die Übung?
-# tuesdata <- tidytuesdayR::tt_load('2025-08-26')
-# tuesdata$billboard %>%
-#   filter(song == "Love the Way You Lie") %>%
-#   select(danceability, energy, happiness)
-#
-#
-# ## Netflix
-# tuesdata <- tidytuesdayR::tt_load('2025-07-29')
-#
-# ## Gutenberg project
-# tuesdata <- tidytuesdayR::tt_load('2025-06-03')
+#| eval: false
 
+install.packages("tidytuesdayR")
 
 characters <- tidytuesdayR::tt_load("2022-08-16")
 ```
 
-## 
+:::
+::: {.column width="50%"}
+
+### Der `characters` Datensatz
+:::
+:::
+
+::: image-ref
+Foto von <a href="https://unsplash.com/de/@lgtts?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Ilse Orsel</a> auf <a href="https://unsplash.com/de/fotos/rot-weisses-unks-cafe-fwPHQB4kGzA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+
+## Aufbereitung {background-image="./images/yellow_umbrellas.jpg" background-size="1225px" background-repeat="repeat"}
+
 ```{r}
+#| eval: false
+library(tidyverse)
+
+## Mergen
 char_dat <- characters$characters
 psych_dat <- characters$psych_stats
-
-
 
 dat_merged <- char_dat %>%
   rename(char_name = name) %>%
   left_join(psych_dat)
 
+shows <- c("How I Met Your Mother", "Friends")
+questions <- c("doer/thinker", 
+                         "jock/nerd", 
+                         "cold/warm", 
+                         "main character/side character", 
+                         "crazy/sane", 
+                         "dispassionate/romantic", 
+                         "high IQ/low IQ", 
+                         "heroic/villainous", 
+                         "funny/humorless", 
+                         "chaotic/orderly")
 
+## Filtern von TV-Shows und Fragen
 dat_prepped <- dat_merged %>%
-  filter(uni_name %in% c("How I Met Your Mother", "Friends")) %>%
-  filter(question %in% c("doer/thinker", "jock/nerd", "cold/warm", "main character/side character", "crazy/sane", "dispassionate/romantic", "high IQ/low IQ", "heroic/villainous", "funny/humorless", "chaotic/orderly")) %>%
+  filter(uni_name %in% shows) %>%
+  filter(question %in% questions) %>%
   ## Rating always between 50 and 100. Use the personality trait for correct scaling
-
   mutate(
     top_trait = str_split_i(question, pattern = "/", i = 2),
     bottom_trait = str_split_i(question, pattern = "/", i = 1)
@@ -62,34 +79,382 @@ dat_prepped <- dat_merged %>%
     personality == top_trait ~ avg_rating,
     personality == bottom_trait ~ 100 - avg_rating
   ))
-
-## Cold warm: Geschlecht? Could get ChatGPT to code
-
-## Eventuell inside standardisieren, um spezifische Abweichung zu zeigen?
 ```
 
+```{r}
+#| echo: false
+#| 
+shows <- c("How I Met Your Mother", "Friends")
+questions <- c("doer/thinker", 
+                         "jock/nerd", 
+                         "cold/warm", 
+                         "main character/side character", 
+                         "crazy/sane", 
+                         "dispassionate/romantic", 
+                         "high IQ/low IQ", 
+                         "heroic/villainous", 
+                         "funny/humorless", 
+                         "chaotic/orderly")
+dat_prepped <- readRDS(here::here("data", "dat_merged.rds")) %>%
+  filter(uni_name %in% shows) %>%
+  filter(question %in% questions) %>%
+  ## Rating always between 50 and 100. Use the personality trait for correct scaling
+  mutate(
+    top_trait = str_split_i(question, pattern = "/", i = 2),
+    bottom_trait = str_split_i(question, pattern = "/", i = 1)
+  ) %>%
+  mutate(avg_rating = case_when(
+    personality == top_trait ~ avg_rating,
+    personality == bottom_trait ~ 100 - avg_rating
+  ))
+```
+
+:::{.callout-tip}
+Suche dir zwei eigene TV-Shows und eigene Fragen aus dem Datensatz aus, wenn du direkt mitmachen willst. 
+:::
+
 ::: image-ref
-Foto von <a href="https://unsplash.com/de/@lgtts?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Ilse Orsel</a> auf <a href="https://unsplash.com/de/fotos/rot-weisses-unks-cafe-fwPHQB4kGzA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+Foto von <a href="https://unsplash.com/de/@simplelovelyuseful?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Catrin Johnson</a> auf <a href="https://unsplash.com/de/fotos/gelber-regenschirm-ym96FAhQ8o4?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 :::
 
 
-## Charaktereigenschaften in HIMYM
+## Ziel
+
+Wir wollen jetzt Charactereigenschaften von Personen aus zwei TV-Shows vergleichen. 
+Ich nehme [Friends](https://www.netflix.com/de/title/70153404) und [How I Met Your Mother](https://www.disneyplus.com/de-de/browse/entity-bc68ac79-3ace-4427-9ec0-5ee6f314d194).
+
+
+```{r}
+#| output-location: column
+#| fig-height: 4
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  geom_point()
+```
+
+
+Let's build a plot!
+
+# Skalen und Legenden
+
+[Umwandlung]{.highlight} von Datenwerten in visuelle Eigenschaften
+
+## Skalen
+
+\
+\
+\
+
+:::{.quote}
+Scales in ggplot2 control the [mapping from data to aesthetics]{.highlight}. They take your data and turn it into something that you can see, like size, colour, position or shape. 
+:::
+
+::: image-ref
+[ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/scales.html)
+:::
+
+
+## Legenden
+
+:::{.columns}
+::: {.column width="50%"}
+![](./images/scales_legends.png)
+:::
+::: {.column width="50%"}
+- Legenden werden [automatisch]{.highlight} erzeugt.
+- [Jede]{.highlight} Skala bekommt eine Legende zugeordnet. 
+- Sie nehmen die grafischen Eigenschaften (Aesthetics) und ordnen sie den Datenwerten zu.
+Man kann sie daher als die [„Umkehrfunktion“]{.highlight} der jeweiligen Skalen verstehen.
+:::
+:::
+
+
+::: {.callout-info}
+Legenden und Achsen sind funktional äquivalent und werden in ggplot2 unter dem Begriff [guides]{.highlight} zusammengefasst.
+:::
+
+
+
+## 
+
+[Jede Aesthetic]{.highlight} im Plot ist mit genau [einer Skala]{.highlight} verbunden: 
+
+
+**Implizite Definition**
+
 
 ```{r}
 #| output-location: column
 
 ggplot(
   data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
-) +
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
   geom_point()
 ```
 
-Wir vergleichen jetzt einige Charaktereigenschaften in HIMYM und Friends. 
-Gerade noch etwas schwierig. 
-Lösung: [Faceting](https://ggplot2-book.org/facet.html#sec-facet-wrap)
 
-# Facetting
+## 
+
+:::{.columns}
+
+:::{.column width="50%"}
+
+**Wird intern zu:**
+
+```{r}
+#| code-line-numbers: "5,6,7,8"
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  geom_point() +
+  scale_x_discrete() +
+  scale_y_continuous() +
+  scale_colour_discrete() +
+  scale_shape_discrete()
+```
+
+:::
+
+:::{.column width="50%"}
+
+\
+\
+\
+
+- `question` ist eine diskrete Variable: `scale_x_discrete()`
+- `avg_rating` ist kontinuierlich: `scale_x_continuous()`
+- `char_name` und `uni_name` sind diskret: `scale_colour_discrete()` und `scale_shape_discrete()`
+
+Das können wir uns zunutze machen, um manuell Scales zu definieren. 
+
+:::
+:::
+
+## Ändern der Skalen-Defaults
+
+```{r}
+#| code-line-numbers: "5,6,7,8"
+#| output-location: column
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  geom_point() +
+  scale_x_discrete(name = "Eigenschaft") +
+  scale_y_continuous(name = "Mittleres Rating") +
+  scale_colour_discrete(name = "Charakter") +
+  scale_shape_discrete(name = "Serie")
+```
+
+:::{.callout-warning}
+Eigentlich würden wir dafür `labs(x = "Eigenschaft", y = "Mittleres Rating", color = "Charakter", shape = "Serie")` nutzen. 
+Wir sehen so aber, dass Achsen- und Legendentitel jeweils Skalennamen sind.  
+:::
+
+## Skalentypen
+
+```{r}
+#| code-line-numbers: "5,6"
+#| output-location: column
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = avg_rating, shape = uni_name)) +
+  geom_point() +
+  scale_y_log10(name = "Mittleren Rating log") +
+  scale_colour_continuous()
+```
+
+Hier haben wir jetzt eine [log-transormierende]{.highlight} und eine [kontinuierliche]{.highlight} Skala. 
+
+::: {.callout-tip}
+Eine Übersicht über die möglichen Skalentypen findet sich [hier](https://ggplot2tor.com/scales/). 
+:::
+
+## Anwendungsfälle: Farben/Formen
+
+Oft macht es Sinn, die Farben direkt über einen `named vector` zu definieren. 
+Dadurch bekommen alle Plots, die diese Variablen nutzen, auch sicher die gleichen Aesthetics zugeordnet. 
+Dadurch wird jedem Element in der color-variable genau die gewünschte Farbe zugeordnet:
+
+```{r}
+#| code-line-numbers: "1,2,3,8,9,10"
+#| output-location: column
+
+char_colors <- c(
+    "Ted Mosby" = "blue", "Robin Scherbatsky" = "red", "Barney Stinson" = "green", "Lily Aldrin" = "purple", "Marshall Eriksen" = "orange", "Rachel Green" = "pink", "Monica Geller" = "brown", "Phoebe Buffay" = "yellow", "Joey Tribbiani" = "cyan")
+char_shapes <- c("Friends" = 12, "How I Met Your Mother" = 18)
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  geom_point(size = 3) +
+  scale_shape_manual(values = char_shapes) +
+  scale_colour_manual(values = char_colors)
+```
+
+## Anwendungsfälle: Farben/Formen
+Wenn ich dieselben Skalen für mehrere Plots nutzen will, kann ich mir auch vorher eine Funktion definieren: 
+
+```{r}
+#| code-line-numbers: "1,2,3,4,7,8,9,10,11,18"
+#| output-location: column
+
+set_char_scales <- function() {
+  char_colors <- c(
+    "Ted Mosby" = "blue", "Robin Scherbatsky" = "red", "Barney Stinson" = "green", "Lily Aldrin" = "purple", "Marshall Eriksen" = "orange", "Rachel Green" = "pink", "Monica Geller" = "brown", "Phoebe Buffay" = "yellow", "Joey Tribbiani" = "cyan")
+  char_shapes <- c("Friends" = 12, "How I Met Your Mother" = 18)
+  
+  ## Output
+  list(
+    scale_shape_manual(values = char_shapes),
+    scale_colour_manual(values = char_colors)
+  )
+}
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
+) +
+  geom_point(size = 3) +
+  set_char_scales()
+```
+
+
+
+## Anwendungsfälle: Skalen-Ticks
+
+:::{.panel-tabset}
+### Übung
+
+::: {.exercise}
+Versuche, die y-Achse so zu skalieren, dass sie von 0 bis 100 geht und in 10er Schritten skaliert ist. 
+Nutze die interne R-Hilfe, aber verzichte auf Internet/KI.
+
+```{r}
+#| eval: false
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  geom_point()
+```
+
+:::
+
+### Lösung
+```{r}
+#| output-location: column
+#| code-line-numbers: "5,6,7"
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  geom_point() +
+  scale_y_continuous(name = "Mittleres Rating", 
+                     breaks = seq(0, 100, by = 10), 
+                     limits = c(0, 100))
+```
+
+:::
+
+## Scale Guides
+
+Jede Skala (und damit jede Aesthetic) bekommt einen Guide zugeordnet. 
+Intern passiert das über `guides()`. Wir können `guides()` also nutzen, um die Legende zu stylen:
+
+
+```{r}
+#| code-line-numbers: "5,6,7"
+#| fig-width: 14
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  geom_point() +
+  guides(color = guide_legend(title = "Charaktere", 
+                              ncol = 3, ## Mehr Spalten in der Legende
+                              reverse = TRUE, ## Reihenfolge umkehren
+                              override.aes = list(size = 3))) ## Größe der Punkte in der Legende ändern
+```
+
+## Mögliche guide-Funktionen
+
+::: {.columns}
+
+:::{.column width="35%"}
+- `guide_colourbar()`
+- `guide_coloursteps()`
+- `guide_axis()`
+- `guide_legend()`
+- `guide_bins()`
+::: 
+:::{.column width="65%"}
+
+:::{.panel-tabset}
+
+### 🏋 Übung
+
+::: {.exercise}
+Nutze das gerade gelernte und versuche, die x-Achsenbeschriftung um 90 Grad zu drehen, um sie lesbar zu machen. 
+Nutze die interne R-Hilfe, aber versuche, es ohne Internet/KI zu lösen:
+
+
+```{r}
+#| eval: false
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  geom_point()
+```
+
+:::
+
+### Lösung
+
+```{r}
+#| code-line-numbers: "5"
+#| plot-height: 10
+#| plot-width: 10
+
+ggplot(
+  data = dat_prepped,
+  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)) +
+  geom_point() +
+  guides(x = guide_axis(angle = 90))
+```
+
+Ich nutze außerdem die Spalte `top_trait`, damit die Achsenbeschriftung kürzer wird.
+Das sieht schon besser aus, aber wir haben ein [Overplotting-Problem]()!
+
+
+:::
+:::
+:::
+
+# Faceting
+
+::: {.columns}
+::: {.column width="50%"}
+
+\
+\
+
+[Aufteilen]{.highlight} des Plots nach einer oder mehr Gruppen
+
+:::
+::: {.column width="50%"}
+![](./images/windows.jpg){.image-right}
+
+:::{.image-ref}
+Foto von <a href="https://unsplash.com/de/@cloudett?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Laura Cleffmann</a> auf <a href="https://unsplash.com/de/fotos/weisses-gerahmtes-glasfenster-tagsuber-z3drmcczVTc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+:::
+:::
 
 ## Faceting
 Anordnen von einer *einzelnen* Variable in einem Raster:
@@ -97,38 +462,62 @@ Anordnen von einer *einzelnen* Variable in einem Raster:
 :::{.columns}
 :::{.column width="50%"}
 
-#### `facet_wrap()`
+`facet_wrap()`: Erstellt ein [Band]{.highlight} aus Kacheln
 
+:::{.panel-tabset}
+
+### Plot
 ```{r}
-#| code-line-numbers: "7"
-#| fig-height: 4
+#| code-line-numbers: "6"
+#| label: wrap_1d
+#| echo: false
 
 ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
-) +
+  data = dat_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")), ## Subset wegen Platzproblemen
+  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)) +
   geom_point() +
-  facet_wrap(vars(char_name), nrow = 4) +
-  theme_bg()
+  guides(x = guide_axis(angle = 90)) +
+  facet_wrap(vars(char_name), nrow = 4) 
+```
+
+### Code
+
+```{r}
+#| label: wrap_1d
+#| eval: false
 ```
 
 :::
+:::
 ::: {.column width="50%"}
 
-#### facet_grid
+`facet_grid()`: Erstellt ein [Grid]{.highlight} aus Kacheln
 
+
+:::{.panel-tabset}
+
+### Plot
 ```{r}
-#| code-line-numbers: "7"
-#| fig-height: 4
+#| code-line-numbers: "6"
+#| label: grid_1d
+#| echo: false
 
 ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
-) +
+  data = dat_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")),
+  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)) +
   geom_point() +
-  facet_grid(char_name ~ .) +
-  theme_bg()
+  guides(x = guide_axis(angle = 90)) +
+  facet_grid(char_name ~ .)
 ```
+
+### Code
+
+```{r}
+#| label: grid_1d
+#| eval: false
+```
+
+:::
 
 :::
 :::
@@ -139,81 +528,125 @@ Anordnen von *mehreren* Variable in einem Raster:
 ::: {.columns}
 
 ::: {.column width="50%"}
-#### `facet_wrap()`
+`facet_wrap()`
+
+::: {.panel-tabset}
+### Plot
 
 ```{r}
-#| code-line-numbers: "7"
-#| fig-height: 4
+#| code-line-numbers: "8"
+#| label: wrap_2d
+#| echo: false
 
 ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
-) +
+  data = dat_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")),
+  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)) +
   geom_point() +
-  facet_wrap(vars(char_name, uni_name), nrow = 4) +
-  theme_bg()
+  guides(x = guide_axis(angle = 90)) +
+  facet_wrap(vars(char_name, uni_name), nrow = 4)
+```
+
+### Code
+```{r}
+#| eval: false
+#| label: wrap_2d
+
+```
+:::
+:::
+
+::: {.column width="50%"}
+`facet_grid()`
+
+::: {.panel-tabset}
+### Plot
+```{r}
+#| label: grid_2d
+#| code-line-numbers: "8"
+#| echo: false
+
+ggplot(
+  data = dat_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")),
+  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)) +
+  geom_point() +
+  guides(x = guide_axis(angle = 90)) +
+  facet_grid(char_name ~ uni_name) 
+```
+
+### Code
+```{r}
+#| eval: false
+#| label: grid_2d
 ```
 
 :::
-::: {.column width="50%"}
-#### `facet_grid()`
-
-```{r}
-#| code-line-numbers: "7"
-#| fig-height: 4
-
-ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
-) +
-  geom_point() +
-  facet_grid(char_name ~ uni_name) +
-  theme_bg()
-```
-
 :::
 :::
 
 ## Facetting - Tipps
 Plot alle Punkte
 
+:::{.panel-tabset}
+
+### Plot
+
 ```{r}
-#| output-location: column
+#| label: facet_tips1
+#| echo: false
 
 dat_prepped_background <- dat_prepped %>%
   mutate(char_name_bg = char_name) %>%
   select(-char_name)
 
-ggplot(dat_prepped, aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+ggplot(dat_prepped, aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)) +
   # background lines: drawn in every facet, grouped by country_bg
   geom_point(
     data = dat_prepped_background,
-    aes(x = question, y = avg_rating, group = char_name_bg),
-    inherit.aes = FALSE,
+    aes(group = char_name_bg),
     color = "grey70",
     alpha = 0.5,
     size = 0.4
   ) +
   geom_point() +
+  guides(x = guide_axis(angle = 90)) +
   facet_wrap(vars(char_name)) +
-  guides(color = "none") +
-  theme_bg()
+  guides(color = "none")
 ```
 
+### Code
+
+```{r}
+#| eval: false
+#| label: facet_tips1
+```
+
+:::
 
 ## Facetting - Tipps
 Plot Mittelwerte
 
+### Plot
 ```{r}
-#| output-location: column
+#| label: facet_tips2
+#| echo: false
 
 dat_mean <- dat_prepped %>%
   group_by(question) %>%
-  summarise(avg_rating = mean(avg_rating))
+  summarise(mean_rating = mean(avg_rating)) %>% 
+  ungroup() %>% 
+  right_join(dat_prepped)
 
 
 ggplot(dat_prepped, aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
-  # background lines: drawn in every facet, grouped by country_bg
+geom_segment(
+    aes(
+      x = question, xend = question,
+      y = 0, yend = avg_rating,
+      group = interaction(char_name, uni_name)
+    ),
+    linewidth = 0.5,
+    alpha = 0.5
+  ) +
   geom_point(
     data = dat_mean,
     aes(x = question, y = avg_rating),
@@ -227,13 +660,23 @@ ggplot(dat_prepped, aes(x = question, y = avg_rating, colour = char_name, shape 
   theme_bg()
 ```
 
+### Code
+```{r}
+#| label: facet_tips2
+#| eval: false
+```
+
+:::
+
+
+
 :::{.callout-warning}
 Standardisierung könnte beim Vergleich zwischen den Fragen helfen - das kommt aber auf die finale Fragestellung an. 
 Ist aber ein Punkt, den man zumindest im Hinterkopf behalten sollte.
 :::
 
 ## Sortieren
-Sortieren, läuft in ggplot2 generell über `factor()`. 
+Sortieren, läuft in ggplot2 oft über `factor()`. 
 Manchmal kann es hilfreich sein, sich eine eigene ID-Variable zum Sortieren zu erstellen
 
 
@@ -256,215 +699,13 @@ ggplot(
 
 
 
-# Skalen und Legenden
-
-## Skalen
-"Scales in ggplot2 control the [mapping from data to aesthetics]{.highlight}. They take your data and turn it into something that you can see, like size, colour, position or shape." [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/scales.html)
-
-Link to aes slide. 
-
-
-
-## Legenden
-
-Legenden werden [automatisch]{.highlight} erzeugt. Dafür werden die [aestetics]{.highlight} genutzt, also das mapping von Daten zu grafischen Elementen. 
-[Jede]{.highlight} Skala bekommt eine Legende zugeordnet. 
-
-![](./images/scales_legends.png)
-
-::: {.callout-info}
-Legenden und Achsen sind funktional äquivalent und werden in ggplot2 unter dem Begriff [guides]{.highlight} zusammengefasst. Während Skalen die Daten auf grafische Eigenschaften wie Position oder Farbe abbilden, machen Guides diese Abbildung wieder verständlich: Achsen übersetzen Positionen zurück in Zahlen, Legenden ordnen Farben oder Symbole den entsprechenden Datenwerten zu. Man kann sie daher als die [„Umkehrfunktion“]{.highlight} der jeweiligen Scales verstehen.
-:::
-
-
-## 
-
-Jede aesthetic im Plot ist mit genau einer scale verbunden: 
-
-
-:::{.columns}
-
-:::{.column width="50%"}
-### Implizite Definition
-
-```{r}
-ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)
-) +
-  geom_point()
-```
-:::
-:::{.column width="50%"}
-### Wird intern zu: 
-
-```{r}
-ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)
-) +
-  geom_point() +
-  scale_x_discrete() +
-  scale_y_continuous() +
-  scale_colour_discrete() +
-  scale_shape_discrete()
-```
-:::
-:::
-
-- `time` und `co2_pcacp_cons` sind beide kontinuierliche Variablen: `scale_x_continuous()`, `scale_x_continuous()`
-- `country` ist diskret: `scale_colour_discrete()`
-
-Das können wir uns zunutze machen, um manuell Scales zu definieren. 
-
-
-## 
-```{r}
-ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)
-) +
-  geom_point() +
-  scale_x_discrete(name = "Eigenschaft") +
-  scale_y_continuous("Mittleres Rating") +
-  scale_colour_discrete("Character") +
-  scale_shape_discrete(name = "Serie")
-```
-
-:::{.callout-warning}
-In der Praxis würden wir dafür `labs(x = "Jahr", y = "CO2 Verbrauch pro Kopf", color = "Länder", shape = "Serie")` nutzen. 
-Wir sehen so aber, dass Achsen- und Legendentitel jeweils Skalennamen sind.  
-:::
-
-##
-
-```{r}
-ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = avg_rating, shape = uni_name_fac)
-) +
-  geom_point() +
-  scale_y_log10(name = "Mittleren Rating log") +
-  scale_colour_continuous()
-```
-
-
-::: {.callout-tip}
-Eine Übersicht über die möglichen Skalentypen findet sich [hier])https://ggplot2tor.com/scales/). 
-
-:::
-
-
-## Anwendungsfälle: Farben
-
-
-:::{.columns}
-
-### Farben
-
-Oft macht es Sinn, die Farben direkt über einen named vector zu definieren. 
-Dadurch wird jedem Element in der color-variable genau die gewünschte Farbe zugeordnetÖ 
-
-
-```{r}
-ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)
-) +
-  geom_point(size = 3) +
-  scale_shape_manual(values = c("Friends" = 12, "How I Met Your Mother" = 18)) +
-  scale_colour_manual(values = c(
-    "Ted Mosby" = "blue",
-    "Robin Scherbatsky" = "red",
-    "Barney Stinson" = "green",
-    "Lily Aldrin" = "purple",
-    "Marshall Eriksen" = "orange",
-    "Rachel Green" = "pink",
-    "Monica Geller" = "brown",
-    "Phoebe Buffay" = "yellow",
-    "Joey Tribbiani" = "cyan"
-  ))
-```
-
-:::
-
-:::{.column width="50%}
-```{r}
-ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)
-) +
-  geom_point() +
-  scale_colour_brewer(palette = "Set3")
-```
-:::
-:::
-
-
-
-## Anwendungsfälle: Skalen-Ticks
-
-```{r}
-#| output-location: column
-
-ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)
-) +
-  geom_point() +
-  scale_y_continuous(name = "Mittleres Rating", breaks = seq(0, 100, by = 10), limits = c(0, 100))
-```
-
-
-
-## Scale Guides
-
-Jede Skala (und damit jede Aesthetic) bekommt einen Guide zugeordnet. 
-Intern passiert das über `guides()`. Wir können `guides()` also nutzen, um die Legende zu manipulieren:
-
-
-```{r}
-ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)
-) +
-  geom_point() +
-  guides(color = guide_legend(title = "Charaktere", ncol = 3, reverse = TRUE, override.aes = list(size = 3)))
-```
-
-## Mögliche guide-Funktionen
-
-:
-::: {.columns}
-
-:::{.column width="50%"}
-- `guide_colourbar()`
-- `guide_coloursteps()`
-- `guide_axis()`
-- `guide_legend()`
-- `guide_bins()`
-::: 
-:::{.column width="50%"}
-
-
-```{r}
-#| code-line-numbers: "4"
-
-ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)
-) +
-  geom_point() +
-  guides(x = guide_axis(angle = 90))
-```
-
-:::
-:::
-
-
+# Themes
 ## Themes
 
 Da würde man ja auch viel zur Legende ändern? 
+
+
+## Labels
 
 # Koordinatensyteme
 
@@ -489,8 +730,6 @@ Zwei Aufgaben:
 - `coord_cartesian()`: Default
 - `coord_flip`: Tauscht x und y Achse
 - `coord_fixed()`: Fixes Seitenverhältnis. 
-
-
 :::
 
 ::: {.column width="50%"}
@@ -499,8 +738,6 @@ Zwei Aufgaben:
 - `coord_map`: Kartenprojektion
 - `coord_polar`: Polar-Koordinaten (Kreise)
 - `coord_trans`: Transformation der Positionen
-
-
 :::
 :::
 
@@ -542,7 +779,6 @@ Nichtsdestotrotz kann es gerade zur Gestaltung nett sein!
 - Strecken
 
 
-## Labels
 
 # Kombinieren von Plots
 
@@ -1087,6 +1323,7 @@ coord_radar <- function(theta = "x", start = 0, direction = 1) {
 ```
 
 ```{r}
+#| eval: false
 #| output-location: column
 dat_prepped3 <- arrange(dat_prepped2, question)
 
@@ -1107,6 +1344,7 @@ ggplot(
 https://de.pinterest.com/pin/friends-colors--2955556002181108/
 
 ```{r}
+#| eval: false
 #| output-location: column
 
 ggplot(
@@ -1126,6 +1364,7 @@ ggplot(
 ##
 
 ```{r}
+#| eval: false
 #| output-location: column
 
 ggplot(
@@ -1148,6 +1387,7 @@ ggplot(
 ##
 
 ```{r}
+#| eval: false
 #| output-location: column
 
 library(ggimage)
@@ -1182,6 +1422,7 @@ ggplot(
 ## Adding a frame around the picture
 
 ```{r}
+#| eval: false
 #| output-location: column
 
 library(ggimage)
@@ -1225,6 +1466,7 @@ ggplot(
 - Nudge pictures further out
 
 ```{r}
+#| eval: false
 #| output-location: column
 
 dat_prepped3 <- dat_prepped3 %>%
@@ -1290,6 +1532,8 @@ ggplot(
 
 
 ```{r}
+#| eval: false
+
 dat_joey_barney <- dat_prepped3 %>%
   filter(char_name %in% c("Barney Stinson", "Joey Tribbiani"))
 
@@ -1346,6 +1590,7 @@ p_left <- ggplot(
 
 
 ```{r}
+#| eval: false
 
 outer_points2 <- outer_points %>%
   filter(!char_name %in% c("Barney Stinson", "Joey Tribbiani"))
@@ -1393,6 +1638,8 @@ p_right <- ggplot(
 
 ## Patch together
 ```{r}
+#| eval: false
+
 p_left +
   p_right
 ```
