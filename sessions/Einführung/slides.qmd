@@ -330,7 +330,7 @@ Foto von <a href="https://unsplash.com/de/@nasa?utm_content=creditCopyText&utm_m
 gapminder_2019 <- gapminder %>% 
   filter(time == 2019)
   
-p_scatter <- ggplot(data = gapminder_2019, aes(x = gini, y = hapiscore_whr, color = world_6region)) +
+p_scatter <- ggplot(data = gapminder_2019, aes(x = gini, y = hapiscore_whr, color = world_4region)) +
   geom_point(size = 3) 
 
 p_scatter
@@ -410,13 +410,17 @@ p_bar
 
 ## Barplot
 ::: {.columns}
-:::{.column width = "50%"}
+:::{.column width="50%"}
 
 :::{.steckbrief}
 [Datentyp]{.highlight}  
 
 [Achtung]{.highlight} 
 
+:::
+:::{.column width="50%"}
+
+:::
 :::
 
 
@@ -437,7 +441,7 @@ gapminder_line <- gapminder %>%
   filter(country %in% c("deu"), time >=1900, time <= 2024) %>% 
   drop_na(gini)
 
-p_line <- ggplot(data = gapminder_line, aes(x = time, y = gini, color = country)) +
+p_line <- ggplot(data = gapminder_line, aes(x = time, y = gini)) +
 geom_line() +  
 theme_bg() +
 labs(title = "Ungleichheit in Deutschland On the Rise", 
@@ -461,7 +465,7 @@ p_line
 
 ## Lineplot
 ::: {.columns}
-:::{.column width = "50%"}
+:::{.column width="50%"}
 
 :::{.steckbrief}
 [Datentyp]{.highlight}  
@@ -472,7 +476,7 @@ p_line
 
 :::
 
-:::{.column width = "50%"}
+:::{.column width="50%"}
 
 :::
 :::
