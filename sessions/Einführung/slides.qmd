@@ -2,7 +2,10 @@
 title: "Einführung"
 format: letterbox-revealjs
 ---
+
 ```{r}
+#| echo: false
+
 library(quartets)
 library(tidyverse)
 library(ggrepel)
@@ -77,12 +80,23 @@ ggplot(datasaurus_dozen, aes(x = x, y = y)) +
 - Beispiele verschönert
 
 
-# [The R Graph Gallery](https://r-graph-gallery.com/best-r-chart-examples.html)
+# Gallerie {background-image="images/gallery.jpg" background-size="1225px"}
 
-## 
+
+## {background-color="white"}
+
+:::{.columns}
+
+:::{.column width="10%"}
+
+:::
+
+:::{.column width="80%"}
 
 ```{r}
 #| echo: false
+#| fig-width: 15
+#| fig-height: 12
 
 library(tidyverse)
 library(ggtext)
@@ -260,7 +274,7 @@ facet <- ggplot(facet_data, aes(rank, time, color = category)) +
     lineheight = 0.87
   ) +
   # This is what wraps the panels for the categories into a layout of 2 rows
-  facet_wrap(~ category, nrow = 2) +
+  facet_wrap(~ category, ncol = 2) +
   coord_polar() + 
   scale_y_log10(expand = c(0, 0)) + 
   rcartocolor::scale_color_carto_d(palette = "Prism", guide = "none") +
@@ -312,31 +326,36 @@ facet <- facet +
 # The '+' means to 'add' the two ggplot2 plots together.
 panel <- (main + facet) + 
   plot_layout(
-    ncol = 1, # Results in one plot on top and another on the bottom.
+    ncol = 2, # Results in one plot on top and another on the bottom.
     heights = c(1, 0.28) # Height assigned to each plot
-  )
+  ) 
 
 panel
 ```
 
-::: aside
+:::
+
+::: {.column width = "10%"}
+
+:::
+:::
+
+::: image-ref
 Example from [The R Graph Gallery](https://r-graph-gallery.com/web-circular-lollipop-plot-with-ggplot2.html). 
 :::
 
 
-## 
-![](images/habeck.jpeg)
 
-::: image-ref
-https://static.ksta.de/__images/2025/04/24/b3b17a0b-1da5-4e0f-9d6e-d321b248e1fa.jpeg?q=75&q=70&rect=0,259,4000,2250&w=2000&h=1334&fm=jpeg&s=cd6fd9eb8760f10aad114f59d21d74ce
-:::
-
-
-## 
+## Der best Plot jemals?
 
 ![](images/napoleon.png)
 
-::: aside
+
+Verluste der napoleonischen Armee beim Russlandfeldzug 1812–1813, von Charles Joseph Minard. 
+Es werden [6 Dimensionen]{.highlight} dargestellt!    
+
+
+::: image-ref
 Image from [Wikipedia](https://en.wikipedia.org/wiki/File:Minard.png). 
 :::
 
@@ -391,6 +410,8 @@ saveRDS(data_ready_plot, "./sessions/Einführung/surfdata.rds")
 #| echo: false
 #| eval: false
 
+library(jpeg)
+
 # Load picture and render
 earth <- jpeg::readJPEG("./images/worldmap.jpg", native = TRUE)
 earth <- grid::rasterGrob(earth, interpolate = TRUE)
@@ -420,22 +441,81 @@ p
 ```
 
 
-## 
-https://r-graph-gallery.com/best-r-chart-examples
-https://allisonhorst.com/r-packages-functions
+::: image-ref
+
+Code von [https://www.data-to-viz.com/story/MapConnection.html].
+
+:::
 
 
 
-# Plot-Typen
+# {background-image="images/setup.jpg" background-size="1225px"}
+
+::: {.absolute left="5%" top="5%" style="color:#F8F8F8;"}
+Basic Setup
+:::
+
+::: image-ref
+Foto von <a href="https://unsplash.com/de/@adigold1?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Adi Goldstein</a> auf <a href="https://unsplash.com/de/fotos/graustufenfotografie-eines-mannes-im-gestreiften-hemd-rgkKFn5Ysb0?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+
+
+
+
+## RStudio Projekte
+
+Hilft ungemein beim Organisieren von Dateien und Code!
+
+
+\
+
+::: {.exercise}
+Erstelle ein RStudio Projekt in einem Ordner für diesen Workshop.
+:::
+
+
+## Pfade
+
+[here](https://here.r-lib.org/) ist ein Paket zum Erstellen von Dateipfaden. 
+Dadurch können Probleme mit relativen und absoluten Pfaden vermieden werden. 
+
+`C:\Users\hafiznij\Documents\GitHub\IRT_workshop\data\gapminder_dat.rds` wird zu:  
+`here::here("data", "gapminder_dat.rds")`. 
+
+
+::: {.panel-tabset}
+
+### Übung
+
+::: {.exercise}
+
+Lade die gapminder-Daten von [GitHub](https://github.com/nickhaf/PlotWorkshop/blob/main/data/gapminder_dat.rds) herunter und in R ein. 
+
+:::
+
+
+
+### Lösung
+
+```{r}
+# install.packages("here")
+gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
+```
+
+:::
 
 ## Daten
 
-
 :::{.columns}
 :::{.column width = "50%"}
-```{r}
-gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
-```
+
+
+\
+\
+
+[Gapminder](https://www.gapminder.org/tools/#$chart-type=bubbles&url=v2) ist ein non-profit Projekt mit dem Ziel, mit [global misconceptions]{.highlight} aufzuräumen. 
+Grundlage dafür ist ein Datensatz mit sozioökonomischen Indikatoren für fast alle Länder der Welt über mehrere Jahrzehnte. 
+
 
 :::
 :::{.column width = "50%"}
@@ -447,10 +527,25 @@ gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
 :::
 
 ::: image-ref
-Bild von [Amazon][(https://m.media-amazon.com/images/I/71KH-wJcv3L.jpg). 
+Bild von [Amazon](https://m.media-amazon.com/images/I/71KH-wJcv3L.jpg). 
 :::
 
 
+## Quiz {background-image="images/world.jpg" background-size="1225px"}
+
+::: {.exercise}
+Öffne [Mentimeter](https://www.mentimeter.com/app/presentation/alep3cierpqrz5cwkm6v2ege1h1tvhbi/edit?question=nw21zffqg1ti) und bearbeite das Quiz. 
+:::
+
+::: image-ref
+Fragen von [Gapminder](https://upgrader.gapminder.org/).  
+Foto von <a href="https://unsplash.com/de/@nasa?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">NASA</a> auf <a href="https://unsplash.com/de/fotos/foto-aus-dem-weltraum-Q1p7bh3SHj8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+      
+:::
+
+
+
+# Plot-Typen
 
 ## Scatterplot
 
@@ -625,4 +720,10 @@ p_line
 
 ## Generative Art
 
+
+## {background-image="images/habeck.jpeg" background-size="1225px"}}
+
+::: image-ref
+Bild von [Static](https://static.ksta.de/__images/2025/04/24/b3b17a0b-1da5-4e0f-9d6e-d321b248e1fa.jpeg?q=75&q=70&rect=0,259,4000,2250&w=2000&h=1334&fm=jpeg&s=cd6fd9eb8760f10aad114f59d21d74ce).
+:::
 

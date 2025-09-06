@@ -67,7 +67,7 @@
     "href": "sessions/Einführung/slides.html#section-3",
     "title": "Einführung",
     "section": "",
-    "text": "https://static.ksta.de/__images/2025/04/24/b3b17a0b-1da5-4e0f-9d6e-d321b248e1fa.jpeg?q=75&q=70&rect=0,259,4000,2250&w=2000&h=1334&fm=jpeg&s=cd6fd9eb8760f10aad114f59d21d74ce"
+    "text": "Code von [https://www.data-to-viz.com/story/MapConnection.html]."
   },
   {
     "objectID": "sessions/good_plots/good_plots.html",
@@ -886,14 +886,14 @@
     "href": "sessions/Einführung/slides.html#section-4",
     "title": "Einführung",
     "section": "",
-    "text": "Image from Wikipedia."
+    "text": "Code von [https://www.data-to-viz.com/story/MapConnection.html]."
   },
   {
     "objectID": "sessions/Einführung/slides.html#section-5",
     "href": "sessions/Einführung/slides.html#section-5",
     "title": "Einführung",
     "section": "",
-    "text": "https://r-graph-gallery.com/best-r-chart-examples https://allisonhorst.com/r-packages-functions"
+    "text": "Öffne Mentimeter und bearbeite das Quiz.\n\n\nFragen von Gapminder.\nFoto von NASA auf Unsplash"
   },
   {
     "objectID": "sessions/prep_plots/slides.html",
@@ -1537,7 +1537,7 @@
     "href": "sessions/Einführung/slides.html#section-6",
     "title": "Einführung",
     "section": "",
-    "text": "https://r-graph-gallery.com/best-r-chart-examples https://allisonhorst.com/r-packages-functions"
+    "text": "Öffne Mentimeter und bearbeite das Quiz.\n\n\nFragen von Gapminder.\nFoto von NASA auf Unsplash"
   },
   {
     "objectID": "sessions/good_plots/maps.html#section",
@@ -2062,14 +2062,14 @@
     "href": "sessions/Einführung/slides.html#daten",
     "title": "Einführung",
     "section": "Daten",
-    "text": "Daten\n\n\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\n\n\n\n\nBild von [Amazon][(https://m.media-amazon.com/images/I/71KH-wJcv3L.jpg)."
+    "text": "Daten\n\n\n\nGapminder ist ein non-profit Projekt mit dem Ziel, mit global misconceptions aufzuräumen. Grundlage dafür ist ein Datensatz mit sozioökonomischen Indikatoren für fast alle Länder der Welt über mehrere Jahrzehnte.\n\n\n\n\nBild von Amazon."
   },
   {
     "objectID": "sessions/Einführung/slides.html#scatterplot",
     "href": "sessions/Einführung/slides.html#scatterplot",
     "title": "Einführung",
     "section": "Scatterplot",
-    "text": "Scatterplot\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2019 &lt;- gapminder %&gt;% \n  filter(time == 2019) \n\np_scatter &lt;- ggplot(data = gapminder_2019, aes(x = demox_eiu, y = gini, color = world_6region)) +\n  geom_point(size = 3) +\n  theme_bg()\n\np_scatter"
+    "text": "Scatterplot\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2019 &lt;- gapminder %&gt;% \n  filter(time == 2019)\n  \np_scatter &lt;- ggplot(data = gapminder_2019, aes(x = gini, y = hapiscore_whr, color = world_6region)) +\n  geom_point(size = 3) \n\np_scatter"
   },
   {
     "objectID": "sessions/Einführung/slides.html#scatterplot-1",
@@ -2097,7 +2097,7 @@
     "href": "sessions/Einführung/slides.html#lineplot",
     "title": "Einführung",
     "section": "Lineplot",
-    "text": "Lineplot\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;% \n  filter(country %in% c(\"deu\", \"usa\"), time &gt;=1900, time &lt;= 2024) %&gt;% \n  drop_na(gini)\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini, color = country)) +\ngeom_line() +  \ntheme_bg() +\nlabs(title = \"Ungleichheit On the Rise\", \n     subtitle = \"Gini-Koeffizient von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\")\n\np_line"
+    "text": "Lineplot\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;% \n  filter(country %in% c(\"deu\"), time &gt;=1900, time &lt;= 2024) %&gt;% \n  drop_na(gini)\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini, color = country)) +\ngeom_line() +  \ntheme_bg() +\nlabs(title = \"Ungleichheit in Deutschland On the Rise\", \n     subtitle = \"Gini-Koeffizient von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\")\n\np_line"
   },
   {
     "objectID": "sessions/Einführung/slides.html#boxplot",
@@ -2139,14 +2139,14 @@
     "href": "sessions/Einführung/slides.html#barplot-1",
     "title": "Einführung",
     "section": "Barplot",
-    "text": "Barplot\n\n\n\nDatentyp\nAchtung\n\nHistogram\nLineplot\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;% \n  filter(country %in% c(\"deu\", \"usa\"), time &gt;=1900, time &lt;= 2024) %&gt;% \n  drop_na(gini)\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini, color = country)) +\ngeom_line() +  \ntheme_bg() +\nlabs(title = \"Ungleichheit On the Rise\", \n     subtitle = \"Gini-Koeffizient von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\")\n\np_line\n\n\n\n\nLineplot\n\n\n\nDatentyp\nGut für Zeitreihen\nAchtung\n\nBoxplot\nKarten\nSpider-Chart\nKombiniert\n\nCo2 with grey scale\ngreens with green scale\nPlotly\n\ngganimate\nGenerative Art"
+    "text": "Barplot\n\n\n\nDatentyp\nAchtung\n\nHistogram\nLineplot\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;% \n  filter(country %in% c(\"deu\"), time &gt;=1900, time &lt;= 2024) %&gt;% \n  drop_na(gini)\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini, color = country)) +\ngeom_line() +  \ntheme_bg() +\nlabs(title = \"Ungleichheit in Deutschland On the Rise\", \n     subtitle = \"Gini-Koeffizient von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\")\n\np_line\n\n\n\n\nLineplot\n\n\n\nDatentyp\nGut für Zeitreihen\nAchtung\n\nBoxplot\nKarten\nSpider-Chart\nKombiniert\n\nCo2 with grey scale\ngreens with green scale\nPlotly\n\ngganimate\nGenerative Art\n{background-image=“images/habeck.jpeg” background-size=“1225px”}}\n\nBild von Static."
   },
   {
     "objectID": "sessions/Einführung/slides.html#lineplot-1",
     "href": "sessions/Einführung/slides.html#lineplot-1",
     "title": "Einführung",
     "section": "Lineplot",
-    "text": "Lineplot\n\n\n\nDatentyp\nGut für Zeitreihen\nAchtung\n\nBoxplot\nKarten\nSpider-Chart\nKombiniert\n\nCo2 with grey scale\ngreens with green scale\nPlotly\n\ngganimate\nGenerative Art"
+    "text": "Lineplot\n\n\n\nDatentyp\nGut für Zeitreihen\nAchtung\n\nBoxplot\nKarten\nSpider-Chart\nKombiniert\n\nCo2 with grey scale\ngreens with green scale\nPlotly\n\ngganimate\nGenerative Art\n{background-image=“images/habeck.jpeg” background-size=“1225px”}}\n\nBild von Static."
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#aufbereitung",
@@ -2224,5 +2224,54 @@
     "title": "ggplot2: Basics",
     "section": "",
     "text": "Das waren schon die Basics. Von hier aus haben wir einen guten Anfangspunkt, um die Welt der Grafiken ausführlicher zu erkunden. Aber erst einmal, Pause.\n\n\n\nFoto von Casey Allen auf Unsplash"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#rstudio-projekte",
+    "href": "sessions/Einführung/slides.html#rstudio-projekte",
+    "title": "Einführung",
+    "section": "RStudio Projekte",
+    "text": "RStudio Projekte\nHilft ungemein beim Organisieren von Dateien und Code!\n\n\nErstelle ein RStudio Projekt in einem Ordner für diesen Workshop."
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#pfade",
+    "href": "sessions/Einführung/slides.html#pfade",
+    "title": "Einführung",
+    "section": "Pfade",
+    "text": "Pfade\nhere ist ein Paket zum Erstellen von Dateipfaden. Dadurch können Probleme mit relativen und absoluten Pfaden vermieden werden.\nC:\\Users\\hafiznij\\Documents\\GitHub\\IRT_workshop\\data\\gapminder_dat.rds wird zu:here::here(\"data\", \"gapminder_dat.rds\").\n\n\nÜbung\nLösung\n\n\n\n\nLade die gapminder-Daten von GitHub herunter und in R ein.\n\n\n\n\n# install.packages(\"here\")\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#quiz",
+    "href": "sessions/Einführung/slides.html#quiz",
+    "title": "Einführung",
+    "section": "Quiz",
+    "text": "Quiz\n\nÖffne Mentimeter und bearbeite das Quiz.\n\n\nFragen von Gapminder.\nFoto von NASA auf Unsplash"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#background-imageimagesworld.jpg-background-size1225px",
+    "href": "sessions/Einführung/slides.html#background-imageimagesworld.jpg-background-size1225px",
+    "title": "Einführung",
+    "section": "{.background-image=“images/world.jpg” background-size=“1225px”}}",
+    "text": "{.background-image=“images/world.jpg” background-size=“1225px”}}\n\nÖffne Mentimeter und bearbeite das Quiz.\n\n\nFragen von Gapminder.\nFoto von NASA auf Unsplash"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#der-best-plot-jemals",
+    "href": "sessions/Einführung/slides.html#der-best-plot-jemals",
+    "title": "Einführung",
+    "section": "Der best Plot jemals?",
+    "text": "Der best Plot jemals?\n\nVerluste der napoleonischen Armee beim Russlandfeldzug 1812–1813, von Charles Joseph Minard. Es werden 6 Dimensionen dargestellt!\n\nImage from Wikipedia."
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#background-imageimagesgallery.jpg-background-size1225px",
+    "href": "sessions/Einführung/slides.html#background-imageimagesgallery.jpg-background-size1225px",
+    "title": "Einführung",
+    "section": "{background-image=“images/gallery.jpg” background-size=“1225px”}}}",
+    "text": "{background-image=“images/gallery.jpg” background-size=“1225px”}}}\n\n\n\nR-Graph-Gallery]"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#background-imageimageshabeck.jpeg-background-size1225px",
+    "href": "sessions/Einführung/slides.html#background-imageimageshabeck.jpeg-background-size1225px",
+    "title": "Einführung",
+    "section": "{background-image=“images/habeck.jpeg” background-size=“1225px”}}",
+    "text": "{background-image=“images/habeck.jpeg” background-size=“1225px”}}\n\nBild von Static."
   }
 ]
