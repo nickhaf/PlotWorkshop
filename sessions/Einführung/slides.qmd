@@ -464,11 +464,10 @@ Bild von [Amazon][(https://m.media-amazon.com/images/I/71KH-wJcv3L.jpg).
 #| echo: false
 
 gapminder_2019 <- gapminder %>% 
-  filter(time == 2019) 
-
-p_scatter <- ggplot(data = gapminder_2019, aes(x = demox_eiu, y = gini, color = world_6region)) +
-  geom_point(size = 3) +
-  theme_bg()
+  filter(time == 2019)
+  
+p_scatter <- ggplot(data = gapminder_2019, aes(x = gini, y = hapiscore_whr, color = world_6region)) +
+  geom_point(size = 3) 
 
 p_scatter
 

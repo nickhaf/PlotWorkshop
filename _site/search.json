@@ -242,7 +242,7 @@
     "href": "sessions/ggplot_intro/slides.html#section-2",
     "title": "ggplot2: Basics",
     "section": "",
-    "text": "Aesthetics können auf verschiedene Arten definiert werden:\n\n\nFür alle Layer\n\nggplot(\n  data = gapminder_dat,\n  aes(\n    x = pop,\n    y = co2_cons,\n    color = world_6region\n  )\n) +\n  geom_point() +\n  geom_smooth()\n\n\n\n\n\n\n\n\nFür spezifische Layer\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point(aes(color = world_6region)) +\n  geom_smooth()\n\n\n\n\n\n\n\n\nAls Setting\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point(color = \"#F4BA02\") +\n  geom_smooth()"
+    "text": "Übung\nLösung\n\n\n\n\n\nDas reicht schon, um einen eigenen ersten Plot zu erstellen. Nutzt die gapminder_2019 Daten und erstellt einen Scatterplot, der den Zusammenhang zwischen Happiness-Score (hapiscore_whr) und GDP pro Kopf (gdp_pcap) zeigt. Gibt es einen Zusammenhang?\n\n\n\n\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(\n    x = gdp_pcap,\n    y = hapiscore_whr\n  )\n) +\n  geom_point()\n\n\n\n\n\n\n\n\nLänder mit höherem pro-Kopf Einkommen haben tendenziell auch einen höheren Happiness-Score."
   },
   {
     "objectID": "sessions/good_plots/slides.html#eine-gute-grafik-sollte",
@@ -375,14 +375,14 @@
     "href": "sessions/ggplot_intro/slides.html#aesthetic-mapping",
     "title": "ggplot2: Basics",
     "section": "2. Aesthetic mapping",
-    "text": "2. Aesthetic mapping\n\n\n\nVerknüpfen von Spalten im Datensatz mit visuellen Eigenschaften:\nmapping =  aes()\n\n\n\nDie wichtigsten Aestetics\n\nArgument\nAesthetic\n\n\n\nx\nx-Achse\n\n\ny\ny-Achse\n\n\ncolor\nFarbe\n\n\nfill\nFüllfarbe\n\n\nshape\nForm\n\n\nsize\nGröße\n\n\nalpha\nTransparenz\n\n\ngroup\nGruppe\n\n\n\n\n\n\n\n\n\n\nUmfangreicherer Überblick über mögliche Aestethics."
+    "text": "2. Aesthetic mapping\n\n\n\nVerknüpfen von Spalten im Datensatz mit visuellen Eigenschaften:\n\nmapping =  aes()\n\n\n\n\nArgument\nAesthetic\n\n\n\nx\nx-Achse\n\n\ny\ny-Achse\n\n\ncolor\nFarbe\n\n\nfill\nFüllfarbe\n\n\nshape\nForm\n\n\nsize\nGröße\n\n\nalpha\nTransparenz\n\n\ngroup\nGruppe\n\n\n\n\n\n\n\n\n\n\nUmfangreicherer Überblick über mögliche Aestethics."
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#aesthetic-mapping-achsen",
     "href": "sessions/ggplot_intro/slides.html#aesthetic-mapping-achsen",
     "title": "ggplot2: Basics",
     "section": "Aesthetic mapping: Achsen",
-    "text": "Aesthetic mapping: Achsen\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(x = pop, y = co2_cons)\n)"
+    "text": "Aesthetic mapping: Achsen\n\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(x = gini, y = hapiscore_whr)\n)"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#the-big-picture",
@@ -396,7 +396,7 @@
     "href": "sessions/ggplot_intro/slides.html#geometric-layers",
     "title": "ggplot2: Basics",
     "section": "3. Geometric Layers",
-    "text": "3. Geometric Layers\n\n\n\nVerschiedene Layers (geoms) werden übereinandergelegt:\n  geom_&lt;layer1&gt;() + \n  geom_&lt;layer2&gt;() + \n  ...\n\n\n\nDie wichtigsten Layers\n\nArgument\nAesthetic\n\n\n\ngeom_point()\nPunkte\n\n\ngeom_line()\nLinien\n\n\ngeom_histogram()\nHistogramm\n\n\ngeom_text()\nText\n\n\ngeom_boxplot()\nBoxplot\n\n\n\n\n\n\n\n\n\n\nUmfangreicherer Überblick über mögliche Geoms."
+    "text": "3. Geometric Layers\n\n\n\nVerschiedene Layers (geoms) werden übereinandergelegt:\n\ngeom_point() + \ngeom_line() + \n...\n\n\n\n\n\nArgument\nAesthetic\n\n\n\ngeom_point()\nPunkte\n\n\ngeom_line()\nLinien\n\n\ngeom_histogram()\nHistogramm\n\n\ngeom_text()\nText\n\n\ngeom_boxplot()\nBoxplot\n\n\n\n\n\n\n\n\n\n\n\nUmfangreicherer Überblick über mögliche Geoms."
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#übung",
@@ -424,7 +424,7 @@
     "href": "sessions/ggplot_intro/slides.html#mehr-layers",
     "title": "ggplot2: Basics",
     "section": "Mehr Layers!",
-    "text": "Mehr Layers!\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons, \n    color = world_6region\n  )\n) +\n  geom_jitter(height = 500)"
+    "text": "Mehr Layers!\n\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  geom_smooth()"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#titlelabels",
@@ -452,7 +452,7 @@
     "href": "sessions/ggplot_intro/slides.html#style-deinen-plot-themes",
     "title": "ggplot2: Basics",
     "section": "Style deinen Plot: Themes",
-    "text": "Style deinen Plot: Themes\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Größere Bevölkerung führt zu mehr CO2-Ausstoß!\",\n    subtitle = \"CO2-Ausstoß diverser Länder in 2020\",\n    x = \"Bevölkerungzahl\",\n    y = \"CO2-Ausstoß in Tonnen\"\n  ) +\n  theme_classic()"
+    "text": "Style deinen Plot: Themes\n\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(aes(color = world_4region)) +\n  geom_smooth() +\n  labs(\n    title = \"Ungleichheit = Un-Happiness?\",\n    subtitle = \"Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2019\",\n    x = \"Gini-Index\",\n    y = \"Happiness-Score\",\n  ) +\n  theme_bw()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEine Übersicht über Themes findet sich hier."
   },
   {
     "objectID": "sessions/good_plots/slides.html#darstellung-von-größen",
@@ -711,35 +711,35 @@
     "href": "sessions/ggplot_intro/slides.html#die-daten",
     "title": "ggplot2: Basics",
     "section": "Die Daten",
-    "text": "Die Daten\nWir nutzen Daten von Gapminder.\n\n\n\n\n\n\nGapminder sammelt diverse Indikatoren aus allen Ländern weltweit, z.B. Lebenserwartung, GDP, CO2-Verbrauch und viele mehr.\n\n\n\nBekannt sind vor allem die Bubble-Plots."
+    "text": "Die Daten\nWir nutzen Daten von Gapminder.\n\n\n\n\n\n\nGapminder sammelt diverse Indikatoren aus allen Ländern weltweit, z.B. Lebenserwartung, GDP, CO2-Verbrauch und viele mehr."
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#die-daten-1",
     "href": "sessions/ggplot_intro/slides.html#die-daten-1",
     "title": "ggplot2: Basics",
     "section": "Die Daten",
-    "text": "Die Daten\nZuerst schauen wir uns nur eins der Jahre genauer an, und zwar nur für die Länder im Datensatz:\n\ngapminder_dat &lt;- gapminder_dat_full %&gt;% \n  filter(time == \"2020\", !is.na(country))"
+    "text": "Die Daten\nZuerst schauen wir uns nur eins der Jahre genauer an:\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\ngapminder_2019 &lt;- gapminder %&gt;%\n  filter(time == 2019) %&gt;%\n  drop_na(gini, hapiscore_whr)\n\n\n\nGini-Koeffizient\n\n0 = perfekte Gleichheit (alle haben gleich viel)\n100 = perfekte Ungleichheit (eine Person hat alles)\n\n\nHappiness-Score (Cantril-Leiter)\n\n0 = Schlechtestest mögliche Leben.\n100 = Bestmöglichstes Leben."
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#layers-punkte",
     "href": "sessions/ggplot_intro/slides.html#layers-punkte",
     "title": "ggplot2: Basics",
     "section": "Layers: Punkte",
-    "text": "Layers: Punkte\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point()"
+    "text": "Layers: Punkte\n\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(x = gini, y = hapiscore_whr)\n  ) +\n  geom_point()"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#labels",
     "href": "sessions/ggplot_intro/slides.html#labels",
     "title": "ggplot2: Basics",
     "section": "Labels",
-    "text": "Labels\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Größere Bevölkerung führt zu mehr CO2-Ausstoß!\",\n    subtitle = \"CO2-Ausstoß diverser Länder in 2020\",\n    x = \"Bevölkerungzahl\",\n    y = \"CO2-Ausstoß in Tonnen\"\n  )"
+    "text": "Labels\n\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(aes(color = world_4region)) +\n  geom_smooth() +\n  labs(\n    title = \"Ungleichheit = Un-Happiness?\",\n    subtitle = \"Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2019\",\n    x = \"Gini-Index\",\n    y = \"Happiness-Score\",\n  )"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#mehr-aesthetics",
     "href": "sessions/ggplot_intro/slides.html#mehr-aesthetics",
     "title": "ggplot2: Basics",
     "section": "Mehr Aesthetics!",
-    "text": "Mehr Aesthetics!\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons, \n    color = world_6region\n  )\n) +\n  geom_point()"
+    "text": "Mehr Aesthetics!\n\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(\n    x = gini, y = hapiscore_whr,\n    color = world_4region\n  )\n) +\n  geom_point()"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#für-alle-layer",
@@ -767,7 +767,7 @@
     "href": "sessions/ggplot_intro/slides.html#aestetics-als-mapping-oder-setting",
     "title": "ggplot2: Basics",
     "section": "Aestetics als Mapping oder Setting",
-    "text": "Aestetics als Mapping oder Setting\n\n\nFür alle Layer\n\nggplot(\n  data = gapminder_dat,\n  aes(\n    x = pop,\n    y = co2_cons,\n    color = world_6region\n  )\n) +\n  geom_point() +\n  geom_smooth()\n\n\n\n\n\n\n\n\nFür spezifische Layer\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point(aes(color = world_6region)) +\n  geom_smooth()\n\n\n\n\n\n\n\n\n\nAls Setting\n\n\nggplot(\n  data = gapminder_dat,\n  mapping = aes(\n    x = pop,\n    y = co2_cons\n  )\n) +\n  geom_point(color = \"#F4BA02\") +\n  geom_smooth()"
+    "text": "Aestetics als Mapping oder Setting\n\n\nFür alle Layer\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(\n    x = gdp_pcap,\n    y = hapiscore_whr,\n    color = world_4region)\n) +\n  geom_point() +\n  geom_smooth()\n\n\n\n\n\n\n\n\nFür spezifische Layer\n\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(aes(color = world_4region)) +\n  geom_smooth()\n\n\n\n\n\n\n\n\n\nAls Setting\n\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(color = \"#F4BA02\") +\n  geom_smooth()"
   },
   {
     "objectID": "sessions/example_slides.html#plotlygganimate",
@@ -1096,7 +1096,7 @@
     "href": "sessions/ggplot_intro/slides.html#daten-1",
     "title": "ggplot2: Basics",
     "section": "1. Daten",
-    "text": "1. Daten\n\n\nggplot(data = gapminder_dat)"
+    "text": "1. Daten\n\n\nggplot(data = gapminder_2019)"
   },
   {
     "objectID": "sessions/good_plots/slides.html#deshalb-finger-weg-von-pie-charts",
@@ -2210,5 +2210,19 @@
     "title": "Mehr ggplot2!",
     "section": "Themes",
     "text": "Themes\n\nlibrary(tidyverse)\nlibrary(ggtext)\nlibrary(glue)\n\nggplot(\n  data = dat_prepped,\n  mapping = aes(x = image_link, y = avg_rating, shape = uni_name_fac)\n) +\n  geom_point() +\n  facet_wrap(vars(question), nrow = 2) +\n  ylim(0, 100) +\n  scale_x_discrete(\n    labels = \\(x) glue(\"&lt;img src='{x}' height='24' /&gt;\")\n  ) +\n  theme(\n    axis.text.x = element_markdown()\n  ) +\n  coord_cartesian(clip = \"off\") # falls Bilder abgeschnitten werden"
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#section-3",
+    "href": "sessions/ggplot_intro/slides.html#section-3",
+    "title": "ggplot2: Basics",
+    "section": "",
+    "text": "Übung\nLösung\n\n\n\n\n\nProbiert aus, wo in den ggplot-layers man die Farbe ändern kann (es gibt 3 verschiedene Möglichkeiten, die sich alle unterschiedlich auf den Plot auswirken).\nÄndert dafür unseren bisherigen Plot so, dass nur die Punkte farbig sind.\nDie Linie von geom_smooth() soll einfarbig werden.\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  geom_smooth()\n\n\n\n\n\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(x = gini, y = hapiscore_whr)\n) +\n  geom_point(aes(color = world_4region)) +\n  geom_smooth()\n\n\n\n\n\n\n\n\nWir ändern dafür die Aesthetics von global zu lokal, indem wir die color-Aesthetic nur in geom_point() definieren."
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#section-4",
+    "href": "sessions/ggplot_intro/slides.html#section-4",
+    "title": "ggplot2: Basics",
+    "section": "",
+    "text": "Das waren schon die Basics. Von hier aus haben wir einen guten Anfangspunkt, um die Welt der Grafiken ausführlicher zu erkunden. Aber erst einmal, Pause.\n\n\n\nFoto von Casey Allen auf Unsplash"
   }
 ]
