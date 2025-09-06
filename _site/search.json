@@ -130,7 +130,7 @@
     "href": "sessions/Einführung/slides.html#section-2",
     "title": "Einführung",
     "section": "",
-    "text": "Example from The R Graph Gallery."
+    "text": "Beispiel aus der The R Graph Gallery."
   },
   {
     "objectID": "sessions/Einführung/slides.html#gganimate",
@@ -2273,5 +2273,12 @@
     "title": "Einführung",
     "section": "{background-image=“images/habeck.jpeg” background-size=“1225px”}}",
     "text": "{background-image=“images/habeck.jpeg” background-size=“1225px”}}\n\nBild von Static."
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#eine-der-ersten-karten",
+    "href": "sessions/Einführung/slides.html#eine-der-ersten-karten",
+    "title": "Einführung",
+    "section": "Eine der ersten Karten",
+    "text": "Eine der ersten Karten\n\n\nDr. John Snow zeichnete die Todesfälle durch Cholera in Zentral-London im September 1854 auf.Wasserpumpen wurden mit einem x markiert.\nDadurch ließ sich die Broad Street Pumpe als Quelle der Epidemie identifizieren.\n\n\n\n\nBild von ReserachGate"
   }
 ]

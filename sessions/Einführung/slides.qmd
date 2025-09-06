@@ -82,266 +82,35 @@ ggplot(datasaurus_dozen, aes(x = x, y = y)) +
 
 # Gallerie {background-image="images/gallery.jpg" background-size="1225px"}
 
+## Eine der ersten Karten  {background-color="white"}
+
+::: {.columns}
+::: {.column width="40%"}
+Dr. John Snow zeichnete die Todesfälle durch Cholera in Zentral-London im September 1854 auf.  
+[Wasserpumpen wurden mit einem `x` markiert.]{.highlight}  
+Dadurch ließ sich die [Broad Street Pumpe]{.highlight} als Quelle der Epidemie identifizieren. 
+:::
+::: {.column width="60%"}
+![](./images/cholera_chart.png)
+:::
+:::
+
+::: image-ref
+Bild von [ReserachGate](https://www.researchgate.net/figure/Cholera-outbreak-in-London-in-1854-Deaths-marked-with-dots-Water-wells-marked-with-a_fig9_320654812)
+:::
 
 ## {background-color="white"}
 
 :::{.columns}
+::: {.column width="100%"}
 
-:::{.column width="10%"}
-
-:::
-
-:::{.column width="80%"}
-
-```{r}
-#| echo: false
-#| fig-width: 15
-#| fig-height: 12
-
-library(tidyverse)
-library(ggtext)
-library(patchwork)
-
-library(showtext)
-font_add_google("Roboto Mono", family = "special")
-
-df_pw <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-14/passwords.csv') %>% 
-  # Remove rows where the password is missing
-  filter(!is.na(password))
-
-
-df_pw_time <- 
-  df_pw %>% 
-  mutate(
-    time = case_when(
-      time_unit == "seconds" ~ value,
-      time_unit == "minutes" ~ value * 60,
-      time_unit == "hours" ~ value * 60 * 60,
-      time_unit == "days" ~ value * 60 * 24,
-      time_unit == "weeks" ~ value * 60 * 24 * 7,
-      time_unit == "months" ~ value * 60 * 24 * 30,
-      time_unit == "years" ~ value * 60 * 24 * 365,
-      TRUE ~ NA_real_
-    )
-  ) 
-
-
-plus <- 1000
-df_pw_plot <-
-  df_pw_time %>% 
-  mutate(time = time + plus) %>% 
-  add_row(rank = 501, time = 1)
-
-
-labels <-
-  df_pw_plot %>% 
-  # Value > 90 selects those above 90 years!
-  filter(value > 90) %>% 
-  # Create label out of the password and its rank
-  mutate(label = glue::glue("<b>{password}</b><br><span style='font-size:8pt'>Rank: {rank}</span>")) %>% 
-  # These columns give the position of the labels
-  add_column(
-    x = c(33, 332, 401, 492),
-    y = c(75000000, 90000000, 45000000, 48498112)
-  )
-
-
-main <- ggplot(df_pw_plot, aes(rank, time, color = category)) +
-  # This segment represents the vertical lines
-  geom_segment(
-    aes(x = rank, xend = rank, y = 0, yend = time), 
-    size = 0.5
-  ) +
-  # This rect is converted into the inner circle where we're going to place text
-  # when converting the plot to circular coordinates.
-  geom_rect(
-    aes(xmin = 1, xmax = 501, ymin = 0, ymax = plus), 
-    fill = "grey97", color = "grey97"
-  ) + 
-  
-  # Add our custom grid lines for the radial axis.
-  # These lines indicate one day, one week, one month and one year.
-  geom_hline(aes(yintercept = (1 * 24 * 60 + plus)), color = "grey88") +
-  geom_hline(aes(yintercept = (7 * 24 * 60 + plus)), color = "grey85") +
-  geom_hline(aes(yintercept = (30 * 24 * 60 + plus)), color = "grey82") +
-  geom_hline(aes(yintercept = (365 * 24 * 60 + plus)), color = "grey79") +
-  
-  # Add points on the end of each line
-  geom_point(aes(size = time)) +
-  
-  # Polar axis (y-axis) is in log10 scale
-  scale_y_log10(expand = c(0, 0)) +
-  
-  # Use the Prism color scale for the categories
-  rcartocolor::scale_color_carto_d(palette = "Prism", guide = "none") +
-  
-  # Assign a range for the size of the dots
-  scale_size(
-    range = c(1, 8), 
-    limits = c(plus, max(df_pw_plot$time)), 
-    guide = "none"
-  ) +
-  
-  # Make it circular!
-  coord_polar() 
-
-
-main <- main + 
-  # Add labels with `geom_richtext()`
-  geom_richtext(
-    data = labels,
-    aes(x = x, y = y, label = label, color = category),
-     lineheight = 0.8,
-     size = 2.5,
-     family = "Roboto Mono",
-     label.color = NA
-  ) +
-  # Regular text with `geom_text()`
-  # Note that coordinates are explicitly passed here.
-  geom_text(
-    x = 500, y = 1.2,
-    label = "********\nCracking\nYour Favorite\nPassword",
-    family = "Roboto Mono Medium",
-    size = 6,
-    lineheight = 0.87,
-    color = "grey60"
-  ) +
-  geom_text(
-    x = 250, y = 0.25,
-    label = "********",
-    family = "Roboto Mono Medium",
-    size = 6,
-    lineheight = 0.87,
-    color = "grey60"
-  ) +
-  geom_text(
-    x = 250, y = 1.1,
-    label = "Time it takes to crack the 500 most\ncommon passwords by online guessing.\nSorted by rank and colored by category.",
-    family = "Roboto Mono",
-    size = 2,
-    lineheight = 0.87,
-    color = "grey73"
-  ) +
-  geom_text(
-    x = 250, y = 1.95,
-    label = "Time is displayed on a logarithmic scale\nwith the rings representing one day,\none week, one month, and one year\n(from inner to outer ring).",
-    family = "Roboto Mono",
-    size = 2,
-    lineheight = 0.87,
-    color = "grey73"
-  )
-
-facet_data <- 
-  df_pw_plot %>% 
-  add_row(rank = 501, time = 1, category = unique(df_pw_plot$category)) %>% 
-  # This is where we add line breaks
-  mutate(
-    cat_label = case_when(
-      category == "cool-macho" ~ "cool-\nmacho",
-      category == "nerdy-pop" ~ "nerdy-\npop",
-      category == "password-related" ~ "password-\nrelated",
-      category == "rebellious-rude" ~ "rebel-\nlious-\nrude",
-      category == "simple-alphanumeric" ~ "simple-\nalpha-\nnumeric",
-      TRUE ~ category
-    )
-  ) %>% 
-  filter(!is.na(category))
-
-
-# Much of the code is the same than the code above.
-
-facet <- ggplot(facet_data, aes(rank, time, color = category)) +
-  geom_segment(
-    aes(x = rank, xend = rank, y = 0, yend = time), 
-    size = 0.6
-  ) +
-  geom_rect(
-    aes(xmin = 1, xmax = 501, ymin = 0, ymax = plus), 
-    fill = "grey97", color = "grey97"
-  ) + 
-  geom_hline(aes(yintercept = (1 * 24 * 60 + plus)), color = "grey82", size = 0.2) +
-  geom_hline(aes(yintercept = (7 * 24 * 60 + plus)), color = "grey79", size = 0.2) +
-  geom_hline(aes(yintercept = (30 * 24 * 60 + plus)), color = "grey76", size = 0.2) +
-  geom_hline(aes(yintercept = (365 * 24 * 60 + plus)), color = "grey73", size = 0.2) +
-  geom_point(aes(size = time)) +
-  
-  # This is what adds the label within each circle
-  geom_text(
-    aes(label = cat_label, color = category),
-    x = 500, y = 0,
-    family = "Roboto Mono Medium",
-    size = 2.5,
-    lineheight = 0.87
-  ) +
-  # This is what wraps the panels for the categories into a layout of 2 rows
-  facet_wrap(~ category, ncol = 2) +
-  coord_polar() + 
-  scale_y_log10(expand = c(0, 0)) + 
-  rcartocolor::scale_color_carto_d(palette = "Prism", guide = "none") +
-  scale_size(
-    range = c(0.5, 7), 
-    limits = c(plus, max(df_pw_plot$time)), 
-    guide = "none"
-  ) + 
-  theme(
-    strip.text = element_blank(), 
-  )
-  
-
-# Customize the main panel (top-panel)
-main <- main + 
-  # This 'theme_void' adds a completely empty theme 
-  theme_void() + 
-  # These negative margins are VERY important to obtain a tight layout.
-  # theme(
-  #   plot.margin = margin(-50, -180, -70, -180, "lines"),
-  # )
-NULL
-  
-facet <- facet + 
-  # Same theme_void for the lower panels
-  theme_void() +
-  # theme(
-  #   # Negative spacing between panels, which means they overlap
-  #   panel.spacing = unit(-8, "lines"),
-  #   # Negative margin on top, to decrease blank space between these panels
-  #   # and the main plot on top
-  #   plot.margin = margin(-40, 50, 10, 50)
-  # ) + 
-  # # Adjust settings for the caption
-  theme(
-    plot.caption = element_text(
-      family = "Roboto Mono Medium", 
-      size = 20, 
-      color = "grey60", 
-      hjust = 5#, 
-      # margin = margin(-50, 10, 30, 10)
-    )
-  ) + 
-  # Add caption
-  labs(caption = "Visualization by Cédric Scherer ∙ Data by Knowledge is Beautiful")
-
-
-# Combine the two plots
-# The '+' means to 'add' the two ggplot2 plots together.
-panel <- (main + facet) + 
-  plot_layout(
-    ncol = 2, # Results in one plot on top and another on the bottom.
-    heights = c(1, 0.28) # Height assigned to each plot
-  ) 
-
-panel
-```
-
-:::
-
-::: {.column width = "10%"}
+![](./images/password.png)
 
 :::
 :::
 
 ::: image-ref
-Example from [The R Graph Gallery](https://r-graph-gallery.com/web-circular-lollipop-plot-with-ggplot2.html). 
+Beispiel aus der [The R Graph Gallery](https://r-graph-gallery.com/web-circular-lollipop-plot-with-ggplot2.html). 
 :::
 
 
@@ -687,7 +456,6 @@ p_line
 #| eval: false
 ```
 
-
 :::
 
 
@@ -702,6 +470,11 @@ p_line
 
 [Achtung]{.highlight} 
 
+:::
+
+:::{.column width = "50%"}
+
+:::
 :::
 
 ## Boxplot
