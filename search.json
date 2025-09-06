@@ -602,39 +602,60 @@
     "text": "Beautiful\n\nBeispiele verschönert"
   },
   {
+    "objectID": "sessions/Einführung/slides.html#eine-der-ersten-karten",
+    "href": "sessions/Einführung/slides.html#eine-der-ersten-karten",
+    "title": "Einführung",
+    "section": "Eine der ersten Karten",
+    "text": "Eine der ersten Karten\n\n\nDr. John Snow zeichnete die Todesfälle durch Cholera in Zentral-London im September 1854 auf.\nWasserpumpen wurden mit einem x markiert.\nDadurch ließ sich die Broad Street Pumpe als Quelle der Epidemie identifizieren.\n\n\n\n\nBild von ReserachGate"
+  },
+  {
     "objectID": "sessions/Einführung/slides.html#section-2",
     "href": "sessions/Einführung/slides.html#section-2",
     "title": "Einführung",
     "section": "",
-    "text": "Example from The R Graph Gallery."
+    "text": "Beispiel aus der The R Graph Gallery."
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#der-best-plot-jemals",
+    "href": "sessions/Einführung/slides.html#der-best-plot-jemals",
+    "title": "Einführung",
+    "section": "Der best Plot jemals?",
+    "text": "Der best Plot jemals?\n\nVerluste der napoleonischen Armee beim Russlandfeldzug 1812–1813, von Charles Joseph Minard. Es werden 6 Dimensionen dargestellt!\n\nImage from Wikipedia."
   },
   {
     "objectID": "sessions/Einführung/slides.html#section-3",
     "href": "sessions/Einführung/slides.html#section-3",
     "title": "Einführung",
     "section": "",
-    "text": "https://static.ksta.de/__images/2025/04/24/b3b17a0b-1da5-4e0f-9d6e-d321b248e1fa.jpeg?q=75&q=70&rect=0,259,4000,2250&w=2000&h=1334&fm=jpeg&s=cd6fd9eb8760f10aad114f59d21d74ce"
+    "text": "Code von [https://www.data-to-viz.com/story/MapConnection.html]."
   },
   {
-    "objectID": "sessions/Einführung/slides.html#section-4",
-    "href": "sessions/Einführung/slides.html#section-4",
+    "objectID": "sessions/Einführung/slides.html#rstudio-projekte",
+    "href": "sessions/Einführung/slides.html#rstudio-projekte",
     "title": "Einführung",
-    "section": "",
-    "text": "Image from Wikipedia."
+    "section": "RStudio Projekte",
+    "text": "RStudio Projekte\nHilft ungemein beim Organisieren von Dateien und Code!\n\n\n\nErstelle ein RStudio Projekt in einem Ordner für diesen Workshop."
   },
   {
-    "objectID": "sessions/Einführung/slides.html#section-6",
-    "href": "sessions/Einführung/slides.html#section-6",
+    "objectID": "sessions/Einführung/slides.html#pfade",
+    "href": "sessions/Einführung/slides.html#pfade",
     "title": "Einführung",
-    "section": "",
-    "text": "https://r-graph-gallery.com/best-r-chart-examples https://allisonhorst.com/r-packages-functions"
+    "section": "Pfade",
+    "text": "Pfade\nhere ist ein Paket zum Erstellen von Dateipfaden. Dadurch können Probleme mit relativen und absoluten Pfaden vermieden werden.\nC:\\Users\\hafiznij\\Documents\\GitHub\\IRT_workshop\\data\\gapminder_dat.rds wird zu:\nhere::here(\"data\", \"gapminder_dat.rds\").\n\nÜbungLösung\n\n\n\nLade die gapminder-Daten von GitHub herunter und in R ein.\n\n\n\n\n# install.packages(\"here\")\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))"
   },
   {
     "objectID": "sessions/Einführung/slides.html#daten",
     "href": "sessions/Einführung/slides.html#daten",
     "title": "Einführung",
     "section": "Daten",
-    "text": "Daten\n\n\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\n\n\n\n\nBild von [Amazon][(https://m.media-amazon.com/images/I/71KH-wJcv3L.jpg)."
+    "text": "Daten\n\n\n\n\n\nGapminder ist ein non-profit Projekt mit dem Ziel, mit global misconceptions aufzuräumen. Grundlage dafür ist ein Datensatz mit sozioökonomischen Indikatoren für fast alle Länder der Welt über mehrere Jahrzehnte.\n\n\n\n\nBild von Amazon."
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#quiz",
+    "href": "sessions/Einführung/slides.html#quiz",
+    "title": "Einführung",
+    "section": "Quiz",
+    "text": "Quiz\n\nÖffne Mentimeter und bearbeite das Quiz.\n\n\nFragen von Gapminder.\nFoto von NASA auf Unsplash"
   },
   {
     "objectID": "sessions/Einführung/slides.html#scatterplot",
@@ -662,7 +683,7 @@
     "href": "sessions/Einführung/slides.html#barplot-1",
     "title": "Einführung",
     "section": "Barplot",
-    "text": "Barplot\n\n\n\nDatentyp\nAchtung\n\n\nHistogram\n\n\nLineplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;% \n  filter(country %in% c(\"deu\"), time &gt;=1900, time &lt;= 2024) %&gt;% \n  drop_na(gini)\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini, color = country)) +\ngeom_line() +  \ntheme_bg() +\nlabs(title = \"Ungleichheit in Deutschland On the Rise\", \n     subtitle = \"Gini-Koeffizient von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\")\n\np_line\n\n\n\n\n\n\nLineplot\n\n\n\nDatentyp\nGut für Zeitreihen\nAchtung\n\n\nBoxplot\n\n\nKarten\n\n\nSpider-Chart\n\n\nKombiniert\n\nCo2 with grey scale\ngreens with green scale\n\n\n\nPlotly\n\n\n\ngganimate\n\n\nGenerative Art"
+    "text": "Barplot\n\n\n\nDatentyp\nAchtung\n\n\nHistogram\n\n\nLineplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;% \n  filter(country %in% c(\"deu\"), time &gt;=1900, time &lt;= 2024) %&gt;% \n  drop_na(gini)\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini, color = country)) +\ngeom_line() +  \ntheme_bg() +\nlabs(title = \"Ungleichheit in Deutschland On the Rise\", \n     subtitle = \"Gini-Koeffizient von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\")\n\np_line\n\n\n\n\n\n\nLineplot\n\n\n\nDatentyp\nGut für Zeitreihen\nAchtung\n\n\n\n\nBoxplot\n\nKarten\n\nSpider-Chart\n\nKombiniert\n\nCo2 with grey scale\ngreens with green scale\n\n\nPlotly\n\n\n\ngganimate\n\n\nGenerative Art\n\n\n{background-image=“images/habeck.jpeg” background-size=“1225px”}}\n\nBild von Static."
   },
   {
     "objectID": "sessions/Einführung/slides.html#histogram",
@@ -683,7 +704,7 @@
     "href": "sessions/Einführung/slides.html#lineplot-1",
     "title": "Einführung",
     "section": "Lineplot",
-    "text": "Lineplot\n\n\n\nDatentyp\nGut für Zeitreihen\nAchtung\n\n\nBoxplot\n\n\nKarten\n\n\nSpider-Chart\n\n\nKombiniert\n\nCo2 with grey scale\ngreens with green scale\n\n\n\nPlotly\n\n\n\ngganimate\n\n\nGenerative Art"
+    "text": "Lineplot\n\n\n\nDatentyp\nGut für Zeitreihen\nAchtung\n\n\n\n\nBoxplot\n\nKarten\n\nSpider-Chart\n\nKombiniert\n\nCo2 with grey scale\ngreens with green scale\n\n\nPlotly\n\n\n\ngganimate\n\n\nGenerative Art\n\n\n{background-image=“images/habeck.jpeg” background-size=“1225px”}}\n\nBild von Static."
   },
   {
     "objectID": "sessions/Einführung/slides.html#boxplot",
@@ -726,6 +747,13 @@
     "title": "Einführung",
     "section": "Generative Art",
     "text": "Generative Art"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#background-imageimageshabeck.jpeg-background-size1225px",
+    "href": "sessions/Einführung/slides.html#background-imageimageshabeck.jpeg-background-size1225px",
+    "title": "Einführung",
+    "section": "{background-image=“images/habeck.jpeg” background-size=“1225px”}}",
+    "text": "{background-image=“images/habeck.jpeg” background-size=“1225px”}}\n\nBild von Static."
   },
   {
     "objectID": "sessions/ggplot_intro/ggplot2_basics.html",
