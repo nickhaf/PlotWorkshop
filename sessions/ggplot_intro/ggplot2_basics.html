@@ -247,12 +247,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Auslosen von Gruppen.</li>
 <li>Einzelarbeit: Jede*r erstellt in Einzelarbeit den zugewiesenen Plot (15 min).</li>
 </ol>
+<p>Idee: verschiedene Aspekte der Daten durch verschiedene Arten visualisieren. Bekommt man andere Erkenntnnisse.</p>
+<p>„Wir müssen in diesem Land wieder mehr und vor allem effizienter arbeiten. Mit Vier-Tage-Woche und Work-Life-Balance werden wir den Wohlstand dieses Landes nicht erhalten können.“ <a href="https://www.tagesspiegel.de/politik/merz-kritisiert-vier-tage-woche-und-work-life-balance-wir-mussen-in-diesem-land-wieder-mehr-arbeiten-13687588.html">Friedrich Merz</a></p>
+<p>Was sagen die Daten? Die Frage ist relative komplex, und wir versuchen uns mal anhand verschiedener Indikatoren zu nähren.</p>
 <ul>
-<li>Lineplot</li>
-<li>Barplot</li>
-<li>Densityplot</li>
-<li>Boxplot</li>
+<li>Lineplot: Arbeitsstunden (in Deutschland) nach Geschlecht</li>
+<li>Barplot: Teilzeitarbeit in Bevolkerung nach Geschlecht</li>
+<li>Densityplot: Teilzeitarbeit in Bevolkerung nach Geschlecht</li>
+<li>Boxplot: Arbeitsstunden nach Geschlecht</li>
 </ul>
+<p>Das sind die bare minimum variables, ihr konnt aber auch probieren, mehr Variablen zu integrieren.</p>
 <ol start="3" type="1">
 <li>Gruppenarbeit: Zusammenfinden in den Gruppen, um einen finalen Plot zu küren/erstellen (10 min).<br>
 </li>
@@ -263,7 +267,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Daten laden</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Daten laden</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="do">### „Wir können nicht so ganz pauschal sagen, die Deutschen arbeiten zu wenig“, sagte der CDU-Vorsitzende am Mittwoch in Berlin auf dem Tag der Bauindustrie."</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="scatterplot" class="level3">
 <h3 class="anchored" data-anchor-id="scatterplot">Scatterplot</h3>

@@ -10,13 +10,13 @@
 <atom:link href="https://nickhaf.github.io/PlotWorkshop/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <generator>quarto-1.7.34</generator>
-<lastBuildDate>Sat, 06 Sep 2025 23:39:06 GMT</lastBuildDate>
+<lastBuildDate>Sun, 07 Sep 2025 18:46:00 GMT</lastBuildDate>
 <item>
   <title>&lt;h3 style=&#39;color: #01364C;&#39;&gt;Tag 1&lt;/h3&gt;</title>
   <link>https://nickhaf.github.io/PlotWorkshop/</link>
   <description></description>
   <guid>https://nickhaf.github.io/PlotWorkshop/</guid>
-  <pubDate>Sat, 06 Sep 2025 23:39:06 GMT</pubDate>
+  <pubDate>Sun, 07 Sep 2025 18:46:00 GMT</pubDate>
 </item>
 <item>
   <title>Einführung</title>
@@ -38,7 +38,7 @@
 
  ]]></description>
   <guid>https://nickhaf.github.io/PlotWorkshop/sessions/Einführung/Einführung.html</guid>
-  <pubDate>Sat, 06 Sep 2025 23:39:06 GMT</pubDate>
+  <pubDate>Sun, 07 Sep 2025 18:46:00 GMT</pubDate>
   <media:content url="https://nickhaf.github.io/PlotWorkshop/sessions/Einführung/images/worldmap.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -62,12 +62,16 @@
 <li>Auslosen von Gruppen.</li>
 <li>Einzelarbeit: Jede*r erstellt in Einzelarbeit den zugewiesenen Plot (15 min).</li>
 </ol>
+<p>Idee: verschiedene Aspekte der Daten durch verschiedene Arten visualisieren. Bekommt man andere Erkenntnnisse.</p>
+<p>„Wir müssen in diesem Land wieder mehr und vor allem effizienter arbeiten. Mit Vier-Tage-Woche und Work-Life-Balance werden wir den Wohlstand dieses Landes nicht erhalten können.“ <a href="https://www.tagesspiegel.de/politik/merz-kritisiert-vier-tage-woche-und-work-life-balance-wir-mussen-in-diesem-land-wieder-mehr-arbeiten-13687588.html">Friedrich Merz</a></p>
+<p>Was sagen die Daten? Die Frage ist relative komplex, und wir versuchen uns mal anhand verschiedener Indikatoren zu nähren.</p>
 <ul>
-<li>Lineplot</li>
-<li>Barplot</li>
-<li>Densityplot</li>
-<li>Boxplot</li>
+<li>Lineplot: Arbeitsstunden (in Deutschland) nach Geschlecht</li>
+<li>Barplot: Teilzeitarbeit in Bevolkerung nach Geschlecht</li>
+<li>Densityplot: Teilzeitarbeit in Bevolkerung nach Geschlecht</li>
+<li>Boxplot: Arbeitsstunden nach Geschlecht</li>
 </ul>
+<p>Das sind die bare minimum variables, ihr konnt aber auch probieren, mehr Variablen zu integrieren.</p>
 <ol start="3" type="1">
 <li>Gruppenarbeit: Zusammenfinden in den Gruppen, um einen finalen Plot zu küren/erstellen (10 min).<br>
 </li>
@@ -82,7 +86,12 @@ font-style: inherit;">library</span>(ggplot2)</span>
 <span id="cb1-2"></span>
 <span id="cb1-3"><span class="do" style="color: #5E5E5E;
 background-color: null;
-font-style: italic;">## Daten laden</span></span></code></pre></div>
+font-style: italic;">## Daten laden</span></span>
+<span id="cb1-4"></span>
+<span id="cb1-5"></span>
+<span id="cb1-6"><span class="do" style="color: #5E5E5E;
+background-color: null;
+font-style: italic;">### „Wir können nicht so ganz pauschal sagen, die Deutschen arbeiten zu wenig“, sagte der CDU-Vorsitzende am Mittwoch in Berlin auf dem Tag der Bauindustrie."</span></span></code></pre></div>
 </div>
 <section id="scatterplot" class="level3">
 <h3 class="anchored" data-anchor-id="scatterplot">Scatterplot</h3>
@@ -107,7 +116,7 @@ font-style: italic;">## Daten laden</span></span></code></pre></div>
 
  ]]></description>
   <guid>https://nickhaf.github.io/PlotWorkshop/sessions/ggplot_intro/ggplot2_basics.html</guid>
-  <pubDate>Sat, 06 Sep 2025 23:39:06 GMT</pubDate>
+  <pubDate>Sun, 07 Sep 2025 18:46:00 GMT</pubDate>
   <media:content url="https://nickhaf.github.io/PlotWorkshop/sessions/ggplot_intro/images/ggplot_art.png" medium="image" type="image/png" height="108" width="144"/>
 </item>
 <item>
@@ -129,7 +138,7 @@ font-style: italic;">## Daten laden</span></span></code></pre></div>
 
  ]]></description>
   <guid>https://nickhaf.github.io/PlotWorkshop/sessions/r_basics/r_basics.html</guid>
-  <pubDate>Sat, 06 Sep 2025 23:39:06 GMT</pubDate>
+  <pubDate>Sun, 07 Sep 2025 18:46:00 GMT</pubDate>
   <media:content url="https://nickhaf.github.io/PlotWorkshop/sessions/r_basics/images/coder.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
@@ -156,7 +165,7 @@ font-style: italic;">## Daten laden</span></span></code></pre></div>
 
  ]]></description>
   <guid>https://nickhaf.github.io/PlotWorkshop/sessions/good_plots/good_plots.html</guid>
-  <pubDate>Sat, 06 Sep 2025 23:39:06 GMT</pubDate>
+  <pubDate>Sun, 07 Sep 2025 18:46:00 GMT</pubDate>
   <media:content url="https://nickhaf.github.io/PlotWorkshop/sessions/good_plots/images/mcCandless.png" medium="image" type="image/png" height="95" width="144"/>
 </item>
 <item>
@@ -179,7 +188,7 @@ font-style: italic;">## Daten laden</span></span></code></pre></div>
 
  ]]></description>
   <guid>https://nickhaf.github.io/PlotWorkshop/sessions/more_ggplot/more_ggplot.html</guid>
-  <pubDate>Sat, 06 Sep 2025 23:39:06 GMT</pubDate>
+  <pubDate>Sun, 07 Sep 2025 18:46:00 GMT</pubDate>
 </item>
 </channel>
 </rss>

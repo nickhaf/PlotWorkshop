@@ -403,7 +403,7 @@
     "href": "sessions/good_plots/slides.html#integrität-der-daten-garbage-in-garbage-out",
     "title": "Was ist eine gute Grafik?",
     "section": "Integrität der Daten: Garbage in, garbage out",
-    "text": "Integrität der Daten: Garbage in, garbage out\n\n\n\n\n\nScheinkorrelationen\nWrong data, wrong measurements, wrong interpretations …\nSloppy research\n\nP-Hacking\nCherry Picking\n\n\n\n\nFoto von Jilbert Ebrahimi auf Unsplash."
+    "text": "Integrität der Daten: Garbage in, garbage out\n\n\n\nScheinkorrelationen\nWrong data, wrong measurements, wrong interpretations …\nSloppy research\n\nP-Hacking\nCherry Picking\n\n\n\n\n\n\nFoto von Jilbert Ebrahimi auf Unsplash."
   },
   {
     "objectID": "sessions/good_plots/slides.html#fehlender-kontext",
@@ -438,7 +438,7 @@
     "href": "sessions/good_plots/slides.html#daten-in-kontext-setzen",
     "title": "Was ist eine gute Grafik?",
     "section": "Daten in Kontext setzen",
-    "text": "Daten in Kontext setzen\n\nÜbungLösung\n\n\n\nZeichne Mittelwerte, oder hebe hervor aus einer Vergleichsmenge, z.B. europäischer Länder. Am einfachsten geht das mit einem zweiten Datensatz, der alle europäischen Länder enthält.\n\n\n\n\n\n\nHinweis\n\n\nCode\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\n\n\n\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = \"lightgrey\", alpha = 0.5) +\n  geom_smooth(color = \"black\") +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  theme_bg() +\n  labs(\n    title = \"Ungleichheit in Europa On the Rise\",\n    subtitle = \"1900 bis 2024, Gelbe Linie zeigt Deutschland\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  )\n\np_line"
+    "text": "Daten in Kontext setzen\n\nÜbungLösung\n\n\n\nZeichne Mittelwerte, oder hebe hervor aus einer Vergleichsmenge, z.B. europäischer Länder. Am einfachsten geht das mit einem zweiten Datensatz, der alle europäischen Länder enthält:\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(aes(group = country))\n\n\n\n\n\n\n\nHinweis\n\n\nCode\n## Bilde einen eignen Datensatz, der alle europöischen Lönder enthält\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\n\n\n\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = \"lightgrey\", alpha = 0.5) +\n  geom_smooth(color = \"black\") +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  theme_bg() +\n  labs(\n    title = \"Ungleichheit in Europa On the Rise\",\n    subtitle = \"1900 bis 2024, Gelbe Linie zeigt Deutschland\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  )\n\np_line"
   },
   {
     "objectID": "sessions/good_plots/slides.html#daten-in-kontext-setzen-1",
@@ -452,7 +452,14 @@
     "href": "sessions/good_plots/slides.html#achsen",
     "title": "Was ist eine gute Grafik?",
     "section": "Achsen",
-    "text": "Achsen\nKonventionen\n\nVerdrehte y-Achse\n\n\n\n\n\n776.013 Home protection; use or threatened use of deadly force; presumption of fear of death or great bodily harm.— (1) A person who is in a dwelling or residence in which the person has a right to be has no duty to retreat and has the right to stand his or her ground and use or threaten to use:\n(a) Nondeadly force against another when and to the extent that the person reasonably believes that such conduct is necessary to defend himself or herself or another against the other’s imminent use of unlawful force; or\n(b) Deadly force if he or she reasonably believes that using or threatening to use such force is necessary to prevent imminent death or great bodily harm to himself or herself or another or to prevent the imminent commission of a forcible felony.\nhttp://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0776/Sections/0776.013.html"
+    "text": "Achsen\n\nFoto von Joerg Fielenbach auf Unsplash"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#konventionen",
+    "href": "sessions/good_plots/slides.html#konventionen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Konventionen",
+    "text": "Konventionen\n\n\n\n\n\n\n\nKonventionen beachten! Die y-Achse sollte bspw. in der Regel bei 0 beginnen.\n\n\n\n\n\n\n\n\n\n776.013 Home protection; use or threatened use of deadly force; presumption of fear of death or great bodily harm.— (1) A person who is in a dwelling or residence in which the person has a right to be has no duty to retreat and has the right to stand his or her ground and use or threaten to use:\n(a) Nondeadly force against another when and to the extent that the person reasonably believes that such conduct is necessary to defend himself or herself or another against the other’s imminent use of unlawful force; or\n(b) Deadly force if he or she reasonably believes that using or threatening to use such force is necessary to prevent imminent death or great bodily harm to himself or herself or another or to prevent the imminent commission of a forcible felony.\n(Florida Satutes)"
   },
   {
     "objectID": "sessions/good_plots/slides.html#manipulation-des-bildformats",
@@ -469,32 +476,67 @@
     "text": "Reales Beispiel für Manipulation des Bildformates\n\nThe designer of the visualization, by selecting a y-axis starting point, has control over the subjective importance of the resulting differences.\n(Correll et al., 2020)\n\n\n\n\n\n\nGrafik aus Huff (1979), heruntergeladen von Observable blog."
   },
   {
+    "objectID": "sessions/good_plots/slides.html#soll-die-null-geplottet-werden",
+    "href": "sessions/good_plots/slides.html#soll-die-null-geplottet-werden",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Soll die Null geplottet werden?",
+    "text": "Soll die Null geplottet werden?"
+  },
+  {
     "objectID": "sessions/good_plots/slides.html#absolute-werte",
     "href": "sessions/good_plots/slides.html#absolute-werte",
     "title": "Was ist eine gute Grafik?",
     "section": "Absolute Werte",
-    "text": "Absolute Werte\nin der Regel ja"
+    "text": "Absolute Werte\nDie Null sollte in der Regel mitgeplottet werden, da wir uns Mengen anschauen."
   },
   {
     "objectID": "sessions/good_plots/slides.html#veränderung-der-werte",
     "href": "sessions/good_plots/slides.html#veränderung-der-werte",
     "title": "Was ist eine gute Grafik?",
     "section": "Veränderung der Werte",
-    "text": "Veränderung der Werte\nErmessensfrage:\n“If zero is in the neighborhood, invite it in!”Andrew Gelman"
+    "text": "Veränderung der Werte\nHier ist es eher eine Ermessensfrage:\n\n\n\n\n::: {.quote} “If zero is in the neighborhood, invite it in!” (Andrew Gelman)\n\n\n\n\n\n\nIn general, in a time-series, use a baseline that shows the data not the zero point (Edward Tufte)\n\n:::"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#veränderung-der-werte-1",
+    "href": "sessions/good_plots/slides.html#veränderung-der-werte-1",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Veränderung der Werte",
+    "text": "Veränderung der Werte"
   },
   {
     "objectID": "sessions/good_plots/slides.html#schneiden-von-achsen",
     "href": "sessions/good_plots/slides.html#schneiden-von-achsen",
     "title": "Was ist eine gute Grafik?",
     "section": "Schneiden von Achsen",
-    "text": "Schneiden von Achsen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn der Regel keine gute Idee."
+    "text": "Schneiden von Achsen\n\n\n\n\n\n\nIn der Regel keine gute Idee! Verzerrt die Skala."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#erkläre-auffälligkeiten",
-    "href": "sessions/good_plots/slides.html#erkläre-auffälligkeiten",
+    "objectID": "sessions/good_plots/slides.html#story-arc",
+    "href": "sessions/good_plots/slides.html#story-arc",
     "title": "Was ist eine gute Grafik?",
-    "section": "Erkläre Auffälligkeiten",
-    "text": "Erkläre Auffälligkeiten\n\nZweiten Plot hierdraus! - https://www.boeckler.de/de/boeckler-impuls-ist-deutschland-ein-ungleiches-land-3658.htm - Hintergrundlinien Europa + geom_smooth"
+    "section": "Story-Arc",
+    "text": "Story-Arc\n\nEpisodische Grafik, lass es sich entfalten.\n“If your study were reported in the newspaper, what would the headline be?”"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#zusätzliche-informationen-einbauen",
+    "href": "sessions/good_plots/slides.html#zusätzliche-informationen-einbauen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Zusätzliche Informationen einbauen",
+    "text": "Zusätzliche Informationen einbauen\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\nsteuer &lt;- gapminder_line %&gt;%\n  filter(time %in% c(1914, 1920, 1939, 1945, 1974, 1990, 1991, 1996, 2020), country == \"deu\") %&gt;%\n  arrange(time) %&gt;%\n  mutate(label = c( \"Beginn 1. WK\", \"Reichseinkommensteuer\", \"Beginn 2. WK\", \"Starke Anhebung durch Alliiert\", \"Einkommenssteuerreformgesetz\", \"Wiedervereinigung\", \"Linear-Progressiver Tarif\", \"Anhebung Freibetrage\", \"Corona\"))\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\ntheme_bg_dark() +\n  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = \"#F8F8F8\", alpha = 0.2) +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  geom_point(data = steuer) +\n  geom_text_repel(data = steuer, aes(label = label), nudge_x = c(20, 25, 10, -5, 0, 0, -10), nudge_y = c(2, 2, 2, -2, 1, -2, 1), \ncolor = \"#F4BA02\") +\n  labs(\n    title = \"Ungleichheit in Deutschland On the Rise?\",\n    subtitle = \"Gini-Koeffizient von 1850 bis 2024\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  ) +\n  geom_richtext(\n    data = data.frame(\n      x = 1900, y = 20,\n      label = \"&lt;b&gt;Gini-Koeffizient&lt;/b&gt;: &lt;br&gt; Maß für Ungleichheit. &lt;br&gt; In diesem Fall Einkommen.&lt;br&gt;0 = vollkommen gleich &lt;br&gt; 100 = maximal ungleich.\"\n    ),\n    aes(x, y, label = label),\n    hjust = 0, vjust = 0,\n    fill = \"#F4BA02\", label.color = \"#01364C\",\n    label.r = grid::unit(3, \"pt\"),\n    size = 5\n  ) \n\np_line\n\n## Add a plot on vermogen!! Evtl. einfach den Gini Koeffizienten fur ein Paar Jahre, die ich habe\n\n## https://www.econtribute.de/RePEc/ajk/ajkpbs/ECONtribute_PB_001_2020.pdf"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#vergleichen",
+    "href": "sessions/good_plots/slides.html#vergleichen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Vergleichen",
+    "text": "Vergleichen\n\nPlot\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n# \n# World Inequality Lab – Working Paper N° 2022/09\n# Wealth and its Distribution in Germany,\n# 1895-2018\n\ndf &lt;- data.frame(\n  year = c(1895,1900,1905,1910,1915,1920,1925,1930,1935,1940,\n           1945,1950,1955,1960,1965,1970,1975,1980,1985,1990,\n           1995,2000,2005,2010,2015,2018),\n  top1_share_percent = c(46,47,47.5,48,47.5,45,36,41,38,33,\n                         28,23,22,23,21,24,28,27,26,25.5,\n                         26,27,26.5,28.5,27,28)\n)\n\nggplot(df, aes(year, top1_share_percent)) +\ngeom_line()+\ngeom_point() +\nylim(c(0, 50))\n\n\n\ndat_eink &lt;- data.frame(\ncountry = rep(c(\"Schweiz\", \"Deutschland\", \"Österreich\"), 4), \nSteuer = c(rep(\"Erbschaft\", 3), rep(\"Vermögen\", 3), rep(\"Konsum\", 3), rep(\"Unternehmen\", 3)),\nanteil = c(1, 0, 1, 7, 0, 0, 26, 41, 43, 15, 12, 10))\n\np_bar &lt;- ggplot(dat_eink, aes(x = reorder(Steuer, anteil), y = anteil, fill = Steuer)) +\n  geom_bar(stat = \"identity\", position = \"dodge\") +\n  facet_wrap(vars(country)) +\n  theme_bg() +\n  labs(\n    title = \"Steueraufkommen in % des BIP\",\n    subtitle = \"Haushaltsjahr 2022\",\n    x = \"Steuerart\",\n    y = \"Anteil am BIP in %\"\n  ) +\n  geom_text(aes(label = anteil), \n            position = position_dodge(width = 0.9), \n            vjust = -0.25) +\ntheme_bg_dark()\n\n\n# https://www.wsi.de/de/blog-17857-vermoegensteuer-geht-die-schweiz-widerlegt-den-mythos-vom-unmoeglichen-68853.htm\n\n\ngapminder_usa &lt;- gapminder %&gt;%\n  filter(country %in% c(\"usa\"), time &gt;= 1850, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\np_line_usa &lt;- ggplot(data = gapminder_usa, aes(x = time, y = gini, color = country)) +\n  geom_line() +\n  theme_bg() +\n  labs(\n    title = \"Einkommens- und Erbschaftssteuer in den USA\",\n    subtitle = \"Gini-Koeffizient von 1850 bis 2024\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  ) +\n  geom_richtext(\n    data = data.frame(\n      x = 1850, y = 30,\n      label = \"Zwischen 1930 und 1980 wurden in den Vereinigten Staaten die höchsten Einkommen durchschnittlich mit 81 Prozent besteuert und die größten vererbten Vermögen mit 74 Prozent.\"\n    ),\n    aes(x, y, label = label),\n    inherit.aes = FALSE,\n    hjust = 0, vjust = 0,\n    fill = \"white\", label.color = \"black\",\n    label.r = grid::unit(3, \"pt\"),\n    size = 3.5\n  ) +theme_bg_dark()\n\n\n\n\n\n## Eine Vermogenssteuer hat das potenzial, Ungleichheit zu reduzieren, und die Abgabenlast von Konsumsteuern zu reduzieren. \n## Die USA hatten in den 80 Jahren eine 80% Vermogenssteuer. \n\n\nlibrary(patchwork)\n\n\np_line +\nannotation_custom(ggplotGrob(p_bar),\n                              xmin = 1980, ymin = 43,\n                              xmax = 2020) +\np_line_usa +\nplot_layout(widths = c(2, 1))"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#section-4",
+    "href": "sessions/good_plots/slides.html#section-4",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "Was wäre die Überschrift für eure Grafik, wenn sie in der Zeitung stehen würde?\nWelche Infos sind noch notwendig, um die Grafik zu verstehen? Wo könnte man sie einbauen?\nSoll die Abbildung aus mehreren Plots bestehen? In welcher Reihenfolge?"
   },
   {
     "objectID": "sessions/good_plots/slides.html#pulikum",
@@ -557,7 +599,7 @@
     "href": "sessions/good_plots/slides.html#nützlichkeit",
     "title": "Was ist eine gute Grafik?",
     "section": "Nützlichkeit",
-    "text": "Nützlichkeit\n“Design is a requirement, not a cosmetic addition.” nature methods\n\n\n\n\nFoto von Kelly Sikkema auf Unsplash\n\n\n\n\nFoto von Yucel Moran auf Unsplash"
+    "text": "Nützlichkeit\n\nDesign is a requirement, not a cosmetic addition. (nature methods)\n\n\n\n\n\nFoto von Kelly Sikkema auf Unsplash\n\n\n\n\nFoto von Yucel Moran auf Unsplash"
   },
   {
     "objectID": "sessions/good_plots/slides.html#funktionelles-design",
@@ -592,7 +634,21 @@
     "href": "sessions/good_plots/slides.html#nochmal-farben",
     "title": "Was ist eine gute Grafik?",
     "section": "Nochmal Farben!",
-    "text": "Nochmal Farben!\nKleine Farblehre\n“All colors are the friends of their neighbors and the lovers of their opposites.” - Marc Chagall\n\n\nNach MalteAhrens at de.wikipedia. Vectorization by User:SidShakal - Raster version from Wikimedia Commons., Gemeinfrei, Link\n\nKleine Farbenlehre\n\n\n\n\nVincent van Gogh, Public domain, via Wikimedia Commons\n\n\n\nGegenüberliegende Farben intensivieren sich gegenseitig: eine Primärfarbe, und eine Sekundärfarbe, die aus den anderen beiden Primärfarben gemischt wird. Das erzeugt stärkere Kontraste. (Van Gogh bild)\nMit weiß und schwarz lassen sich die Schattierungen hinzumischen\ntriadisches Farbschema: Fom MIttelpunkt des Farbkreises Strahlen mit gleichem Winkel abgehen lassen (So viele, wie man Farben haben will). Das wählt dann Farben mit dem größten Kontrast aus. (https://www.kunstplaza.de/fashion-design/farbenlehre-farbtheorie-styleguides-fashion-design/)"
+    "text": "Nochmal Farben!"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#kleine-farblehre",
+    "href": "sessions/good_plots/slides.html#kleine-farblehre",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Kleine Farblehre",
+    "text": "Kleine Farblehre\n“All colors are the friends of their neighbors and the lovers of their opposites.” - Marc Chagall\n\n\nNach MalteAhrens at de.wikipedia. Vectorization by User:SidShakal - Raster version from Wikimedia Commons., Gemeinfrei, Link"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#kleine-farbenlehre",
+    "href": "sessions/good_plots/slides.html#kleine-farbenlehre",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Kleine Farbenlehre",
+    "text": "Kleine Farbenlehre\n\n\n\n\nVincent van Gogh, Public domain, via Wikimedia Commons\n\n\n\nGegenüberliegende Farben intensivieren sich gegenseitig: eine Primärfarbe, und eine Sekundärfarbe, die aus den anderen beiden Primärfarben gemischt wird. Das erzeugt stärkere Kontraste. (Van Gogh bild)\nMit weiß und schwarz lassen sich die Schattierungen hinzumischen\ntriadisches Farbschema: Fom MIttelpunkt des Farbkreises Strahlen mit gleichem Winkel abgehen lassen (So viele, wie man Farben haben will). Das wählt dann Farben mit dem größten Kontrast aus. (https://www.kunstplaza.de/fashion-design/farbenlehre-farbtheorie-styleguides-fashion-design/)"
   },
   {
     "objectID": "sessions/good_plots/slides.html#takeaways",
@@ -795,7 +851,7 @@
     "href": "sessions/ggplot_intro/ggplot2_basics.html",
     "title": "ggplot2 Basics",
     "section": "",
-    "text": "View slides in full screen\n\nÜbung\n\nAufgabeLösung\n\n\n\nAuslosen von Gruppen.\nEinzelarbeit: Jede*r erstellt in Einzelarbeit den zugewiesenen Plot (15 min).\n\n\nLineplot\nBarplot\nDensityplot\nBoxplot\n\n\nGruppenarbeit: Zusammenfinden in den Gruppen, um einen finalen Plot zu küren/erstellen (10 min).\n\nPlenum: Vorstellen der Gruppenplots.\n\n\n\n\nlibrary(ggplot2)\n\n## Daten laden\n\n\nScatterplot\n\n\nBarplot\n\n\nDensityplot\nz.b. mit scatterplot kombinieren\n\n\nBoxplot\nz.b. mit scatterplot verbinden"
+    "text": "View slides in full screen\n\nÜbung\n\nAufgabeLösung\n\n\n\nAuslosen von Gruppen.\nEinzelarbeit: Jede*r erstellt in Einzelarbeit den zugewiesenen Plot (15 min).\n\nIdee: verschiedene Aspekte der Daten durch verschiedene Arten visualisieren. Bekommt man andere Erkenntnnisse.\n„Wir müssen in diesem Land wieder mehr und vor allem effizienter arbeiten. Mit Vier-Tage-Woche und Work-Life-Balance werden wir den Wohlstand dieses Landes nicht erhalten können.“ Friedrich Merz\nWas sagen die Daten? Die Frage ist relative komplex, und wir versuchen uns mal anhand verschiedener Indikatoren zu nähren.\n\nLineplot: Arbeitsstunden (in Deutschland) nach Geschlecht\nBarplot: Teilzeitarbeit in Bevolkerung nach Geschlecht\nDensityplot: Teilzeitarbeit in Bevolkerung nach Geschlecht\nBoxplot: Arbeitsstunden nach Geschlecht\n\nDas sind die bare minimum variables, ihr konnt aber auch probieren, mehr Variablen zu integrieren.\n\nGruppenarbeit: Zusammenfinden in den Gruppen, um einen finalen Plot zu küren/erstellen (10 min).\n\nPlenum: Vorstellen der Gruppenplots.\n\n\n\n\nlibrary(ggplot2)\n\n## Daten laden\n\n\n### „Wir können nicht so ganz pauschal sagen, die Deutschen arbeiten zu wenig“, sagte der CDU-Vorsitzende am Mittwoch in Berlin auf dem Tag der Bauindustrie.\"\n\n\nScatterplot\n\n\nBarplot\n\n\nDensityplot\nz.b. mit scatterplot kombinieren\n\n\nBoxplot\nz.b. mit scatterplot verbinden"
   },
   {
     "objectID": "sessions/animate_plotly/animate_plotly.html",
