@@ -696,32 +696,35 @@ Foto von <a href="https://unsplash.com/de/@henry_be?utm_content=creditCopyText&u
 - “If your study were reported in the newspaper, what would the headline be?”
 
 
-rolfs 7 
 
+## Zusätzliche Informationen einbauen
 
-## 
+::: {.panel-tabset}
+
+### Plot
 
 ```{r}
-#| label: example-line
+#| label: line_labels
 #| fig-width: 14
 #| fig-height: 7
 #| echo: false
 
 gapminder_line <- gapminder %>%
-  filter(country %in% c("deu", "che", "aut"), time >= 1850, time <= 2024) %>%
+  filter(country %in% c("deu"), time >= 1900, time <= 2024) %>%
   drop_na(gini)
 
-
 steuer <- gapminder_line %>%
-  filter(time %in% c(1883, 1923, 1952, 1974, 1990, 1997, 2020), country == "deu") %>%
+  filter(time %in% c(1914, 1920, 1939, 1945, 1974, 1990, 1991, 1996, 2020), country == "deu") %>%
   arrange(time) %>%
-  mutate(label = c("Einführung des Preußischen Ergänzungsgesetz", "Einführung der Vermögenssteuer nach preußischem Vorbild", "Vermögenssteuergestz", "Heutiges Gesetz", "Wiedervereinigung", "Aussetzung der Vermögenssteuer", "Corona"))
+  mutate(label = c( "Beginn 1. WK", "Reichseinkommensteuer", "Beginn 2. WK", "Starke Anhebung durch Alliiert", "Einkommenssteuerreformgesetz", "Wiedervereinigung", "Linear-Progressiver Tarif", "Anhebung Freibetrage", "Corona"))
 
 p_line <- ggplot(data = gapminder_line, aes(x = time, y = gini)) +
-  geom_line(aes(color = country)) +
+theme_bg_dark() +
+  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = "#F8F8F8", alpha = 0.2) +
+  geom_line(color = "#F4BA02", linewidth = 2) +
   geom_point(data = steuer) +
-  geom_text_repel(data = steuer, aes(label = label), nudge_x = c(20, 25, 10, -5, 0, 0, -10), nudge_y = c(2, 2, 2, -2, 1, -2, 1)) +
-  theme_bg() +
+  geom_text_repel(data = steuer, aes(label = label), nudge_x = c(20, 25, 10, -5, 0, 0, -10), nudge_y = c(2, 2, 2, -2, 1, -2, 1), 
+color = "#F4BA02") +
   labs(
     title = "Ungleichheit in Deutschland On the Rise?",
     subtitle = "Gini-Koeffizient von 1850 bis 2024",
@@ -730,31 +733,42 @@ p_line <- ggplot(data = gapminder_line, aes(x = time, y = gini)) +
   ) +
   geom_richtext(
     data = data.frame(
-      x = 1850, y = 30,
-      label = "<b>Gini-Koeffizient</b>: Maß für Ungleichheit.<br>0 = vollkommen gleich, 100 = maximal ungleich."
+      x = 1900, y = 20,
+      label = "<b>Gini-Koeffizient</b>: <br> Maß für Ungleichheit. <br> In diesem Fall Einkommen.<br>0 = vollkommen gleich <br> 100 = maximal ungleich."
     ),
     aes(x, y, label = label),
     hjust = 0, vjust = 0,
-    fill = "white", label.color = "black",
+    fill = "#F4BA02", label.color = "#01364C",
     label.r = grid::unit(3, "pt"),
-    size = 3.5
-  )
+    size = 5
+  ) 
 
 p_line
+
+## Add a plot on vermogen!! Evtl. einfach den Gini Koeffizienten fur ein Paar Jahre, die ich habe
 
 ## https://www.econtribute.de/RePEc/ajk/ajkpbs/ECONtribute_PB_001_2020.pdf
 ```
 
-
-## Teile auf
-
-
-## Ergänze um weitere Informationen, Vergleiche
-
-
-https://www.wsi.de/de/blog-17857-vermoegensteuer-geht-die-schweiz-widerlegt-den-mythos-vom-unmoeglichen-68853.htm
-
+### Code
 ```{r}
+#| label: line_labels
+#| eval: false
+
+```
+
+:::
+
+## Vergleichen
+
+
+::: {.panel-tabset}
+
+### Plot
+```{r}
+#| label: merged_lineplot
+#| echo: false
+
 
 # 
 # World Inequality Lab – Working Paper N° 2022/09
@@ -794,7 +808,8 @@ p_bar <- ggplot(dat_eink, aes(x = reorder(Steuer, anteil), y = anteil, fill = St
   ) +
   geom_text(aes(label = anteil), 
             position = position_dodge(width = 0.9), 
-            vjust = -0.25)
+            vjust = -0.25) +
+theme_bg_dark()
 
 
 # https://www.wsi.de/de/blog-17857-vermoegensteuer-geht-die-schweiz-widerlegt-den-mythos-vom-unmoeglichen-68853.htm
@@ -824,7 +839,7 @@ p_line_usa <- ggplot(data = gapminder_usa, aes(x = time, y = gini, color = count
     fill = "white", label.color = "black",
     label.r = grid::unit(3, "pt"),
     size = 3.5
-  )
+  ) +theme_bg_dark()
 
 
 
@@ -834,10 +849,6 @@ p_line_usa <- ggplot(data = gapminder_usa, aes(x = time, y = gini, color = count
 ## Die USA hatten in den 80 Jahren eine 80% Vermogenssteuer. 
 
 
-
-```
-
-```{r}
 library(patchwork)
 
 
@@ -850,10 +861,12 @@ plot_layout(widths = c(2, 1))
 
 ```
 
-Zweiten Plot hierdraus!
-- https://www.boeckler.de/de/boeckler-impuls-ist-deutschland-ein-ungleiches-land-3658.htm
-- Hintergrundlinien Europa + geom_smooth
+```{r}
+#| label: merged_lineplot
+#| eval: false
+```
 
+::: 
 
 ## 
 
@@ -864,6 +877,7 @@ Zweiten Plot hierdraus!
 1. Soll die Abbildung aus mehreren Plots bestehen? In welcher Reihenfolge?
 
 :::
+
 
 # Goal
 - Usefulness

@@ -29,6 +29,19 @@ theme_minimal_bg <- function() {
     )
 }
 
+theme_bg_dark <- function(){theme_bg() +
+theme(
+  strip.background = element_rect(fill = "#01364C", colour = "#F8F8F8"), #"#01364C"
+  panel.background = element_rect(fill = "#01364C", colour = "#F8F8F8"),
+  plot.background = element_rect(fill = "#01364C", colour = "#01364C"),
+  text = element_text(colour = "#F8F8F8", size = 14),
+  axis.line = element_line(colour = "#F8F8F8"),
+  axis.ticks = element_line(colour = "#F8F8F8"),
+  axis.text = element_text(colour = "#F8F8F8", size = 14),
+  panel.grid.major = element_line(colour = "black", size = 0.1),
+  panel.grid.minor = element_blank()
+)}
+
 
 theme_colors <- c(
   "#208C7A",   # darkened green (#269b88 darkened by 5%)
