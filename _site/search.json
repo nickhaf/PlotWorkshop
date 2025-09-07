@@ -1313,7 +1313,7 @@
     "href": "sessions/good_plots/slides.html#konventionen",
     "title": "Was ist eine gute Grafik?",
     "section": "Konventionen",
-    "text": "Konventionen\n\nVerdrehte y-Achse\n\n\n\n\n\n776.013 Home protection; use or threatened use of deadly force; presumption of fear of death or great bodily harm.— (1) A person who is in a dwelling or residence in which the person has a right to be has no duty to retreat and has the right to stand his or her ground and use or threaten to use:\n(a) Nondeadly force against another when and to the extent that the person reasonably believes that such conduct is necessary to defend himself or herself or another against the other’s imminent use of unlawful force; or\n(b) Deadly force if he or she reasonably believes that using or threatening to use such force is necessary to prevent imminent death or great bodily harm to himself or herself or another or to prevent the imminent commission of a forcible felony.\nhttp://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0776/Sections/0776.013.html"
+    "text": "Konventionen\n\n\n\n\n\n\n\nKonventionen beachten! Die y-Achse sollte bspw. in der Regel bei 0 beginnen.\n\n\n\n\n\n\n\n\n\n776.013 Home protection; use or threatened use of deadly force; presumption of fear of death or great bodily harm.— (1) A person who is in a dwelling or residence in which the person has a right to be has no duty to retreat and has the right to stand his or her ground and use or threaten to use:\n(a) Nondeadly force against another when and to the extent that the person reasonably believes that such conduct is necessary to defend himself or herself or another against the other’s imminent use of unlawful force; or\n(b) Deadly force if he or she reasonably believes that using or threatening to use such force is necessary to prevent imminent death or great bodily harm to himself or herself or another or to prevent the imminent commission of a forcible felony.\n(Florida Satutes)"
   },
   {
     "objectID": "sessions/good_plots/slides.html#irreführender-kontext",
@@ -1474,14 +1474,14 @@
     "href": "sessions/good_plots/slides.html#absolute-werte",
     "title": "Was ist eine gute Grafik?",
     "section": "Absolute Werte",
-    "text": "Absolute Werte\nin der Regel ja"
+    "text": "Absolute Werte\nDie Null sollte in der Regel mitgeplottet werden, da wir uns Mengen anschauen."
   },
   {
     "objectID": "sessions/good_plots/slides.html#veränderung-der-werte",
     "href": "sessions/good_plots/slides.html#veränderung-der-werte",
     "title": "Was ist eine gute Grafik?",
     "section": "Veränderung der Werte",
-    "text": "Veränderung der Werte\nErmessensfrage:\n“If zero is in the neighborhood, invite it in!”Andrew Gelman"
+    "text": "Veränderung der Werte\nHier ist es eher eine Ermessensfrage:\n\n\n\n::: {.quote} “If zero is in the neighborhood, invite it in!” (Andrew Gelman)\n\n\n\nIn general, in a time-series, use a baseline that shows the data not the zero point (Edward Tufte)\n\n:::"
   },
   {
     "objectID": "sessions/good_plots/slides.html#section-7",
@@ -1607,21 +1607,21 @@
     "href": "sessions/good_plots/slides.html#integrität-der-daten-garbage-in-garbage-out",
     "title": "Was ist eine gute Grafik?",
     "section": "Integrität der Daten: Garbage in, garbage out",
-    "text": "Integrität der Daten: Garbage in, garbage out\n\n\n\n\n\nScheinkorrelationen\nWrong data, wrong measurements, wrong interpretations …\n\nSloppy research\n\nP-Hacking\nCherry Picking\n\n\n\n\n\nFoto von Jilbert Ebrahimi auf Unsplash."
+    "text": "Integrität der Daten: Garbage in, garbage out\n\n\n\nScheinkorrelationen\nWrong data, wrong measurements, wrong interpretations …\n\nSloppy research\n\nP-Hacking\nCherry Picking\n\n\n\n\n\n\n\nFoto von Jilbert Ebrahimi auf Unsplash."
   },
   {
     "objectID": "sessions/good_plots/slides.html#achsen",
     "href": "sessions/good_plots/slides.html#achsen",
     "title": "Was ist eine gute Grafik?",
     "section": "Achsen",
-    "text": "Achsen\nKonventionen\n\nVerdrehte y-Achse\n\n\n\n\n\n776.013 Home protection; use or threatened use of deadly force; presumption of fear of death or great bodily harm.— (1) A person who is in a dwelling or residence in which the person has a right to be has no duty to retreat and has the right to stand his or her ground and use or threaten to use:\n(a) Nondeadly force against another when and to the extent that the person reasonably believes that such conduct is necessary to defend himself or herself or another against the other’s imminent use of unlawful force; or\n(b) Deadly force if he or she reasonably believes that using or threatening to use such force is necessary to prevent imminent death or great bodily harm to himself or herself or another or to prevent the imminent commission of a forcible felony.\nhttp://www.leg.state.fl.us/statutes/index.cfm?App_mode=Display_Statute&URL=0700-0799/0776/Sections/0776.013.html"
+    "text": "Achsen\n\nFoto von Joerg Fielenbach auf Unsplash"
   },
   {
     "objectID": "sessions/good_plots/slides.html#schneiden-von-achsen",
     "href": "sessions/good_plots/slides.html#schneiden-von-achsen",
     "title": "Was ist eine gute Grafik?",
     "section": "Schneiden von Achsen",
-    "text": "Schneiden von Achsen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn der Regel keine gute Idee."
+    "text": "Schneiden von Achsen\n\n\n\n\n\n\nIn der Regel keine gute Idee! Verzerrt die Skala."
   },
   {
     "objectID": "sessions/good_plots/slides.html#reales-beispiel-für-manipulation-des-bildformates",
@@ -1642,7 +1642,7 @@
     "href": "sessions/good_plots/slides.html#nochmal-farben",
     "title": "Was ist eine gute Grafik?",
     "section": "Nochmal Farben!",
-    "text": "Nochmal Farben!\nKleine Farblehre\n“All colors are the friends of their neighbors and the lovers of their opposites.” - Marc Chagall\n\n\nNach MalteAhrens at de.wikipedia. Vectorization by User:SidShakal - Raster version from Wikimedia Commons., Gemeinfrei, Link\n\nKleine Farbenlehre\n\n\n\n\nVincent van Gogh, Public domain, via Wikimedia Commons\n\n\n\nGegenüberliegende Farben intensivieren sich gegenseitig: eine Primärfarbe, und eine Sekundärfarbe, die aus den anderen beiden Primärfarben gemischt wird. Das erzeugt stärkere Kontraste. (Van Gogh bild)\nMit weiß und schwarz lassen sich die Schattierungen hinzumischen\ntriadisches Farbschema: Fom MIttelpunkt des Farbkreises Strahlen mit gleichem Winkel abgehen lassen (So viele, wie man Farben haben will). Das wählt dann Farben mit dem größten Kontrast aus. (https://www.kunstplaza.de/fashion-design/farbenlehre-farbtheorie-styleguides-fashion-design/)"
+    "text": "Nochmal Farben!"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#section",
@@ -2293,7 +2293,7 @@
     "href": "sessions/good_plots/slides.html#nützlichkeit",
     "title": "Was ist eine gute Grafik?",
     "section": "Nützlichkeit",
-    "text": "Nützlichkeit\n“Design is a requirement, not a cosmetic addition.” nature methods\n\n\n\n\nFoto von Kelly Sikkema auf Unsplash\n\n\n\n\nFoto von Yucel Moran auf Unsplash"
+    "text": "Nützlichkeit\n\nDesign is a requirement, not a cosmetic addition. (nature methods)\n\n\n\n\n\nFoto von Kelly Sikkema auf Unsplash\n\n\n\n\nFoto von Yucel Moran auf Unsplash"
   },
   {
     "objectID": "sessions/good_plots/slides.html#show-variation",
@@ -2321,7 +2321,7 @@
     "href": "sessions/good_plots/slides.html#daten-in-kontext-setzen",
     "title": "Was ist eine gute Grafik?",
     "section": "Daten in Kontext setzen",
-    "text": "Daten in Kontext setzen\n\n\nÜbung\nLösung\n\n\n\n\nZeichne Mittelwerte, oder hebe hervor aus einer Vergleichsmenge, z.B. europäische Länder. Am einfachsten geht das mit einem zweiten Datensatz, der alle europäischen Länder enthält.\n\n\n\n\n\n\nHinweis\n\nCodegapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\n\n\n\n\n\n\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = \"lightgrey\", alpha = 0.5) +\n  geom_smooth(color = \"black\") +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  theme_bg() +\n  labs(\n    title = \"Ungleichheit in Europa On the Rise\",\n    subtitle = \"1900 bis 2024, Gelbe Linie zeigt Deutschland\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  )\n\np_line"
+    "text": "Daten in Kontext setzen\n\n\nÜbung\nLösung\n\n\n\n\nZeichne Mittelwerte, oder hebe hervor aus einer Vergleichsmenge, z.B. europäischer Länder. Am einfachsten geht das mit einem zweiten Datensatz, der alle europäischen Länder enthält:\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(aes(group = country))\n\n\n\n\n\n\n\nHinweis\n\nCode## Bilde einen eignen Datensatz, der alle europöischen Lönder enthält\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\n\n\n\n\n\n\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = \"lightgrey\", alpha = 0.5) +\n  geom_smooth(color = \"black\") +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  theme_bg() +\n  labs(\n    title = \"Ungleichheit in Europa On the Rise\",\n    subtitle = \"1900 bis 2024, Gelbe Linie zeigt Deutschland\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  )\n\np_line"
   },
   {
     "objectID": "sessions/good_plots/slides.html#daten-in-kontext-setzen-1",
@@ -2336,5 +2336,19 @@
     "title": "Was ist eine gute Grafik?",
     "section": "Fehlender Kontext {background-color=“white” color = “#269b88”}",
     "text": "Fehlender Kontext {background-color=“white” color = “#269b88”}\n\n\n\n\n\nSiehe storymaps."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#soll-die-null-geplottet-werden",
+    "href": "sessions/good_plots/slides.html#soll-die-null-geplottet-werden",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Soll die Null geplottet werden?",
+    "text": "Soll die Null geplottet werden?"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#veränderung-der-werte-1",
+    "href": "sessions/good_plots/slides.html#veränderung-der-werte-1",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Veränderung der Werte",
+    "text": "Veränderung der Werte"
   }
 ]
