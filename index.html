@@ -78,13 +78,41 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-author','listing-subtitle','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-subtitle","listing-image","listing-description"],
+      searchColumns: ["listing-title","listing-author","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
     window['quarto-listings']['listing-tag1'] = new List('listing-tag1', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-tag2 .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-author','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-tag2'] = new List('listing-tag2', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -128,7 +156,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="alternate" type="application/rss+xml" title="PlotWorkshop" href="index.xml" data-external="1"></head>
+</head>
 
 <body class="nav-fixed quarto-light">
 
@@ -226,8 +254,8 @@ window.Quarto = {
     <h2 id="toc-title">Auf dieser Seite</h2>
    
   <ul>
-  <li><a href="#kursübersicht" id="toc-kursübersicht" class="nav-link active" data-scroll-target="#kursübersicht">Kursübersicht</a></li>
-  <li><a href="#zeitplan" id="toc-zeitplan" class="nav-link" data-scroll-target="#zeitplan">Zeitplan</a></li>
+  <li><a href="#tag-1" id="toc-tag-1" class="nav-link active" data-scroll-target="#tag-1">Tag 1</a></li>
+  <li><a href="#tag-2" id="toc-tag-2" class="nav-link" data-scroll-target="#tag-2">Tag 2</a></li>
   </ul>
 </nav>
     </div>
@@ -250,14 +278,170 @@ window.Quarto = {
 </header><div id="intro-heading">
 <section id="kursübersicht" class="level1">
 <h1>Kursübersicht</h1>
+<p>Ein Bild sagt mehr als tausend … Zahlen! Mit einer guten Grafik lassen sich viele Informationen übersichtlich darstellen, Sachverhalte schnell erkennen und auch an Laien komplizierte Datenlagen verständlich kommunizieren. Dabei ist eine gute Visualisierung nicht einfach: komplexe Inhalte müssen klar, präzise und effizient dargestellt werden und sollen idealerweise auch noch hübsch aussehen. In diesem Kurs lernen Teilnehmende die Grundprinzipien des „Analytical Design“ (Edward Tufte) sowie verschiedene Visualisierungsformen zur Exploration und Kommunikation univariater und multivariater Daten kennen. In diversen Übungen können sie diese Grundprinzipien bei der Erstellung von eigenen Grafiken in ggplot2 und Erweiterungen wie gganimate selbst erproben.</p>
+</section>
+<section id="kursleiter" class="level1">
+<h1>Kursleiter</h1>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><span class="highlight">Dr.&nbsp;Janine Buchholz</span> ist …</p>
+</div><div class="column" style="width:50%;">
+<p><span class="highlight">Nicklas Hafiz</span> ist Psychologe und promoviert am Institut zur Qualitätsentwicklung im Bildungswesen zu Simulationsstudien in der psychologischen Methodenforschung. Teil seiner dortigen Arbeit ist zudem die Entwicklung eines R-Pakets zur Erstellung der Grafiken für den Bildungstrend-Bericht. Zudem verfügt er über Erfahrung in der Lehre und hat bereits Veranstaltungen und Workshops zu R, Item-Response-Theorie sowie zu reproduzierbarem Arbeiten mit GitHub durchgeführt.</p>
+</div>
+</div>
+</section>
+<section id="voraussetzungen" class="level1">
+<h1>Voraussetzungen</h1>
+<p>Voraussetzungen für die Teilnahme sind Grundkenntnisse in R. Grundsätzlich können die im Kurs behandelten Inhalte aber auch in anderen Programmiersprachen umgesetzt werden. Die Teilnehmenden benötigen einen Laptop, mit welchem sie sich in Posit-Cloud einloggen können, um den Beispiel und Übungsaufgaben zu folgen.</p>
+</section>
+<section id="zeitplan" class="level1">
+<h1>Zeitplan</h1>
 </section>
 </div>  
 </div>
 
-<section id="zeitplan" class="level1">
-<h1>Zeitplan</h1>
-<div class="{tag1}">
+<section id="tag-1" class="level2">
+<h2 data-anchor-id="tag-1">Tag 1</h2>
+<div id="listing-tag1" class="quarto-listing quarto-listing-container-grid">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1757364007441" data-listing-reading-time-sort="1" data-listing-word-count-sort="24">
+<a href="./sessions/Einführung/Einführung.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="sessions/Einführung/images/worldmap.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Einführung
+</h5>
+<div class="card-text listing-description delink">
+<p>9:00 - 10:00</p>
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Janine Buchholz, Nicklas Hafiz
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1757364007501" data-listing-reading-time-sort="1" data-listing-word-count-sort="186">
+<a href="./sessions/ggplot_intro/ggplot2_basics.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="sessions/ggplot_intro/images/ggplot_art.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+ggplot2: Die Basics
+</h5>
+<div class="card-text listing-description delink">
+<p>10:10 - 11:30</p>
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Nicklas Hafiz
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="2" data-listing-file-modified-sort="1757364007678" data-listing-reading-time-sort="1" data-listing-word-count-sort="35">
+<a href="./sessions/good_plots/good_plots.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="sessions/good_plots/images/mcCandless.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Gute Plots
+</h5>
+<div class="card-text listing-description delink">
+View slides in full screen
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Janine Buchholz, Nicklas Hafiz
+</div>
+</div>
+</div>
+</div></a>
+</div>
+</div>
+<div class="listing-no-matching d-none">Keine Treffer</div>
+</div>
+</section>
+<section id="tag-2" class="level2">
+<h2 data-anchor-id="tag-2">Tag 2</h2>
+<div id="listing-tag2" class="quarto-listing quarto-listing-container-grid">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1757364007874" data-listing-reading-time-sort="1" data-listing-word-count-sort="23">
+<a href="./sessions/more_ggplot/more_ggplot.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="listing-item-img-placeholder card-img-top" style="height: 150px;">&nbsp;</div>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+ggplot2: Advanced
+</h5>
+<div class="card-text listing-description delink">
+View slides in full screen
+</div>
+<div class="card-attribution card-text-small start">
+<div class="listing-author">
+Nicklas Hafiz, Janine Buchholz
+</div>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="1">
+<a href="" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="sessions/science_plots/images/science_plot.jpg" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Wissenschaftliche Grafiken
+</h5>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="2">
+<a href="" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
 
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Explorative Grafiken
+</h5>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="3">
+<a href="" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Grafiken Druckreif machen
+</h5>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="4">
+<a href="" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+gganimate &amp; plotly
+</h5>
+</div>
+</div></a>
+</div>
+</div>
+<div class="listing-no-matching d-none">Keine Treffer</div>
 </div>
 
 
@@ -265,264 +449,7 @@ window.Quarto = {
 
 </section>
 
-<div class="quarto-listing quarto-listing-container-default" id="listing-tag1">
-<div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0">
-<div class="thumbnail"><a href="" class="no-external">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="" class="no-external">
-<h3 style="color: #01364C;">
-Tag 1
-</h3>
-</a>
-</h3>
-<div class="listing-subtitle">
-<a href="" class="no-external"></a>
-</div>
-<div class="delink listing-description"><a href="" class="no-external">
-</a></div>
-</div>
-<div class="metadata">
-<a href="" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="1" data-listing-file-modified-sort="1757348257017" data-listing-reading-time-sort="1" data-listing-word-count-sort="24">
-<div class="thumbnail"><a href="./sessions/Einführung/Einführung.html" class="no-external">
-
-<img loading="lazy" src="sessions/Einführung/images/worldmap.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./sessions/Einführung/Einführung.html" class="no-external">Einführung</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./sessions/Einführung/Einführung.html" class="no-external"></a>
-</div>
-<div class="delink listing-description"><a href="./sessions/Einführung/Einführung.html" class="no-external">
-<p><strong>Session 1</strong>: Wieso? Weshalb? Warum?</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./sessions/Einführung/Einführung.html" class="no-external">
-<div class="listing-author">
-Janine Buchholz, Nicklas Hafiz
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="2" data-listing-file-modified-sort="1757348257068" data-listing-reading-time-sort="1" data-listing-word-count-sort="186">
-<div class="thumbnail"><a href="./sessions/ggplot_intro/ggplot2_basics.html" class="no-external">
-
-<img loading="lazy" src="sessions/ggplot_intro/images/ggplot_art.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./sessions/ggplot_intro/ggplot2_basics.html" class="no-external">ggplot2: Die Basics</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./sessions/ggplot_intro/ggplot2_basics.html" class="no-external"></a>
-</div>
-<div class="delink listing-description"><a href="./sessions/ggplot_intro/ggplot2_basics.html" class="no-external">
-<p><strong>Session 2</strong>: Wie?</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./sessions/ggplot_intro/ggplot2_basics.html" class="no-external">
-<div class="listing-author">
-Nicklas Hafiz
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="3" data-listing-file-modified-sort="1757348257486" data-listing-reading-time-sort="1" data-listing-word-count-sort="19">
-<div class="thumbnail"><a href="./sessions/r_basics/r_basics.html" class="no-external">
-
-<img loading="lazy" src="sessions/r_basics/images/coder.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./sessions/r_basics/r_basics.html" class="no-external">R für Grafiken</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./sessions/r_basics/r_basics.html" class="no-external"></a>
-</div>
-<div class="delink listing-description"><a href="./sessions/r_basics/r_basics.html" class="no-external">
-<p><strong>Session 3</strong>: R für Grafiken</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./sessions/r_basics/r_basics.html" class="no-external">
-<div class="listing-author">
-Nicklas Hafiz
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="4" data-listing-file-modified-sort="1757348257251" data-listing-reading-time-sort="1" data-listing-word-count-sort="35">
-<div class="thumbnail"><a href="./sessions/good_plots/good_plots.html" class="no-external">
-
-<img loading="lazy" src="sessions/good_plots/images/mcCandless.png" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./sessions/good_plots/good_plots.html" class="no-external">Gute Plots</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./sessions/good_plots/good_plots.html" class="no-external"></a>
-</div>
-<div class="delink listing-description"><a href="./sessions/good_plots/good_plots.html" class="no-external">
-<p><strong>Session 4</strong>: Was ist eigentlich eine gute Grafik?</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./sessions/good_plots/good_plots.html" class="no-external">
-<div class="listing-author">
-Janine Buchholz, Nicklas Hafiz
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="5">
-<div class="thumbnail"><a href="" class="no-external">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="" class="no-external">
-<h3 style="color: #01364C;">
-Tag 2
-</h3>
-</a>
-</h3>
-<div class="listing-subtitle">
-<a href="" class="no-external"></a>
-</div>
-<div class="delink listing-description"><a href="" class="no-external">
-</a></div>
-</div>
-<div class="metadata">
-<a href="" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="6" data-listing-file-modified-sort="1757348257424" data-listing-reading-time-sort="1" data-listing-word-count-sort="23">
-<div class="thumbnail"><a href="./sessions/more_ggplot/more_ggplot.html" class="no-external">
-
-<div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="./sessions/more_ggplot/more_ggplot.html" class="no-external">ggplot2: Advanced</a>
-</h3>
-<div class="listing-subtitle">
-<a href="./sessions/more_ggplot/more_ggplot.html" class="no-external">Weitere Funktionen</a>
-</div>
-<div class="delink listing-description"><a href="./sessions/more_ggplot/more_ggplot.html" class="no-external">
-<p><strong>Session 5</strong>: Mehr!</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="./sessions/more_ggplot/more_ggplot.html" class="no-external">
-<div class="listing-author">
-Nicklas Hafiz, Janine Buchholz
-</div>
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="7">
-<div class="thumbnail"><a href="" class="no-external">
-
-<img loading="lazy" src="sessions/science_plots/images/science_plot.jpg" class="thumbnail-image">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="" class="no-external">Wissenschaftliche Grafiken</a>
-</h3>
-<div class="listing-subtitle">
-<a href="" class="no-external"></a>
-</div>
-<div class="delink listing-description"><a href="" class="no-external">
-<p><strong>Session 6</strong>: APA</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="8">
-<div class="thumbnail"><a href="" class="no-external">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="" class="no-external">Explorative Grafiken</a>
-</h3>
-<div class="listing-subtitle">
-<a href="" class="no-external"></a>
-</div>
-<div class="delink listing-description"><a href="" class="no-external">
-<p>Muster in Daten erkennen</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="9">
-<div class="thumbnail"><a href="" class="no-external">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="" class="no-external"><strong>Session 7</strong>: Grafiken Druckreif machen</a>
-</h3>
-<div class="listing-subtitle">
-<a href="" class="no-external"></a>
-</div>
-<div class="delink listing-description"><a href="" class="no-external">
-<p>Finalisieren und Abspeichern</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="" class="no-external">
-</a>
-</div>
-</div>
-<div class="quarto-post image-right" data-index="10">
-<div class="thumbnail"><a href="" class="no-external">
-
-</a></div>
-<div class="body">
-<h3 class="no-anchor listing-title">
-<a href="" class="no-external">gganimate &amp; plotly</a>
-</h3>
-<div class="listing-subtitle">
-<a href="" class="no-external"></a>
-</div>
-<div class="delink listing-description"><a href="" class="no-external">
-<p><strong>Session 8</strong>: Ausblick, interaktive und animierte Plots</p>
-</a></div>
-</div>
-<div class="metadata">
-<a href="" class="no-external">
-</a>
-</div>
-</div>
-</div>
-<div class="listing-no-matching d-none">Keine Treffer</div>
-</div></main> <!-- /main -->
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const isCodeAnnotation = (el) => {
