@@ -31,7 +31,7 @@ gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
 ```
 
 ## 
-Excellence in statistical graphics consists of complex ideas communicated with clarity, precision, and efficiency. [@tufte2001visualizing]
+Excellence in statistical graphics consists of complex ideas communicated with clarity, precision, and efficiency. [@tufte1983vizual]
 
 - show the data
 - induce the viewer to think about the substance rather than about methodology, graphic design, the technology of graphic production, or something else
@@ -161,10 +161,6 @@ ggplot(
 ```{r}
 #| echo: false
 
-gapminder_2020 <- gapminder %>%
-  filter(time == 2020) %>%
-  arrange(desc(co2_pcap_cons))
-
 ggplot(
   gapminder_2020[1:10, ],
   aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)
@@ -182,9 +178,6 @@ ggplot(
 :::
 :::
 
-
-## Geldwerte 
-- Wenn über Jahre verglichen wird: Inflationsbereinigen!
 
 
 ## {background-color="white"}
@@ -504,12 +497,9 @@ Die Null sollte in der Regel mitgeplottet werden, da wir uns Mengen anschauen.
 ```{r}
 #| echo: false
 
-gapminder_2020 <- gapminder %>%
-  filter(time == 2020) %>%
-  arrange(desc(co2_pcap_cons))
-
 ggplot(
-  gapminder_2020[1:10, ],
+  gapminder_2020[1:10, ] %>%
+  arrange(desc(co2_pcap_cons)),
   aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)
 ) +
   geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
@@ -626,9 +616,6 @@ In der Regel keine gute Idee! Verzerrt die Skala.
 library(ggbreak)
 
 
-gapminder_2020 <- gapminder %>%
-  filter(time == 2020) %>%
-  arrange(desc(co2_cons))
 
 ggplot(
   gapminder_2020[1:10, ],
@@ -647,14 +634,9 @@ ggplot(
 ::: fragment
 ```{r}
 #| echo: false
-
-
-gapminder_2020 <- gapminder %>%
-  filter(time == 2020) %>%
-  arrange(desc(co2_cons))
-
 ggplot(
-  gapminder_2020[1:10, ],
+  gapminder_2020[1:10, ] %>%
+  arrange(desc(co2_pcap_cons)),
   aes(x = reorder(country, co2_cons), y = co2_cons)
 ) +
   geom_bar(stat = "identity", width = 1, color = "black", fill = "#208C7A") +
@@ -845,6 +827,15 @@ plot_grid(title_theme,
 ::: image-ref
 Abbildung von [Laura Navarro Soler](https://r-graph-gallery.com/web-double-ridgeline-plot.html).
 :::
+
+## Story-Arc
+
+![](./images/food_deserts.png){.lightbox}
+
+::: {.image-ref}
+Abbildung von [Corey Jones](https://public.tableau.com/app/profile/corey.jones/viz/FindingOasesInFoodDeserts/Dashboard1).
+:::
+
 
 ## Episodische Grafik, lass es sich entfalten. 
 
@@ -1251,7 +1242,7 @@ ggplot(
   geom_bar(stat = "identity", width = 1) +
   scale_fill_manual(values = theme_colors) +
   theme_minimal() +
-  labs(title = "Share of global per capita CO2 consumption") +
+  labs(title = "Share of global per capita CO2 consumption 2020") +
   theme(
     axis.title.x = element_blank(),
     axis.text.x = element_blank(),
@@ -1309,7 +1300,9 @@ color_plot_num <- ggplot(
 
 
 color_plot_bar <- ggplot(
-  gapminder_2020,
+  gapminder_2020 %>% group_by(world_6region) %>%
+    summarise(hapiscore_whr = mean(hapiscore_whr, na.rm = TRUE)) %>%
+    drop_na(),
   aes(x = world_6region, y = hapiscore_whr, fill = world_6region)) +
   geom_bar(stat="identity", width = 1) +
   theme_bg()+ theme(axis.title.x = element_blank(),
@@ -1355,6 +1348,26 @@ color_plot_num
 ## Skalen mit Nullpunkt
 - Was zu beachten ist: unten Blau oben Rot ...
 https://ggplot2-book.org/scales-colour.html
+- Vor allem für diskrete Gruppen geeignet
+- Farbverläufe schwieriger (aber es gibt color scales dafür)
+- Bestimmte Farben (Grün = gut, Rot = Gefahr)
+
+- Intervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen
+  - Kein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten
+- Ordinal: Richtung und gute Unterscheidbarkeit im Farbraum
+- Nominalskaliert: Spriale/Diagnoale im Farbraum
+
+
+- Diskret
+- Continuous
+- Binned
+Vorgefertigte Paletten:
+
+Sequenziell
+\
+Qualitativ
+\
+Diverging
 
 
 ## Farbwahrnehmung beim Menschen {style="text-align: right;"}
@@ -1437,6 +1450,37 @@ Foto von <a href="https://unsplash.com/de/@mero_dnt?utm_content=creditCopyText&u
 :::
 
 
+## More is not always better
+
+::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| echo: false
+
+color_plot_cat
+```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+ggplot(
+  gapminder_2020,
+  aes(x = gini, y = hapiscore_whr, color = world_4region)
+) +
+  geom_point(size = 3) +
+  theme_bg() 
+```
+
+:::
+:::
+
+
+Mehr als [sechs]{.highlight} Farben sollten es auf keinen Fall werden!
+
+::: {.callout-tip}
+Alternative: Facetting. 
+:::
 
 ## Farben
 
@@ -1535,8 +1579,9 @@ Die drei Eigenschaften beschreiben das Aussehen von Farben.
 
 
 
-## 1. Unterscheidbar, aber ähnlich
+## Salienz
 
+Sticht eine Farbe hervor, ist sie besonders salient - das kann gewollt oder ungewollt sein. 
 
 ::: {.columns}
 :::{.column widht="50%}
@@ -1545,22 +1590,17 @@ Die drei Eigenschaften beschreiben das Aussehen von Farben.
 #| label: color_bias__scatter_bar
 #| echo: false
 
-theme_colors_2 <- c(
-  "#9FAFC0", # entsättigtes Dunkelblau
-  "#B49B97", # ausgebleichtes Braun
-  "#F2E2A0", # ausgebleichtes Gelb (statt Rot)
-  "#D80027", # sehr leuchtendes Rot (statt Gelb)
-  "#A7C9C3", # stark aufgehelltes Türkis
-  "#D8B88C", # heller Orange-Braun-Ton
-  "#A6B7CA", # blasser Stahlblau-Ton
-  "#BFD4C2", # sehr blasses Olivgrün
-  "#D6C1D5", # blasses Flieder/Pastell-Lila
-  "#D8D9DB" # sehr heller, neutraler Grauton
+accent_scale <- c(
+"america" = "#7FC97F",
+"east_asia_pacific" = "#699896FF", 
+"europe_central_asia" = "red", 
+"middle_east_north_africa" = "#9FAFC0", 
+"south_asia" = "#B49B97",
+"sub_saharan_africa" = "#E9E4A6FF" 
 )
 
-
 color_plot_bar +
-  scale_fill_manual(values = theme_colors_2)
+   scale_fill_manual(values = accent_scale)
 ```
 
 :::
@@ -1571,47 +1611,10 @@ color_plot_bar +
 #| label: color_balanced__scatter_bar
 #| echo: false
 
-
-theme_colors_balanced <- c(
-  "#4D9285", # gedämpftes Türkisgrün – weniger satt als Original (#208C7A)
-  "#D89035", # warmes Ocker-Orange – harmonischer als das grelle Gelb (#F4BA02)
-  "#B95454", # weiches Rot – weniger dominant als #9B1B34
-  "#4E6D84", # gemäßigtes Dunkelblau – weniger kalt als #01364C
-  "#7A5A53", # milderes Braun – balanciert zu den anderen warmen Tönen
-  "#BC8B4C", # orange-braun, passt zu Gelb & Braun (#C97E10 → abgemildert)
-  "#67829E", # etwas entsättigtes Stahlblau (#476A92)
-  "#86A18C", # grünlich-grau – Kombination aus Olive und Türkis
-  "#A68CA5", # gedecktes Violett – deutlich ruhiger als Original (#B47EB3)
-  "#B7B9BC" # kühles Hellgrau – dient als neutraler Ausgleich
-)
-
-color_plot_bar +
-  scale_fill_manual(values = theme_colors_balanced)
-```
-
-
-:::
-
-:::
-
-
-## 1. Unterscheidbar, aber ähnlich
-
-
-
-::: {.columns}
-:::{.column width="50%}
-```{r}
-#| label: color_bias_bar
-#| echo: false
-#| fig-width: 7
-#| fig-height: 7
-
-theme_colors_2 <- c(
+theme_colors_3 <- c(
   "#9FAFC0", # entsättigtes Dunkelblau
   "#B49B97", # ausgebleichtes Braun
   "#F2E2A0", # ausgebleichtes Gelb (statt Rot)
-  "#D80027", # sehr leuchtendes Rot (statt Gelb)
   "#A7C9C3", # stark aufgehelltes Türkis
   "#D8B88C", # heller Orange-Braun-Ton
   "#A6B7CA", # blasser Stahlblau-Ton
@@ -1620,144 +1623,16 @@ theme_colors_2 <- c(
   "#D8D9DB" # sehr heller, neutraler Grauton
 )
 
-color_plot_cat +
-  scale_color_manual(values = theme_colors_2) +
-  theme_bg()
-```
-:::
-
-:::{.column widht="50%}
-```{r}
-#| label: color_balanced_bar
-#| echo: false
-#| fig-width: 7
-#| fig-height: 7
-
-theme_colors_balanced <- c(
-  "#4D9285", # gedämpftes Türkisgrün – weniger satt als Original (#208C7A)
-  "#D89035", # warmes Ocker-Orange – harmonischer als das grelle Gelb (#F4BA02)
-  "#B95454", # weiches Rot – weniger dominant als #9B1B34
-  "#4E6D84", # gemäßigtes Dunkelblau – weniger kalt als #01364C
-  "#7A5A53", # milderes Braun – balanciert zu den anderen warmen Tönen
-  "#BC8B4C", # orange-braun, passt zu Gelb & Braun (#C97E10 → abgemildert)
-  "#67829E", # etwas entsättigtes Stahlblau (#476A92)
-  "#86A18C", # grünlich-grau – Kombination aus Olive und Türkis
-  "#A68CA5", # gedecktes Violett – deutlich ruhiger als Original (#B47EB3)
-  "#B7B9BC" # kühles Hellgrau – dient als neutraler Ausgleich
-)
-
-
-color_plot_cat +
-  scale_color_manual(values = theme_colors_balanced) +
-  theme_bg()
-
-#
-#   scale_color_brewer(palette = "Dark2") +
-#   theme_minimal() +
-#   labs(title = "Share of global per capita CO2 consumption")
-```
-
-:::
-:::
-
-
-
-### Farbton, Sättigung und Helligkeit
-
-:::{.columns}
-:::{.column width="50%"}
-```{r}
-#| label: color_hue_only
-#| echo: false
-
-
-theme_colors_hue_only <- c(
-  "#D88585", # muted red
-  "#D89D85", # warm orange
-  "#CDD885", # soft olive
-  "#A9D885", # light green
-  "#85D89D", # aquamarine
-  "#85D8D8", # turquoise
-  "#85A9D8", # muted blue
-  "#9D85D8", # lavender
-  "#D885CD", # dusty pink-purple
-  "#D8859D" # rosy mauve
-)
-
-
-
-color_plot_cat +
-  scale_color_manual(values = theme_colors_hue_only)
-```
-
-
-:::
-:::{.column widht="50%}
-
-```{r}
-#| echo: false
-
-
-theme_colors_hue_varied <- c(
-  "#C15A5A", # red – more saturated & slightly darker
-  "#DA935A", # orange – a bit lighter
-  "#D4DA5A", # olive – higher lightness, less saturation
-  "#92DA5A", # light green – more saturated
-  "#5ADAA0", # aquamarine – brighter & lighter
-  "#5ADADA", # turquoise – more saturated & icy
-  "#5A92DA", # blue – stronger contrast
-  "#7A5ADA", # lavender – richer, darker
-  "#DA5AC5", # pink-purple – vivid, high saturation
-  "#DA5A8F" # mauve – mid-lightness, saturated
-)
-
-color_plot_cat +
-  scale_color_manual(values = theme_colors_hue_varied)
-```
-
-
-:::
-
-:::
-
-
-::: {.callout-tip}
-Variiert immer Farbton, Sättigung und Helligkeit gleichzeitig. 
-:::
-
-## Grau
-
-::: {.columns}
-::: {.column width="50%}
-
-```{r}
-#| echo: false
-
-theme_colors_gray <- gray_hex(theme_colors_hue_only)
-
 color_plot_bar +
-  scale_fill_manual(values = theme_colors_gray)
+   scale_fill_manual(values = theme_colors_3)
 ```
 
+
 :::
-::: {.column width="50%}
 
-```{r}
-#| echo: false
-
-theme_colors_gray_varied <- gray_hex(theme_colors_hue_varied)
-
-color_plot_bar +
-  scale_fill_manual(values = theme_colors_gray_varied)
-```
-:::
 :::
 
 
-## 2. Intuitives Verständnis: Diskrete Farben vs. Farbverläufe
-- Vor allem für diskrete Gruppen geeignet
-- Farbverläufe schwieriger (aber es gibt color scales dafür)
-- Bestimmte Farben (Grün = gut, Rot = Gefahr)
 
 ## Größe
 
@@ -1769,24 +1644,14 @@ color_plot_bar +
 #| fig-width: 6
 #| fig-height: 8
 
-
 ggplot(
   gapminder_2020,
-  aes(x = pop, y = co2_pcap_cons, color = world_6region)
+  aes(x = gini, y = hapiscore_whr, color = world_6region)
 ) +
-  geom_point(size = 4) +
-  theme_minimal() +
-  labs(title = "Share of global per capita CO2 consumption") +
-  xlim(0, 1.5 * 10^9) +
-  theme_bg() +
-  theme(
-    axis.title.x = element_blank(),
-    axis.text.x = element_blank(),
-    legend.position = "bottom",
-    legend.key.size = unit(0.4, "cm"),
-    legend.text = element_text(size = 9),
-    legend.title = element_blank()
-  )
+  geom_point(size = 1) +
+  theme_bg() 
+
+
 ```
 :::
 
@@ -1798,22 +1663,11 @@ ggplot(
 
 ggplot(
   gapminder_2020,
-  aes(x = pop, y = co2_pcap_cons, color = world_6region)
+  aes(x = gini, y = hapiscore_whr, color = world_6region)
 ) +
   geom_point(size = 2) +
-  theme_minimal() +
-  labs(title = "Share of global per capita CO2 consumption") +
-  xlim(0, 1.5 * 10^9) +
-  theme_bg() +
-  scale_color_manual(values = theme_colors_balanced) +
-  theme(
-    axis.title.x = element_blank(),
-    axis.text.x = element_blank(),
-    legend.position = "bottom",
-    legend.key.size = unit(0.4, "cm"),
-    legend.text = element_text(size = 9),
-    legend.title = element_blank()
-  )
+  theme_bg() 
+
 ```
 :::
 
@@ -1825,31 +1679,13 @@ ggplot(
 
 ggplot(
   gapminder_2020,
-  aes(x = pop, y = co2_pcap_cons, color = world_6region)
+  aes(x = gini, y = hapiscore_whr, color = world_6region)
 ) +
-  geom_point(size = 0.5) +
-  theme_minimal() +
-  labs(title = "Share of global per capita CO2 consumption") +
-  xlim(0, 1.5 * 10^9) +
-  theme_bg() +
-  scale_color_manual(values = theme_colors_balanced) +
-  theme(
-    axis.title.x = element_blank(),
-    axis.text.x = element_blank(),
-    legend.position = "bottom",
-    legend.key.size = unit(0.4, "cm"),
-    legend.text = element_text(size = 9),
-    legend.title = element_blank()
-  )
+  geom_point(size = 3) +
+  theme_bg() 
+
 ```
 :::
-:::
-
-## Fragen: Warum ist das noch eine schelchte Color scale? 
-![](./images/colorblind_check.png)
-
-::: .image-ref
-Siehe [Colblindor](https://www.color-blindness.com/coblis-color-blindness-simulator/). 
 :::
 
 
@@ -1872,30 +1708,28 @@ By Mark Fairchild, <a href="https://creativecommons.org/licenses/by-sa/3.0" titl
 - https://www.color-blindness.com/coblis-color-blindness-simulator/
 
 
-##
+## Colorblind-Check
+
+::: {.columns}
+::: {.column width="50%"}
+Auf [Colblindor](https://www.color-blindness.com/coblis-color-blindness-simulator/).
+
+![](./images/colorblind_check.png)
+
+:::
+
+::: {.column width="50%"}
+Mit [colorblindcheck](https://cran.r-project.org/web/packages/colorblindcheck/index.html).
 
 ```{r}
 library(colorblindcheck)
-palette_check(theme_colors_red, plot = TRUE)
+
+palette_check(scales::hue_pal()(6), plot = TRUE)
 ```
 
+:::
+:::
 
-## Nicht zu viele!
-
-
-## Color for coding a third dimension
-- Wie viel macht sinn?
-- Scatterplot
-- Sättigung um dimensionalität der Farben darzustellen
-
-
-
-## Farbfehlsichtigkeiten
-
-Farbsehtests
-
-
-- Farbwahrnehmung braucht Helligkeit und Fläche
 
 
 ## Anwendung in ggplot2
@@ -1906,11 +1740,7 @@ Farbsehtests
 - Nummer
 - Hex code
 
-## scale_color vs scale_fill
-
-## Farbskalen wählen
-
-## Manuell
+## Farben manuell setzen
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -1921,7 +1751,7 @@ Farbsehtests
 
 ```{r}
 #| label: manual_color_scale
-#| code-line-numbers: "5,9"
+#| code-line-numbers: "11"
 #| fig-show: hide
 
 ggplot(
@@ -1957,7 +1787,7 @@ ggplot(
 
 ```{r}
 #| label: manual_color_scale_named
-#| code-line-numbers: "5,9"
+#| code-line-numbers: "1,2,3,4,5,6,7,8,20"
 #| reults: hide
 #| fig-show: hide
 
@@ -1969,6 +1799,7 @@ my_color_scale <- c(
   "Middle East & North Africa" = "violet",
   "Americas" = "brown"
 )
+
 ggplot(
   continent_co2_pct,
   aes(
@@ -1979,7 +1810,7 @@ ggplot(
 ) +
   geom_bar(stat = "identity", width = 1) +
   theme_minimal() +
-  labs(title = "Share of global per capita CO2 consumption") +
+  labs(title = "Share of global per capita CO2 consumption 2020") +
   scale_color_manual(values = my_color_scale)
 ```
 
@@ -1992,21 +1823,23 @@ ggplot(
 
 :::
 
+::: {.callout-tip}
+Wenn du in einem Projekt die gleichen Gruppen in verschiedenen Plots zeigst, setze die Farbskala einmal mit den Gruppennamen, damit die Gruppen in allen Plots die selben Farben bekommen.
+:::
 
 :::
 :::
 
-<!-- ::: {.callout-tip} -->
-<!-- Wenn du in einem Projekt die gleichen Gruppen in verschiedenen Plots zeigst, setze die Varbskala einmal mit den Gruppennamen, damit die Gruppen in allen Plots die selben Farben bekommen.  -->
-<!-- ::: -->
+
 
 
 ## Graustufen 
 
+
+
 ```{r}
-#| reults: hide
-#| fig-show: hide
-#| code-line-numbers: "9"
+#| code-line-numbers: "12"
+#| output-location: column
 
 
 ggplot(
@@ -2019,7 +1852,7 @@ ggplot(
 ) +
   geom_bar(stat = "identity", width = 1) +
   theme_minimal() +
-  labs(title = "Share of global per capita CO2 consumption") +
+  labs(title = "Share of global per capita CO2 consumption 2020") +
   scale_fill_grey()
 ```
 
@@ -2049,7 +1882,7 @@ display.brewer.all(colorblindFriendly = FALSE)
 #| label: color_brewer
 #| reults: hide
 #| fig-show: hide
-#| code-line-numbers: "1,11"
+#| code-line-numbers: "1,12"
 
 library(RColorBrewer)
 
@@ -2101,7 +1934,7 @@ Sammlung von Paletten aus diversen Paketen
 #| label: paletteer
 #| reults: hide
 #| fig-show: hide
-#| code-line-numbers: "1,11"
+#| code-line-numbers: "1,14"
 
 library(paletteer)
 
@@ -2133,60 +1966,45 @@ ggplot(
 :::
 
 
-## Arten von Skalen
-- Intervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen
-  - Kein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten
-- Ordinal: Richtung und gute Unterscheidbarkeit im Farbraum
-- Nominalskaliert: Spriale/Diagnoale im Farbraum
-
-
-- Diskret
-- Continuous
-- Binned
-Vorgefertigte Paletten:
-
-Sequenziell
-\
-Qualitativ
-\
-Diverging
-
-
-### Weiter Tools
-
-![](./images/hue_box.jpg)
-
-
-- Colorbrewer
-- Huemint
-
-## Farben: Zusammenfassung
-
 
 ## Übung
 
-1. Teste, ob deine bisherige Abbildung für Menschen mit Farbfehlsichtigkeit lesbar ist. 
-2. Baue eine eigene Color-Palette und wende sie auf deinen Plot an. Achte dabei auf Unterscheidbarkeit (Auch color blind), aber auch auf Design. 
+::: {.exercise}
+1. Baue eine eigene Farbpalette für deinen Plot und teste sie auf Farbfehlsichtigkeiten.
+:::
 
 
 # Visual Form
 
 
-## Nützlichkeit
-
+::: {.columns}
+::: {.column width="50%}
 ::: {.quote}
 Design is a requirement, not a cosmetic addition. ([nature methods](https://www.nature.com/articles/nmeth.1783))
 :::
 
+- Nützlichkeit
+- Effizienz
+- Ästhetik
+
+:::
+::: {.column width="50%}
+![](./images/eye.jpg){.image-right}
+:::
+:::
+
+::: {.image-ref}
+Foto von <a href="https://unsplash.com/de/@samscrim?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Samuel Scrimshaw</a> auf <a href="https://unsplash.com/de/fotos/macro-photography-of-gray-alligator-eye-iq8x4Ik8mi8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+      
+:::
+
+
+## Nützlichkeit
 
 :::{.columns}
 
 ::: {.column width="50%"}
 ![](./images/remote.jpg)
-
-::: image-ref
-Foto von <a href="https://unsplash.com/de/@kellysikkema?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Kelly Sikkema</a> auf <a href="https://unsplash.com/de/fotos/drei-schwarze-fernbedienungen-auf-holztisch-HprPUHnjDgk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-:::
 
 :::
 
@@ -2194,17 +2012,17 @@ Foto von <a href="https://unsplash.com/de/@kellysikkema?utm_content=creditCopyTe
 ![](./images/remote_2.jpg)
 
 ::: image-ref
+Foto von <a href="https://unsplash.com/de/@kellysikkema?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Kelly Sikkema</a> auf <a href="https://unsplash.com/de/fotos/drei-schwarze-fernbedienungen-auf-holztisch-HprPUHnjDgk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>  
 Foto von <a href="https://unsplash.com/de/@ymoran?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Yucel Moran</a> auf <a href="https://unsplash.com/de/fotos/schwarze-fernbedienung-auf-weissem-textil-LJW-blAKI98?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 :::
 
 :::
 :::
 
+Hier gilt ganz besonders: [Simplify to Clarify]{.highlight}
 
 
 ## Funktionelles Design {.nostretch}
-
-Welche Funktion?
 
 :::{.columns}
 
@@ -2234,39 +2052,28 @@ Handschriftliche Skizze ist auch erstmal hilfreich!
 
 
 
-## 
-
-![](./images/space.png)
-
-::: image-ref
-Abbildung ovn [Cédric Scherer]https://www.behance.net/gallery/100683383/Travelling-to-Outer-Space#).
-
-:::
-
-## Simplify to clarify
+## Simplify to clarify: Data-ink ratio
 
 ::: .quote
 Data graphics should draw the viewer's attention to the sense and substance of the data, not to something else. [@tufte1983visual]
 :::
 
-## Data-ink ratio
+Auf die Spitze getrieben von @tufte1983visual: 
 
-Tufte hat das auf die Spitze getrieben, Data-ink ratio reduzieren!
 
 ::: {.columns}
 ::: {.column width="50%"}
-$$
-Data-ink ratio = \frac{Data-ink}{Total ink used to print the graphic}
-$$
+Data-ink ratio = Data-ink / Total ink used to print the graphic
 
 - Jedes Stück Tinte sollte einen Grund haben.  
-- Heuristik, nicht immer sinnvoll!
 
 :::
 ::: {.column width="50%"}
 
-EEG!
-
+![](./images/eeg.png)
+:::{.image-ref}
+<a href="https://creativecommons.org/licenses/by-sa/2.0" title="Creative Commons Attribution-Share Alike 2.0">CC BY-SA 2.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=845554">Link</a>
+:::
 :::
 :::
 
@@ -2322,15 +2129,34 @@ ggplot(
 :::
 
 ::: {.column width="33%"}
+:::{.fragment}
+
 
 0% Daten (Plotte die Daten, keine Zusammenfassungen)
+
+::: {.panel-tabset}
+### Plot
 ```{r}
+#| echo: false
+#| label: mean_plot
+
 ggplot(
   data = gapminder_2020,
   mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)
 ) +
   geom_smooth()
 ```
+
+### Code
+```{r}
+#| eval: false
+#| label: mean_plot
+
+```
+:::
+
+:::
+
 :::
 
 ::: {.column width="33%"}
@@ -2338,7 +2164,12 @@ ggplot(
 ::: {.fragment}
 ca. 90 % Daten, 10 % Achsenbeschriftungen und Legende
 
+::: {.panel-tabset}
+### Plot
 ```{r}
+#| echo: false
+#| label: tufte_plot
+
 library(ggthemes)
 ggplot(
   data = gapminder_2020,
@@ -2347,23 +2178,26 @@ ggplot(
   geom_point() +
   theme_tufte()
 ```
-:::
 
-:::
+### Code
+```{r}
+#| eval: false
+#| label: tufte_plot
 
+```
+:::
+:::
+:::
 :::
 
 ## Redundanzen 
 
-::: .quote
+::: {.quote}
 Erase non-data-ink, within reason. Erase redundant data-ink, within reaseon [@tufte1983visual]
 :::
 
-https://www.data-to-viz.com/caveat/declutter.html
 
-
-::: .exercise
-
+::: .{exercise}
 ::: {.panel-tabset}
 
 ### Frage
@@ -2372,6 +2206,7 @@ Auf wie viele Arten wird hier die Höhe der CO2 Emissionen pro Kopf dargestellt?
 
 ```{r}
 #| echo: false
+#| fig-height: 4
 
 ggplot(
   gapminder_2020[1:10, ],
@@ -2382,8 +2217,7 @@ ggplot(
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   labs(
     x = "Land",
-    y = "CO2 Consumption per capita in t",
-    title = "In China leben auch die meisten Menschen!"
+    y = "CO2 Consumption per capita in t"
   ) +
   theme_bg()
 ```
@@ -2415,7 +2249,7 @@ Balken an sich enthalten also schon redundante Informationen!
 
 Entferne alle Redundanzen, machen den Plot also "Tufte-Komform" 
 ```{r}
-#| echo: false
+#| eval: false
 
 ggplot(
   gapminder_2020[1:10, ],
@@ -2426,9 +2260,7 @@ ggplot(
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   labs(
     x = "Land",
-    y = "CO2 Consumption per capita in t",
-    title = "In China leben auch die meisten Menschen!"
-  ) +
+    y = "CO2 Consumption per capita in t") +
   theme_bg()
 ```
 
@@ -2454,8 +2286,7 @@ ggplot(
   theme(axis.text.x = element_text(angle = 90, hjust = 1), axis.ticks = element_blank()) +
   labs(
     x = "Land",
-    y = "CO2 Consumption per capita in t",
-    title = "In China leben auch die meisten Menschen!"
+    y = "CO2 Consumption per capita in t"
   ) +
   theme_tufte()
 ```
@@ -2486,8 +2317,7 @@ ggplot(
   ylim(c(0, 30)) +
   labs(
     x = "Land",
-    y = "CO2 Consumption per capita in t",
-    title = "In China leben auch die meisten Menschen!"
+    y = "CO2 Consumption per capita in t"
   ) +
   theme_tufte() +
   theme(axis.text.x = element_text(angle = 90, hjust = 1))
@@ -2504,13 +2334,45 @@ ggplot(
 ::: {.columns}
 
 ::: {.column width = "50%"}
-### Scatterplot
+### Normaler Scatterplot
+
+Box um den Plot, Grid-Linien, Achsen-Ticks: Alles keine Daten. 
 
 ::: {.panel-tabset}
 
 ### Plot
 
+```{r}
+#| label: normal_scatter
+#| echo: false
+ggplot(
+  data = gapminder_2020,
+  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)
+) +
+  geom_point() 
+```
+
+### Code
+
+```{r}
+#| label: normal_scatter
+#| eval: false
+
+```
+
+:::
+:::
+
+::: {.column width = "50%"}
+
+
+### Tufte-Scatterplot
+
 Nutzen der Ticks und Achsen-Linien, um Informationen zu transportieren. 
+
+::: {.panel-tabset}
+
+### Plot
 
 ``` {r}
 #| echo: false
@@ -2572,34 +2434,38 @@ ggplot(
   paletteer::scale_colour_paletteer_d("fishualize::Koumansetta_rainfordi")
 ```
 
-
 ### Code
 
 ```{r}
-#| echo: false
 #| label: tufte_scatter
+#| eval: false
 ```
 
 :::
 :::
-
 :::
 
 
 
 ## Verteilungen Plotten
 
+\
+\
+\
+
 Reduzieren heißt nicht, die Informationen zu reduzieren, sondern den Chart-Junk!  
 Sehr oft macht es Sinn, [die gesamte Verteilung zu plotten]{.highlight}, möglicherweise auch [zusätzlich]{.highlight} zu zusammenfassenden Statistiken.
+
+## Verteilungen plotten
 
 ::: {.columns}
 ::: {.column width = "50%"}
 
-**Boxplot**
+### Boxplot
 
 ::: {.panel-tabset}
 
-### Boxplot
+### Plot
 
 ```{r}
 #| label: boxplot_happy
@@ -2622,10 +2488,11 @@ ggplot(data = gapminder_2020 %>% drop_na(country),
 
 ```
 :::
+:::
 
 ::: {.column width = "50%"}
 
-**Tufte-Version**
+### Tufte-Boxplot
 
 ::: {.panel-tabset}
 
@@ -2654,17 +2521,15 @@ theme_tufte()
 #| eval: false
 ```
 :::
-
 :::
-
 :::
-
 
 ## Keine Angst vor leerem Raum
 
 ```{r}
 #| echo: false
 #| eval: false
+#| 
 
 library(rvest)
 library(httr)
@@ -2705,16 +2570,16 @@ df <- data.frame(
 
 ```{r}
 #| echo: false
-#| fig-height: 7
-#| fig-width: 12
+#| fig-height: 4
+#| fig-width: 7
 
 ggplot(
   data = df,
   aes(x = guns, y = mass_shootings, label = labels)
 ) +
-  geom_point(aes(colour = ifelse(country == "United States", "USA", "noUSA")), size = 5) +
+  geom_point(aes(colour = ifelse(country == "United States", "USA", "noUSA")), size = 4) +
   scale_colour_manual(values = c("lightgrey", "red")) +
-  geom_text(vjust = 2, size = 5, color = "#01364C") +
+  geom_text_repel(vjust = -3, size = 5, color = "#01364C") +
   theme_bg() +
   theme(legend.position = "none") +
   xlab("Guns per 100 Civilians") +
@@ -2722,7 +2587,7 @@ ggplot(
 ```
 
 
-::: aside
+::: {.image-ref}
 Data from [Rockefeller Institute](https://rockinst.org/blog/public-mass-shootings-around-the-world-prevalence-context-and-prevention/) and [Wikipedia](https://en.wikipedia.org/wiki/Gun_ownership). 
 :::
 
@@ -2743,20 +2608,43 @@ Aus @tufte1983visual.
 :::
 
 
+
+## Gegenentwurf: Ästhetik {background-color="black"}
+
+![](./images/space.png){.lightbox}
+
+::: {.image-ref}
+Abbildung ovn [Cédric Scherer]https://www.behance.net/gallery/100683383/Travelling-to-Outer-Space#).
+
+:::
+
+
+
+
+
 ## 
 ::: .exercise
 Wandelt euren Plot in einen Tufte-Plot um. 
 :::
 
 
-## Nochmal Farben!
+## Farben als Design-Element
 
-## Kleine Farblehre
-
-"All colors are the friends of their neighbors and the lovers of their opposites." - Marc Chagall 
+::: {.columns}
+::: {.column width="50%"}
 
 
 ![](./images/farbkreis.png)
+
+:::
+::: {.column width="50%"}
+
+::: {.quote}
+All colors are the friends of their neighbors and the lovers of their opposites. - Marc Chagall 
+::: 
+
+:::
+:::
 
 ::: image-ref
 Nach <a href="https://de.wikipedia.org/wiki/User:MalteAhrens" class="extiw" title="de:User:MalteAhrens">MalteAhrens</a> at <a class="external text" href="https://de.wikipedia.org">de.wikipedia</a>. Vectorization by <a href="//commons.wikimedia.org/wiki/User:SidShakal" title="User:SidShakal">User:SidShakal</a> - Raster version from Wikimedia Commons., Gemeinfrei, <a href="https://commons.wikimedia.org/w/index.php?curid=3574696">Link</a>
@@ -2785,18 +2673,32 @@ Nach <a href="https://de.wikipedia.org/wiki/User:MalteAhrens" class="extiw" titl
 
 
 
+## Weiter Tools
 
-## Takeaways
-Nochmal bei Tufte nachschauen
-- Kommunizieren von der größtmöglichen Anzahl von Ideen in kürzester Zeit.
-- Maximieren von Data-ink ratio
-- Minimieren von Chart-junk
-- Erhöhe Datendichte, Vervielfältige kleine Versionen der Abbildung für verschiedene Gruppen
+::: {.columns}
 
+::: {.column width="50%"}
 
+![](./images/hue_box.jpg)
 
-## Show variation!
+::: .image-ref
+Wollbox von Vincent van Gogh, mit der er Farbkombinationen getestet hat. Eigenes Bild. 
+:::
+:::
 
+::: {.column width ="50%"}
+\
+\
+- [Colorbrewer](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3)
+- [Huemint](https://huemint.com/)
+- [Pinterest](https://de.pinterest.com/cereusart/color-palettes/)
 
-# Übung
-Schlechte Grafiken verbessern: https://www.data-to-viz.com/caveats.html
+:::
+:::
+
+## Übung
+
+::: {.exercise}
+Wähle eine Grafik von ... aus und erstelle einen Plan, wie du sie verbessern würdest. 
+:::
+

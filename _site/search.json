@@ -284,7 +284,7 @@
     "href": "sessions/good_plots/slides.html#verteilungen-plotten",
     "title": "Was ist eine gute Grafik?",
     "section": "Verteilungen Plotten",
-    "text": "Verteilungen Plotten\nReduzieren heißt nicht, die Informationen zu reduzieren, sondern den Chart-Junk!\nSehr oft macht es Sinn, die gesamte Verteilung zu plotten, möglicherweise auch zusätzlich zu zusammenfassenden Statistiken.\n\n\nBoxplot\n\n\nBoxplot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_2020 %&gt;% drop_na(country),\n  aes(x = world_4region, y = hapiscore_whr, fill = world_4region)) +\n  geom_boxplot() +\n  theme(axis.ticks = element_blank(), legend.position = \"none\") +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\")\n\n\n\n\nTufte-Version\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggthemes)\n\nggplot(data = gapminder_2020 %&gt;% drop_na(country), \n  aes(x = world_4region, y = hapiscore_whr, group = world_4region)) +\ngeom_jitter(alpha = 0.5, color = \"lightgrey\") + \n  geom_tufteboxplot() +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\") +\ntheme_tufte()\n\n\n\n\nKeine Angst vor leerem Raum\n\n\nZusammenfassung\n\n\nAbove all else show the data.\nMaximize the data-ink ratio, within reason.\nErase non-data-ink, within reason.\nErase redundant data-ink, within reason.\nRevise and edit.\n\n\nAus Tufte & Graves-Morris (1983).\n\n\n\nWandelt euren Plot in einen Tufte-Plot um.\n\nNochmal Farben!\nKleine Farblehre\n“All colors are the friends of their neighbors and the lovers of their opposites.” - Marc Chagall\n\n\nNach MalteAhrens at de.wikipedia. Vectorization by User:SidShakal - Raster version from Wikimedia Commons., Gemeinfrei, Link\n\nKleine Farbenlehre\n\n\n\n\nVincent van Gogh, Public domain, via Wikimedia Commons\n\n\n\nGegenüberliegende Farben intensivieren sich gegenseitig: eine Primärfarbe, und eine Sekundärfarbe, die aus den anderen beiden Primärfarben gemischt wird. Das erzeugt stärkere Kontraste. (Van Gogh bild)\nMit weiß und schwarz lassen sich die Schattierungen hinzumischen\ntriadisches Farbschema: Fom MIttelpunkt des Farbkreises Strahlen mit gleichem Winkel abgehen lassen (So viele, wie man Farben haben will). Das wählt dann Farben mit dem größten Kontrast aus. (https://www.kunstplaza.de/fashion-design/farbenlehre-farbtheorie-styleguides-fashion-design/)\n\n\nTakeaways\nNochmal bei Tufte nachschauen - Kommunizieren von der größtmöglichen Anzahl von Ideen in kürzester Zeit. - Maximieren von Data-ink ratio - Minimieren von Chart-junk - Erhöhe Datendichte, Vervielfältige kleine Versionen der Abbildung für verschiedene Gruppen\nShow variation!\nÜbung\nSchlechte Grafiken verbessern: https://www.data-to-viz.com/caveats.html\n\n\n\n\n\n\nCorrell, M., Bertini, E., & Franconeri, S. (2020). Truncating the y-axis: Threat or menace? Proceedings of the 2020 CHI conference on human factors in computing systems, 1–12.\n\n\nHuff, D. (1979). How to lie with statistics / by Darrell Huff.\n\n\nTufte, E. R., & Graves-Morris, P. R. (1983). The visual display of quantitative information (Bd. 2). Graphics press Cheshire, CT.\n\n\n\nData from Rockefeller Institute and Wikipedia."
+    "text": "Verteilungen Plotten\n\nReduzieren heißt nicht, die Informationen zu reduzieren, sondern den Chart-Junk!\nSehr oft macht es Sinn, die gesamte Verteilung zu plotten, möglicherweise auch zusätzlich zu zusammenfassenden Statistiken."
   },
   {
     "objectID": "sessions/good_plots/slides.html#section",
@@ -494,7 +494,7 @@
     "href": "sessions/good_plots/slides.html#data-ink-ratio",
     "title": "Was ist eine gute Grafik?",
     "section": "Data-ink ratio",
-    "text": "Data-ink ratio\nTufte hat das auf die Spitze getrieben, Data-ink ratio reduzieren!\n\n\n\\[\nData-ink ratio = \\frac{Data-ink}{Total ink used to print the graphic}\n\\]\n\nJedes Stück Tinte sollte einen Grund haben.\n\nHeuristik, nicht immer sinnvoll!\n\n\nEEG!"
+    "text": "Data-ink ratio\nTufte hat das auf die Spitze getrieben, Data-ink ratio reduzieren!\n\n\nData-ink ratio = Data-ink / Total ink used to print the graphic\n\nJedes Stück Tinte sollte einen Grund haben.\n\nHeuristik, nicht immer sinnvoll!\n\n\nEEG!"
   },
   {
     "objectID": "sessions/good_plots/slides.html#farben",
@@ -802,7 +802,7 @@
     "href": "sessions/good_plots/slides.html#funktionelles-design",
     "title": "Was ist eine gute Grafik?",
     "section": "Funktionelles Design",
-    "text": "Funktionelles Design\nWelche Funktion?\n\n\n\n\nFoto von BVG\n\n\n\n\nFoto von BVG\n\n\n\n\n\n\n\n\nDabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen.\nHandschriftliche Skizze ist auch erstmal hilfreich!"
+    "text": "Funktionelles Design\n\n\n\n\nFoto von BVG\n\n\n\n\nFoto von BVG\n\n\n\n\n\n\n\n\nDabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen.\nHandschriftliche Skizze ist auch erstmal hilfreich!"
   },
   {
     "objectID": "sessions/example_slides.html#rezising-images",
@@ -1250,7 +1250,7 @@
     "href": "sessions/good_plots/slides.html#übung-1",
     "title": "Was ist eine gute Grafik?",
     "section": "Übung",
-    "text": "Übung\n\nTeste, ob deine bisherige Abbildung für Menschen mit Farbfehlsichtigkeit lesbar ist.\nBaue eine eigene Color-Palette und wende sie auf deinen Plot an. Achte dabei auf Unterscheidbarkeit (Auch color blind), aber auch auf Design."
+    "text": "Übung\n\n\nBaue eine eigene Farbpalette für deinen Plot und teste sie auf Farbfehlsichtigkeiten."
   },
   {
     "objectID": "sessions/good_plots/slides.html#farbton-sättigung-und-helligkeit",
@@ -1362,7 +1362,7 @@
     "href": "sessions/good_plots/slides.html#section-6",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "library(colorblindcheck)\npalette_check(theme_colors_red, plot = TRUE)\n\n\n          name n tolerance ncp ndcp min_dist mean_dist max_dist\n1       normal 6  5.009918  15   15 5.009918 16.728547 33.44315\n2 deuteranopia 6  5.009918  15   14 1.222565 18.327608 37.87902\n3   protanopia 6  5.009918  15   14 4.246069 24.103714 47.28710\n4   tritanopia 6  5.009918  15   10 1.312841  8.762491 17.91107"
+    "text": "Aufgabe\nAntwort\n\n\n\nEntferne alle Redundanzen, machen den Plot also “Tufte-Komform”\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons, fill = co2_pcap_cons, color = co2_pcap_cons, label = round(co2_pcap_cons), 2)\n) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\") +\n  geom_text(vjust = -1, color = \"black\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  labs(\n    x = \"Land\",\n    y = \"CO2 Consumption per capita in t\") +\n  theme_bg()\n\n\n\n\n\nAntwort 1\nAntwort 2\n\n\n\nEntfernen der Achsenlinien und Umrandungen. Hintergrundlinien werden innerhalb der Balken dargestellt.\n\n\n\n\n\n\n\n\n\n\nMitunter können die vertikalen und horizontalen Linien auch hilfreich beim Vergleich/bei der Zuordnung zum Land sein: “Tufte Barchart”"
   },
   {
     "objectID": "sessions/good_plots/slides.html#test-code-size",
@@ -1397,7 +1397,7 @@
     "href": "sessions/good_plots/slides.html#graustufen",
     "title": "Was ist eine gute Grafik?",
     "section": "Graustufen",
-    "text": "Graustufen\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_grey()"
+    "text": "Graustufen\n\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption 2020\") +\n  scale_fill_grey()"
   },
   {
     "objectID": "sessions/good_plots/slides.html#externe-farb-paletten",
@@ -1425,7 +1425,7 @@
     "href": "sessions/good_plots/slides.html#weiter-tools",
     "title": "Was ist eine gute Grafik?",
     "section": "Weiter Tools",
-    "text": "Weiter Tools\n\n\nColorbrewer\nHuemint"
+    "text": "Weiter Tools\n\n\n\n\nWollbox von Vincent van Gogh, mit der er Farbkombinationen getestet hat. Eigenes Bild.\n\n\n\n- Colorbrewer - Huemint - Pinterest"
   },
   {
     "objectID": "sessions/good_plots/slides.html#externe-farb-paletten-1",
@@ -1488,14 +1488,14 @@
     "href": "sessions/good_plots/slides.html#section-7",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Abbildung ovn [Cédric Scherer]https://www.behance.net/gallery/100683383/Travelling-to-Outer-Space#)."
+    "text": "Wandelt euren Plot in einen Tufte-Plot um."
   },
   {
     "objectID": "sessions/good_plots/slides.html#section-8",
     "href": "sessions/good_plots/slides.html#section-8",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Aufgabe\nAntwort\n\n\n\nEntferne alle Redundanzen, machen den Plot also “Tufte-Komform”\n\n\n\n\n\n\n\n\n\n\n\n\nAntwort 1\nAntwort 2\n\n\n\nEntfernen der Achsenlinien und Umrandungen. Hintergrundlinien werden innerhalb der Balken dargestellt.\n\n\n\n\n\n\n\n\n\n\nMitunter können die vertikalen und horizontalen Linien auch hilfreich beim Vergleich/bei der Zuordnung zum Land sein: “Tufte Barchart”"
+    "text": "Wandelt euren Plot in einen Tufte-Plot um."
   },
   {
     "objectID": "sessions/good_plots/slides.html#section-9",
@@ -2293,7 +2293,7 @@
     "href": "sessions/good_plots/slides.html#nützlichkeit",
     "title": "Was ist eine gute Grafik?",
     "section": "Nützlichkeit",
-    "text": "Nützlichkeit\n\nDesign is a requirement, not a cosmetic addition. (nature methods)\n\n\n\n\n\nFoto von Kelly Sikkema auf Unsplash\n\n\n\n\nFoto von Yucel Moran auf Unsplash"
+    "text": "Nützlichkeit\n\n\n\n\n\n\nFoto von Kelly Sikkema auf Unsplash\nFoto von Yucel Moran auf Unsplash\n\n\nHier gilt ganz besonders: Simplify to Clarify"
   },
   {
     "objectID": "sessions/good_plots/slides.html#show-variation",
@@ -2391,21 +2391,21 @@
     "href": "sessions/good_plots/slides.html#redundanzen",
     "title": "Was ist eine gute Grafik?",
     "section": "Redundanzen",
-    "text": "Redundanzen\n\nErase non-data-ink, within reason. Erase redundant data-ink, within reaseon (Tufte & Graves-Morris, 1983)\n\nhttps://www.data-to-viz.com/caveat/declutter.html\n\n\n\nFrage\nAntwort\n\n\n\nAuf wie viele Arten wird hier die Höhe der CO2 Emissionen pro Kopf dargestellt?\n\n\n\n\n\n\n\n\n\n\nAuf sieben verschiedene Arten:\n\nHöhe der linken Balkenlinie\nHöhe der rechten Balkenlinie\nHöhe der horizontalen Balkenlinie\nHöhe des Balkeninneren\nFarbe des Balkens\nPosition des Labels\nWert des Labels\n\nBalken an sich enthalten also schon redundante Informationen!"
+    "text": "Redundanzen\n\nErase non-data-ink, within reason. Erase redundant data-ink, within reaseon (Tufte & Graves-Morris, 1983)\n\n\n\n\nFrage\nAntwort\n\n\n\nAuf wie viele Arten wird hier die Höhe der CO2 Emissionen pro Kopf dargestellt?\n\n\n\n\n\n\n\n\n\n\nAuf sieben verschiedene Arten:\n\nHöhe der linken Balkenlinie\nHöhe der rechten Balkenlinie\nHöhe der horizontalen Balkenlinie\nHöhe des Balkeninneren\nFarbe des Balkens\nPosition des Labels\nWert des Labels\n\nBalken an sich enthalten also schon redundante Informationen!"
   },
   {
     "objectID": "sessions/good_plots/slides.html#maximieren-von-informationen",
     "href": "sessions/good_plots/slides.html#maximieren-von-informationen",
     "title": "Was ist eine gute Grafik?",
     "section": "Maximieren von Informationen",
-    "text": "Maximieren von Informationen\n\n\nScatterplot\n\n\nPlot\nCode\n\n\n\nNutzen der Ticks und Achsen-Linien, um Informationen zu transportieren."
+    "text": "Maximieren von Informationen\n\n\nNormaler Scatterplot\nBox um den Plot, Grid-Linien, Achsen-Ticks: Alles keine Daten.\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() \n\n\n\n\n\nTufte-Scatterplot\nNutzen der Ticks und Achsen-Linien, um Informationen zu transportieren.\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(paletteer)\n\n\nxlim_v &lt;- c(20, 80)\nylim_v &lt;- c(20, 80)\n\n# Parameter: Anzahl der Quantile, Versatz von den Rändern, kleine Lücke zwischen Segmenten\nprobs &lt;- seq(0, 1, by = 0.25) # Quartile; für Dezile: by = 0.1\noff_x &lt;- 0 # Versatz der \"y-Achse\" nach rechts\noff_y &lt;- 0 # Versatz der \"x-Achse\" nach oben\ngap &lt;- 0.2 # kleine Lücke an Segmentenden (optisch schöner)\n\nqx &lt;- quantile(gapminder_2020$gini, probs = probs, na.rm = TRUE)\nqy &lt;- quantile(gapminder_2020$hapiscore_whr, probs = probs, na.rm = TRUE)\n\n# Segment-Dataframes bauen (pro Intervall ein Segment)\nseg_x &lt;- tibble(\n  x    = pmax(qx[-length(qx)] + gap / 2, xlim_v[1]),\n  xend = pmin(qx[-1] - gap / 2, xlim_v[2]),\n  y    = ylim_v[1] + off_y,\n  yend = ylim_v[1] + off_y\n) %&gt;% filter(x &lt; xend)\n\nseg_y &lt;- tibble(\n  x    = xlim_v[1] + off_x,\n  xend = xlim_v[1] + off_x,\n  y    = pmax(qy[-length(qy)] + gap / 2, ylim_v[1]),\n  yend = pmin(qy[-1] - gap / 2, ylim_v[2])\n) %&gt;%\n  filter(y &lt; yend)\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  # Quantil-\"x-Achse\" (horizontal) leicht ins Panel versetzt\n  geom_segment(\n    data = seg_x,\n    aes(x = x, xend = xend, y = y, yend = yend),\n    inherit.aes = FALSE\n  ) +\n  # Quantil-\"y-Achse\" (vertikal) leicht ins Panel versetzt\n  geom_segment(\n    data = seg_y,\n    aes(x = x, xend = xend, y = y, yend = yend),\n    inherit.aes = FALSE\n  ) +\n  scale_x_continuous(breaks = unique(c(round(seg_x$x, 0), round(seg_x$xend, 0)))) +\n  scale_y_continuous(breaks = unique(c(round(seg_y$y, 0), round(seg_y$yend, 0)))) +\n  coord_cartesian(xlim = xlim_v, ylim = ylim_v, expand = FALSE) +\n  theme_tufte() +\n  theme(axis.ticks = element_blank()) +\n  paletteer::scale_colour_paletteer_d(\"fishualize::Koumansetta_rainfordi\")"
   },
   {
     "objectID": "sessions/good_plots/slides.html#keine-angst-vor-leerem-raum",
     "href": "sessions/good_plots/slides.html#keine-angst-vor-leerem-raum",
     "title": "Was ist eine gute Grafik?",
     "section": "Keine Angst vor leerem Raum",
-    "text": "Keine Angst vor leerem Raum"
+    "text": "Keine Angst vor leerem Raum\n\n\nData from Rockefeller Institute and Wikipedia."
   },
   {
     "objectID": "sessions/good_plots/slides.html#section-11",
@@ -2433,7 +2433,7 @@
     "href": "sessions/good_plots/slides.html#data-ink-ratio-in-praxis",
     "title": "Was ist eine gute Grafik?",
     "section": "Data-ink ratio in Praxis",
-    "text": "Data-ink ratio in Praxis\n\n\n10% Daten, 90 % Achsenbeschriftungen und Hintergrundlinien\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggthemes)\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  theme_excel() +\n  scale_x_continuous(\n    breaks = scales::pretty_breaks(n = 10), # ensure ticks\n    minor_breaks = waiver() # ensures minor ticks too\n  ) +\n  scale_y_continuous(\n    breaks = scales::pretty_breaks(n = 10),\n    minor_breaks = waiver()\n  ) +\n  theme(\n    panel.grid.major = element_line(color = \"grey60\", size = 1.2), # thick major grid\n    panel.grid.minor = element_line(color = \"grey60\", size = 0.8) # thick minor grid\n  )\n\n\n\n\n\n0% Daten (Plotte die Daten, keine Zusammenfassungen)\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_smooth()\n\n\n\n\n\n\n\n\n\nca. 90 % Daten, 10 % Achsenbeschriftungen und Legende\n\nlibrary(ggthemes)\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  theme_tufte()"
+    "text": "Data-ink ratio in Praxis\n\n\n10% Daten, 90 % Achsenbeschriftungen und Hintergrundlinien\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggthemes)\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  theme_excel() +\n  scale_x_continuous(\n    breaks = scales::pretty_breaks(n = 10), # ensure ticks\n    minor_breaks = waiver() # ensures minor ticks too\n  ) +\n  scale_y_continuous(\n    breaks = scales::pretty_breaks(n = 10),\n    minor_breaks = waiver()\n  ) +\n  theme(\n    panel.grid.major = element_line(color = \"grey60\", size = 1.2), # thick major grid\n    panel.grid.minor = element_line(color = \"grey60\", size = 0.8) # thick minor grid\n  )\n\n\n\n\n\n\n0% Daten (Plotte die Daten, keine Zusammenfassungen)\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_smooth()\n\n\n\n\n\n\n\nca. 90 % Daten, 10 % Achsenbeschriftungen und Legende\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggthemes)\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  theme_tufte()"
   },
   {
     "objectID": "sessions/good_plots/slides.html#was-bringt-uns-das-jetzt-für-unsere-abbildungen",
@@ -2475,7 +2475,7 @@
     "href": "sessions/good_plots/slides.html#skalen-mit-nullpunkt",
     "title": "Was ist eine gute Grafik?",
     "section": "Skalen mit Nullpunkt",
-    "text": "Skalen mit Nullpunkt\n\nWas zu beachten ist: unten Blau oben Rot … https://ggplot2-book.org/scales-colour.html"
+    "text": "Skalen mit Nullpunkt\n\nWas zu beachten ist: unten Blau oben Rot … https://ggplot2-book.org/scales-colour.html\nVor allem für diskrete Gruppen geeignet\nFarbverläufe schwieriger (aber es gibt color scales dafür)\nBestimmte Farben (Grün = gut, Rot = Gefahr)\n\nIntervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen\n\nKein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten\n\n\nOrdinal: Richtung und gute Unterscheidbarkeit im Farbraum\nNominalskaliert: Spriale/Diagnoale im Farbraum\nDiskret\nContinuous\nBinned Vorgefertigte Paletten:\n\nSequenziell\nQualitativ\nDiverging"
   },
   {
     "objectID": "sessions/good_plots/slides.html#andere-tiere-können-auch-mal-mehr-oder-weniger-haben",
@@ -2483,5 +2483,75 @@
     "title": "Was ist eine gute Grafik?",
     "section": "Andere Tiere können auch mal mehr oder weniger haben:",
     "text": "Andere Tiere können auch mal mehr oder weniger haben:\n\n\n\n\n\n\n\nBild aus Farbsehen der Tiere\nFoto von Ben Moreland auf Unsplash"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#more-is-not-always-better",
+    "href": "sessions/good_plots/slides.html#more-is-not-always-better",
+    "title": "Was ist eine gute Grafik?",
+    "section": "More is not always better",
+    "text": "More is not always better\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(\n  gapminder_2020,\n  aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point(size = 3) +\n  theme_bg() \n\n\n\n\n\n\n\n\nMehr als sechs Farben sollten es auf keinen Fall werden!\n\n\n\n\n\n\nAlternative: Facetting."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#salienz",
+    "href": "sessions/good_plots/slides.html#salienz",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Salienz",
+    "text": "Salienz\nSticht eine Farbe hervor, ist sie besonders salient - das kann gewollt oder ungewollt sein."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#colorblind-check",
+    "href": "sessions/good_plots/slides.html#colorblind-check",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Colorblind-Check",
+    "text": "Colorblind-Check\n\n\nAuf Colblindor.\n\n\nMit colorblindcheck.\n\nlibrary(colorblindcheck)\n\npalette_check(scales::hue_pal()(6), plot = TRUE)\n\n\n\n\n\n\n\n          name n tolerance ncp ndcp  min_dist mean_dist max_dist\n1       normal 6  28.22768  15   15 28.227682  48.60479 91.99894\n2 deuteranopia 6  28.22768  15    9  5.870477  31.50134 59.55026\n3   protanopia 6  28.22768  15    8  3.930855  32.79118 57.04317\n4   tritanopia 6  28.22768  15    9  7.200490  40.41105 71.61725"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#farben-manuell-setzen",
+    "href": "sessions/good_plots/slides.html#farben-manuell-setzen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Farben manuell setzen",
+    "text": "Farben manuell setzen\n\n\n\n\nCode\nPlot\n\n\n\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_manual(values = c(\"red\", \"green\", \"blue\", \"yellow\", \"violet\", \"brown\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nPlot\n\n\n\n\nmy_color_scale &lt;- c(\n  \"East Asia & Pacific\" = \"red\",\n  \"South Asia\" = \"green\",\n  \"Sub-Saharan Africa\" = \"blue\",\n  \"Europe & Central Asia\" = \"yellow\",\n  \"Middle East & North Africa\" = \"violet\",\n  \"Americas\" = \"brown\"\n)\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    color = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption 2020\") +\n  scale_color_manual(values = my_color_scale)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWenn du in einem Projekt die gleichen Gruppen in verschiedenen Plots zeigst, setze die Farbskala einmal mit den Gruppennamen, damit die Gruppen in allen Plots die selben Farben bekommen."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#story-arc-1",
+    "href": "sessions/good_plots/slides.html#story-arc-1",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Story-Arc",
+    "text": "Story-Arc\n\n\nAbbildung von Corey Jones."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#farben-als-design-element",
+    "href": "sessions/good_plots/slides.html#farben-als-design-element",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Farben als Design-Element",
+    "text": "Farben als Design-Element\n\n\n\n\n\nAll colors are the friends of their neighbors and the lovers of their opposites. - Marc Chagall\n\n\n\nNach MalteAhrens at de.wikipedia. Vectorization by User:SidShakal - Raster version from Wikimedia Commons., Gemeinfrei, Link"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#simplify-to-clarify-data-ink-ratio",
+    "href": "sessions/good_plots/slides.html#simplify-to-clarify-data-ink-ratio",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Simplify to clarify: Data-ink ratio",
+    "text": "Simplify to clarify: Data-ink ratio\n\nData graphics should draw the viewer’s attention to the sense and substance of the data, not to something else. (Tufte & Graves-Morris, 1983)\n\nAuf die Spitze getrieben von Tufte & Graves-Morris (1983):\n\n\nData-ink ratio = Data-ink / Total ink used to print the graphic\n\nJedes Stück Tinte sollte einen Grund haben.\n\n\n :::{.image-ref} CC BY-SA 2.0, Link\n\n:::"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#gegenentwurf-ästhetik",
+    "href": "sessions/good_plots/slides.html#gegenentwurf-ästhetik",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Gegenentwurf: Ästhetik",
+    "text": "Gegenentwurf: Ästhetik\n\n\nAbbildung ovn [Cédric Scherer]https://www.behance.net/gallery/100683383/Travelling-to-Outer-Space#)."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#verteilungen-plotten-1",
+    "href": "sessions/good_plots/slides.html#verteilungen-plotten-1",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Verteilungen plotten",
+    "text": "Verteilungen plotten\n\n\nBoxplot\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_2020 %&gt;% drop_na(country),\n  aes(x = world_4region, y = hapiscore_whr, fill = world_4region)) +\n  geom_boxplot() +\n  theme(axis.ticks = element_blank(), legend.position = \"none\") +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\")\n\n\n\n\n\nTufte-Boxplot\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggthemes)\n\nggplot(data = gapminder_2020 %&gt;% drop_na(country), \n  aes(x = world_4region, y = hapiscore_whr, group = world_4region)) +\ngeom_jitter(alpha = 0.5, color = \"lightgrey\") + \n  geom_tufteboxplot() +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\") +\ntheme_tufte()"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#übung-2",
+    "href": "sessions/good_plots/slides.html#übung-2",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Übung",
+    "text": "Übung\n\nWähle eine Grafik von … aus und erstelle einen Plan, wie du sie verbessern würdest.\n\n\n\n\n\nCorrell, M., Bertini, E., & Franconeri, S. (2020). Truncating the y-axis: Threat or menace? Proceedings of the 2020 CHI conference on human factors in computing systems, 1–12.\n\n\nHuff, D. (1979). How to lie with statistics / by Darrell Huff.\n\n\nTufte, E. R., & Graves-Morris, P. R. (1983). The visual display of quantitative information (Bd. 2). Graphics press Cheshire, CT."
   }
 ]
