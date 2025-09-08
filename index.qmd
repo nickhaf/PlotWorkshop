@@ -7,50 +7,37 @@ about:
   image: ./logo/logo3.png
 format: html
 listing:
-  id: tag1
-  type: default
-  feed: true
-  sort: false
-  contents: 
-    - title: "<h3 style='color: #01364C;'>Tag 1</h3>"
-      path: "" # No link, acts as a header
-      description: ""
+  - id: tag1
+    type: grid
+    sort: false
+    table-hover: true
+    contents: 
     - title: "Einführung"
       path: sessions/Einführung/Einführung.qmd
       image: sessions/Einführung/images/worldmap.jpg
-      description: "**Session 1**: Wieso? Weshalb? Warum?"
+      description: 9:00 - 10:00
     - title: "ggplot2: Die Basics"
       path: sessions/ggplot_intro/ggplot2_basics.qmd
       image: sessions/ggplot_intro/images/ggplot_art.png
-      description: "**Session 2**: Wie?"
-    - title: "R für Grafiken"
-      path: sessions/r_basics/r_basics.qmd
-      image: sessions/r_basics/images/coder.jpg
-      description: "**Session 3**: R für Grafiken"
+      description: 10:10 - 11:30
     - title: "Gute Plots"
       path: sessions/good_plots/good_plots.qmd
       image: sessions/good_plots/images/mcCandless.png
-      description: "**Session 4**: Was ist eigentlich eine gute Grafik?"
-    
-    - title: "<h3 style='color: #01364C;'>Tag 2</h3>"
-      path: "" # No link, acts as a header
-      description: ""
+  - id: tag2
+    type: grid
+    sort: false
+    contents:   
     - title: "ggplot2: Advanced"
       path: sessions/more_ggplot/more_ggplot.qmd
-      description: "**Session 5**: Mehr!"
     - title: "Wissenschaftliche Grafiken"
       href: sessions/science_plots/science_plots.qmd
       image: sessions/science_plots/images/science_plot.jpg
-      description: "**Session 6**: APA"
     - title: "Explorative Grafiken"
       href: sessions/explorative_plots/explorative_plots.qmd
-      description: "Muster in Daten erkennen"
-    - title: "**Session 7**: Grafiken Druckreif machen"
+    - title: "Grafiken Druckreif machen"
       href: sessions/prep_plots/prep_plots.qmd
-      description: "Finalisieren und Abspeichern"
     - title: "gganimate & plotly"
       href: sessions/animate_plotly/animate_plotly.qmd
-      description: "**Session 8**: Ausblick, interaktive und animierte Plots"
 ---
 
 
@@ -73,7 +60,7 @@ line_points <- data.frame(
   Ipy = c(0, 0.4, 0.9, 0.30, 0.7, 1)
 )
 
-bg_col <- c("#F2F2F2")
+bg_col <- c("#F8F8F8")
 l_col <- c("#424242")
 p_col <- c("#A8D6FF", "#51A7F9", "#0365C0", "#164F86", "#002452", "#000643")
 
@@ -100,14 +87,46 @@ ggplot(hex, aes(x, y)) +
 
 # Kursübersicht
 
+Ein Bild sagt mehr als tausend … Zahlen! Mit einer guten Grafik lassen sich viele Informationen übersichtlich darstellen, Sachverhalte schnell erkennen und auch an Laien komplizierte Datenlagen verständlich kommunizieren. Dabei ist eine gute Visualisierung nicht einfach: komplexe Inhalte müssen klar, präzise und effizient dargestellt werden und sollen idealerweise auch noch hübsch aussehen. In diesem Kurs lernen Teilnehmende die Grundprinzipien des „Analytical Design“ (Edward Tufte) sowie verschiedene Visualisierungsformen zur Exploration und Kommunikation univariater und multivariater Daten kennen. In diversen Übungen können sie diese Grundprinzipien bei der Erstellung von eigenen Grafiken in ggplot2 und Erweiterungen wie gganimate selbst erproben.
+
+# Kursleiter
+
+::: {.columns}
+
+::: {.column width="50%"}
+[Dr. Janine Buchholz]{.highlight} ist ...
 
 :::
+
+::: {.column width="50%"}
+[Nicklas Hafiz]{.highlight} ist Psychologe und promoviert am Institut zur Qualitätsentwicklung im Bildungswesen zu Simulationsstudien in der psychologischen Methodenforschung.
+Teil seiner dortigen Arbeit ist zudem die Entwicklung eines R-Pakets zur Erstellung der Grafiken für den Bildungstrend-Bericht.
+Zudem verfügt er über Erfahrung in der Lehre und hat bereits Veranstaltungen und Workshops zu R, Item-Response-Theorie sowie zu reproduzierbarem Arbeiten mit GitHub durchgeführt. 
+
+:::
+:::
+
+
+# Voraussetzungen
+
+Voraussetzungen für die Teilnahme sind Grundkenntnisse in R. 
+Grundsätzlich können die im Kurs behandelten Inhalte aber auch in anderen Programmiersprachen umgesetzt werden. 
+Die Teilnehmenden benötigen einen Laptop, mit welchem sie sich in Posit-Cloud einloggen können, um den Beispiel und Übungsaufgaben zu folgen.  
+
 
 # Zeitplan
-::: {tag1}
+
+:::
+
+## Tag 1
+::: {#tag1}
 
 
 :::
 
+## Tag 2
+::: {#tag2}
 
+
+:::
 
