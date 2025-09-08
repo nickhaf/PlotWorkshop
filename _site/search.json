@@ -284,7 +284,7 @@
     "href": "sessions/good_plots/slides.html#verteilungen-plotten",
     "title": "Was ist eine gute Grafik?",
     "section": "Verteilungen Plotten",
-    "text": "Verteilungen Plotten\nAber: Simplify heißt nicht immer, Informationen zu reduzieren. Eher den Clutter! Versuchen, möglichst Verteilungen/ Spannweiten anstatt nur zusammengefasster Werte zu plotten. Evtl. IQB-Mittelwertsgrafik zeigen? Eine Grafik ist kann nur einen Teil der Zusammenhänge darstellen Im Schlechtesten Fall für Manipulation nutzbar."
+    "text": "Verteilungen Plotten\nReduzieren heißt nicht, die Informationen zu reduzieren, sondern den Chart-Junk!\nSehr oft macht es Sinn, die gesamte Verteilung zu plotten, möglicherweise auch zusätzlich zu zusammenfassenden Statistiken.\n\n\nBoxplot\n\n\nBoxplot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_2020 %&gt;% drop_na(country),\n  aes(x = world_4region, y = hapiscore_whr, fill = world_4region)) +\n  geom_boxplot() +\n  theme(axis.ticks = element_blank(), legend.position = \"none\") +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\")\n\n\n\n\nTufte-Version\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggthemes)\n\nggplot(data = gapminder_2020 %&gt;% drop_na(country), \n  aes(x = world_4region, y = hapiscore_whr, group = world_4region)) +\ngeom_jitter(alpha = 0.5, color = \"lightgrey\") + \n  geom_tufteboxplot() +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\") +\ntheme_tufte()\n\n\n\n\nKeine Angst vor leerem Raum\n\n\nZusammenfassung\n\n\nAbove all else show the data.\nMaximize the data-ink ratio, within reason.\nErase non-data-ink, within reason.\nErase redundant data-ink, within reason.\nRevise and edit.\n\n\nAus Tufte & Graves-Morris (1983).\n\n\n\nWandelt euren Plot in einen Tufte-Plot um.\n\nNochmal Farben!\nKleine Farblehre\n“All colors are the friends of their neighbors and the lovers of their opposites.” - Marc Chagall\n\n\nNach MalteAhrens at de.wikipedia. Vectorization by User:SidShakal - Raster version from Wikimedia Commons., Gemeinfrei, Link\n\nKleine Farbenlehre\n\n\n\n\nVincent van Gogh, Public domain, via Wikimedia Commons\n\n\n\nGegenüberliegende Farben intensivieren sich gegenseitig: eine Primärfarbe, und eine Sekundärfarbe, die aus den anderen beiden Primärfarben gemischt wird. Das erzeugt stärkere Kontraste. (Van Gogh bild)\nMit weiß und schwarz lassen sich die Schattierungen hinzumischen\ntriadisches Farbschema: Fom MIttelpunkt des Farbkreises Strahlen mit gleichem Winkel abgehen lassen (So viele, wie man Farben haben will). Das wählt dann Farben mit dem größten Kontrast aus. (https://www.kunstplaza.de/fashion-design/farbenlehre-farbtheorie-styleguides-fashion-design/)\n\n\nTakeaways\nNochmal bei Tufte nachschauen - Kommunizieren von der größtmöglichen Anzahl von Ideen in kürzester Zeit. - Maximieren von Data-ink ratio - Minimieren von Chart-junk - Erhöhe Datendichte, Vervielfältige kleine Versionen der Abbildung für verschiedene Gruppen\nShow variation!\nÜbung\nSchlechte Grafiken verbessern: https://www.data-to-viz.com/caveats.html\n\n\n\n\n\n\nCorrell, M., Bertini, E., & Franconeri, S. (2020). Truncating the y-axis: Threat or menace? Proceedings of the 2020 CHI conference on human factors in computing systems, 1–12.\n\n\nHuff, D. (1979). How to lie with statistics / by Darrell Huff.\n\n\nTufte, E. R., & Graves-Morris, P. R. (1983). The visual display of quantitative information (Bd. 2). Graphics press Cheshire, CT.\n\n\n\nData from Rockefeller Institute and Wikipedia."
   },
   {
     "objectID": "sessions/good_plots/slides.html#section",
@@ -494,14 +494,14 @@
     "href": "sessions/good_plots/slides.html#data-ink-ratio",
     "title": "Was ist eine gute Grafik?",
     "section": "Data-ink ratio",
-    "text": "Data-ink ratio\nBeispiel zum Minimieren zeigen - Raincloud plots"
+    "text": "Data-ink ratio\nTufte hat das auf die Spitze getrieben, Data-ink ratio reduzieren!\n\n\n\\[\nData-ink ratio = \\frac{Data-ink}{Total ink used to print the graphic}\n\\]\n\nJedes Stück Tinte sollte einen Grund haben.\n\nHeuristik, nicht immer sinnvoll!\n\n\nEEG!"
   },
   {
     "objectID": "sessions/good_plots/slides.html#farben",
     "href": "sessions/good_plots/slides.html#farben",
     "title": "Was ist eine gute Grafik?",
     "section": "Farben",
-    "text": "Farben\n\n\n\n\n\n\n\nFoto von Efe Kurnaz auf Unsplash\n\nFarbwahrnehmung beim Menschen\n\n\n\n\nPrimärfarben des Lichts: Rot, Grün, Blau\n\n\nBy Original:  Penubag Vector: Victor Blacus - Own work based on: Electromagnetic-Spectrum.png, CC BY-SA 3.0, Link\n\nTrichromatizität\nDer Mensch hat in der Regel drei Zapfentypen, die unterschiedlich sensitiv für bestimmte Wellenlängen sind:\n\n\nRGB erklären (und die Addition im Gehirn?\n\n\nBy BenRG - Own work, Public Domain, Link\n\n\nAndere Tiere können auch mal mehr oder weniger haben:\n\n\nBild aus Farbsehen der Tiere\n\n\nViele Tiere sehen nur grau:\n\nWale\nHaie\nWaschbären\nFaultiere\nArmadillos\nOktopusse\nKraken\n\nWarum also überhaupt Farbwahrnehmung?\n\nIst subjektiv\nAber kann konsistent wahrgenommen werden: Eine Erdebeere im Schatten und im Sonnenlicht kann jeweils rot wahrgenommen werden. Grautöne sind stärker vom Licht abhängig.\nMore is not always better: Affen vom Amerikanischen Kontinent sind teilweise die und teilweise tetra: di kann besser INsekten ausmachen, tri Früchte gegen grünen background.\nFarbwahrnehmung also abhängig vom Drumrum\nFarben bringen nur einen Vorteil, wenn ein Individuum daraus meaning ableiten kann.\n\nFarben\nGanglienzellen übertragen keine Informationen über absolute Helligkeit, sondern über relative Helligkeit. ‣ Wie stark unterscheiden sich zwei Bereiche in ihrer Helligkeit? ‣ Wie stark hat sich eine Helligkeit gerade geändert? Allgemeine Lehre daraus: ‣ Visualisierung kann nicht gut darin sein, absolute Werte zu kommunizieren (Tabellen können das besser) ‣ Hingegen ist das visuelle System (und das Gehirn allgemein) extrem gut darin, Unterschiede und Veränderungen zu erkennen –&gt; Beispiel bringen (Simultankontrast)\n\nGraustufen nicht für absolute oder kategorische Werte nutzen (mehr als vier können iwr nicht gut unterscheiden)\n\nFarbton, Sättigung, Helligkeit\n\nFarbräume\n\nRGB: Zusammenmischen von Licht der unterschiedlichen Farben. Alle drei zusammen ergeben weiß.\nCMYK: Ausblenden aus dem weißen Farbspektrum durch Filter. Grundfarben: Gelb, Magenta (Purpur), Cyan (Blaugrün) (+K - Key (also Schwarz))\n\nWas bringt uns das jetzt für unsere Abbildungen?\n1. Unterscheidbar, aber ähnlich\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1. Unterscheidbar, aber ähnlich\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFarbton, Sättigung und Helligkeit\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVariiert immer Farbton, Sättigung und Helligkeit gleichzeitig.\n\n\n\nGrau\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2. Intuitives Verständnis: Diskrete Farben vs. Farbverläufe\n\nVor allem für diskrete Gruppen geeignet\nFarbverläufe schwieriger (aber es gibt color scales dafür)\nBestimmte Farben (Grün = gut, Rot = Gefahr)\n\nGröße\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFarbe ist relativ\nBeispiel: Grautöne vs Rottöne\n\n\nBild von Nature Methods.\n\nFarbe ist relativ\n\n\n\n\n\n\n\n\nFragen: Warum ist das noch eine schelchte Color scale?\n\n\nSiehe Colblindor.\n\nFarbfehlsichtigkeit\n\nprotanopic right side\n\nBy Mark Fairchild, CC BY-SA 3.0, Link\n\n\nProtanopie: Zapfentyp L (rot) fehlt: rot vs grün Schwäche\nDeuteranopie: Zapfentyp M (grün) fehlt: rot vs grün Schwäche\nTritanopie: Zapfentyp S (blau) fehlt: blau vs grün, gelb vs violett Schwäche\nTake the above scale and show that it is not great for color blindness\nhttps://www.color-blindness.com/coblis-color-blindness-simulator/\n\n\n\nlibrary(colorblindcheck)\npalette_check(theme_colors_red, plot = TRUE)\n\n\n\n\n\n\n\n          name n tolerance ncp ndcp min_dist mean_dist max_dist\n1       normal 6   4.95969  15   15 4.959690  19.65649 41.78456\n2 deuteranopia 6   4.95969  15   15 5.428903  19.54489 42.55279\n3   protanopia 6   4.95969  15   14 3.976233  19.39475 41.15790\n4   tritanopia 6   4.95969  15   15 5.557603  19.68098 40.93915\n\n\nDas kann man sich natürlich auch zu Nutze machen (Passt aber vielleicht eher zu space? -&gt; da nochmal zeigen, hier die Punkte enger zusammen )\n\n\n\n\n\n\n\n\n\nNicht zu viele!\nColor for coding a third dimension\n\nWie viel macht sinn?\nScatterplot\nSättigung um dimensionalität der Farben darzustellen\n\nFarbfehlsichtigkeiten\nFarbsehtests\n\nFarbwahrnehmung braucht Helligkeit und Fläche\n\nAnwendung in ggplot2\nFarben whlen\n\nName\nrgb()\nNummer\nHex code\n\nscale_color vs scale_fill\nFarbskalen wählen\nManuell\n\n\n\n\nCode\nPlot\n\n\n\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_manual(values = c(\"red\", \"green\", \"blue\", \"yellow\", \"violet\", \"brown\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nPlot\n\n\n\n\nmy_color_scale &lt;- c(\n  \"East Asia & Pacific\" = \"red\",\n  \"South Asia\" = \"green\",\n  \"Sub-Saharan Africa\" = \"blue\",\n  \"Europe & Central Asia\" = \"yellow\",\n  \"Middle East & North Africa\" = \"violet\",\n  \"Americas\" = \"brown\"\n)\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    color = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_color_manual(values = my_color_scale)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGraustufen\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_grey()\n\nExterne Farb-Paletten\n\n\nR Color Brewer\n\nlibrary(RColorBrewer)\ndisplay.brewer.all(colorblindFriendly = FALSE)\n\n\n\n\n\n\n\n\n\n\nCode\nPlot\n\n\n\n\nlibrary(RColorBrewer)\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_brewer(palette = \"PuOr\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExterne Farb-Paletten\n\n\npaletteer\nSammlung von Paletten aus diversen Paketen\n\nPalette-Finder\nGallerie\n\n\n\n\nCode\nPlot\n\n\n\n\nlibrary(paletteer)\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_paletteer_d(\"LaCroixColoR::Orange\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nArten von Skalen\n\n\nIntervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen\n\nKein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten\n\n\nOrdinal: Richtung und gute Unterscheidbarkeit im Farbraum\nNominalskaliert: Spriale/Diagnoale im Farbraum\nDiskret\nContinuous\nBinned Vorgefertigte Paletten:\n\nSequenziell\nQualitativ\nDiverging\nWeiter Tools\n\n\nColorbrewer\nHuemint\n\nFarben: Zusammenfassung\n\nData from Rockefeller Institute and Wikipedia."
+    "text": "Farben\n\n\nFarbe ist eine der wichtigsten Methoden, um Informationen zu [labeln], hervorzuheben, [Werte] zu kommunizieren, [Realität simulieren], und um zu designen und zu [dekorieren].\n\n\n\n\nFoto von Efe Kurnaz auf Unsplash"
   },
   {
     "objectID": "sessions/good_plots/slides.html#takeaways",
@@ -823,7 +823,7 @@
     "href": "sessions/good_plots/slides.html#simplify-to-clarify",
     "title": "Was ist eine gute Grafik?",
     "section": "Simplify to clarify",
-    "text": "Simplify to clarify\n\nRedundanzen Reduzieren\nFokus auf das Wesentliche https://www.data-to-viz.com/caveat/declutter.html"
+    "text": "Simplify to clarify\n\nData graphics should draw the viewer’s attention to the sense and substance of the data, not to something else. (Tufte & Graves-Morris, 1983)"
   },
   {
     "objectID": "sessions/good_plots/slides.html#gruppieren",
@@ -1131,14 +1131,14 @@
     "href": "sessions/good_plots/slides.html#farben-1",
     "title": "Was ist eine gute Grafik?",
     "section": "Farben",
-    "text": "Farben\nGanglienzellen übertragen keine Informationen über absolute Helligkeit, sondern über relative Helligkeit. ‣ Wie stark unterscheiden sich zwei Bereiche in ihrer Helligkeit? ‣ Wie stark hat sich eine Helligkeit gerade geändert? Allgemeine Lehre daraus: ‣ Visualisierung kann nicht gut darin sein, absolute Werte zu kommunizieren (Tabellen können das besser) ‣ Hingegen ist das visuelle System (und das Gehirn allgemein) extrem gut darin, Unterschiede und Veränderungen zu erkennen –&gt; Beispiel bringen (Simultankontrast)\n\nGraustufen nicht für absolute oder kategorische Werte nutzen (mehr als vier können iwr nicht gut unterscheiden)"
+    "text": "Farben\n\nGanglienzellen übertragen keine Informationen über absolute Helligkeit, sondern über relative Helligkeit.\n\nVisualisierung kann nicht gut darin sein, absolute Werte zu kommunizieren (Tabellen können das besser). Aber: Unterschiede und Veränderungen.\n\n\nBild von Nature Methods."
   },
   {
     "objectID": "sessions/good_plots/slides.html#farbwahrnehmung-beim-menschen",
     "href": "sessions/good_plots/slides.html#farbwahrnehmung-beim-menschen",
     "title": "Was ist eine gute Grafik?",
     "section": "Farbwahrnehmung beim Menschen",
-    "text": "Farbwahrnehmung beim Menschen\n\n\n\n\nPrimärfarben des Lichts: Rot, Grün, Blau\n\n\nBy Original:  Penubag Vector: Victor Blacus - Own work based on: Electromagnetic-Spectrum.png, CC BY-SA 3.0, Link"
+    "text": "Farbwahrnehmung beim Menschen\n\n\n\n\nPrimärfarben des Lichts: Rot, Grün, Blau\n\n\n\n\nBy Original:  Penubag Vector: Victor Blacus - Own work based on: Electromagnetic-Spectrum.png, CC BY-SA 3.0, Link\nBy BenRG - Own work, Public Domain, Link"
   },
   {
     "objectID": "sessions/good_plots/slides.html#zapfen",
@@ -1152,7 +1152,7 @@
     "href": "sessions/good_plots/slides.html#farbe-ist-relativ",
     "title": "Was ist eine gute Grafik?",
     "section": "Farbe ist relativ",
-    "text": "Farbe ist relativ\nBeispiel: Grautöne vs Rottöne\n\n\nBild von Nature Methods."
+    "text": "Farbe ist relativ"
   },
   {
     "objectID": "sessions/good_plots/slides.html#das-kann-man-sich-natürlich-auch-zu-nutze-machen",
@@ -1264,7 +1264,7 @@
     "href": "sessions/good_plots/slides.html#section-5",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "library(colorblindcheck)\npalette_check(theme_colors_red, plot = TRUE)  \n\n\n          name n tolerance ncp ndcp min_dist mean_dist max_dist\n1       normal 6   4.95969  15   15 4.959690  19.65649 41.78456\n2 deuteranopia 6   4.95969  15   15 5.428903  19.54489 42.55279\n3   protanopia 6   4.95969  15   14 3.976233  19.39475 41.15790\n4   tritanopia 6   4.95969  15   15 5.557603  19.68098 40.93915"
+    "text": "Hier sind die Farben klar unterscheidbar, und der Gini-Index lässt sich gut ablesen.\n\n\n\n\n\n\n\n\n\nDer Plot ist etwas sub-optimaler. Die tatsächlichen Werte des Gini-Index werden nicht gut kommuniziert."
   },
   {
     "objectID": "sessions/good_plots/slides.html#trichromatizität",
@@ -1341,14 +1341,14 @@
     "href": "sessions/good_plots/slides.html#unterscheidbar-aber-ähnlich-1",
     "title": "Was ist eine gute Grafik?",
     "section": "1. Unterscheidbar, aber ähnlich",
-    "text": "1. Unterscheidbar, aber ähnlich"
+    "text": "1. Unterscheidbar, aber ähnlich\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFarbton, Sättigung und Helligkeit\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nVariiert immer Farbton, Sättigung und Helligkeit gleichzeitig."
   },
   {
     "objectID": "sessions/good_plots/slides.html#manuell",
     "href": "sessions/good_plots/slides.html#manuell",
     "title": "Was ist eine gute Grafik?",
     "section": "Manuell",
-    "text": "Manuell\n\n\n\n\nCode\nPlot\n\n\n\n\nggplot(\n  continent_co2_pct,\n  aes(x = world_6region, \n      y = percentage, \n      fill = world_6region)) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_manual(values = c(\"red\", \"green\", \"blue\", \"yellow\", \"violet\", \"brown\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nPlot\n\n\n\n\nmy_color_scale &lt;- c(\"East Asia & Pacific\" =\"red\", \n                    \"South Asia\" = \"green\", \n                    \"Sub-Saharan Africa\" = \"blue\", \n                    \"Europe & Central Asia\" = \"yellow\", \n                    \"Middle East & North Africa\" = \"violet\", \n                    \"Americas\" = \"brown\")\nggplot(\n  continent_co2_pct,\n  aes(x = world_6region, \n      y = percentage, \n      color = world_6region)) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_color_manual(values = my_color_scale)"
+    "text": "Manuell\n\n\n\n\nCode\nPlot\n\n\n\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_manual(values = c(\"red\", \"green\", \"blue\", \"yellow\", \"violet\", \"brown\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nPlot\n\n\n\n\nmy_color_scale &lt;- c(\n  \"East Asia & Pacific\" = \"red\",\n  \"South Asia\" = \"green\",\n  \"Sub-Saharan Africa\" = \"blue\",\n  \"Europe & Central Asia\" = \"yellow\",\n  \"Middle East & North Africa\" = \"violet\",\n  \"Americas\" = \"brown\"\n)\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    color = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_color_manual(values = my_color_scale)"
   },
   {
     "objectID": "sessions/good_plots/slides.html#farben-zusammenfassung",
@@ -1362,7 +1362,7 @@
     "href": "sessions/good_plots/slides.html#section-6",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "library(colorblindcheck)\npalette_check(theme_colors_red, plot = TRUE)  \n\n\n          name n tolerance ncp ndcp min_dist mean_dist max_dist\n1       normal 6   4.95969  15   15 4.959690  19.65649 41.78456\n2 deuteranopia 6   4.95969  15   15 5.428903  19.54489 42.55279\n3   protanopia 6   4.95969  15   14 3.976233  19.39475 41.15790\n4   tritanopia 6   4.95969  15   15 5.557603  19.68098 40.93915"
+    "text": "library(colorblindcheck)\npalette_check(theme_colors_red, plot = TRUE)\n\n\n          name n tolerance ncp ndcp min_dist mean_dist max_dist\n1       normal 6  5.009918  15   15 5.009918 16.728547 33.44315\n2 deuteranopia 6  5.009918  15   14 1.222565 18.327608 37.87902\n3   protanopia 6  5.009918  15   14 4.246069 24.103714 47.28710\n4   tritanopia 6  5.009918  15   10 1.312841  8.762491 17.91107"
   },
   {
     "objectID": "sessions/good_plots/slides.html#test-code-size",
@@ -1397,14 +1397,14 @@
     "href": "sessions/good_plots/slides.html#graustufen",
     "title": "Was ist eine gute Grafik?",
     "section": "Graustufen",
-    "text": "Graustufen\n\nggplot(\n  continent_co2_pct,\n  aes(x = world_6region, \n      y = percentage, \n      fill = world_6region)) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_grey()"
+    "text": "Graustufen\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_grey()"
   },
   {
     "objectID": "sessions/good_plots/slides.html#externe-farb-paletten",
     "href": "sessions/good_plots/slides.html#externe-farb-paletten",
     "title": "Was ist eine gute Grafik?",
     "section": "Externe Farb-Paletten",
-    "text": "Externe Farb-Paletten\n\n\nR Color Brewer\n\nlibrary(RColorBrewer)\ndisplay.brewer.all(colorblindFriendly=FALSE)\n\n\n\n\n\n\n\n\n\n\nCode\nPlot\n\n\n\n\nlibrary(RColorBrewer)\n\nggplot(\n  continent_co2_pct,\n  aes(x = world_6region, \n      y = percentage, \n      fill = world_6region)) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_brewer(palette = \"PuOr\")"
+    "text": "Externe Farb-Paletten\n\n\nR Color Brewer\n\nlibrary(RColorBrewer)\ndisplay.brewer.all(colorblindFriendly = FALSE)\n\n\n\n\n\n\n\n\n\n\nCode\nPlot\n\n\n\n\nlibrary(RColorBrewer)\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_brewer(palette = \"PuOr\")"
   },
   {
     "objectID": "sessions/good_plots/slides.html#paletteer",
@@ -1418,7 +1418,7 @@
     "href": "sessions/good_plots/slides.html#arten-von-skalen",
     "title": "Was ist eine gute Grafik?",
     "section": "Arten von Skalen",
-    "text": "Arten von Skalen\n\n\nIntervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen\n\nKein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten\n\n\nOrdinal: Richtung und gute Unterscheidbarkeit im Farbraum\nNominalskaliert: Spriale/Diagnoale im Farbraum\nDiskret\nContinuous\nBinned Vorgefertigte Paletten:\n\nSequenziell\nQualitativ\nDiverging"
+    "text": "Arten von Skalen\n\n\nIntervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen\n\nKein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten\n\n\nOrdinal: Richtung und gute Unterscheidbarkeit im Farbraum\nNominalskaliert: Spriale/Diagnoale im Farbraum\nDiskret\nContinuous\nBinned Vorgefertigte Paletten:\n\nSequenziell\nQualitativ\nDiverging\nWeiter Tools\n\n\nColorbrewer\nHuemint"
   },
   {
     "objectID": "sessions/good_plots/slides.html#weiter-tools",
@@ -1432,7 +1432,7 @@
     "href": "sessions/good_plots/slides.html#externe-farb-paletten-1",
     "title": "Was ist eine gute Grafik?",
     "section": "Externe Farb-Paletten",
-    "text": "Externe Farb-Paletten\n\n\npaletteer\nSammlung von Paletten aus diversen Paketen\n\nPalette-Finder\nGallerie\n\n\n\n\nCode\nPlot\n\n\n\n\nlibrary(paletteer)\n\nggplot(\n  continent_co2_pct,\n  aes(x = world_6region, \n      y = percentage, \n      fill = world_6region)) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_paletteer_d(\"LaCroixColoR::Orange\")"
+    "text": "Externe Farb-Paletten\n\n\npaletteer\nSammlung von Paletten aus diversen Paketen\n\nPalette-Finder\nGallerie\n\n\n\n\nCode\nPlot\n\n\n\n\nlibrary(paletteer)\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_paletteer_d(\"LaCroixColoR::Orange\")"
   },
   {
     "objectID": "sessions/good_plots/slides.html#kleine-farblehre",
@@ -1481,28 +1481,28 @@
     "href": "sessions/good_plots/slides.html#veränderung-der-werte",
     "title": "Was ist eine gute Grafik?",
     "section": "Veränderung der Werte",
-    "text": "Veränderung der Werte\nHier ist es eher eine Ermessensfrage:\n\n\n\n::: {.quote} “If zero is in the neighborhood, invite it in!” (Andrew Gelman)\n\n\n\nIn general, in a time-series, use a baseline that shows the data not the zero point (Edward Tufte)\n\n:::"
+    "text": "Veränderung der Werte\nHier ist es eher eine Ermessensfrage:\n\n\n\n\nIf zero is in the neighborhood, invite it in! (Andrew Gelman)\n\n\n\n\nIn general, in a time-series, use a baseline that shows the data not the zero point. (tufte1983vizual?)"
   },
   {
     "objectID": "sessions/good_plots/slides.html#section-7",
     "href": "sessions/good_plots/slides.html#section-7",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "library(colorblindcheck)\npalette_check(theme_colors_red, plot = TRUE)  \n\n\n          name n tolerance ncp ndcp min_dist mean_dist max_dist\n1       normal 6   4.95969  15   15 4.959690  19.65649 41.78456\n2 deuteranopia 6   4.95969  15   15 5.428903  19.54489 42.55279\n3   protanopia 6   4.95969  15   14 3.976233  19.39475 41.15790\n4   tritanopia 6   4.95969  15   15 5.557603  19.68098 40.93915"
+    "text": "Abbildung ovn [Cédric Scherer]https://www.behance.net/gallery/100683383/Travelling-to-Outer-Space#)."
   },
   {
     "objectID": "sessions/good_plots/slides.html#section-8",
     "href": "sessions/good_plots/slides.html#section-8",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Andere Tiere können auch mal mehr oder weniger haben:\n\n\nBild aus Farbsehen der Tiere"
+    "text": "Aufgabe\nAntwort\n\n\n\nEntferne alle Redundanzen, machen den Plot also “Tufte-Komform”\n\n\n\n\n\n\n\n\n\n\n\n\nAntwort 1\nAntwort 2\n\n\n\nEntfernen der Achsenlinien und Umrandungen. Hintergrundlinien werden innerhalb der Balken dargestellt.\n\n\n\n\n\n\n\n\n\n\nMitunter können die vertikalen und horizontalen Linien auch hilfreich beim Vergleich/bei der Zuordnung zum Land sein: “Tufte Barchart”"
   },
   {
     "objectID": "sessions/good_plots/slides.html#section-9",
     "href": "sessions/good_plots/slides.html#section-9",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Viele Tiere sehen nur grau:\n\nWale\nHaie\nWaschbären\nFaultiere\nArmadillos\nOktopusse\nKraken\n\nWarum also überhaupt Farbwahrnehmung?\n\nIst subjektiv\nAber kann konsistent wahrgenommen werden: Eine Erdebeere im Schatten und im Sonnenlicht kann jeweils rot wahrgenommen werden. Grautöne sind stärker vom Licht abhängig.\nMore is not always better: Affen vom Amerikanischen Kontinent sind teilweise die und teilweise tetra: di kann besser INsekten ausmachen, tri Früchte gegen grünen background.\nFarbwahrnehmung also abhängig vom Drumrum\nFarben bringen nur einen Vorteil, wenn ein Individuum daraus meaning ableiten kann."
+    "text": "Wandelt euren Plot in einen Tufte-Plot um."
   },
   {
     "objectID": "sessions/good_plots/slides.html#alternativen",
@@ -1530,7 +1530,7 @@
     "href": "sessions/good_plots/slides.html#section-10",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "library(colorblindcheck)\npalette_check(theme_colors_red, plot = TRUE)  \n\n\n          name n tolerance ncp ndcp min_dist mean_dist max_dist\n1       normal 6   4.95969  15   15 4.959690  19.65649 41.78456\n2 deuteranopia 6   4.95969  15   15 5.428903  19.54489 42.55279\n3   protanopia 6   4.95969  15   14 3.976233  19.39475 41.15790\n4   tritanopia 6   4.95969  15   15 5.557603  19.68098 40.93915"
+    "text": "Wandelt euren Plot in einen Tufte-Plot um."
   },
   {
     "objectID": "sessions/Einführung/slides.html#section-6",
@@ -2321,7 +2321,7 @@
     "href": "sessions/good_plots/slides.html#daten-in-kontext-setzen",
     "title": "Was ist eine gute Grafik?",
     "section": "Daten in Kontext setzen",
-    "text": "Daten in Kontext setzen\n\n\nÜbung\nLösung\n\n\n\n\nZeichne Mittelwerte, oder hebe hervor aus einer Vergleichsmenge, z.B. europäischer Länder. Am einfachsten geht das mit einem zweiten Datensatz, der alle europäischen Länder enthält:\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(aes(group = country))\n\n\n\n\n\n\n\nHinweis\n\nCode## Bilde einen eignen Datensatz, der alle europöischen Lönder enthält\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\n\n\n\n\n\n\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = \"lightgrey\", alpha = 0.5) +\n  geom_smooth(color = \"black\") +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  theme_bg() +\n  labs(\n    title = \"Ungleichheit in Europa On the Rise\",\n    subtitle = \"1900 bis 2024, Gelbe Linie zeigt Deutschland\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  )\n\np_line"
+    "text": "Daten in Kontext setzen\n\n\nÜbung\nLösung\n\n\n\n\nZeichne Mittelwerte, oder hebe hervor aus einer Vergleichsmenge, z.B. europäischer Länder. Am einfachsten geht das mit einem zweiten Datensatz, der alle europäischen Länder enthält:\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\nggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(aes(group = country))\n\n\n\n\n\n\n\nHinweis\n\nCode## Bilde einen eignen Datensatz, der alle europöischen Lönder enthält\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\n\n\n\n\n\n\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = \"lightgrey\", alpha = 0.5) +\n  geom_smooth(color = \"black\") +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  theme_bg() +\n  labs(\n    title = \"Ungleichheit in Europa On the Rise\",\n    subtitle = \"1900 bis 2024, Gelbe Linie zeigt Deutschland\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  )\n\np_line"
   },
   {
     "objectID": "sessions/good_plots/slides.html#daten-in-kontext-setzen-1",
@@ -2356,20 +2356,132 @@
     "href": "sessions/good_plots/slides.html#story-arc",
     "title": "Was ist eine gute Grafik?",
     "section": "Story-Arc",
-    "text": "Story-Arc\n\nEpisodische Grafik, lass es sich entfalten.\n“If your study were reported in the newspaper, what would the headline be?”"
+    "text": "Story-Arc\n\n\nAbbildung von Laura Navarro Soler."
   },
   {
     "objectID": "sessions/good_plots/slides.html#zusätzliche-informationen-einbauen",
     "href": "sessions/good_plots/slides.html#zusätzliche-informationen-einbauen",
     "title": "Was ist eine gute Grafik?",
     "section": "Zusätzliche Informationen einbauen",
-    "text": "Zusätzliche Informationen einbauen\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\nsteuer &lt;- gapminder_line %&gt;%\n  filter(time %in% c(1914, 1920, 1939, 1945, 1974, 1990, 1991, 1996, 2020), country == \"deu\") %&gt;%\n  arrange(time) %&gt;%\n  mutate(label = c( \"Beginn 1. WK\", \"Reichseinkommensteuer\", \"Beginn 2. WK\", \"Starke Anhebung durch Alliiert\", \"Einkommenssteuerreformgesetz\", \"Wiedervereinigung\", \"Linear-Progressiver Tarif\", \"Anhebung Freibetrage\", \"Corona\"))\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\ntheme_bg_dark() +\n  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = \"#F8F8F8\", alpha = 0.2) +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  geom_point(data = steuer) +\n  geom_text_repel(data = steuer, aes(label = label), nudge_x = c(20, 25, 10, -5, 0, 0, -10), nudge_y = c(2, 2, 2, -2, 1, -2, 1), \ncolor = \"#F4BA02\") +\n  labs(\n    title = \"Ungleichheit in Deutschland On the Rise?\",\n    subtitle = \"Gini-Koeffizient von 1850 bis 2024\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  ) +\n  geom_richtext(\n    data = data.frame(\n      x = 1900, y = 20,\n      label = \"&lt;b&gt;Gini-Koeffizient&lt;/b&gt;: &lt;br&gt; Maß für Ungleichheit. &lt;br&gt; In diesem Fall Einkommen.&lt;br&gt;0 = vollkommen gleich &lt;br&gt; 100 = maximal ungleich.\"\n    ),\n    aes(x, y, label = label),\n    hjust = 0, vjust = 0,\n    fill = \"#F4BA02\", label.color = \"#01364C\",\n    label.r = grid::unit(3, \"pt\"),\n    size = 5\n  ) \n\np_line\n\n## Add a plot on vermogen!! Evtl. einfach den Gini Koeffizienten fur ein Paar Jahre, die ich habe\n\n## https://www.econtribute.de/RePEc/ajk/ajkpbs/ECONtribute_PB_001_2020.pdf"
+    "text": "Zusätzliche Informationen einbauen\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\nsteuer &lt;- gapminder_line %&gt;%\n  filter(time %in% c(1914, 1920, 1939, 1945, 1974, 1990, 1991, 1996, 2020), country == \"deu\") %&gt;%\n  arrange(time) %&gt;%\n  mutate(label = c(\"Beginn 1. WK\", \"Reichseinkommensteuer\", \"Beginn 2. WK\", \"Starke Anhebung durch Alliiert\", \"Einkommenssteuerreformgesetz\", \"Wiedervereinigung\", \"Linear-Progressiver Tarif\", \"Anhebung Freibetrage\", \"Corona\"))\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  theme_bg_dark() +\n  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = \"#F8F8F8\", alpha = 0.2) +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  geom_point(data = steuer) +\n  geom_text_repel(\n    data = steuer, aes(label = label), nudge_x = c(20, 25, 10, -5, 0, 0, -10), nudge_y = c(2, 2, 2, -2, 1, -2, 1),\n    color = \"#F4BA02\"\n  ) +\n  labs(\n    title = \"Ungleichheit in Deutschland On the Rise?\",\n    subtitle = \"Gini-Koeffizient von 1850 bis 2024\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  ) +\n  geom_richtext(\n    data = data.frame(\n      x = 1900, y = 20,\n      label = \"&lt;b&gt;Gini-Koeffizient&lt;/b&gt;: &lt;br&gt; Maß für Ungleichheit. &lt;br&gt; In diesem Fall Einkommen.&lt;br&gt;0 = vollkommen gleich &lt;br&gt; 100 = maximal ungleich.\"\n    ),\n    aes(x, y, label = label),\n    hjust = 0, vjust = 0,\n    fill = \"#F4BA02\", label.color = \"#01364C\",\n    label.r = grid::unit(3, \"pt\"),\n    size = 5\n  )\n\np_line\n\n## Add a plot on vermogen!! Evtl. einfach den Gini Koeffizienten fur ein Paar Jahre, die ich habe\n\n## https://www.econtribute.de/RePEc/ajk/ajkpbs/ECONtribute_PB_001_2020.pdf"
   },
   {
     "objectID": "sessions/good_plots/slides.html#vergleichen",
     "href": "sessions/good_plots/slides.html#vergleichen",
     "title": "Was ist eine gute Grafik?",
     "section": "Vergleichen",
-    "text": "Vergleichen\n\nPlot\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n# \n# World Inequality Lab – Working Paper N° 2022/09\n# Wealth and its Distribution in Germany,\n# 1895-2018\n\ndf &lt;- data.frame(\n  year = c(1895,1900,1905,1910,1915,1920,1925,1930,1935,1940,\n           1945,1950,1955,1960,1965,1970,1975,1980,1985,1990,\n           1995,2000,2005,2010,2015,2018),\n  top1_share_percent = c(46,47,47.5,48,47.5,45,36,41,38,33,\n                         28,23,22,23,21,24,28,27,26,25.5,\n                         26,27,26.5,28.5,27,28)\n)\n\nggplot(df, aes(year, top1_share_percent)) +\ngeom_line()+\ngeom_point() +\nylim(c(0, 50))\n\n\n\ndat_eink &lt;- data.frame(\ncountry = rep(c(\"Schweiz\", \"Deutschland\", \"Österreich\"), 4), \nSteuer = c(rep(\"Erbschaft\", 3), rep(\"Vermögen\", 3), rep(\"Konsum\", 3), rep(\"Unternehmen\", 3)),\nanteil = c(1, 0, 1, 7, 0, 0, 26, 41, 43, 15, 12, 10))\n\np_bar &lt;- ggplot(dat_eink, aes(x = reorder(Steuer, anteil), y = anteil, fill = Steuer)) +\n  geom_bar(stat = \"identity\", position = \"dodge\") +\n  facet_wrap(vars(country)) +\n  theme_bg() +\n  labs(\n    title = \"Steueraufkommen in % des BIP\",\n    subtitle = \"Haushaltsjahr 2022\",\n    x = \"Steuerart\",\n    y = \"Anteil am BIP in %\"\n  ) +\n  geom_text(aes(label = anteil), \n            position = position_dodge(width = 0.9), \n            vjust = -0.25) +\ntheme_bg_dark()\n\n\n# https://www.wsi.de/de/blog-17857-vermoegensteuer-geht-die-schweiz-widerlegt-den-mythos-vom-unmoeglichen-68853.htm\n\n\ngapminder_usa &lt;- gapminder %&gt;%\n  filter(country %in% c(\"usa\"), time &gt;= 1850, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\np_line_usa &lt;- ggplot(data = gapminder_usa, aes(x = time, y = gini, color = country)) +\n  geom_line() +\n  theme_bg() +\n  labs(\n    title = \"Einkommens- und Erbschaftssteuer in den USA\",\n    subtitle = \"Gini-Koeffizient von 1850 bis 2024\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  ) +\n  geom_richtext(\n    data = data.frame(\n      x = 1850, y = 30,\n      label = \"Zwischen 1930 und 1980 wurden in den Vereinigten Staaten die höchsten Einkommen durchschnittlich mit 81 Prozent besteuert und die größten vererbten Vermögen mit 74 Prozent.\"\n    ),\n    aes(x, y, label = label),\n    inherit.aes = FALSE,\n    hjust = 0, vjust = 0,\n    fill = \"white\", label.color = \"black\",\n    label.r = grid::unit(3, \"pt\"),\n    size = 3.5\n  ) +theme_bg_dark()\n\n\n\n\n\n## Eine Vermogenssteuer hat das potenzial, Ungleichheit zu reduzieren, und die Abgabenlast von Konsumsteuern zu reduzieren. \n## Die USA hatten in den 80 Jahren eine 80% Vermogenssteuer. \n\n\nlibrary(patchwork)\n\n\np_line +\nannotation_custom(ggplotGrob(p_bar),\n                              xmin = 1980, ymin = 43,\n                              xmax = 2020) +\np_line_usa +\nplot_layout(widths = c(2, 1))"
+    "text": "Vergleichen\n\nPlot\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#\n# World Inequality Lab – Working Paper N° 2022/09\n# Wealth and its Distribution in Germany,\n# 1895-2018\n\ndf &lt;- data.frame(\n  year = c(\n    1895, 1900, 1905, 1910, 1915, 1920, 1925, 1930, 1935, 1940,\n    1945, 1950, 1955, 1960, 1965, 1970, 1975, 1980, 1985, 1990,\n    1995, 2000, 2005, 2010, 2015, 2018\n  ),\n  top1_share_percent = c(\n    46, 47, 47.5, 48, 47.5, 45, 36, 41, 38, 33,\n    28, 23, 22, 23, 21, 24, 28, 27, 26, 25.5,\n    26, 27, 26.5, 28.5, 27, 28\n  )\n)\n\nggplot(df, aes(year, top1_share_percent)) +\n  geom_line() +\n  geom_point() +\n  ylim(c(0, 50))\n\n\n\ndat_eink &lt;- data.frame(\n  country = rep(c(\"Schweiz\", \"Deutschland\", \"Österreich\"), 4),\n  Steuer = c(rep(\"Erbschaft\", 3), rep(\"Vermögen\", 3), rep(\"Konsum\", 3), rep(\"Unternehmen\", 3)),\n  anteil = c(1, 0, 1, 7, 0, 0, 26, 41, 43, 15, 12, 10)\n)\n\np_bar &lt;- ggplot(dat_eink, aes(x = reorder(Steuer, anteil), y = anteil, fill = Steuer)) +\n  geom_bar(stat = \"identity\", position = \"dodge\") +\n  facet_wrap(vars(country)) +\n  theme_bg() +\n  labs(\n    title = \"Steueraufkommen in % des BIP\",\n    subtitle = \"Haushaltsjahr 2022\",\n    x = \"Steuerart\",\n    y = \"Anteil am BIP in %\"\n  ) +\n  geom_text(aes(label = anteil),\n    position = position_dodge(width = 0.9),\n    vjust = -0.25\n  ) +\n  theme_bg_dark()\n\n\n# https://www.wsi.de/de/blog-17857-vermoegensteuer-geht-die-schweiz-widerlegt-den-mythos-vom-unmoeglichen-68853.htm\n\n\ngapminder_usa &lt;- gapminder %&gt;%\n  filter(country %in% c(\"usa\"), time &gt;= 1850, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\np_line_usa &lt;- ggplot(data = gapminder_usa, aes(x = time, y = gini, color = country)) +\n  geom_line() +\n  theme_bg() +\n  labs(\n    title = \"Einkommens- und Erbschaftssteuer in den USA\",\n    subtitle = \"Gini-Koeffizient von 1850 bis 2024\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  ) +\n  geom_richtext(\n    data = data.frame(\n      x = 1850, y = 30,\n      label = \"Zwischen 1930 und 1980 wurden in den Vereinigten Staaten die höchsten Einkommen durchschnittlich mit 81 Prozent besteuert und die größten vererbten Vermögen mit 74 Prozent.\"\n    ),\n    aes(x, y, label = label),\n    inherit.aes = FALSE,\n    hjust = 0, vjust = 0,\n    fill = \"white\", label.color = \"black\",\n    label.r = grid::unit(3, \"pt\"),\n    size = 3.5\n  ) +\n  theme_bg_dark()\n\n\n\n\n\n## Eine Vermogenssteuer hat das potenzial, Ungleichheit zu reduzieren, und die Abgabenlast von Konsumsteuern zu reduzieren.\n## Die USA hatten in den 80 Jahren eine 80% Vermogenssteuer.\n\n\nlibrary(patchwork)\n\n\np_line +\n  annotation_custom(ggplotGrob(p_bar),\n    xmin = 1980, ymin = 43,\n    xmax = 2020\n  ) +\n  p_line_usa +\n  plot_layout(widths = c(2, 1))"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#episodische-grafik-lass-es-sich-entfalten.",
+    "href": "sessions/good_plots/slides.html#episodische-grafik-lass-es-sich-entfalten.",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Episodische Grafik, lass es sich entfalten.",
+    "text": "Episodische Grafik, lass es sich entfalten.\n\n\nBild von information is beautiful.\n\n\n“If your study were reported in the newspaper, what would the headline be?”"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#bewerten-der-informationen",
+    "href": "sessions/good_plots/slides.html#bewerten-der-informationen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Bewerten der Informationen",
+    "text": "Bewerten der Informationen"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#redundanzen",
+    "href": "sessions/good_plots/slides.html#redundanzen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Redundanzen",
+    "text": "Redundanzen\n\nErase non-data-ink, within reason. Erase redundant data-ink, within reaseon (Tufte & Graves-Morris, 1983)\n\nhttps://www.data-to-viz.com/caveat/declutter.html\n\n\n\nFrage\nAntwort\n\n\n\nAuf wie viele Arten wird hier die Höhe der CO2 Emissionen pro Kopf dargestellt?\n\n\n\n\n\n\n\n\n\n\nAuf sieben verschiedene Arten:\n\nHöhe der linken Balkenlinie\nHöhe der rechten Balkenlinie\nHöhe der horizontalen Balkenlinie\nHöhe des Balkeninneren\nFarbe des Balkens\nPosition des Labels\nWert des Labels\n\nBalken an sich enthalten also schon redundante Informationen!"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#maximieren-von-informationen",
+    "href": "sessions/good_plots/slides.html#maximieren-von-informationen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Maximieren von Informationen",
+    "text": "Maximieren von Informationen\n\n\nScatterplot\n\n\nPlot\nCode\n\n\n\nNutzen der Ticks und Achsen-Linien, um Informationen zu transportieren."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#keine-angst-vor-leerem-raum",
+    "href": "sessions/good_plots/slides.html#keine-angst-vor-leerem-raum",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Keine Angst vor leerem Raum",
+    "text": "Keine Angst vor leerem Raum"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#section-11",
+    "href": "sessions/good_plots/slides.html#section-11",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "Wandelt euren Plot in einen Tufte-Plot um."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#zusammenfassung",
+    "href": "sessions/good_plots/slides.html#zusammenfassung",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Zusammenfassung",
+    "text": "Zusammenfassung\n\n\nAbove all else show the data.\nMaximize the data-ink ratio, within reason.\nErase non-data-ink, within reason.\nErase redundant data-ink, within reason.\nRevise and edit.\n\n\nAus Tufte & Graves-Morris (1983)."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#section-12",
+    "href": "sessions/good_plots/slides.html#section-12",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "Wandelt euren Plot in einen Tufte-Plot um."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#data-ink-ratio-in-praxis",
+    "href": "sessions/good_plots/slides.html#data-ink-ratio-in-praxis",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Data-ink ratio in Praxis",
+    "text": "Data-ink ratio in Praxis\n\n\n10% Daten, 90 % Achsenbeschriftungen und Hintergrundlinien\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggthemes)\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  theme_excel() +\n  scale_x_continuous(\n    breaks = scales::pretty_breaks(n = 10), # ensure ticks\n    minor_breaks = waiver() # ensures minor ticks too\n  ) +\n  scale_y_continuous(\n    breaks = scales::pretty_breaks(n = 10),\n    minor_breaks = waiver()\n  ) +\n  theme(\n    panel.grid.major = element_line(color = \"grey60\", size = 1.2), # thick major grid\n    panel.grid.minor = element_line(color = \"grey60\", size = 0.8) # thick minor grid\n  )\n\n\n\n\n\n0% Daten (Plotte die Daten, keine Zusammenfassungen)\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_smooth()\n\n\n\n\n\n\n\n\n\nca. 90 % Daten, 10 % Achsenbeschriftungen und Legende\n\nlibrary(ggthemes)\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  theme_tufte()"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#was-bringt-uns-das-jetzt-für-unsere-abbildungen",
+    "href": "sessions/good_plots/slides.html#was-bringt-uns-das-jetzt-für-unsere-abbildungen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Was bringt uns das jetzt für unsere Abbildungen?",
+    "text": "Was bringt uns das jetzt für unsere Abbildungen?"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#anwendung-in-ggplot2",
+    "href": "sessions/good_plots/slides.html#anwendung-in-ggplot2",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Anwendung in ggplot2",
+    "text": "Anwendung in ggplot2"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#kategoriale-vs.-quantitative-daten",
+    "href": "sessions/good_plots/slides.html#kategoriale-vs.-quantitative-daten",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Kategoriale vs. quantitative Daten",
+    "text": "Kategoriale vs. quantitative Daten\n\n\nKategoriale Daten\nVerschiedene Farben, die sich gut unterscheiden lassen.\n\n\n\n\n\n\n\n\n\nQuantitative Daten\nFarbverläufe, die eine Reihenfolge haben.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2 setzt die entsprechende Skala schon automatisch!"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#viele-tiere-sehen-nur-grau",
+    "href": "sessions/good_plots/slides.html#viele-tiere-sehen-nur-grau",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Viele Tiere sehen nur grau",
+    "text": "Viele Tiere sehen nur grau\n\n\nWarum überhaupt Farbwahrnehmung?\n\n\n\nKonsistenz: Farbtöne sind unabhängig vom Licht wahrnehmbar.\nAber: More is not always better! Zu viel kann auch vom Wesentlichen ablenken.\n\nFarbwahrnehmung ist also subjektiv, und bringt nur einen Vorteil, wenn eine Bedeutung daraus abgeleitet werden kann.\n\n\n\n\n\nFoto von Chinh Le Duc auf Unsplash"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#eigenschaften-von-farben",
+    "href": "sessions/good_plots/slides.html#eigenschaften-von-farben",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Eigenschaften von Farben",
+    "text": "Eigenschaften von Farben\n\nFarbton, Sättigung, Helligkeit\nDie drei Eigenschaften beschreiben das Aussehen von Farben.\n\n\n\nFarbräume\n\nRGB: Zusammenmischen von Licht der unterschiedlichen Farben. Alle drei zusammen ergeben weiß.\nCMYK: Ausblenden aus dem weißen Farbspektrum durch Filter. Grundfarben: Gelb, Magenta (Purpur), Cyan (Blaugrün) (+K - Key (also Schwarz))"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#skalen-mit-nullpunkt",
+    "href": "sessions/good_plots/slides.html#skalen-mit-nullpunkt",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Skalen mit Nullpunkt",
+    "text": "Skalen mit Nullpunkt\n\nWas zu beachten ist: unten Blau oben Rot … https://ggplot2-book.org/scales-colour.html"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#andere-tiere-können-auch-mal-mehr-oder-weniger-haben",
+    "href": "sessions/good_plots/slides.html#andere-tiere-können-auch-mal-mehr-oder-weniger-haben",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Andere Tiere können auch mal mehr oder weniger haben:",
+    "text": "Andere Tiere können auch mal mehr oder weniger haben:\n\n\n\n\n\n\n\nBild aus Farbsehen der Tiere\nFoto von Ben Moreland auf Unsplash"
   }
 ]
