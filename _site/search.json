@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Datenvisualisierung in R",
     "section": "",
-    "text": "Ein Bild sagt mehr als tausend … Zahlen! Mit einer guten Grafik lassen sich viele Informationen übersichtlich darstellen, Sachverhalte schnell erkennen und auch an Laien komplizierte Datenlagen verständlich kommunizieren. Dabei ist eine gute Visualisierung nicht einfach: komplexe Inhalte müssen klar, präzise und effizient dargestellt werden und sollen idealerweise auch noch hübsch aussehen. In diesem Kurs lernen Teilnehmende die Grundprinzipien des „Analytical Design“ (Edward Tufte) sowie verschiedene Visualisierungsformen zur Exploration und Kommunikation univariater und multivariater Daten kennen. In diversen Übungen können sie diese Grundprinzipien bei der Erstellung von eigenen Grafiken in ggplot2 und Erweiterungen wie gganimate selbst erproben.\n\n\n\nDr. Janine Buchholz ist …\n\nNicklas Hafiz ist Psychologe und promoviert am Institut zur Qualitätsentwicklung im Bildungswesen zu Simulationsstudien in der psychologischen Methodenforschung. Teil seiner dortigen Arbeit ist zudem die Entwicklung eines R-Pakets zur Erstellung der Grafiken für den Bildungstrend-Bericht. Zudem verfügt er über Erfahrung in der Lehre und hat bereits Veranstaltungen und Workshops zu R, Item-Response-Theorie sowie zu reproduzierbarem Arbeiten mit GitHub durchgeführt.\n\n\n\nVoraussetzungen für die Teilnahme sind Grundkenntnisse in R. Grundsätzlich können die im Kurs behandelten Inhalte aber auch in anderen Programmiersprachen umgesetzt werden. Die Teilnehmenden benötigen einen Laptop, mit welchem sie sich in Posit-Cloud einloggen können, um den Beispiel und Übungsaufgaben zu folgen."
+    "text": "Ein Bild sagt mehr als tausend … Zahlen! Mit einer guten Grafik lassen sich viele Informationen übersichtlich darstellen, Sachverhalte schnell erkennen und auch an Laien komplizierte Datenlagen verständlich kommunizieren. Dabei ist eine gute Visualisierung nicht einfach: komplexe Inhalte müssen klar, präzise und effizient dargestellt werden und sollen idealerweise auch noch hübsch aussehen. In diesem Kurs lernen Teilnehmende die Grundprinzipien des „Analytical Design“ (Edward Tufte) sowie verschiedene Visualisierungsformen zur Exploration und Kommunikation univariater und multivariater Daten kennen. In diversen Übungen können sie diese Grundprinzipien bei der Erstellung von eigenen Grafiken in ggplot2 und Erweiterungen wie gganimate selbst erproben.\n\n\n\n\n\nDr. Janine Buchholz ist …\n\nNicklas Hafiz ist Psychologe und promoviert am Institut zur Qualitätsentwicklung im Bildungswesen zu Simulationsstudien in der psychologischen Methodenforschung. Teil seiner dortigen Arbeit ist zudem die Entwicklung eines R-Pakets zur Erstellung der Grafiken für den Bildungstrend-Bericht. Zudem verfügt er über Erfahrung in der Lehre und hat bereits Veranstaltungen und Workshops zu R, Item-Response-Theorie sowie zu reproduzierbarem Arbeiten mit GitHub durchgeführt.\n\n\n\n\n\nVoraussetzungen für die Teilnahme sind Grundkenntnisse in R. Grundsätzlich können die im Kurs behandelten Inhalte aber auch in anderen Programmiersprachen umgesetzt werden. Die Teilnehmenden benötigen einen Laptop, mit welchem sie sich in Posit-Cloud einloggen können, um den Beispiel und Übungsaufgaben zu folgen."
   },
   {
     "objectID": "about.html",
@@ -606,7 +606,7 @@
     "href": "index.html#tag-1",
     "title": "Datenvisualisierung in R",
     "section": "Tag 1",
-    "text": "Tag 1\n\n\n\n\n\n\n\n\n\nEinführung\n\n\n9:00 - 10:00\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2: Die Basics\n\n\n10:10 - 11:30\n\n\n\nNicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nGute Plots\n\n\n\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\nKeine Treffer"
+    "text": "Tag 1\n\n\n\n\n\n\n\n\n\n\nEinführung\n\n\n9:00 - 09:45\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2: Die Basics\n\n\n09:50 - 11:30\n\n\n\nNicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGute Plots\n\n\n\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\nKeine Treffer"
   },
   {
     "objectID": "sessions/r_basics/r_basics.html",
@@ -2622,7 +2622,7 @@
     "href": "index.html#tag-2",
     "title": "Datenvisualisierung in R",
     "section": "Tag 2",
-    "text": "Tag 2\n\n\n\n\n\n\n\n\nggplot2: Advanced\n\n\n\n\n\n\nNicklas Hafiz, Janine Buchholz\n\n\n\n\n\n\n\n\n\n\n\n\nWissenschaftliche Grafiken\n\n\n\n\n\n\n\n\n\n\nExplorative Grafiken\n\n\n\n\n\n\n\n\n\n\nGrafiken Druckreif machen\n\n\n\n\n\n\n\n\n\n\ngganimate & plotly\n\n\n\n\n\nKeine Treffer"
+    "text": "Tag 2\n\n\n\n\n\n\n\n\nggplot2: Advanced\n\n\n\n\n\n\nNicklas Hafiz, Janine Buchholz\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWissenschaftliche Grafiken\n\n\n\n\n\n\n\n\n\n\nExplorative Grafiken\n\n\n\n\n\n\n\n\n\n\nGrafiken Druckreif machen\n\n\n\n\n\n\n\n\n\n\ngganimate & plotly\n\n\n\n\n\n\n\nKeine Treffer"
   },
   {
     "objectID": "sessions/good_plots/slides.html#schriften",
