@@ -396,7 +396,7 @@
     "href": "sessions/good_plots/slides.html#section",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Excellence in statistical graphics consists of complex ideas communicated with clarity, precision, and efficiency. (tufte1983vizual?)\n\nshow the data\ninduce the viewer to think about the substance rather than about methodology, graphic design, the technology of graphic production, or something else\navoid distorting what the data have to say\npresent many numbers in a small space\nmake large datasets coherent\nencourage the eye to compare different pieces of data\nReveal the data at several levels of detail, from a broad overview to the fine structure\nserve a reasonably clear purpose: description, exploration, tabulation, or decoration\nbe closely integrated with the statistical and verbal descriptions of a data set"
+    "text": "Excellence in statistical graphics consists of complex ideas communicated with clarity, precision, and efficiency. (Tufte & Graves-Morris, 1983)\n\nshow the data\ninduce the viewer to think about the substance rather than about methodology, graphic design, the technology of graphic production, or something else\navoid distorting what the data have to say\npresent many numbers in a small space\nmake large datasets coherent\nencourage the eye to compare different pieces of data\nReveal the data at several levels of detail, from a broad overview to the fine structure\nserve a reasonably clear purpose: description, exploration, tabulation, or decoration\nbe closely integrated with the statistical and verbal descriptions of a data set"
   },
   {
     "objectID": "sessions/good_plots/slides.html#section-1",
@@ -501,7 +501,7 @@
     "href": "sessions/good_plots/slides.html#veränderung-der-werte",
     "title": "Was ist eine gute Grafik?",
     "section": "Veränderung der Werte",
-    "text": "Veränderung der Werte\nHier ist es eher eine Ermessensfrage:\n\n\n\n\n\n\nIf zero is in the neighborhood, invite it in! (Andrew Gelman)\n\n\n\n\n\n\nIn general, in a time-series, use a baseline that shows the data not the zero point. (tufte1983vizual?)"
+    "text": "Veränderung der Werte\nHier ist es eher eine Ermessensfrage:\n\n\n\n\n\n\nIf zero is in the neighborhood, invite it in! (Andrew Gelman)\n\n\n\n\n\n\nIn general, in a time-series, use a baseline that shows the data not the zero point. (Tufte & Graves-Morris, 1983)"
   },
   {
     "objectID": "sessions/good_plots/slides.html#veränderung-der-werte-1",
@@ -599,7 +599,14 @@
     "href": "sessions/good_plots/slides.html#darstellung-von-größen",
     "title": "Was ist eine gute Grafik?",
     "section": "Darstellung von Größen",
-    "text": "Darstellung von Größen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDie Größe von Kreisen einzuschätzen ist schwer!"
+    "text": "Darstellung von Größen\nDie Größe von Elemenen kann auch genutzt werden, um Daten zu kodieren."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#einschätzen-von-größen",
+    "href": "sessions/good_plots/slides.html#einschätzen-von-größen",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Einschätzen von Größen",
+    "text": "Einschätzen von Größen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDie Größe von Kreisen einzuschätzen ist schwer!"
   },
   {
     "objectID": "sessions/good_plots/slides.html#das-gleiche-gilt-für-winkel",
@@ -875,11 +882,46 @@
     "text": "Weiter Tools\n\n\n\n\nWollbox von Vincent van Gogh, mit der er Farbkombinationen getestet hat. Eigenes Bild.\n\n\n\n\n- Colorbrewer - Huemint - Pinterest"
   },
   {
+    "objectID": "sessions/good_plots/slides.html#schriften",
+    "href": "sessions/good_plots/slides.html#schriften",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Schriften",
+    "text": "Schriften\nDie Schriftart kann einer Abbildung ein ganz anderes Aussehn vereleihen.\nWir nutzen Schriftarten von Google Fonts\n\nlibrary(showtext)\n\nfont_add_google(\"Special Elite\", family = \"special\")\n\n\nDaten von zygmuntz."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#section-8",
+    "href": "sessions/good_plots/slides.html#section-8",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "library(ggwordcloud)\n\ntags &lt;- read.csv(here::here(\"data\", \"goodbooks-10k\", \"tags.csv\"))\nbook_tags &lt;- read.csv(here::here(\"data\", \"goodbooks-10k\", \"book_tags.csv\"))\nbooks &lt;- read.csv(here::here(\"data\", \"goodbooks-10k\", \"books.csv\")) \n\n\nclassics &lt;- book_tags %&gt;% \nleft_join(books) %&gt;%\nleft_join(tags) %&gt;% \nfilter(tag_name == \"classics\") %&gt;% \nfilter(ratings_count &gt; 20000, !duplicated(authors)) %&gt;%\n  select(original_title, average_rating, tag_name, ratings_count) %&gt;%\n  distinct() %&gt;% \n  arrange(ratings_count) %&gt;%\n  slice_tail(n = 50)\n\n\nset.seed(45)\nggplot(data = classics, \n       mapping = aes(label = original_title, size = average_rating)) +\n  geom_text_wordcloud() +\nscale_size(range = c(1, 6)) +\nlabs(title = \"What to read next ...\", \nsubtitle = \"... according to goodreads\") +\ntheme_bg()"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#section-9",
+    "href": "sessions/good_plots/slides.html#section-9",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "font_add_google(\"Special Elite\", family = \"my textfont\")\nfont_add_google(\"Playfair Display\")\n\nshowtext_auto()\n\n\nset.seed(45)\nggplot(data = classics, \n       mapping = aes(label = original_title, size = average_rating)) +\n  geom_text_wordcloud(family = \"my textfont\") +\nscale_size(range = c(1, 6)) +\nlabs(title = \"What to read next\", \nsubtitle = \"According to goodreads\") +\ntheme_bg() +\ntheme(title = element_text(family = \"Playfair Display\", size = 20), \n)"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#section-10",
+    "href": "sessions/good_plots/slides.html#section-10",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "Suche dir eine Schriftart aus Google Fonts und baue sie in deinen Plot ein."
+  },
+  {
     "objectID": "sessions/good_plots/slides.html#übung-2",
     "href": "sessions/good_plots/slides.html#übung-2",
     "title": "Was ist eine gute Grafik?",
     "section": "Übung",
-    "text": "Übung\n\nWähle eine Grafik von … aus und erstelle einen Plan, wie du sie verbessern würdest.\n\n\n\n\n\nCorrell, M., Bertini, E., & Franconeri, S. (2020). Truncating the y-axis: Threat or menace? Proceedings of the 2020 CHI conference on human factors in computing systems, 1–12.\n\n\nHuff, D. (1979). How to lie with statistics / by Darrell Huff.\n\n\nTufte, E. R., & Graves-Morris, P. R. (1983). The visual display of quantitative information (Bd. 2). Graphics press Cheshire, CT."
+    "text": "Übung\n\nWähle eine Grafik von … aus und erstelle einen Plan, wie du sie verbessern würdest."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#literatur",
+    "href": "sessions/good_plots/slides.html#literatur",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Literatur",
+    "text": "Literatur\n\n\n\n\nCorrell, M., Bertini, E., & Franconeri, S. (2020). Truncating the y-axis: Threat or menace? Proceedings of the 2020 CHI conference on human factors in computing systems, 1–12.\n\n\nHuff, D. (1979). How to lie with statistics / by Darrell Huff.\n\n\nTufte, E. R., & Graves-Morris, P. R. (1983). The visual display of quantitative information (Bd. 2). Graphics press Cheshire, CT."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
