@@ -129,17 +129,23 @@ Ein Bild sagt mehr als tausend … Zahlen! Mit einer guten Grafik lassen sich vi
 
 ::: {.columns}
 
-::: {.column width="50%"}
-[Dr. Janine Buchholz]{.highlight} ist ...
-
-:::
 
 ::: {.column width="50%"}
-[Nicklas Hafiz]{.highlight} ist Psychologe und promoviert am Institut zur Qualitätsentwicklung im Bildungswesen zu Simulationsstudien in der psychologischen Methodenforschung.
+[Nicklas Hafiz]{.highlight} ist Psychologe und promoviert am Institut zur Qualitätsentwicklung im Bildungswesen (IQB) zu Simulationsstudien in der psychologischen Methodenforschung.
 Teil seiner dortigen Arbeit ist zudem die Entwicklung eines R-Pakets zur Erstellung der Grafiken für den Bildungstrend-Bericht.
 Zudem verfügt er über Erfahrung in der Lehre und hat bereits Veranstaltungen und Workshops zu R, Item-Response-Theorie sowie zu reproduzierbarem Arbeiten mit GitHub durchgeführt. 
 
+[![Link to his ORCID](https://img.shields.io/badge/orcid-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0000-0001-9035-4483) 
 :::
+
+::: {.column width="50%"}
+[Dr. Janine Buchholz]{.highlight} ist ebenfalls Psychologin und arbeitet als Postdoktorandin im Forschungsdatenzentrum am Institut zur Qualitätsentwicklung im Bildungswesen (FDZ am IQB) in Berlin. 
+Sie hat am DIPF | Leibniz-Institut für Bildungsforschung und Bildungsinformation zu mehrdimensionalen Modellen der Item-Response-Theorie promoviert und über mehrere Jahre in unterschiedlichen Rollen an der PISA-Studie mitgewirkt. 
+Sie verfügt über Lehrerfahrung zu verschiedenen Methoden der empirischen Bildungsforschung und Datenvisualisierung.
+
+[![Link to her ORCID](https://img.shields.io/badge/orcid-A6CE39?style=for-the-badge&logo=orcid&logoColor=white)](https://orcid.org/0000-0003-2534-4603) 
+:::
+
 :::
 
 
