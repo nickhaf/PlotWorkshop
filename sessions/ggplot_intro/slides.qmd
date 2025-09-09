@@ -377,7 +377,6 @@ ggplot(
 
 ## 
 
-
 ::: {.panel-tabset}
 
 ### Übung
@@ -386,13 +385,53 @@ ggplot(
 \
 
 ::: {.exercise}
-
 Das reicht schon, um einen eigenen ersten Plot zu erstellen. 
-Nutzt die `gapminder_2019` Daten und erstellt einen Scatterplot, der den Zusammenhang zwischen Happiness-Score (`hapiscore_whr`) und GDP pro Kopf (`gdp_pcap`) zeigt. 
-Gibt es einen Zusammenhang? 
-
+Nutzt die `gapminder` Daten und wählt zwei numerische Variablen aus.
 
 :::
+
+### Einige Vorschläge
+
+::: {.columns}
+::: {.column width = "50%"}
+```{r}
+str(gapminder)
+```
+:::
+::: {.column width = "50%"}
+
+- Jahre: `time`
+- Teilzeitbeschäftigung: `part_time_employ_...`
+- Gini-Index: `gini`
+- Happiness-Score: `hapiscore_whr`
+- Co2-Ausstoß pro Kopf: `co2_pcap`
+- GDP pro Kopf (inflation-adjusted): `gdp_pcap` 
+
+Wenn eine eurer Variablen nicht `time` ist, wählt euch am besten ein Jahr aus, dass ihr euch anschaut. 
+
+```{r}
+#| code-fold: true
+
+gapminder_2019 <- gapminder %>%
+  filter(time == 2019) %>%
+  drop_na(gini, hapiscore_whr)
+```
+
+:::
+:::
+:::
+
+## 
+
+::: {.panel-tabset}
+
+### Übung
+\
+\
+::: {.exercise}
+Erstellt daraus einen Scatterplot. Gibt es einen Zusammenhang zwischen euren Variablen? 
+:::
+
 
 ### Lösung
 
@@ -402,14 +441,14 @@ Gibt es einen Zusammenhang?
 ggplot(
   data = gapminder_2019,
   mapping = aes(
-    x = gdp_pcap,
+    x = gini,
     y = hapiscore_whr
   )
 ) +
   geom_point()
 ```
 
-Länder mit höherem pro-Kopf Einkommen haben tendenziell auch einen höheren Happiness-Score.
+Länder mit niedrigerem Gini-Index haben tendenziell einen höheren Happiness-Score.
 
 :::
 
@@ -604,6 +643,206 @@ ggplot(
 
 ::: {.callout-tip}
 Eine Übersicht über Themes findet sich [hier](https://ggplot2.tidyverse.org/reference/ggtheme.html).
+:::
+
+
+
+## Übung
+
+::: {.exercise}
+
+1. Wir [losen]{.highlight} Gruppen aus. Stellt in den Gruppen kurz eure Scatterplots aus der vorherigen [Übung]() vor. [5 min]{.highlight}
+2. Erstellt in [Einzelarbeit]{.highlight} den euch zugewiesenen Plot-Typen. Nutzt dafür die Variablen, die ihr am interessantesten findet (entweder aus den bisherigen Übungen, oder aus dem Gruppengespräch). [30 min]{.highlight}
+
+- Lineplot: 1 numerische, 1 kategoriale und die Jahres-Variable
+- Barplot: 1 kategoriale und 1 numerische Variable
+- Densityplot: 1 numerische und 1 kategoriale Variable
+- Boxplot: 1 numerische und 1 kategoriale Variable
+- Histogram: 1 numerische Variable + eine kategoriale Variable
+
+Als kategoriale Variable bietet sich z.B. `world_6region` an. 
+
+::: {.callout-tip}
+
+Nutzt die bisherigen Code-Blocks, R-interne Hilfe, Google und KI. Falls ihr eine bestimmte Vision habt, aber nicht wisst wie ihr z.B. die Daten umformt, sagt bitte direkt Bescheid, damit wir helfen können!
+
+:::
+:::
+
+<!-- ### „Wir können nicht so ganz pauschal sagen, die Deutschen arbeiten zu wenig“, sagte der CDU-Vorsitzende am Mittwoch in Berlin auf dem Tag der Bauindustrie." -->
+
+
+## Übung
+
+::: {.panel-tabset}
+### Aufgabe
+
+::: {.exercise}
+3. Gruppenarbeit: Zusammenfinden in den Gruppen, um einen finalen Plot zu küren/erstellen (15 min). Dieser kann Elemente aus verschiedenen Plots enthalten. Ihr könnt auch euren Plot fortführen, wenn ihr den interessanter findet, oder um Inspo von den anderen ergänzen. 
+An diesem finalen Plot könnt ihr dann im Laufe des Workshops weiterarbeiten. 
+4. Kurze Vorstellung im Plenum. [10 min]{.highlight}
+
+::: 
+
+### Mögliche Lösung
+
+
+::: {.panel-tabset}
+
+### Daten vorbereiten
+
+
+
+```{r}
+
+library(tidyverse)
+
+gapminder <- readRDS(here::here("data", "gapminder_dat.rds")) 
+
+gapminder_vars <- gapminder %>%
+  select(name, time, part_time_employ_total, part_time_employ_fe, part_time_employ_ma, working_hours_week, world_6region, income_3groups) %>%
+  drop_na(part_time_employ_total, working_hours_week)
+
+gapminder_vars_de <- gapminder_vars %>% filter(name == "Germany")
+
+```
+
+### Lineplot
+
+```{r}
+#| output-location: column
+#| fig.height: 4
+
+
+line_plot <- ggplot(data = gapminder_vars_de,
+       mapping = aes(x = time, y = working_hours_week)) +
+  geom_line() +
+  labs(
+    title = "Arbeitsstunden pro Woche in Deutschland",
+    x = "Jahr",
+    y = "Arbeitsstunden pro Woche",
+    color = "Land"
+  ) +
+  theme_minimal()
+
+line_plot
+```
+
+
+### Barplot
+
+```{r}
+#| output-location: column
+#| fig.height: 4
+
+
+bar_plot <- ggplot(data = gapminder_vars, 
+       mapping = aes(x = time, y = part_time_employ_total)) +
+  geom_bar(stat = "identity") +
+  theme_minimal() +
+  labs(
+    title = "Teilzeitbeschäftigungsrate in Deutschland",
+    x = "Jahr",
+    y = "Teilzeitbeschäftigungsrate (%)"
+  )
+
+bar_plot
+
+```
+
+
+### Densityplot
+
+
+```{r}
+#| output-location: column
+#| fig.height: 4
+
+
+gapminder_vars_2019 <- gapminder_vars %>% filter(time == 2019)
+
+ggplot(data = gapminder_vars_2019, 
+       aes(x = working_hours_week, fill = income_3groups)) +
+  geom_density(alpha = 0.4) +
+  theme_minimal() +
+  labs(
+    title = "Arbeitsstunden pro Woche",
+    subtitle = "In Ländern aus verschiedenen Einkommensgruppen",
+    x = "Arbeitsstunden pro Woche",
+    y = "Dichte",
+    fill = "Einkommensgruppe"
+  )
+
+```
+
+
+
+### Boxplot
+
+
+```{r}
+#| output-location: column
+#| fig.height: 4
+
+
+gapminder_vars_long <- gapminder_vars %>%
+  pivot_longer(cols = contains("part_time_employ"),
+               names_to = "part_time_type",
+               values_to = "part_time_employ_rate") %>%
+  mutate(part_time_type = str_replace(part_time_type, "part_time_employ_", ""))
+
+gapminder_vars_2019 <- gapminder_vars_long %>% filter(time == 2019)
+
+ggplot(data = gapminder_vars_2019, 
+       mapping = aes(x = world_6region, y = part_time_employ_rate, fill = part_time_type)) +
+  geom_boxplot() +
+  theme_minimal() +
+  labs(
+    title = "Teilzeitbeschäftigungsrate in verschiedenen Kontinenten",
+    subtitle = "Im Jahr 2019",
+    x = "",
+    y = "Teilzeitbeschäftigungsrate (%)"
+  )
+```
+
+### Histogram
+
+```{r}
+#| output-location: column
+#| fig.height: 4
+
+gapminder_vars_2019 <- gapminder_vars %>% filter(time == 2019)
+
+ggplot(data = gapminder_vars_2019, 
+       aes(x = working_hours_week, fill = income_3groups)) +
+  geom_histogram(binwidth = 3 ) +
+  theme_minimal() +
+  labs(
+    title = "Arbeitsstunden pro Woche",
+    subtitle = "In Ländern aus verschiedenen Einkommensgruppen",
+    x = "Arbeitsstunden pro Woche",
+    y = "Dichte",
+    fill = "Einkommensgruppe"
+  )
+
+```
+
+### Kombiniert
+
+```{r}
+#| output-location: column
+#| fig.height: 4
+#| code-line-numbers: ""
+
+
+library(patchwork)
+
+line_plot +
+  bar_plot +
+  plot_layout(ncol = 1)
+```
+
+:::
 :::
 
 ## {background-image="images/penguins.jpg" background-size="1225px"}
