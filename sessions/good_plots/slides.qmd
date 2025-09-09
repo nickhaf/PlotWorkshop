@@ -6,7 +6,6 @@ format:
 bibliography: refs.bib
 ---
 
-
 ```{r}
 #| label: Load pacakges
 #| echo: false
@@ -31,7 +30,7 @@ gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
 ```
 
 ## 
-Excellence in statistical graphics consists of complex ideas communicated with clarity, precision, and efficiency. [@tufte1983vizual]
+Excellence in statistical graphics consists of complex ideas communicated with clarity, precision, and efficiency. [@tufte1983visual]
 
 - show the data
 - induce the viewer to think about the substance rather than about methodology, graphic design, the technology of graphic production, or something else
@@ -551,7 +550,7 @@ If zero is in the neighborhood, invite it in!
 \
 
 ::: {.quote}
-In general, in a time-series, use a baseline that shows the data not the zero point. [@tufte1983vizual]
+In general, in a time-series, use a baseline that shows the data not the zero point. [@tufte1983visual]
 :::
 :::
 :::
@@ -1088,6 +1087,56 @@ Unterscheiden von Gruppen:
 ## Formen
 
 ## Darstellung von Größen
+
+Die Größe von Elemenen kann auch genutzt werden, um Daten zu kodieren.
+
+```{r}
+#| echo: false
+#| fig-width: 18
+#| fig-height: 10
+
+library(ggwordcloud)
+library(showtext)
+
+tags <- read.csv(here::here("data", "goodbooks-10k", "tags.csv"))
+book_tags <- read.csv(here::here("data", "goodbooks-10k", "book_tags.csv"))
+books <- read.csv(here::here("data", "goodbooks-10k", "books.csv")) 
+
+
+classics <- book_tags %>% 
+left_join(books) %>%
+left_join(tags) %>% 
+filter(tag_name == "classics") %>% 
+filter(ratings_count > 20000, !duplicated(authors)) %>%
+  select(original_title, average_rating, tag_name, ratings_count) %>%
+  distinct() %>% 
+  arrange(ratings_count) %>%
+  slice_tail(n = 50)
+
+
+font_add_google("Special Elite", family = "my textfont")
+font_add_google("Playfair Display")
+
+showtext_auto()
+
+
+set.seed(45)
+ggplot(data = classics, 
+       mapping = aes(label = original_title, size = average_rating)) +
+  geom_text_wordcloud(family = "my textfont") +
+scale_size(range = c(5, 20)) +
+labs(title = "What to read next", 
+subtitle = "According to the 50 most read classics on goodreads.", 
+caption = "The larger the title, the higher the average rating.") +
+theme_bg() +
+theme(title = element_text(family = "Playfair Display", size = 50), 
+      subtitle = element_text(family = "Playfair Display", size = 40),
+caption = element_text(family = "Playfair Display", size = 30)
+)
+```
+
+
+## Einschätzen von Größen
 
 :::{.columns}
 :::{.column widht="50%}
@@ -2696,9 +2745,98 @@ Wollbox von Vincent van Gogh, mit der er Farbkombinationen getestet hat. Eigenes
 :::
 :::
 
+
+## Schriften
+
+Die Schriftart kann einer Abbildung ein ganz anderes Aussehn vereleihen.  
+Wir nutzen Schriftarten von [Google Fonts]()
+
+
+
+```{r}
+#| eval: false
+
+library(showtext)
+
+font_add_google("Special Elite", family = "special")
+```
+
+::: {.image-ref}
+Daten von [zygmuntz](https://github.com/zygmuntz/goodbooks-10k). 
+:::
+
+## 
+
+```{r}
+#| output-location: column
+#| fig-width: 7
+#| fig-height: 10
+
+library(ggwordcloud)
+
+tags <- read.csv(here::here("data", "goodbooks-10k", "tags.csv"))
+book_tags <- read.csv(here::here("data", "goodbooks-10k", "book_tags.csv"))
+books <- read.csv(here::here("data", "goodbooks-10k", "books.csv")) 
+
+
+classics <- book_tags %>% 
+left_join(books) %>%
+left_join(tags) %>% 
+filter(tag_name == "classics") %>% 
+filter(ratings_count > 20000, !duplicated(authors)) %>%
+  select(original_title, average_rating, tag_name, ratings_count) %>%
+  distinct() %>% 
+  arrange(ratings_count) %>%
+  slice_tail(n = 50)
+
+
+set.seed(45)
+ggplot(data = classics, 
+       mapping = aes(label = original_title, size = average_rating)) +
+  geom_text_wordcloud() +
+scale_size(range = c(1, 6)) +
+labs(title = "What to read next ...", 
+subtitle = "... according to goodreads") +
+theme_bg()
+
+```
+
+## 
+```{r}
+#| fig.showtext: TRUE
+#| output-location: column
+#| fig-width: 7
+#| fig-height: 10
+
+font_add_google("Special Elite", family = "my textfont")
+font_add_google("Playfair Display")
+
+showtext_auto()
+
+
+set.seed(45)
+ggplot(data = classics, 
+       mapping = aes(label = original_title, size = average_rating)) +
+  geom_text_wordcloud(family = "my textfont") +
+scale_size(range = c(1, 6)) +
+labs(title = "What to read next", 
+subtitle = "According to goodreads") +
+theme_bg() +
+theme(title = element_text(family = "Playfair Display", size = 20), 
+)
+```
+
+
+##
+
+::: {.exercise}
+Suche dir eine Schriftart aus [Google Fonts](https://fonts.google.com/) und baue sie in deinen Plot ein.
+:::
+
 ## Übung
 
 ::: {.exercise}
 Wähle eine Grafik von ... aus und erstelle einen Plan, wie du sie verbessern würdest. 
 :::
 
+## Literatur
