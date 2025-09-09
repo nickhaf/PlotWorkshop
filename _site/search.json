@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Datenvisualisierung in R",
     "section": "",
-    "text": "Ein Bild sagt mehr als tausend … Zahlen! Mit einer guten Grafik lassen sich viele Informationen übersichtlich darstellen, Sachverhalte schnell erkennen und auch an Laien komplizierte Datenlagen verständlich kommunizieren. Dabei ist eine gute Visualisierung nicht einfach: komplexe Inhalte müssen klar, präzise und effizient dargestellt werden und sollen idealerweise auch noch hübsch aussehen. In diesem Kurs lernen Teilnehmende die Grundprinzipien des „Analytical Design“ (Edward Tufte) sowie verschiedene Visualisierungsformen zur Exploration und Kommunikation univariater und multivariater Daten kennen. In diversen Übungen können sie diese Grundprinzipien bei der Erstellung von eigenen Grafiken in ggplot2 und Erweiterungen wie gganimate selbst erproben.\n\n\n\n\n\nDr. Janine Buchholz ist …\n\nNicklas Hafiz ist Psychologe und promoviert am Institut zur Qualitätsentwicklung im Bildungswesen zu Simulationsstudien in der psychologischen Methodenforschung. Teil seiner dortigen Arbeit ist zudem die Entwicklung eines R-Pakets zur Erstellung der Grafiken für den Bildungstrend-Bericht. Zudem verfügt er über Erfahrung in der Lehre und hat bereits Veranstaltungen und Workshops zu R, Item-Response-Theorie sowie zu reproduzierbarem Arbeiten mit GitHub durchgeführt.\n\n\n\n\n\nVoraussetzungen für die Teilnahme sind Grundkenntnisse in R. Grundsätzlich können die im Kurs behandelten Inhalte aber auch in anderen Programmiersprachen umgesetzt werden. Die Teilnehmenden benötigen einen Laptop, mit welchem sie sich in Posit-Cloud einloggen können, um den Beispiel und Übungsaufgaben zu folgen."
+    "text": "Ein Bild sagt mehr als tausend … Zahlen! Mit einer guten Grafik lassen sich viele Informationen übersichtlich darstellen, Sachverhalte schnell erkennen und auch an Laien komplizierte Datenlagen verständlich kommunizieren. Dabei ist eine gute Visualisierung nicht einfach: komplexe Inhalte müssen klar, präzise und effizient dargestellt werden und sollen idealerweise auch noch hübsch aussehen. In diesem Kurs lernen Teilnehmende die Grundprinzipien des „Analytical Design“ (Edward Tufte) sowie verschiedene Visualisierungsformen zur Exploration und Kommunikation univariater und multivariater Daten kennen. In diversen Übungen können sie diese Grundprinzipien bei der Erstellung von eigenen Grafiken in ggplot2 und Erweiterungen wie gganimate selbst erproben.\n\n\n\nNicklas Hafiz ist Psychologe und promoviert am Institut zur Qualitätsentwicklung im Bildungswesen (IQB) zu Simulationsstudien in der psychologischen Methodenforschung. Teil seiner dortigen Arbeit ist zudem die Entwicklung eines R-Pakets zur Erstellung der Grafiken für den Bildungstrend-Bericht. Zudem verfügt er über Erfahrung in der Lehre und hat bereits Veranstaltungen und Workshops zu R, Item-Response-Theorie sowie zu reproduzierbarem Arbeiten mit GitHub durchgeführt.\n\n\nLink to his ORCID\n\n\nDr. Janine Buchholz ist ebenfalls Psychologin und arbeitet als Postdoktorandin im Forschungsdatenzentrum am Institut zur Qualitätsentwicklung im Bildungswesen (FDZ am IQB) in Berlin. Sie hat am DIPF | Leibniz-Institut für Bildungsforschung und Bildungsinformation zu mehrdimensionalen Modellen der Item-Response-Theorie promoviert und über mehrere Jahre in unterschiedlichen Rollen an der PISA-Studie mitgewirkt. Sie verfügt über Lehrerfahrung zu verschiedenen Methoden der empirischen Bildungsforschung und Datenvisualisierung.\n\n\nLink to her ORCID\n\n\n\n\nVoraussetzungen für die Teilnahme sind Grundkenntnisse in R. Grundsätzlich können die im Kurs behandelten Inhalte aber auch in anderen Programmiersprachen umgesetzt werden. Die Teilnehmenden benötigen einen Laptop, mit welchem sie sich in Posit-Cloud einloggen können, um den Beispiel und Übungsaufgaben zu folgen."
   },
   {
     "objectID": "about.html",
@@ -81,7 +81,7 @@
     "href": "sessions/ggplot_intro/ggplot2_basics.html",
     "title": "ggplot2 Basics",
     "section": "",
-    "text": "View slides in full screen\nÜbung\n\n\nAufgabe\nLösung\n\n\n\n\nAuslosen von Gruppen.\nEinzelarbeit: Jede*r erstellt in Einzelarbeit den zugewiesenen Plot (15 min).\n\nIdee: verschiedene Aspekte der Daten durch verschiedene Arten visualisieren. Bekommt man andere Erkenntnnisse.\n„Wir müssen in diesem Land wieder mehr und vor allem effizienter arbeiten. Mit Vier-Tage-Woche und Work-Life-Balance werden wir den Wohlstand dieses Landes nicht erhalten können.“ Friedrich Merz\nWas sagen die Daten? Die Frage ist relative komplex, und wir versuchen uns mal anhand verschiedener Indikatoren zu nähren.\n\nLineplot: Arbeitsstunden (in Deutschland) nach Geschlecht\nBarplot: Teilzeitarbeit in Bevolkerung nach Geschlecht\nDensityplot: Teilzeitarbeit in Bevolkerung nach Geschlecht\nBoxplot: Arbeitsstunden nach Geschlecht\n\nDas sind die bare minimum variables, ihr konnt aber auch probieren, mehr Variablen zu integrieren.\n\nGruppenarbeit: Zusammenfinden in den Gruppen, um einen finalen Plot zu küren/erstellen (10 min).\n\nPlenum: Vorstellen der Gruppenplots.\n\n\n\n\nlibrary(ggplot2)\n\n## Daten laden\n\n\n### „Wir können nicht so ganz pauschal sagen, die Deutschen arbeiten zu wenig“, sagte der CDU-Vorsitzende am Mittwoch in Berlin auf dem Tag der Bauindustrie.\"\n\nScatterplot\nBarplot\nDensityplot\nz.b. mit scatterplot kombinieren\nBoxplot\nz.b. mit scatterplot verbinden"
+    "text": "View slides in full screen"
   },
   {
     "objectID": "sessions/good_plots/slides.html#choosing-the-correct-plot",
@@ -179,7 +179,7 @@
     "href": "sessions/ggplot_intro/slides.html#ggplot2-das-paket",
     "title": "ggplot2: Basics",
     "section": "ggplot2: Das Paket",
-    "text": "ggplot2: Das Paket\n\nggplot2 gehört zum tidyverse\n\n# install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n\n… kann aber natürlich auch seperat geladen werden:\n\n# install.packages(\"ggplot2\")\nlibrary(ggplot2)"
+    "text": "ggplot2: Das Paket\n\nggplot2 gehört zum tidyverse\n\n# install.packages(\"tidyverse\")\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ lubridate 1.9.4     ✔ tibble    3.3.0\n✔ purrr     1.0.4     ✔ tidyr     1.3.1\n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\n\n\n… kann aber natürlich auch seperat geladen werden:\n\n# install.packages(\"ggplot2\")\nlibrary(ggplot2)"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#section-1",
@@ -193,7 +193,7 @@
     "href": "sessions/ggplot_intro/slides.html#komponenten",
     "title": "ggplot2: Basics",
     "section": "Komponenten",
-    "text": "Komponenten\n\n\nDaten\n\n\n\n  x   y group size  shape\n1 1 2.0     A    4 circle\n2 2 3.0     A    5 circle\n3 3 2.5     A    6 circle\n4 4 4.0     A    7 circle\n5 5 3.0     A    8 circle\n6 2 1.0     B    3 circle\n\n\n\nAestetic mapping\n\n\n\n\n\n\n\n\n\nLayers"
+    "text": "Komponenten\n\n\nDaten\n\n\n\n  x   y group size  shape\n1 1 2.0     A    4 circle\n2 2 3.0     A    5 circle\n3 3 2.5     A    6 circle\n4 4 4.0     A    7 circle\n5 5 3.0     A    8 circle\n6 2 1.0     B    3 circle\n\n\n\n\nAestetic mapping\n\n\nWarning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.\nℹ Please use `linewidth` instead.\n\n\n\n\n\n\n\n\n\n\nLayers"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#daten-vorstellen",
@@ -235,7 +235,7 @@
     "href": "sessions/ggplot_intro/slides.html",
     "title": "ggplot2: Basics",
     "section": "",
-    "text": "Bild von Allison Horst."
+    "text": "here() starts at /home/nick/Dokumente/GitHub/PlotWorkshop\n\n\n\nAttache Paket: 'janitor'\n\n\nDie folgenden Objekte sind maskiert von 'package:stats':\n\n    chisq.test, fisher.test\n\n\nLade nötiges Paket: ggplot2"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#section-2",
@@ -375,14 +375,14 @@
     "href": "sessions/ggplot_intro/slides.html#aesthetic-mapping",
     "title": "ggplot2: Basics",
     "section": "2. Aesthetic mapping",
-    "text": "2. Aesthetic mapping\n\n\n\nVerknüpfen von Spalten im Datensatz mit visuellen Eigenschaften:\n\nmapping =  aes()\n\n\n\n\nArgument\nAesthetic\n\n\n\nx\nx-Achse\n\n\ny\ny-Achse\n\n\ncolor\nFarbe\n\n\nfill\nFüllfarbe\n\n\nshape\nForm\n\n\nsize\nGröße\n\n\nalpha\nTransparenz\n\n\ngroup\nGruppe\n\n\n\n\n\n\n\n\n\n\nUmfangreicherer Überblick über mögliche Aestethics."
+    "text": "2. Aesthetic mapping\n\n\n\nVerknüpfen von Spalten im Datensatz mit visuellen Eigenschaften:\n\nmapping =  aes()\n\n\n\n\nArgument\nAesthetic\n\n\n\nx\nx-Achse\n\n\ny\ny-Achse\n\n\ncolor\nFarbe\n\n\nfill\nFüllfarbe\n\n\nshape\nForm\n\n\nsize\nGröße\n\n\nalpha\nTransparenz\n\n\ngroup\nGruppe\n\n\n\n\n\n\n\n\n\n\n\nUmfangreicherer Überblick über mögliche Aestethics."
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#aesthetic-mapping-achsen",
     "href": "sessions/ggplot_intro/slides.html#aesthetic-mapping-achsen",
     "title": "ggplot2: Basics",
     "section": "Aesthetic mapping: Achsen",
-    "text": "Aesthetic mapping: Achsen\n\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(x = gini, y = hapiscore_whr)\n)"
+    "text": "Aesthetic mapping: Achsen\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(x = gini, y = hapiscore_whr)\n)"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#the-big-picture",
@@ -396,7 +396,7 @@
     "href": "sessions/ggplot_intro/slides.html#geometric-layers",
     "title": "ggplot2: Basics",
     "section": "3. Geometric Layers",
-    "text": "3. Geometric Layers\n\n\n\nVerschiedene Layers (geoms) werden übereinandergelegt:\n\ngeom_point() + \ngeom_line() + \n...\n\n\n\n\n\nArgument\nAesthetic\n\n\n\ngeom_point()\nPunkte\n\n\ngeom_line()\nLinien\n\n\ngeom_histogram()\nHistogramm\n\n\ngeom_text()\nText\n\n\ngeom_boxplot()\nBoxplot\n\n\n\n\n\n\n\n\n\n\n\nUmfangreicherer Überblick über mögliche Geoms."
+    "text": "3. Geometric Layers\n\n\n\nVerschiedene Layers (geoms) werden übereinandergelegt:\n\ngeom_point() + \ngeom_line() + \n...\n\n\n\n\n\nArgument\nAesthetic\n\n\n\ngeom_point()\nPunkte\n\n\ngeom_line()\nLinien\n\n\ngeom_histogram()\nHistogramm\n\n\ngeom_text()\nText\n\n\ngeom_boxplot()\nBoxplot\n\n\n\n\n\n\n\n\n\n\n\n\nUmfangreicherer Überblick über mögliche Geoms."
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#übung",
@@ -424,7 +424,7 @@
     "href": "sessions/ggplot_intro/slides.html#mehr-layers",
     "title": "ggplot2: Basics",
     "section": "Mehr Layers!",
-    "text": "Mehr Layers!\n\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  geom_smooth()"
+    "text": "Mehr Layers!\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  geom_smooth()\n\n`geom_smooth()` using method = 'loess' and formula = 'y ~ x'"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#titlelabels",
@@ -452,7 +452,7 @@
     "href": "sessions/ggplot_intro/slides.html#style-deinen-plot-themes",
     "title": "ggplot2: Basics",
     "section": "Style deinen Plot: Themes",
-    "text": "Style deinen Plot: Themes\n\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(aes(color = world_4region)) +\n  geom_smooth() +\n  labs(\n    title = \"Ungleichheit = Un-Happiness?\",\n    subtitle = \"Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2019\",\n    x = \"Gini-Index\",\n    y = \"Happiness-Score\",\n  ) +\n  theme_bw()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEine Übersicht über Themes findet sich hier."
+    "text": "Style deinen Plot: Themes\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(aes(color = world_4region)) +\n  geom_smooth() +\n  labs(\n    title = \"Ungleichheit = Un-Happiness?\",\n    subtitle = \"Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2019\",\n    x = \"Gini-Index\",\n    y = \"Happiness-Score\",\n  ) +\n  theme_bw()\n\n`geom_smooth()` using method = 'loess' and formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nEine Übersicht über Themes findet sich hier."
   },
   {
     "objectID": "sessions/good_plots/slides.html#darstellung-von-größen",
@@ -529,7 +529,7 @@
     "href": "sessions/Einführung/slides.html",
     "title": "Einführung",
     "section": "",
-    "text": "library(quartets)\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.2.1\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.4     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nsource(here::here(\"src\", \"themes.R\"))"
+    "text": "── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.3.0\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.4     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors"
   },
   {
     "objectID": "sessions/good_plots/slides.html",
@@ -606,7 +606,7 @@
     "href": "index.html#tag-1",
     "title": "Datenvisualisierung in R",
     "section": "Tag 1",
-    "text": "Tag 1\n\n\n\n\n\n\n\n\n\n\nEinführung\n\n\n9:00 - 09:45\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2: Die Basics\n\n\n09:50 - 11:30\n\n\n\nNicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGute Plots\n\n\n\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\nKeine Treffer"
+    "text": "Tag 1\n\n\n\n\n\n\n\n\n\nEinführung\n\n\n9:00 - 09:45\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2: Die Basics\n\n\n09:50 - 11:30\n\n\n\nNicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\nGute Plots\n\n\n\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\nKeine Treffer"
   },
   {
     "objectID": "sessions/r_basics/r_basics.html",
@@ -634,7 +634,7 @@
     "href": "sessions/ggplot_intro/slides.html#start-ggplot",
     "title": "ggplot2: Basics",
     "section": "Start: ggplot()\n",
-    "text": "Start: ggplot()\n\n\n\nggplot()"
+    "text": "Start: ggplot()\n\n\nggplot()"
   },
   {
     "objectID": "sessions/example_slides.html#normal-slide",
@@ -725,21 +725,21 @@
     "href": "sessions/ggplot_intro/slides.html#layers-punkte",
     "title": "ggplot2: Basics",
     "section": "Layers: Punkte",
-    "text": "Layers: Punkte\n\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(x = gini, y = hapiscore_whr)\n  ) +\n  geom_point()"
+    "text": "Layers: Punkte\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(x = gini, y = hapiscore_whr)\n  ) +\n  geom_point()"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#labels",
     "href": "sessions/ggplot_intro/slides.html#labels",
     "title": "ggplot2: Basics",
     "section": "Labels",
-    "text": "Labels\n\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(aes(color = world_4region)) +\n  geom_smooth() +\n  labs(\n    title = \"Ungleichheit = Un-Happiness?\",\n    subtitle = \"Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2019\",\n    x = \"Gini-Index\",\n    y = \"Happiness-Score\",\n  )"
+    "text": "Labels\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(aes(color = world_4region)) +\n  geom_smooth() +\n  labs(\n    title = \"Ungleichheit = Un-Happiness?\",\n    subtitle = \"Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2019\",\n    x = \"Gini-Index\",\n    y = \"Happiness-Score\",\n  )\n\n`geom_smooth()` using method = 'loess' and formula = 'y ~ x'"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#mehr-aesthetics",
     "href": "sessions/ggplot_intro/slides.html#mehr-aesthetics",
     "title": "ggplot2: Basics",
     "section": "Mehr Aesthetics!",
-    "text": "Mehr Aesthetics!\n\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(\n    x = gini, y = hapiscore_whr,\n    color = world_4region\n  )\n) +\n  geom_point()"
+    "text": "Mehr Aesthetics!\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(\n    x = gini, y = hapiscore_whr,\n    color = world_4region\n  )\n) +\n  geom_point()"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#für-alle-layer",
@@ -767,7 +767,7 @@
     "href": "sessions/ggplot_intro/slides.html#aestetics-als-mapping-oder-setting",
     "title": "ggplot2: Basics",
     "section": "Aestetics als Mapping oder Setting",
-    "text": "Aestetics als Mapping oder Setting\n\n\nFür alle Layer\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(\n    x = gdp_pcap,\n    y = hapiscore_whr,\n    color = world_4region)\n) +\n  geom_point() +\n  geom_smooth()\n\n\n\n\n\n\n\n\nFür spezifische Layer\n\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(aes(color = world_4region)) +\n  geom_smooth()\n\n\n\n\n\n\n\n\n\nAls Setting\n\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(color = \"#F4BA02\") +\n  geom_smooth()"
+    "text": "Aestetics als Mapping oder Setting\n\n\nFür alle Layer\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(\n    x = gdp_pcap,\n    y = hapiscore_whr,\n    color = world_4region)\n) +\n  geom_point() +\n  geom_smooth()\n\n`geom_smooth()` using method = 'loess' and formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\nFür spezifische Layer\n\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(aes(color = world_4region)) +\n  geom_smooth()\n\n`geom_smooth()` using method = 'loess' and formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\nAls Setting\n\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(color = \"#F4BA02\") +\n  geom_smooth()\n\n`geom_smooth()` using method = 'loess' and formula = 'y ~ x'"
   },
   {
     "objectID": "sessions/example_slides.html#plotlygganimate",
@@ -1096,7 +1096,7 @@
     "href": "sessions/ggplot_intro/slides.html#daten-1",
     "title": "ggplot2: Basics",
     "section": "1. Daten",
-    "text": "1. Daten\n\n\nggplot(data = gapminder_2019)"
+    "text": "1. Daten\n\nggplot(data = gapminder_2019)"
   },
   {
     "objectID": "sessions/good_plots/slides.html#deshalb-finger-weg-von-pie-charts",
@@ -2062,21 +2062,21 @@
     "href": "sessions/Einführung/slides.html#daten",
     "title": "Einführung",
     "section": "Daten",
-    "text": "Daten\n\n\n\nGapminder ist ein non-profit Projekt mit dem Ziel, mit global misconceptions aufzuräumen. Grundlage dafür ist ein Datensatz mit sozioökonomischen Indikatoren für fast alle Länder der Welt über mehrere Jahrzehnte.\n\n\n\n\nBild von Amazon."
+    "text": "Daten\n\n\n\nGapminder ist ein non-profit Projekt mit dem Ziel, mit global misconceptions aufzuräumen. Grundlage dafür ist ein Datensatz mit sozioökonomischen Indikatoren für fast alle Länder der Welt über mehrere Jahrzehnte.\n\n\n\n\n\nBild von Amazon."
   },
   {
     "objectID": "sessions/Einführung/slides.html#scatterplot",
     "href": "sessions/Einführung/slides.html#scatterplot",
     "title": "Einführung",
     "section": "Scatterplot",
-    "text": "Scatterplot\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2019 &lt;- gapminder %&gt;% \n  filter(time == 2019)\n  \np_scatter &lt;- ggplot(data = gapminder_2019, aes(x = gini, y = hapiscore_whr, color = world_4region)) +\n  geom_point(size = 3) \n\np_scatter"
+    "text": "Scatterplot\n\n\nPlot\nCode\n\n\n\n\n\nWarning: Removed 57 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2019 &lt;- gapminder %&gt;% \n  filter(time == 2019)\n  \np_scatter &lt;- ggplot(data = gapminder_2019, aes(x = gini, y = hapiscore_whr, color = world_4region)) +\n  geom_point(size = 3) \n\np_scatter"
   },
   {
     "objectID": "sessions/Einführung/slides.html#scatterplot-1",
     "href": "sessions/Einführung/slides.html#scatterplot-1",
     "title": "Einführung",
     "section": "Scatterplot",
-    "text": "Scatterplot\n\n\n\nDatentyp Numerisch\nAchtung Overplotting\n\n\nLink test\n\n\n\n\n\n\n\n\n\n\n:::"
+    "text": "Scatterplot\n\n\n\nDatentyp Numerisch\nAchtung Overplotting\n\n\nLink test\n\n\n\n\n\nWarning: Removed 57 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\n:::"
   },
   {
     "objectID": "sessions/Einführung/slides.html#barplot",
@@ -2125,7 +2125,7 @@
     "href": "sessions/Einführung/slides.html#kombiniert",
     "title": "Einführung",
     "section": "Kombiniert",
-    "text": "Kombiniert\n\nCo2 with grey scale\ngreens with green scale"
+    "text": "Kombiniert"
   },
   {
     "objectID": "sessions/Einführung/slides.html#scatterplot-2",
@@ -2216,14 +2216,14 @@
     "href": "sessions/ggplot_intro/slides.html#section-3",
     "title": "ggplot2: Basics",
     "section": "",
-    "text": "Übung\n\n\n\n::: {.exercise} Erstellt daraus einen Scatterplot. Gibt es einen Zusammenhang zwischen euren Variablen?\n\n\n\nLösung\n\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point()\n\n\n\n\n\n\n\n\nLänder mit niedrigerem Gini-Index haben tendenziell einen höheren Happiness-Score.\n:::"
+    "text": "Übung\n\n\n\n::: {.exercise} Erstellt daraus einen Scatterplot. Gibt es einen Zusammenhang zwischen euren Variablen?\n\n\n\nLösung\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point()\n\n\n\n\n\n\n\nLänder mit niedrigerem Gini-Index haben tendenziell einen höheren Happiness-Score.\n:::"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#section-4",
     "href": "sessions/ggplot_intro/slides.html#section-4",
     "title": "ggplot2: Basics",
     "section": "",
-    "text": "Übung\nLösung\n\n\n\n\n\nProbiert aus, wo in den ggplot-layers man die Farbe ändern kann (es gibt 3 verschiedene Möglichkeiten, die sich alle unterschiedlich auf den Plot auswirken).\nÄndert dafür unseren bisherigen Plot so, dass nur die Punkte farbig sind.\nDie Linie von geom_smooth() soll einfarbig werden.\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  geom_smooth()\n\n\n\n\n\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(x = gini, y = hapiscore_whr)\n) +\n  geom_point(aes(color = world_4region)) +\n  geom_smooth()\n\n\n\n\n\n\n\n\nWir ändern dafür die Aesthetics von global zu lokal, indem wir die color-Aesthetic nur in geom_point() definieren."
+    "text": "Übung\nLösung\n\n\n\n\n\nProbiert aus, wo in den ggplot-layers man die Farbe ändern kann (es gibt 3 verschiedene Möglichkeiten, die sich alle unterschiedlich auf den Plot auswirken).\nÄndert dafür unseren bisherigen Plot so, dass nur die Punkte farbig sind.\nDie Linie von geom_smooth() soll einfarbig werden.\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  geom_smooth()\n\n\n\n\n\nggplot(\n  data = gapminder_2019,\n  mapping = aes(x = gini, y = hapiscore_whr)\n) +\n  geom_point(aes(color = world_4region)) +\n  geom_smooth()\n\n`geom_smooth()` using method = 'loess' and formula = 'y ~ x'\n\n\n\n\n\n\n\n\nWir ändern dafür die Aesthetics von global zu lokal, indem wir die color-Aesthetic nur in geom_point() definieren."
   },
   {
     "objectID": "sessions/Einführung/slides.html#rstudio-projekte",
@@ -2279,7 +2279,7 @@
     "href": "sessions/Einführung/slides.html#eine-der-ersten-karten",
     "title": "Einführung",
     "section": "Eine der ersten Karten",
-    "text": "Eine der ersten Karten\n\n\nDr. John Snow zeichnete die Todesfälle durch Cholera in Zentral-London im September 1854 auf.Wasserpumpen wurden mit einem x markiert.\nDadurch ließ sich die Broad Street Pumpe als Quelle der Epidemie identifizieren.\n\n\n\n\nBild von ReserachGate"
+    "text": "Eine der ersten Karten\n\n\nDr. John Snow zeichnete die Todesfälle durch Cholera in Zentral-London im September 1854 auf.Wasserpumpen wurden mit einem x markiert.\nDadurch ließ sich die Broad Street Pumpe als Quelle der Epidemie identifizieren.\n\n\n\n\n\nBild von ReserachGate"
   },
   {
     "objectID": "sessions/good_plots/slides.html#erkläre-auffälligkeiten",
@@ -2622,7 +2622,7 @@
     "href": "index.html#tag-2",
     "title": "Datenvisualisierung in R",
     "section": "Tag 2",
-    "text": "Tag 2\n\n\n\n\n\n\n\n\nggplot2: Advanced\n\n\n\n\n\n\nNicklas Hafiz, Janine Buchholz\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWissenschaftliche Grafiken\n\n\n\n\n\n\n\n\n\n\nExplorative Grafiken\n\n\n\n\n\n\n\n\n\n\nGrafiken Druckreif machen\n\n\n\n\n\n\n\n\n\n\ngganimate & plotly\n\n\n\n\n\n\n\nKeine Treffer"
+    "text": "Tag 2\n\n\n\n\n\n\n\n\nggplot2: Advanced\n\n\n\n\n\n\nNicklas Hafiz, Janine Buchholz\n\n\n\n\n\n\n\n\n\n\n\n\nWissenschaftliche Grafiken\n\n\n\n\n\n\n\n\n\n\nExplorative Grafiken\n\n\n\n\n\n\n\n\n\n\nGrafiken Druckreif machen\n\n\n\n\n\n\n\n\n\n\ngganimate & plotly\n\n\n\n\n\nKeine Treffer"
   },
   {
     "objectID": "sessions/good_plots/slides.html#schriften",
@@ -2657,7 +2657,7 @@
     "href": "sessions/ggplot_intro/slides.html#übung-3",
     "title": "ggplot2: Basics",
     "section": "Übung",
-    "text": "Übung\n\n\nWir losen Gruppen aus. Stellt in den Gruppen kurz eure Scatterplots aus der vorherigen Übung vor. 5 min\n\nErstellt in Einzelarbeit den euch zugewiesenen Plot-Typen. Nutzt dafür die Variablen, die ihr am interessantesten findet (entweder aus den bisherigen Übungen, oder aus dem Gruppengespräch). 30 min\n\n\nEs sollte mindestens eine numerische Variable aufgeteilt auf mindestens eine kategoriale Variable (z.B. Land) sein.\n\nLineplot: 1 numerische, 1 kategoriale und die Jahres-Variable\nBarplot: 1 kategoriale und 1 numerische Variable\nDensityplot: 1 numerische und 1 kategoriale Variable\nBoxplot: 1 numerische und 1 kategoriale Variable\nHistogram: 1 numerische Variable + eine kategoriale Variable\n\nAls kategoriale Variable bietet sich z.B. world_6region an.\n\n\n\n\n\n\nNutzt die bisherigen Code-Blocks, R-interne Hilfe, Google und KI. Falls ihr eine bestimmte Vision habt, aber nicht wisst wie ihr z.B. die Daten umformt, sagt bitte direkt Bescheid, damit wir helfen können!"
+    "text": "Übung\n\n\nWir losen Gruppen aus. Stellt in den Gruppen kurz eure Scatterplots aus der vorherigen Übung vor. 5 min\n\nErstellt in Einzelarbeit den euch zugewiesenen Plot-Typen. Nutzt dafür die Variablen, die ihr am interessantesten findet (entweder aus den bisherigen Übungen, oder aus dem Gruppengespräch). 30 min\n\n\n\nLineplot: 1 numerische, 1 kategoriale und die Jahres-Variable\nBarplot: 1 kategoriale und 1 numerische Variable\nDensityplot: 1 numerische und 1 kategoriale Variable\nBoxplot: 1 numerische und 1 kategoriale Variable\nHistogram: 1 numerische Variable + eine kategoriale Variable\n\nAls kategoriale Variable bietet sich z.B. world_6region an.\n\n\n\n\n\n\nNutzt die bisherigen Code-Blocks, R-interne Hilfe, Google und KI. Falls ihr eine bestimmte Vision habt, aber nicht wisst wie ihr z.B. die Daten umformt, sagt bitte direkt Bescheid, damit wir helfen können!"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#section-5",
@@ -2671,6 +2671,13 @@
     "href": "sessions/ggplot_intro/slides.html#übung-4",
     "title": "ggplot2: Basics",
     "section": "Übung",
-    "text": "Übung\n\n\nAufgabe\nMögliche Lösung\n\n\n\n\n\nGruppenarbeit: Zusammenfinden in den Gruppen, um einen finalen Plot zu küren/erstellen (15 min). Dieser kann Elemente aus verschiedenen Plots enthalten. Ihr könnt auch euren Plot fortführen, wenn ihr den interessanter findet, oder um Inspo von den anderen ergänzen. An diesem finalen Plot könnt ihr dann im Laufe des Workshops weiterarbeiten.\nKurze Vorstellung im Plenum. 10 min\n\n\n\n\n\n\n\nDaten vorbereiten\nLineplot\nBarplot\nDensityplot\nBoxplot\nHistogram\nKombiniert\n\n\n\n\nlibrary(tidyverse)\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\")) \n\ngapminder_vars &lt;- gapminder %&gt;%\n  select(name, time, part_time_employ_total, part_time_employ_fe, part_time_employ_ma, working_hours_week, world_6region, income_3groups) %&gt;%\n  drop_na(part_time_employ_total, working_hours_week)\n\ngapminder_vars_de &lt;- gapminder_vars %&gt;% filter(name == \"Germany\")\n\n\n\n\n\nline_plot &lt;- ggplot(data = gapminder_vars_de,\n       mapping = aes(x = time, y = working_hours_week)) +\n  geom_line() +\n  labs(\n    title = \"Arbeitsstunden pro Woche in Deutschland\",\n    x = \"Jahr\",\n    y = \"Arbeitsstunden pro Woche\",\n    color = \"Land\"\n  ) +\n  theme_minimal()\n\nline_plot\n\n\n\n\n\n\n\n\n\n\n\n\nbar_plot &lt;- ggplot(data = gapminder_vars, \n       mapping = aes(x = time, y = part_time_employ_total)) +\n  geom_bar(stat = \"identity\") +\n  theme_minimal() +\n  labs(\n    title = \"Teilzeitbeschäftigungsrate in Deutschland\",\n    x = \"Jahr\",\n    y = \"Teilzeitbeschäftigungsrate (%)\"\n  )\n\nbar_plot\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_vars_2019 &lt;- gapminder_vars %&gt;% filter(time == 2019)\n\nggplot(data = gapminder_vars_2019, \n       aes(x = working_hours_week, fill = income_3groups)) +\n  geom_density(alpha = 0.4) +\n  theme_minimal() +\n  labs(\n    title = \"Arbeitsstunden pro Woche\",\n    subtitle = \"In Ländern aus verschiedenen Einkommensgruppen\",\n    x = \"Arbeitsstunden pro Woche\",\n    y = \"Dichte\",\n    fill = \"Einkommensgruppe\"\n  )\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_vars_long &lt;- gapminder_vars %&gt;%\n  pivot_longer(cols = contains(\"part_time_employ\"),\n               names_to = \"part_time_type\",\n               values_to = \"part_time_employ_rate\") %&gt;%\n  mutate(part_time_type = str_replace(part_time_type, \"part_time_employ_\", \"\"))\n\ngapminder_vars_2019 &lt;- gapminder_vars_long %&gt;% filter(time == 2019)\n\nggplot(data = gapminder_vars_2019, \n       mapping = aes(x = world_6region, y = part_time_employ_rate, fill = part_time_type)) +\n  geom_boxplot() +\n  theme_minimal() +\n  labs(\n    title = \"Teilzeitbeschäftigungsrate in verschiedenen Kontinenten\",\n    subtitle = \"Im Jahr 2019\",\n    x = \"\",\n    y = \"Teilzeitbeschäftigungsrate (%)\"\n  )\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_vars_2019 &lt;- gapminder_vars %&gt;% filter(time == 2019)\n\nggplot(data = gapminder_vars_2019, \n       aes(x = working_hours_week, fill = income_3groups)) +\n  geom_histogram(binwidth = 3 ) +\n  theme_minimal() +\n  labs(\n    title = \"Arbeitsstunden pro Woche\",\n    subtitle = \"In Ländern aus verschiedenen Einkommensgruppen\",\n    x = \"Arbeitsstunden pro Woche\",\n    y = \"Dichte\",\n    fill = \"Einkommensgruppe\"\n  )\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(patchwork)\n\nline_plot +\n  bar_plot +\n  plot_layout(ncol = 1)"
+    "text": "Übung\n\n\nAufgabe\nMögliche Lösung\n\n\n\n\n\nGruppenarbeit: Zusammenfinden in den Gruppen, um einen finalen Plot zu küren/erstellen (15 min). Dieser kann Elemente aus verschiedenen Plots enthalten. Ihr könnt auch euren Plot fortführen, wenn ihr den interessanter findet, oder um Inspo von den anderen ergänzen. An diesem finalen Plot könnt ihr dann im Laufe des Workshops weiterarbeiten.\nKurze Vorstellung im Plenum. 10 min\n\n\n\n\n\n\n\nDaten vorbereiten\nLineplot\nBarplot\nDensityplot\nBoxplot\nHistogram\nKombiniert\n\n\n\n\nlibrary(tidyverse)\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\")) \n\ngapminder_vars &lt;- gapminder %&gt;%\n  select(name, time, part_time_employ_total, part_time_employ_fe, part_time_employ_ma, working_hours_week, world_6region, income_3groups) %&gt;%\n  drop_na(part_time_employ_total, working_hours_week)\n\ngapminder_vars_de &lt;- gapminder_vars %&gt;% filter(name == \"Germany\")\n\n\n\n\nline_plot &lt;- ggplot(data = gapminder_vars_de,\n       mapping = aes(x = time, y = working_hours_week)) +\n  geom_line() +\n  labs(\n    title = \"Arbeitsstunden pro Woche in Deutschland\",\n    x = \"Jahr\",\n    y = \"Arbeitsstunden pro Woche\",\n    color = \"Land\"\n  ) +\n  theme_minimal()\n\nline_plot\n\n\n\n\n\n\n\n\n\n\nbar_plot &lt;- ggplot(data = gapminder_vars, \n       mapping = aes(x = time, y = part_time_employ_total)) +\n  geom_bar(stat = \"identity\") +\n  theme_minimal() +\n  labs(\n    title = \"Teilzeitbeschäftigungsrate in Deutschland\",\n    x = \"Jahr\",\n    y = \"Teilzeitbeschäftigungsrate (%)\"\n  )\n\nbar_plot\n\n\n\n\n\n\n\n\n\n\ngapminder_vars_2019 &lt;- gapminder_vars %&gt;% filter(time == 2019)\n\nggplot(data = gapminder_vars_2019, \n       aes(x = working_hours_week, fill = income_3groups)) +\n  geom_density(alpha = 0.4) +\n  theme_minimal() +\n  labs(\n    title = \"Arbeitsstunden pro Woche\",\n    subtitle = \"In Ländern aus verschiedenen Einkommensgruppen\",\n    x = \"Arbeitsstunden pro Woche\",\n    y = \"Dichte\",\n    fill = \"Einkommensgruppe\"\n  )\n\nWarning: Groups with fewer than two data points have been dropped.\n\n\nWarning in max(ids, na.rm = TRUE): kein nicht-fehlendes Argument für max; gebe\n-Inf zurück\n\n\n\n\n\n\n\n\n\n\n\ngapminder_vars_long &lt;- gapminder_vars %&gt;%\n  pivot_longer(cols = contains(\"part_time_employ\"),\n               names_to = \"part_time_type\",\n               values_to = \"part_time_employ_rate\") %&gt;%\n  mutate(part_time_type = str_replace(part_time_type, \"part_time_employ_\", \"\"))\n\ngapminder_vars_2019 &lt;- gapminder_vars_long %&gt;% filter(time == 2019)\n\nggplot(data = gapminder_vars_2019, \n       mapping = aes(x = world_6region, y = part_time_employ_rate, fill = part_time_type)) +\n  geom_boxplot() +\n  theme_minimal() +\n  labs(\n    title = \"Teilzeitbeschäftigungsrate in verschiedenen Kontinenten\",\n    subtitle = \"Im Jahr 2019\",\n    x = \"\",\n    y = \"Teilzeitbeschäftigungsrate (%)\"\n  )\n\n\n\n\n\n\n\n\n\n\ngapminder_vars_2019 &lt;- gapminder_vars %&gt;% filter(time == 2019)\n\nggplot(data = gapminder_vars_2019, \n       aes(x = working_hours_week, fill = income_3groups)) +\n  geom_histogram(binwidth = 3 ) +\n  theme_minimal() +\n  labs(\n    title = \"Arbeitsstunden pro Woche\",\n    subtitle = \"In Ländern aus verschiedenen Einkommensgruppen\",\n    x = \"Arbeitsstunden pro Woche\",\n    y = \"Dichte\",\n    fill = \"Einkommensgruppe\"\n  )\n\n\n\n\n\n\n\n\n\n\nlibrary(patchwork)\n\nline_plot +\n  bar_plot +\n  plot_layout(ncol = 1)"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#plotly",
+    "href": "sessions/Einführung/slides.html#plotly",
+    "title": "Einführung",
+    "section": "Plotly",
+    "text": "Plotly"
   }
 ]
