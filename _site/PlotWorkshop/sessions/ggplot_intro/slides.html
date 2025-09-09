@@ -203,26 +203,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"></a></li>
   <li><a href="#ggplot2-das-paket" id="toc-ggplot2-das-paket" class="nav-link" data-scroll-target="#ggplot2-das-paket">ggplot2: Das Paket</a></li>
   <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a></li>
-  <li><a href="#the-big-picture" id="toc-the-big-picture" class="nav-link" data-scroll-target="#the-big-picture">The Big picture</a></li>
   <li><a href="#komponenten" id="toc-komponenten" class="nav-link" data-scroll-target="#komponenten">Komponenten</a></li>
   <li><a href="#die-daten" id="toc-die-daten" class="nav-link" data-scroll-target="#die-daten">Die Daten</a></li>
   <li><a href="#die-daten-1" id="toc-die-daten-1" class="nav-link" data-scroll-target="#die-daten-1">Die Daten</a></li>
-  <li><a href="#einen-ggplot-bauen" id="toc-einen-ggplot-bauen" class="nav-link" data-scroll-target="#einen-ggplot-bauen">Einen ggplot bauen</a>
-  <ul class="collapse">
   <li><a href="#start-ggplot" id="toc-start-ggplot" class="nav-link" data-scroll-target="#start-ggplot">Start: <code>ggplot()</code></a></li>
-  <li><a href="#daten" id="toc-daten" class="nav-link" data-scroll-target="#daten">Daten</a></li>
-  <li><a href="#aesthetic-mapping" id="toc-aesthetic-mapping" class="nav-link" data-scroll-target="#aesthetic-mapping">Aesthetic mapping</a></li>
+  <li><a href="#daten-1" id="toc-daten-1" class="nav-link" data-scroll-target="#daten-1">1. Daten</a></li>
+  <li><a href="#aesthetic-mapping" id="toc-aesthetic-mapping" class="nav-link" data-scroll-target="#aesthetic-mapping">2. Aesthetic mapping</a></li>
   <li><a href="#aesthetic-mapping-achsen" id="toc-aesthetic-mapping-achsen" class="nav-link" data-scroll-target="#aesthetic-mapping-achsen">Aesthetic mapping: Achsen</a></li>
-  <li><a href="#geometric-layers" id="toc-geometric-layers" class="nav-link" data-scroll-target="#geometric-layers">Geometric Layers</a></li>
-  <li><a href="#layers" id="toc-layers" class="nav-link" data-scroll-target="#layers">Layers</a></li>
+  <li><a href="#geometric-layers" id="toc-geometric-layers" class="nav-link" data-scroll-target="#geometric-layers">3. Geometric Layers</a></li>
+  <li><a href="#layers-punkte" id="toc-layers-punkte" class="nav-link" data-scroll-target="#layers-punkte">Layers: Punkte</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"></a></li>
+  <li><a href="#mehr-aesthetics" id="toc-mehr-aesthetics" class="nav-link" data-scroll-target="#mehr-aesthetics">Mehr Aesthetics!</a></li>
   <li><a href="#mehr-layers" id="toc-mehr-layers" class="nav-link" data-scroll-target="#mehr-layers">Mehr Layers!</a></li>
-  <li><a href="#titellabels" id="toc-titellabels" class="nav-link" data-scroll-target="#titellabels">Titel/Labels</a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"></a></li>
+  <li><a href="#aestetics-als-mapping-oder-setting" id="toc-aestetics-als-mapping-oder-setting" class="nav-link" data-scroll-target="#aestetics-als-mapping-oder-setting">Aestetics als Mapping oder Setting</a></li>
+  <li><a href="#labels" id="toc-labels" class="nav-link" data-scroll-target="#labels">Labels</a></li>
   <li><a href="#style-deinen-plot-themes" id="toc-style-deinen-plot-themes" class="nav-link" data-scroll-target="#style-deinen-plot-themes">Style deinen Plot: Themes</a></li>
-  <li><a href="#übung" id="toc-übung" class="nav-link" data-scroll-target="#übung">Übung</a></li>
-  <li><a href="#lets-take-a-deeper-dive" id="toc-lets-take-a-deeper-dive" class="nav-link" data-scroll-target="#lets-take-a-deeper-dive">Let’s take a deeper dive</a></li>
-  <li><a href="#abspeichern" id="toc-abspeichern" class="nav-link" data-scroll-target="#abspeichern">Abspeichern</a></li>
-  <li><a href="#farben" id="toc-farben" class="nav-link" data-scroll-target="#farben">Farben</a></li>
-  </ul></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4"></a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Andere Formate</h2><ul><li><a href="slides.html"><i class="bi bi-file-slides"></i>RevealJS (letterbox)</a></li></ul></div></nav>
     </div>
@@ -279,13 +276,24 @@ Attache Paket: 'janitor'</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("tidyverse")</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ lubridate 1.9.4     ✔ tibble    3.3.0
+✔ purrr     1.0.4     ✔ tidyr     1.3.1
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
 </div>
 <p><br>
 </p>
 <p>… kann aber natürlich auch seperat geladen werden:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("ggplot2")</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("ggplot2")</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="section-1" class="level2" data-background-image="images/babyfeet.jpg" data-background-size="1225px">
@@ -297,53 +305,103 @@ Attache Paket: 'janitor'</code></pre>
 <p>Foto von <a href="https://unsplash.com/de/@omarlopez1?utm_content=creditCopyText&amp;utm_medium=referral&amp;utm_source=unsplash">Omar Lopez</a> auf <a href="https://unsplash.com/de/fotos/person-die-babyfusse-halt-vTknj2OxDVg?utm_content=creditCopyText&amp;utm_medium=referral&amp;utm_source=unsplash">Unsplash</a></p>
 </div>
 </section>
-<section id="the-big-picture" class="level2">
-<h2 class="anchored" data-anchor-id="the-big-picture">The Big picture</h2>
-</section>
 <section id="komponenten" class="level2">
 <h2 class="anchored" data-anchor-id="komponenten">Komponenten</h2>
-<ol type="1">
-<li>Daten.</li>
-<li><span class="highlight">Aesthetic mapping</span> zwischen Daten und visuellen Eigenschaften.</li>
-<li>[Layer(s)] zum rendern der Daten.</li>
-</ol>
-</section>
-<section id="die-daten" class="level2">
-<h2 class="anchored" data-anchor-id="die-daten">Die Daten</h2>
-<p>Wir nutzen Daten von <a href="https://www.gapminder.org/data/">Gapminder</a>.<br>
-Gapminder sammelt diverse Indikatoren über viele Jahre aus allen Ländern weltweit, z.B. Lebenserwartung, GDP, CO2-Verbrauch und viele mehr.<br>
-Bekannt sind vor allem die <a href="https://www.gapminder.org/tools/#$chart-type=bubbles&amp;url=v2">Bubble-Plots</a>.</p>
+<div class="columns">
+<div class="column" style="width:33%;">
+<section id="daten" class="level3">
+<h3 class="anchored" data-anchor-id="daten">Daten</h3>
 <p><br>
+<br>
 </p>
-<p><img src="./images/bubbleplot.png" style="height:95.0%"></p>
-</section>
-<section id="die-daten-1" class="level2">
-<h2 class="anchored" data-anchor-id="die-daten-1">Die Daten</h2>
-<p>Zuerst schauen wir uns nur eins der Jahre genauer an:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>gapminder_dat <span class="ot">&lt;-</span> gapminder_dat_full <span class="sc">%&gt;%</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(time <span class="sc">==</span> <span class="st">"2020"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x   y group size  shape
+1 1 2.0     A    4 circle
+2 2 3.0     A    5 circle
+3 3 2.5     A    6 circle
+4 4 4.0     A    7 circle
+5 5 3.0     A    8 circle
+6 2 1.0     B    3 circle</code></pre>
+</div>
 </div>
 </section>
-<section id="einen-ggplot-bauen" class="level1">
-<h1>Einen ggplot bauen</h1>
-<section id="start-ggplot" class="level2">
-<h2 class="anchored" data-anchor-id="start-ggplot">Start: <code>ggplot()</code></h2>
-<div class="cell" data-output-location="column">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:33%;">
+<section id="aestetic-mapping" class="level3">
+<h3 class="anchored" data-anchor-id="aestetic-mapping">Aestetic mapping</h3>
+<div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="slides_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="480"></p>
+<p><img src="slides_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="480"></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="daten" class="level2">
-<h2 class="anchored" data-anchor-id="daten">Daten</h2>
+</div><div class="column" style="width:33%;">
+<section id="layers" class="level3">
+<h3 class="anchored" data-anchor-id="layers">Layers</h3>
+<p><img src="./images/layers.gif" class="img-fluid"></p>
+</section>
+</div>
+</div>
+</section>
+<section id="die-daten" class="level2">
+<h2 class="anchored" data-anchor-id="die-daten">Die Daten</h2>
+<p>Wir nutzen Daten von <a href="https://www.gapminder.org/data/">Gapminder</a>.</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Gapminder sammelt diverse Indikatoren aus allen Ländern weltweit, z.B. Lebenserwartung, GDP, CO2-Verbrauch und viele mehr.</p>
+</div>
+</div>
+</div>
+<p><br>
+</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./images/bubbleplot.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+</section>
+<section id="die-daten-1" class="level2">
+<h2 class="anchored" data-anchor-id="die-daten-1">Die Daten</h2>
+<p>Zuerst schauen wir uns nur eins der Jahre genauer an:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>gapminder <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"gapminder_dat.rds"</span>))</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>gapminder_2019 <span class="ot">&lt;-</span> gapminder <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(time <span class="sc">==</span> <span class="dv">2019</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(gini, hapiscore_whr)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><span class="highlight">Gini-Koeffizient</span></p>
+<ul>
+<li>0 = perfekte Gleichheit (alle haben gleich viel)</li>
+<li>100 = perfekte Ungleichheit (eine Person hat alles)</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><span class="highlight">Happiness-Score</span> (Cantril-Leiter)</p>
+<ul>
+<li>0 = Schlechtestest mögliche Leben.</li>
+<li>100 = Bestmöglichstes Leben.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="start-ggplot" class="level2">
+<h2 class="anchored" data-anchor-id="start-ggplot">Start: <code>ggplot()</code></h2>
 <div class="cell" data-output-location="column">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder_dat)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -353,23 +411,10 @@ Bekannt sind vor allem die <a href="https://www.gapminder.org/tools/#$chart-type
 </div>
 </div>
 </section>
-<section id="aesthetic-mapping" class="level2">
-<h2 class="anchored" data-anchor-id="aesthetic-mapping">Aesthetic mapping</h2>
-<p>Um diese leere Leinwand zu befüllen, müssen wir die Daten mit den benötigten visuellen Eigenschaften verknüpfen:</p>
-<p><code>mapping =  aes()</code></p>
-<p>Je nach Plot-Art sind verschiedene visuelle Eigenschaften möglich. Wichtig ist für uns jetzt erst einmal die Position, also x - und y-Achsen.<br>
-Es kann hier aber z.B. auch die Farbe der Punkte in Agnhängikeit von Kategorien in den Daten geändert werden.</p>
-</section>
-<section id="aesthetic-mapping-achsen" class="level2">
-<h2 class="anchored" data-anchor-id="aesthetic-mapping-achsen">Aesthetic mapping: Achsen</h2>
+<section id="daten-1" class="level2">
+<h2 class="anchored" data-anchor-id="daten-1">1. Daten</h2>
 <div class="cell" data-output-location="column">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb10-2"><a href="#cb10-2"></a>  <span class="at">data =</span> gapminder_dat,</span>
-<span id="cb10-3"><a href="#cb10-3"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
-<span id="cb10-4"><a href="#cb10-4"></a>    <span class="at">x =</span> pop,</span>
-<span id="cb10-5"><a href="#cb10-5"></a>    <span class="at">y =</span> co2_cons</span>
-<span id="cb10-6"><a href="#cb10-6"></a>  )</span>
-<span id="cb10-7"><a href="#cb10-7"></a>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> gapminder_2019)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -379,58 +424,81 @@ Es kann hier aber z.B. auch die Farbe der Punkte in Agnhängikeit von Kategorien
 </div>
 </div>
 </section>
-<section id="geometric-layers" class="level2">
-<h2 class="anchored" data-anchor-id="geometric-layers">Geometric Layers</h2>
-<p>ggplots sind aus verschiedenen Layern aufgebaut, die mithilfe eines <code>+</code> übereinander gelegt werden.</p>
-<p><code>geom_</code></p>
+<section id="aesthetic-mapping" class="level2">
+<h2 class="anchored" data-anchor-id="aesthetic-mapping">2. Aesthetic mapping</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><br>
+<br>
+<br>
+</p>
+<p><span class="highlight">Verknüpfen</span> von Spalten im Datensatz mit <span class="highlight">visuellen Eigenschaften</span>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mapping <span class="ot">=</span>  <span class="fu">aes</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column" style="width:40%;">
+<table class="table-striped caption-top table">
+<thead>
+<tr class="header">
+<th>Argument</th>
+<th>Aesthetic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>x</code></td>
+<td>x-Achse</td>
+</tr>
+<tr class="even">
+<td><code>y</code></td>
+<td>y-Achse</td>
+</tr>
+<tr class="odd">
+<td><code>color</code></td>
+<td>Farbe</td>
+</tr>
+<tr class="even">
+<td><code>fill</code></td>
+<td>Füllfarbe</td>
+</tr>
+<tr class="odd">
+<td><code>shape</code></td>
+<td>Form</td>
+</tr>
+<tr class="even">
+<td><code>size</code></td>
+<td>Größe</td>
+</tr>
+<tr class="odd">
+<td><code>alpha</code></td>
+<td>Transparenz</td>
+</tr>
+<tr class="even">
+<td><code>group</code></td>
+<td>Gruppe</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><a href="https://ggplot2.tidyverse.org/articles/ggplot2-specs.html">Umfangreicherer Überblick</a> über mögliche Aestethics.</p>
+</div>
+</div>
+</div>
 </section>
-<section id="layers" class="level2">
-<h2 class="anchored" data-anchor-id="layers">Layers</h2>
+<section id="aesthetic-mapping-achsen" class="level2">
+<h2 class="anchored" data-anchor-id="aesthetic-mapping-achsen">Aesthetic mapping: Achsen</h2>
 <div class="cell" data-output-location="column">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb11-2"><a href="#cb11-2"></a>  <span class="at">data =</span> gapminder_dat,</span>
-<span id="cb11-3"><a href="#cb11-3"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
-<span id="cb11-4"><a href="#cb11-4"></a>    <span class="at">x =</span> pop,</span>
-<span id="cb11-5"><a href="#cb11-5"></a>    <span class="at">y =</span> co2_cons</span>
-<span id="cb11-6"><a href="#cb11-6"></a>  )</span>
-<span id="cb11-7"><a href="#cb11-7"></a>) <span class="sc">+</span></span>
-<span id="cb11-8"><a href="#cb11-8"></a>  <span class="fu">geom_point</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 7 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="slides_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="480"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="mehr-layers" class="level2">
-<h2 class="anchored" data-anchor-id="mehr-layers">Mehr Layers!</h2>
-<div class="cell" data-output-location="column">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb13-2"><a href="#cb13-2"></a>  <span class="at">data =</span> gapminder_dat,</span>
-<span id="cb13-3"><a href="#cb13-3"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
-<span id="cb13-4"><a href="#cb13-4"></a>    <span class="at">x =</span> pop,</span>
-<span id="cb13-5"><a href="#cb13-5"></a>    <span class="at">y =</span> co2_cons</span>
-<span id="cb13-6"><a href="#cb13-6"></a>  )</span>
-<span id="cb13-7"><a href="#cb13-7"></a>) <span class="sc">+</span></span>
-<span id="cb13-8"><a href="#cb13-8"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb13-9"><a href="#cb13-9"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 7 rows containing non-finite outside the scale range
-(`stat_smooth()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 7 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="at">data =</span> gapminder_2019,</span>
+<span id="cb14-3"><a href="#cb14-3"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> gini, <span class="at">y =</span> hapiscore_whr)</span>
+<span id="cb14-4"><a href="#cb14-4"></a>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -440,74 +508,77 @@ Es kann hier aber z.B. auch die Farbe der Punkte in Agnhängikeit von Kategorien
 </div>
 </div>
 </section>
-<section id="titellabels" class="level2">
-<h2 class="anchored" data-anchor-id="titellabels">Titel/Labels</h2>
-<div class="cell" data-output-location="column">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb17-2"><a href="#cb17-2"></a>  <span class="at">data =</span> gapminder_dat,</span>
-<span id="cb17-3"><a href="#cb17-3"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
-<span id="cb17-4"><a href="#cb17-4"></a>    <span class="at">x =</span> pop,</span>
-<span id="cb17-5"><a href="#cb17-5"></a>    <span class="at">y =</span> co2_cons</span>
-<span id="cb17-6"><a href="#cb17-6"></a>  )</span>
-<span id="cb17-7"><a href="#cb17-7"></a>) <span class="sc">+</span></span>
-<span id="cb17-8"><a href="#cb17-8"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb17-9"><a href="#cb17-9"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
-<span id="cb17-10"><a href="#cb17-10"></a>  <span class="fu">labs</span>(</span>
-<span id="cb17-11"><a href="#cb17-11"></a>    <span class="at">title =</span> <span class="st">"x"</span>,</span>
-<span id="cb17-12"><a href="#cb17-12"></a>    <span class="at">subtitle =</span> <span class="st">"x"</span>,</span>
-<span id="cb17-13"><a href="#cb17-13"></a>    <span class="at">x =</span> <span class="st">"Bevölkerung"</span>,</span>
-<span id="cb17-14"><a href="#cb17-14"></a>    <span class="at">y =</span> <span class="st">"CO2-Ausstoß"</span></span>
-<span id="cb17-15"><a href="#cb17-15"></a>  )</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+<section id="geometric-layers" class="level2">
+<h2 class="anchored" data-anchor-id="geometric-layers">3. Geometric Layers</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<p><br>
+<br>
+<br>
+</p>
+<p>Verschiedene Layers (<span class="highlight">geoms</span>) werden übereinandergelegt:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">geom_line</span>() <span class="sc">+</span> </span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>...</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 7 rows containing non-finite outside the scale range
-(`stat_smooth()`).</code></pre>
+</div><div class="column" style="width:40%;">
+<p><br>
+</p>
+<table class="table-striped caption-top table">
+<thead>
+<tr class="header">
+<th>Argument</th>
+<th>Aesthetic</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>geom_point()</code></td>
+<td>Punkte</td>
+</tr>
+<tr class="even">
+<td><code>geom_line()</code></td>
+<td>Linien</td>
+</tr>
+<tr class="odd">
+<td><code>geom_histogram()</code></td>
+<td>Histogramm</td>
+</tr>
+<tr class="even">
+<td><code>geom_text()</code></td>
+<td>Text</td>
+</tr>
+<tr class="odd">
+<td><code>geom_boxplot()</code></td>
+<td>Boxplot</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 7 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
 </div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="slides_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="480"></p>
-</figure>
+<p><br>
+<br>
+</p>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><a href="https://stulp.gmw.rug.nl/dataviz/ggplotgeoms.html">Umfangreicherer Überblick</a> über mögliche Geoms.</p>
 </div>
 </div>
 </div>
 </section>
-<section id="style-deinen-plot-themes" class="level2">
-<h2 class="anchored" data-anchor-id="style-deinen-plot-themes">Style deinen Plot: Themes</h2>
+<section id="layers-punkte" class="level2">
+<h2 class="anchored" data-anchor-id="layers-punkte">Layers: Punkte</h2>
 <div class="cell" data-output-location="column">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">ggplot</span>(</span>
-<span id="cb21-2"><a href="#cb21-2"></a>  <span class="at">data =</span> gapminder_dat,</span>
-<span id="cb21-3"><a href="#cb21-3"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
-<span id="cb21-4"><a href="#cb21-4"></a>    <span class="at">x =</span> pop,</span>
-<span id="cb21-5"><a href="#cb21-5"></a>    <span class="at">y =</span> co2_cons</span>
-<span id="cb21-6"><a href="#cb21-6"></a>  )</span>
-<span id="cb21-7"><a href="#cb21-7"></a>) <span class="sc">+</span></span>
-<span id="cb21-8"><a href="#cb21-8"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb21-9"><a href="#cb21-9"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
-<span id="cb21-10"><a href="#cb21-10"></a>  <span class="fu">labs</span>(</span>
-<span id="cb21-11"><a href="#cb21-11"></a>    <span class="at">title =</span> <span class="st">"x"</span>,</span>
-<span id="cb21-12"><a href="#cb21-12"></a>    <span class="at">subtitle =</span> <span class="st">"x"</span>,</span>
-<span id="cb21-13"><a href="#cb21-13"></a>    <span class="at">x =</span> <span class="st">"Bevölkerung"</span>,</span>
-<span id="cb21-14"><a href="#cb21-14"></a>    <span class="at">y =</span> <span class="st">"CO2-Ausstoß"</span></span>
-<span id="cb21-15"><a href="#cb21-15"></a>  ) <span class="sc">+</span></span>
-<span id="cb21-16"><a href="#cb21-16"></a>  <span class="fu">theme_classic</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 7 rows containing non-finite outside the scale range
-(`stat_smooth()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 7 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="at">data =</span> gapminder_2019,</span>
+<span id="cb16-3"><a href="#cb16-3"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> gini, <span class="at">y =</span> hapiscore_whr)</span>
+<span id="cb16-4"><a href="#cb16-4"></a>  ) <span class="sc">+</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a>  <span class="fu">geom_point</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -517,22 +588,291 @@ Es kann hier aber z.B. auch die Farbe der Punkte in Agnhängikeit von Kategorien
 </div>
 </div>
 </section>
-<section id="übung" class="level2">
-<h2 class="anchored" data-anchor-id="übung">Übung</h2>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2"></h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true">Übung</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Lösung</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p><br>
+<br>
+</p>
+<div class="exercise">
+<p>Das reicht schon, um einen eigenen ersten Plot zu erstellen. Nutzt die <code>gapminder_2019</code> Daten und erstellt einen Scatterplot, der den Zusammenhang zwischen Happiness-Score (<code>hapiscore_whr</code>) und GDP pro Kopf (<code>gdp_pcap</code>) zeigt. Gibt es einen Zusammenhang?</p>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell" data-output-location="column">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> gapminder_2019,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> gdp_pcap,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> hapiscore_whr</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="slides_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Länder mit höherem pro-Kopf Einkommen haben tendenziell auch einen höheren Happiness-Score.</p>
+</div>
+</div>
+</div>
 </section>
-<section id="lets-take-a-deeper-dive" class="level2">
-<h2 class="anchored" data-anchor-id="lets-take-a-deeper-dive">Let’s take a deeper dive</h2>
-<p>Hier dann nochmal genauer durchgehen - Was haben wir eigentlich gemacht. Nicht zu sehr in den Basics verlieren, auch schneller tiefer reingehen (scales, coord system …)</p>
+<section id="mehr-aesthetics" class="level2">
+<h2 class="anchored" data-anchor-id="mehr-aesthetics">Mehr Aesthetics!</h2>
+<div class="cell" data-output-location="column">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb18-2"><a href="#cb18-2"></a>  <span class="at">data =</span> gapminder_2019,</span>
+<span id="cb18-3"><a href="#cb18-3"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
+<span id="cb18-4"><a href="#cb18-4"></a>    <span class="at">x =</span> gini, <span class="at">y =</span> hapiscore_whr,</span>
+<span id="cb18-5"><a href="#cb18-5"></a>    <span class="at">color =</span> world_4region</span>
+<span id="cb18-6"><a href="#cb18-6"></a>  )</span>
+<span id="cb18-7"><a href="#cb18-7"></a>) <span class="sc">+</span></span>
+<span id="cb18-8"><a href="#cb18-8"></a>  <span class="fu">geom_point</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="slides_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="abspeichern" class="level2">
-<h2 class="anchored" data-anchor-id="abspeichern">Abspeichern</h2>
+<section id="mehr-layers" class="level2">
+<h2 class="anchored" data-anchor-id="mehr-layers">Mehr Layers!</h2>
+<div class="cell" data-output-location="column">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="at">data =</span> gapminder_2019,</span>
+<span id="cb19-3"><a href="#cb19-3"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> gini, <span class="at">y =</span> hapiscore_whr, <span class="at">color =</span> world_4region)</span>
+<span id="cb19-4"><a href="#cb19-4"></a>) <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="slides_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="farben" class="level2">
-<h2 class="anchored" data-anchor-id="farben">Farben</h2>
-<p>https://questionsindataviz.com/2023/12/29/what-makes-a-truly-terrible-map/</p>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3"></h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">Übung</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Lösung</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p><br>
+</p>
+<div class="exercise">
+<p>Probiert aus, wo in den ggplot-layers man die Farbe ändern kann (es gibt 3 verschiedene Möglichkeiten, die sich alle unterschiedlich auf den Plot auswirken).<br>
+Ändert dafür unseren bisherigen Plot so, dass nur die Punkte farbig sind.<br>
+Die Linie von <code>geom_smooth()</code> soll einfarbig werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> gapminder_2019,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> gini, <span class="at">y =</span> hapiscore_whr, <span class="at">color =</span> world_4region)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<div class="cell" data-output-location="column">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb22-2"><a href="#cb22-2"></a>  <span class="at">data =</span> gapminder_2019,</span>
+<span id="cb22-3"><a href="#cb22-3"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> gini, <span class="at">y =</span> hapiscore_whr)</span>
+<span id="cb22-4"><a href="#cb22-4"></a>) <span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> world_4region)) <span class="sc">+</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="slides_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Wir ändern dafür die Aesthetics von global zu lokal, indem wir die color-Aesthetic nur in <code>geom_point()</code> definieren.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="aestetics-als-mapping-oder-setting" class="level2">
+<h2 class="anchored" data-anchor-id="aestetics-als-mapping-oder-setting">Aestetics als Mapping oder Setting</h2>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p><span class="highlight">Für alle Layer</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="at">data =</span> gapminder_2019,</span>
+<span id="cb24-3"><a href="#cb24-3"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
+<span id="cb24-4"><a href="#cb24-4"></a>    <span class="at">x =</span> gdp_pcap,</span>
+<span id="cb24-5"><a href="#cb24-5"></a>    <span class="at">y =</span> hapiscore_whr,</span>
+<span id="cb24-6"><a href="#cb24-6"></a>    <span class="at">color =</span> world_4region)</span>
+<span id="cb24-7"><a href="#cb24-7"></a>) <span class="sc">+</span></span>
+<span id="cb24-8"><a href="#cb24-8"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb24-9"><a href="#cb24-9"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="slides_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<p><span class="highlight">Für spezifische Layer</span></p>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb26-2"><a href="#cb26-2"></a>  <span class="at">data =</span> gapminder_2019,</span>
+<span id="cb26-3"><a href="#cb26-3"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
+<span id="cb26-4"><a href="#cb26-4"></a>    <span class="at">x =</span> gini,</span>
+<span id="cb26-5"><a href="#cb26-5"></a>    <span class="at">y =</span> hapiscore_whr</span>
+<span id="cb26-6"><a href="#cb26-6"></a>  )</span>
+<span id="cb26-7"><a href="#cb26-7"></a>) <span class="sc">+</span></span>
+<span id="cb26-8"><a href="#cb26-8"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> world_4region)) <span class="sc">+</span></span>
+<span id="cb26-9"><a href="#cb26-9"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="slides_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<p><span class="highlight">Als Setting</span></p>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb28-2"><a href="#cb28-2"></a>  <span class="at">data =</span> gapminder_2019,</span>
+<span id="cb28-3"><a href="#cb28-3"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
+<span id="cb28-4"><a href="#cb28-4"></a>    <span class="at">x =</span> gini,</span>
+<span id="cb28-5"><a href="#cb28-5"></a>    <span class="at">y =</span> hapiscore_whr</span>
+<span id="cb28-6"><a href="#cb28-6"></a>  )</span>
+<span id="cb28-7"><a href="#cb28-7"></a>) <span class="sc">+</span></span>
+<span id="cb28-8"><a href="#cb28-8"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"#F4BA02"</span>) <span class="sc">+</span></span>
+<span id="cb28-9"><a href="#cb28-9"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="slides_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="labels" class="level2">
+<h2 class="anchored" data-anchor-id="labels">Labels</h2>
+<div class="cell" data-output-location="column">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb30-2"><a href="#cb30-2"></a>  <span class="at">data =</span> gapminder_2019,</span>
+<span id="cb30-3"><a href="#cb30-3"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
+<span id="cb30-4"><a href="#cb30-4"></a>    <span class="at">x =</span> gini,</span>
+<span id="cb30-5"><a href="#cb30-5"></a>    <span class="at">y =</span> hapiscore_whr</span>
+<span id="cb30-6"><a href="#cb30-6"></a>  )</span>
+<span id="cb30-7"><a href="#cb30-7"></a>) <span class="sc">+</span></span>
+<span id="cb30-8"><a href="#cb30-8"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> world_4region)) <span class="sc">+</span></span>
+<span id="cb30-9"><a href="#cb30-9"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb30-10"><a href="#cb30-10"></a>  <span class="fu">labs</span>(</span>
+<span id="cb30-11"><a href="#cb30-11"></a>    <span class="at">title =</span> <span class="st">"Ungleichheit = Un-Happiness?"</span>,</span>
+<span id="cb30-12"><a href="#cb30-12"></a>    <span class="at">subtitle =</span> <span class="st">"Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2019"</span>,</span>
+<span id="cb30-13"><a href="#cb30-13"></a>    <span class="at">x =</span> <span class="st">"Gini-Index"</span>,</span>
+<span id="cb30-14"><a href="#cb30-14"></a>    <span class="at">y =</span> <span class="st">"Happiness-Score"</span>,</span>
+<span id="cb30-15"><a href="#cb30-15"></a>  )</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="slides_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="style-deinen-plot-themes" class="level2">
+<h2 class="anchored" data-anchor-id="style-deinen-plot-themes">Style deinen Plot: Themes</h2>
+<div class="cell" data-output-location="column">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb32-2"><a href="#cb32-2"></a>  <span class="at">data =</span> gapminder_2019,</span>
+<span id="cb32-3"><a href="#cb32-3"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
+<span id="cb32-4"><a href="#cb32-4"></a>    <span class="at">x =</span> gini,</span>
+<span id="cb32-5"><a href="#cb32-5"></a>    <span class="at">y =</span> hapiscore_whr</span>
+<span id="cb32-6"><a href="#cb32-6"></a>  )</span>
+<span id="cb32-7"><a href="#cb32-7"></a>) <span class="sc">+</span></span>
+<span id="cb32-8"><a href="#cb32-8"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> world_4region)) <span class="sc">+</span></span>
+<span id="cb32-9"><a href="#cb32-9"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb32-10"><a href="#cb32-10"></a>  <span class="fu">labs</span>(</span>
+<span id="cb32-11"><a href="#cb32-11"></a>    <span class="at">title =</span> <span class="st">"Ungleichheit = Un-Happiness?"</span>,</span>
+<span id="cb32-12"><a href="#cb32-12"></a>    <span class="at">subtitle =</span> <span class="st">"Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2019"</span>,</span>
+<span id="cb32-13"><a href="#cb32-13"></a>    <span class="at">x =</span> <span class="st">"Gini-Index"</span>,</span>
+<span id="cb32-14"><a href="#cb32-14"></a>    <span class="at">y =</span> <span class="st">"Happiness-Score"</span>,</span>
+<span id="cb32-15"><a href="#cb32-15"></a>  ) <span class="sc">+</span></span>
+<span id="cb32-16"><a href="#cb32-16"></a>  <span class="fu">theme_bw</span>()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="slides_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-tip">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p>Eine Übersicht über Themes findet sich <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">hier</a>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="section-4" class="level2" data-background-image="images/penguins.jpg" data-background-size="1225px">
+<h2 data-background-image="images/penguins.jpg" data-background-size="1225px" class="anchored" data-anchor-id="section-4"></h2>
+<div class="absolute" data-right="2.5%" data-top="12%" style="font-size:1.25em; padding: 0.5em 0.5em; background-color: rgba(255, 255, 255, .7); backdrop-filter: blur(5px); box-shadow: 0 0 1rem 0 rgba(255, 255, 255, .5); border-radius: 7.5px;">
+<p>Das waren schon die Basics. Von hier aus haben wir einen guten Anfangspunkt, um die Welt der Grafiken ausführlicher zu erkunden. Aber erst einmal, <span class="highlight">Pause</span>.</p>
+</div>
+<div class="image-ref">
+<ul>
+<li>Foto von <a href="https://unsplash.com/de/@westbeach013?utm_content=creditCopyText&amp;utm_medium=referral&amp;utm_source=unsplash">Casey Allen</a> auf <a href="https://unsplash.com/de/fotos/afrikanische-pinguine-am-meeresufer-neben-felsbrocken-UjpEGHu8uNU?utm_content=creditCopyText&amp;utm_medium=referral&amp;utm_source=unsplash">Unsplash</a></li>
+</ul>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
