@@ -382,7 +382,81 @@ ggplot(hex, aes(x, y)) +
 
 ggsave('./logo/logo3c.png', width = 20, height = 20, units = "cm", dpi = 200)
 
+### 3d ----
+
+ggplot(hex, aes(x, y)) +
+  geom_line(aes(x = Ipx, y = Ipy), data = line_points, lwd = 3, color = l_col) +
+  geom_point(aes(x = Ipx, y = Ipy), data = line_points, size = 28, pch = 21, col = l_col, fill = '#F8F8F8', stroke = 4) +
+  geom_point(aes(x = Ipx, y = Ipy), data = line_points, size = 24, color = p_col) +
+  geom_path(size = 15, color = l_col, lineend = "square") +
+  scale_y_continuous(breaks = seq(-2.5, 2.5, by = 1)) +
+  geom_path(aes(x,y), data = hex2, size = 80, color = "white", lineend = "square") +
+  coord_cartesian(xlim = c(-2.2, 2.2), ylim = c(-2.5, 2.5)) +
+  geom_text(x = 0, y = -0.76, label = "WoMepS", size = 50, color = f1_col, family = "bungee") +
+  geom_text(x = 0, y = -1.24, label = "Datenvisualisierung in R", size = 23, color = f2_col) +
+  geom_text(x = -2.05, y = 1.2, angle = 30, hjust = 0,
+            color = l_col, size = 8, label = "Nicklas Hafiz & Dr. Janine Buchholz - Mai 2025") +
+  geom_text(x = 0.05, y = -2.3, angle = 30, hjust = 0,
+            color = l_col, size = 8, label = "nickhaf.github.io/PlotWorkshop/") +
+  theme(aspect.ratio = 1.2,
+        panel.background = element_rect(fill = bg_col),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_line(size = 1, colour = g_col),
+        legend.position = "none",
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank(),
+        plot.margin = margin(0,0,0,0, "cm")
+  ) +
+  geom_image(x = line_points$Ipx[5], y = line_points$Ipy[5], nudge_y=.025, 
+             image = "./logo/img/goethe_trans_7C4256.png", size = .135) +
+  canvas(width = 20, height = 20, units = "cm", dpi = 200)
+
+ggsave('./logo/logo3d.png', width = 20, height = 20, units = "cm", dpi = 200)
+
 ## Logo 4 ----
+
+ws_col <- c('#01364C', '#00e0e0', '#abe338', '#F4BA02', '#9B1B34', '#E1E8EB', '#F8F8F8')
+
+p_col  <- colorRampPalette(c('#00e0e0', '#01364C'))(6) # point color
+l_col  <- '#01364C'  # line color
+bg_col <- '#F8F8F8'  # background color
+g_col  <- '#E1E8EB'  # grid color
+f1_col <- '#9B1B34'  # font color
+f2_col <- '#9B1B34'  # font color
+
+ggplot(hex, aes(x, y)) +
+  geom_line(aes(x = Ipx, y = Ipy), data = line_points, lwd = 3, color = l_col) +
+  geom_point(aes(x = Ipx, y = Ipy), data = line_points, size = 28, pch = 21, col = l_col, fill = '#F8F8F8', stroke = 4) +
+  geom_point(aes(x = Ipx, y = Ipy), data = line_points, size = 24, color = p_col) +
+  geom_path(size = 15, color = l_col, lineend = "square") +
+  scale_y_continuous(breaks = seq(-2.5, 2.5, by = 1)) +
+  geom_path(aes(x,y), data = hex2, size = 80, color = "white", lineend = "square") +
+  coord_cartesian(xlim = c(-2.2, 2.2), ylim = c(-2.5, 2.5)) +
+  geom_text(x = 0, y = -0.76, label = "WoMepS", size = 50, color = f1_col, family = "bungee") +
+  geom_text(x = 0, y = -1.24, label = "Datenvisualisierung in R", size = 23, color = f2_col) +
+  geom_text(x = -2.05, y = 1.2, angle = 30, hjust = 0,
+            color = l_col, size = 8, label = "Nicklas Hafiz & Dr. Janine Buchholz - Mai 2025") +
+  geom_text(x = 0.05, y = -2.3, angle = 30, hjust = 0,
+            color = l_col, size = 8, label = "nickhaf.github.io/PlotWorkshop/") +
+  theme(aspect.ratio = 1.2,
+        panel.background = element_rect(fill = bg_col),
+        panel.grid.minor = element_blank(),
+        panel.grid.major = element_line(size = 1, colour = g_col),
+        legend.position = "none",
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        axis.title = element_blank(),
+        plot.margin = margin(0,0,0,0, "cm")
+  ) +
+  geom_image(x = line_points$Ipx[5], y = line_points$Ipy[5], nudge_y=.025, 
+             image = "./logo/img/goethe_trans_7C4256.png", size = .135) +
+  canvas(width = 20, height = 20, units = "cm", dpi = 200)
+
+ggsave('./logo/logo4.png', width = 20, height = 20, units = "cm", dpi = 200)
+
+
+## Logo 5 ----
 
 ws_col <- c('#01364C', '#00e0e0', '#abe338', '#F4BA02', '#9B1B34', '#E1E8EB', '#F8F8F8')
 
@@ -421,4 +495,4 @@ ggplot(hex, aes(x, y)) +
   ) +
   canvas(width = 20, height = 20, units = "cm", dpi = 200)
 
-ggsave('./logo/logo4.png', width = 20, height = 20, units = "cm", dpi = 200)
+ggsave('./logo/logo5.png', width = 20, height = 20, units = "cm", dpi = 200)
