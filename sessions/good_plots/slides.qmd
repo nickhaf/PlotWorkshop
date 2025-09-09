@@ -1069,7 +1069,8 @@ Durch die Unterscheidbarkeit von grafischen Symbolen (*visual features*) soll gr
 
 Dafür können die sog. [Gestalt-Prinzipien]{.highlight} genutzt werden. 
 
-Menschen nehmen Muster nach gewissen Prinzipien wahr. Die Regeln, nach denen wir Muster wahrnehmen, werden Gestalt-Prinzipien genannt, beispielsweise:
+:::{.callout-tip}
+## Menschen nehmen Muster nach gewissen Prinzipien wahr. Die Regeln, nach denen wir Muster wahrnehmen, werden Gestalt-Prinzipien genannt, beispielsweise:
 
 - [**Nähe**: Einander nahe Elemente werden als zusammengehörig wahrgenommen]{.small}  
 - [**Ähnlichkeit**: Einander ähnliche Elemente werden als zusammengehörig wahrgenommen]{.small}  
@@ -1079,6 +1080,7 @@ Menschen nehmen Muster nach gewissen Prinzipien wahr. Die Regeln, nach denen wir
 - [**Figur und Grund**: Elemente sind entweder im Vorder- oder Hintergrund]{.small}  
 - [**Gemeinsames Schicksal**: Elemente mit ähnlicher Bewegungsrichtung werden als zusammengehörig wahrgenommen]{.small}
 
+:::
 
 
 ## Salienz 
@@ -1377,10 +1379,6 @@ ggplot(
 
 ## Das gleiche gilt für Winkel!
 
-:::{.callout-note}
-Kreis- bzw. Tortendiagramme sollten daher vermieden werden.
-:::
-
 
 ::: {.columns} 
 ::: {.column width="50%"}
@@ -1393,6 +1391,12 @@ Kreis- bzw. Tortendiagramme sollten daher vermieden werden.
 ![](./images/pie2.png)
 
 [Quelle](https://www.data-to-viz.com/caveat/pie.html)
+:::
+:::
+
+:::{.fragment}
+:::{.callout-caution}
+Kreis- bzw. Tortendiagramme sollten daher vermieden werden.
 :::
 :::
 
