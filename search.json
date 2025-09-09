@@ -935,28 +935,56 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\ndataset\nmean_x\nvar_x\nmean_y\nvar_y\ncor\n\n\n\n\naway\n54.27\n281.23\n47.83\n725.75\n-0.06\n\n\nbullseye\n54.27\n281.21\n47.83\n725.53\n-0.07\n\n\ncircle\n54.27\n280.90\n47.84\n725.23\n-0.07\n\n\ndino\n54.26\n281.07\n47.83\n725.52\n-0.06\n\n\ndots\n54.26\n281.16\n47.84\n725.24\n-0.06\n\n\nh_lines\n54.26\n281.10\n47.83\n725.76\n-0.06\n\n\nhigh_lines\n54.27\n281.12\n47.84\n725.76\n-0.07\n\n\nslant_down\n54.27\n281.12\n47.84\n725.55\n-0.07\n\n\nslant_up\n54.27\n281.19\n47.83\n725.69\n-0.07\n\n\nstar\n54.27\n281.20\n47.84\n725.24\n-0.06\n\n\nv_lines\n54.27\n281.23\n47.84\n725.64\n-0.07\n\n\nwide_lines\n54.27\n281.23\n47.83\n725.65\n-0.07\n\n\nx_shape\n54.26\n281.23\n47.84\n725.22\n-0.07"
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nwide_lines\n28.56\n34.63\n\n\ndots\n27.68\n51.18\n\n\nx_shape\n84.85\n95.42\n\n\nh_lines\n57.90\n89.62\n\n\nv_lines\n69.51\n33.74\n\n\nstar\n79.19\n53.23\n\n\nslant_down\n55.05\n45.99\n\n\nbullseye\n70.04\n80.39\n\n\nstar\n56.53\n87.50\n\n\nwide_lines\n68.54\n48.44\n\n\ncircle\n31.76\n69.80\n\n\naway\n40.64\n73.39\n\n\nh_lines\n54.92\n10.50\n\n\nslant_down\n78.88\n71.56\n\n\nbullseye\n50.97\n29.68\n\n\ndino\n33.59\n41.41\n\n\nh_lines\n64.77\n90.13\n\n\nh_lines\n49.66\n50.43\n\n\nh_lines\n42.22\n30.50\n\n\nx_shape\n37.56\n11.93"
   },
   {
-    "objectID": "sessions/Einführung/slides.html#warum-ggplot2",
-    "href": "sessions/Einführung/slides.html#warum-ggplot2",
+    "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
+    "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
     "title": "Einführung",
-    "section": "Warum ggplot2?",
-    "text": "Warum ggplot2?"
+    "section": "Datasaurus Dozen (quartets-Paket)",
+    "text": "Datasaurus Dozen (quartets-Paket)"
   },
   {
-    "objectID": "sessions/Einführung/slides.html#einfach",
-    "href": "sessions/Einführung/slides.html#einfach",
+    "objectID": "sessions/Einführung/slides.html#warum-daten-visualisieren",
+    "href": "sessions/Einführung/slides.html#warum-daten-visualisieren",
     "title": "Einführung",
-    "section": "Einfach!",
-    "text": "Einfach!\n\nSimple, schnelle Beispiele"
+    "section": "Warum Daten visualisieren?",
+    "text": "Warum Daten visualisieren?\n\nMuster und Informationen lassen sich leichter erkennen.\n\nInhalte können schneller erfasst und verarbeitet werden.\n\nErkenntnisse lassen sich anschaulich an andere kommunizieren.\n\nGrafiken lockern Texte auf.\n\nVisuelle Darstellungen können mehrdimensional aufgebaut werden und so eine Vielzahl von Informationen gleichzeitig vermitteln."
   },
   {
-    "objectID": "sessions/Einführung/slides.html#beautiful",
-    "href": "sessions/Einführung/slides.html#beautiful",
+    "objectID": "sessions/Einführung/slides.html#warum-in-r",
+    "href": "sessions/Einführung/slides.html#warum-in-r",
     "title": "Einführung",
-    "section": "Beautiful",
-    "text": "Beautiful\n\nBeispiele verschönert"
+    "section": "Warum in R?",
+    "text": "Warum in R?\n\nSyntaxbasiert und reproduzierbar: Analysen und Grafiken können nachvollzogen und exakt repliziert werden.\nFlexibel: alles, was in R eingelesen werden kann, lässt sich auch visualisieren.\nIntegration: statistische Analysen, Texte und Grafiken kommen „aus einem Guss“\nOpen Source: frei verfügbar, mit einer großen und aktiven Community.\nIndividuell anpassbar: eigene Funktionen und Vorlagen ermöglichen maßgeschneiderte Lösungen (z. B. Corporate Design der Uni).\nKreativität: es gibt viele Möglichkeiten für originelle Darstellungsweisen."
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#warum-mit-ggplot2",
+    "href": "sessions/Einführung/slides.html#warum-mit-ggplot2",
+    "title": "Einführung",
+    "section": "Warum mit ggplot2?",
+    "text": "Warum mit ggplot2?\n\nKonsistentes Prinzip: Grafiken werden nach einem einheitlichen Konzept aufgebaut (Grammar of Graphics).\nHohe Flexibilität: einfache Plots lassen sich schnell erstellen, aber komplexe Visualisierungen sind ebenfalls möglich.\nAnpassbarkeit: fast jedes Detail lässt sich steuern und fein abstimmen.\nPublikationstauglich: Grafiken können präzise gestaltet und an professionelle Standards angepasst werden.\nErweiterbarkeit: viele zusätzliche Pakete (z. B. für Karten, Zeitreihen, Interaktivität) erweitern ggplot2.\nGroße Community: viele Beispiele, Tutorials und Unterstützung."
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#und-warum-dieser-workshop",
+    "href": "sessions/Einführung/slides.html#und-warum-dieser-workshop",
+    "title": "Einführung",
+    "section": "Und warum dieser Workshop?",
+    "text": "Und warum dieser Workshop?\n\nGrafiken: Mächtiges Instrument der Datenanalyse und Ergebniskommunikation\nEs gibt aber einige Fallstricke und Dinge, die sich lohnen zu wissen\nGrafikerstellung ist Teil aller datenbasierten, wissenschaftlichen Disziplinen…\n…aber wird kaum bis gar nicht im Studium behandelt\nWoMepS ist also eine prima Gelegenheit!"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#vorerfahrungen",
+    "href": "sessions/Einführung/slides.html#vorerfahrungen",
+    "title": "Einführung",
+    "section": "Vorerfahrungen",
+    "text": "Vorerfahrungen\n@NH: baust Du hier das Mentimeter ein?\n\nFachbereich\n\nVorerfahrungen in R\n\nVorerfahrungen in RStudio\n\nVorerfahrungen in ggplot\n\nVorerfahrungen mit Datenvisualisierung in gpplot"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#organisatorisches-1",
+    "href": "sessions/Einführung/slides.html#organisatorisches-1",
+    "title": "Einführung",
+    "section": "Organisatorisches",
+    "text": "Organisatorisches\n\n\n\n\n\n\nMaterial\n\n\nhttps://nickhaf.github.io/PlotWorkshop/\n\n\n\n\n\n\n\n\n\nKontaktdaten\n\n\n\nNicklas Hafiz: nicklas.jakob.hafiz@hu-berlin.de\n\nJanine Buchholz: janine.buchholz@hu-berlin.de\n\n\n\n\n\n\n\n\n\n\n\nArbeiten in Zoom:\n\n\n\nHandheben-Funktion für Wortmeldungen\n\nZoom-Chat für kleinere Fragen, Anmerkungen und Hilferufe\n\nBreakout-Sessions für Gruppenarbeit\n\nTeilen von zwei Screens: Folien, RStudio"
   },
   {
     "objectID": "sessions/Einführung/slides.html#eine-der-ersten-karten",
@@ -966,22 +994,22 @@
     "text": "Eine der ersten Karten\n\n\nDr. John Snow zeichnete die Todesfälle durch Cholera in Zentral-London im September 1854 auf.\nWasserpumpen wurden mit einem x markiert.\nDadurch ließ sich die Broad Street Pumpe als Quelle der Epidemie identifizieren.\n\n\n\n\nBild von ReserachGate"
   },
   {
-    "objectID": "sessions/Einführung/slides.html#section-2",
-    "href": "sessions/Einführung/slides.html#section-2",
+    "objectID": "sessions/Einführung/slides.html#section",
+    "href": "sessions/Einführung/slides.html#section",
     "title": "Einführung",
     "section": "",
     "text": "Beispiel aus der The R Graph Gallery."
   },
   {
-    "objectID": "sessions/Einführung/slides.html#der-best-plot-jemals",
-    "href": "sessions/Einführung/slides.html#der-best-plot-jemals",
+    "objectID": "sessions/Einführung/slides.html#der-best-plot-aller-zeiten",
+    "href": "sessions/Einführung/slides.html#der-best-plot-aller-zeiten",
     "title": "Einführung",
-    "section": "Der best Plot jemals?",
-    "text": "Der best Plot jemals?\n\nVerluste der napoleonischen Armee beim Russlandfeldzug 1812–1813, von Charles Joseph Minard. Es werden 6 Dimensionen dargestellt!\n\nImage from Wikipedia."
+    "section": "Der best Plot aller Zeiten?",
+    "text": "Der best Plot aller Zeiten?\n\nVerluste der napoleonischen Armee beim Russlandfeldzug 1812–1813, von Charles Joseph Minard. Es werden 6 Dimensionen dargestellt!\n\nImage from Wikipedia."
   },
   {
-    "objectID": "sessions/Einführung/slides.html#section-3",
-    "href": "sessions/Einführung/slides.html#section-3",
+    "objectID": "sessions/Einführung/slides.html#section-1",
+    "href": "sessions/Einführung/slides.html#section-1",
     "title": "Einführung",
     "section": "",
     "text": "Code von [https://www.data-to-viz.com/story/MapConnection.html]."
@@ -1113,8 +1141,8 @@
     "text": "Generative Art"
   },
   {
-    "objectID": "sessions/Einführung/slides.html#section-5",
-    "href": "sessions/Einführung/slides.html#section-5",
+    "objectID": "sessions/Einführung/slides.html#section-3",
+    "href": "sessions/Einführung/slides.html#section-3",
     "title": "Einführung",
     "section": "",
     "text": "Bild von Static."
