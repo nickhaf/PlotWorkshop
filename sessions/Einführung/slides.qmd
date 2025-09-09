@@ -6,6 +6,7 @@ format: letterbox-revealjs
 ```{r}
 #| echo: false
 
+library(ggplot2)
 library(quartets)
 library(tidyverse)
 library(ggrepel)
@@ -20,67 +21,138 @@ source(here::here("src", "themes.R"))
 
 # Motivation
 
+:::{.fragment}
+:::{.quote}
+Ein Bild sagt mehr als tausend ... Zahlen! 
+:::
+:::
+
+
+## Datasaurus Dozen ([`quartets`-Paket](https://github.com/r-causal/quartets))
+
+::: {.columns} 
+::: {.column width="50%"}
+
+```{r}
+#| echo: false
+
+df <- datasaurus_dozen[sample(nrow(datasaurus_dozen), 20, replace = T),]
+knitr::kable(df, digits = 2)
+```
+
+:::
+
+
+::: {.column width="50%"}
+:::{.fragment}
+\
+\
+\
+
+```{r}
+#| echo: false
+#| fig-height: 8
+#| fig-width: 12
+
+ggplot(datasaurus_dozen, aes(x = x, y = y)) +
+  geom_point() +
+  theme_bg() +
+  ylim(0, 100)
+```
+
+:::
+:::
+:::
 
 ## Datasaurus Dozen ([`quartets`-Paket](https://github.com/r-causal/quartets))
 
 ```{r}
 #| echo: false
-
-datasaurus_dozen |>
-  group_by(dataset) |>
-  summarise(mean_x = mean(x),
-            var_x = var(x),
-            mean_y = mean(y),
-            var_y = var(y),
-            cor = cor(x, y)) |>
-  knitr::kable(digits = 2)
-```
-
-## 
-
-```{r}
-#| echo: false
-#| fig-height: 8
-#| fig-width: 12
-
-ggplot(datasaurus_dozen, aes(x = x, y = y)) +
-  geom_smooth(method = "lm", formula = "y ~ x") +
-  facet_wrap(~dataset) +
-  theme_bg() +
-  ylim(0, 100)
-
-```
-
-## 
-
-```{r}
-#| echo: false
 #| fig-height: 8
 #| fig-width: 12
 
 
 ggplot(datasaurus_dozen, aes(x = x, y = y)) +
-  geom_smooth(method = "lm", formula = "y ~ x") +
   facet_wrap(~dataset, ncol = 5) +
   geom_point() +
   theme_bg() +
   ylim(0, 100)
 
-
 ```
 
 
-## Warum ggplot2?
+## Warum Daten visualisieren?
 
-## Einfach!
-- Simple, schnelle Beispiele
+- Muster und Informationen lassen sich leichter erkennen.   
+- Inhalte können schneller erfasst und verarbeitet werden.  
+- Erkenntnisse lassen sich anschaulich an andere kommunizieren.  
+- Grafiken lockern Texte auf.  
+- Visuelle Darstellungen können mehrdimensional aufgebaut werden und so eine Vielzahl von Informationen gleichzeitig vermitteln.  
 
+## Warum in R?
 
-## Beautiful
-- Beispiele verschönert
+- Syntaxbasiert und reproduzierbar: Analysen und Grafiken können nachvollzogen und exakt repliziert werden.
+- Flexibel: alles, was in R eingelesen werden kann, lässt sich auch visualisieren.
+- Integration: statistische Analysen, Texte und Grafiken kommen „aus einem Guss“
+- Open Source: frei verfügbar, mit einer großen und aktiven Community.
+- Individuell anpassbar: eigene Funktionen und Vorlagen ermöglichen maßgeschneiderte Lösungen (z. B. Corporate Design der Uni).
+- Kreativität: es gibt viele Möglichkeiten für originelle Darstellungsweisen.
 
+## Warum mit ggplot2?
 
-# Gallerie {background-image="images/gallery.jpg" background-size="1225px"}
+- Konsistentes Prinzip: Grafiken werden nach einem einheitlichen Konzept aufgebaut ([Grammar of Graphics]{.highlight}).
+- Hohe Flexibilität: einfache Plots lassen sich schnell erstellen, aber komplexe Visualisierungen sind ebenfalls möglich.
+- Anpassbarkeit: fast jedes Detail lässt sich steuern und fein abstimmen.
+- Publikationstauglich: Grafiken können präzise gestaltet und an professionelle Standards angepasst werden.
+- Erweiterbarkeit: viele zusätzliche Pakete (z. B. für Karten, Zeitreihen, Interaktivität) erweitern ggplot2.
+- Große Community: viele Beispiele, Tutorials und Unterstützung.
+
+## Und warum dieser Workshop?
+
+- Grafiken: Mächtiges Instrument der Datenanalyse und Ergebniskommunikation
+- Es gibt aber einige Fallstricke und Dinge, die sich lohnen zu wissen
+- Grafikerstellung ist Teil aller datenbasierten, wissenschaftlichen Disziplinen...
+- ...aber wird kaum bis gar nicht im Studium behandelt
+- WoMepS ist also eine prima Gelegenheit!
+
+## Vorerfahrungen
+
+@NH: baust Du hier das Mentimeter ein? 
+
+- Fachbereich  
+- Vorerfahrungen in R  
+- Vorerfahrungen in RStudio  
+- Vorerfahrungen in ggplot  
+- Vorerfahrungen mit Datenvisualisierung in gpplot  
+
+# Organisatorisches 
+@NH: hast Du ein passendes Bild? Wo kriegst Du die eigentlich immer her?
+
+## Organisatorisches
+
+:::{.callout-tip}
+## Material
+
+[https://nickhaf.github.io/PlotWorkshop/](https://nickhaf.github.io/PlotWorkshop/)
+:::
+
+:::{.callout-tip}
+## Kontaktdaten
+
+- Nicklas Hafiz: nicklas.jakob.hafiz@hu-berlin.de  
+- Janine Buchholz: janine.buchholz@hu-berlin.de  
+:::
+
+:::{.callout-tip}
+## Arbeiten in Zoom:   
+
+- Handheben-Funktion für Wortmeldungen   
+- Zoom-Chat für kleinere Fragen, Anmerkungen und Hilferufe    
+- Breakout-Sessions für Gruppenarbeit   
+- Teilen von zwei Screens: Folien, RStudio  
+:::
+
+# Galerie {background-image="images/gallery.jpg" background-size="1225px"}
 
 ## Eine der ersten Karten  {background-color="white"}
 
@@ -115,7 +187,7 @@ Beispiel aus der [The R Graph Gallery](https://r-graph-gallery.com/web-circular-
 
 
 
-## Der best Plot jemals?
+## Der best Plot aller Zeiten?
 
 ![](images/napoleon.png)
 

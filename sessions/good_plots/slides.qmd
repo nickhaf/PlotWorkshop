@@ -30,7 +30,9 @@ gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
 ```
 
 ## 
+:::{.quote}
 Excellence in statistical graphics consists of complex ideas communicated with clarity, precision, and efficiency. [@tufte1983visual]
+:::
 
 - show the data
 - induce the viewer to think about the substance rather than about methodology, graphic design, the technology of graphic production, or something else
@@ -1052,7 +1054,7 @@ p_line +
 Tufte Zitat
 
 
-## Pulikum
+## Publikum
 
 
 ## Purpose
@@ -1063,28 +1065,95 @@ Tufte Zitat
 
 # Effizienz: Salienz von Informationen
 
-Man soll raufschauen könnenn, und verschiedene Informationen möglichst schnell aufnehmen, ohne lange zu überlgen. Deshalb hier!
+Durch die Unterscheidbarkeit von grafischen Symbolen (*visual features*) soll grafische Informationen möglichst schnell aufgenommen werden, ohne lange überlegen zu müssen.
+
+Dafür können die sog. [Gestalt-Prinzipien]{.highlight} genutzt werden. 
+
+Menschen nehmen Muster nach gewissen Prinzipien wahr. Die Regeln, nach denen wir Muster wahrnehmen, werden Gestalt-Prinzipien genannt, beispielsweise:
+
+- [**Nähe**: Einander nahe Elemente werden als zusammengehörig wahrgenommen]{.small}  
+- [**Ähnlichkeit**: Einander ähnliche Elemente werden als zusammengehörig wahrgenommen]{.small}  
+- [**Verbundene Elemente**: Verbundene Elemente werden als zusammengehörig wahrgenommen]{.small}  
+- [**Gute Fortsetzung**: Linien werden wahrgenommen, als folgten sie dem einfachsten Weg]{.small}  
+- [**Geschlossenheit**: Unvollständige Elemente werden als vollständig wahrgenommen]{.small}  
+- [**Figur und Grund**: Elemente sind entweder im Vorder- oder Hintergrund]{.small}  
+- [**Gemeinsames Schicksal**: Elemente mit ähnlicher Bewegungsrichtung werden als zusammengehörig wahrgenommen]{.small}
 
 
-https://www.nature.com/articles/nmeth1010-773
-Unterscheiden von Gruppen: 
-- Gruppierung
-- Größe
-- Farbe
-- Form
 
-- Bewusste Wahrnehmung ignoriert Informationen und fügt hinzu
-- Nähe
-- Salienz (Farbe, Größe, Neigung) (Szaﬁr, Haroz, Gleicher & Franconeri
-(2016))
-- Hier würde das USA Bild passen (evtl. mit einem anderen Beispiel, das den Unterschied deutlich macht, z.B. keine andere Farbe, näher dran durch andere Achse)
-- Harold et al., 2016: Lenken von Aufmerksamkeit
-- Nothelfer et al., 2017: Redundatne Kodierung führt zu deutlich höherer Genauigkeit der Antworten und kürzeren Reaktionszeiten
+## Salienz 
+
+Salienz durch *visual features*:
+
+![](./images/wong_salience.png)
+[Quelle: Wong, B. (2010)](https://www.nature.com/articles/nmeth1010-773)
+
+
+<!-- Unterscheiden von Gruppen:  -->
+<!-- - Gruppierung -->
+<!-- - Größe -->
+<!-- - Farbe -->
+<!-- - Form -->
+
+<!-- - Bewusste Wahrnehmung ignoriert Informationen und fügt hinzu -->
+<!-- - Nähe -->
+<!-- - Salienz (Farbe, Größe, Neigung) (Szaﬁr, Haroz, Gleicher & Franconeri -->
+<!-- (2016)) -->
+<!-- - Hier würde das USA Bild passen (evtl. mit einem anderen Beispiel, das den Unterschied deutlich macht, z.B. keine andere Farbe, näher dran durch andere Achse) -->
+<!-- - Harold et al., 2016: Lenken von Aufmerksamkeit -->
+<!-- - Nothelfer et al., 2017: Redundatne Kodierung führt zu deutlich höherer Genauigkeit der Antworten und kürzeren Reaktionszeiten -->
+
 
 
 ## Gruppieren
 
-## Formen
+:::{.columns}
+:::{.column widht="50%}
+
+Gruppierung durch [Form]{.highlight} 
+
+```{r}
+#| echo: false
+
+set.seed(123)
+df <- data.frame(
+  x = 1:20,
+  y = cumsum(rnorm(20, 0.2)),
+  group = factor(rep(1:2, times = 10))
+)
+
+ggplot(df, aes(x, y)) +
+  geom_point(aes(shape = group), size = 3, show.legend = F) +
+  theme_bg() +
+  theme(
+    axis.text.y = element_text(hjust = 1),
+    panel.grid = element_blank(),
+    legend.position = "none"
+  )
+```
+
+:::
+
+:::{.column widht="50%}
+
+Gruppierung durch [verbundene Elemente]{.highlight}
+
+```{r}
+#| echo: false
+
+ggplot(df, aes(x, y)) +
+  geom_point(size = 3) +
+  geom_line(aes(group = group), show.legend = F) +
+  theme_bg() +
+  theme(
+    axis.text.y = element_text(hjust = 1),
+    panel.grid = element_blank(),
+    legend.position = "none"
+  )
+```
+
+:::
+:::
 
 ## Darstellung von Größen
 
@@ -1306,9 +1375,29 @@ ggplot(
 :::
 :::
 
+## Das gleiche gilt für Winkel!
 
+:::{.callout-note}
+Kreis- bzw. Tortendiagramme sollten daher vermieden werden.
+:::
+
+
+::: {.columns} 
+::: {.column width="50%"}
+
+![](./images/pie1.png)
+[Quelle](https://scc.ms.unimelb.edu.au/resources/data-visualisation-and-exploration/no_pie-charts)
+:::
+
+::: {.column width="50%"}
+![](./images/pie2.png)
+
+[Quelle](https://www.data-to-viz.com/caveat/pie.html)
+:::
+:::
 
 ## Farben
+
 :::: {.columns} 
 ::: {.column width="50%"}
 
@@ -1783,7 +1872,7 @@ palette_check(scales::hue_pal()(6), plot = TRUE)
 
 ## Anwendung in ggplot2
 
-## Farben whlen
+## Farben wählen
 - Name
 - rgb()
 - Nummer
@@ -2722,7 +2811,7 @@ Nach <a href="https://de.wikipedia.org/wiki/User:MalteAhrens" class="extiw" titl
 
 
 
-## Weiter Tools
+## Weitere Tools
 
 ::: {.columns}
 
@@ -2738,9 +2827,9 @@ Wollbox von Vincent van Gogh, mit der er Farbkombinationen getestet hat. Eigenes
 ::: {.column width ="50%"}
 \
 \
-- [Colorbrewer](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3)
-- [Huemint](https://huemint.com/)
-- [Pinterest](https://de.pinterest.com/cereusart/color-palettes/)
+- [Colorbrewer](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3)  
+- [Huemint](https://huemint.com/)  
+- [Pinterest](https://de.pinterest.com/cereusart/color-palettes/)  
 
 :::
 :::
