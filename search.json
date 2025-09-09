@@ -11,7 +11,7 @@
     "href": "index.html#tag-1",
     "title": "Datenvisualisierung in R",
     "section": "Tag 1",
-    "text": "Tag 1\n\n\n\n\n\n\n\n\n\n\nEinführung\n\n\n9:00 - 10:00\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2: Die Basics\n\n\n10:10 - 11:30\n\n\n\nNicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\n\nGute Plots\n\n\n\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\nKeine Treffer"
+    "text": "Tag 1\n\n\n\n\n\n\n\n\n\n\nEinführung\n\n\n9:00 - 09:45\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2: Die Basics\n\n\n09:50 - 11:30\n\n\n\nNicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\n\nGute Plots\n\n\n\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\nKeine Treffer"
   },
   {
     "objectID": "index.html#tag-2",
@@ -1019,7 +1019,7 @@
     "href": "sessions/Einführung/slides.html#scatterplot-1",
     "title": "Einführung",
     "section": "Scatterplot",
-    "text": "Scatterplot\n\n\n\nDatentyp Numerisch\nAchtung Overplotting\n\n\nLink test"
+    "text": "Scatterplot\n\n\n\nDatentyp Numerisch\nAchtung Overplotting\n\n\nLink test\n\n\n\n\n\n\n\n\n\n\n\n\n:::"
   },
   {
     "objectID": "sessions/Einführung/slides.html#barplot",
@@ -1033,7 +1033,7 @@
     "href": "sessions/Einführung/slides.html#barplot-1",
     "title": "Einführung",
     "section": "Barplot",
-    "text": "Barplot\n\n\n\nDatentyp\nAchtung\n\n\n\n\nHistogram\n\nLineplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;% \n  filter(country %in% c(\"deu\"), time &gt;=1900, time &lt;= 2024) %&gt;% \n  drop_na(gini)\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\ngeom_line() +  \ntheme_bg() +\nlabs(title = \"Ungleichheit in Deutschland On the Rise\", \n     subtitle = \"Gini-Koeffizient von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\")\n\np_line\n\n\n\n\n\nLineplot\n\n\n\nDatentyp\nGut für Zeitreihen\nAchtung\n\n\n\n\nBoxplot\n\nKarten\n\nSpider-Chart\n\nKombiniert\n\nCo2 with grey scale\ngreens with green scale\n\n\nPlotly\n\n\n\ngganimate\n\n\nGenerative Art\n\n\n{background-image=“images/habeck.jpeg” background-size=“1225px”}}\n\nBild von Static."
+    "text": "Barplot\n\n\n\nDatentyp\nAchtung"
   },
   {
     "objectID": "sessions/Einführung/slides.html#histogram",
@@ -1054,7 +1054,7 @@
     "href": "sessions/Einführung/slides.html#lineplot-1",
     "title": "Einführung",
     "section": "Lineplot",
-    "text": "Lineplot\n\n\n\nDatentyp\nGut für Zeitreihen\nAchtung\n\n\n\n\nBoxplot\n\nKarten\n\nSpider-Chart\n\nKombiniert\n\nCo2 with grey scale\ngreens with green scale\n\n\nPlotly\n\n\n\ngganimate\n\n\nGenerative Art\n\n\n{background-image=“images/habeck.jpeg” background-size=“1225px”}}\n\nBild von Static."
+    "text": "Lineplot\n\n\n\nDatentyp\nGut für Zeitreihen\nAchtung"
   },
   {
     "objectID": "sessions/Einführung/slides.html#boxplot",
@@ -1082,7 +1082,14 @@
     "href": "sessions/Einführung/slides.html#kombiniert",
     "title": "Einführung",
     "section": "Kombiniert",
-    "text": "Kombiniert\n\nCo2 with grey scale\ngreens with green scale"
+    "text": "Kombiniert"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#plotly",
+    "href": "sessions/Einführung/slides.html#plotly",
+    "title": "Einführung",
+    "section": "Plotly",
+    "text": "Plotly"
   },
   {
     "objectID": "sessions/Einführung/slides.html#gganimate",
@@ -1099,11 +1106,11 @@
     "text": "Generative Art"
   },
   {
-    "objectID": "sessions/Einführung/slides.html#background-imageimageshabeck.jpeg-background-size1225px",
-    "href": "sessions/Einführung/slides.html#background-imageimageshabeck.jpeg-background-size1225px",
+    "objectID": "sessions/Einführung/slides.html#section-5",
+    "href": "sessions/Einführung/slides.html#section-5",
     "title": "Einführung",
-    "section": "{background-image=“images/habeck.jpeg” background-size=“1225px”}}",
-    "text": "{background-image=“images/habeck.jpeg” background-size=“1225px”}}\n\nBild von Static."
+    "section": "",
+    "text": "Bild von Static."
   },
   {
     "objectID": "sessions/ggplot_intro/ggplot2_basics.html",
