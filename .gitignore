@@ -5,3 +5,4 @@
 /.quarto/
 .httr-oauth
 *.tsv
+/_site/
