@@ -396,7 +396,7 @@
     "href": "sessions/good_plots/slides.html#section",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Excellence in statistical graphics consists of complex ideas communicated with clarity, precision, and efficiency. (Tufte & Graves-Morris, 1983)\n\nshow the data\ninduce the viewer to think about the substance rather than about methodology, graphic design, the technology of graphic production, or something else\navoid distorting what the data have to say\npresent many numbers in a small space\nmake large datasets coherent\nencourage the eye to compare different pieces of data\nReveal the data at several levels of detail, from a broad overview to the fine structure\nserve a reasonably clear purpose: description, exploration, tabulation, or decoration\nbe closely integrated with the statistical and verbal descriptions of a data set"
+    "text": "Excellence in statistical graphics consists of complex ideas communicated with clarity, precision, and efficiency. (Tufte & Graves-Morris, 1983)\n\n\nshow the data\ninduce the viewer to think about the substance rather than about methodology, graphic design, the technology of graphic production, or something else\navoid distorting what the data have to say\npresent many numbers in a small space\nmake large datasets coherent\nencourage the eye to compare different pieces of data\nReveal the data at several levels of detail, from a broad overview to the fine structure\nserve a reasonably clear purpose: description, exploration, tabulation, or decoration\nbe closely integrated with the statistical and verbal descriptions of a data set"
   },
   {
     "objectID": "sessions/good_plots/slides.html#section-1",
@@ -567,11 +567,11 @@
     "text": "Was wäre die Überschrift für eure Grafik, wenn sie in der Zeitung stehen würde?\nWelche Infos sind noch notwendig, um die Grafik zu verstehen? Wo könnte man sie einbauen?\nSoll die Abbildung aus mehreren Plots bestehen? In welcher Reihenfolge?"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#pulikum",
-    "href": "sessions/good_plots/slides.html#pulikum",
+    "objectID": "sessions/good_plots/slides.html#publikum",
+    "href": "sessions/good_plots/slides.html#publikum",
     "title": "Was ist eine gute Grafik?",
-    "section": "Pulikum",
-    "text": "Pulikum"
+    "section": "Publikum",
+    "text": "Publikum"
   },
   {
     "objectID": "sessions/good_plots/slides.html#purpose",
@@ -581,18 +581,18 @@
     "text": "Purpose\n\nExploratory vs. Explanatory\nKann oft über reines Zeigen der Daten hinausgehen."
   },
   {
+    "objectID": "sessions/good_plots/slides.html#salienz",
+    "href": "sessions/good_plots/slides.html#salienz",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Salienz",
+    "text": "Salienz\nSalienz durch visual features:\n Quelle: Wong, B. (2010)"
+  },
+  {
     "objectID": "sessions/good_plots/slides.html#gruppieren",
     "href": "sessions/good_plots/slides.html#gruppieren",
     "title": "Was ist eine gute Grafik?",
     "section": "Gruppieren",
-    "text": "Gruppieren"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#formen",
-    "href": "sessions/good_plots/slides.html#formen",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Formen",
-    "text": "Formen"
+    "text": "Gruppieren\n\n\nGruppierung durch Form\n\n\n\n\n\n\n\n\n\n\nGruppierung durch verbundene Elemente"
   },
   {
     "objectID": "sessions/good_plots/slides.html#darstellung-von-größen",
@@ -614,6 +614,13 @@
     "title": "Was ist eine gute Grafik?",
     "section": "Das gleiche gilt für Winkel!",
     "text": "Das gleiche gilt für Winkel!\n\n\nVersuche, die Größen zu sortieren:"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#das-gleiche-gilt-für-winkel-1",
+    "href": "sessions/good_plots/slides.html#das-gleiche-gilt-für-winkel-1",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Das gleiche gilt für Winkel!",
+    "text": "Das gleiche gilt für Winkel!\n\n\n\n\n\n\nKreis- bzw. Tortendiagramme sollten daher vermieden werden.\n\n\n\n\n\n Quelle\n\n\nQuelle"
   },
   {
     "objectID": "sessions/good_plots/slides.html#farben",
@@ -693,8 +700,8 @@
     "text": "Eigenschaften von Farben\n\nFarbton, Sättigung, Helligkeit\nDie drei Eigenschaften beschreiben das Aussehen von Farben.\n\n\n\nFarbräume\n\nRGB: Zusammenmischen von Licht der unterschiedlichen Farben. Alle drei zusammen ergeben weiß.\nCMYK: Ausblenden aus dem weißen Farbspektrum durch Filter. Grundfarben: Gelb, Magenta (Purpur), Cyan (Blaugrün) (+K - Key (also Schwarz))"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#salienz",
-    "href": "sessions/good_plots/slides.html#salienz",
+    "objectID": "sessions/good_plots/slides.html#salienz-1",
+    "href": "sessions/good_plots/slides.html#salienz-1",
     "title": "Was ist eine gute Grafik?",
     "section": "Salienz",
     "text": "Salienz\nSticht eine Farbe hervor, ist sie besonders salient - das kann gewollt oder ungewollt sein."
@@ -728,11 +735,11 @@
     "text": "Anwendung in ggplot2"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#farben-whlen",
-    "href": "sessions/good_plots/slides.html#farben-whlen",
+    "objectID": "sessions/good_plots/slides.html#farben-wählen",
+    "href": "sessions/good_plots/slides.html#farben-wählen",
     "title": "Was ist eine gute Grafik?",
-    "section": "Farben whlen",
-    "text": "Farben whlen\n\nName\nrgb()\nNummer\nHex code"
+    "section": "Farben wählen",
+    "text": "Farben wählen\n\nName\nrgb()\nNummer\nHex code"
   },
   {
     "objectID": "sessions/good_plots/slides.html#farben-manuell-setzen",
@@ -875,11 +882,11 @@
     "text": "Kleine Farbenlehre\n\n\n\n\nVincent van Gogh, Public domain, via Wikimedia Commons\n\n\n\nGegenüberliegende Farben intensivieren sich gegenseitig: eine Primärfarbe, und eine Sekundärfarbe, die aus den anderen beiden Primärfarben gemischt wird. Das erzeugt stärkere Kontraste. (Van Gogh bild)\nMit weiß und schwarz lassen sich die Schattierungen hinzumischen\ntriadisches Farbschema: Fom MIttelpunkt des Farbkreises Strahlen mit gleichem Winkel abgehen lassen (So viele, wie man Farben haben will). Das wählt dann Farben mit dem größten Kontrast aus. (https://www.kunstplaza.de/fashion-design/farbenlehre-farbtheorie-styleguides-fashion-design/)"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#weiter-tools",
-    "href": "sessions/good_plots/slides.html#weiter-tools",
+    "objectID": "sessions/good_plots/slides.html#weitere-tools",
+    "href": "sessions/good_plots/slides.html#weitere-tools",
     "title": "Was ist eine gute Grafik?",
-    "section": "Weiter Tools",
-    "text": "Weiter Tools\n\n\n\n\nWollbox von Vincent van Gogh, mit der er Farbkombinationen getestet hat. Eigenes Bild.\n\n\n\n\n- Colorbrewer - Huemint - Pinterest"
+    "section": "Weitere Tools",
+    "text": "Weitere Tools\n\n\n\n\nWollbox von Vincent van Gogh, mit der er Farbkombinationen getestet hat. Eigenes Bild.\n\n\n\n\n- Colorbrewer\n- Huemint\n- Pinterest"
   },
   {
     "objectID": "sessions/good_plots/slides.html#schriften",
