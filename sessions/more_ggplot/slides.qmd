@@ -1323,7 +1323,6 @@ coord_radar <- function(theta = "x", start = 0, direction = 1) {
 ```
 
 ```{r}
-#| eval: false
 #| output-location: column
 dat_prepped3 <- arrange(dat_prepped2, question)
 
@@ -1344,7 +1343,6 @@ ggplot(
 https://de.pinterest.com/pin/friends-colors--2955556002181108/
 
 ```{r}
-#| eval: false
 #| output-location: column
 
 ggplot(
@@ -1364,7 +1362,6 @@ ggplot(
 ##
 
 ```{r}
-#| eval: false
 #| output-location: column
 
 ggplot(
@@ -1387,7 +1384,6 @@ ggplot(
 ##
 
 ```{r}
-#| eval: false
 #| output-location: column
 
 library(ggimage)
@@ -1422,7 +1418,6 @@ ggplot(
 ## Adding a frame around the picture
 
 ```{r}
-#| eval: false
 #| output-location: column
 
 library(ggimage)
@@ -1466,7 +1461,6 @@ ggplot(
 - Nudge pictures further out
 
 ```{r}
-#| eval: false
 #| output-location: column
 
 dat_prepped3 <- dat_prepped3 %>%
@@ -1532,8 +1526,6 @@ ggplot(
 
 
 ```{r}
-#| eval: false
-
 dat_joey_barney <- dat_prepped3 %>%
   filter(char_name %in% c("Barney Stinson", "Joey Tribbiani"))
 
@@ -1590,7 +1582,6 @@ p_left <- ggplot(
 
 
 ```{r}
-#| eval: false
 
 outer_points2 <- outer_points %>%
   filter(!char_name %in% c("Barney Stinson", "Joey Tribbiani"))
@@ -1638,7 +1629,6 @@ p_right <- ggplot(
 
 ## Patch together
 ```{r}
-#| eval: false
 
 p_left +
   p_right

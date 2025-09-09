@@ -15,11 +15,11 @@ listing:
     - title: "Einführung"
       path: sessions/Einführung/Einführung.qmd
       image: sessions/Einführung/images/worldmap.jpg
-      description: 9:00 - 10:00
+      description: 9:00 - 09:45
     - title: "ggplot2: Die Basics"
       path: sessions/ggplot_intro/ggplot2_basics.qmd
       image: sessions/ggplot_intro/images/ggplot_art.png
-      description: 10:10 - 11:30
+      description: 09:50 - 11:30
     - title: "Gute Plots"
       path: sessions/good_plots/good_plots.qmd
       image: sessions/good_plots/images/mcCandless.png

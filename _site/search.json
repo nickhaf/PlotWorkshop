@@ -893,7 +893,7 @@
     "href": "sessions/Einführung/slides.html#section-5",
     "title": "Einführung",
     "section": "",
-    "text": "Öffne Mentimeter und bearbeite das Quiz.\n\n\nFragen von Gapminder.\nFoto von NASA auf Unsplash"
+    "text": "Bild von Static."
   },
   {
     "objectID": "sessions/prep_plots/slides.html",
@@ -1544,28 +1544,28 @@
     "href": "sessions/good_plots/maps.html#section",
     "title": "Karten",
     "section": "",
-    "text": "── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.2     ✔ tibble    3.3.0\n✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n✔ purrr     1.0.4     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\nLinking to GEOS 3.13.0, GDAL 3.10.3, PROJ 9.6.2; sf_use_s2() is TRUE\n\n\n|data_name            |description                                                                          |\n|:--------------------|:------------------------------------------------------------------------------------|\n|municipal_unharm     |Local elections at the municipal level (1990-2020, unharmonized).                    |\n|municipal_harm       |Local elections at the municipal level (1990-2020, harmonized).                      |\n|state_unharm         |State elections at the municipal level (2006-2019, unharmonized).                    |\n|state_harm           |State elections at the municipal level (2006-2019, harmonized).                      |\n|federal_muni_raw     |Federal elections at the municipal level (1980-2025, raw data).                      |\n|federal_muni_unharm  |Federal elections at the municipal level (1980-2025, unharmonized).                  |\n|federal_muni_harm_21 |Federal elections at the municipal level (1990-2025, harmonized to 2021 boundaries). |\n|federal_muni_harm_25 |Federal elections at the municipal level (1990-2025, harmonized to 2025 boundaries). |\n|federal_cty_unharm   |Federal elections at the county level (1953-2021, unharmonized).                     |\n|federal_cty_harm     |Federal elections at the county level (1990-2021, harmonized).                       |\n|ags_crosswalks       |Crosswalks for municipalities (1990-2025).                                           |\n|cty_crosswalks       |Crosswalks for counties (1990-2025).                                                 |\n|ags_area_pop_emp     |Crosswalk covariates (area, population, employment) for municipalities (1990-2025).  |\n|cty_area_pop_emp     |Crosswalk covariates (area, population, employment) for counties (1990-2025).        |\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nZeigen von Kreisen, wo es sehr eng war"
+    "text": "|data_name            |description                                                                          |\n|:--------------------|:------------------------------------------------------------------------------------|\n|municipal_unharm     |Local elections at the municipal level (1990-2020, unharmonized).                    |\n|municipal_harm       |Local elections at the municipal level (1990-2020, harmonized).                      |\n|state_unharm         |State elections at the municipal level (2006-2019, unharmonized).                    |\n|state_harm           |State elections at the municipal level (2006-2019, harmonized).                      |\n|federal_muni_raw     |Federal elections at the municipal level (1980-2025, raw data).                      |\n|federal_muni_unharm  |Federal elections at the municipal level (1980-2025, unharmonized).                  |\n|federal_muni_harm_21 |Federal elections at the municipal level (1990-2025, harmonized to 2021 boundaries). |\n|federal_muni_harm_25 |Federal elections at the municipal level (1990-2025, harmonized to 2025 boundaries). |\n|federal_cty_unharm   |Federal elections at the county level (1953-2021, unharmonized).                     |\n|federal_cty_harm     |Federal elections at the county level (1990-2021, harmonized).                       |\n|ags_crosswalks       |Crosswalks for municipalities (1990-2025).                                           |\n|cty_crosswalks       |Crosswalks for counties (1990-2025).                                                 |\n|ags_area_pop_emp     |Crosswalk covariates (area, population, employment) for municipalities (1990-2025).  |\n|cty_area_pop_emp     |Crosswalk covariates (area, population, employment) for counties (1990-2025).        |\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nZeigen von Kreisen, wo es sehr eng war"
   },
   {
     "objectID": "sessions/good_plots/maps.html#alternativen",
     "href": "sessions/good_plots/maps.html#alternativen",
     "title": "Karten",
-    "section": "",
-    "text": "Bild von storymaps."
+    "section": "Alternativen",
+    "text": "Alternativen\n\n\nBild von storymaps."
   },
   {
     "objectID": "sessions/good_plots/maps.html#kartogramm",
     "href": "sessions/good_plots/maps.html#kartogramm",
     "title": "Karten",
-    "section": "",
-    "text": "library(cartogram)\n\n## Ansonsten mit county oder sogar nur Bundesland?\n\ncartogram_dat &lt;- cartogram_cont(geom_elect_max,\n                 weight = \"number_voters\")\n\nsaveRDS(here::here(\"sessions\", \"good_plots\", \"data\", \"cartogram_dat.rds\"))\n\n\n# https://r-charts.com/spatial/cartogram-ggplot2/\n\nlibrary(cartogram)\n\nreadRDS(here::here(\"sessions\", \"good_plots\", \"data\", \"cartogram_dat.rds\"))\n\nggplot(cartogram_dat) +\n  geom_sf()\n\n\n\nVon Costamiri - Eigenes WerkMap based on: Shapefiles by bundeswahlleiterin.de (Geometrie der Wahlkreise im Koordinatensystem UTM32 generalisiert) © Die Bundeswahlleiterin, Statistisches Bundesamt, Wiesbaden 2024, Wahlkreiskarte für die Wahl zum 21. Deutschen Bundestag; Grundlage der Geoinformationen © Geobasis-DE / BKG 2024Data based on: Bundestagswahl 2025: Open-Data-Angebot der Bundeswahlleiterin by bundeswahlleiterin.de, CC BY-SA 4.0, Link"
+    "section": "Kartogramm",
+    "text": "Kartogramm\n\nlibrary(cartogram)\n\n## Ansonsten mit county oder sogar nur Bundesland?\n\ncartogram_dat &lt;- cartogram_cont(geom_elect_max,\n                 weight = \"number_voters\")\n\nsaveRDS(here::here(\"sessions\", \"good_plots\", \"data\", \"cartogram_dat.rds\"))\n\n\n# https://r-charts.com/spatial/cartogram-ggplot2/\n\nlibrary(cartogram)\n\nreadRDS(here::here(\"sessions\", \"good_plots\", \"data\", \"cartogram_dat.rds\"))\n\nggplot(cartogram_dat) +\n  geom_sf()\n\n\n\nVon Costamiri - Eigenes WerkMap based on: Shapefiles by bundeswahlleiterin.de (Geometrie der Wahlkreise im Koordinatensystem UTM32 generalisiert) © Die Bundeswahlleiterin, Statistisches Bundesamt, Wiesbaden 2024, Wahlkreiskarte für die Wahl zum 21. Deutschen Bundestag; Grundlage der Geoinformationen © Geobasis-DE / BKG 2024Data based on: Bundestagswahl 2025: Open-Data-Angebot der Bundeswahlleiterin by bundeswahlleiterin.de, CC BY-SA 4.0, Link"
   },
   {
     "objectID": "sessions/good_plots/maps.html#section-2",
     "href": "sessions/good_plots/maps.html#section-2",
     "title": "Karten",
     "section": "",
-    "text": ":::{.column width=“50%} \n\n\n\n\n\n:::\n\nGrafiken von zeit.de."
+    "text": ":::{.column width=“50%} \n\n\n\n\n:::\n\nGrafiken von zeit.de."
   },
   {
     "objectID": "sessions/good_plots/slides.html#gliederung",
@@ -2076,7 +2076,7 @@
     "href": "sessions/Einführung/slides.html#scatterplot-1",
     "title": "Einführung",
     "section": "Scatterplot",
-    "text": "Scatterplot\n\n\n\nDatentyp Numerisch\nAchtung Overplotting\n\n\nLink test"
+    "text": "Scatterplot\n\n\n\nDatentyp Numerisch\nAchtung Overplotting\n\n\nLink test\n\n\n\n\n\n\n\n\n\n\n:::"
   },
   {
     "objectID": "sessions/Einführung/slides.html#barplot",
@@ -2139,14 +2139,14 @@
     "href": "sessions/Einführung/slides.html#barplot-1",
     "title": "Einführung",
     "section": "Barplot",
-    "text": "Barplot\n\n\n\nDatentyp\nAchtung\n\n\nHistogram\nLineplot\n\n\nPlot\nCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;% \n  filter(country %in% c(\"deu\"), time &gt;=1900, time &lt;= 2024) %&gt;% \n  drop_na(gini)\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\ngeom_line() +  \ntheme_bg() +\nlabs(title = \"Ungleichheit in Deutschland On the Rise\", \n     subtitle = \"Gini-Koeffizient von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\")\n\np_line\n\n\n\n\nLineplot\n\n\n\nDatentyp\nGut für Zeitreihen\nAchtung\n\n\nBoxplot\nKarten\nSpider-Chart\nKombiniert\n\nCo2 with grey scale\ngreens with green scale\nPlotly\n\ngganimate\nGenerative Art\n{background-image=“images/habeck.jpeg” background-size=“1225px”}}\n\nBild von Static."
+    "text": "Barplot\n\n\n\nDatentyp\nAchtung"
   },
   {
     "objectID": "sessions/Einführung/slides.html#lineplot-1",
     "href": "sessions/Einführung/slides.html#lineplot-1",
     "title": "Einführung",
     "section": "Lineplot",
-    "text": "Lineplot\n\n\n\nDatentyp\nGut für Zeitreihen\nAchtung\n\n\nBoxplot\nKarten\nSpider-Chart\nKombiniert\n\nCo2 with grey scale\ngreens with green scale\nPlotly\n\ngganimate\nGenerative Art\n{background-image=“images/habeck.jpeg” background-size=“1225px”}}\n\nBild von Static."
+    "text": "Lineplot\n\n\n\nDatentyp\nGut für Zeitreihen\nAchtung"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#aufbereitung",
@@ -2644,5 +2644,12 @@
     "title": "Was ist eine gute Grafik?",
     "section": "Literatur",
     "text": "Literatur\n\n\n\n\nCorrell, M., Bertini, E., & Franconeri, S. (2020). Truncating the y-axis: Threat or menace? Proceedings of the 2020 CHI conference on human factors in computing systems, 1–12.\n\n\nHuff, D. (1979). How to lie with statistics / by Darrell Huff.\n\n\nTufte, E. R., & Graves-Morris, P. R. (1983). The visual display of quantitative information (Bd. 2). Graphics press Cheshire, CT."
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#background-image.imageshabeck.jpeg-background-size1225px",
+    "href": "sessions/Einführung/slides.html#background-image.imageshabeck.jpeg-background-size1225px",
+    "title": "Einführung",
+    "section": "{background-image=“./images/habeck.jpeg” background-size=“1225px”}}",
+    "text": "{background-image=“./images/habeck.jpeg” background-size=“1225px”}}\n\nBild von Static."
   }
 ]

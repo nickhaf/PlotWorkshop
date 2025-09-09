@@ -343,27 +343,25 @@ p_scatter
 #| label: example-scatter
 #| eval: false
 ```
-
-
 :::
 
 ## Scatterplot
 ::: {.columns}
+
 :::{.column width = "50%"}
 
 :::{.steckbrief}
 [Datentyp]{.highlight}  Numerisch
 
 [Achtung]{.highlight} Overplotting
-
-
 :::
 
 :::{.tag}
 [Link test](https://quarto.org/docs/reference/formats/html.html)
 :::
-
 :::
+:::
+
 :::{.column width = "50%"}
 ```{r}
 #| echo: false
@@ -418,6 +416,8 @@ p_bar
 [Achtung]{.highlight} 
 
 :::
+:::
+
 :::{.column width="50%"}
 
 :::
@@ -475,7 +475,7 @@ p_line
 [Achtung]{.highlight} 
 
 :::
-
+:::
 :::{.column width="50%"}
 
 :::
@@ -488,17 +488,14 @@ p_line
 ## Spider-Chart
 
 ## Kombiniert
-- Co2 with grey scale
-- greens with green scale
 
-# Plotly
+## Plotly
 
 ## gganimate
 
 ## Generative Art
 
-
-## {background-image="images/habeck.jpeg" background-size="1225px"}}
+## {background-image="images/habeck.jpeg" background-size="1225px"}
 
 ::: image-ref
 Bild von [Static](https://static.ksta.de/__images/2025/04/24/b3b17a0b-1da5-4e0f-9d6e-d321b248e1fa.jpeg?q=75&q=70&rect=0,259,4000,2250&w=2000&h=1334&fm=jpeg&s=cd6fd9eb8760f10aad114f59d21d74ce).
