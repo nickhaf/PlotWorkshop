@@ -23,22 +23,78 @@ source(here::here("src", "functions.R"))
 gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
 ```
 
+
 ## 
+
+::: {.columns}
+::: {.column width="50%"}
+
+\
+\
+\
+\
+
 :::{.quote}
-Excellence in statistical graphics consists of complex ideas communicated with clarity, precision, and efficiency. [@tufte1983visual]
+Excellence in statistical graphics consists of complex ideas communicated with clarity, precision, and efficiency. \
+
+::: {.small}
+@tufte1983visual
 :::
 
-- show the data
-- induce the viewer to think about the substance rather than about methodology, graphic design, the technology of graphic production, or something else
-- avoid distorting what the data have to say
-- present many numbers in a small space
-- make large datasets coherent
-- encourage the eye to compare different pieces of data
-- Reveal the data at several levels of detail, from a broad overview to the fine structure
-- serve a reasonably clear purpose: description, exploration, tabulation, or decoration
-- be closely integrated with the statistical and verbal descriptions of a data set
+:::
+
+:::
+::: {.column width="50%"}
+
+::: {.fragment}
+```{r}
+#| fig.showtext: TRUE
+#| echo: false
+#| fig-width: 10
+#| fig-height: 10
 
 
+library(showtext)
+
+font_add_google("Playfair Display", family = "playfair")
+showtext_auto()
+
+
+set.seed(123)
+
+phrases <- tribble(
+  ~phrase,                           ~freq, ~gruppe,
+  "Zeige die Daten",                    12,  "Daten",
+  "Nicht verzerren",                    10,  "Klarheit",
+  "Zeige viele Zahlen auf wenig Platz",                9,  "Daten",
+  "Verzahne Statistik und Text", 8,  "Klarheit",
+  "das Auge soll vergleichen",             11,  "Klarheit",
+  "Vom Überblick zur feinen Struktur",   8,  "Daten",
+  "Beschreibung",      7,  "Zweck",
+  "Exploration",       7,  "Zweck",
+  "Dekoration",        5,  "Zweck",
+  "Betrachter sollte über den Inhalt nachdenken, nicht über die Methodik ",     12,  "Klarheit"
+)
+
+
+  
+color_scale <- c("Daten" = "#01364C", "Klarheit" = "#269b88", "Zweck" = "#F4BA02")
+
+ggplot(phrases, aes(label = phrase, size = freq, color = gruppe)) +
+  geom_text_wordcloud_area(eccentricity = 0.9, rm_outside = TRUE, size = 70, family = "playfair") +
+  scale_size_area(max_size = 20) +
+  scale_color_manual(values = color_scale) +
+  theme_bg() +
+  theme(
+    plot.title.position = "plot",
+    legend.position = "bottom"
+  )
+
+```
+:::
+
+:::
+:::
 
 ## {background-color="white"}
 
@@ -51,7 +107,7 @@ Darstellung von David McCandless in [Knowledge is Beautiful (2014)](https://info
 
 
 
-## What makes a bad plot? 
+## What makes a bad visualization?
 
 ::: {.columns}
 ::: {.column width="50%"}
@@ -61,7 +117,6 @@ Darstellung von David McCandless in [Knowledge is Beautiful (2014)](https://info
 Jede Gruppe bekommt eine Abbildung. 
 
 1. Diskutiert in der Gruppe, was bei der Visualisierung schief läuft. 
-1. Session
 1. Kurze Diskussion. Stellt den anderen Gruppen eure Ergebnisse vor.
 
 :::
@@ -78,4 +133,4 @@ Jede Gruppe bekommt eine Abbildung.
 Bild gefunden auf [Reddit](https://www.reddit.com/r/dataisugly/comments/1msd4v2/its_not_wrong_but_i_still_hate_it/). 
 :::
 
-
+## References
