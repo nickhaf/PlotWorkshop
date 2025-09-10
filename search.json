@@ -648,7 +648,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nbullseye\n61.52\n64.79\n\n\ncircle\n61.83\n17.27\n\n\ndots\n50.79\n17.20\n\n\nwide_lines\n36.90\n13.58\n\n\nslant_down\n79.81\n52.72\n\n\nslant_down\n51.49\n20.84\n\n\nx_shape\n76.11\n95.30\n\n\nv_lines\n69.50\n16.34\n\n\nstar\n65.10\n27.24\n\n\nslant_up\n72.44\n20.58\n\n\nwide_lines\n67.07\n6.05\n\n\naway\n47.49\n85.39\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nv_lines\n30.45\n45.00\n\n\nwide_lines\n34.58\n89.59\n\n\ndino\n64.87\n97.56\n\n\naway\n40.47\n60.03\n\n\ncircle\n84.63\n39.49\n\n\nbullseye\n77.71\n20.30\n\n\naway\n15.56\n80.07\n\n\nx_shape\n76.11\n95.30\n\n\nbullseye\n91.19\n46.67\n\n\nwide_lines\n68.86\n43.08\n\n\nstar\n68.99\n63.23\n\n\nstar\n43.60\n19.99\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
@@ -931,13 +931,6 @@
     "text": "Logos ;-)"
   },
   {
-    "objectID": "sessions/Einführung/slides.html#generative-art",
-    "href": "sessions/Einführung/slides.html#generative-art",
-    "title": "Einführung",
-    "section": "Generative Art",
-    "text": "Generative Art"
-  },
-  {
     "objectID": "sessions/Einführung/slides.html#section-3",
     "href": "sessions/Einführung/slides.html#section-3",
     "title": "Einführung",
@@ -1127,13 +1120,6 @@
     "text": "Von Long zu Wide\n\ninhabitants_wide_2 &lt;- inhabitants_long %&gt;%\n  pivot_wider(\n    id_cols = \"country\",\n    names_from = \"variable\",\n    values_from = \"value\"\n  )\n\nhead(inhabitants_wide_2)\n\n# A tibble: 3 × 3\n  country    area inhabitants_2022\n  &lt;chr&gt;     &lt;dbl&gt;            &lt;dbl&gt;\n1 China   9597000       1425857720\n2 India   3287000       1420939232\n3 USA     9834000        338903174"
   },
   {
-    "objectID": "sessions/animate_plotly/slides.html#animierte-grafiken",
-    "href": "sessions/animate_plotly/slides.html#animierte-grafiken",
-    "title": "Ausblick: gganimate und plotly",
-    "section": "Animierte Grafiken",
-    "text": "Animierte Grafiken\n\nBisher haben wir ausschließlich statische Grafiken erzeugt.\n\nForschungsergebnisse werden zunehmend nicht mehr ausschließlich in Printmedien dargestellt, sodass wir animierte und interaktive Grafiken teilen können. So kann noch mehr Information in einer einzigen “Grafik” zugänglich gemacht werden.\n\nDie Grundidee bei animierten Grafiken ist es, nicht einen einzigen Plot zu erstellen, sondern stattdessen sehr viele, die dann als einzelne Bilder zu einem Film zusammengefügt werden. Das übernimmt gganimate für uns!\n\nZwei zentrale Fragen, die man sich stellen sollte, bevor man anfängt Daten zu animieren:\n- “Gewinnt der Betrachter bzw. die Betrachterin dabei zusätzliche Information?”\n- “Ist es den Aufwand wert?”\n\n\n\n\n\n\n\nWeiterführende Quellen:\n\n\n\nR Graph Gallery\nWorkshop-Material auf PandaR"
-  },
-  {
     "objectID": "sessions/animate_plotly/slides.html#animierte-grafiken-1",
     "href": "sessions/animate_plotly/slides.html#animierte-grafiken-1",
     "title": "Ausblick: gganimate und plotly",
@@ -1162,11 +1148,18 @@
     "text": "Noch mehr animierte Grafiken\n\n\n\n\n\n\nNun wird für jedes Jahr ein neues Bubble chart erzeugt.\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\noptions(scipen=10)\n\n# Farben der vier Weltregionen \ntuerkis &lt;- rgb(0,213,233, max=255)\ngruen &lt;- rgb(127,235,0, max=255)\nrot &lt;- rgb(255,88,114, max=255)\ngelb &lt;- rgb(255,231,0, max=255)\n\np_static &lt;- gapminder |&gt;\n  subset(time &gt;= 2005 & time &lt;= 2023) |&gt; \n  # Neu: Angabe der Einwohnerzahl in Millionen\n  mutate(pop = pop/1000000) |&gt;\n  # Grund-Grafik anfordern:\n  ggplot(aes(x=gini, y=hapiscore_whr)) +\n  # Neu: Text für die Jahreszahl einfügen, sodass diese ganz im Hintergrund steht\n  # ...funktioniert nicht ohne weiteres...\n  # Neu: Farbthema: heller Hintergrund, schwarze Linien an x- und y-Achse\n  theme_classic() + \n  # Wie bisher: Punkte einzeichnen --&gt; Streu-Punkt-Diagramm,\n  # Neu: Unterscheidung der Punkte nach Farbe (Region) und Größe (Population);  \n  # Transparenz der Datenpunkte (alpha), Rand um die Punkte (shape) \n  geom_point(aes(fill = world_4region, size = pop), shape=21, alpha=.7) +\n  # Skalieren der Größe der Punkte, sodass die Unterschiede deutlicher sind\n  scale_size(range = c(1, 30)) +\n  # Neu: Beschriftung der Achsen\n  labs(x=\"Gini-Index\", y=\"Hyppiness Score\") +\n  # Neu: manuelle Spezifikation der y-Achse: Wertebereich, Position der Beschriftungen (10er-Schritte)\n  scale_y_continuous(limits = c(15, 85), \n                     breaks = seq(20,80, by=10),\n                     labels = paste0(seq(20,80, by=10), \"%\")) +\n  # Neu: manuelle Spezifikation der x-Achse: Wertebereich, log-Transformation, Position und Name der Beschriftungen\n  scale_x_continuous(limits = c(18,75),\n                     breaks = seq(20,70, by= 5)) +\n  # Neu: manuelle Spezifikation der Farben\n  scale_fill_manual(\n    values = c(tuerkis, gruen, rot, gelb),\n    breaks = c(\"africa\", \"americas\", \"asia\", \"europe\")) +\n  # Neu: Theme (Anpassung der Schriftgroesse, relativ zur Groesse 12, blaues Raster im Hintergrund, Rand für die Legende)\n  theme(text = element_text(size=12),\n        axis.text = element_text(size=rel(.8)),\n        axis.title = element_text(size=rel(1.2)),\n        panel.grid.major = element_line(colour = \"azure2\")) +\n  # Neu: Titel, Beschriftungen der Achse und Legende\n  labs(title=\"Bubble Chart im Gapminder-Look\",\n       subtitle = \"Jahr: {floor(frame_time)}\",\n       x=\"Gini-Index\",\n       y=\"Happiness Score (WHR)\",\n       fill=\"Weltregion\",\n       size=\"Einwohnerzahl\\n(in Mio.)\") +\n  # Neu: Vergroessern der Punkte fuer die Farb-Legende fuer die Kontinente\n  guides(fill = guide_legend(override.aes = list(size = 5), order=1)) \n\np_static + transition_time(time) +\n  ease_aes(\"linear\")"
   },
   {
-    "objectID": "sessions/animate_plotly/slides.html#interaktive-grafiken",
-    "href": "sessions/animate_plotly/slides.html#interaktive-grafiken",
+    "objectID": "sessions/animate_plotly/slides.html#interaktive-grafik-mit-plotly",
+    "href": "sessions/animate_plotly/slides.html#interaktive-grafik-mit-plotly",
     "title": "Ausblick: gganimate und plotly",
-    "section": "Interaktive Grafiken",
-    "text": "Interaktive Grafiken\nMit dem Paket ‘plotly’ lassen sich interaktive Grafiken erzeugen:\n- einzelne Fälle bzw. Gruppen von Fällen können hevorgehoben werden - es kann in Plots hereingezoomt werden\n- es können Textfelder definiert werden, die per mouse-over angezeigt werden\n\n\n\n\n\n\nDokumentation\n\n\n\nplotly-Webseite mit umfangreichen Beispielen"
+    "section": "Interaktive Grafik mit ‘plotly’",
+    "text": "Interaktive Grafik mit ‘plotly’"
+  },
+  {
+    "objectID": "sessions/animate_plotly/slides.html#interaktiv",
+    "href": "sessions/animate_plotly/slides.html#interaktiv",
+    "title": "Ausblick: gganimate und plotly",
+    "section": "interaktiv",
+    "text": "interaktiv"
   },
   {
     "objectID": "sessions/prep_plots/prep_plots.html",
@@ -1365,11 +1358,11 @@
     "text": "What makes a bad visualization?\n\n\n\nJede Gruppe bekommt eine Abbildung.\n\nDiskutiert in der Gruppe, was bei der Visualisierung schief läuft.\nKurze Diskussion. Stellt den anderen Gruppen eure Ergebnisse vor.\n\n\n\n\n\n\nBild gefunden auf Reddit."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#references",
-    "href": "sessions/good_plots/slides.html#references",
+    "objectID": "sessions/good_plots/slides.html#übung",
+    "href": "sessions/good_plots/slides.html#übung",
     "title": "Was ist eine gute Grafik?",
-    "section": "References",
-    "text": "References\n\n\n\n\nTufte, E. R., & Graves-Morris, P. R. (1983). The visual display of quantitative information (Bd. 2). Graphics press Cheshire, CT."
+    "section": "Übung",
+    "text": "Übung\n\n\n\n\nTufte, E. R., & Graves-Morris, P. R. (1983). The visual display of quantitative information (Bd. 2). Graphics press Cheshire, CT."
   },
   {
     "objectID": "sessions/good_plots/maps.html#section",
