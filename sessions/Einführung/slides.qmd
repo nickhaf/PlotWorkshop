@@ -2,7 +2,10 @@
 title: "Einführung"
 format: 
   letterbox-revealjs:
-    code-block-height: 400px
+    code-block-height: 650px
+    htmlwidgets:
+      width: 700
+      height: 420
 ---
 
 ```{r}
@@ -14,22 +17,41 @@ library(tidyverse)
 library(ggrepel)
 library(ggthemes)
 library(gganimate)
+library(plotly)
+
 source(here::here("src", "themes.R"))
 ```
 
 
-
-
-# Plotting
-
-
 # Motivation
 
-:::{.fragment}
-:::{.quote}
-Ein Bild sagt mehr als tausend ... Zahlen! 
+:::{.columns}
+:::{.column width = "50%"}
+
+
+::::{.fragment}
+:::::{.quote}
+Ein Bild sagt mehr als tausend ... 
+:::::
+::::
+
+::::{.fragment}
+:::::{.quote}
+... Zahlen! 
+:::::
+::::
+
+:::
+
+:::{.column width = "50%"}
+![](./images/motivation.jpg){.image-right}
 :::
 :::
+
+:::{.image-ref}
+Foto von <a href="https://unsplash.com/de/@tegan?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Tegan Mierle</a> auf <a href="https://unsplash.com/de/fotos/person-die-in-der-mitte-der-strasse-geht-ioyEITUD2G8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+
 
 
 ## Datasaurus Dozen ([`quartets`-Paket](https://github.com/r-causal/quartets))
@@ -92,7 +114,7 @@ datasaurus_dozen |>
 ::: {.column width="30%"}
 :::{.fragment}
 :::{.callout-note}
-Wir haben Deskriptivstatistiken für `dataset` berechnet. Mittelwerte, Varianzen und die jeweilige Korrelation zwischen x und y sind nahezu identisch.
+Wir haben Deskriptivstatistiken für jedes `dataset` berechnet. Mittelwerte, Varianzen und die jeweilige Korrelation zwischen x und y sind nahezu identisch.
 :::
 :::
 :::
@@ -124,33 +146,33 @@ Das Muster in den Daten ist nun deutlich erkennbar.
 ## Warum Daten visualisieren?
 
 :::{.fragment}
-- Muster und Informationen lassen sich leichter erkennen.   
-- Inhalte können schneller erfasst und verarbeitet werden.  
-- Erkenntnisse lassen sich anschaulich an andere kommunizieren.  
+- Muster und Informationen lassen sich [leichter erkennen]{.highlight}.   
+- Inhalte können [schneller erfasst und verarbeitet]{.highlight} werden.  
+- Erkenntnisse lassen sich anschaulich [an andere kommunizieren]{.highlight}.  
 - Grafiken lockern Texte auf.  
-- Visuelle Darstellungen können mehrdimensional aufgebaut werden und so eine Vielzahl von Informationen gleichzeitig vermitteln.  
+- Visuelle Darstellungen können mehrdimensional aufgebaut werden und so eine [Vielzahl von Informationen gleichzeitig]{.highlight} vermitteln.  
 :::
 
 ## Warum in R?
 
 :::{.fragment}
-- Syntaxbasiert und reproduzierbar: Analysen und Grafiken können nachvollzogen und exakt repliziert werden.
-- Flexibel: alles, was in R eingelesen werden kann, lässt sich auch visualisieren.
-- Integration: statistische Analysen, Texte und Grafiken kommen „aus einem Guss“
-- Open Source: frei verfügbar, mit einer großen und aktiven Community.
-- Individuell anpassbar: eigene Funktionen und Vorlagen ermöglichen maßgeschneiderte Lösungen (z. B. Corporate Design der Uni).
-- Kreativität: es gibt unzählige Möglichkeiten, sich kreativ auszutoben.
+- [Syntaxbasiert und reproduzierbar:]{.highlight} Analysen und Grafiken können nachvollzogen und exakt repliziert werden.
+- [Flexibel:]{.highlight} alles, was in R eingelesen werden kann, lässt sich auch visualisieren.
+- [Integration:]{.highlight} statistische Analysen, Texte und Grafiken kommen „aus einem Guss“
+- [Open Source:]{.highlight} frei verfügbar, mit einer großen und aktiven Community.
+- [Individuell anpassbar:]{.highlight} eigene Funktionen und Vorlagen ermöglichen maßgeschneiderte Lösungen (z. B. Corporate Design der Uni).
+- [Kreativität:]{.highlight} es gibt unzählige Möglichkeiten, sich kreativ auszutoben.
 :::
 
 ## Warum mit ggplot2?
 
 :::{.fragment}
-- Konsistentes Prinzip: Grafiken werden nach einem einheitlichen Konzept aufgebaut ([Grammar of Graphics]{.highlight}).
-- Hohe Flexibilität: einfache Plots lassen sich schnell erstellen, aber komplexe Visualisierungen sind ebenfalls möglich.
-- Anpassbarkeit: fast jedes Detail lässt sich steuern und fein abstimmen.
-- Publikationstauglich: Grafiken können präzise gestaltet und an professionelle Standards angepasst werden.
-- Erweiterbarkeit: viele zusätzliche Pakete (z. B. für Karten, Zeitreihen, Interaktivität) erweitern ggplot2.
-- Große Community: viele Beispiele, Tutorials und Unterstützung.
+- [Konsistentes Prinzip:]{.highlight} Grafiken werden nach einem einheitlichen Konzept aufgebaut (*Grammar of Graphics*).
+- [Hohe Flexibilität:]{.highlight} einfache Plots lassen sich schnell erstellen, aber komplexe Visualisierungen sind ebenfalls möglich.
+- [Anpassbarkeit:]{.highlight} fast jedes Detail lässt sich steuern und fein abstimmen.
+- [Publikationstauglich:]{.highlight} Grafiken können präzise gestaltet und an professionelle Standards angepasst werden.
+- [Erweiterbarkeit:]{.highlight} viele zusätzliche Pakete (z. B. für Karten, Zeitreihen, Interaktivität) erweitern ggplot2.
+- [Große Community:]{.highlight} viele Beispiele, Tutorials und Unterstützung.
 :::
 
 ## Und warum dieser Workshop?
@@ -160,41 +182,31 @@ Das Muster in den Daten ist nun deutlich erkennbar.
 - Es gibt aber einige Fallstricke und Dinge, die sich lohnen zu wissen
 - Grafikerstellung ist Teil aller datenbasierten, wissenschaftlichen Disziplinen...
 - ...aber wird kaum bis gar nicht im Studium behandelt
-- WoMepS ist also eine prima Gelegenheit!
+- [WoMepS ist also eine prima Gelegenheit!]{.highlight}
 :::
 
-## 
 
-![](./images/horst_ggplot2.png){fig-width=80%}
+## Umfrage {background-image="./images/survey.jpg" background-size="1225px"}
 
-::: image-ref
-Abbildung von [Allison Horst](https://allisonhorst.com/r-packages-functions)
-:::
 
-## Vorerfahrungen
-## Quiz {background-image="images/world.jpg" background-size="1225px"}
-
-!UPDATE 
-::: image-ref
-Bild von [Amazon](https://m.media-amazon.com/images/I/71KH-wJcv3L.jpg). 
-:::
+:::{.columns}
+::: {.column width="40%"}
 
 ::: {.exercise}
-Befragung Vorerfahrungen und Wünsche: [Mentimeter](https://www.menti.com/almrscnnw8h8)
+Ihre Vorerfahrungen und Wünsche: 
+
+[Mentimeter](https://www.menti.com/almrscnnw8h8)
+:::
+:::
 :::
 
-!UPDATE
+
 ::: image-ref
-Fragen von [Gapminder](https://upgrader.gapminder.org/).  
-Foto von <a href="https://unsplash.com/de/@nasa?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">NASA</a> auf <a href="https://unsplash.com/de/fotos/foto-aus-dem-weltraum-Q1p7bh3SHj8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+Foto von <a href="https://unsplash.com/de/@goumbik?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Lukas Blazek</a> auf <a href="https://unsplash.com/de/fotos/eingeschalteter-schwarz-grauer-laptop-computer-mcSDtbWXUZU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 :::
 
 
-
-# Organisatorisches 
-@NH: hast Du ein passendes Bild? Wo kriegst Du die eigentlich immer her?
-
-## Organisatorisches
+# Organisatorisches
 
 :::{.callout-tip}
 ## Material
@@ -205,20 +217,22 @@ Foto von <a href="https://unsplash.com/de/@nasa?utm_content=creditCopyText&utm_m
 :::{.callout-tip}
 ## Kontaktdaten
 
-- Nicklas Hafiz: nicklas.jakob.hafiz@hu-berlin.de  
-- Janine Buchholz: janine.buchholz@hu-berlin.de  
+- Nicklas Hafiz: [nicklas.jakob.hafiz@hu-berlin.de](mailto:nicklas.jakob.hafiz@hu-berlin.de)  
+- Janine Buchholz: [janine.buchholz@hu-berlin.de](mailto:janine.buchholz@hu-berlin.de)  
 :::
 
 :::{.callout-tip}
-## Arbeiten in Zoom:   
+
+## Zusammenarbeit in Zoom   
 
 - Handheben-Funktion für Wortmeldungen   
 - Zoom-Chat für kleinere Fragen, Anmerkungen und Hilferufe    
 - Breakout-Sessions für Gruppenarbeit   
-- Teilen von zwei Screens: Folien, RStudio  
-:::
+- Gleichzeitiges Teilen von zwei Screens (ein Screen pro Dozent)  
 
-![](./images/screenshot)
+![](./images/screenshot_zoom.png)
+
+:::
 
 # Galerie {background-image="images/gallery.jpg" background-size="1225px"}
 
@@ -244,7 +258,7 @@ Bild von [ReserachGate](https://www.researchgate.net/figure/Cholera-outbreak-in-
 :::{.columns}
 ::: {.column width="100%"}
 
-![](./images/password.png)
+![](./images/password.png){.lightbox}
 
 :::
 :::
@@ -254,18 +268,28 @@ Beispiel aus der [The R Graph Gallery](https://r-graph-gallery.com/web-circular-
 :::
 
 
+## 
+
+![](images/cars.png){.lightbox}
+
+
+
+::: image-ref
+Image from [behance.net](https://www.behance.net/gallery/153078177/The-Sound-of-Cars-From-Near-or-Far). 
+:::
+
+
 ## Der best Plot aller Zeiten?
 
 ![](images/napoleon.png)
 
-
 Verluste der napoleonischen Armee beim Russlandfeldzug 1812–1813, von Charles Joseph Minard. 
 Es werden [6 Dimensionen]{.highlight} dargestellt!    
-
 
 ::: image-ref
 Image from [Wikipedia](https://en.wikipedia.org/wiki/File:Minard.png). 
 :::
+
 
 
 # {background-image="images/setup.jpg" background-size="1225px"}
@@ -308,7 +332,7 @@ Dadurch können Probleme mit relativen und absoluten Pfaden vermieden werden.
 
 ::: {.exercise}
 
-Lade die gapminder-Daten von [GitHub](https://github.com/nickhaf/PlotWorkshop/blob/main/data/gapminder_dat.rds) herunter und in R ein. 
+Lade die gapminder-Daten von [GitHub](https://github.com/nickhaf/PlotWorkshop/blob/main/data/gapminder_dat.rds) herunter, lege sie in Deinem Arbeitsverzeichnis ab, in dem auch Dein R-Skript liegt, und lies sie anschließend in R ein. 
 
 :::
 
@@ -394,10 +418,10 @@ Foto von <a href="https://unsplash.com/de/@nasa?utm_content=creditCopyText&utm_m
 ```{r}
 #| echo: false
 
-gapminder_2019 <- gapminder %>% 
-  filter(time == 2019)
+gapminder_2023 <- gapminder %>% 
+  filter(time == 2023)
 
-p_scatter <- ggplot(data = gapminder_2019, aes(x = gini, y = hapiscore_whr, color = world_4region)) +
+p_scatter <- ggplot(data = gapminder_2023, aes(x = gini, y = hapiscore_whr)) +
   geom_point(size = 3)  +
   labs(x = "Gini-Koeffizient", y ="Happiness score (WHR)", color= "Weltregion")
 p_scatter
@@ -410,6 +434,7 @@ p_scatter
 ::: {.panel-tabset}
 
 ### Plot
+
 ```{r}
 #| label: example-scatter-plot
 #| fig-width: 14
@@ -425,15 +450,55 @@ p_scatter
 #| label: example-scatter-code
 #| eval: false
 
-ggplot(data = gapminder_2019, aes(x = gini, y = hapiscore_whr, color = world_4region)) +
+gapminder_2023 <- gapminder %>% 
+  filter(time == 2023)
+
+ggplot(data = gapminder_2023, aes(x = gini, y = hapiscore_whr)) +
   geom_point(size = 3)  +
   labs(x = "Gini-Koeffizient", y ="Happiness score (WHR)", color= "Weltregion")
 ```
 :::
 
-## Scatterplot 
+## Scatterplot mit Erweiterungen
 
-... hier noch eine ausgefeiltere Version einfügen ...
+::: {.panel-tabset}
+
+### Plot
+```{r}
+#| label: example-scatter2-plot
+#| fig-width: 14
+#| fig-height: 7
+#| echo: false
+
+gapminder_2023 <- gapminder %>% 
+  filter(time == 2023)
+
+ggplot(data = gapminder_2023, aes(x = gini, y = hapiscore_whr)) +
+  geom_point(aes(color = world_4region), size = 3)  +
+  geom_smooth(aes(color = world_4region)) +
+  labs(x = "Gini-Koeffizient", y ="Happiness score (WHR)", color= "Weltregion",
+       title = "Zusammenhang zwischen Gini-Index und der Zufriedenheit", 
+       subtitle = "Jahr: 2023")
+```
+
+### Code
+
+```{r}
+#| label: example-scatter2-code
+#| eval: false
+
+gapminder_2023 <- gapminder %>% 
+  filter(time == 2023)
+
+ggplot(data = gapminder_2023, aes(x = gini, y = hapiscore_whr)) +
+  geom_point(aes(color = world_4region), size = 3)  +
+  geom_smooth(aes(color = world_4region)) +
+  labs(x = "Gini-Koeffizient", y ="Happiness score (WHR)", color= "Weltregion",
+       title = "Zusammenhang zwischen Gini-Index und der Zufriedenheit", 
+       subtitle = "Jahr: 2023")
+
+```
+:::
 
 ## Barplot
 
@@ -459,13 +524,12 @@ ggplot(data = gapminder_2019, aes(x = gini, y = hapiscore_whr, color = world_4re
 
 ```{r}
 #| echo: false
-gapminder_2019_bar <- gapminder_2019 %>% 
+gapminder_2023_bar <- gapminder_2023 %>% 
   filter(world_6region == "europe_central_asia") %>% 
-drop_na(unicode_region_subtag, gini)
+  drop_na(unicode_region_subtag, gini)
 
-p_bar <- ggplot(data = gapminder_2019_bar, aes(x = reorder(unicode_region_subtag, gini), y = gini)) +
-  geom_bar(stat = "identity", color = "black", fill = "#F4BA02") +
-  theme_bg()
+p_bar <- ggplot(data = gapminder_2023_bar) +
+  geom_bar(aes(x = unicode_region_subtag, y = gini), stat = "identity") 
 
 p_bar
 ```
@@ -486,7 +550,6 @@ p_bar
 #| echo: false
 
 p_bar
-
 ```
 
 ### Code
@@ -495,8 +558,59 @@ p_bar
 #| label: example-bar-plot
 #| eval: false
 
-ggplot(data = gapminder_2019_bar, aes(x = reorder(unicode_region_subtag, gini), y = gini)) +
-  geom_bar(stat = "identity", color = "black", fill = "#F4BA02") +
+gapminder_2023_bar <- gapminder_2023 %>% 
+  filter(world_6region == "europe_central_asia") %>% 
+  drop_na(unicode_region_subtag, gini)
+
+p_bar <- ggplot(data = gapminder_2023_bar) +
+  geom_bar(aes(x = unicode_region_subtag, y = gini), stat = "identity") 
+
+p_bar
+```
+
+:::
+
+## Barplot mit Erweiterungen
+
+::: {.panel-tabset}
+
+### Plot
+```{r}
+#| label: example-bar2-code
+#| fig-width: 14
+#| fig-height: 7
+#| echo: false
+
+gapminder_2023_bar <- gapminder_2023 %>% 
+  filter(world_6region == "europe_central_asia") %>% 
+  drop_na(unicode_region_subtag, gini)
+
+ggplot(data = gapminder_2023_bar, 
+       aes(x = reorder(unicode_region_subtag, gini), y = gini, fill = ifelse(unicode_region_subtag == "DE", "DEU", "noDEU"))) +
+  geom_bar(stat = "identity", size = 4, show.legend = F) +
+  scale_fill_manual(values = c("red", "grey50")) +
+  labs(title = "Gini-Index in Europa und Zentralasien (Jahr: 2023)",
+       x = "", y = "Gini-Index") +
+  theme_bg()
+
+```
+
+### Code
+
+```{r}
+#| label: example-bar2-plot
+#| eval: false
+
+gapminder_2023_bar <- gapminder_2023 %>% 
+  filter(world_6region == "europe_central_asia") %>% 
+  drop_na(unicode_region_subtag, gini)
+
+ggplot(data = gapminder_2023_bar, 
+       aes(x = reorder(unicode_region_subtag, gini), y = gini, fill = ifelse(unicode_region_subtag == "DE", "DEU", "noDEU"))) +
+  geom_bar(stat = "identity", size = 4, show.legend = F) +
+  scale_fill_manual(values = c("red", "grey35")) +
+  labs(title = "Gini-Index in Europa und Zentralasien (Jahr: 2023)",
+       x = "", y = "Gini-Index") +
   theme_bg()
 ```
 
@@ -696,9 +810,7 @@ gapminder_2023 <- gapminder %>%
   filter(time == 2023) 
 
 p_histo <- ggplot(data = gapminder_2023, aes(x = hapiscore_whr)) +
-  geom_histogram() +
-  theme_bg() +
-  labs(x = "Happiness", y = "", title = "World Happiness 2023")
+  geom_histogram() 
 
 p_histo
 ```
@@ -730,17 +842,56 @@ p_histo
 #| eval: false
 
 ggplot(data = gapminder_2023, aes(x = hapiscore_whr)) +
-  geom_histogram() +
-  theme_bg() +
-  labs(x = "Happiness", y = "", title = "World Happiness 2023")
+  geom_histogram() 
 ```
 
 :::
 
 
-## Histogram
+## Histogram mit Erweiterungen
 
-... hier noch eine ausgefeiltere Version einfügen ...
+::: {.panel-tabset}
+
+### Plot
+```{r}
+#| label: example-histo2-plot
+#| fig-width: 14
+#| fig-height: 7
+#| echo: false
+
+gapminder_2023 <- gapminder %>% 
+  filter(time == 2023) 
+
+ggplot(data = gapminder_2023, aes(x = hapiscore_whr)) +
+  geom_histogram() +
+  labs(x = "Happiness Score (WHR)", y = "", 
+       title = "So steht es um die globale Zufriedenheit", 
+       subtitle = "Verteilung des weltweiten Happiness Score (2023)",
+       caption = "Quelle: Gapminder") +
+  theme_economist() + 
+  scale_colour_economist()
+```
+
+### Code
+
+```{r}
+#| label: example-histo2-code
+#| eval: false
+
+gapminder_2023 <- gapminder %>% 
+  filter(time == 2023) 
+
+ggplot(data = gapminder_2023, aes(x = hapiscore_whr)) +
+  geom_histogram() +
+  labs(x = "Happiness Score (WHR)", y = "", 
+       title = "So steht es um die globale Zufriedenheit", 
+       subtitle = "Verteilung des weltweiten Happiness Score (2023)",
+       caption = "Quelle: Gapminder") +
+  theme_economist() + 
+  scale_colour_economist()
+```
+:::
+
 
 ## Boxplot
 
@@ -772,11 +923,8 @@ ggplot(data = gapminder_2023, aes(x = hapiscore_whr)) +
 gapminder_2023 <- gapminder %>% 
   filter(time == 2023) 
 
-p_boxplot <- ggplot(data = gapminder_2023, aes(x = gini)) +
-  geom_boxplot() +
-  theme_bg() +
-  labs(x = "Bevölkerung", y = "", 
-       title = "Verteilung des Gini-Index", subtitle = "Jahr: 2023")
+p_boxplot <- ggplot(data = gapminder_2023, aes(x = hapiscore_whr)) +
+  geom_boxplot() 
 
 p_boxplot
 ```
@@ -804,18 +952,55 @@ p_boxplot
 #| label: example-boxplot-code
 #| eval: false
 
-ggplot(data = gapminder_2023, aes(x = gini)) +
-  geom_boxplot() +
-  theme_bg() +
-  labs(x = "Bevölkerung", y = "", 
-       title = "Verteilung des Gini-Index", subtitle = "Jahr: 2023")
+gapminder_2023 <- gapminder %>% 
+  filter(time == 2023) 
+
+p_boxplot <- ggplot(data = gapminder_2023, aes(x = lex)) +
+  geom_boxplot() 
 ```
 
 :::
 
-## Boxplot 
 
-... hier noch eine ausgefeiltere Version einfügen ...
+## Boxplot mit Erweiterungen
+
+::: {.panel-tabset}
+
+### Plot
+
+```{r}
+#| label: example-boxplot2
+#| fig-width: 14
+#| fig-height: 7
+#| echo: false
+
+gapminder_2023 <- gapminder %>% 
+  filter(time == 2023) 
+
+ggplot(data = gapminder_2023, aes(x = world_6region, y = gini)) +
+  geom_boxplot(aes(group = world_6region), staplewidth =.2) + 
+  theme_bg() +
+  labs(x = "", y = "", 
+       title = "Verteilung des Gini-Index", subtitle = "Jahr: 2023")
+```
+
+### Code
+
+```{r}
+#| label: example-boxplot2-code
+#| eval: false
+
+gapminder_2023 <- gapminder %>% 
+  filter(time == 2023) 
+
+ggplot(data = gapminder_2023, aes(x = world_6region, y = gini)) +
+  geom_boxplot(aes(group = world_6region), staplewidth =.2) + 
+  theme_bg() +
+  labs(x = "", y = "", 
+       title = "Verteilung des Gini-Index", subtitle = "Jahr: 2023")
+```
+
+:::
 
 
 # Weitere Plot-Typen
@@ -837,7 +1022,7 @@ gapminder_2023 <- gapminder %>%
   filter(time == 2023) 
 
 p_kombi <- ggplot(data = gapminder_2023, aes(x= world_4region, y = gini)) +
-  geom_violin(aes(fill = world_4region, col = world_4region), alpha=.2, show_legend = FALSE) + 
+  geom_violin(aes(fill = world_4region, col = world_4region), alpha=.2, show.legend = FALSE) + 
   geom_jitter(height = 0, width=.2) + 
   geom_boxplot(fill=NA) +
   theme_bg() +
@@ -852,12 +1037,12 @@ p_kombi
 #| label: example-kombi-code
 #| eval: false
 
-ggplot(data = gapminder_2023, aes(x= world_4region, y = gini)) +
-  geom_violin(aes(fill = world_4region), alpha=.2) + 
+p_kombi <- ggplot(data = gapminder_2023, aes(x= world_4region, y = gini)) +
+  geom_violin(aes(fill = world_4region, col = world_4region), alpha=.2, show.legend = FALSE) + 
   geom_jitter(height = 0, width=.2) + 
   geom_boxplot(fill=NA) +
   theme_bg() +
-  labs(x = "Bevölkerung", y = "", fill = "Weltregion",
+  labs(x = "Weltregion", y = "", fill = "Weltregion",
        title = "Verteilung des Gini-Index", subtitle = "Jahr: 2023")
 ```
 
@@ -883,15 +1068,15 @@ gruen <- rgb(127,235,0, max=255)
 rot <- rgb(255,88,114, max=255)
 gelb <- rgb(255,231,0, max=255)
 
-gapminder |>
-  # Auswahl der Daten von 2019:
-  subset(time == 2019) |> 
+p_bubble <- gapminder |>
+  # Auswahl der Daten von 2023:
+  subset(time == 2023) |> 
     # Neu: Angabe der Einwohnerzahl in Millionen
   mutate(pop = pop/1000000) |>
   # Grund-Grafik anfordern:
   ggplot(aes(x=gini, y=hapiscore_whr)) +
   # Neu: Text für die Jahreszahl ("2015") einfügen, sodass diese ganz im Hintergrund steht
-  annotate("text", x=45, y=50, label="2019", size=85, colour ="grey90", family="mono", fontface=1) +
+  annotate("text", x=45, y=50, label="2023", size=85, colour ="grey90", family="mono", fontface=1) +
   # Neu: Farbthema: heller Hintergrund, schwarze Linien an x- und y-Achse
   theme_classic() + 
   # Wie bisher: Punkte einzeichnen --> Streu-Punkt-Diagramm,
@@ -927,6 +1112,8 @@ gapminder |>
        size="Einwohnerzahl\n(in Mio.)") +
   # Neu: Vergroessern der Punkte fuer die Farb-Legende fuer die Kontinente
   guides(fill = guide_legend(override.aes = list(size = 5), order=1)) 
+
+p_bubble
 ```
 
 ### Code
@@ -945,14 +1132,14 @@ rot <- rgb(255,88,114, max=255)
 gelb <- rgb(255,231,0, max=255)
 
 gapminder |>
-  # Auswahl der Daten von 2019:
-  subset(time == 2019) |> 
+  # Auswahl der Daten von 2023:
+  subset(time == 2023) |> 
     # Neu: Angabe der Einwohnerzahl in Millionen
   mutate(pop = pop/1000000) |>
   # Grund-Grafik anfordern:
   ggplot(aes(x=gini, y=hapiscore_whr)) +
   # Neu: Text für die Jahreszahl ("2015") einfügen, sodass diese ganz im Hintergrund steht
-  annotate("text", x=45, y=50, label="2019", size=70, colour ="grey90", family="mono", fontface=1) +
+  annotate("text", x=45, y=50, label="2023", size=70, colour ="grey90", family="mono", fontface=1) +
   # Neu: Farbthema: heller Hintergrund, schwarze Linien an x- und y-Achse
   theme_classic() + 
   # Wie bisher: Punkte einzeichnen --> Streu-Punkt-Diagramm,
@@ -1028,6 +1215,16 @@ Abbildung aus der [R Graph Gallery](https://r-graph-gallery.com/304-highlight-a-
 Abbildung aus der [R Graph Gallery](https://r-graph-gallery.com/294-basic-ridgeline-plot.html#color)
 :::
 
+
+## Heat Map
+
+![](./images/heatmap.png){image-height=50%}
+
+
+::: image-ref
+Abbildung von [informationisbeautiful.net](https://informationisbeautiful.net/visualizations/most-common-pin-codes/)
+:::
+
 ## Animiert: `gganimate`
 
 ```{r}
@@ -1041,6 +1238,23 @@ p_line_g7 +
   ease_aes("linear")  
 ```
 
+
+## Interaktiv: `plotly`
+
+```{r}
+#| label: ggplotly
+#| echo: false
+
+ggplotly(p_bubble) |>
+  layout(width = 1000, height = 550)
+```
+
+
+## Logos ;-)
+
+![](../../logo/logo3d.png){width=50% .lightbox}
+
+
 ## Generative Art
 
 ## {background-image="images/habeck.jpeg" background-size="1225px"}
@@ -1048,4 +1262,3 @@ p_line_g7 +
 ::: image-ref
 Bild von [Static](https://static.ksta.de/__images/2025/04/24/b3b17a0b-1da5-4e0f-9d6e-d321b248e1fa.jpeg?q=75&q=70&rect=0,259,4000,2250&w=2000&h=1334&fm=jpeg&s=cd6fd9eb8760f10aad114f59d21d74ce).
 :::
-
