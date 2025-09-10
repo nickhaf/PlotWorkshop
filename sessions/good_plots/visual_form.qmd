@@ -1001,13 +1001,14 @@ palette_check(scales::hue_pal()(6), plot = TRUE)
 
 :::{.column width="50%"}
 ```{r}
+#| code-line-numbers: "5,6"
 ggplot(
   gapminder_2020,
   aes(x = gini, y = hapiscore_whr)
 ) +
   geom_point(size = 3, color = "#FF0000") +
-  geom_smooth(color = "darkblue")
-theme_bg()
+  geom_smooth(color = "darkblue") +
+  theme_bg()
 ```
 :::
 :::
@@ -1152,7 +1153,7 @@ display.brewer.all(colorblindFriendly = FALSE)
 #| label: color_brewer
 #| reults: hide
 #| fig-show: hide
-#| code-line-numbers: "1,12"
+#| code-line-numbers: "1,14"
 
 library(RColorBrewer)
 
@@ -1255,8 +1256,9 @@ Foto von <a href="https://unsplash.com/de/@geordannatheartist?utm_content=credit
 
 :::
 
+# Funktionelles Desing
 
-## Nützlichkeit
+## Funktionelles Desing
 
 :::{.columns}
 
@@ -1286,7 +1288,7 @@ Hier gilt ganz besonders: [Simplify to Clarify]{.highlight}
 ::: {.column width="67.5%"}
 ![](./images/map.png)
 
-::: image-ref
+::: .image-ref
 Foto von <a href="https://www.bvg.de/.imaging/mte/bvg-theme/zoomed3000w/dam/BVG-Bilder/Verbindungen/netz-ab-01-a.jpg/jcr:content/netz-ab-01-a.jpg">BVG</a>
 :::
 
@@ -1824,9 +1826,9 @@ ggplot(
 Aus @tufte1983visual. 
 :::
 
+# Design
 
-
-# Design {background-color="black"}
+## Design {background-color="black"}
 
 ![](./images/space.png)
 
@@ -1906,9 +1908,8 @@ Wollbox von Vincent van Gogh, mit der er Farbkombinationen getestet hat. Eigenes
 
 ## Schriften
 
-Die Schriftart kann einer Abbildung ein ganz anderes Aussehn vereleihen.  
-Wir nutzen Schriftarten von [Google Fonts]()
-
+Die Schriftart kann einer Abbildung ein ganz anderes Aussehen verleihen.  
+Wir nutzen Schriftarten von [Google Fonts](https://fonts.google.com/).
 
 
 ```{r}
@@ -1919,16 +1920,17 @@ library(showtext)
 font_add_google("Special Elite", family = "special")
 ```
 
-::: {.image-ref}
-Daten von [zygmuntz](https://github.com/zygmuntz/goodbooks-10k). 
-:::
 
-## 
+## Schriftart
+
+::: {.panel-tabset}
+
+### Plot
 
 ```{r}
-#| output-location: column
-#| fig-width: 7
-#| fig-height: 10
+#| echo: false
+#| label: wordcloud_plot
+#| fig.width: 12
 
 library(ggwordcloud)
 
@@ -1962,12 +1964,26 @@ ggplot(
   theme_bg()
 ```
 
-## 
+### Code
+```{r}
+#| label: wordcloud_plot
+#| eval: false
+```
+
+:::
+
+::: {.image-ref}
+Daten von [zygmuntz](https://github.com/zygmuntz/goodbooks-10k). 
+:::
+
+
+## Schriftart
 ```{r}
 #| fig.showtext: TRUE
 #| output-location: column
 #| fig-width: 7
 #| fig-height: 10
+#| code-line-numbers: "1,2,3,12,19"
 
 font_add_google("Special Elite", family = "my textfont")
 font_add_google("Playfair Display")
@@ -1991,14 +2007,22 @@ ggplot(
 ```
 
 
-##
+## 🏋 Übung
 
+::: {.columns}
+::: {.column width="50%"}
 ::: {.exercise}
 Suche dir eine Schriftart aus [Google Fonts](https://fonts.google.com/) und baue sie in deinen Plot ein.
 :::
-
-## Übung
-
-::: {.exercise}
-Wähle eine Grafik von ... aus und erstelle einen Plan, wie du sie verbessern würdest. 
 :::
+::: {.column width="50%"}
+![](./images/font.jpg){.image-right}
+
+:::
+:::
+
+::: {.image-ref}
+Foto von <a href="https://unsplash.com/de/@foxfox?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Natalia Y.</a> auf <a href="https://unsplash.com/de/fotos/grauer-schmuck-mit-verschiedenen-buchstaben-in-braunen-organizer-boxen-aus-holz-Oxl_KBNqxGA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+
+## Literatur
