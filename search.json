@@ -693,116 +693,137 @@
     "text": "Übung\n\n\nBaue eine eigene Farbpalette für deinen Plot und teste sie auf Farbfehlsichtigkeiten."
   },
   {
-    "objectID": "sessions/good_plots/information.html#integrität-der-daten-garbage-in-garbage-out",
-    "href": "sessions/good_plots/information.html#integrität-der-daten-garbage-in-garbage-out",
-    "title": "Informatio",
-    "section": "Integrität der Daten: Garbage in, garbage out",
-    "text": "Integrität der Daten: Garbage in, garbage out\n\n\n\nScheinkorrelationen\nWrong data, wrong measurements, wrong interpretations …\nSloppy research\n\nP-Hacking\nCherry Picking\n\n\n\n\n\n\nFoto von Jilbert Ebrahimi auf Unsplash."
+    "objectID": "sessions/good_plots/information.html#informationen",
+    "href": "sessions/good_plots/information.html#informationen",
+    "title": "Informationen",
+    "section": "Informationen",
+    "text": "Informationen\n\n\n\n\n\n\nIntegrität der Datenquelle\nIntegrität der Darstellung\n\n\n\n\n\nFoto von Hümâ H. Yardım auf Unsplash"
+  },
+  {
+    "objectID": "sessions/good_plots/information.html#integrität-der-daten",
+    "href": "sessions/good_plots/information.html#integrität-der-daten",
+    "title": "Informationen",
+    "section": "Integrität der Daten",
+    "text": "Integrität der Daten\n\n\nGarbage in, Garbage out:\n\nScheinkorrelationen\nSloppy research\nMessfehler, schlechte Daten, Data dredging\n\n\n\n\n\nFoto von Jilbert Ebrahimi auf Unsplash."
+  },
+  {
+    "objectID": "sessions/good_plots/information.html#scheinkorrelationen",
+    "href": "sessions/good_plots/information.html#scheinkorrelationen",
+    "title": "Informationen",
+    "section": "Scheinkorrelationen",
+    "text": "Scheinkorrelationen\n\n\n\n\n\n\n\n\n\n\nGrafik von Tyler Vigen."
   },
   {
     "objectID": "sessions/good_plots/information.html#fehlender-kontext",
     "href": "sessions/good_plots/information.html#fehlender-kontext",
-    "title": "Informatio",
+    "title": "Informationen",
     "section": "Fehlender Kontext",
     "text": "Fehlender Kontext"
   },
   {
     "objectID": "sessions/good_plots/information.html#section",
     "href": "sessions/good_plots/information.html#section",
-    "title": "Informatio",
+    "title": "Informationen",
     "section": "",
     "text": "Siehe storymaps."
   },
   {
     "objectID": "sessions/good_plots/information.html#section-1",
     "href": "sessions/good_plots/information.html#section-1",
-    "title": "Informatio",
+    "title": "Informationen",
     "section": "",
     "text": "“Land doesn’t vote … People Do.”\n\n\n\n\n\n\nSiehe storymaps."
   },
   {
     "objectID": "sessions/good_plots/information.html#daten-in-kontext-setzen",
     "href": "sessions/good_plots/information.html#daten-in-kontext-setzen",
-    "title": "Informatio",
+    "title": "Informationen",
     "section": "Daten in Kontext setzen",
-    "text": "Daten in Kontext setzen\n\nÜbungLösung\n\n\n\nZeichne Mittelwerte, oder hebe hervor aus einer Vergleichsmenge, z.B. europäischer Länder. Am einfachsten geht das mit einem zweiten Datensatz, der alle europäischen Länder enthält:\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\nggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(aes(group = country))\n\n\n\n\n\n\n\nHinweis\n\n\nCode\n## Bilde einen eignen Datensatz, der alle europäischen Lönder enthält\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\n\n\n\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = \"lightgrey\", alpha = 0.5) +\n  geom_smooth(color = \"black\") +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  theme_bg() +\n  labs(\n    title = \"Ungleichheit in Europa On the Rise\",\n    subtitle = \"1900 bis 2024, Gelbe Linie zeigt Deutschland\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  )\n\np_line"
+    "text": "Daten in Kontext setzen\n\nÜbungLösung\n\n\n\nArbeite an deinem Plot-Projekt aus den letzten Übungen: Zeichne Mittelwerte, oder hebe hervor aus einer Vergleichsmenge, z.B. europäischer Länder. Am einfachsten geht das mit zwei verschiedenen Datensätzen.\n\n\n\n\n\n\nTipp\n\n\nErstellen von zwei Datensätzen:\n\n\nCode\n## Deutschland, das wird gleich in einer anderen Farbe hervorgehoben\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n## Europäische Länder\nggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(aes(group = country))\n\n\n\n\n\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = \"lightgrey\", alpha = 0.5) +\n  geom_smooth(color = \"black\") +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  theme_bg() +\n  labs(\n    title = \"Ungleichheit in Europa On the Rise\",\n    subtitle = \"1900 bis 2024, Gelbe Linie zeigt Deutschland\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  )\n\np_line"
   },
   {
-    "objectID": "sessions/good_plots/information.html#daten-in-kontext-setzen-1",
-    "href": "sessions/good_plots/information.html#daten-in-kontext-setzen-1",
-    "title": "Informatio",
-    "section": "Daten in Kontext setzen",
-    "text": "Daten in Kontext setzen\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = \"lightgrey\", alpha = 0.5) +\n  geom_smooth(color = \"black\") +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  theme_bg() +\n  labs(\n    title = \"Ungleichheit in Europa On the Rise\",\n    subtitle = \"1900 bis 2024, Gelbe Linie zeigt Deutschland\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  )\n\np_line"
-  },
-  {
-    "objectID": "sessions/good_plots/information.html#achsen",
-    "href": "sessions/good_plots/information.html#achsen",
-    "title": "Informatio",
-    "section": "Achsen",
-    "text": "Achsen\n\nFoto von Joerg Fielenbach auf Unsplash"
-  },
-  {
-    "objectID": "sessions/good_plots/information.html#konventionen",
-    "href": "sessions/good_plots/information.html#konventionen",
-    "title": "Informatio",
-    "section": "Konventionen",
-    "text": "Konventionen\n\n\n\n\n\n\n\nKonventionen beachten! Die y-Achse sollte bspw. in der Regel bei 0 beginnen.\n\n\n\n\n\n\n\n\n\n776.013 Home protection; use or threatened use of deadly force; presumption of fear of death or great bodily harm.— (1) A person who is in a dwelling or residence in which the person has a right to be has no duty to retreat and has the right to stand his or her ground and use or threaten to use:\n(a) Nondeadly force against another when and to the extent that the person reasonably believes that such conduct is necessary to defend himself or herself or another against the other’s imminent use of unlawful force; or\n(b) Deadly force if he or she reasonably believes that using or threatening to use such force is necessary to prevent imminent death or great bodily harm to himself or herself or another or to prevent the imminent commission of a forcible felony.\n(Florida Satutes)"
+    "objectID": "sessions/good_plots/information.html#achsen-konventionen",
+    "href": "sessions/good_plots/information.html#achsen-konventionen",
+    "title": "Informationen",
+    "section": "Achsen: Konventionen",
+    "text": "Achsen: Konventionen\n\n\n\n\n\n\n\nKonventionen beachten! Die y-Achse sollte bspw. in der Regel bei 0 beginnen.\n\n\n\n\n\n\n\n\n\n776.013 Home protection; use or threatened use of deadly force; presumption of fear of death or great bodily harm.— (1) A person who is in a dwelling or residence in which the person has a right to be has no duty to retreat and has the right to stand his or her ground and use or threaten to use:\n(a) Nondeadly force against another when and to the extent that the person reasonably believes that such conduct is necessary to defend himself or herself or another against the other’s imminent use of unlawful force; or\n(b) Deadly force if he or she reasonably believes that using or threatening to use such force is necessary to prevent imminent death or great bodily harm to himself or herself or another or to prevent the imminent commission of a forcible felony.\n(Florida Statutes)"
   },
   {
     "objectID": "sessions/good_plots/information.html#manipulation-des-bildformats",
     "href": "sessions/good_plots/information.html#manipulation-des-bildformats",
-    "title": "Informatio",
+    "title": "Informationen",
     "section": "Manipulation des Bildformats",
     "text": "Manipulation des Bildformats"
   },
   {
-    "objectID": "sessions/good_plots/information.html#reales-beispiel-für-manipulation-des-bildformates",
-    "href": "sessions/good_plots/information.html#reales-beispiel-für-manipulation-des-bildformates",
-    "title": "Informatio",
-    "section": "Reales Beispiel für Manipulation des Bildformates",
-    "text": "Reales Beispiel für Manipulation des Bildformates\n\nThe designer of the visualization, by selecting a y-axis starting point, has control over the subjective importance of the resulting differences.\n(Correll et al., 2020)\n\n\n\n\n\n\nGrafik aus Huff (1979), heruntergeladen von Observable blog."
+    "objectID": "sessions/good_plots/information.html#section-2",
+    "href": "sessions/good_plots/information.html#section-2",
+    "title": "Informationen",
+    "section": "",
+    "text": "The designer of the visualization, by selecting a y-axis starting point, has control over the subjective importance of the resulting differences.\n(Correll et al., 2020)\n\n\n\n\n\n\nGrafik aus Huff (1979), heruntergeladen von Observable blog."
+  },
+  {
+    "objectID": "sessions/good_plots/information.html#setzen-der-achsenlimits",
+    "href": "sessions/good_plots/information.html#setzen-der-achsenlimits",
+    "title": "Informationen",
+    "section": "Setzen der Achsenlimits",
+    "text": "Setzen der Achsenlimits\n\n\ny_lim(): Entfernt außerhalb liegende Werte.\n\nCodePlot\n\n\n\nggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_smooth(color = \"black\") +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  theme_bg() +\n  labs(\n    title = \"Ungleichheit in Deutschland On the Rise!\",\n    subtitle = \"1900 bis 2024, schwarze Linie zeigt europäischen Durchschnitt\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  ) + \nylim(c(30, 40))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ncoord_cartesian(): Entfernt die Werte nicht, zoomt quasi rein.\n\nCodePlot\n\n\n\nggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_smooth(color = \"black\") +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  theme_bg() +\n  labs(\n    title = \"Ungleichheit in Deutschland On the Rise!\",\n    subtitle = \"1900 bis 2024, schwarze Linie zeigt europäischen Durchschnitt\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  ) + \n  coord_cartesian(ylim = c(30, 40))"
   },
   {
     "objectID": "sessions/good_plots/information.html#soll-die-null-geplottet-werden",
     "href": "sessions/good_plots/information.html#soll-die-null-geplottet-werden",
-    "title": "Informatio",
+    "title": "Informationen",
     "section": "Soll die Null geplottet werden?",
     "text": "Soll die Null geplottet werden?"
   },
   {
     "objectID": "sessions/good_plots/information.html#absolute-werte",
     "href": "sessions/good_plots/information.html#absolute-werte",
-    "title": "Informatio",
+    "title": "Informationen",
     "section": "Absolute Werte",
     "text": "Absolute Werte\nDie Null sollte in der Regel mitgeplottet werden, da wir uns Mengen anschauen."
   },
   {
     "objectID": "sessions/good_plots/information.html#veränderung-der-werte",
     "href": "sessions/good_plots/information.html#veränderung-der-werte",
-    "title": "Informatio",
+    "title": "Informationen",
     "section": "Veränderung der Werte",
-    "text": "Veränderung der Werte\nHier ist es eher eine Ermessensfrage:\n\n\n\n\n\n\nIf zero is in the neighborhood, invite it in! (Andrew Gelman)\n\n\n\n\n\n\nIn general, in a time-series, use a baseline that shows the data not the zero point. (Tufte & Graves-Morris, 1983)"
+    "text": "Veränderung der Werte\nHier ist es eher eine Ermessensfrage:\n\n\n\n\n\n\nIf zero is in the neighborhood, invite it in!\n\nAndrew Gelman\n\n\n\n\n\n\n\nIn general, in a time-series, use a baseline that shows the data not the zero point.\n\nTufte & Graves-Morris (1983)"
   },
   {
     "objectID": "sessions/good_plots/information.html#veränderung-der-werte-1",
     "href": "sessions/good_plots/information.html#veränderung-der-werte-1",
-    "title": "Informatio",
+    "title": "Informationen",
     "section": "Veränderung der Werte",
     "text": "Veränderung der Werte"
   },
   {
     "objectID": "sessions/good_plots/information.html#schneiden-von-achsen",
     "href": "sessions/good_plots/information.html#schneiden-von-achsen",
-    "title": "Informatio",
+    "title": "Informationen",
     "section": "Schneiden von Achsen",
-    "text": "Schneiden von Achsen\n\n\n\n\n\n\nIn der Regel keine gute Idee! Verzerrt die Skala.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCorrell, M., Bertini, E., & Franconeri, S. (2020). Truncating the y-axis: Threat or menace? Proceedings of the 2020 CHI conference on human factors in computing systems, 1–12.\n\n\nHuff, D. (1979). How to lie with statistics / by Darrell Huff.\n\n\nTufte, E. R., & Graves-Morris, P. R. (1983). The visual display of quantitative information (Bd. 2). Graphics press Cheshire, CT."
+    "text": "Schneiden von Achsen\n\n\n\n\n\n\nIn der Regel keine gute Idee! Verzerrt die Skala."
+  },
+  {
+    "objectID": "sessions/good_plots/information.html#übung-1",
+    "href": "sessions/good_plots/information.html#übung-1",
+    "title": "Informationen",
+    "section": "Übung",
+    "text": "Übung\n\nLegt für euren Plot aus den vorherigen Übungen die Skalenlimits fest. Begründet eure Entscheidung."
+  },
+  {
+    "objectID": "sessions/good_plots/information.html#literatur",
+    "href": "sessions/good_plots/information.html#literatur",
+    "title": "Informationen",
+    "section": "Literatur",
+    "text": "Literatur\n\n\n\n\nCorrell, M., Bertini, E., & Franconeri, S. (2020). Truncating the y-axis: Threat or menace? Proceedings of the 2020 CHI conference on human factors in computing systems, 1–12.\n\n\nHuff, D. (1979). How to lie with statistics / by Darrell Huff.\n\n\nTufte, E. R., & Graves-Morris, P. R. (1983). The visual display of quantitative information (Bd. 2). Graphics press Cheshire, CT."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nstar\n66.29\n26.12\n\n\nslant_down\n71.89\n59.27\n\n\naway\n46.08\n23.11\n\n\ndots\n75.96\n16.69\n\n\ndots\n27.89\n50.80\n\n\nhigh_lines\n51.66\n19.93\n\n\nv_lines\n50.28\n97.61\n\n\ncircle\n52.08\n16.45\n\n\nstar\n76.73\n16.22\n\n\naway\n38.98\n87.32\n\n\nbullseye\n38.50\n41.57\n\n\nslant_up\n70.17\n70.28\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\ncircle\n60.76\n17.03\n\n\ndino\n72.05\n86.41\n\n\ndino\n47.18\n9.87\n\n\ndino\n38.21\n49.10\n\n\nv_lines\n89.50\n48.42\n\n\nh_lines\n49.79\n89.66\n\n\nx_shape\n37.24\n83.72\n\n\nslant_up\n55.56\n85.81\n\n\nx_shape\n34.15\n13.52\n\n\ncircle\n58.84\n16.64\n\n\ndino\n39.49\n25.38\n\n\nbullseye\n49.19\n85.88\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
@@ -1488,7 +1509,7 @@
     "href": "sessions/good_plots/slides.html#section",
     "title": "Was ist eine gute Grafik?",
     "section": "",
-    "text": "Excellence in statistical graphics consists of complex ideas communicated with clarity, precision, and efficiency. (Tufte & Graves-Morris, 1983)\n\n\nshow the data\ninduce the viewer to think about the substance rather than about methodology, graphic design, the technology of graphic production, or something else\navoid distorting what the data have to say\npresent many numbers in a small space\nmake large datasets coherent\nencourage the eye to compare different pieces of data\nReveal the data at several levels of detail, from a broad overview to the fine structure\nserve a reasonably clear purpose: description, exploration, tabulation, or decoration\nbe closely integrated with the statistical and verbal descriptions of a data set"
+    "text": "Excellence in statistical graphics consists of complex ideas communicated with clarity, precision, and efficiency.\n\n\nTufte & Graves-Morris (1983)"
   },
   {
     "objectID": "sessions/good_plots/slides.html#section-1",
@@ -1498,11 +1519,18 @@
     "text": "Darstellung von David McCandless in Knowledge is Beautiful (2014)."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#what-makes-a-bad-plot",
-    "href": "sessions/good_plots/slides.html#what-makes-a-bad-plot",
+    "objectID": "sessions/good_plots/slides.html#what-makes-a-bad-visualization",
+    "href": "sessions/good_plots/slides.html#what-makes-a-bad-visualization",
     "title": "Was ist eine gute Grafik?",
-    "section": "What makes a bad plot?",
-    "text": "What makes a bad plot?\n\n\n\nJede Gruppe bekommt eine Abbildung.\n\nDiskutiert in der Gruppe, was bei der Visualisierung schief läuft.\nSession\nKurze Diskussion. Stellt den anderen Gruppen eure Ergebnisse vor.\n\n\n\n\n\n\nBild gefunden auf Reddit.\n\n\n\n\n\nTufte, E. R., & Graves-Morris, P. R. (1983). The visual display of quantitative information (Bd. 2). Graphics press Cheshire, CT."
+    "section": "What makes a bad visualization?",
+    "text": "What makes a bad visualization?\n\n\n\nJede Gruppe bekommt eine Abbildung.\n\nDiskutiert in der Gruppe, was bei der Visualisierung schief läuft.\nKurze Diskussion. Stellt den anderen Gruppen eure Ergebnisse vor.\n\n\n\n\n\n\nBild gefunden auf Reddit."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#references",
+    "href": "sessions/good_plots/slides.html#references",
+    "title": "Was ist eine gute Grafik?",
+    "section": "References",
+    "text": "References\n\n\n\n\nTufte, E. R., & Graves-Morris, P. R. (1983). The visual display of quantitative information (Bd. 2). Graphics press Cheshire, CT."
   },
   {
     "objectID": "sessions/good_plots/maps.html#section",
