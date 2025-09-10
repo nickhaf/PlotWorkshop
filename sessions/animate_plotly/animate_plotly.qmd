@@ -14,8 +14,3 @@ author:
 ```
 
 [View slides in full screen](slides.html)
-- Was noch so möglich: gganimate/plotly - Janine (+ Nicklas)
-
-# Übung
-- bisherige Grafik animieren/plotly
-

@@ -33,7 +33,7 @@ gapminder_europe <- gapminder %>%
 
 gapminder_2020 <- gapminder %>%
   filter(time == 2020) %>%
-  drop_na(world_6region, world_4region, country, gini, hapiscore_whr) %>% 
+  drop_na(world_6region, world_4region, country, gini, hapiscore_whr) %>%
   arrange(desc(co2_cons))
 ```
 
@@ -71,9 +71,14 @@ Foto von <a href="https://unsplash.com/de/@samscrim?utm_content=creditCopyText&u
 
 # Effizienz: Salienz von Informationen
 
+\ 
+\
+
 Durch die Unterscheidbarkeit von grafischen Symbolen (*visual features*) soll grafische Informationen möglichst schnell aufgenommen werden, ohne lange überlegen zu müssen.
 
 Dafür können die sog. [Gestalt-Prinzipien]{.highlight} genutzt werden. 
+
+## Gestalt-Prinzipien
 
 :::{.callout-tip}
 ## Menschen nehmen Muster nach gewissen Prinzipien wahr. Die Regeln, nach denen wir Muster wahrnehmen, werden Gestalt-Prinzipien genannt, beispielsweise:
@@ -94,22 +99,10 @@ Dafür können die sog. [Gestalt-Prinzipien]{.highlight} genutzt werden.
 Salienz durch *visual features*:
 
 ![](./images/wong_salience.png)
-[Quelle: Wong, B. (2010)](https://www.nature.com/articles/nmeth1010-773)
 
-
-<!-- Unterscheiden von Gruppen:  -->
-<!-- - Gruppierung -->
-<!-- - Größe -->
-<!-- - Farbe -->
-<!-- - Form -->
-
-<!-- - Bewusste Wahrnehmung ignoriert Informationen und fügt hinzu -->
-<!-- - Nähe -->
-<!-- - Salienz (Farbe, Größe, Neigung) (Szaﬁr, Haroz, Gleicher & Franconeri -->
-<!-- (2016)) -->
-<!-- - Hier würde das USA Bild passen (evtl. mit einem anderen Beispiel, das den Unterschied deutlich macht, z.B. keine andere Farbe, näher dran durch andere Achse) -->
-<!-- - Harold et al., 2016: Lenken von Aufmerksamkeit -->
-<!-- - Nothelfer et al., 2017: Redundatne Kodierung führt zu deutlich höherer Genauigkeit der Antworten und kürzeren Reaktionszeiten -->
+::: {.image-ref}
+Abbildung von [Wong, B. (2010)](https://www.nature.com/articles/nmeth1010-773)
+:::
 
 
 
@@ -163,6 +156,76 @@ ggplot(df, aes(x, y)) +
 :::
 :::
 
+
+
+## Gruppieren durch Nähe
+
+```{r}
+#| echo: false
+#| eval: false
+#|
+
+library(rvest)
+library(httr)
+library(polite)
+
+url <- "https://en.wikipedia.org/wiki/Gun_ownership"
+url_bow <- polite::bow(url)
+url_bow
+
+firearm_df <- polite::scrape(url_bow) %>%
+  rvest::html_nodes("table.wikitable") %>%
+  rvest::html_table(fill = TRUE) %>%
+  as.data.frame() %>%
+  rename(country = "Countries.and.territories", "guns" = "Estimate.of.civilian.firearms.per.100.people") %>%
+  select(country, guns)
+
+saveRDS(firearm_df, here::here("sessions", "good_plots", "data", "firearm_df.rds"))
+```
+
+```{r}
+#| echo: false
+
+firearm_df <- readRDS(here::here("sessions", "good_plots", "data", "firearm_df.rds"))
+df <- data.frame(
+  country = c("United States", "Germany", "France", "Canada", "Finland", "Austria", "Australia", "Italy", "Netherlands", "Switzerland"),
+  mass_shootings = c(109, 5, 6, 4, 3, 2, 1, 2, 2, 2)
+) %>%
+  left_join(firearm_df) %>%
+  mutate(labels = case_when(
+    country == "United States" ~ "USA",
+    country == "Germany" ~ "Germany",
+    country == "Switzerland" ~ "Switzerland",
+    country == "Netherlands" ~ "Netherlands",
+    TRUE ~ NA
+  ))
+```
+
+
+```{r}
+#| echo: false
+#| fig-height: 4
+#| fig-width: 7
+
+ggplot(
+  data = df,
+  aes(x = guns, y = mass_shootings, label = labels)
+) +
+  geom_point(aes(colour = ifelse(country == "United States", "USA", "noUSA")), size = 4) +
+  scale_colour_manual(values = c("lightgrey", "red")) +
+  geom_text_repel(vjust = -3, size = 5, color = "#01364C") +
+  theme_bg() +
+  theme(legend.position = "none") +
+  xlab("Guns per 100 Civilians") +
+  ylab("Number of Mass Shootings 2002 - 2022")
+```
+
+
+::: {.image-ref}
+Data from [Rockefeller Institute](https://rockinst.org/blog/public-mass-shootings-around-the-world-prevalence-context-and-prevention/) and [Wikipedia](https://en.wikipedia.org/wiki/Gun_ownership). 
+:::
+
+
 ## Darstellung von Größen
 
 Die Größe von Elemenen kann auch genutzt werden, um Daten zu kodieren.
@@ -177,16 +240,16 @@ library(showtext)
 
 tags <- read.csv(here::here("data", "goodbooks-10k", "tags.csv"))
 book_tags <- read.csv(here::here("data", "goodbooks-10k", "book_tags.csv"))
-books <- read.csv(here::here("data", "goodbooks-10k", "books.csv")) 
+books <- read.csv(here::here("data", "goodbooks-10k", "books.csv"))
 
 
-classics <- book_tags %>% 
-left_join(books) %>%
-left_join(tags) %>% 
-filter(tag_name == "classics") %>% 
-filter(ratings_count > 20000, !duplicated(authors)) %>%
+classics <- book_tags %>%
+  left_join(books) %>%
+  left_join(tags) %>%
+  filter(tag_name == "classics") %>%
+  filter(ratings_count > 20000, !duplicated(authors)) %>%
   select(original_title, average_rating, tag_name, ratings_count) %>%
-  distinct() %>% 
+  distinct() %>%
   arrange(ratings_count) %>%
   slice_tail(n = 50)
 
@@ -198,19 +261,75 @@ showtext_auto()
 
 
 set.seed(45)
-ggplot(data = classics, 
-       mapping = aes(label = original_title, size = average_rating)) +
+ggplot(
+  data = classics,
+  mapping = aes(label = original_title, size = average_rating)
+) +
   geom_text_wordcloud(family = "my textfont") +
-scale_size(range = c(5, 20)) +
-labs(title = "What to read next", 
-subtitle = "According to the 50 most read classics on goodreads.", 
-caption = "The larger the title, the higher the average rating.") +
-theme_bg() +
-theme(title = element_text(family = "Playfair Display", size = 50), 
-      subtitle = element_text(family = "Playfair Display", size = 40),
-caption = element_text(family = "Playfair Display", size = 30)
-)
+  scale_size(range = c(5, 20)) +
+  labs(
+    title = "What to read next",
+    subtitle = "According to the 50 most read classics on goodreads.",
+    caption = "The larger the title, the higher the average rating."
+  ) +
+  theme_bg() +
+  theme(
+    title = element_text(family = "Playfair Display", size = 50),
+    subtitle = element_text(family = "Playfair Display", size = 40),
+    caption = element_text(family = "Playfair Display", size = 30)
+  )
 ```
+
+## Gruppierung durch Form
+
+```{r}
+#| output-location: column
+#| code-line-numbers: "8"
+
+ggplot(
+  data = gapminder_2020,
+  mapping = aes(
+    x = gini,
+    y = hapiscore_whr
+  )
+) +
+  geom_point(aes(shape = world_4region)) +
+  geom_smooth() +
+  labs(
+    title = "Ungleichheit = Un-Happiness?",
+    subtitle = "Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2020",
+    x = "Gini-Index",
+    y = "Happiness-Score",
+  ) +
+  theme_bg()
+```
+
+
+## Darstellen von Größen
+
+```{r}
+#| output-location: column
+#| code-line-numbers: "8"
+
+ggplot(
+  data = gapminder_2020,
+  mapping = aes(
+    x = gini,
+    y = hapiscore_whr
+  )
+) +
+  geom_point(aes(color = world_4region, size = pop)) +
+  geom_smooth() +
+  labs(
+    title = "Ungleichheit = Un-Happiness?",
+    subtitle = "Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2020",
+    x = "Gini-Index",
+    y = "Happiness-Score",
+  ) +
+  theme_bg()
+```
+
+
 
 
 ## Einschätzen von Größen
@@ -406,12 +525,12 @@ Kreis- bzw. Tortendiagramme sollten daher vermieden werden.
 :::
 :::
 
-## Farben
+## Farbe
 
 :::: {.columns} 
 ::: {.column width="50%"}
 
-Farbe ist eine der wichtigsten Methoden, um Informationen zu [labeln], hervorzuheben, [Werte] zu kommunizieren, [Realität simulieren], und um zu designen und zu [dekorieren]. 
+Farbe ist eine der wichtigsten Methoden, um Informationen zu [labeln]{.highlight}, [hervorzuheben]{.highlight}, [Werte]{.highlight} zu kommunizieren, [Realität simulieren]{.highlight}, und um zu designen und zu [dekorieren]{.highlight}. 
 :::
 
 ::: {.column width="50%"}
@@ -426,6 +545,7 @@ Foto von <a href="https://unsplash.com/de/@efekurnaz?utm_content=creditCopyText&
 
 ## Kategoriale vs. quantitative Daten
 
+
 ```{r}
 #| label: color-plot
 #| echo: false
@@ -436,7 +556,7 @@ color_plot_cat <- ggplot(
   aes(x = gini, y = hapiscore_whr, color = world_6region)
 ) +
   geom_point(size = 3) +
-  theme_bg() 
+  theme_bg()
 
 
 color_plot_num <- ggplot(
@@ -444,20 +564,23 @@ color_plot_num <- ggplot(
   aes(x = world_6region, y = hapiscore_whr, color = gini)
 ) +
   geom_point(size = 3) +
-  theme_bg() 
+  theme_bg()
 
 
 color_plot_bar <- ggplot(
   gapminder_2020 %>% group_by(world_6region) %>%
     summarise(hapiscore_whr = mean(hapiscore_whr, na.rm = TRUE)) %>%
     drop_na(),
-  aes(x = world_6region, y = hapiscore_whr, fill = world_6region)) +
-  geom_bar(stat="identity", width = 1) +
-  theme_bg()+ theme(axis.title.x = element_blank(),
-        axis.text.x  = element_blank(),
-        axis.ticks.x = element_blank(),
-        axis.line.x  = element_blank())
-
+  aes(x = world_6region, y = hapiscore_whr, fill = world_6region)
+) +
+  geom_bar(stat = "identity", width = 1) +
+  theme_bg() +
+  theme(
+    axis.title.x = element_blank(),
+    axis.text.x = element_blank(),
+    axis.ticks.x = element_blank(),
+    axis.line.x = element_blank()
+  )
 ```
 
 
@@ -470,7 +593,6 @@ Verschiedene Farben, die sich gut unterscheiden lassen.
 ```{r}
 #| echo: false
 color_plot_cat
-
 ```
 
 :::
@@ -482,40 +604,22 @@ Farbverläufe, die eine Reihenfolge haben.
 ```{r}
 #| echo: false
 color_plot_num
-
 ```
 :::
 :::
 
-::: {.callout-tip}
-`ggplot2` setzt die entsprechende Skala schon automatisch!
+
+
+## Skalenarten
+
+![](./images/color_scales.png)
+
+::: {.image-ref}
+Bild von [nature methods](https://www.nature.com/articles/nmeth.2134/figures/1).
 :::
 
 
 
-## Skalen mit Nullpunkt
-- Was zu beachten ist: unten Blau oben Rot ...
-https://ggplot2-book.org/scales-colour.html
-- Vor allem für diskrete Gruppen geeignet
-- Farbverläufe schwieriger (aber es gibt color scales dafür)
-- Bestimmte Farben (Grün = gut, Rot = Gefahr)
-
-- Intervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen
-  - Kein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten
-- Ordinal: Richtung und gute Unterscheidbarkeit im Farbraum
-- Nominalskaliert: Spriale/Diagnoale im Farbraum
-
-
-- Diskret
-- Continuous
-- Binned
-Vorgefertigte Paletten:
-
-Sequenziell
-\
-Qualitativ
-\
-Diverging
 
 
 ## Farbwahrnehmung beim Menschen {style="text-align: right;"}
@@ -545,11 +649,15 @@ By <a href="//commons.wikimedia.org/wiki/User:BenRG" title="User:BenRG">BenRG</a
 
 
 
-## Andere Tiere können auch mal mehr oder weniger haben:
+##
 
 ::: {.columns}
 
+
 ::: {.column width="50%"}
+Andere Tiere können auch mal mehr oder weniger haben:
+
+
 ![](./images/color_animals.png)
 :::
 
@@ -612,12 +720,14 @@ color_plot_cat
 ::: {.column width="50%"}
 
 ```{r}
+#| echo: false
+
 ggplot(
   gapminder_2020,
   aes(x = gini, y = hapiscore_whr, color = world_4region)
 ) +
   geom_point(size = 3) +
-  theme_bg() 
+  theme_bg()
 ```
 
 :::
@@ -630,7 +740,7 @@ Mehr als [sechs]{.highlight} Farben sollten es auf keinen Fall werden!
 Alternative: Facetting. 
 :::
 
-## Farben
+## Farbe ist relativ
 
 ![](./images/color_perception.png)
 
@@ -645,12 +755,12 @@ Aber: [Unterschiede]{.highlight} und [Veränderungen]{.highlight}.
 :::
 
 
-::: .image-ref
+::: .{image-ref}
 Bild von [Nature Methods](https://www.nature.com/articles/nmeth0810-573/figures/1). 
 :::
 
 
-##
+## Farbe ist relativ
 ::: {.columns}
 ::: {.column width="50%"}
 
@@ -659,18 +769,16 @@ Hier sind die Farben klar unterscheidbar, und der Gini-Index lässt sich gut abl
 ```{r}
 #| echo: false
 color_plot_cat
-
 ```
 
 :::
 ::: {.column width="50%"}
 
-Der Plot ist etwas sub-optimaler. Die tatsächlichen Werte des Gini-Index werden nicht gut kommuniziert. 
+Hier werden die tatsächlichen Werte des Gini-Index nicht gut kommuniziert. 
 
 ```{r}
 #| echo: false
 color_plot_num
-
 ```
 :::
 :::
@@ -685,18 +793,17 @@ color_plot_num
 #| fig-height: 7
 
 theme_colors_red <- c(
-  "#D80000", 
-  "#D80020", 
-  "#D80040", 
-  "#D80060", 
-  "#D80080", 
-  "#D80099" 
+  "#D80000",
+  "#D80020",
+  "#D80040",
+  "#D80060",
+  "#D80080",
+  "#D80099"
 )
 
 
 color_plot_bar +
   scale_fill_manual(values = theme_colors_red)
-
 ```
 
 
@@ -739,16 +846,16 @@ Sticht eine Farbe hervor, ist sie besonders salient - das kann gewollt oder unge
 #| echo: false
 
 accent_scale <- c(
-"america" = "#7FC97F",
-"east_asia_pacific" = "#699896FF", 
-"europe_central_asia" = "red", 
-"middle_east_north_africa" = "#9FAFC0", 
-"south_asia" = "#B49B97",
-"sub_saharan_africa" = "#E9E4A6FF" 
+  "america" = "#7FC97F",
+  "east_asia_pacific" = "#699896FF",
+  "europe_central_asia" = "red",
+  "middle_east_north_africa" = "#9FAFC0",
+  "south_asia" = "#B49B97",
+  "sub_saharan_africa" = "#E9E4A6FF"
 )
 
 color_plot_bar +
-   scale_fill_manual(values = accent_scale)
+  scale_fill_manual(values = accent_scale)
 ```
 
 :::
@@ -772,7 +879,7 @@ theme_colors_3 <- c(
 )
 
 color_plot_bar +
-   scale_fill_manual(values = theme_colors_3)
+  scale_fill_manual(values = theme_colors_3)
 ```
 
 
@@ -797,9 +904,7 @@ ggplot(
   aes(x = gini, y = hapiscore_whr, color = world_6region)
 ) +
   geom_point(size = 1) +
-  theme_bg() 
-
-
+  theme_bg()
 ```
 :::
 
@@ -814,8 +919,7 @@ ggplot(
   aes(x = gini, y = hapiscore_whr, color = world_6region)
 ) +
   geom_point(size = 2) +
-  theme_bg() 
-
+  theme_bg()
 ```
 :::
 
@@ -830,8 +934,7 @@ ggplot(
   aes(x = gini, y = hapiscore_whr, color = world_6region)
 ) +
   geom_point(size = 3) +
-  theme_bg() 
-
+  theme_bg()
 ```
 :::
 :::
@@ -839,21 +942,25 @@ ggplot(
 
 ## Farbfehlsichtigkeit
 
-![](./images/cones_eye.jpg)
+::: {columns}
 
-protanopic right side
-
-::: {.image-ref}
-By Mark Fairchild, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=32075732">Link</a>
-:::
-
+::: {.column width="50%}
 - Protanopie: Zapfentyp L (rot) fehlt: rot vs grün Schwäche
 - Deuteranopie: Zapfentyp M (grün) fehlt: rot vs grün Schwäche
 - Tritanopie: Zapfentyp S (blau) fehlt: blau vs grün, gelb vs violett Schwäche
 
+Rechts: Protanopie
 
-- Take the above scale and show that it is not great for color blindness
-- https://www.color-blindness.com/coblis-color-blindness-simulator/
+:::
+::: {.column width="50%"}
+![](./images/cones_eye.jpg)
+:::
+
+:::
+
+::: {.image-ref}
+By Mark Fairchild, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=32075732">Link</a>
+:::
 
 
 ## Colorblind-Check
@@ -870,6 +977,9 @@ Auf [Colblindor](https://www.color-blindness.com/coblis-color-blindness-simulato
 Mit [colorblindcheck](https://cran.r-project.org/web/packages/colorblindcheck/index.html).
 
 ```{r}
+#| message: false
+#| fig-height: 3
+
 library(colorblindcheck)
 
 palette_check(scales::hue_pal()(6), plot = TRUE)
@@ -880,13 +990,27 @@ palette_check(scales::hue_pal()(6), plot = TRUE)
 
 
 
-## Anwendung in ggplot2
-
 ## Farben wählen
-- Name
-- rgb()
-- Nummer
-- Hex code
+
+::: {.columns}
+::: {.column width="50%"}
+- Name: `"red"`
+- rgb(): `rgb(1,0,0)`
+- Hex code: `#FF0000`
+:::
+
+:::{.column width="50%"}
+```{r}
+ggplot(
+  gapminder_2020,
+  aes(x = gini, y = hapiscore_whr)
+) +
+  geom_point(size = 3, color = "#FF0000") +
+  geom_smooth(color = "darkblue")
+theme_bg()
+```
+:::
+:::
 
 ## Farben manuell setzen
 
@@ -899,7 +1023,7 @@ palette_check(scales::hue_pal()(6), plot = TRUE)
 
 ```{r}
 #| label: manual_color_scale
-#| code-line-numbers: "11"
+#| code-line-numbers: "12"
 #| fig-show: hide
 
 ggplot(
@@ -935,7 +1059,7 @@ ggplot(
 
 ```{r}
 #| label: manual_color_scale_named
-#| code-line-numbers: "1,2,3,4,5,6,7,8,20"
+#| code-line-numbers: "1,2,3,4,5,6,7,8,21"
 #| reults: hide
 #| fig-show: hide
 
@@ -982,8 +1106,6 @@ Wenn du in einem Projekt die gleichen Gruppen in verschiedenen Plots zeigst, set
 
 
 ## Graustufen 
-
-
 
 ```{r}
 #| code-line-numbers: "12"
@@ -1115,12 +1237,23 @@ ggplot(
 
 
 
-## Übung
+## 🏋 Übung
 
+::: {.columns}
+::: {.column width="50%"}
 ::: {.exercise}
-1. Baue eine eigene Farbpalette für deinen Plot und teste sie auf Farbfehlsichtigkeiten.
+1. Wechsel die Farbpalette für deinen Plot und teste sie auf Farbfehlsichtigkeiten.
+:::
+:::
+::: {.column width="50%"}
+![](./images/paint.jpg){.image-right}
+:::
 :::
 
+::: {.image-ref}
+Foto von <a href="https://unsplash.com/de/@geordannatheartist?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Geordanna Cordero</a> auf <a href="https://unsplash.com/de/fotos/mehrfarbige-abstrakte-malerei-2Qg4y32pdCc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+
+:::
 
 
 ## Nützlichkeit
@@ -1178,26 +1311,37 @@ Handschriftliche Skizze ist auch erstmal hilfreich!
 
 ## Simplify to clarify: Data-ink ratio
 
-::: .quote
-Data graphics should draw the viewer's attention to the sense and substance of the data, not to something else. [@tufte1983visual]
+::: .{quote}
+Data graphics should draw the viewer's attention to the sense and substance of the data, not to something else. 
+
+::: {.small}
+@tufte1983visual
+:::
 :::
 
-Auf die Spitze getrieben von @tufte1983visual: 
 
 
 ::: {.columns}
 ::: {.column width="50%"}
+\
+\
+
 Data-ink ratio = Data-ink / Total ink used to print the graphic
 
-- Jedes Stück Tinte sollte einen Grund haben.  
+
+::: {.callout-note}
+Jedes Stück Tinte sollte einen Grund haben.  
+:::
 
 :::
 ::: {.column width="50%"}
 
 ![](./images/eeg.png)
+
 :::{.image-ref}
 <a href="https://creativecommons.org/licenses/by-sa/2.0" title="Creative Commons Attribution-Share Alike 2.0">CC BY-SA 2.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=845554">Link</a>
 :::
+
 :::
 :::
 
@@ -1216,7 +1360,7 @@ Data-ink ratio = Data-ink / Total ink used to print the graphic
 ```{r}
 #| echo: false
 #| label: excel_plot
- 
+
 
 library(ggthemes)
 
@@ -1275,7 +1419,6 @@ ggplot(
 ```{r}
 #| eval: false
 #| label: mean_plot
-
 ```
 :::
 
@@ -1307,7 +1450,6 @@ ggplot(
 ```{r}
 #| eval: false
 #| label: tufte_plot
-
 ```
 :::
 :::
@@ -1317,7 +1459,11 @@ ggplot(
 ## Redundanzen 
 
 ::: {.quote}
-Erase non-data-ink, within reason. Erase redundant data-ink, within reaseon [@tufte1983visual]
+Erase non-data-ink, within reason. Erase redundant data-ink, within reason. 
+
+::: {.small}
+@tufte1983visual
+:::
 :::
 
 
@@ -1364,16 +1510,20 @@ Balken an sich enthalten also schon redundante Informationen!
 :::
 
 ## 
-::: .exercise
+
 
 
 ::: {.panel-tabset}
 
 ### Aufgabe
+::: .{exercise}
 
 Entferne alle Redundanzen, machen den Plot also "Tufte-Komform" 
+
+:::
+
 ```{r}
-#| eval: false
+#| output-location: column
 
 ggplot(
   gapminder_2020[1:10, ],
@@ -1384,7 +1534,8 @@ ggplot(
   theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
   labs(
     x = "Land",
-    y = "CO2 Consumption per capita in t") +
+    y = "CO2 Consumption per capita in t"
+  ) +
   theme_bg()
 ```
 
@@ -1394,10 +1545,13 @@ ggplot(
 
 #### Antwort 1
 
+
 Entfernen der Achsenlinien und Umrandungen. Hintergrundlinien werden innerhalb der Balken dargestellt. 
 
+
 ```{r}
-#| echo: false
+#| output-location: column
+#| fig-height: 4.5
 
 library(ggthemes)
 
@@ -1418,10 +1572,12 @@ ggplot(
 
 #### Antwort 2
 
-Mitunter können die vertikalen und horizontalen Linien auch hilfreich beim Vergleich/bei der Zuordnung zum Land sein: ["Tufte Barchart"]{.highlight}
+Mitunter können die vertikalen und horizontalen Linien auch hilfreich beim Vergleich/bei der Zuordnung zum Land sein.
 
 ```{r}
-#| echo: false
+#| output-location: column
+#| fig-height: 4.5
+
 library(ggplot2)
 
 ggplot(
@@ -1449,8 +1605,6 @@ ggplot(
 
 :::
 :::
-
-
 :::
 
 ## Maximieren von Informationen
@@ -1468,12 +1622,15 @@ Box um den Plot, Grid-Linien, Achsen-Ticks: Alles keine Daten.
 
 ```{r}
 #| label: normal_scatter
+#| fig-height: 4.5
 #| echo: false
+
+
 ggplot(
   data = gapminder_2020,
   mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)
 ) +
-  geom_point() 
+  geom_point()
 ```
 
 ### Code
@@ -1481,7 +1638,6 @@ ggplot(
 ```{r}
 #| label: normal_scatter
 #| eval: false
-
 ```
 
 :::
@@ -1501,6 +1657,7 @@ Nutzen der Ticks und Achsen-Linien, um Informationen zu transportieren.
 ``` {r}
 #| echo: false
 #| label: tufte_scatter
+#| fig-height: 4.5
 
 library(paletteer)
 
@@ -1595,8 +1752,10 @@ Sehr oft macht es Sinn, [die gesamte Verteilung zu plotten]{.highlight}, möglic
 #| label: boxplot_happy
 #| echo: false
 
-ggplot(data = gapminder_2020 %>% drop_na(country),
-  aes(x = world_4region, y = hapiscore_whr, fill = world_4region)) +
+ggplot(
+  data = gapminder_2020 %>% drop_na(country),
+  aes(x = world_4region, y = hapiscore_whr, fill = world_4region)
+) +
   geom_boxplot() +
   theme(axis.ticks = element_blank(), legend.position = "none") +
   scale_fill_paletteer_d("fishualize::Koumansetta_rainfordi") +
@@ -1609,7 +1768,6 @@ ggplot(data = gapminder_2020 %>% drop_na(country),
 ```{r}
 #| label: boxplot_happy
 #| eval: false
-
 ```
 :::
 :::
@@ -1628,14 +1786,16 @@ ggplot(data = gapminder_2020 %>% drop_na(country),
 
 library(ggthemes)
 
-ggplot(data = gapminder_2020 %>% drop_na(country), 
-  aes(x = world_4region, y = hapiscore_whr, group = world_4region)) +
-geom_jitter(alpha = 0.5, color = "lightgrey") + 
+ggplot(
+  data = gapminder_2020 %>% drop_na(country),
+  aes(x = world_4region, y = hapiscore_whr, group = world_4region)
+) +
+  geom_jitter(alpha = 0.5, color = "lightgrey") +
   geom_tufteboxplot() +
   scale_fill_paletteer_d("fishualize::Koumansetta_rainfordi") +
   xlab("Region") +
   ylab("Happiness Score (World Happiness Report)") +
-theme_tufte()
+  theme_tufte()
 ```
 
 ### Code
@@ -1646,73 +1806,6 @@ theme_tufte()
 ```
 :::
 :::
-:::
-
-## Keine Angst vor leerem Raum
-
-```{r}
-#| echo: false
-#| eval: false
-#| 
-
-library(rvest)
-library(httr)
-library(polite)
-
-url <- "https://en.wikipedia.org/wiki/Gun_ownership"
-url_bow <- polite::bow(url)
-url_bow
-
-firearm_df <- polite::scrape(url_bow) %>%
-  rvest::html_nodes("table.wikitable") %>%
-  rvest::html_table(fill = TRUE) %>%
-  as.data.frame() %>%
-  rename(country = "Countries.and.territories", "guns" = "Estimate.of.civilian.firearms.per.100.people") %>%
-  select(country, guns)
-
-saveRDS(firearm_df, here::here("sessions", "good_plots", "data", "firearm_df.rds"))
-```
-
-```{r}
-#| echo: false
-
-firearm_df <- readRDS(here::here("sessions", "good_plots", "data", "firearm_df.rds"))
-df <- data.frame(
-  country = c("United States", "Germany", "France", "Canada", "Finland", "Austria", "Australia", "Italy", "Netherlands", "Switzerland"),
-  mass_shootings = c(109, 5, 6, 4, 3, 2, 1, 2, 2, 2)
-) %>%
-  left_join(firearm_df) %>%
-  mutate(labels = case_when(
-    country == "United States" ~ "USA",
-    country == "Germany" ~ "Germany",
-    country == "Switzerland" ~ "Switzerland",
-    country == "Netherlands" ~ "Netherlands",
-    TRUE ~ NA
-  ))
-```
-
-
-```{r}
-#| echo: false
-#| fig-height: 4
-#| fig-width: 7
-
-ggplot(
-  data = df,
-  aes(x = guns, y = mass_shootings, label = labels)
-) +
-  geom_point(aes(colour = ifelse(country == "United States", "USA", "noUSA")), size = 4) +
-  scale_colour_manual(values = c("lightgrey", "red")) +
-  geom_text_repel(vjust = -3, size = 5, color = "#01364C") +
-  theme_bg() +
-  theme(legend.position = "none") +
-  xlab("Guns per 100 Civilians") +
-  ylab("Number of Mass Shootings 2002 - 2022")
-```
-
-
-::: {.image-ref}
-Data from [Rockefeller Institute](https://rockinst.org/blog/public-mass-shootings-around-the-world-prevalence-context-and-prevention/) and [Wikipedia](https://en.wikipedia.org/wiki/Gun_ownership). 
 :::
 
 
@@ -1733,21 +1826,12 @@ Aus @tufte1983visual.
 
 
 
-## Gegenentwurf: Ästhetik {background-color="black"}
+# Design {background-color="black"}
 
-![](./images/space.png){.lightbox}
+![](./images/space.png)
 
 ::: {.image-ref}
 Abbildung von [Cédric Scherer]https://www.behance.net/gallery/100683383/Travelling-to-Outer-Space#).
-:::
-
-
-
-
-
-## 
-::: .exercise
-Wandelt euren Plot in einen Tufte-Plot um. 
 :::
 
 
@@ -1850,29 +1934,32 @@ library(ggwordcloud)
 
 tags <- read.csv(here::here("data", "goodbooks-10k", "tags.csv"))
 book_tags <- read.csv(here::here("data", "goodbooks-10k", "book_tags.csv"))
-books <- read.csv(here::here("data", "goodbooks-10k", "books.csv")) 
+books <- read.csv(here::here("data", "goodbooks-10k", "books.csv"))
 
 
-classics <- book_tags %>% 
-left_join(books) %>%
-left_join(tags) %>% 
-filter(tag_name == "classics") %>% 
-filter(ratings_count > 20000, !duplicated(authors)) %>%
+classics <- book_tags %>%
+  left_join(books) %>%
+  left_join(tags) %>%
+  filter(tag_name == "classics") %>%
+  filter(ratings_count > 20000, !duplicated(authors)) %>%
   select(original_title, average_rating, tag_name, ratings_count) %>%
-  distinct() %>% 
+  distinct() %>%
   arrange(ratings_count) %>%
   slice_tail(n = 50)
 
 
 set.seed(45)
-ggplot(data = classics, 
-       mapping = aes(label = original_title, size = average_rating)) +
+ggplot(
+  data = classics,
+  mapping = aes(label = original_title, size = average_rating)
+) +
   geom_text_wordcloud() +
-scale_size(range = c(1, 6)) +
-labs(title = "What to read next ...", 
-subtitle = "... according to goodreads") +
-theme_bg()
-
+  scale_size(range = c(1, 6)) +
+  labs(
+    title = "What to read next ...",
+    subtitle = "... according to goodreads"
+  ) +
+  theme_bg()
 ```
 
 ## 
@@ -1889,15 +1976,18 @@ showtext_auto()
 
 
 set.seed(45)
-ggplot(data = classics, 
-       mapping = aes(label = original_title, size = average_rating)) +
+ggplot(
+  data = classics,
+  mapping = aes(label = original_title, size = average_rating)
+) +
   geom_text_wordcloud(family = "my textfont") +
-scale_size(range = c(1, 6)) +
-labs(title = "What to read next", 
-subtitle = "According to goodreads") +
-theme_bg() +
-theme(title = element_text(family = "Playfair Display", size = 20), 
-)
+  scale_size(range = c(1, 6)) +
+  labs(
+    title = "What to read next",
+    subtitle = "According to goodreads"
+  ) +
+  theme_bg() +
+  theme(title = element_text(family = "Playfair Display", size = 20), )
 ```
 
 
