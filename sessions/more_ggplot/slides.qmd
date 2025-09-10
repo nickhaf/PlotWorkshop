@@ -15,7 +15,7 @@ source(here::here("src", "themes.R"))
 source(here::here("src", "functions.R"))
 ```
 
-## Datensatz {background-image="./images/central_perk.jpg" background-size="1225px" background-opacity="0.2"}
+## Datensatz
 
 :::{.columns}
 
@@ -29,12 +29,20 @@ install.packages("tidytuesdayR")
 characters <- tidytuesdayR::tt_load("2022-08-16")
 ```
 
+![](./images/central_perk.jpg)
+
 :::
 ::: {.column width="50%"}
 
-### Der `characters` Datensatz
+- Psychometrische, crowd-sourced ratings für TV-Charaktere. 
+- Zwei (mehr oder weniger) gegensätzliche Eigenschaften, werden auf einer Skala von 0 - 100 bewertet. 
+
+
 :::
 :::
+
+
+
 
 ::: image-ref
 Foto von <a href="https://unsplash.com/de/@lgtts?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Ilse Orsel</a> auf <a href="https://unsplash.com/de/fotos/rot-weisses-unks-cafe-fwPHQB4kGzA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
@@ -139,20 +147,8 @@ Let's build a plot!
 
 # Skalen und Legenden
 
-[Umwandlung]{.highlight} von Datenwerten in visuelle Eigenschaften
-
-## Skalen
-
-\
-\
-\
-
 :::{.quote}
-Scales in ggplot2 control the [mapping from data to aesthetics]{.highlight}. They take your data and turn it into something that you can see, like size, colour, position or shape. 
-:::
-
-::: image-ref
-[ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/scales.html)
+Scales in ggplot2 control the [mapping from data to aesthetics]{.highlight}. They take your data and turn it into something that you can see, like size, colour, position or shape. ([ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/scales.html)) 
 :::
 
 
@@ -190,7 +186,10 @@ Legenden und Achsen sind funktional äquivalent und werden in ggplot2 unter dem 
 
 ggplot(
   data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  mapping = aes(x = question, 
+                y = avg_rating, 
+                colour = char_name, 
+                shape = uni_name)) +
   geom_point()
 ```
 
@@ -203,8 +202,14 @@ ggplot(
 
 **Wird intern zu:**
 
+::: {.panel-tabset}
+ 
+### Code
+
 ```{r}
 #| code-line-numbers: "5,6,7,8"
+#| label: intern_scales
+#| eval: false
 
 ggplot(
   data = dat_prepped,
@@ -216,6 +221,16 @@ ggplot(
   scale_shape_discrete()
 ```
 
+
+### Plot
+
+```{r}
+#| label: intern_scales
+#| echo: false
+
+```
+
+:::
 :::
 
 :::{.column width="50%"}
@@ -257,7 +272,7 @@ Wir sehen so aber, dass Achsen- und Legendentitel jeweils Skalennamen sind.
 ## Skalentypen
 
 ```{r}
-#| code-line-numbers: "5,6"
+#| code-line-numbers: "3,5,6"
 #| output-location: column
 
 ggplot(
@@ -281,8 +296,10 @@ Dadurch bekommen alle Plots, die diese Variablen nutzen, auch sicher die gleiche
 Dadurch wird jedem Element in der color-variable genau die gewünschte Farbe zugeordnet:
 
 ```{r}
-#| code-line-numbers: "1,2,3,8,9,10"
+#| code-line-numbers: "1,2,3,9,10"
 #| output-location: column
+#| fig-height: 4
+
 
 char_colors <- c(
     "Ted Mosby" = "blue", "Robin Scherbatsky" = "red", "Barney Stinson" = "green", "Lily Aldrin" = "purple", "Marshall Eriksen" = "orange", "Rachel Green" = "pink", "Monica Geller" = "brown", "Phoebe Buffay" = "yellow", "Joey Tribbiani" = "cyan")
@@ -296,7 +313,8 @@ ggplot(
   scale_colour_manual(values = char_colors)
 ```
 
-## Anwendungsfälle: Farben/Formen
+## Exkurs: Eigene Skalen-Funktion
+
 Wenn ich dieselben Skalen für mehrere Plots nutzen will, kann ich mir auch vorher eine Funktion definieren: 
 
 ```{r}
@@ -368,7 +386,7 @@ Intern passiert das über `guides()`. Wir können `guides()` also nutzen, um die
 
 
 ```{r}
-#| code-line-numbers: "5,6,7"
+#| code-line-numbers: "5,6,7,8"
 #| fig-width: 14
 
 ggplot(
@@ -418,8 +436,8 @@ ggplot(
 
 ```{r}
 #| code-line-numbers: "5"
-#| plot-height: 10
-#| plot-width: 10
+#| plot-height: 8
+#| plot-width: 7
 
 ggplot(
   data = dat_prepped,
@@ -450,9 +468,13 @@ Das sieht schon besser aus, aber wir haben ein [Overplotting-Problem]()!
 ::: {.column width="50%"}
 ![](./images/windows.jpg){.image-right}
 
-:::{.image-ref}
+
+\
+
+:::{.image-ref2}
 Foto von <a href="https://unsplash.com/de/@cloudett?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Laura Cleffmann</a> auf <a href="https://unsplash.com/de/fotos/weisses-gerahmtes-glasfenster-tagsuber-z3drmcczVTc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 :::
+
 :::
 :::
 
@@ -471,6 +493,8 @@ Anordnen von einer *einzelnen* Variable in einem Raster:
 #| code-line-numbers: "6"
 #| label: wrap_1d
 #| echo: false
+#| fig-height: 4
+
 
 ggplot(
   data = dat_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")), ## Subset wegen Platzproblemen
@@ -485,6 +509,8 @@ ggplot(
 ```{r}
 #| label: wrap_1d
 #| eval: false
+#| code-line-numbers: "6"
+
 ```
 
 :::
@@ -501,6 +527,8 @@ ggplot(
 #| code-line-numbers: "6"
 #| label: grid_1d
 #| echo: false
+#| fig-height: 4
+
 
 ggplot(
   data = dat_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")),
@@ -515,6 +543,7 @@ ggplot(
 ```{r}
 #| label: grid_1d
 #| eval: false
+#| code-line-numbers: "6"
 ```
 
 :::
@@ -522,21 +551,23 @@ ggplot(
 :::
 :::
 
+
+
 ## Facetting - Mehrere Variablen
 Anordnen von *mehreren* Variable in einem Raster:
 
 ::: {.columns}
-
 ::: {.column width="50%"}
-`facet_wrap()`
 
-::: {.panel-tabset}
+:::{.panel-tabset}
+
 ### Plot
-
 ```{r}
-#| code-line-numbers: "8"
+#| code-line-numbers: "6"
 #| label: wrap_2d
 #| echo: false
+#| fig-height: 4.5
+
 
 ggplot(
   data = dat_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")),
@@ -547,52 +578,64 @@ ggplot(
 ```
 
 ### Code
-```{r}
-#| eval: false
-#| label: wrap_2d
 
+```{r}
+#| label: wrap_2d
+#| eval: false
+#| code-line-numbers: "6"
 ```
+
 :::
+
+
 :::
 
 ::: {.column width="50%"}
-`facet_grid()`
 
 ::: {.panel-tabset}
+
 ### Plot
 ```{r}
+#| code-line-numbers: "6"
 #| label: grid_2d
-#| code-line-numbers: "8"
 #| echo: false
+#| fig-height: 4.5
+
 
 ggplot(
   data = dat_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")),
   mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)) +
   geom_point() +
   guides(x = guide_axis(angle = 90)) +
-  facet_grid(char_name ~ uni_name) 
+  facet_grid(char_name ~ uni_name)
 ```
 
 ### Code
+
 ```{r}
-#| eval: false
 #| label: grid_2d
+#| eval: false
+#| code-line-numbers: "6"
 ```
 
 :::
 :::
+
 :::
+
 
 ## Facetting - Tipps
 Plot alle Punkte
 
-:::{.panel-tabset}
+::: {.panel-tabset}
 
 ### Plot
 
 ```{r}
 #| label: facet_tips1
 #| echo: false
+#| fig-width: 12
+
 
 dat_prepped_background <- dat_prepped %>%
   mutate(char_name_bg = char_name) %>%
@@ -604,13 +647,14 @@ ggplot(dat_prepped, aes(x = top_trait, y = avg_rating, colour = char_name, shape
     data = dat_prepped_background,
     aes(group = char_name_bg),
     color = "grey70",
-    alpha = 0.5,
-    size = 0.4
+    alpha = 0.7,
+    size = 0.6
   ) +
   geom_point() +
   guides(x = guide_axis(angle = 90)) +
   facet_wrap(vars(char_name)) +
-  guides(color = "none")
+  guides(color = "none") +
+theme_bg()
 ```
 
 ### Code
@@ -618,17 +662,25 @@ ggplot(dat_prepped, aes(x = top_trait, y = avg_rating, colour = char_name, shape
 ```{r}
 #| eval: false
 #| label: facet_tips1
+
 ```
 
 :::
 
+
+
 ## Facetting - Tipps
 Plot Mittelwerte
+
+::: {.panel-tabset}
 
 ### Plot
 ```{r}
 #| label: facet_tips2
 #| echo: false
+#| fig-width: 12
+#| code-line-numbers: "1,2,3,4,5,7,8,9,10,11,12,13,14,15"
+
 
 dat_mean <- dat_prepped %>%
   group_by(question) %>%
@@ -664,11 +716,11 @@ geom_segment(
 ```{r}
 #| label: facet_tips2
 #| eval: false
+#| code-line-numbers: "1,2,3,4,5,7,8,9,10,11,12,13,14,15"
+
 ```
 
 :::
-
-
 
 :::{.callout-warning}
 Standardisierung könnte beim Vergleich zwischen den Fragen helfen - das kommt aber auf die finale Fragestellung an. 
@@ -687,6 +739,7 @@ dat_prepped$uni_name_fac <- factor(dat_prepped$uni_name, levels = c("How I Met Y
 
 ```{r}
 #| output-location: column
+#| code-line-numbers: "6"
 
 ggplot(
   data = dat_prepped,
@@ -707,8 +760,21 @@ Da würde man ja auch viel zur Legende ändern?
 
 ## Labels
 
-# Koordinatensyteme
+# Kordinatensysteme
 
+::: {.columns}
+::: {.column width="50%"}
+
+:::
+::: {.column width="50%"}
+![](./images/coords.jpg){.image-right}
+:::
+:::
+
+::: {.fig-ref2}
+Foto von <a href="https://unsplash.com/de/@ujjwalchettri?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Ujjwal Chettri</a> auf <a href="https://unsplash.com/de/fotos/ein-paar-vogel-sitzen-auf-einer-stromleitung-4sJ05kCGTCc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+      
+:::
 
 ## Koordinatensysteme
 
@@ -744,8 +810,15 @@ Zwei Aufgaben:
 
 ## Polar-Koordinaten
 
+::: {.panel-tabset}
+
+### Plot
+
 ```{r}
-#| code-line-numbers: "4"
+#| label: polar_coords
+#| echo: false
+#| fig-width: 12
+#| fig-height: 10
 
 ggplot(
   data = dat_prepped,
@@ -762,11 +835,18 @@ ggplot(
   ) +
   ylim(0, 100) +
   facet_wrap(vars(char_name)) +
-  coord_polar(theta = "x") +
-  theme_bg()
+  coord_polar(theta = "x")
 ```
 
+### Code  
 
+```{r}
+#| label: polar_coords
+#| eval: false
+
+```
+
+:::
 
 ::: {.callout-warning}
 Vorsicht damit! In vielen Fällen ist ein lineares Koordinatensystem einfacher zu interpretieren. 
@@ -780,23 +860,18 @@ Nichtsdestotrotz kann es gerade zur Gestaltung nett sein!
 
 
 
-# Kombinieren von Plots
+# Kombinieren von Plots {background-image="./images/rug.jpg" background-size="1225px"}
+
+::: {.image-ref}
+Foto von <a href="https://unsplash.com/de/@raulcachophoto?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Raúl Cacho Oses</a> auf <a href="https://unsplash.com/de/fotos/drei-farblich-sortierte-quilts-z4x9ITBe040?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+      
+:::
 
 ## Patchwork
 
 
 ```{r}
-ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)
-) +
-  geom_point() +
-  facet_wrap(vars(char_name))
-```
 
-
-
-```{r}
 dat_prepped_robin <- dat_prepped %>%
   filter(char_name == "Robin Scherbatsky")
 
@@ -825,6 +900,8 @@ p_rest <- ggplot(
 [Patchwork](https://patchwork.data-imaginist.com/) erlaubt es, Plots zu kombinieren.
 
 ```{r}
+#| fig-width: 12
+
 library(patchwork)
 
 p_robin +
@@ -836,21 +913,27 @@ p_robin +
 ## Patchwork: Stylen
 
 ```{r}
+#| fig-width: 12
+
 library(patchwork)
 
 p_robin +
   p_rest +
-  plot_layout(widths = c(2, 2), guides = "collect")
+  plot_layout(widths = c(1, 2))
 ```
 
-Hmm, das hat noch nicht funktioniert. 
 
 ## 
 
 Abschalten der Legende im ersten Plot. 
 
+::: {.panel-tabset}
+
+### Plot
 ```{r}
-#| output-location: column
+#| code-line-numbers: "8, 11"
+#| label: patchwork_no_legend
+#| echo: false
 
 p_robin <- ggplot(
   data = dat_prepped_robin,
@@ -861,28 +944,27 @@ p_robin <- ggplot(
   ylim(0, 100) +
   theme(legend.position = "none")
 
-
-
-p_rest <- ggplot(
-  data = dat_prepped %>% filter(char_name != "Robin Scherbatsky"),
-  mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)
-) +
-  geom_point() +
-  facet_wrap(vars(char_name), nrow = 2) +
-  ylim(0, 100)
-
-
 p_robin +
   p_rest +
   plot_layout(widths = c(2, 2), guides = "collect")
 ```
 
+### Code
+```{r}
+#| label: patchwork_no_legend
+#| eval: false
+#| fig-width: 12
+```
+
+:::
 
 # Text
 
 ## Labeling
 
 ```{r}
+#| output-location: column
+
 ggplot(
   data = dat_prepped,
   mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)
@@ -891,8 +973,11 @@ ggplot(
 ```
 
 
+## `ggrepel`
 
 ```{r}
+#| output-location: column
+
 library(ggrepel)
 
 ggplot(
@@ -903,11 +988,14 @@ ggplot(
   geom_text_repel(aes(label = char_name))
 ```
 
+
 ## Labeling von einzelnen Punkten
 
 Erzeugen einer eigenen Spalte, die nur auf den gewünschten Punkten den Text enthält.
 
 ```{r}
+#| output-location: column
+
 dat_prepped_2 <- dat_prepped %>%
   mutate(char_name_label = case_when(
     char_name == "Monica Geller" & top_trait == "orderly" ~ "Monica ist sehr ordentlich",
@@ -928,6 +1016,8 @@ ggplot(
 [ggtext](https://wilkelab.org/ggtext/) erlaubt es, Markdown und HTML-Code in ggplot2 zu nutzen. 
 
 ```{r}
+#| output-location: column
+
 library(ggtext)
 
 dat_prepped_2 <- dat_prepped %>%
@@ -947,9 +1037,17 @@ ggplot(
   )
 ```
 
-## 
+## ggtext
+
+::: {.panel-tabset}
+
+### Code
 
 ```{r}
+#| label: ggtext_bold
+#| eval: false
+#| code-line-numbers: "1,2,9,10,11"
+
 dat_prepped_2 <- dat_prepped %>%
   mutate(char_name_bold = paste0("**", char_name, "**"))
 
@@ -965,6 +1063,15 @@ ggplot(
   )
 ```
 
+### Plot
+
+```{r}
+#| label: ggtext_bold
+#| echo: false
+
+```
+
+:::
 
 # Adjustment: hjust/vjust vs. nudge_x/nudge_y
 
@@ -972,10 +1079,13 @@ ggplot(
 
 ::: {.columns}
 
-::: {.column width="33%"}}
+::: {.column width="33%"}
+
 ```{r}
+#| code-line-numbers: "6"
+
 ggplot( 
-  data = dat_prepped,
+  data = dat_prepped %>% filter(char_name == "Lilly Aldrin"),
   mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
 ) +
   geom_point() +
@@ -984,10 +1094,12 @@ ggplot(
 
 :::
 
-::: {.column width="33%"}}
+::: {.column width="33%"}
 ```{r}
-ggplot(
-  data = dat_prepped,
+#| code-line-numbers: "6"
+
+ggplot( 
+  data = dat_prepped %>% filter(char_name == "Lilly Aldrin"),
   mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
 ) +
   geom_point() +
@@ -995,10 +1107,12 @@ ggplot(
 ```
 :::
 
-::: {.column width="33%"}}
+::: {.column width="33%"}
 ```{r}
-ggplot(
-  data = dat_prepped,
+#| code-line-numbers: "6"
+
+ggplot( 
+  data = dat_prepped %>% filter(char_name == "Lilly Aldrin"),
   mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
 ) +
   geom_point() +
@@ -1012,8 +1126,10 @@ ggplot(
 
 ::: {.column width="33%"}
 ```{r}
-ggplot(
-  data = dat_prepped,
+#| code-line-numbers: "6"
+
+ggplot( 
+  data = dat_prepped %>% filter(char_name == "Ted Mosby"),
   mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
 ) +
   geom_point() +
@@ -1024,8 +1140,10 @@ ggplot(
 
 ::: {.column width="33%"}
 ```{r}
-ggplot(
-  data = dat_prepped,
+#| code-line-numbers: "6"
+
+ggplot( 
+  data = dat_prepped %>% filter(char_name == "Ted Mosby"),
   mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
 ) +
   geom_point() +
@@ -1035,8 +1153,10 @@ ggplot(
 
 ::: {.column width="33%"}
 ```{r}
-ggplot(
-  data = dat_prepped,
+#| code-line-numbers: "6"
+
+ggplot( 
+  data = dat_prepped %>% filter(char_name == "Ted Mosby"),
   mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
 ) +
   geom_point() +
@@ -1044,8 +1164,6 @@ ggplot(
 ```
 :::
 :::
-
-
 
 
 ## nudge
@@ -1058,10 +1176,10 @@ Nudging erfolgt auf der gleichen Skala wie die Werte.
 
 Nudge um eine halbe Einheit nach rechts. 
 ```{r}
-#| code-line-numbers: "4"
+#| code-line-numbers: "6"
 
-ggplot(
-  data = dat_prepped,
+ggplot( 
+  data = dat_prepped %>% filter(char_name == "Rachel Green"),
   mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
 ) +
   geom_point() +
@@ -1075,10 +1193,10 @@ ggplot(
 Nudge um 5 Einheiten nach unten.
 
 ```{r}
-#| code-line-numbers: "4"
+#| code-line-numbers: "6"
 
-ggplot(
-  data = dat_prepped,
+ggplot( 
+  data = dat_prepped %>% filter(char_name == "Rachel Green"),
   mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
 ) +
   geom_point() +
@@ -1648,3 +1766,4 @@ Vektor vs Raster (Rolfs 7)
 
 
 Use characters data for demonstration or for exercise? 
+
