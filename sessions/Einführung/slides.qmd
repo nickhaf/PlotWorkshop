@@ -10,6 +10,8 @@ library(ggplot2)
 library(quartets)
 library(tidyverse)
 library(ggrepel)
+library(ggthemes)
+library(gganimate)
 source(here::here("src", "themes.R"))
 ```
 
@@ -36,7 +38,7 @@ Ein Bild sagt mehr als tausend ... Zahlen!
 ```{r}
 #| echo: false
 
-df <- datasaurus_dozen[sample(nrow(datasaurus_dozen), 15, replace = T),]
+df <- datasaurus_dozen[sample(nrow(datasaurus_dozen), 12, replace = T),]
 knitr::kable(df, digits = 2)
 ```
 
@@ -456,7 +458,8 @@ Foto von <a href="https://unsplash.com/de/@nasa?utm_content=creditCopyText&utm_m
 - `geom_smooth()` für Anpassungslinie  
 - `geom_jitter()` zur Vermeidung von overplotting  
 - `alpha` zur Vermeidung von overplotting  
-- `geom_text_repel()` zur Annotation von Datenpunkten   
+- `geom_text_repel()` zur Annotation von Datenpunkten  
+- Kodierung zusätzlicher Variablen mittels Form, Farbe und/oder Größe der Datenpunkte
 
 [Dokumentation:]{.highlight} [R Graph Gallery](https://r-graph-gallery.com/scatterplot.html)
 :::
@@ -655,6 +658,91 @@ labs(title = "Ungleichheit in Deutschland On the Rise",
 :::
 
 
+## Lineplot
+
+::: {.panel-tabset}
+
+### Plot
+```{r}
+#| label: example-line-plot_g7
+#| fig-width: 14
+#| fig-height: 7
+#| fig-align: "center"
+#| echo: false
+
+gapminder_line_g7 <- gapminder %>% 
+  filter(country %in% c("can", "fra", "deu", "ita", "jpn", "gbr", "usa"), time >=1900, time <= 2024) %>% 
+  drop_na(gini)
+
+labels_g7 <- c(
+  "can" = "Kanada",
+  "fra" = "Frankreich",
+  "deu" = "Deutschland",
+  "ita" = "Italien",
+  "jpn" = "Japan",
+  "gbr" = "Vereinigtes Königreich",
+  "usa" = "USA"
+)
+
+gapminder_line_g7$country_de <- labels_g7[gapminder_line_g7$country]
+gapminder_line_g7$country_de <- factor(gapminder_line_g7$country_de,
+                        levels = sort(unique(gapminder_line_g7$country_de)))
+
+p_line_g7 <- ggplot(data = gapminder_line_g7, aes(x = time, y = gini)) +
+  geom_line(aes(col = country_de)) +  
+  theme_bg() +
+  labs(title = "Ungleichheit On the Rise", 
+     subtitle = "Gini-Koeffizient in den G7-Staaten von 1900 bis 2024",
+     x = "Jahr",
+     y = "Gini-Koeffizient", 
+     col = "G7-Staat") +
+  scale_color_discrete(labels = labels_g7) +
+  theme_solarized() # + 
+  #scale_colour_solarized() 
+p_line_g7
+```
+
+### Code
+
+```{r}
+#| label: example-line-code_g7
+#| eval: false
+
+gapminder_line_g7 <- gapminder %>% 
+  filter(country %in% c("can", "fra", "deu", "ita", "jpn", "gbr", "usa"), time >=1900, time <= 2024) %>% 
+  drop_na(gini)
+
+labels_g7 <- c(
+  "can" = "Kanada",
+  "fra" = "Frankreich",
+  "deu" = "Deutschland",
+  "ita" = "Italien",
+  "jpn" = "Japan",
+  "gbr" = "Vereinigtes Königreich",
+  "usa" = "USA"
+)
+
+gapminder_line_g7$country_de <- labels_g7[gapminder_line_g7$country]
+gapminder_line_g7$country_de <- factor(gapminder_line_g7$country_de,
+                        levels = sort(unique(gapminder_line_g7$country_de)))
+
+p_line_g7 <- ggplot(data = gapminder_line_g7, aes(x = time, y = gini)) +
+  geom_line(aes(col = country_de)) +  
+  theme_bg() +
+  labs(title = "Ungleichheit On the Rise", 
+     subtitle = "Gini-Koeffizient in den G7-Staaten von 1900 bis 2024",
+     x = "Jahr",
+     y = "Gini-Koeffizient", 
+     col = "G7-Staat") +
+  scale_color_discrete(labels = labels_g7) +
+  theme_solarized() # + 
+  scale_colour_solarized() 
+p_line_g7
+```
+
+:::
+
+
 ## Histogram
 
 ::: {.columns}
@@ -804,10 +892,11 @@ ggplot(data = gapminder_2023, aes(x = gini)) +
 Gruppenvergleich per Boxplot mit Datenpunkten und Violin Plot 
 
 ::: {.panel-tabset}
+
 ### Plot
 ```{r}
 #| label: example-kombi
-#| fig-width: 14
+#| fig-width: 15
 #| fig-height: 7
 #| echo: false
 
@@ -841,9 +930,143 @@ ggplot(data = gapminder_2023, aes(x= world_4region, y = gini)) +
 
 :::
 
+## Bubble Chart
+
+Scatterplot, in dem über Größe und Farbe der Datenpunkte zusätzliche Information dargestellt wird.
+
+::: {.panel-tabset}
+
+### Plot
+```{r}
+#| label: example-bubble-plot
+#| fig-width: 15
+#| fig-height: 7
+#| echo: false
+
+options(scipen=10)
+# Farben der vier Weltregionen 
+tuerkis <- rgb(0,213,233, max=255)
+gruen <- rgb(127,235,0, max=255)
+rot <- rgb(255,88,114, max=255)
+gelb <- rgb(255,231,0, max=255)
+
+gapminder |>
+  # Auswahl der Daten von 2019:
+  subset(time == 2019) |> 
+    # Neu: Angabe der Einwohnerzahl in Millionen
+  mutate(pop = pop/1000000) |>
+  # Grund-Grafik anfordern:
+  ggplot(aes(x=gini, y=hapiscore_whr)) +
+  # Neu: Text für die Jahreszahl ("2015") einfügen, sodass diese ganz im Hintergrund steht
+  annotate("text", x=45, y=50, label="2019", size=85, colour ="grey90", family="mono", fontface=1) +
+  # Neu: Farbthema: heller Hintergrund, schwarze Linien an x- und y-Achse
+  theme_classic() + 
+  # Wie bisher: Punkte einzeichnen --> Streu-Punkt-Diagramm,
+  # Neu: Unterscheidung der Punkte nach Farbe (Region) und Größe (Population);  
+  # Transparenz der Datenpunkte (alpha), Rand um die Punkte (shape) 
+  geom_point(aes(fill = world_4region, size = pop), shape=21, alpha=.7) +
+  # Skalieren der Größe der Punkte, sodass die Unterschiede deutlicher sind
+  scale_size(range = c(1, 30)) +
+  # Neu: Beschriftung der Achsen
+  labs(x="Gini-Index", y="Hyppiness Score") +
+  # Neu: manuelle Spezifikation der y-Achse: Wertebereich, Position der Beschriftungen (10er-Schritte)
+  scale_y_continuous(limits = c(15, 85), 
+                     breaks = seq(20,80, by=10),
+                     labels = paste0(seq(20,80, by=10), "%")) +
+  # Neu: manuelle Spezifikation der x-Achse: Wertebereich, log-Transformation, Position und Name der Beschriftungen
+  scale_x_continuous(limits = c(18,75),
+                     breaks = seq(20,70, by= 5)) +
+  # Neu: manuelle Spezifikation der Farben
+  scale_fill_manual(
+    values = c(tuerkis, gruen, rot, gelb),
+    breaks = c("africa", "americas", "asia", "europe")) +
+  # Neu: Theme (Anpassung der Schriftgroesse, relativ zur Groesse 12, blaues Raster im Hintergrund, Rand für die Legende)
+  theme(text = element_text(size=12),
+        axis.text = element_text(size=rel(.8)),
+        axis.title = element_text(size=rel(1.2)),
+        panel.grid.major = element_line(colour = "azure2")) +
+  # Neu: Titel, Beschriftungen der Achse und Legende
+  labs(title="Bubble Chart im Gapminder-Look",
+       subtitle="Jahr: 2023",
+       x="Gini-Index",
+       y="Happiness Score (WHR)",
+       fill="Weltregion",
+       size="Einwohnerzahl\n(in Mio.)") +
+  # Neu: Vergroessern der Punkte fuer die Farb-Legende fuer die Kontinente
+  guides(fill = guide_legend(override.aes = list(size = 5), order=1)) 
+```
+
+### Code
+
+```{r}
+#| label: example-bubble-code
+#| fig-width: 15
+#| fig-height: 7
+#| eval: false
+
+options(scipen=10)
+# Farben der vier Weltregionen 
+tuerkis <- rgb(0,213,233, max=255)
+gruen <- rgb(127,235,0, max=255)
+rot <- rgb(255,88,114, max=255)
+gelb <- rgb(255,231,0, max=255)
+
+gapminder |>
+  # Auswahl der Daten von 2019:
+  subset(time == 2019) |> 
+    # Neu: Angabe der Einwohnerzahl in Millionen
+  mutate(pop = pop/1000000) |>
+  # Grund-Grafik anfordern:
+  ggplot(aes(x=gini, y=hapiscore_whr)) +
+  # Neu: Text für die Jahreszahl ("2015") einfügen, sodass diese ganz im Hintergrund steht
+  annotate("text", x=45, y=50, label="2019", size=70, colour ="grey90", family="mono", fontface=1) +
+  # Neu: Farbthema: heller Hintergrund, schwarze Linien an x- und y-Achse
+  theme_classic() + 
+  # Wie bisher: Punkte einzeichnen --> Streu-Punkt-Diagramm,
+  # Neu: Unterscheidung der Punkte nach Farbe (Region) und Größe (Population);  
+  # Transparenz der Datenpunkte (alpha), Rand um die Punkte (shape) 
+  geom_point(aes(fill = world_4region, size = pop), shape=21, alpha=.7) +
+  # Skalieren der Größe der Punkte, sodass die Unterschiede deutlicher sind
+  scale_size(range = c(1, 30)) +
+  # Neu: Beschriftung der Achsen
+  labs(x="Gini-Index", y="Hyppiness Score") +
+  # Neu: manuelle Spezifikation der y-Achse: Wertebereich, Position der Beschriftungen (10er-Schritte)
+  scale_y_continuous(limits = c(15, 85), 
+                     breaks = seq(20,80, by=10),
+                     labels = paste0(seq(20,80, by=10), "%")) +
+  # Neu: manuelle Spezifikation der x-Achse: Wertebereich, log-Transformation, Position und Name der Beschriftungen
+  scale_x_continuous(limits = c(18,75),
+                     breaks = seq(20,70, by= 5)) +
+  # Neu: manuelle Spezifikation der Farben
+  scale_fill_manual(
+    values = c(tuerkis, gruen, rot, gelb),
+    breaks = c("africa", "americas", "asia", "europe")) +
+  # Neu: Theme (Anpassung der Schriftgroesse, relativ zur Groesse 12, blaues Raster im Hintergrund, Rand für die Legende)
+  theme(text = element_text(size=12),
+        axis.text = element_text(size=rel(.8)),
+        axis.title = element_text(size=rel(1.2)),
+        panel.grid.major = element_line(colour = "azure2")) +
+  # Neu: Titel, Beschriftungen der Achse und Legende
+  labs(title="Bubble Chart im Gapminder-Look",
+       subtitle="Jahr: 2023",
+       x="Gini-Index",
+       y="Happiness Score (WHR)",
+       fill="Weltregion",
+       size="Einwohnerzahl\n(in Mio.)") +
+  # Neu: Vergroessern der Punkte fuer die Farb-Legende fuer die Kontinente
+  guides(fill = guide_legend(override.aes = list(size = 5), order=1)) 
+```
+
+:::
+
+::: image-ref
+Abbildung in Anlehnung an die typische Darstellung auf [gapminder](https://www.gapminder.org/tools/#$model$markers$bubble$encoding$y$data$concept=hapiscore_whr&space@=geo&=time;;&scale$domain:null&zoomed:null&type:null;;&x$data$concept=inequality_index_gini&source=sg&space@=geo&=time;;&scale$domain:null&zoomed:null&type:null;;&frame$value=2019;;;;;&chart-type=bubbles&url=v2)
+:::
 
 
 ## Karten
+
+![](./images/ex_streets.png)
 
 ## Spider-Chart
 
@@ -872,10 +1095,21 @@ Abbildung aus der [R Graph Gallery](https://r-graph-gallery.com/304-highlight-a-
 Abbildung aus der [R Graph Gallery](https://r-graph-gallery.com/294-basic-ridgeline-plot.html#color)
 :::
 
+## Animiert: `gganimate`
 
-## Plotly
+```{r}
+#| label: gganimate
+#| fig-width: 14
+#| fig-height: 7
+#| echo: false
 
-## gganimate
+p_line_g7 + 
+  transition_reveal(along = time) +# Linien werden über die Zeit "enthüllt"
+  ease_aes("linear")  
+```
+
+## Interaktiv: `plotly`
+
 
 ## Generative Art
 
