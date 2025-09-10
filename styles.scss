@@ -166,6 +166,19 @@ h1, h2, h3, h4 {
   color: darken($theme-timberwolf, 30%);
 }
 
+.image-ref2 {
+  position: absolute;
+  left: -5%;
+  bottom: -30%;
+  padding: 0.5em 0.5em;
+  background-color: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(0px);
+  box-shadow: 0 0 0rem 0 rgba(255, 255, 255, 0);
+  font-size: 10px;
+  color: darken($theme-timberwolf, 30%);
+}
+
+
 .small-latex {
   font-size: 30px;
 }
