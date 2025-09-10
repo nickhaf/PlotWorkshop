@@ -3,3 +3,160 @@ title: "Ausblick: `gganimate` und `plotly`"
 format: letterbox-revealjs
 ---
 
+```{r}
+#| echo: false
+
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(ggthemes)
+library(gganimate)
+source(here::here("src", "themes.R"))
+```
+
+## Animierte Grafiken
+
+- Bisher haben wir ausschließlich statische Grafiken erzeugt.  
+- Forschungsergebnisse werden zunehmend nicht mehr ausschließlich in Printmedien dargestellt, sodass wir animierte und interaktive Grafiken teilen können. So kann noch mehr Information in einer einzigen "Grafik" zugänglich gemacht werden.   
+- Die Grundidee bei [animierten Grafiken]{.highlight} ist es, nicht einen einzigen Plot zu erstellen, sondern stattdessen sehr viele, die dann als einzelne Bilder zu einem Film zusammengefügt werden. Das übernimmt `gganimate` für uns!    
+- Zwei zentrale Fragen, die man sich stellen sollte, bevor man anfängt Daten zu animieren:  
+  [- “Gewinnt der Betrachter bzw. die Betrachterin dabei zusätzliche Information?”]{.small}   
+  [- “Ist es den Aufwand wert?”]{.small}
+
+:::{.callout-tip}
+## Weiterführende Quellen: 
+
+- [R Graph Gallery](https://r-graph-gallery.com/package/gganimate.html)
+- [Workshop-Material auf PandaR](https://pandar.netlify.app/workshops/ggplotting/gganimate/)
+:::
+
+
+## Animierte Grafiken
+
+:::{.callout-note}
+Ausgangspunkt für eine animierte Grafik mit `gganimate` ist eine statische, mit `ggplot2` erzeugte Grafik.
+:::
+
+::: {.panel-tabset}
+
+### Plot
+```{r}
+#| label: static-plot
+#| fig-width: 15
+#| fig-height: 6
+#| fig-align: "center"
+#| echo: false
+
+gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
+
+gapminder_line_g7 <- gapminder |>
+  filter(country %in% c("can", "fra", "deu", "ita", "jpn", "gbr", "usa"), time >=1900, time <= 2024) |>
+  drop_na(gini)
+
+labels_g7 <- c(
+  "can" = "Kanada",
+  "fra" = "Frankreich",
+  "deu" = "Deutschland",
+  "ita" = "Italien",
+  "jpn" = "Japan",
+  "gbr" = "Vereinigtes Königreich",
+  "usa" = "USA"
+)
+
+gapminder_line_g7$country_de <- labels_g7[gapminder_line_g7$country]
+gapminder_line_g7$country_de <- factor(gapminder_line_g7$country_de,
+                        levels = sort(unique(gapminder_line_g7$country_de)))
+
+p_line_g7 <- ggplot(data = gapminder_line_g7, aes(x = time, y = gini)) +
+  geom_line(aes(col = country_de)) +  
+  theme_bg() +
+  labs(title = "Ungleichheit On the Rise", 
+     subtitle = "Gini-Koeffizient in den G7-Staaten von 1900 bis 2024",
+     x = "Jahr",
+     y = "Gini-Koeffizient", 
+     col = "G7-Staat") +
+  scale_color_discrete(labels = labels_g7) +
+  theme_solarized() # + 
+  #scale_colour_solarized() 
+p_line_g7
+```
+
+### Code
+
+```{r}
+#| label: static-code
+#| eval: false
+
+gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
+
+gapminder_line_g7 <- gapminder |>
+  filter(country %in% c("can", "fra", "deu", "ita", "jpn", "gbr", "usa"), time >=1900, time <= 2024) |>
+  drop_na(gini)
+
+labels_g7 <- c(
+  "can" = "Kanada",
+  "fra" = "Frankreich",
+  "deu" = "Deutschland",
+  "ita" = "Italien",
+  "jpn" = "Japan",
+  "gbr" = "Vereinigtes Königreich",
+  "usa" = "USA"
+)
+
+gapminder_line_g7$country_de <- labels_g7[gapminder_line_g7$country]
+gapminder_line_g7$country_de <- factor(gapminder_line_g7$country_de,
+                        levels = sort(unique(gapminder_line_g7$country_de)))
+
+p_line_g7 <- ggplot(data = gapminder_line_g7, aes(x = time, y = gini)) +
+  geom_line(aes(col = country_de)) +  
+  theme_bg() +
+  labs(title = "Ungleichheit On the Rise", 
+     subtitle = "Gini-Koeffizient in den G7-Staaten von 1900 bis 2024",
+     x = "Jahr",
+     y = "Gini-Koeffizient", 
+     col = "G7-Staat") +
+  scale_color_discrete(labels = labels_g7) +
+  theme_solarized() # + 
+  #scale_colour_solarized() 
+p_line_g7
+```
+
+
+:::
+
+
+
+## Animierte Grafiken
+
+:::{.callout-note}
+Mit `transition_reveal(along = time)` werden die Linien über die Zeit "enthüllt". 
+:::
+
+::: {.panel-tabset}
+
+### Plot
+```{r}
+#| label: fluid-plot
+#| fig-width: 15
+#| fig-height: 6
+#| fig-align: "center"
+#| echo: false
+
+p_line_g7 + 
+  transition_reveal(along = time) + # Linien werden über die Zeit "enthüllt"
+  ease_aes("linear")  
+```
+
+### Code
+
+```{r}
+#| label: fluid-code
+#| eval: false
+
+p_line_g7 + 
+  transition_reveal(along = time) +# Linien werden über die Zeit "enthüllt"
+  ease_aes("linear")  
+```
+
+
+:::
