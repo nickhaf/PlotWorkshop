@@ -1118,10 +1118,6 @@ p_line_g7 +
   ease_aes("linear")  
 ```
 
-## Interaktiv: `plotly`
-
-...folgt...
-
 ## Generative Art
 
 ## {background-image="images/habeck.jpeg" background-size="1225px"}
