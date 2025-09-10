@@ -508,7 +508,9 @@ ggplot(data = gapminder_2019, aes(x = gini, y = hapiscore_whr, color = world_4re
 ```
 :::
 
+## Scatterplot 
 
+... hier noch eine ausgefeiltere Version einfügen ...
 
 ## Barplot
 
@@ -813,6 +815,10 @@ ggplot(data = gapminder_2023, aes(x = hapiscore_whr)) +
 :::
 
 
+## Histogram
+
+... hier noch eine ausgefeiltere Version einfügen ...
+
 ## Boxplot
 
 ::: {.columns}
@@ -883,6 +889,10 @@ ggplot(data = gapminder_2023, aes(x = gini)) +
 ```
 
 :::
+
+## Boxplot 
+
+... hier noch eine ausgefeiltere Version einfügen ...
 
 
 # Weitere Plot-Typen
@@ -1107,9 +1117,6 @@ p_line_g7 +
   transition_reveal(along = time) +# Linien werden über die Zeit "enthüllt"
   ease_aes("linear")  
 ```
-
-## Interaktiv: `plotly`
-
 
 ## Generative Art
 
