@@ -36,7 +36,7 @@ Ein Bild sagt mehr als tausend ... Zahlen!
 ```{r}
 #| echo: false
 
-df <- datasaurus_dozen[sample(nrow(datasaurus_dozen), 20, replace = T),]
+df <- datasaurus_dozen[sample(nrow(datasaurus_dozen), 15, replace = T),]
 knitr::kable(df, digits = 2)
 ```
 
@@ -45,10 +45,6 @@ knitr::kable(df, digits = 2)
 
 ::: {.column width="50%"}
 :::{.fragment}
-\
-\
-\
-
 ```{r}
 #| echo: false
 #| fig-height: 8
@@ -59,9 +55,44 @@ ggplot(datasaurus_dozen, aes(x = x, y = y)) +
   theme_bg() +
   ylim(0, 100)
 ```
+:::
+
+:::{.fragment}
+:::{.callout-note}
+In den Daten lässt sich kein Muster erkennen. 
+:::
+:::
+:::
 
 :::
+
+## Datasaurus Dozen ([`quartets`-Paket](https://github.com/r-causal/quartets))
+
+::: {.columns} 
+::: {.column width="70%"}
+
+```{r}
+#| echo: false
+
+datasaurus_dozen |>
+  group_by(dataset) |>
+  summarise(mean_x = mean(x),
+            var_x = var(x),
+            mean_y = mean(y),
+            var_y = var(y),
+            cor = cor(x, y)) |>
+  knitr::kable(digits = 2)
+```
 :::
+
+::: {.column width="30%"}
+:::{.fragment}
+:::{.callout-note}
+Wir haben Deskriptivstatistiken für `dataset` berechnet. Mittelwerte, Varianzen und die jeweilige Korrelation zwischen x und y sind nahezu identisch.
+:::
+:::
+:::
+
 :::
 
 ## Datasaurus Dozen ([`quartets`-Paket](https://github.com/r-causal/quartets))
@@ -80,40 +111,61 @@ ggplot(datasaurus_dozen, aes(x = x, y = y)) +
 
 ```
 
+:::{.fragment}
+:::{.callout-note}
+Das Muster in den Daten ist nun deutlich erkennbar.
+:::
+:::
 
 ## Warum Daten visualisieren?
 
+:::{.fragment}
 - Muster und Informationen lassen sich leichter erkennen.   
 - Inhalte können schneller erfasst und verarbeitet werden.  
 - Erkenntnisse lassen sich anschaulich an andere kommunizieren.  
 - Grafiken lockern Texte auf.  
 - Visuelle Darstellungen können mehrdimensional aufgebaut werden und so eine Vielzahl von Informationen gleichzeitig vermitteln.  
+:::
 
 ## Warum in R?
 
+:::{.fragment}
 - Syntaxbasiert und reproduzierbar: Analysen und Grafiken können nachvollzogen und exakt repliziert werden.
 - Flexibel: alles, was in R eingelesen werden kann, lässt sich auch visualisieren.
 - Integration: statistische Analysen, Texte und Grafiken kommen „aus einem Guss“
 - Open Source: frei verfügbar, mit einer großen und aktiven Community.
 - Individuell anpassbar: eigene Funktionen und Vorlagen ermöglichen maßgeschneiderte Lösungen (z. B. Corporate Design der Uni).
-- Kreativität: es gibt viele Möglichkeiten für originelle Darstellungsweisen.
+- Kreativität: es gibt unzählige Möglichkeiten, sich kreativ auszutoben.
+:::
 
 ## Warum mit ggplot2?
 
+:::{.fragment}
 - Konsistentes Prinzip: Grafiken werden nach einem einheitlichen Konzept aufgebaut ([Grammar of Graphics]{.highlight}).
 - Hohe Flexibilität: einfache Plots lassen sich schnell erstellen, aber komplexe Visualisierungen sind ebenfalls möglich.
 - Anpassbarkeit: fast jedes Detail lässt sich steuern und fein abstimmen.
 - Publikationstauglich: Grafiken können präzise gestaltet und an professionelle Standards angepasst werden.
 - Erweiterbarkeit: viele zusätzliche Pakete (z. B. für Karten, Zeitreihen, Interaktivität) erweitern ggplot2.
 - Große Community: viele Beispiele, Tutorials und Unterstützung.
+:::
 
 ## Und warum dieser Workshop?
 
+:::{.fragment}
 - Grafiken: Mächtiges Instrument der Datenanalyse und Ergebniskommunikation
 - Es gibt aber einige Fallstricke und Dinge, die sich lohnen zu wissen
 - Grafikerstellung ist Teil aller datenbasierten, wissenschaftlichen Disziplinen...
 - ...aber wird kaum bis gar nicht im Studium behandelt
 - WoMepS ist also eine prima Gelegenheit!
+:::
+
+## 
+
+![](./images/horst_ggplot2.png){fig-width=80%}
+
+::: image-ref
+Abbildung von [Allison Horst](https://allisonhorst.com/r-packages-functions)
+:::
 
 ## Vorerfahrungen
 
@@ -186,7 +238,6 @@ Beispiel aus der [The R Graph Gallery](https://r-graph-gallery.com/web-circular-
 :::
 
 
-
 ## Der best Plot aller Zeiten?
 
 ![](images/napoleon.png)
@@ -202,6 +253,7 @@ Image from [Wikipedia](https://en.wikipedia.org/wiki/File:Minard.png).
 
 
 ## 
+<!-- @NH  dieser Plot wird bei mir auf der Folie nicht dargestellt -->
 
 ```{r}
 #| echo: false
@@ -214,7 +266,7 @@ data <- read.table("https://github.com/holtzy/data_to_viz/raw/master/Example_dat
 download.file("https://raw.githubusercontent.com/holtzy/data_to_viz/master/story/IMG/BlackMarble_2016_01deg.jpg",  destfile = "sessions/Einführung/images/BlackMarble_2016_01deg.jpg", mode = "wb")
 
 # Count how many times we have each unique connexion + order by importance
-summary=data %>% 
+summary <- data %>% 
   dplyr::count(homelat,homelon,homecontinent, travellat,travellon,travelcontinent) %>%
   arrange(n)
 
@@ -234,6 +286,7 @@ data_for_connection=function( dep_lon, dep_lat, arr_lon, arr_lat, group){
 }
 
 # Création d'un dataframe complet avec les points de toutes les lignes à faire.
+# @NH: hast Du französisch annotiert? XD
 data_ready_plot=data.frame()
 for(i in c(1:nrow(summary))){
   tmp=data_for_connection(summary$homelon[i], summary$homelat[i], summary$travellon[i], summary$travellat[i] , i)
@@ -386,36 +439,7 @@ Foto von <a href="https://unsplash.com/de/@nasa?utm_content=creditCopyText&utm_m
 
 
 
-# Plot-Typen
-
-## Scatterplot
-
-::: {.panel-tabset}
-
-### Plot
-```{r}
-#| label: example-scatter
-#| fig-width: 14
-#| fig-height: 7
-#| echo: false
-
-gapminder_2019 <- gapminder %>% 
-  filter(time == 2019)
-  
-p_scatter <- ggplot(data = gapminder_2019, aes(x = gini, y = hapiscore_whr, color = world_4region)) +
-  geom_point(size = 3) 
-
-p_scatter
-
-```
-
-### Code
-
-```{r}
-#| label: example-scatter
-#| eval: false
-```
-:::
+# Zentrale Plot-Typen
 
 ## Scatterplot
 ::: {.columns}
@@ -423,39 +447,90 @@ p_scatter
 :::{.column width = "50%"}
 
 :::{.steckbrief}
-[Datentyp]{.highlight}  Numerisch
+[Datentyp]{.highlight}  numerisch & numerisch
 
 [Achtung]{.highlight} Overplotting
+
+[Erweiterungen]{.highlight}
+
+- `geom_smooth()` für Anpassungslinie  
+- `geom_jitter()` zur Vermeidung von overplotting  
+- `alpha` zur Vermeidung von overplotting  
+- `geom_text_repel()` zur Annotation von Datenpunkten   
+
+[Dokumentation:]{.highlight} [R Graph Gallery](https://r-graph-gallery.com/scatterplot.html)
 :::
 
-:::{.tag}
-[Link test](https://quarto.org/docs/reference/formats/html.html)
-:::
-:::
+
 :::
 
 :::{.column width = "50%"}
 ```{r}
 #| echo: false
 
-p_scatter
+gapminder_2019 <- gapminder %>% 
+  filter(time == 2019)
 
+p_scatter <- ggplot(data = gapminder_2019, aes(x = gini, y = hapiscore_whr, color = world_4region)) +
+  geom_point(size = 3)  +
+  labs(x = "Gini-Koeffizient", y ="Happiness score (WHR)", color= "Weltregion")
+p_scatter
 ```
 :::
+:::
+
+## Scatterplot
+
+::: {.panel-tabset}
+
+### Plot
+```{r}
+#| label: example-scatter-plot
+#| fig-width: 14
+#| fig-height: 7
+#| echo: false
+
+p_scatter
+```
+
+### Code
+
+```{r}
+#| label: example-scatter-code
+#| eval: false
+
+ggplot(data = gapminder_2019, aes(x = gini, y = hapiscore_whr, color = world_4region)) +
+  geom_point(size = 3)  +
+  labs(x = "Gini-Koeffizient", y ="Happiness score (WHR)", color= "Weltregion")
+```
 :::
 
 
 
 ## Barplot
-::: {.panel-tabset}
 
-### Plot
+::: {.columns}
+:::{.column width="50%"}
+
+:::{.steckbrief}
+[Datentyp]{.highlight} kategorial & numerisch  
+
+[Achtung]{.highlight} nur sinnvoll bei bedeutungsvollem Nullpunkt der numerischen Variable
+
+[Erweiterungen]{.highlight}  
+
+- Hinzufügen von Fehlerbalken  
+- Sortierung der Balken nach Ausprägung
+- Vertauschung x- und y-Achse für vertikale Anordnung der Balken (leichtere Lesbarkeit der Labels)
+
+[Dokumentation:]{.highlight} [R Graph Gallery](https://r-graph-gallery.com/barplot.html)
+:::
+:::
+
+:::{.column width="50%"}
+
 ```{r}
-#| label: example-bar
-#| fig-width: 14
-#| fig-height: 7
 #| echo: false
-
 gapminder_2019_bar <- gapminder_2019 %>% 
   filter(world_6region == "europe_central_asia") %>% 
 drop_na(unicode_region_subtag, gini)
@@ -465,48 +540,68 @@ p_bar <- ggplot(data = gapminder_2019_bar, aes(x = reorder(unicode_region_subtag
   theme_bg()
 
 p_bar
+```
+
+:::
+:::
+
+
+## Barplot
+
+::: {.panel-tabset}
+
+### Plot
+```{r}
+#| label: example-bar-code
+#| fig-width: 14
+#| fig-height: 7
+#| echo: false
+
+p_bar
 
 ```
 
 ### Code
 
 ```{r}
-#| label: example-bar
+#| label: example-bar-plot
 #| eval: false
+
+ggplot(data = gapminder_2019_bar, aes(x = reorder(unicode_region_subtag, gini), y = gini)) +
+  geom_bar(stat = "identity", color = "black", fill = "#F4BA02") +
+  theme_bg()
 ```
 
 
 :::
 
-## Barplot
+## Lineplot
+
 ::: {.columns}
 :::{.column width="50%"}
 
 :::{.steckbrief}
-[Datentyp]{.highlight}  
+[Datentyp]{.highlight} kontinuierlich (z.B. Zeitreihe) & kontinuierlich 
 
-[Achtung]{.highlight} 
+[Gut für]{.highlight} 
 
+- Zeitreihen  
+- y-Achsen-Variable hat keinen bedeutungsvollen Nullpunkt, Barplot somit ungeeignet 
+
+<!-- [Achtung]{.highlight}  -->
+
+[Erweiterungen]{.highlight}  
+
+- Hinuzfügen weiterer Linien für zusätzliche Gruppen
+- Annotation einzelner Bereiche der Linie
+- Einfärben einzelner Bereiche unterhalb der Linie
+
+[Dokumentation:]{.highlight} [R Graph Gallery](https://r-graph-gallery.com/line-plot.html)
 :::
 :::
 
 :::{.column width="50%"}
-
-:::
-:::
-
-
-## Histogram
-
-## Lineplot
-
-::: {.panel-tabset}
-
-### Plot
 ```{r}
-#| label: example-line
-#| fig-width: 14
-#| fig-height: 7
 #| echo: false
 
 gapminder_line <- gapminder %>% 
@@ -522,44 +617,261 @@ labs(title = "Ungleichheit in Deutschland On the Rise",
      y = "Gini-Koeffizient")
 
 p_line
+```
+:::
+:::
+
+
+
+## Lineplot
+
+::: {.panel-tabset}
+
+### Plot
+```{r}
+#| label: example-line-plot
+#| fig-width: 14
+#| fig-height: 7
+#| echo: false
+
+p_line
+```
+
+### Code
+
+```{r}
+#| label: example-line-code
+#| eval: false
+
+ggplot(data = gapminder_line, aes(x = time, y = gini)) +
+geom_line() +  
+theme_bg() +
+labs(title = "Ungleichheit in Deutschland On the Rise", 
+     subtitle = "Gini-Koeffizient von 1900 bis 2024",
+     x = "Jahr",
+     y = "Gini-Koeffizient")
+```
+
+:::
+
+
+## Histogram
+
+::: {.columns}
+:::{.column width="50%"}
+
+:::{.steckbrief}
+[Datentyp]{.highlight} numerisch  
+
+[Achtung]{.highlight} Wahl der 'bin size' bestimmt Eindruck der Verteilung 
+
+[Erweiterungen]{.highlight}  
+
+- Variation der 'bin size'  
+- Vergleich zweier Verteilungen durch vertikale Anordnung bei Konstanthaltung der x-Achse  
+
+[Dokumentation:]{.highlight} [R Graph Gallery](https://r-graph-gallery.com/histogram.html)
+:::
+:::
+
+:::{.column width="50%"}
+
+```{r}
+#| echo: false
+
+gapminder_2023 <- gapminder %>% 
+  filter(time == 2023) 
+
+p_histo <- ggplot(data = gapminder_2023, aes(x = hapiscore_whr)) +
+  geom_histogram() +
+  theme_bg() +
+  labs(x = "Happiness", y = "", title = "World Happiness 2023")
+
+p_histo
+```
+
+:::
+:::
+
+
+
+## Histogram
+
+::: {.panel-tabset}
+
+### Plot
+```{r}
+#| label: example-histo-plot
+#| fig-width: 14
+#| fig-height: 7
+#| echo: false
+
+p_histo
 
 ```
 
 ### Code
 
 ```{r}
-#| label: example-line
+#| label: example-histo-code
 #| eval: false
+
+ggplot(data = gapminder_2023, aes(x = hapiscore_whr)) +
+  geom_histogram() +
+  theme_bg() +
+  labs(x = "Happiness", y = "", title = "World Happiness 2023")
 ```
 
 :::
 
 
-## Lineplot
+## Boxplot
+
 ::: {.columns}
 :::{.column width="50%"}
 
 :::{.steckbrief}
-[Datentyp]{.highlight}  
+[Datentyp]{.highlight} numerisch  
 
-[Gut für]{.highlight} Zeitreihen
+[Achtung]{.highlight} Dargestellt werden deskriptivstatistische Kennwerte (Min, Q1, Median, Q3, Max)
 
-[Achtung]{.highlight} 
+[Erweiterungen]{.highlight}  
 
+- Vergleich der Verteilung zwischen Gruppen durch Hinzufügen zusätzlicher Boxplots  
+- Sortierung mehrerer Boxplots hinsichtlich einer Statistik (z.B. Median)  
+- Hinzufügen der tatsächlichen Datenpunkte  
+- Unterdrücken von Ausreißern  
+- Beschriftung von Ausreißern
+
+[Dokumentation:]{.highlight} [R Graph Gallery](https://r-graph-gallery.com/boxplot.html)
 :::
 :::
+
 :::{.column width="50%"}
+
+```{r}
+#| echo: false
+
+gapminder_2023 <- gapminder %>% 
+  filter(time == 2023) 
+
+p_boxplot <- ggplot(data = gapminder_2023, aes(x = gini)) +
+  geom_boxplot() +
+  theme_bg() +
+  labs(x = "Bevölkerung", y = "", 
+       title = "Verteilung des Gini-Index", subtitle = "Jahr: 2023")
+
+p_boxplot
+```
 
 :::
 :::
 
 ## Boxplot
 
+::: {.panel-tabset}
+
+### Plot
+```{r}
+#| label: example-boxplot
+#| fig-width: 14
+#| fig-height: 7
+#| echo: false
+
+p_boxplot
+```
+
+### Code
+
+```{r}
+#| label: example-boxplot-code
+#| eval: false
+
+ggplot(data = gapminder_2023, aes(x = gini)) +
+  geom_boxplot() +
+  theme_bg() +
+  labs(x = "Bevölkerung", y = "", 
+       title = "Verteilung des Gini-Index", subtitle = "Jahr: 2023")
+```
+
+:::
+
+
+# Weitere Plot-Typen
+
+## Kombiniert
+
+Gruppenvergleich per Boxplot mit Datenpunkten und Violin Plot 
+
+::: {.panel-tabset}
+### Plot
+```{r}
+#| label: example-kombi
+#| fig-width: 14
+#| fig-height: 7
+#| echo: false
+
+gapminder_2023 <- gapminder %>% 
+  filter(time == 2023) 
+
+p_kombi <- ggplot(data = gapminder_2023, aes(x= world_4region, y = gini)) +
+  geom_violin(aes(fill = world_4region, col = world_4region), alpha=.2, show_legend = FALSE) + 
+  geom_jitter(height = 0, width=.2) + 
+  geom_boxplot(fill=NA) +
+  theme_bg() +
+  labs(x = "Weltregion", y = "", fill = "Weltregion",
+       title = "Verteilung des Gini-Index", subtitle = "Jahr: 2023")
+p_kombi
+```
+
+### Code
+
+```{r}
+#| label: example-kombi-code
+#| eval: false
+
+ggplot(data = gapminder_2023, aes(x= world_4region, y = gini)) +
+  geom_violin(aes(fill = world_4region), alpha=.2) + 
+  geom_jitter(height = 0, width=.2) + 
+  geom_boxplot(fill=NA) +
+  theme_bg() +
+  labs(x = "Bevölkerung", y = "", fill = "Weltregion",
+       title = "Verteilung des Gini-Index", subtitle = "Jahr: 2023")
+```
+
+:::
+
+
+
 ## Karten
 
 ## Spider-Chart
 
-## Kombiniert
+![](./images/ex_spider.png){width="55%"}
+
+::: image-ref
+Abbildung aus der [R Graph Gallery](https://r-graph-gallery.com/142-basic-radar-chart.html)
+:::
+
+
+## Lollipop Chart
+
+![](./images/ex_lollipop.png){image-height="50%"}
+
+::: image-ref
+Abbildung aus der [R Graph Gallery](https://r-graph-gallery.com/304-highlight-a-group-in-lollipop.html)
+:::
+
+
+## Ridgeline Plot
+
+![](./images/ex_ridgeline.png){image-height=50%}
+
+
+::: image-ref
+Abbildung aus der [R Graph Gallery](https://r-graph-gallery.com/294-basic-ridgeline-plot.html#color)
+:::
+
 
 ## Plotly
 
