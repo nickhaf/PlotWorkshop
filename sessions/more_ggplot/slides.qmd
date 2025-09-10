@@ -1092,13 +1092,21 @@ ggplot(
 
 ## 
 ```{r}
+
+image_path <- here::here("sessions", "more_ggplot","images", "character_images")
+
+dat_prepped <- dat_prepped %>% 
+mutate(image_link_local = paste0(image_path, "/", id, ".jpg"))
+```
+
+```{r}
 library(tidyverse)
 library(ggtext)
 library(glue)
 
 ggplot(
   data = dat_prepped,
-  mapping = aes(x = image_link, y = avg_rating, shape = uni_name_fac)
+  mapping = aes(x = image_link_local, y = avg_rating, shape = uni_name_fac)
 ) +
   geom_point() +
   facet_wrap(vars(question), nrow = 2) +
@@ -1122,7 +1130,7 @@ library(glue)
 
 ggplot(
   data = dat_prepped,
-  mapping = aes(x = image_link, y = avg_rating, shape = uni_name_fac)
+  mapping = aes(x = image_link_local, y = avg_rating, shape = uni_name_fac)
 ) +
   geom_point() +
   facet_wrap(vars(question), nrow = 2) +
@@ -1407,7 +1415,7 @@ ggplot(
   scale_color_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
   theme_bg() +
   labs(title = "The one where Everyone meets") +
-  geom_image(aes(x = image_x_coord, y = 100, image = image_link),
+  geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
     nudge_x = c(0.5, -0.5),
     size = 0.1, inherit.aes = FALSE
   ) +
@@ -1441,11 +1449,11 @@ ggplot(
   scale_color_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
   theme_bg() +
   labs(title = "The one where Everyone meets") +
-  geom_image(aes(x = image_x_coord, y = 100, image = image_link),
+  geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
     nudge_x = c(0.5, -0.5),
     size = 0.12
   ) +
-  geom_image(aes(x = image_x_coord, y = 100, image = image_link),
+  geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
     nudge_x = c(0.5, -0.5),
     size = 0.1, inherit.aes = FALSE
   ) +
@@ -1495,11 +1503,11 @@ ggplot(
   scale_color_manual(values = c("Friends" = "#9C8CD4", "How I Met Your Mother" = "#FFED29")) +
   theme_bw() +
   labs(title = "The one where Everyone meets") +
-    geom_image(aes(x = image_x_coord, y = 100, image = image_link),
+    geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
              nudge_x = -0.35,
              nudge_y = 30,
              size=0.12) +
-  geom_image(aes(x = image_x_coord, y = 100, image = image_link),
+  geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
              nudge_x = -0.35,
              nudge_y = 30,
              size=0.1, inherit.aes = FALSE) +
@@ -1556,11 +1564,11 @@ p_left <- ggplot(
   theme_bw() +
   labs(title = "The one where Everyone meets", 
        subtitle = "Character ratings from 0 to 100") +
-    geom_image(aes(x = image_x_coord, y = 100, image = image_link),
+    geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
              nudge_x = -0.35,
              nudge_y = 30,
              size=0.12) +
-  geom_image(aes(x = image_x_coord, y = 100, image = image_link),
+  geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
              nudge_x = -0.35,
              nudge_y = 30,
              size=0.1, inherit.aes = FALSE) +
@@ -1603,11 +1611,11 @@ p_right <- ggplot(
   scale_fill_manual(values = c("Friends" = "#36d1ab", "How I Met Your Mother" = "#FFED29")) +
   scale_color_manual(values = c("Friends" = "#9C8CD4", "How I Met Your Mother" = "#FFED29")) +
   theme_bw() +
-    geom_image(aes(x = image_x_coord, y = 100, image = image_link),
+    geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
              nudge_x = -0.35,
              nudge_y = 30,
              size=0.12) +
-  geom_image(aes(x = image_x_coord, y = 100, image = image_link),
+  geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
              nudge_x = -0.35,
              nudge_y = 30,
              size=0.1, inherit.aes = FALSE) +
