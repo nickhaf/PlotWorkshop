@@ -445,7 +445,7 @@
     "href": "sessions/good_plots/slides.html#daten-in-kontext-setzen",
     "title": "Was ist eine gute Grafik?",
     "section": "Daten in Kontext setzen",
-    "text": "Daten in Kontext setzen\n\nÜbungLösung\n\n\n\nZeichne Mittelwerte, oder hebe hervor aus einer Vergleichsmenge, z.B. europäischer Länder. Am einfachsten geht das mit einem zweiten Datensatz, der alle europäischen Länder enthält:\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\nggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(aes(group = country))\n\n\n\n\n\n\n\nHinweis\n\n\nCode\n## Bilde einen eignen Datensatz, der alle europöischen Lönder enthält\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\n\n\n\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = \"lightgrey\", alpha = 0.5) +\n  geom_smooth(color = \"black\") +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  theme_bg() +\n  labs(\n    title = \"Ungleichheit in Europa On the Rise\",\n    subtitle = \"1900 bis 2024, Gelbe Linie zeigt Deutschland\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  )\n\np_line"
+    "text": "Daten in Kontext setzen\n\nÜbungLösung\n\n\n\nZeichne Mittelwerte, oder hebe hervor aus einer Vergleichsmenge, z.B. europäischer Länder. Am einfachsten geht das mit einem zweiten Datensatz, der alle europäischen Länder enthält:\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\nggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(aes(group = country))\n\n\n\n\n\n\n\nHinweis\n\n\nCode\n## Bilde einen eignen Datensatz, der alle europäischen Lönder enthält\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\n\n\n\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = \"lightgrey\", alpha = 0.5) +\n  geom_smooth(color = \"black\") +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  theme_bg() +\n  labs(\n    title = \"Ungleichheit in Europa On the Rise\",\n    subtitle = \"1900 bis 2024, Gelbe Linie zeigt Deutschland\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  )\n\np_line"
   },
   {
     "objectID": "sessions/good_plots/slides.html#daten-in-kontext-setzen-1",
@@ -858,7 +858,7 @@
     "href": "sessions/good_plots/slides.html#gegenentwurf-ästhetik",
     "title": "Was ist eine gute Grafik?",
     "section": "Gegenentwurf: Ästhetik",
-    "text": "Gegenentwurf: Ästhetik\n\n\nAbbildung ovn [Cédric Scherer]https://www.behance.net/gallery/100683383/Travelling-to-Outer-Space#)."
+    "text": "Gegenentwurf: Ästhetik\n\n\nAbbildung von [Cédric Scherer]https://www.behance.net/gallery/100683383/Travelling-to-Outer-Space#)."
   },
   {
     "objectID": "sessions/good_plots/slides.html#section-7",
@@ -935,42 +935,56 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nh_lines\n44.85\n70.40\n\n\ndots\n25.86\n17.08\n\n\naway\n70.07\n7.59\n\n\ncircle\n63.09\n78.04\n\n\ncircle\n51.47\n79.16\n\n\nstar\n41.97\n26.50\n\n\ndots\n50.53\n17.02\n\n\ndots\n50.53\n17.02\n\n\nslant_up\n30.08\n27.59\n\n\ncircle\n47.55\n17.07\n\n\nwide_lines\n73.03\n46.27\n\n\nv_lines\n50.47\n90.28\n\n\ndino\n67.95\n8.72\n\n\nx_shape\n34.50\n86.61\n\n\nwide_lines\n31.64\n77.61\n\n\nv_lines\n69.51\n33.74\n\n\nwide_lines\n73.74\n39.12\n\n\ncircle\n39.49\n20.03\n\n\nx_shape\n52.19\n39.37\n\n\nh_lines\n54.85\n10.46"
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\ncircle\n85.57\n44.56\n\n\nbullseye\n89.09\n57.77\n\n\nslant_down\n37.84\n94.36\n\n\ndots\n50.44\n17.07\n\n\nbullseye\n77.71\n20.30\n\n\nslant_down\n90.70\n41.47\n\n\nwide_lines\n77.07\n51.49\n\n\nbullseye\n34.75\n80.01\n\n\nbullseye\n49.28\n84.05\n\n\nv_lines\n50.18\n36.81\n\n\nh_lines\n53.10\n89.54\n\n\nh_lines\n51.82\n89.83\n\n\nstar\n77.25\n15.15\n\n\nbullseye\n36.03\n53.37\n\n\ndino\n50.00\n85.26\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)"
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nmean_x\nvar_x\nmean_y\nvar_y\ncor\n\n\n\n\naway\n54.27\n281.23\n47.83\n725.75\n-0.06\n\n\nbullseye\n54.27\n281.21\n47.83\n725.53\n-0.07\n\n\ncircle\n54.27\n280.90\n47.84\n725.23\n-0.07\n\n\ndino\n54.26\n281.07\n47.83\n725.52\n-0.06\n\n\ndots\n54.26\n281.16\n47.84\n725.24\n-0.06\n\n\nh_lines\n54.26\n281.10\n47.83\n725.76\n-0.06\n\n\nhigh_lines\n54.27\n281.12\n47.84\n725.76\n-0.07\n\n\nslant_down\n54.27\n281.12\n47.84\n725.55\n-0.07\n\n\nslant_up\n54.27\n281.19\n47.83\n725.69\n-0.07\n\n\nstar\n54.27\n281.20\n47.84\n725.24\n-0.06\n\n\nv_lines\n54.27\n281.23\n47.84\n725.64\n-0.07\n\n\nwide_lines\n54.27\n281.23\n47.83\n725.65\n-0.07\n\n\nx_shape\n54.26\n281.23\n47.84\n725.22\n-0.07\n\n\n\n\n\n\n\n\n\n\n\n\n\nWir haben Deskriptivstatistiken für dataset berechnet. Mittelwerte, Varianzen und die jeweilige Korrelation zwischen x und y sind nahezu identisch."
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-2",
+    "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-2",
+    "title": "Einführung",
+    "section": "Datasaurus Dozen (quartets-Paket)",
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\n\nDas Muster in den Daten ist nun deutlich erkennbar."
   },
   {
     "objectID": "sessions/Einführung/slides.html#warum-daten-visualisieren",
     "href": "sessions/Einführung/slides.html#warum-daten-visualisieren",
     "title": "Einführung",
     "section": "Warum Daten visualisieren?",
-    "text": "Warum Daten visualisieren?\n\nMuster und Informationen lassen sich leichter erkennen.\n\nInhalte können schneller erfasst und verarbeitet werden.\n\nErkenntnisse lassen sich anschaulich an andere kommunizieren.\n\nGrafiken lockern Texte auf.\n\nVisuelle Darstellungen können mehrdimensional aufgebaut werden und so eine Vielzahl von Informationen gleichzeitig vermitteln."
+    "text": "Warum Daten visualisieren?\n\n\nMuster und Informationen lassen sich leichter erkennen.\n\nInhalte können schneller erfasst und verarbeitet werden.\n\nErkenntnisse lassen sich anschaulich an andere kommunizieren.\n\nGrafiken lockern Texte auf.\n\nVisuelle Darstellungen können mehrdimensional aufgebaut werden und so eine Vielzahl von Informationen gleichzeitig vermitteln."
   },
   {
     "objectID": "sessions/Einführung/slides.html#warum-in-r",
     "href": "sessions/Einführung/slides.html#warum-in-r",
     "title": "Einführung",
     "section": "Warum in R?",
-    "text": "Warum in R?\n\nSyntaxbasiert und reproduzierbar: Analysen und Grafiken können nachvollzogen und exakt repliziert werden.\nFlexibel: alles, was in R eingelesen werden kann, lässt sich auch visualisieren.\nIntegration: statistische Analysen, Texte und Grafiken kommen „aus einem Guss“\nOpen Source: frei verfügbar, mit einer großen und aktiven Community.\nIndividuell anpassbar: eigene Funktionen und Vorlagen ermöglichen maßgeschneiderte Lösungen (z. B. Corporate Design der Uni).\nKreativität: es gibt viele Möglichkeiten für originelle Darstellungsweisen."
+    "text": "Warum in R?\n\n\nSyntaxbasiert und reproduzierbar: Analysen und Grafiken können nachvollzogen und exakt repliziert werden.\nFlexibel: alles, was in R eingelesen werden kann, lässt sich auch visualisieren.\nIntegration: statistische Analysen, Texte und Grafiken kommen „aus einem Guss“\nOpen Source: frei verfügbar, mit einer großen und aktiven Community.\nIndividuell anpassbar: eigene Funktionen und Vorlagen ermöglichen maßgeschneiderte Lösungen (z. B. Corporate Design der Uni).\nKreativität: es gibt unzählige Möglichkeiten, sich kreativ auszutoben."
   },
   {
     "objectID": "sessions/Einführung/slides.html#warum-mit-ggplot2",
     "href": "sessions/Einführung/slides.html#warum-mit-ggplot2",
     "title": "Einführung",
     "section": "Warum mit ggplot2?",
-    "text": "Warum mit ggplot2?\n\nKonsistentes Prinzip: Grafiken werden nach einem einheitlichen Konzept aufgebaut (Grammar of Graphics).\nHohe Flexibilität: einfache Plots lassen sich schnell erstellen, aber komplexe Visualisierungen sind ebenfalls möglich.\nAnpassbarkeit: fast jedes Detail lässt sich steuern und fein abstimmen.\nPublikationstauglich: Grafiken können präzise gestaltet und an professionelle Standards angepasst werden.\nErweiterbarkeit: viele zusätzliche Pakete (z. B. für Karten, Zeitreihen, Interaktivität) erweitern ggplot2.\nGroße Community: viele Beispiele, Tutorials und Unterstützung."
+    "text": "Warum mit ggplot2?\n\n\nKonsistentes Prinzip: Grafiken werden nach einem einheitlichen Konzept aufgebaut (Grammar of Graphics).\nHohe Flexibilität: einfache Plots lassen sich schnell erstellen, aber komplexe Visualisierungen sind ebenfalls möglich.\nAnpassbarkeit: fast jedes Detail lässt sich steuern und fein abstimmen.\nPublikationstauglich: Grafiken können präzise gestaltet und an professionelle Standards angepasst werden.\nErweiterbarkeit: viele zusätzliche Pakete (z. B. für Karten, Zeitreihen, Interaktivität) erweitern ggplot2.\nGroße Community: viele Beispiele, Tutorials und Unterstützung."
   },
   {
     "objectID": "sessions/Einführung/slides.html#und-warum-dieser-workshop",
     "href": "sessions/Einführung/slides.html#und-warum-dieser-workshop",
     "title": "Einführung",
     "section": "Und warum dieser Workshop?",
-    "text": "Und warum dieser Workshop?\n\nGrafiken: Mächtiges Instrument der Datenanalyse und Ergebniskommunikation\nEs gibt aber einige Fallstricke und Dinge, die sich lohnen zu wissen\nGrafikerstellung ist Teil aller datenbasierten, wissenschaftlichen Disziplinen…\n…aber wird kaum bis gar nicht im Studium behandelt\nWoMepS ist also eine prima Gelegenheit!"
+    "text": "Und warum dieser Workshop?\n\n\nGrafiken: Mächtiges Instrument der Datenanalyse und Ergebniskommunikation\nEs gibt aber einige Fallstricke und Dinge, die sich lohnen zu wissen\nGrafikerstellung ist Teil aller datenbasierten, wissenschaftlichen Disziplinen…\n…aber wird kaum bis gar nicht im Studium behandelt\nWoMepS ist also eine prima Gelegenheit!"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#section",
+    "href": "sessions/Einführung/slides.html#section",
+    "title": "Einführung",
+    "section": "",
+    "text": "Abbildung von Allison Horst"
   },
   {
     "objectID": "sessions/Einführung/slides.html#vorerfahrungen",
@@ -994,8 +1008,8 @@
     "text": "Eine der ersten Karten\n\n\nDr. John Snow zeichnete die Todesfälle durch Cholera in Zentral-London im September 1854 auf.\nWasserpumpen wurden mit einem x markiert.\nDadurch ließ sich die Broad Street Pumpe als Quelle der Epidemie identifizieren.\n\n\n\n\nBild von ReserachGate"
   },
   {
-    "objectID": "sessions/Einführung/slides.html#section",
-    "href": "sessions/Einführung/slides.html#section",
+    "objectID": "sessions/Einführung/slides.html#section-1",
+    "href": "sessions/Einführung/slides.html#section-1",
     "title": "Einführung",
     "section": "",
     "text": "Beispiel aus der The R Graph Gallery."
@@ -1008,8 +1022,8 @@
     "text": "Der best Plot aller Zeiten?\n\nVerluste der napoleonischen Armee beim Russlandfeldzug 1812–1813, von Charles Joseph Minard. Es werden 6 Dimensionen dargestellt!\n\nImage from Wikipedia."
   },
   {
-    "objectID": "sessions/Einführung/slides.html#section-1",
-    "href": "sessions/Einführung/slides.html#section-1",
+    "objectID": "sessions/Einführung/slides.html#section-2",
+    "href": "sessions/Einführung/slides.html#section-2",
     "title": "Einführung",
     "section": "",
     "text": "Code von [https://www.data-to-viz.com/story/MapConnection.html]."
@@ -1047,56 +1061,77 @@
     "href": "sessions/Einführung/slides.html#scatterplot",
     "title": "Einführung",
     "section": "Scatterplot",
-    "text": "Scatterplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2019 &lt;- gapminder %&gt;% \n  filter(time == 2019)\n  \np_scatter &lt;- ggplot(data = gapminder_2019, aes(x = gini, y = hapiscore_whr, color = world_4region)) +\n  geom_point(size = 3) \n\np_scatter"
+    "text": "Scatterplot\n\n\n\nDatentyp numerisch & numerisch\nAchtung Overplotting\nErweiterungen\n\ngeom_smooth() für Anpassungslinie\n\ngeom_jitter() zur Vermeidung von overplotting\n\nalpha zur Vermeidung von overplotting\n\ngeom_text_repel() zur Annotation von Datenpunkten\n\nDokumentation: R Graph Gallery"
   },
   {
     "objectID": "sessions/Einführung/slides.html#scatterplot-1",
     "href": "sessions/Einführung/slides.html#scatterplot-1",
     "title": "Einführung",
     "section": "Scatterplot",
-    "text": "Scatterplot\n\n\n\nDatentyp Numerisch\nAchtung Overplotting\n\n\nLink test\n\n\n\n\n\n\n\n\n\n\n\n\n:::"
+    "text": "Scatterplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_2019, aes(x = gini, y = hapiscore_whr, color = world_4region)) +\n  geom_point(size = 3)  +\n  labs(x = \"Gini-Koeffizient\", y =\"Happiness score (WHR)\", color= \"Weltregion\")"
   },
   {
     "objectID": "sessions/Einführung/slides.html#barplot",
     "href": "sessions/Einführung/slides.html#barplot",
     "title": "Einführung",
     "section": "Barplot",
-    "text": "Barplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2019_bar &lt;- gapminder_2019 %&gt;% \n  filter(world_6region == \"europe_central_asia\") %&gt;% \ndrop_na(unicode_region_subtag, gini)\n\np_bar &lt;- ggplot(data = gapminder_2019_bar, aes(x = reorder(unicode_region_subtag, gini), y = gini)) +\n  geom_bar(stat = \"identity\", color = \"black\", fill = \"#F4BA02\") +\n  theme_bg()\n\np_bar"
+    "text": "Barplot\n\n\n\nDatentyp kategorial & numerisch\nAchtung nur sinnvoll bei bedeutungsvollem Nullpunkt der numerischen Variable\nErweiterungen\n\nHinzufügen von Fehlerbalken\n\nSortierung der Balken nach Ausprägung\nVertauschung x- und y-Achse für vertikale Anordnung der Balken (leichtere Lesbarkeit der Labels)\n\nDokumentation: R Graph Gallery"
   },
   {
     "objectID": "sessions/Einführung/slides.html#barplot-1",
     "href": "sessions/Einführung/slides.html#barplot-1",
     "title": "Einführung",
     "section": "Barplot",
-    "text": "Barplot\n\n\n\nDatentyp\nAchtung"
-  },
-  {
-    "objectID": "sessions/Einführung/slides.html#histogram",
-    "href": "sessions/Einführung/slides.html#histogram",
-    "title": "Einführung",
-    "section": "Histogram",
-    "text": "Histogram"
+    "text": "Barplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_2019_bar, aes(x = reorder(unicode_region_subtag, gini), y = gini)) +\n  geom_bar(stat = \"identity\", color = \"black\", fill = \"#F4BA02\") +\n  theme_bg()"
   },
   {
     "objectID": "sessions/Einführung/slides.html#lineplot",
     "href": "sessions/Einführung/slides.html#lineplot",
     "title": "Einführung",
     "section": "Lineplot",
-    "text": "Lineplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;% \n  filter(country %in% c(\"deu\"), time &gt;=1900, time &lt;= 2024) %&gt;% \n  drop_na(gini)\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\ngeom_line() +  \ntheme_bg() +\nlabs(title = \"Ungleichheit in Deutschland On the Rise\", \n     subtitle = \"Gini-Koeffizient von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\")\n\np_line"
+    "text": "Lineplot\n\n\n\nDatentyp kontinuierlich (z.B. Zeitreihe) & kontinuierlich\nGut für\n\nZeitreihen\n\ny-Achsen-Variable hat keinen bedeutungsvollen Nullpunkt, Barplot somit ungeeignet\n\n\nErweiterungen\n\nHinuzfügen weiterer Linien für zusätzliche Gruppen\nAnnotation einzelner Bereiche der Linie\nEinfärben einzelner Bereiche unterhalb der Linie\n\nDokumentation: R Graph Gallery"
   },
   {
     "objectID": "sessions/Einführung/slides.html#lineplot-1",
     "href": "sessions/Einführung/slides.html#lineplot-1",
     "title": "Einführung",
     "section": "Lineplot",
-    "text": "Lineplot\n\n\n\nDatentyp\nGut für Zeitreihen\nAchtung"
+    "text": "Lineplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_line, aes(x = time, y = gini)) +\ngeom_line() +  \ntheme_bg() +\nlabs(title = \"Ungleichheit in Deutschland On the Rise\", \n     subtitle = \"Gini-Koeffizient von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\")"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#histogram",
+    "href": "sessions/Einführung/slides.html#histogram",
+    "title": "Einführung",
+    "section": "Histogram",
+    "text": "Histogram\n\n\n\nDatentyp numerisch\nAchtung Wahl der ‘bin size’ bestimmt Eindruck der Verteilung\nErweiterungen\n\nVariation der ‘bin size’\n\nVergleich zweier Verteilungen durch vertikale Anordnung bei Konstanthaltung der x-Achse\n\nDokumentation: R Graph Gallery"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#histogram-1",
+    "href": "sessions/Einführung/slides.html#histogram-1",
+    "title": "Einführung",
+    "section": "Histogram",
+    "text": "Histogram\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_2023, aes(x = hapiscore_whr)) +\n  geom_histogram() +\n  theme_bg() +\n  labs(x = \"Happiness\", y = \"\", title = \"World Happiness 2023\")"
   },
   {
     "objectID": "sessions/Einführung/slides.html#boxplot",
     "href": "sessions/Einführung/slides.html#boxplot",
     "title": "Einführung",
     "section": "Boxplot",
-    "text": "Boxplot"
+    "text": "Boxplot\n\n\n\nDatentyp numerisch\nAchtung Dargestellt werden deskriptivstatistische Kennwerte (Min, Q1, Median, Q3, Max)\nErweiterungen\n\nVergleich der Verteilung zwischen Gruppen durch Hinzufügen zusätzlicher Boxplots\n\nSortierung mehrerer Boxplots hinsichtlich einer Statistik (z.B. Median)\n\nHinzufügen der tatsächlichen Datenpunkte\n\nUnterdrücken von Ausreißern\n\nBeschriftung von Ausreißern\n\nDokumentation: R Graph Gallery"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#boxplot-1",
+    "href": "sessions/Einführung/slides.html#boxplot-1",
+    "title": "Einführung",
+    "section": "Boxplot",
+    "text": "Boxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_2023, aes(x = gini)) +\n  geom_boxplot() +\n  theme_bg() +\n  labs(x = \"Bevölkerung\", y = \"\", \n       title = \"Verteilung des Gini-Index\", subtitle = \"Jahr: 2023\")"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#kombiniert",
+    "href": "sessions/Einführung/slides.html#kombiniert",
+    "title": "Einführung",
+    "section": "Kombiniert",
+    "text": "Kombiniert\nGruppenvergleich per Boxplot mit Datenpunkten und Violin Plot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_2023, aes(x= world_4region, y = gini)) +\n  geom_violin(aes(fill = world_4region), alpha=.2) + \n  geom_jitter(height = 0, width=.2) + \n  geom_boxplot(fill=NA) +\n  theme_bg() +\n  labs(x = \"Bevölkerung\", y = \"\", fill = \"Weltregion\",\n       title = \"Verteilung des Gini-Index\", subtitle = \"Jahr: 2023\")"
   },
   {
     "objectID": "sessions/Einführung/slides.html#karten",
@@ -1110,14 +1145,21 @@
     "href": "sessions/Einführung/slides.html#spider-chart",
     "title": "Einführung",
     "section": "Spider-Chart",
-    "text": "Spider-Chart"
+    "text": "Spider-Chart\n\n\nAbbildung aus der R Graph Gallery"
   },
   {
-    "objectID": "sessions/Einführung/slides.html#kombiniert",
-    "href": "sessions/Einführung/slides.html#kombiniert",
+    "objectID": "sessions/Einführung/slides.html#lollipop-chart",
+    "href": "sessions/Einführung/slides.html#lollipop-chart",
     "title": "Einführung",
-    "section": "Kombiniert",
-    "text": "Kombiniert"
+    "section": "Lollipop Chart",
+    "text": "Lollipop Chart\n\n\nAbbildung aus der R Graph Gallery"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#ridgeline-plot",
+    "href": "sessions/Einführung/slides.html#ridgeline-plot",
+    "title": "Einführung",
+    "section": "Ridgeline Plot",
+    "text": "Ridgeline Plot\n\n\nAbbildung aus der R Graph Gallery"
   },
   {
     "objectID": "sessions/Einführung/slides.html#plotly",
@@ -1141,8 +1183,8 @@
     "text": "Generative Art"
   },
   {
-    "objectID": "sessions/Einführung/slides.html#section-3",
-    "href": "sessions/Einführung/slides.html#section-3",
+    "objectID": "sessions/Einführung/slides.html#section-4",
+    "href": "sessions/Einführung/slides.html#section-4",
     "title": "Einführung",
     "section": "",
     "text": "Bild von Static."
