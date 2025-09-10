@@ -497,214 +497,25 @@
     "text": "Visual Form\n\nView slides in full screen"
   },
   {
+    "objectID": "sessions/good_plots/goal.html#goal",
+    "href": "sessions/good_plots/goal.html#goal",
+    "title": "Goal",
+    "section": "Goal",
+    "text": "Goal\n\n\n\nUsefulness\nusable\nfitting\nefficient\n\n\n\n\n\nFoto von Look Again Digital auf Unsplash\n\nTufte Zitat"
+  },
+  {
     "objectID": "sessions/good_plots/goal.html#publikum",
     "href": "sessions/good_plots/goal.html#publikum",
-    "title": "Informatio",
+    "title": "Goal",
     "section": "Publikum",
     "text": "Publikum"
   },
   {
     "objectID": "sessions/good_plots/goal.html#purpose",
     "href": "sessions/good_plots/goal.html#purpose",
-    "title": "Informatio",
+    "title": "Goal",
     "section": "Purpose",
     "text": "Purpose\n\nExploratory vs. Explanatory\nKann oft über reines Zeigen der Daten hinausgehen."
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#salienz",
-    "href": "sessions/good_plots/goal.html#salienz",
-    "title": "Informatio",
-    "section": "Salienz",
-    "text": "Salienz\nSalienz durch visual features:\n Quelle: Wong, B. (2010)"
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#gruppieren",
-    "href": "sessions/good_plots/goal.html#gruppieren",
-    "title": "Informatio",
-    "section": "Gruppieren",
-    "text": "Gruppieren\n\n\nGruppierung durch Form\n\n\n\n\n\n\n\n\n\n\nGruppierung durch verbundene Elemente"
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#darstellung-von-größen",
-    "href": "sessions/good_plots/goal.html#darstellung-von-größen",
-    "title": "Informatio",
-    "section": "Darstellung von Größen",
-    "text": "Darstellung von Größen\nDie Größe von Elemenen kann auch genutzt werden, um Daten zu kodieren."
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#einschätzen-von-größen",
-    "href": "sessions/good_plots/goal.html#einschätzen-von-größen",
-    "title": "Informatio",
-    "section": "Einschätzen von Größen",
-    "text": "Einschätzen von Größen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDie Größe von Kreisen einzuschätzen ist schwer!"
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#das-gleiche-gilt-für-winkel",
-    "href": "sessions/good_plots/goal.html#das-gleiche-gilt-für-winkel",
-    "title": "Informatio",
-    "section": "Das gleiche gilt für Winkel!",
-    "text": "Das gleiche gilt für Winkel!\n\n\nVersuche, die Größen zu sortieren:"
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#das-gleiche-gilt-für-winkel-1",
-    "href": "sessions/good_plots/goal.html#das-gleiche-gilt-für-winkel-1",
-    "title": "Informatio",
-    "section": "Das gleiche gilt für Winkel!",
-    "text": "Das gleiche gilt für Winkel!\n\n\n Quelle\n\n\nQuelle\n\n\n\n\n\n\n\n\nKreis- bzw. Tortendiagramme sollten daher vermieden werden."
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#farben",
-    "href": "sessions/good_plots/goal.html#farben",
-    "title": "Informatio",
-    "section": "Farben",
-    "text": "Farben\n\n\nFarbe ist eine der wichtigsten Methoden, um Informationen zu [labeln], hervorzuheben, [Werte] zu kommunizieren, [Realität simulieren], und um zu designen und zu [dekorieren].\n\n\n\n\nFoto von Efe Kurnaz auf Unsplash"
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#kategoriale-vs.-quantitative-daten",
-    "href": "sessions/good_plots/goal.html#kategoriale-vs.-quantitative-daten",
-    "title": "Informatio",
-    "section": "Kategoriale vs. quantitative Daten",
-    "text": "Kategoriale vs. quantitative Daten\n\n\nKategoriale Daten\nVerschiedene Farben, die sich gut unterscheiden lassen.\n\n\n\n\n\n\n\n\n\n\nQuantitative Daten\nFarbverläufe, die eine Reihenfolge haben.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2 setzt die entsprechende Skala schon automatisch!"
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#skalen-mit-nullpunkt",
-    "href": "sessions/good_plots/goal.html#skalen-mit-nullpunkt",
-    "title": "Informatio",
-    "section": "Skalen mit Nullpunkt",
-    "text": "Skalen mit Nullpunkt\n\nWas zu beachten ist: unten Blau oben Rot … https://ggplot2-book.org/scales-colour.html\nVor allem für diskrete Gruppen geeignet\nFarbverläufe schwieriger (aber es gibt color scales dafür)\nBestimmte Farben (Grün = gut, Rot = Gefahr)\nIntervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen\n\nKein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten\n\nOrdinal: Richtung und gute Unterscheidbarkeit im Farbraum\nNominalskaliert: Spriale/Diagnoale im Farbraum\nDiskret\nContinuous\nBinned Vorgefertigte Paletten:\n\nSequenziell\nQualitativ\nDiverging"
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#farbwahrnehmung-beim-menschen",
-    "href": "sessions/good_plots/goal.html#farbwahrnehmung-beim-menschen",
-    "title": "Informatio",
-    "section": "Farbwahrnehmung beim Menschen",
-    "text": "Farbwahrnehmung beim Menschen\n\n\n\n\nPrimärfarben des Lichts: Rot, Grün, Blau\n\n\n\n\n\nBy Original:  Penubag Vector: Victor Blacus - Own work based on: Electromagnetic-Spectrum.png, CC BY-SA 3.0, Link\nBy BenRG - Own work, Public Domain, Link"
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#andere-tiere-können-auch-mal-mehr-oder-weniger-haben",
-    "href": "sessions/good_plots/goal.html#andere-tiere-können-auch-mal-mehr-oder-weniger-haben",
-    "title": "Informatio",
-    "section": "Andere Tiere können auch mal mehr oder weniger haben:",
-    "text": "Andere Tiere können auch mal mehr oder weniger haben:\n\n\n\n\n\n\n\nBild aus Farbsehen der Tiere\nFoto von Ben Moreland auf Unsplash"
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#viele-tiere-sehen-nur-grau",
-    "href": "sessions/good_plots/goal.html#viele-tiere-sehen-nur-grau",
-    "title": "Informatio",
-    "section": "Viele Tiere sehen nur grau",
-    "text": "Viele Tiere sehen nur grau\n\n\nWarum überhaupt Farbwahrnehmung?\n\n\nKonsistenz: Farbtöne sind unabhängig vom Licht wahrnehmbar.\nAber: More is not always better! Zu viel kann auch vom Wesentlichen ablenken.\n\n\nFarbwahrnehmung ist also subjektiv, und bringt nur einen Vorteil, wenn eine Bedeutung daraus abgeleitet werden kann.\n\n\n\n\n\nFoto von Chinh Le Duc auf Unsplash"
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#more-is-not-always-better",
-    "href": "sessions/good_plots/goal.html#more-is-not-always-better",
-    "title": "Informatio",
-    "section": "More is not always better",
-    "text": "More is not always better\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(\n  gapminder_2020,\n  aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point(size = 3) +\n  theme_bg() \n\n\n\n\n\n\n\n\n\nMehr als sechs Farben sollten es auf keinen Fall werden!\n\n\n\n\n\n\nAlternative: Facetting."
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#farben-1",
-    "href": "sessions/good_plots/goal.html#farben-1",
-    "title": "Informatio",
-    "section": "Farben",
-    "text": "Farben\n\nGanglienzellen übertragen keine Informationen über absolute Helligkeit, sondern über relative Helligkeit.\n\nVisualisierung kann nicht gut darin sein, absolute Werte zu kommunizieren (Tabellen können das besser). Aber: Unterschiede und Veränderungen.\n\n\nBild von Nature Methods."
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#section",
-    "href": "sessions/good_plots/goal.html#section",
-    "title": "Informatio",
-    "section": "",
-    "text": "Hier sind die Farben klar unterscheidbar, und der Gini-Index lässt sich gut ablesen.\n\n\n\n\n\n\n\n\n\n\nDer Plot ist etwas sub-optimaler. Die tatsächlichen Werte des Gini-Index werden nicht gut kommuniziert."
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#farbe-ist-relativ",
-    "href": "sessions/good_plots/goal.html#farbe-ist-relativ",
-    "title": "Informatio",
-    "section": "Farbe ist relativ",
-    "text": "Farbe ist relativ"
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#eigenschaften-von-farben",
-    "href": "sessions/good_plots/goal.html#eigenschaften-von-farben",
-    "title": "Informatio",
-    "section": "Eigenschaften von Farben",
-    "text": "Eigenschaften von Farben\n\nFarbton, Sättigung, Helligkeit\nDie drei Eigenschaften beschreiben das Aussehen von Farben.\n\n\n\nFarbräume\n\nRGB: Zusammenmischen von Licht der unterschiedlichen Farben. Alle drei zusammen ergeben weiß.\nCMYK: Ausblenden aus dem weißen Farbspektrum durch Filter. Grundfarben: Gelb, Magenta (Purpur), Cyan (Blaugrün) (+K - Key (also Schwarz))"
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#salienz-1",
-    "href": "sessions/good_plots/goal.html#salienz-1",
-    "title": "Informatio",
-    "section": "Salienz",
-    "text": "Salienz\nSticht eine Farbe hervor, ist sie besonders salient - das kann gewollt oder ungewollt sein."
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#größe",
-    "href": "sessions/good_plots/goal.html#größe",
-    "title": "Informatio",
-    "section": "Größe",
-    "text": "Größe"
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#farbfehlsichtigkeit",
-    "href": "sessions/good_plots/goal.html#farbfehlsichtigkeit",
-    "title": "Informatio",
-    "section": "Farbfehlsichtigkeit",
-    "text": "Farbfehlsichtigkeit\n\nprotanopic right side\n\nBy Mark Fairchild, CC BY-SA 3.0, Link\n\n\nProtanopie: Zapfentyp L (rot) fehlt: rot vs grün Schwäche\nDeuteranopie: Zapfentyp M (grün) fehlt: rot vs grün Schwäche\nTritanopie: Zapfentyp S (blau) fehlt: blau vs grün, gelb vs violett Schwäche\nTake the above scale and show that it is not great for color blindness\nhttps://www.color-blindness.com/coblis-color-blindness-simulator/"
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#colorblind-check",
-    "href": "sessions/good_plots/goal.html#colorblind-check",
-    "title": "Informatio",
-    "section": "Colorblind-Check",
-    "text": "Colorblind-Check\n\n\nAuf Colblindor.\n\n\nMit colorblindcheck.\n\nlibrary(colorblindcheck)\n\npalette_check(scales::hue_pal()(6), plot = TRUE)\n\n\n\n\n\n\n\n\n          name n tolerance ncp ndcp  min_dist mean_dist max_dist\n1       normal 6  28.22768  15   15 28.227682  48.60479 91.99894\n2 deuteranopia 6  28.22768  15    9  5.870477  31.50134 59.55026\n3   protanopia 6  28.22768  15    8  3.930855  32.79118 57.04317\n4   tritanopia 6  28.22768  15    9  7.200490  40.41105 71.61725"
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#anwendung-in-ggplot2",
-    "href": "sessions/good_plots/goal.html#anwendung-in-ggplot2",
-    "title": "Informatio",
-    "section": "Anwendung in ggplot2",
-    "text": "Anwendung in ggplot2"
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#farben-wählen",
-    "href": "sessions/good_plots/goal.html#farben-wählen",
-    "title": "Informatio",
-    "section": "Farben wählen",
-    "text": "Farben wählen\n\nName\nrgb()\nNummer\nHex code"
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#farben-manuell-setzen",
-    "href": "sessions/good_plots/goal.html#farben-manuell-setzen",
-    "title": "Informatio",
-    "section": "Farben manuell setzen",
-    "text": "Farben manuell setzen\n\n\n\nCodePlot\n\n\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_manual(values = c(\"red\", \"green\", \"blue\", \"yellow\", \"violet\", \"brown\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCodePlot\n\n\n\nmy_color_scale &lt;- c(\n  \"East Asia & Pacific\" = \"red\",\n  \"South Asia\" = \"green\",\n  \"Sub-Saharan Africa\" = \"blue\",\n  \"Europe & Central Asia\" = \"yellow\",\n  \"Middle East & North Africa\" = \"violet\",\n  \"Americas\" = \"brown\"\n)\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    color = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption 2020\") +\n  scale_color_manual(values = my_color_scale)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWenn du in einem Projekt die gleichen Gruppen in verschiedenen Plots zeigst, setze die Farbskala einmal mit den Gruppennamen, damit die Gruppen in allen Plots die selben Farben bekommen."
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#graustufen",
-    "href": "sessions/good_plots/goal.html#graustufen",
-    "title": "Informatio",
-    "section": "Graustufen",
-    "text": "Graustufen\n\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption 2020\") +\n  scale_fill_grey()"
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#externe-farb-paletten",
-    "href": "sessions/good_plots/goal.html#externe-farb-paletten",
-    "title": "Informatio",
-    "section": "Externe Farb-Paletten",
-    "text": "Externe Farb-Paletten\n\n\nR Color Brewer\n\nlibrary(RColorBrewer)\ndisplay.brewer.all(colorblindFriendly = FALSE)\n\n\n\n\n\n\n\n\n\n\nCodePlot\n\n\n\nlibrary(RColorBrewer)\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_brewer(palette = \"PuOr\")"
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#externe-farb-paletten-1",
-    "href": "sessions/good_plots/goal.html#externe-farb-paletten-1",
-    "title": "Informatio",
-    "section": "Externe Farb-Paletten",
-    "text": "Externe Farb-Paletten\n\n\npaletteer\nSammlung von Paletten aus diversen Paketen\n\nPalette-Finder\nGallerie\n\n\n\nCodePlot\n\n\n\nlibrary(paletteer)\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_paletteer_d(\"LaCroixColoR::Orange\")"
-  },
-  {
-    "objectID": "sessions/good_plots/goal.html#übung",
-    "href": "sessions/good_plots/goal.html#übung",
-    "title": "Informatio",
-    "section": "Übung",
-    "text": "Übung\n\n\nBaue eine eigene Farbpalette für deinen Plot und teste sie auf Farbfehlsichtigkeiten."
   },
   {
     "objectID": "sessions/good_plots/information.html#informationen",
@@ -837,14 +648,14 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\ncircle\n65.76\n18.52\n\n\nhigh_lines\n17.89\n71.11\n\n\ncircle\n53.85\n16.39\n\n\ncircle\n32.64\n70.73\n\n\nbullseye\n72.57\n80.97\n\n\nhigh_lines\n62.19\n76.16\n\n\ndino\n71.28\n22.95\n\n\nh_lines\n54.92\n10.50\n\n\ndots\n75.16\n83.03\n\n\ncircle\n39.49\n20.03\n\n\ncircle\n84.29\n57.26\n\n\nh_lines\n80.40\n30.49\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nbullseye\n61.52\n64.79\n\n\ncircle\n61.83\n17.27\n\n\ndots\n50.79\n17.20\n\n\nwide_lines\n36.90\n13.58\n\n\nslant_down\n79.81\n52.72\n\n\nslant_down\n51.49\n20.84\n\n\nx_shape\n76.11\n95.30\n\n\nv_lines\n69.50\n16.34\n\n\nstar\n65.10\n27.24\n\n\nslant_up\n72.44\n20.58\n\n\nwide_lines\n67.07\n6.05\n\n\naway\n47.49\n85.39\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nmean_x\nvar_x\nmean_y\nvar_y\ncor\n\n\n\n\naway\n54.27\n281.23\n47.83\n725.75\n-0.06\n\n\nbullseye\n54.27\n281.21\n47.83\n725.53\n-0.07\n\n\ncircle\n54.27\n280.90\n47.84\n725.23\n-0.07\n\n\ndino\n54.26\n281.07\n47.83\n725.52\n-0.06\n\n\ndots\n54.26\n281.16\n47.84\n725.24\n-0.06\n\n\nh_lines\n54.26\n281.10\n47.83\n725.76\n-0.06\n\n\nhigh_lines\n54.27\n281.12\n47.84\n725.76\n-0.07\n\n\nslant_down\n54.27\n281.12\n47.84\n725.55\n-0.07\n\n\nslant_up\n54.27\n281.19\n47.83\n725.69\n-0.07\n\n\nstar\n54.27\n281.20\n47.84\n725.24\n-0.06\n\n\nv_lines\n54.27\n281.23\n47.84\n725.64\n-0.07\n\n\nwide_lines\n54.27\n281.23\n47.83\n725.65\n-0.07\n\n\nx_shape\n54.26\n281.23\n47.84\n725.22\n-0.07\n\n\n\n\n\n\n\n\n\n\n\n\n\nWir haben Deskriptivstatistiken für dataset berechnet. Mittelwerte, Varianzen und die jeweilige Korrelation zwischen x und y sind nahezu identisch."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nmean_x\nvar_x\nmean_y\nvar_y\ncor\n\n\n\n\naway\n54.27\n281.23\n47.83\n725.75\n-0.06\n\n\nbullseye\n54.27\n281.21\n47.83\n725.53\n-0.07\n\n\ncircle\n54.27\n280.90\n47.84\n725.23\n-0.07\n\n\ndino\n54.26\n281.07\n47.83\n725.52\n-0.06\n\n\ndots\n54.26\n281.16\n47.84\n725.24\n-0.06\n\n\nh_lines\n54.26\n281.10\n47.83\n725.76\n-0.06\n\n\nhigh_lines\n54.27\n281.12\n47.84\n725.76\n-0.07\n\n\nslant_down\n54.27\n281.12\n47.84\n725.55\n-0.07\n\n\nslant_up\n54.27\n281.19\n47.83\n725.69\n-0.07\n\n\nstar\n54.27\n281.20\n47.84\n725.24\n-0.06\n\n\nv_lines\n54.27\n281.23\n47.84\n725.64\n-0.07\n\n\nwide_lines\n54.27\n281.23\n47.83\n725.65\n-0.07\n\n\nx_shape\n54.26\n281.23\n47.84\n725.22\n-0.07\n\n\n\n\n\n\n\n\n\n\n\n\n\nWir haben Deskriptivstatistiken für jedes dataset berechnet. Mittelwerte, Varianzen und die jeweilige Korrelation zwischen x und y sind nahezu identisch."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-2",
@@ -882,32 +693,11 @@
     "text": "Und warum dieser Workshop?\n\n\nGrafiken: Mächtiges Instrument der Datenanalyse und Ergebniskommunikation\nEs gibt aber einige Fallstricke und Dinge, die sich lohnen zu wissen\nGrafikerstellung ist Teil aller datenbasierten, wissenschaftlichen Disziplinen…\n…aber wird kaum bis gar nicht im Studium behandelt\nWoMepS ist also eine prima Gelegenheit!"
   },
   {
-    "objectID": "sessions/Einführung/slides.html#section",
-    "href": "sessions/Einführung/slides.html#section",
+    "objectID": "sessions/Einführung/slides.html#umfrage",
+    "href": "sessions/Einführung/slides.html#umfrage",
     "title": "Einführung",
-    "section": "",
-    "text": "Abbildung von Allison Horst"
-  },
-  {
-    "objectID": "sessions/Einführung/slides.html#vorerfahrungen",
-    "href": "sessions/Einführung/slides.html#vorerfahrungen",
-    "title": "Einführung",
-    "section": "Vorerfahrungen",
-    "text": "Vorerfahrungen"
-  },
-  {
-    "objectID": "sessions/Einführung/slides.html#quiz",
-    "href": "sessions/Einführung/slides.html#quiz",
-    "title": "Einführung",
-    "section": "Quiz",
-    "text": "Quiz\n!UPDATE ::: image-ref Bild von Amazon. :::\n\nBefragung Vorerfahrungen und Wünsche: Mentimeter\n\n!UPDATE ::: image-ref Fragen von Gapminder.\nFoto von NASA auf Unsplash :::"
-  },
-  {
-    "objectID": "sessions/Einführung/slides.html#organisatorisches-1",
-    "href": "sessions/Einführung/slides.html#organisatorisches-1",
-    "title": "Einführung",
-    "section": "Organisatorisches",
-    "text": "Organisatorisches\n\n\n\n\n\n\nMaterial\n\n\nhttps://nickhaf.github.io/PlotWorkshop/\n\n\n\n\n\n\n\n\n\nKontaktdaten\n\n\n\nNicklas Hafiz: nicklas.jakob.hafiz@hu-berlin.de\n\nJanine Buchholz: janine.buchholz@hu-berlin.de\n\n\n\n\n\n\n\n\n\n\n\nArbeiten in Zoom:\n\n\n\nHandheben-Funktion für Wortmeldungen\n\nZoom-Chat für kleinere Fragen, Anmerkungen und Hilferufe\n\nBreakout-Sessions für Gruppenarbeit\n\nTeilen von zwei Screens: Folien, RStudio"
+    "section": "Umfrage",
+    "text": "Umfrage\n\n\n\nIhre Vorerfahrungen und Wünsche:\nMentimeter\n\n\n\nFoto von Lukas Blazek auf Unsplash"
   },
   {
     "objectID": "sessions/Einführung/slides.html#eine-der-ersten-karten",
@@ -917,11 +707,18 @@
     "text": "Eine der ersten Karten\n\n\nDr. John Snow zeichnete die Todesfälle durch Cholera in Zentral-London im September 1854 auf.\nWasserpumpen wurden mit einem x markiert.\nDadurch ließ sich die Broad Street Pumpe als Quelle der Epidemie identifizieren.\n\n\n\n\nBild von ReserachGate"
   },
   {
+    "objectID": "sessions/Einführung/slides.html#section",
+    "href": "sessions/Einführung/slides.html#section",
+    "title": "Einführung",
+    "section": "",
+    "text": "Beispiel aus der The R Graph Gallery."
+  },
+  {
     "objectID": "sessions/Einführung/slides.html#section-1",
     "href": "sessions/Einführung/slides.html#section-1",
     "title": "Einführung",
     "section": "",
-    "text": "Beispiel aus der The R Graph Gallery."
+    "text": "Image from behance.net."
   },
   {
     "objectID": "sessions/Einführung/slides.html#der-best-plot-aller-zeiten",
@@ -942,7 +739,7 @@
     "href": "sessions/Einführung/slides.html#pfade",
     "title": "Einführung",
     "section": "Pfade",
-    "text": "Pfade\nhere ist ein Paket zum Erstellen von Dateipfaden. Dadurch können Probleme mit relativen und absoluten Pfaden vermieden werden.\nC:\\Users\\hafiznij\\Documents\\GitHub\\IRT_workshop\\data\\gapminder_dat.rds wird zu:\nhere::here(\"data\", \"gapminder_dat.rds\").\n\nÜbungLösung\n\n\n\nLade die gapminder-Daten von GitHub herunter und in R ein.\n\n\n\n\n# install.packages(\"here\")\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))"
+    "text": "Pfade\nhere ist ein Paket zum Erstellen von Dateipfaden. Dadurch können Probleme mit relativen und absoluten Pfaden vermieden werden.\nC:\\Users\\hafiznij\\Documents\\GitHub\\IRT_workshop\\data\\gapminder_dat.rds wird zu:\nhere::here(\"data\", \"gapminder_dat.rds\").\n\nÜbungLösung\n\n\n\nLade die gapminder-Daten von GitHub herunter, lege sie in Deinem Arbeitsverzeichnis ab, in dem auch Dein R-Skript liegt, und lies sie anschließend in R ein.\n\n\n\n\n# install.packages(\"here\")\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))"
   },
   {
     "objectID": "sessions/Einführung/slides.html#daten",
@@ -952,8 +749,8 @@
     "text": "Daten\n\n\n\n\n\nGapminder ist ein non-profit Projekt mit dem Ziel, mit global misconceptions aufzuräumen. Grundlage dafür ist ein Datensatz mit sozioökonomischen Indikatoren für fast alle Länder der Welt über mehrere Jahrzehnte.\n\n\n\n\nBild von Amazon."
   },
   {
-    "objectID": "sessions/Einführung/slides.html#quiz-1",
-    "href": "sessions/Einführung/slides.html#quiz-1",
+    "objectID": "sessions/Einführung/slides.html#quiz",
+    "href": "sessions/Einführung/slides.html#quiz",
     "title": "Einführung",
     "section": "Quiz",
     "text": "Quiz\n\nÖffne Mentimeter und bearbeite das Quiz.\n\n\nFragen von Gapminder.\nFoto von NASA auf Unsplash"
@@ -970,14 +767,14 @@
     "href": "sessions/Einführung/slides.html#scatterplot-1",
     "title": "Einführung",
     "section": "Scatterplot",
-    "text": "Scatterplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_2019, aes(x = gini, y = hapiscore_whr, color = world_4region)) +\n  geom_point(size = 3)  +\n  labs(x = \"Gini-Koeffizient\", y =\"Happiness score (WHR)\", color= \"Weltregion\")"
+    "text": "Scatterplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2023 &lt;- gapminder %&gt;% \n  filter(time == 2023)\n\nggplot(data = gapminder_2023, aes(x = gini, y = hapiscore_whr)) +\n  geom_point(size = 3)  +\n  labs(x = \"Gini-Koeffizient\", y =\"Happiness score (WHR)\", color= \"Weltregion\")"
   },
   {
-    "objectID": "sessions/Einführung/slides.html#scatterplot-2",
-    "href": "sessions/Einführung/slides.html#scatterplot-2",
+    "objectID": "sessions/Einführung/slides.html#scatterplot-mit-erweiterungen",
+    "href": "sessions/Einführung/slides.html#scatterplot-mit-erweiterungen",
     "title": "Einführung",
-    "section": "Scatterplot",
-    "text": "Scatterplot\n… hier noch eine ausgefeiltere Version einfügen …"
+    "section": "Scatterplot mit Erweiterungen",
+    "text": "Scatterplot mit Erweiterungen\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2023 &lt;- gapminder %&gt;% \n  filter(time == 2023)\n\nggplot(data = gapminder_2023, aes(x = gini, y = hapiscore_whr)) +\n  geom_point(aes(color = world_4region), size = 3)  +\n  geom_smooth(aes(color = world_4region)) +\n  labs(x = \"Gini-Koeffizient\", y =\"Happiness score (WHR)\", color= \"Weltregion\",\n       title = \"Zusammenhang zwischen Gini-Index und der Zufriedenheit\", \n       subtitle = \"Jahr: 2023\")"
   },
   {
     "objectID": "sessions/Einführung/slides.html#barplot",
@@ -991,7 +788,14 @@
     "href": "sessions/Einführung/slides.html#barplot-1",
     "title": "Einführung",
     "section": "Barplot",
-    "text": "Barplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_2019_bar, aes(x = reorder(unicode_region_subtag, gini), y = gini)) +\n  geom_bar(stat = \"identity\", color = \"black\", fill = \"#F4BA02\") +\n  theme_bg()"
+    "text": "Barplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2023_bar &lt;- gapminder_2023 %&gt;% \n  filter(world_6region == \"europe_central_asia\") %&gt;% \n  drop_na(unicode_region_subtag, gini)\n\np_bar &lt;- ggplot(data = gapminder_2023_bar) +\n  geom_bar(aes(x = unicode_region_subtag, y = gini), stat = \"identity\") \n\np_bar"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#barplot-mit-erweiterungen",
+    "href": "sessions/Einführung/slides.html#barplot-mit-erweiterungen",
+    "title": "Einführung",
+    "section": "Barplot mit Erweiterungen",
+    "text": "Barplot mit Erweiterungen\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2023_bar &lt;- gapminder_2023 %&gt;% \n  filter(world_6region == \"europe_central_asia\") %&gt;% \n  drop_na(unicode_region_subtag, gini)\n\nggplot(data = gapminder_2023_bar, \n       aes(x = reorder(unicode_region_subtag, gini), y = gini, fill = ifelse(unicode_region_subtag == \"DE\", \"DEU\", \"noDEU\"))) +\n  geom_bar(stat = \"identity\", size = 4, show.legend = F) +\n  scale_fill_manual(values = c(\"red\", \"grey35\")) +\n  labs(title = \"Gini-Index in Europa und Zentralasien (Jahr: 2023)\",\n       x = \"\", y = \"Gini-Index\") +\n  theme_bg()"
   },
   {
     "objectID": "sessions/Einführung/slides.html#lineplot",
@@ -1026,14 +830,14 @@
     "href": "sessions/Einführung/slides.html#histogram-1",
     "title": "Einführung",
     "section": "Histogram",
-    "text": "Histogram\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_2023, aes(x = hapiscore_whr)) +\n  geom_histogram() +\n  theme_bg() +\n  labs(x = \"Happiness\", y = \"\", title = \"World Happiness 2023\")"
+    "text": "Histogram\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_2023, aes(x = hapiscore_whr)) +\n  geom_histogram()"
   },
   {
-    "objectID": "sessions/Einführung/slides.html#histogram-2",
-    "href": "sessions/Einführung/slides.html#histogram-2",
+    "objectID": "sessions/Einführung/slides.html#histogram-mit-erweiterungen",
+    "href": "sessions/Einführung/slides.html#histogram-mit-erweiterungen",
     "title": "Einführung",
-    "section": "Histogram",
-    "text": "Histogram\n… hier noch eine ausgefeiltere Version einfügen …"
+    "section": "Histogram mit Erweiterungen",
+    "text": "Histogram mit Erweiterungen\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2023 &lt;- gapminder %&gt;% \n  filter(time == 2023) \n\nggplot(data = gapminder_2023, aes(x = hapiscore_whr)) +\n  geom_histogram() +\n  labs(x = \"Happiness Score (WHR)\", y = \"\", \n       title = \"So steht es um die globale Zufriedenheit\", \n       subtitle = \"Verteilung des weltweiten Happiness Score (2023)\",\n       caption = \"Quelle: Gapminder\") +\n  theme_economist() + \n  scale_colour_economist()"
   },
   {
     "objectID": "sessions/Einführung/slides.html#boxplot",
@@ -1047,28 +851,28 @@
     "href": "sessions/Einführung/slides.html#boxplot-1",
     "title": "Einführung",
     "section": "Boxplot",
-    "text": "Boxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_2023, aes(x = gini)) +\n  geom_boxplot() +\n  theme_bg() +\n  labs(x = \"Bevölkerung\", y = \"\", \n       title = \"Verteilung des Gini-Index\", subtitle = \"Jahr: 2023\")"
+    "text": "Boxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2023 &lt;- gapminder %&gt;% \n  filter(time == 2023) \n\np_boxplot &lt;- ggplot(data = gapminder_2023, aes(x = lex)) +\n  geom_boxplot()"
   },
   {
-    "objectID": "sessions/Einführung/slides.html#boxplot-2",
-    "href": "sessions/Einführung/slides.html#boxplot-2",
+    "objectID": "sessions/Einführung/slides.html#boxplot-mit-erweiterungen",
+    "href": "sessions/Einführung/slides.html#boxplot-mit-erweiterungen",
     "title": "Einführung",
-    "section": "Boxplot",
-    "text": "Boxplot\n… hier noch eine ausgefeiltere Version einfügen …"
+    "section": "Boxplot mit Erweiterungen",
+    "text": "Boxplot mit Erweiterungen\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2023 &lt;- gapminder %&gt;% \n  filter(time == 2023) \n\nggplot(data = gapminder_2023, aes(x = world_6region, y = gini)) +\n  geom_boxplot(aes(group = world_6region), staplewidth =.2) + \n  theme_bg() +\n  labs(x = \"\", y = \"\", \n       title = \"Verteilung des Gini-Index\", subtitle = \"Jahr: 2023\")"
   },
   {
     "objectID": "sessions/Einführung/slides.html#kombiniert",
     "href": "sessions/Einführung/slides.html#kombiniert",
     "title": "Einführung",
     "section": "Kombiniert",
-    "text": "Kombiniert\nGruppenvergleich per Boxplot mit Datenpunkten und Violin Plot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_2023, aes(x= world_4region, y = gini)) +\n  geom_violin(aes(fill = world_4region), alpha=.2) + \n  geom_jitter(height = 0, width=.2) + \n  geom_boxplot(fill=NA) +\n  theme_bg() +\n  labs(x = \"Bevölkerung\", y = \"\", fill = \"Weltregion\",\n       title = \"Verteilung des Gini-Index\", subtitle = \"Jahr: 2023\")"
+    "text": "Kombiniert\nGruppenvergleich per Boxplot mit Datenpunkten und Violin Plot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\np_kombi &lt;- ggplot(data = gapminder_2023, aes(x= world_4region, y = gini)) +\n  geom_violin(aes(fill = world_4region, col = world_4region), alpha=.2, show.legend = FALSE) + \n  geom_jitter(height = 0, width=.2) + \n  geom_boxplot(fill=NA) +\n  theme_bg() +\n  labs(x = \"Weltregion\", y = \"\", fill = \"Weltregion\",\n       title = \"Verteilung des Gini-Index\", subtitle = \"Jahr: 2023\")"
   },
   {
     "objectID": "sessions/Einführung/slides.html#bubble-chart",
     "href": "sessions/Einführung/slides.html#bubble-chart",
     "title": "Einführung",
     "section": "Bubble Chart",
-    "text": "Bubble Chart\nScatterplot, in dem über Größe und Farbe der Datenpunkte zusätzliche Information dargestellt wird.\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\noptions(scipen=10)\n# Farben der vier Weltregionen \ntuerkis &lt;- rgb(0,213,233, max=255)\ngruen &lt;- rgb(127,235,0, max=255)\nrot &lt;- rgb(255,88,114, max=255)\ngelb &lt;- rgb(255,231,0, max=255)\n\ngapminder |&gt;\n  # Auswahl der Daten von 2019:\n  subset(time == 2019) |&gt; \n    # Neu: Angabe der Einwohnerzahl in Millionen\n  mutate(pop = pop/1000000) |&gt;\n  # Grund-Grafik anfordern:\n  ggplot(aes(x=gini, y=hapiscore_whr)) +\n  # Neu: Text für die Jahreszahl (\"2015\") einfügen, sodass diese ganz im Hintergrund steht\n  annotate(\"text\", x=45, y=50, label=\"2019\", size=70, colour =\"grey90\", family=\"mono\", fontface=1) +\n  # Neu: Farbthema: heller Hintergrund, schwarze Linien an x- und y-Achse\n  theme_classic() + \n  # Wie bisher: Punkte einzeichnen --&gt; Streu-Punkt-Diagramm,\n  # Neu: Unterscheidung der Punkte nach Farbe (Region) und Größe (Population);  \n  # Transparenz der Datenpunkte (alpha), Rand um die Punkte (shape) \n  geom_point(aes(fill = world_4region, size = pop), shape=21, alpha=.7) +\n  # Skalieren der Größe der Punkte, sodass die Unterschiede deutlicher sind\n  scale_size(range = c(1, 30)) +\n  # Neu: Beschriftung der Achsen\n  labs(x=\"Gini-Index\", y=\"Hyppiness Score\") +\n  # Neu: manuelle Spezifikation der y-Achse: Wertebereich, Position der Beschriftungen (10er-Schritte)\n  scale_y_continuous(limits = c(15, 85), \n                     breaks = seq(20,80, by=10),\n                     labels = paste0(seq(20,80, by=10), \"%\")) +\n  # Neu: manuelle Spezifikation der x-Achse: Wertebereich, log-Transformation, Position und Name der Beschriftungen\n  scale_x_continuous(limits = c(18,75),\n                     breaks = seq(20,70, by= 5)) +\n  # Neu: manuelle Spezifikation der Farben\n  scale_fill_manual(\n    values = c(tuerkis, gruen, rot, gelb),\n    breaks = c(\"africa\", \"americas\", \"asia\", \"europe\")) +\n  # Neu: Theme (Anpassung der Schriftgroesse, relativ zur Groesse 12, blaues Raster im Hintergrund, Rand für die Legende)\n  theme(text = element_text(size=12),\n        axis.text = element_text(size=rel(.8)),\n        axis.title = element_text(size=rel(1.2)),\n        panel.grid.major = element_line(colour = \"azure2\")) +\n  # Neu: Titel, Beschriftungen der Achse und Legende\n  labs(title=\"Bubble Chart im Gapminder-Look\",\n       subtitle=\"Jahr: 2023\",\n       x=\"Gini-Index\",\n       y=\"Happiness Score (WHR)\",\n       fill=\"Weltregion\",\n       size=\"Einwohnerzahl\\n(in Mio.)\") +\n  # Neu: Vergroessern der Punkte fuer die Farb-Legende fuer die Kontinente\n  guides(fill = guide_legend(override.aes = list(size = 5), order=1)) \n\n\n\n\n\nAbbildung in Anlehnung an die typische Darstellung auf gapminder"
+    "text": "Bubble Chart\nScatterplot, in dem über Größe und Farbe der Datenpunkte zusätzliche Information dargestellt wird.\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\noptions(scipen=10)\n# Farben der vier Weltregionen \ntuerkis &lt;- rgb(0,213,233, max=255)\ngruen &lt;- rgb(127,235,0, max=255)\nrot &lt;- rgb(255,88,114, max=255)\ngelb &lt;- rgb(255,231,0, max=255)\n\ngapminder |&gt;\n  # Auswahl der Daten von 2023:\n  subset(time == 2023) |&gt; \n    # Neu: Angabe der Einwohnerzahl in Millionen\n  mutate(pop = pop/1000000) |&gt;\n  # Grund-Grafik anfordern:\n  ggplot(aes(x=gini, y=hapiscore_whr)) +\n  # Neu: Text für die Jahreszahl (\"2015\") einfügen, sodass diese ganz im Hintergrund steht\n  annotate(\"text\", x=45, y=50, label=\"2023\", size=70, colour =\"grey90\", family=\"mono\", fontface=1) +\n  # Neu: Farbthema: heller Hintergrund, schwarze Linien an x- und y-Achse\n  theme_classic() + \n  # Wie bisher: Punkte einzeichnen --&gt; Streu-Punkt-Diagramm,\n  # Neu: Unterscheidung der Punkte nach Farbe (Region) und Größe (Population);  \n  # Transparenz der Datenpunkte (alpha), Rand um die Punkte (shape) \n  geom_point(aes(fill = world_4region, size = pop), shape=21, alpha=.7) +\n  # Skalieren der Größe der Punkte, sodass die Unterschiede deutlicher sind\n  scale_size(range = c(1, 30)) +\n  # Neu: Beschriftung der Achsen\n  labs(x=\"Gini-Index\", y=\"Hyppiness Score\") +\n  # Neu: manuelle Spezifikation der y-Achse: Wertebereich, Position der Beschriftungen (10er-Schritte)\n  scale_y_continuous(limits = c(15, 85), \n                     breaks = seq(20,80, by=10),\n                     labels = paste0(seq(20,80, by=10), \"%\")) +\n  # Neu: manuelle Spezifikation der x-Achse: Wertebereich, log-Transformation, Position und Name der Beschriftungen\n  scale_x_continuous(limits = c(18,75),\n                     breaks = seq(20,70, by= 5)) +\n  # Neu: manuelle Spezifikation der Farben\n  scale_fill_manual(\n    values = c(tuerkis, gruen, rot, gelb),\n    breaks = c(\"africa\", \"americas\", \"asia\", \"europe\")) +\n  # Neu: Theme (Anpassung der Schriftgroesse, relativ zur Groesse 12, blaues Raster im Hintergrund, Rand für die Legende)\n  theme(text = element_text(size=12),\n        axis.text = element_text(size=rel(.8)),\n        axis.title = element_text(size=rel(1.2)),\n        panel.grid.major = element_line(colour = \"azure2\")) +\n  # Neu: Titel, Beschriftungen der Achse und Legende\n  labs(title=\"Bubble Chart im Gapminder-Look\",\n       subtitle=\"Jahr: 2023\",\n       x=\"Gini-Index\",\n       y=\"Happiness Score (WHR)\",\n       fill=\"Weltregion\",\n       size=\"Einwohnerzahl\\n(in Mio.)\") +\n  # Neu: Vergroessern der Punkte fuer die Farb-Legende fuer die Kontinente\n  guides(fill = guide_legend(override.aes = list(size = 5), order=1)) \n\n\n\n\n\nAbbildung in Anlehnung an die typische Darstellung auf gapminder"
   },
   {
     "objectID": "sessions/Einführung/slides.html#karten",
@@ -1099,11 +903,32 @@
     "text": "Ridgeline Plot\n\n\nAbbildung aus der R Graph Gallery"
   },
   {
+    "objectID": "sessions/Einführung/slides.html#heat-map",
+    "href": "sessions/Einführung/slides.html#heat-map",
+    "title": "Einführung",
+    "section": "Heat Map",
+    "text": "Heat Map\n\n\nAbbildung von informationisbeautiful.net"
+  },
+  {
     "objectID": "sessions/Einführung/slides.html#animiert-gganimate",
     "href": "sessions/Einführung/slides.html#animiert-gganimate",
     "title": "Einführung",
     "section": "Animiert: gganimate",
     "text": "Animiert: gganimate"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#interaktiv-plotly",
+    "href": "sessions/Einführung/slides.html#interaktiv-plotly",
+    "title": "Einführung",
+    "section": "Interaktiv: plotly",
+    "text": "Interaktiv: plotly"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#logos--",
+    "href": "sessions/Einführung/slides.html#logos--",
+    "title": "Einführung",
+    "section": "Logos ;-)",
+    "text": "Logos ;-)"
   },
   {
     "objectID": "sessions/Einführung/slides.html#generative-art",
@@ -1516,7 +1341,7 @@
     "href": "sessions/Einführung/Einführung.html",
     "title": "Einführung",
     "section": "",
-    "text": "View slides in full screen\n\nIntro/Beispiele/Motivation/Arten von Grafiken (1 Basic + 1 Schöne) - Janine (+Nicklas)"
+    "text": "View slides in full screen\nInhalte\n\nGute Gründe für die Datenvisualisierung mit ggplot2\n\nOrganisatorische Hinweise\n\nInformationen zum Setup und zum Datensatz (s.u.)\n\nBeispiele für hervorragende Grafiken\n\nZentrale Plot-Typen\n\nWeitere Plot-Typen\n\nDer Datensatz\nWir verwenden im Workshop Daten von gapminder. Wir haben einen Teildatensatz aufbereitet, den man wie folgt herunterladen kann:\n\nlade die gapminder-Daten von GitHub herunter,\nlege sie in Deinem Arbeitsverzeichnis ab, in dem auch Dein R-Skript liegt,\nund lies sie anschließend mit Deinem R-Skript ein:\n\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))"
   },
   {
     "objectID": "sessions/good_plots/slides.html#section",
@@ -1575,149 +1400,352 @@
     "text": ":::{.column width=“50%} \n\n\n\n\n\n:::\n\nGrafiken von zeit.de."
   },
   {
+    "objectID": "sessions/good_plots/visual_form.html#visual-form",
+    "href": "sessions/good_plots/visual_form.html#visual-form",
+    "title": "Visual Form",
+    "section": "Visual Form",
+    "text": "Visual Form\n\n\n\nDesign is a requirement, not a cosmetic addition.\n\nnature methods\n\n\n\n\n\nNützlichkeit\nEffizienz\nÄsthetik\n\n\n\n\n\nFoto von Samuel Scrimshaw auf Unsplash"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#salienz",
+    "href": "sessions/good_plots/visual_form.html#salienz",
+    "title": "Visual Form",
+    "section": "Salienz",
+    "text": "Salienz\nSalienz durch visual features:\n Quelle: Wong, B. (2010)"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#gruppieren",
+    "href": "sessions/good_plots/visual_form.html#gruppieren",
+    "title": "Visual Form",
+    "section": "Gruppieren",
+    "text": "Gruppieren\n\n\nGruppierung durch Form\n\n\n\n\n\n\n\n\n\n\nGruppierung durch verbundene Elemente"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#darstellung-von-größen",
+    "href": "sessions/good_plots/visual_form.html#darstellung-von-größen",
+    "title": "Visual Form",
+    "section": "Darstellung von Größen",
+    "text": "Darstellung von Größen\nDie Größe von Elemenen kann auch genutzt werden, um Daten zu kodieren."
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#einschätzen-von-größen",
+    "href": "sessions/good_plots/visual_form.html#einschätzen-von-größen",
+    "title": "Visual Form",
+    "section": "Einschätzen von Größen",
+    "text": "Einschätzen von Größen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDie Größe von Kreisen einzuschätzen ist schwer!"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#das-gleiche-gilt-für-winkel",
+    "href": "sessions/good_plots/visual_form.html#das-gleiche-gilt-für-winkel",
+    "title": "Visual Form",
+    "section": "Das gleiche gilt für Winkel!",
+    "text": "Das gleiche gilt für Winkel!\n\n\nVersuche, die Größen zu sortieren:"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#das-gleiche-gilt-für-winkel-1",
+    "href": "sessions/good_plots/visual_form.html#das-gleiche-gilt-für-winkel-1",
+    "title": "Visual Form",
+    "section": "Das gleiche gilt für Winkel!",
+    "text": "Das gleiche gilt für Winkel!\n\n\n Quelle\n\n\nQuelle\n\n\n\n\n\n\n\n\nKreis- bzw. Tortendiagramme sollten daher vermieden werden."
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#farben",
+    "href": "sessions/good_plots/visual_form.html#farben",
+    "title": "Visual Form",
+    "section": "Farben",
+    "text": "Farben\n\n\nFarbe ist eine der wichtigsten Methoden, um Informationen zu [labeln], hervorzuheben, [Werte] zu kommunizieren, [Realität simulieren], und um zu designen und zu [dekorieren].\n\n\n\n\nFoto von Efe Kurnaz auf Unsplash"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#kategoriale-vs.-quantitative-daten",
+    "href": "sessions/good_plots/visual_form.html#kategoriale-vs.-quantitative-daten",
+    "title": "Visual Form",
+    "section": "Kategoriale vs. quantitative Daten",
+    "text": "Kategoriale vs. quantitative Daten\n\n\nKategoriale Daten\nVerschiedene Farben, die sich gut unterscheiden lassen.\n\n\n\n\n\n\n\n\n\n\nQuantitative Daten\nFarbverläufe, die eine Reihenfolge haben.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2 setzt die entsprechende Skala schon automatisch!"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#skalen-mit-nullpunkt",
+    "href": "sessions/good_plots/visual_form.html#skalen-mit-nullpunkt",
+    "title": "Visual Form",
+    "section": "Skalen mit Nullpunkt",
+    "text": "Skalen mit Nullpunkt\n\nWas zu beachten ist: unten Blau oben Rot … https://ggplot2-book.org/scales-colour.html\nVor allem für diskrete Gruppen geeignet\nFarbverläufe schwieriger (aber es gibt color scales dafür)\nBestimmte Farben (Grün = gut, Rot = Gefahr)\nIntervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen\n\nKein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten\n\nOrdinal: Richtung und gute Unterscheidbarkeit im Farbraum\nNominalskaliert: Spriale/Diagnoale im Farbraum\nDiskret\nContinuous\nBinned Vorgefertigte Paletten:\n\nSequenziell\nQualitativ\nDiverging"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#farbwahrnehmung-beim-menschen",
+    "href": "sessions/good_plots/visual_form.html#farbwahrnehmung-beim-menschen",
+    "title": "Visual Form",
+    "section": "Farbwahrnehmung beim Menschen",
+    "text": "Farbwahrnehmung beim Menschen\n\n\n\n\nPrimärfarben des Lichts: Rot, Grün, Blau\n\n\n\n\n\nBy Original:  Penubag Vector: Victor Blacus - Own work based on: Electromagnetic-Spectrum.png, CC BY-SA 3.0, Link\nBy BenRG - Own work, Public Domain, Link"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#andere-tiere-können-auch-mal-mehr-oder-weniger-haben",
+    "href": "sessions/good_plots/visual_form.html#andere-tiere-können-auch-mal-mehr-oder-weniger-haben",
+    "title": "Visual Form",
+    "section": "Andere Tiere können auch mal mehr oder weniger haben:",
+    "text": "Andere Tiere können auch mal mehr oder weniger haben:\n\n\n\n\n\n\n\nBild aus Farbsehen der Tiere\nFoto von Ben Moreland auf Unsplash"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#viele-tiere-sehen-nur-grau",
+    "href": "sessions/good_plots/visual_form.html#viele-tiere-sehen-nur-grau",
+    "title": "Visual Form",
+    "section": "Viele Tiere sehen nur grau",
+    "text": "Viele Tiere sehen nur grau\n\n\nWarum überhaupt Farbwahrnehmung?\n\n\nKonsistenz: Farbtöne sind unabhängig vom Licht wahrnehmbar.\nAber: More is not always better! Zu viel kann auch vom Wesentlichen ablenken.\n\n\nFarbwahrnehmung ist also subjektiv, und bringt nur einen Vorteil, wenn eine Bedeutung daraus abgeleitet werden kann.\n\n\n\n\n\nFoto von Chinh Le Duc auf Unsplash"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#more-is-not-always-better",
+    "href": "sessions/good_plots/visual_form.html#more-is-not-always-better",
+    "title": "Visual Form",
+    "section": "More is not always better",
+    "text": "More is not always better\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(\n  gapminder_2020,\n  aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point(size = 3) +\n  theme_bg() \n\n\n\n\n\n\n\n\n\nMehr als sechs Farben sollten es auf keinen Fall werden!\n\n\n\n\n\n\nAlternative: Facetting."
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#farben-1",
+    "href": "sessions/good_plots/visual_form.html#farben-1",
+    "title": "Visual Form",
+    "section": "Farben",
+    "text": "Farben\n\nGanglienzellen übertragen keine Informationen über absolute Helligkeit, sondern über relative Helligkeit.\n\nVisualisierung kann nicht gut darin sein, absolute Werte zu kommunizieren (Tabellen können das besser). Aber: Unterschiede und Veränderungen.\n\n\nBild von Nature Methods."
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#section",
+    "href": "sessions/good_plots/visual_form.html#section",
+    "title": "Visual Form",
+    "section": "",
+    "text": "Hier sind die Farben klar unterscheidbar, und der Gini-Index lässt sich gut ablesen.\n\n\n\n\n\n\n\n\n\n\nDer Plot ist etwas sub-optimaler. Die tatsächlichen Werte des Gini-Index werden nicht gut kommuniziert."
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#farbe-ist-relativ",
+    "href": "sessions/good_plots/visual_form.html#farbe-ist-relativ",
+    "title": "Visual Form",
+    "section": "Farbe ist relativ",
+    "text": "Farbe ist relativ"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#eigenschaften-von-farben",
+    "href": "sessions/good_plots/visual_form.html#eigenschaften-von-farben",
+    "title": "Visual Form",
+    "section": "Eigenschaften von Farben",
+    "text": "Eigenschaften von Farben\n\nFarbton, Sättigung, Helligkeit\nDie drei Eigenschaften beschreiben das Aussehen von Farben.\n\n\n\nFarbräume\n\nRGB: Zusammenmischen von Licht der unterschiedlichen Farben. Alle drei zusammen ergeben weiß.\nCMYK: Ausblenden aus dem weißen Farbspektrum durch Filter. Grundfarben: Gelb, Magenta (Purpur), Cyan (Blaugrün) (+K - Key (also Schwarz))"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#salienz-1",
+    "href": "sessions/good_plots/visual_form.html#salienz-1",
+    "title": "Visual Form",
+    "section": "Salienz",
+    "text": "Salienz\nSticht eine Farbe hervor, ist sie besonders salient - das kann gewollt oder ungewollt sein."
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#größe",
+    "href": "sessions/good_plots/visual_form.html#größe",
+    "title": "Visual Form",
+    "section": "Größe",
+    "text": "Größe"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#farbfehlsichtigkeit",
+    "href": "sessions/good_plots/visual_form.html#farbfehlsichtigkeit",
+    "title": "Visual Form",
+    "section": "Farbfehlsichtigkeit",
+    "text": "Farbfehlsichtigkeit\n\nprotanopic right side\n\nBy Mark Fairchild, CC BY-SA 3.0, Link\n\n\nProtanopie: Zapfentyp L (rot) fehlt: rot vs grün Schwäche\nDeuteranopie: Zapfentyp M (grün) fehlt: rot vs grün Schwäche\nTritanopie: Zapfentyp S (blau) fehlt: blau vs grün, gelb vs violett Schwäche\nTake the above scale and show that it is not great for color blindness\nhttps://www.color-blindness.com/coblis-color-blindness-simulator/"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#colorblind-check",
+    "href": "sessions/good_plots/visual_form.html#colorblind-check",
+    "title": "Visual Form",
+    "section": "Colorblind-Check",
+    "text": "Colorblind-Check\n\n\nAuf Colblindor.\n\n\nMit colorblindcheck.\n\nlibrary(colorblindcheck)\n\npalette_check(scales::hue_pal()(6), plot = TRUE)\n\n\n\n\n\n\n\n\n          name n tolerance ncp ndcp  min_dist mean_dist max_dist\n1       normal 6  28.22768  15   15 28.227682  48.60479 91.99894\n2 deuteranopia 6  28.22768  15    9  5.870477  31.50134 59.55026\n3   protanopia 6  28.22768  15    8  3.930855  32.79118 57.04317\n4   tritanopia 6  28.22768  15    9  7.200490  40.41105 71.61725"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#anwendung-in-ggplot2",
+    "href": "sessions/good_plots/visual_form.html#anwendung-in-ggplot2",
+    "title": "Visual Form",
+    "section": "Anwendung in ggplot2",
+    "text": "Anwendung in ggplot2"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#farben-wählen",
+    "href": "sessions/good_plots/visual_form.html#farben-wählen",
+    "title": "Visual Form",
+    "section": "Farben wählen",
+    "text": "Farben wählen\n\nName\nrgb()\nNummer\nHex code"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#farben-manuell-setzen",
+    "href": "sessions/good_plots/visual_form.html#farben-manuell-setzen",
+    "title": "Visual Form",
+    "section": "Farben manuell setzen",
+    "text": "Farben manuell setzen\n\n\n\nCodePlot\n\n\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_manual(values = c(\"red\", \"green\", \"blue\", \"yellow\", \"violet\", \"brown\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCodePlot\n\n\n\nmy_color_scale &lt;- c(\n  \"East Asia & Pacific\" = \"red\",\n  \"South Asia\" = \"green\",\n  \"Sub-Saharan Africa\" = \"blue\",\n  \"Europe & Central Asia\" = \"yellow\",\n  \"Middle East & North Africa\" = \"violet\",\n  \"Americas\" = \"brown\"\n)\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    color = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption 2020\") +\n  scale_color_manual(values = my_color_scale)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWenn du in einem Projekt die gleichen Gruppen in verschiedenen Plots zeigst, setze die Farbskala einmal mit den Gruppennamen, damit die Gruppen in allen Plots die selben Farben bekommen."
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#graustufen",
+    "href": "sessions/good_plots/visual_form.html#graustufen",
+    "title": "Visual Form",
+    "section": "Graustufen",
+    "text": "Graustufen\n\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption 2020\") +\n  scale_fill_grey()"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#externe-farb-paletten",
+    "href": "sessions/good_plots/visual_form.html#externe-farb-paletten",
+    "title": "Visual Form",
+    "section": "Externe Farb-Paletten",
+    "text": "Externe Farb-Paletten\n\n\nR Color Brewer\n\nlibrary(RColorBrewer)\ndisplay.brewer.all(colorblindFriendly = FALSE)\n\n\n\n\n\n\n\n\n\n\nCodePlot\n\n\n\nlibrary(RColorBrewer)\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_brewer(palette = \"PuOr\")"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#externe-farb-paletten-1",
+    "href": "sessions/good_plots/visual_form.html#externe-farb-paletten-1",
+    "title": "Visual Form",
+    "section": "Externe Farb-Paletten",
+    "text": "Externe Farb-Paletten\n\n\npaletteer\nSammlung von Paletten aus diversen Paketen\n\nPalette-Finder\nGallerie\n\n\n\nCodePlot\n\n\n\nlibrary(paletteer)\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_paletteer_d(\"LaCroixColoR::Orange\")"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#übung",
+    "href": "sessions/good_plots/visual_form.html#übung",
+    "title": "Visual Form",
+    "section": "Übung",
+    "text": "Übung\n\n\nBaue eine eigene Farbpalette für deinen Plot und teste sie auf Farbfehlsichtigkeiten."
+  },
+  {
     "objectID": "sessions/good_plots/visual_form.html#nützlichkeit",
     "href": "sessions/good_plots/visual_form.html#nützlichkeit",
-    "title": "Informatio",
+    "title": "Visual Form",
     "section": "Nützlichkeit",
     "text": "Nützlichkeit\n\n\n\n\n\n\nFoto von Kelly Sikkema auf Unsplash\nFoto von Yucel Moran auf Unsplash\n\n\nHier gilt ganz besonders: Simplify to Clarify"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#funktionelles-design",
     "href": "sessions/good_plots/visual_form.html#funktionelles-design",
-    "title": "Informatio",
+    "title": "Visual Form",
     "section": "Funktionelles Design",
     "text": "Funktionelles Design\n\n\n\n\nFoto von BVG\n\n\n\n\nFoto von BVG\n\n\n\n\n\n\n\n\nDabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen.\nHandschriftliche Skizze ist auch erstmal hilfreich!"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#simplify-to-clarify-data-ink-ratio",
     "href": "sessions/good_plots/visual_form.html#simplify-to-clarify-data-ink-ratio",
-    "title": "Informatio",
+    "title": "Visual Form",
     "section": "Simplify to clarify: Data-ink ratio",
     "text": "Simplify to clarify: Data-ink ratio\n\nData graphics should draw the viewer’s attention to the sense and substance of the data, not to something else. (Tufte & Graves-Morris, 1983)\n\nAuf die Spitze getrieben von Tufte & Graves-Morris (1983):\n\n\nData-ink ratio = Data-ink / Total ink used to print the graphic\n\nJedes Stück Tinte sollte einen Grund haben.\n\n\n :::{.image-ref} CC BY-SA 2.0, Link\n\n:::"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#data-ink-ratio-in-praxis",
     "href": "sessions/good_plots/visual_form.html#data-ink-ratio-in-praxis",
-    "title": "Informatio",
+    "title": "Visual Form",
     "section": "Data-ink ratio in Praxis",
     "text": "Data-ink ratio in Praxis\n\n\n10% Daten, 90 % Achsenbeschriftungen und Hintergrundlinien\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggthemes)\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  theme_excel() +\n  scale_x_continuous(\n    breaks = scales::pretty_breaks(n = 10), # ensure ticks\n    minor_breaks = waiver() # ensures minor ticks too\n  ) +\n  scale_y_continuous(\n    breaks = scales::pretty_breaks(n = 10),\n    minor_breaks = waiver()\n  ) +\n  theme(\n    panel.grid.major = element_line(color = \"grey60\", size = 1.2), # thick major grid\n    panel.grid.minor = element_line(color = \"grey60\", size = 0.8) # thick minor grid\n  )\n\n\n\n\n\n\n0% Daten (Plotte die Daten, keine Zusammenfassungen)\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_smooth()\n\n\n\n\n\n\n\nca. 90 % Daten, 10 % Achsenbeschriftungen und Legende\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggthemes)\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  theme_tufte()"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#redundanzen",
     "href": "sessions/good_plots/visual_form.html#redundanzen",
-    "title": "Informatio",
+    "title": "Visual Form",
     "section": "Redundanzen",
     "text": "Redundanzen\n\nErase non-data-ink, within reason. Erase redundant data-ink, within reaseon (Tufte & Graves-Morris, 1983)\n\n\n\nFrageAntwort\n\n\nAuf wie viele Arten wird hier die Höhe der CO2 Emissionen pro Kopf dargestellt?\n\n\n\n\n\n\n\n\n\n\n\nAuf sieben verschiedene Arten:\n\nHöhe der linken Balkenlinie\nHöhe der rechten Balkenlinie\nHöhe der horizontalen Balkenlinie\nHöhe des Balkeninneren\nFarbe des Balkens\nPosition des Labels\nWert des Labels\n\nBalken an sich enthalten also schon redundante Informationen!"
   },
   {
-    "objectID": "sessions/good_plots/visual_form.html#section",
-    "href": "sessions/good_plots/visual_form.html#section",
-    "title": "Informatio",
+    "objectID": "sessions/good_plots/visual_form.html#section-1",
+    "href": "sessions/good_plots/visual_form.html#section-1",
+    "title": "Visual Form",
     "section": "",
     "text": "AufgabeAntwort\n\n\nEntferne alle Redundanzen, machen den Plot also “Tufte-Komform”\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons, fill = co2_pcap_cons, color = co2_pcap_cons, label = round(co2_pcap_cons), 2)\n) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\") +\n  geom_text(vjust = -1, color = \"black\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  labs(\n    x = \"Land\",\n    y = \"CO2 Consumption per capita in t\") +\n  theme_bg()\n\n\n\n\nAntwort 1Antwort 2\n\n\nEntfernen der Achsenlinien und Umrandungen. Hintergrundlinien werden innerhalb der Balken dargestellt.\n\n\n\n\n\n\n\n\n\n\n\nMitunter können die vertikalen und horizontalen Linien auch hilfreich beim Vergleich/bei der Zuordnung zum Land sein: “Tufte Barchart”"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#maximieren-von-informationen",
     "href": "sessions/good_plots/visual_form.html#maximieren-von-informationen",
-    "title": "Informatio",
+    "title": "Visual Form",
     "section": "Maximieren von Informationen",
     "text": "Maximieren von Informationen\n\n\nNormaler Scatterplot\nBox um den Plot, Grid-Linien, Achsen-Ticks: Alles keine Daten.\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() \n\n\n\n\n\nTufte-Scatterplot\nNutzen der Ticks und Achsen-Linien, um Informationen zu transportieren.\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(paletteer)\n\n\nxlim_v &lt;- c(20, 80)\nylim_v &lt;- c(20, 80)\n\n# Parameter: Anzahl der Quantile, Versatz von den Rändern, kleine Lücke zwischen Segmenten\nprobs &lt;- seq(0, 1, by = 0.25) # Quartile; für Dezile: by = 0.1\noff_x &lt;- 0 # Versatz der \"y-Achse\" nach rechts\noff_y &lt;- 0 # Versatz der \"x-Achse\" nach oben\ngap &lt;- 0.2 # kleine Lücke an Segmentenden (optisch schöner)\n\nqx &lt;- quantile(gapminder_2020$gini, probs = probs, na.rm = TRUE)\nqy &lt;- quantile(gapminder_2020$hapiscore_whr, probs = probs, na.rm = TRUE)\n\n# Segment-Dataframes bauen (pro Intervall ein Segment)\nseg_x &lt;- tibble(\n  x    = pmax(qx[-length(qx)] + gap / 2, xlim_v[1]),\n  xend = pmin(qx[-1] - gap / 2, xlim_v[2]),\n  y    = ylim_v[1] + off_y,\n  yend = ylim_v[1] + off_y\n) %&gt;% filter(x &lt; xend)\n\nseg_y &lt;- tibble(\n  x    = xlim_v[1] + off_x,\n  xend = xlim_v[1] + off_x,\n  y    = pmax(qy[-length(qy)] + gap / 2, ylim_v[1]),\n  yend = pmin(qy[-1] - gap / 2, ylim_v[2])\n) %&gt;%\n  filter(y &lt; yend)\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  # Quantil-\"x-Achse\" (horizontal) leicht ins Panel versetzt\n  geom_segment(\n    data = seg_x,\n    aes(x = x, xend = xend, y = y, yend = yend),\n    inherit.aes = FALSE\n  ) +\n  # Quantil-\"y-Achse\" (vertikal) leicht ins Panel versetzt\n  geom_segment(\n    data = seg_y,\n    aes(x = x, xend = xend, y = y, yend = yend),\n    inherit.aes = FALSE\n  ) +\n  scale_x_continuous(breaks = unique(c(round(seg_x$x, 0), round(seg_x$xend, 0)))) +\n  scale_y_continuous(breaks = unique(c(round(seg_y$y, 0), round(seg_y$yend, 0)))) +\n  coord_cartesian(xlim = xlim_v, ylim = ylim_v, expand = FALSE) +\n  theme_tufte() +\n  theme(axis.ticks = element_blank()) +\n  paletteer::scale_colour_paletteer_d(\"fishualize::Koumansetta_rainfordi\")"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#verteilungen-plotten",
     "href": "sessions/good_plots/visual_form.html#verteilungen-plotten",
-    "title": "Informatio",
+    "title": "Visual Form",
     "section": "Verteilungen Plotten",
     "text": "Verteilungen Plotten\n\n\n\n\nReduzieren heißt nicht, die Informationen zu reduzieren, sondern den Chart-Junk!\nSehr oft macht es Sinn, die gesamte Verteilung zu plotten, möglicherweise auch zusätzlich zu zusammenfassenden Statistiken."
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#verteilungen-plotten-1",
     "href": "sessions/good_plots/visual_form.html#verteilungen-plotten-1",
-    "title": "Informatio",
+    "title": "Visual Form",
     "section": "Verteilungen plotten",
     "text": "Verteilungen plotten\n\n\nBoxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_2020 %&gt;% drop_na(country),\n  aes(x = world_4region, y = hapiscore_whr, fill = world_4region)) +\n  geom_boxplot() +\n  theme(axis.ticks = element_blank(), legend.position = \"none\") +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\")\n\n\n\n\n\nTufte-Boxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggthemes)\n\nggplot(data = gapminder_2020 %&gt;% drop_na(country), \n  aes(x = world_4region, y = hapiscore_whr, group = world_4region)) +\ngeom_jitter(alpha = 0.5, color = \"lightgrey\") + \n  geom_tufteboxplot() +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\") +\ntheme_tufte()"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#keine-angst-vor-leerem-raum",
     "href": "sessions/good_plots/visual_form.html#keine-angst-vor-leerem-raum",
-    "title": "Informatio",
+    "title": "Visual Form",
     "section": "Keine Angst vor leerem Raum",
     "text": "Keine Angst vor leerem Raum\n\n\nData from Rockefeller Institute and Wikipedia."
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#zusammenfassung",
     "href": "sessions/good_plots/visual_form.html#zusammenfassung",
-    "title": "Informatio",
+    "title": "Visual Form",
     "section": "Zusammenfassung",
     "text": "Zusammenfassung\n\n\n\n\nAbove all else show the data.\nMaximize the data-ink ratio, within reason.\nErase non-data-ink, within reason.\nErase redundant data-ink, within reason.\nRevise and edit.\n\n\nAus Tufte & Graves-Morris (1983)."
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#gegenentwurf-ästhetik",
     "href": "sessions/good_plots/visual_form.html#gegenentwurf-ästhetik",
-    "title": "Informatio",
+    "title": "Visual Form",
     "section": "Gegenentwurf: Ästhetik",
     "text": "Gegenentwurf: Ästhetik\n\n\nAbbildung von [Cédric Scherer]https://www.behance.net/gallery/100683383/Travelling-to-Outer-Space#)."
   },
   {
-    "objectID": "sessions/good_plots/visual_form.html#section-1",
-    "href": "sessions/good_plots/visual_form.html#section-1",
-    "title": "Informatio",
+    "objectID": "sessions/good_plots/visual_form.html#section-2",
+    "href": "sessions/good_plots/visual_form.html#section-2",
+    "title": "Visual Form",
     "section": "",
     "text": "Wandelt euren Plot in einen Tufte-Plot um."
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#farben-als-design-element",
     "href": "sessions/good_plots/visual_form.html#farben-als-design-element",
-    "title": "Informatio",
+    "title": "Visual Form",
     "section": "Farben als Design-Element",
     "text": "Farben als Design-Element\n\n\n\n\n\nAll colors are the friends of their neighbors and the lovers of their opposites. - Marc Chagall\n\n\n\nNach MalteAhrens at de.wikipedia. Vectorization by User:SidShakal - Raster version from Wikimedia Commons., Gemeinfrei, Link"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#kleine-farbenlehre",
     "href": "sessions/good_plots/visual_form.html#kleine-farbenlehre",
-    "title": "Informatio",
+    "title": "Visual Form",
     "section": "Kleine Farbenlehre",
     "text": "Kleine Farbenlehre\n\n\n\n\nVincent van Gogh, Public domain, via Wikimedia Commons\n\n\n\nGegenüberliegende Farben intensivieren sich gegenseitig: eine Primärfarbe, und eine Sekundärfarbe, die aus den anderen beiden Primärfarben gemischt wird. Das erzeugt stärkere Kontraste. (Van Gogh bild)\nMit weiß und schwarz lassen sich die Schattierungen hinzumischen\ntriadisches Farbschema: Fom MIttelpunkt des Farbkreises Strahlen mit gleichem Winkel abgehen lassen (So viele, wie man Farben haben will). Das wählt dann Farben mit dem größten Kontrast aus. (https://www.kunstplaza.de/fashion-design/farbenlehre-farbtheorie-styleguides-fashion-design/)"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#weitere-tools",
     "href": "sessions/good_plots/visual_form.html#weitere-tools",
-    "title": "Informatio",
+    "title": "Visual Form",
     "section": "Weitere Tools",
     "text": "Weitere Tools\n\n\n\n\nWollbox von Vincent van Gogh, mit der er Farbkombinationen getestet hat. Eigenes Bild.\n\n\n\n\n- Colorbrewer\n- Huemint\n- Pinterest"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#schriften",
     "href": "sessions/good_plots/visual_form.html#schriften",
-    "title": "Informatio",
+    "title": "Visual Form",
     "section": "Schriften",
     "text": "Schriften\nDie Schriftart kann einer Abbildung ein ganz anderes Aussehn vereleihen.\nWir nutzen Schriftarten von Google Fonts\n\nlibrary(showtext)\n\nfont_add_google(\"Special Elite\", family = \"special\")\n\n\nDaten von zygmuntz."
   },
   {
-    "objectID": "sessions/good_plots/visual_form.html#section-2",
-    "href": "sessions/good_plots/visual_form.html#section-2",
-    "title": "Informatio",
+    "objectID": "sessions/good_plots/visual_form.html#section-3",
+    "href": "sessions/good_plots/visual_form.html#section-3",
+    "title": "Visual Form",
     "section": "",
     "text": "library(ggwordcloud)\n\ntags &lt;- read.csv(here::here(\"data\", \"goodbooks-10k\", \"tags.csv\"))\nbook_tags &lt;- read.csv(here::here(\"data\", \"goodbooks-10k\", \"book_tags.csv\"))\nbooks &lt;- read.csv(here::here(\"data\", \"goodbooks-10k\", \"books.csv\")) \n\n\nclassics &lt;- book_tags %&gt;% \nleft_join(books) %&gt;%\nleft_join(tags) %&gt;% \nfilter(tag_name == \"classics\") %&gt;% \nfilter(ratings_count &gt; 20000, !duplicated(authors)) %&gt;%\n  select(original_title, average_rating, tag_name, ratings_count) %&gt;%\n  distinct() %&gt;% \n  arrange(ratings_count) %&gt;%\n  slice_tail(n = 50)\n\n\nset.seed(45)\nggplot(data = classics, \n       mapping = aes(label = original_title, size = average_rating)) +\n  geom_text_wordcloud() +\nscale_size(range = c(1, 6)) +\nlabs(title = \"What to read next ...\", \nsubtitle = \"... according to goodreads\") +\ntheme_bg()"
   },
   {
-    "objectID": "sessions/good_plots/visual_form.html#section-3",
-    "href": "sessions/good_plots/visual_form.html#section-3",
-    "title": "Informatio",
+    "objectID": "sessions/good_plots/visual_form.html#section-4",
+    "href": "sessions/good_plots/visual_form.html#section-4",
+    "title": "Visual Form",
     "section": "",
     "text": "font_add_google(\"Special Elite\", family = \"my textfont\")\nfont_add_google(\"Playfair Display\")\n\nshowtext_auto()\n\n\nset.seed(45)\nggplot(data = classics, \n       mapping = aes(label = original_title, size = average_rating)) +\n  geom_text_wordcloud(family = \"my textfont\") +\nscale_size(range = c(1, 6)) +\nlabs(title = \"What to read next\", \nsubtitle = \"According to goodreads\") +\ntheme_bg() +\ntheme(title = element_text(family = \"Playfair Display\", size = 20), \n)"
   },
   {
-    "objectID": "sessions/good_plots/visual_form.html#section-4",
-    "href": "sessions/good_plots/visual_form.html#section-4",
-    "title": "Informatio",
+    "objectID": "sessions/good_plots/visual_form.html#section-5",
+    "href": "sessions/good_plots/visual_form.html#section-5",
+    "title": "Visual Form",
     "section": "",
     "text": "Suche dir eine Schriftart aus Google Fonts und baue sie in deinen Plot ein."
   },
   {
-    "objectID": "sessions/good_plots/visual_form.html#übung",
-    "href": "sessions/good_plots/visual_form.html#übung",
-    "title": "Informatio",
+    "objectID": "sessions/good_plots/visual_form.html#übung-1",
+    "href": "sessions/good_plots/visual_form.html#übung-1",
+    "title": "Visual Form",
     "section": "Übung",
     "text": "Übung\n\nWähle eine Grafik von … aus und erstelle einen Plan, wie du sie verbessern würdest.\n\n\n\n\n\nTufte, E. R., & Graves-Morris, P. R. (1983). The visual display of quantitative information (Bd. 2). Graphics press Cheshire, CT."
   },
