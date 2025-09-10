@@ -1,6 +1,5 @@
 ---
 title: "Informationen"
-
 title-slide-attributes:
   data-background-image: ./images/news.jpg
   data-background-size: cover
@@ -194,7 +193,7 @@ Siehe [storymaps](https://storymaps.arcgis.com/stories/0e636a652d44484b9457f9539
 
 ::: {.panel-tabset}
 
-### Übung
+### 🏋 Übung
 
 ::: {.exercise}
 
@@ -664,7 +663,7 @@ ggplot(
 :::
 :::
 
-## Übung
+## 🏋 Übung
 
 ::: {.exercise}
 Legt für euren Plot aus den vorherigen Übungen die Skalenlimits fest. Begründet eure Entscheidung.

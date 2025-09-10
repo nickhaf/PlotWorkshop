@@ -13,4 +13,26 @@ author:
 
 [View slides in full screen](slides.html)
 
-- Intro/Beispiele/Motivation/Arten von Grafiken (1 Basic + 1 Schöne) - Janine (+Nicklas)
+**Inhalte** 
+
+- Gute Gründe für die Datenvisualisierung mit `ggplot2`    
+- Organisatorische Hinweise  
+- Informationen zum Setup und zum Datensatz (s.u.)  
+- Beispiele für hervorragende Grafiken  
+- Zentrale Plot-Typen  
+- Weitere Plot-Typen  
+
+**Der Datensatz** 
+
+Wir verwenden im Workshop Daten von [gapminder](https://www.gapminder.org/). Wir haben einen Teildatensatz aufbereitet, den man wie folgt herunterladen kann:
+
+- lade die gapminder-Daten von [GitHub](https://github.com/nickhaf/PlotWorkshop/blob/main/data/gapminder_dat.rds) herunter, 
+- lege sie in Deinem Arbeitsverzeichnis ab, in dem auch Dein R-Skript liegt, 
+- und lies sie anschließend mit Deinem R-Skript ein: 
+
+
+```{r}
+#| eval: false
+gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
+```
+
