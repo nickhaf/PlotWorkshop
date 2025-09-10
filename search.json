@@ -795,7 +795,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\ndino\n51.54\n34.87\n\n\nslant_up\n57.97\n85.36\n\n\ncircle\n57.14\n79.19\n\n\ncircle\n52.75\n79.29\n\n\nv_lines\n50.47\n12.46\n\n\nslant_up\n46.02\n46.26\n\n\nhigh_lines\n50.89\n29.15\n\n\nv_lines\n69.53\n64.89\n\n\naway\n41.68\n30.20\n\n\nslant_down\n46.91\n85.60\n\n\nv_lines\n69.50\n81.82\n\n\nhigh_lines\n35.65\n17.51\n\n\nslant_down\n51.35\n0.30\n\n\nslant_down\n61.74\n38.58\n\n\nhigh_lines\n45.80\n81.66\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\ndino\n30.00\n29.10\n\n\nslant_up\n59.63\n7.06\n\n\nstar\n79.49\n53.65\n\n\nhigh_lines\n38.73\n83.79\n\n\nslant_down\n90.70\n41.47\n\n\ncircle\n53.85\n16.39\n\n\nhigh_lines\n85.16\n65.51\n\n\nhigh_lines\n54.11\n17.67\n\n\nx_shape\n57.13\n53.88\n\n\nx_shape\n36.71\n17.38\n\n\ncircle\n84.79\n55.57\n\n\ndots\n75.04\n17.00\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
@@ -921,7 +921,7 @@
     "href": "sessions/Einführung/slides.html#scatterplot",
     "title": "Einführung",
     "section": "Scatterplot",
-    "text": "Scatterplot\n\n\n\nDatentyp numerisch & numerisch\nAchtung Overplotting\nErweiterungen\n\ngeom_smooth() für Anpassungslinie\n\ngeom_jitter() zur Vermeidung von overplotting\n\nalpha zur Vermeidung von overplotting\n\ngeom_text_repel() zur Annotation von Datenpunkten\n\nDokumentation: R Graph Gallery"
+    "text": "Scatterplot\n\n\n\nDatentyp numerisch & numerisch\nAchtung Overplotting\nErweiterungen\n\ngeom_smooth() für Anpassungslinie\n\ngeom_jitter() zur Vermeidung von overplotting\n\nalpha zur Vermeidung von overplotting\n\ngeom_text_repel() zur Annotation von Datenpunkten\n\nKodierung zusätzlicher Variablen mittels Form, Farbe und/oder Größe der Datenpunkte\n\nDokumentation: R Graph Gallery"
   },
   {
     "objectID": "sessions/Einführung/slides.html#scatterplot-1",
@@ -959,6 +959,13 @@
     "text": "Lineplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_line, aes(x = time, y = gini)) +\ngeom_line() +  \ntheme_bg() +\nlabs(title = \"Ungleichheit in Deutschland On the Rise\", \n     subtitle = \"Gini-Koeffizient von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\")"
   },
   {
+    "objectID": "sessions/Einführung/slides.html#lineplot-2",
+    "href": "sessions/Einführung/slides.html#lineplot-2",
+    "title": "Einführung",
+    "section": "Lineplot",
+    "text": "Lineplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line_g7 &lt;- gapminder %&gt;% \n  filter(country %in% c(\"can\", \"fra\", \"deu\", \"ita\", \"jpn\", \"gbr\", \"usa\"), time &gt;=1900, time &lt;= 2024) %&gt;% \n  drop_na(gini)\n\nlabels_g7 &lt;- c(\n  \"can\" = \"Kanada\",\n  \"fra\" = \"Frankreich\",\n  \"deu\" = \"Deutschland\",\n  \"ita\" = \"Italien\",\n  \"jpn\" = \"Japan\",\n  \"gbr\" = \"Vereinigtes Königreich\",\n  \"usa\" = \"USA\"\n)\n\ngapminder_line_g7$country_de &lt;- labels_g7[gapminder_line_g7$country]\ngapminder_line_g7$country_de &lt;- factor(gapminder_line_g7$country_de,\n                        levels = sort(unique(gapminder_line_g7$country_de)))\n\np_line_g7 &lt;- ggplot(data = gapminder_line_g7, aes(x = time, y = gini)) +\n  geom_line(aes(col = country_de)) +  \n  theme_bg() +\n  labs(title = \"Ungleichheit On the Rise\", \n     subtitle = \"Gini-Koeffizient in den G7-Staaten von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\", \n     col = \"G7-Staat\") +\n  scale_color_discrete(labels = labels_g7) +\n  theme_solarized() # + \n  scale_colour_solarized() \np_line_g7"
+  },
+  {
     "objectID": "sessions/Einführung/slides.html#histogram",
     "href": "sessions/Einführung/slides.html#histogram",
     "title": "Einführung",
@@ -994,6 +1001,13 @@
     "text": "Kombiniert\nGruppenvergleich per Boxplot mit Datenpunkten und Violin Plot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_2023, aes(x= world_4region, y = gini)) +\n  geom_violin(aes(fill = world_4region), alpha=.2) + \n  geom_jitter(height = 0, width=.2) + \n  geom_boxplot(fill=NA) +\n  theme_bg() +\n  labs(x = \"Bevölkerung\", y = \"\", fill = \"Weltregion\",\n       title = \"Verteilung des Gini-Index\", subtitle = \"Jahr: 2023\")"
   },
   {
+    "objectID": "sessions/Einführung/slides.html#bubble-chart",
+    "href": "sessions/Einführung/slides.html#bubble-chart",
+    "title": "Einführung",
+    "section": "Bubble Chart",
+    "text": "Bubble Chart\nScatterplot, in dem über Größe und Farbe der Datenpunkte zusätzliche Information dargestellt wird.\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\noptions(scipen=10)\n# Farben der vier Weltregionen \ntuerkis &lt;- rgb(0,213,233, max=255)\ngruen &lt;- rgb(127,235,0, max=255)\nrot &lt;- rgb(255,88,114, max=255)\ngelb &lt;- rgb(255,231,0, max=255)\n\ngapminder |&gt;\n  # Auswahl der Daten von 2019:\n  subset(time == 2019) |&gt; \n    # Neu: Angabe der Einwohnerzahl in Millionen\n  mutate(pop = pop/1000000) |&gt;\n  # Grund-Grafik anfordern:\n  ggplot(aes(x=gini, y=hapiscore_whr)) +\n  # Neu: Text für die Jahreszahl (\"2015\") einfügen, sodass diese ganz im Hintergrund steht\n  annotate(\"text\", x=45, y=50, label=\"2019\", size=70, colour =\"grey90\", family=\"mono\", fontface=1) +\n  # Neu: Farbthema: heller Hintergrund, schwarze Linien an x- und y-Achse\n  theme_classic() + \n  # Wie bisher: Punkte einzeichnen --&gt; Streu-Punkt-Diagramm,\n  # Neu: Unterscheidung der Punkte nach Farbe (Region) und Größe (Population);  \n  # Transparenz der Datenpunkte (alpha), Rand um die Punkte (shape) \n  geom_point(aes(fill = world_4region, size = pop), shape=21, alpha=.7) +\n  # Skalieren der Größe der Punkte, sodass die Unterschiede deutlicher sind\n  scale_size(range = c(1, 30)) +\n  # Neu: Beschriftung der Achsen\n  labs(x=\"Gini-Index\", y=\"Hyppiness Score\") +\n  # Neu: manuelle Spezifikation der y-Achse: Wertebereich, Position der Beschriftungen (10er-Schritte)\n  scale_y_continuous(limits = c(15, 85), \n                     breaks = seq(20,80, by=10),\n                     labels = paste0(seq(20,80, by=10), \"%\")) +\n  # Neu: manuelle Spezifikation der x-Achse: Wertebereich, log-Transformation, Position und Name der Beschriftungen\n  scale_x_continuous(limits = c(18,75),\n                     breaks = seq(20,70, by= 5)) +\n  # Neu: manuelle Spezifikation der Farben\n  scale_fill_manual(\n    values = c(tuerkis, gruen, rot, gelb),\n    breaks = c(\"africa\", \"americas\", \"asia\", \"europe\")) +\n  # Neu: Theme (Anpassung der Schriftgroesse, relativ zur Groesse 12, blaues Raster im Hintergrund, Rand für die Legende)\n  theme(text = element_text(size=12),\n        axis.text = element_text(size=rel(.8)),\n        axis.title = element_text(size=rel(1.2)),\n        panel.grid.major = element_line(colour = \"azure2\")) +\n  # Neu: Titel, Beschriftungen der Achse und Legende\n  labs(title=\"Bubble Chart im Gapminder-Look\",\n       subtitle=\"Jahr: 2023\",\n       x=\"Gini-Index\",\n       y=\"Happiness Score (WHR)\",\n       fill=\"Weltregion\",\n       size=\"Einwohnerzahl\\n(in Mio.)\") +\n  # Neu: Vergroessern der Punkte fuer die Farb-Legende fuer die Kontinente\n  guides(fill = guide_legend(override.aes = list(size = 5), order=1)) \n\n\n\n\n\nAbbildung in Anlehnung an die typische Darstellung auf gapminder"
+  },
+  {
     "objectID": "sessions/Einführung/slides.html#karten",
     "href": "sessions/Einführung/slides.html#karten",
     "title": "Einführung",
@@ -1022,18 +1036,18 @@
     "text": "Ridgeline Plot\n\n\nAbbildung aus der R Graph Gallery"
   },
   {
-    "objectID": "sessions/Einführung/slides.html#plotly",
-    "href": "sessions/Einführung/slides.html#plotly",
+    "objectID": "sessions/Einführung/slides.html#animiert-gganimate",
+    "href": "sessions/Einführung/slides.html#animiert-gganimate",
     "title": "Einführung",
-    "section": "Plotly",
-    "text": "Plotly"
+    "section": "Animiert: gganimate",
+    "text": "Animiert: gganimate"
   },
   {
-    "objectID": "sessions/Einführung/slides.html#gganimate",
-    "href": "sessions/Einführung/slides.html#gganimate",
+    "objectID": "sessions/Einführung/slides.html#interaktiv-plotly",
+    "href": "sessions/Einführung/slides.html#interaktiv-plotly",
     "title": "Einführung",
-    "section": "gganimate",
-    "text": "gganimate"
+    "section": "Interaktiv: plotly",
+    "text": "Interaktiv: plotly"
   },
   {
     "objectID": "sessions/Einführung/slides.html#generative-art",
@@ -1230,6 +1244,27 @@
     "title": "Einführung",
     "section": "Von Long zu Wide",
     "text": "Von Long zu Wide\n\ninhabitants_wide_2 &lt;- inhabitants_long %&gt;%\n  pivot_wider(\n    id_cols = \"country\",\n    names_from = \"variable\",\n    values_from = \"value\"\n  )\n\nhead(inhabitants_wide_2)\n\n# A tibble: 3 × 3\n  country    area inhabitants_2022\n  &lt;chr&gt;     &lt;dbl&gt;            &lt;dbl&gt;\n1 China   9597000       1425857720\n2 India   3287000       1420939232\n3 USA     9834000        338903174"
+  },
+  {
+    "objectID": "sessions/animate_plotly/slides.html#animierte-grafiken",
+    "href": "sessions/animate_plotly/slides.html#animierte-grafiken",
+    "title": "Ausblick: gganimate und plotly",
+    "section": "Animierte Grafiken",
+    "text": "Animierte Grafiken\n\nBisher haben wir ausschließlich statische Grafiken erzeugt.\n\nForschungsergebnisse werden zunehmend nicht mehr ausschließlich in Printmedien dargestellt, sodass wir animierte und interaktive Grafiken teilen können. So kann noch mehr Information in einer einzigen “Grafik” zugänglich gemacht werden.\n\nDie Grundidee bei animierten Grafiken ist es, nicht einen einzigen Plot zu erstellen, sondern stattdessen sehr viele, die dann als einzelne Bilder zu einem Film zusammengefügt werden. Das übernimmt gganimate für uns!\n\nZwei zentrale Fragen, die man sich stellen sollte, bevor man anfängt Daten zu animieren:\n- “Gewinnt der Betrachter bzw. die Betrachterin dabei zusätzliche Information?”\n- “Ist es den Aufwand wert?”\n\n\n\n\n\n\n\nWeiterführende Quellen:\n\n\n\nR Graph Gallery\nWorkshop-Material auf PandaR"
+  },
+  {
+    "objectID": "sessions/animate_plotly/slides.html#animierte-grafiken-1",
+    "href": "sessions/animate_plotly/slides.html#animierte-grafiken-1",
+    "title": "Ausblick: gganimate und plotly",
+    "section": "Animierte Grafiken",
+    "text": "Animierte Grafiken\n\n\n\n\n\n\nAusgangspunkt für eine animierte Grafik mit gganimate ist eine statische, mit ggplot2 erzeugte Grafik.\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\ngapminder_line_g7 &lt;- gapminder |&gt;\n  filter(country %in% c(\"can\", \"fra\", \"deu\", \"ita\", \"jpn\", \"gbr\", \"usa\"), time &gt;=1900, time &lt;= 2024) |&gt;\n  drop_na(gini)\n\nlabels_g7 &lt;- c(\n  \"can\" = \"Kanada\",\n  \"fra\" = \"Frankreich\",\n  \"deu\" = \"Deutschland\",\n  \"ita\" = \"Italien\",\n  \"jpn\" = \"Japan\",\n  \"gbr\" = \"Vereinigtes Königreich\",\n  \"usa\" = \"USA\"\n)\n\ngapminder_line_g7$country_de &lt;- labels_g7[gapminder_line_g7$country]\ngapminder_line_g7$country_de &lt;- factor(gapminder_line_g7$country_de,\n                        levels = sort(unique(gapminder_line_g7$country_de)))\n\np_line_g7 &lt;- ggplot(data = gapminder_line_g7, aes(x = time, y = gini)) +\n  geom_line(aes(col = country_de)) +  \n  theme_bg() +\n  labs(title = \"Ungleichheit On the Rise\", \n     subtitle = \"Gini-Koeffizient in den G7-Staaten von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\", \n     col = \"G7-Staat\") +\n  scale_color_discrete(labels = labels_g7) +\n  theme_solarized() # + \n  #scale_colour_solarized() \np_line_g7"
+  },
+  {
+    "objectID": "sessions/animate_plotly/slides.html#animierte-grafiken-2",
+    "href": "sessions/animate_plotly/slides.html#animierte-grafiken-2",
+    "title": "Ausblick: gganimate und plotly",
+    "section": "Animierte Grafiken",
+    "text": "Animierte Grafiken\n\n\n\n\n\n\nMit transition_reveal(along = time) werden die Linien über die Zeit “enthüllt”.\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\np_line_g7 + \n  transition_reveal(along = time) +# Linien werden über die Zeit \"enthüllt\"\n  ease_aes(\"linear\")"
   },
   {
     "objectID": "sessions/prep_plots/prep_plots.html",
