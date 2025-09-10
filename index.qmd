@@ -95,3 +95,16 @@ Die Teilnehmenden benötigen einen Laptop, mit welchem sie sich in Posit-Cloud e
 
 :::
 
+##  Leistungsnachweis: Schriftliche Ausarbeitung
+
+Erzählen Sie uns eine Geschichte! Suchen Sie sich ein paar spannende Variablen und fertigen Sie einen kleinen Bericht an, in dem die Verteilungen bzw. Zusammenhänge dargestellt werden
+- Verwenden Sie dafür einen der Datensätze, die wir im Workshop verwendet haben. 
+- Nutzen Sie mindestens zwei Grafiktypen (z.B. Line Plot und Scatterplot) 
+- Diskutieren Sie jeweils, welche Änderungen Sie an Ihrer Grafik vorgenommen haben, damit diese den 
+Gestaltungsprinzipien guter Grafiken entspricht. 
+- Umfang: max. 2 Seiten
+
+[Einreichung]{.highlight}
+
+- Fristende: bis spätestens 15.10.2025  
+- E-Mail: [nicklas.jakob.hafiz@hu-berlin.de](mailto:nicklas.jakob.hafiz@hu-berlin.de) und [janine.buchholz@hu-berlin.de](mailto:janine.buchholz@hu-berlin.de)
