@@ -110,9 +110,14 @@ $presentation-heading-font: 'Roboto Condensed', san-serif;
 }
 
 .title {
-  font-size: 70px !important;
-  color: $header-color !important;
+  font-size: 130px !important;
+  color: $theme-darkblue !important;
   font-weight: bold;
+  padding: 0.1em 0.1em;
+    background-color: rgba(248, 248, 248, .6);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 1rem 0 rgba(248, 248, 248, .5);
+    border-radius: 5px;
 
 }
 
