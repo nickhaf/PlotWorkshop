@@ -385,557 +385,417 @@
     "text": "View slides in full screen\n\nÜbung\n\nExplorative Grafiken - Janine"
   },
   {
-    "objectID": "sessions/good_plots/good_plots.html",
-    "href": "sessions/good_plots/good_plots.html",
-    "title": "Was ist eine gute Grafik?",
-    "section": "",
-    "text": "View slides in full screen\n\nWahrnehmungspsychologie/Schlechte/Gute Grafiken + Sammeln?/ggplot-Anwendung direkt dazu (z.B. Farben, Annotation … -&gt; Also direkte Anwendung der Theorie) - Janine (+ Nicklas)\n\n\nÜbung\nSchlechte Grafiken diskutieren"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#section",
-    "href": "sessions/good_plots/slides.html#section",
-    "title": "Was ist eine gute Grafik?",
-    "section": "",
-    "text": "Excellence in statistical graphics consists of complex ideas communicated with clarity, precision, and efficiency. (Tufte & Graves-Morris, 1983)\n\n\nshow the data\ninduce the viewer to think about the substance rather than about methodology, graphic design, the technology of graphic production, or something else\navoid distorting what the data have to say\npresent many numbers in a small space\nmake large datasets coherent\nencourage the eye to compare different pieces of data\nReveal the data at several levels of detail, from a broad overview to the fine structure\nserve a reasonably clear purpose: description, exploration, tabulation, or decoration\nbe closely integrated with the statistical and verbal descriptions of a data set"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#section-1",
-    "href": "sessions/good_plots/slides.html#section-1",
-    "title": "Was ist eine gute Grafik?",
-    "section": "",
-    "text": "Darstellung von David McCandless in Knowledge is Beautiful (2014)."
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#what-makes-a-bad-plot",
-    "href": "sessions/good_plots/slides.html#what-makes-a-bad-plot",
-    "title": "Was ist eine gute Grafik?",
-    "section": "What makes a bad plot?",
-    "text": "What makes a bad plot?\n\n\n\nJede Gruppe bekommt eine Abbildung.\n\nDiskutiert in der Gruppe, was bei der Visualisierung schief läuft.\nSession\nKurze Diskussion. Stellt den anderen Gruppen eure Ergebnisse vor.\n\n\n\n\n\n\nBild gefunden auf Reddit."
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#integrität-der-daten-garbage-in-garbage-out",
-    "href": "sessions/good_plots/slides.html#integrität-der-daten-garbage-in-garbage-out",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Integrität der Daten: Garbage in, garbage out",
-    "text": "Integrität der Daten: Garbage in, garbage out\n\n\n\nScheinkorrelationen\nWrong data, wrong measurements, wrong interpretations …\nSloppy research\n\nP-Hacking\nCherry Picking\n\n\n\n\n\n\nFoto von Jilbert Ebrahimi auf Unsplash."
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#fehlender-kontext",
-    "href": "sessions/good_plots/slides.html#fehlender-kontext",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Fehlender Kontext",
-    "text": "Fehlender Kontext"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#section-2",
-    "href": "sessions/good_plots/slides.html#section-2",
-    "title": "Was ist eine gute Grafik?",
-    "section": "",
-    "text": "Siehe storymaps."
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#section-3",
-    "href": "sessions/good_plots/slides.html#section-3",
-    "title": "Was ist eine gute Grafik?",
-    "section": "",
-    "text": "“Land doesn’t vote … People Do.”\n\n\n\n\n\n\nSiehe storymaps."
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#daten-in-kontext-setzen",
-    "href": "sessions/good_plots/slides.html#daten-in-kontext-setzen",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Daten in Kontext setzen",
-    "text": "Daten in Kontext setzen\n\nÜbungLösung\n\n\n\nZeichne Mittelwerte, oder hebe hervor aus einer Vergleichsmenge, z.B. europäischer Länder. Am einfachsten geht das mit einem zweiten Datensatz, der alle europäischen Länder enthält:\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\nggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(aes(group = country))\n\n\n\n\n\n\n\nHinweis\n\n\nCode\n## Bilde einen eignen Datensatz, der alle europäischen Lönder enthält\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\n\n\n\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = \"lightgrey\", alpha = 0.5) +\n  geom_smooth(color = \"black\") +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  theme_bg() +\n  labs(\n    title = \"Ungleichheit in Europa On the Rise\",\n    subtitle = \"1900 bis 2024, Gelbe Linie zeigt Deutschland\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  )\n\np_line"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#daten-in-kontext-setzen-1",
-    "href": "sessions/good_plots/slides.html#daten-in-kontext-setzen-1",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Daten in Kontext setzen",
-    "text": "Daten in Kontext setzen\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = \"lightgrey\", alpha = 0.5) +\n  geom_smooth(color = \"black\") +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  theme_bg() +\n  labs(\n    title = \"Ungleichheit in Europa On the Rise\",\n    subtitle = \"1900 bis 2024, Gelbe Linie zeigt Deutschland\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  )\n\np_line"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#achsen",
-    "href": "sessions/good_plots/slides.html#achsen",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Achsen",
-    "text": "Achsen\n\nFoto von Joerg Fielenbach auf Unsplash"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#konventionen",
-    "href": "sessions/good_plots/slides.html#konventionen",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Konventionen",
-    "text": "Konventionen\n\n\n\n\n\n\n\nKonventionen beachten! Die y-Achse sollte bspw. in der Regel bei 0 beginnen.\n\n\n\n\n\n\n\n\n\n776.013 Home protection; use or threatened use of deadly force; presumption of fear of death or great bodily harm.— (1) A person who is in a dwelling or residence in which the person has a right to be has no duty to retreat and has the right to stand his or her ground and use or threaten to use:\n(a) Nondeadly force against another when and to the extent that the person reasonably believes that such conduct is necessary to defend himself or herself or another against the other’s imminent use of unlawful force; or\n(b) Deadly force if he or she reasonably believes that using or threatening to use such force is necessary to prevent imminent death or great bodily harm to himself or herself or another or to prevent the imminent commission of a forcible felony.\n(Florida Satutes)"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#manipulation-des-bildformats",
-    "href": "sessions/good_plots/slides.html#manipulation-des-bildformats",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Manipulation des Bildformats",
-    "text": "Manipulation des Bildformats"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#reales-beispiel-für-manipulation-des-bildformates",
-    "href": "sessions/good_plots/slides.html#reales-beispiel-für-manipulation-des-bildformates",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Reales Beispiel für Manipulation des Bildformates",
-    "text": "Reales Beispiel für Manipulation des Bildformates\n\nThe designer of the visualization, by selecting a y-axis starting point, has control over the subjective importance of the resulting differences.\n(Correll et al., 2020)\n\n\n\n\n\n\nGrafik aus Huff (1979), heruntergeladen von Observable blog."
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#soll-die-null-geplottet-werden",
-    "href": "sessions/good_plots/slides.html#soll-die-null-geplottet-werden",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Soll die Null geplottet werden?",
-    "text": "Soll die Null geplottet werden?"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#absolute-werte",
-    "href": "sessions/good_plots/slides.html#absolute-werte",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Absolute Werte",
-    "text": "Absolute Werte\nDie Null sollte in der Regel mitgeplottet werden, da wir uns Mengen anschauen."
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#veränderung-der-werte",
-    "href": "sessions/good_plots/slides.html#veränderung-der-werte",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Veränderung der Werte",
-    "text": "Veränderung der Werte\nHier ist es eher eine Ermessensfrage:\n\n\n\n\n\n\nIf zero is in the neighborhood, invite it in! (Andrew Gelman)\n\n\n\n\n\n\nIn general, in a time-series, use a baseline that shows the data not the zero point. (Tufte & Graves-Morris, 1983)"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#veränderung-der-werte-1",
-    "href": "sessions/good_plots/slides.html#veränderung-der-werte-1",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Veränderung der Werte",
-    "text": "Veränderung der Werte"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#schneiden-von-achsen",
-    "href": "sessions/good_plots/slides.html#schneiden-von-achsen",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Schneiden von Achsen",
-    "text": "Schneiden von Achsen\n\n\n\n\n\n\nIn der Regel keine gute Idee! Verzerrt die Skala."
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#story-arc",
-    "href": "sessions/good_plots/slides.html#story-arc",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/story.html#story-arc",
+    "href": "sessions/good_plots/story.html#story-arc",
+    "title": "Informatio",
     "section": "Story-Arc",
     "text": "Story-Arc\n\n\nAbbildung von Laura Navarro Soler."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#story-arc-1",
-    "href": "sessions/good_plots/slides.html#story-arc-1",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/story.html#story-arc-1",
+    "href": "sessions/good_plots/story.html#story-arc-1",
+    "title": "Informatio",
     "section": "Story-Arc",
     "text": "Story-Arc\n\n\nAbbildung von Corey Jones."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#episodische-grafik-lass-es-sich-entfalten.",
-    "href": "sessions/good_plots/slides.html#episodische-grafik-lass-es-sich-entfalten.",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/story.html#episodische-grafik-lass-es-sich-entfalten.",
+    "href": "sessions/good_plots/story.html#episodische-grafik-lass-es-sich-entfalten.",
+    "title": "Informatio",
     "section": "Episodische Grafik, lass es sich entfalten.",
     "text": "Episodische Grafik, lass es sich entfalten.\n\n\nBild von information is beautiful.\n\n\n“If your study were reported in the newspaper, what would the headline be?”"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#bewerten-der-informationen",
-    "href": "sessions/good_plots/slides.html#bewerten-der-informationen",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/story.html#bewerten-der-informationen",
+    "href": "sessions/good_plots/story.html#bewerten-der-informationen",
+    "title": "Informatio",
     "section": "Bewerten der Informationen",
     "text": "Bewerten der Informationen"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#zusätzliche-informationen-einbauen",
-    "href": "sessions/good_plots/slides.html#zusätzliche-informationen-einbauen",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/story.html#zusätzliche-informationen-einbauen",
+    "href": "sessions/good_plots/story.html#zusätzliche-informationen-einbauen",
+    "title": "Informatio",
     "section": "Zusätzliche Informationen einbauen",
     "text": "Zusätzliche Informationen einbauen\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\nsteuer &lt;- gapminder_line %&gt;%\n  filter(time %in% c(1914, 1920, 1939, 1945, 1974, 1990, 1991, 1996, 2020), country == \"deu\") %&gt;%\n  arrange(time) %&gt;%\n  mutate(label = c(\"Beginn 1. WK\", \"Reichseinkommensteuer\", \"Beginn 2. WK\", \"Starke Anhebung durch Alliiert\", \"Einkommenssteuerreformgesetz\", \"Wiedervereinigung\", \"Linear-Progressiver Tarif\", \"Anhebung Freibetrage\", \"Corona\"))\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  theme_bg_dark() +\n  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = \"#F8F8F8\", alpha = 0.2) +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  geom_point(data = steuer) +\n  geom_text_repel(\n    data = steuer, aes(label = label), nudge_x = c(20, 25, 10, -5, 0, 0, -10), nudge_y = c(2, 2, 2, -2, 1, -2, 1),\n    color = \"#F4BA02\"\n  ) +\n  labs(\n    title = \"Ungleichheit in Deutschland On the Rise?\",\n    subtitle = \"Gini-Koeffizient von 1850 bis 2024\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  ) +\n  geom_richtext(\n    data = data.frame(\n      x = 1900, y = 20,\n      label = \"&lt;b&gt;Gini-Koeffizient&lt;/b&gt;: &lt;br&gt; Maß für Ungleichheit. &lt;br&gt; In diesem Fall Einkommen.&lt;br&gt;0 = vollkommen gleich &lt;br&gt; 100 = maximal ungleich.\"\n    ),\n    aes(x, y, label = label),\n    hjust = 0, vjust = 0,\n    fill = \"#F4BA02\", label.color = \"#01364C\",\n    label.r = grid::unit(3, \"pt\"),\n    size = 5\n  )\n\np_line\n\n## Add a plot on vermogen!! Evtl. einfach den Gini Koeffizienten fur ein Paar Jahre, die ich habe\n\n## https://www.econtribute.de/RePEc/ajk/ajkpbs/ECONtribute_PB_001_2020.pdf"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#vergleichen",
-    "href": "sessions/good_plots/slides.html#vergleichen",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/story.html#vergleichen",
+    "href": "sessions/good_plots/story.html#vergleichen",
+    "title": "Informatio",
     "section": "Vergleichen",
     "text": "Vergleichen\n\nPlot\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#\n# World Inequality Lab – Working Paper N° 2022/09\n# Wealth and its Distribution in Germany,\n# 1895-2018\n\ndf &lt;- data.frame(\n  year = c(\n    1895, 1900, 1905, 1910, 1915, 1920, 1925, 1930, 1935, 1940,\n    1945, 1950, 1955, 1960, 1965, 1970, 1975, 1980, 1985, 1990,\n    1995, 2000, 2005, 2010, 2015, 2018\n  ),\n  top1_share_percent = c(\n    46, 47, 47.5, 48, 47.5, 45, 36, 41, 38, 33,\n    28, 23, 22, 23, 21, 24, 28, 27, 26, 25.5,\n    26, 27, 26.5, 28.5, 27, 28\n  )\n)\n\nggplot(df, aes(year, top1_share_percent)) +\n  geom_line() +\n  geom_point() +\n  ylim(c(0, 50))\n\n\n\ndat_eink &lt;- data.frame(\n  country = rep(c(\"Schweiz\", \"Deutschland\", \"Österreich\"), 4),\n  Steuer = c(rep(\"Erbschaft\", 3), rep(\"Vermögen\", 3), rep(\"Konsum\", 3), rep(\"Unternehmen\", 3)),\n  anteil = c(1, 0, 1, 7, 0, 0, 26, 41, 43, 15, 12, 10)\n)\n\np_bar &lt;- ggplot(dat_eink, aes(x = reorder(Steuer, anteil), y = anteil, fill = Steuer)) +\n  geom_bar(stat = \"identity\", position = \"dodge\") +\n  facet_wrap(vars(country)) +\n  theme_bg() +\n  labs(\n    title = \"Steueraufkommen in % des BIP\",\n    subtitle = \"Haushaltsjahr 2022\",\n    x = \"Steuerart\",\n    y = \"Anteil am BIP in %\"\n  ) +\n  geom_text(aes(label = anteil),\n    position = position_dodge(width = 0.9),\n    vjust = -0.25\n  ) +\n  theme_bg_dark()\n\n\n# https://www.wsi.de/de/blog-17857-vermoegensteuer-geht-die-schweiz-widerlegt-den-mythos-vom-unmoeglichen-68853.htm\n\n\ngapminder_usa &lt;- gapminder %&gt;%\n  filter(country %in% c(\"usa\"), time &gt;= 1850, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\np_line_usa &lt;- ggplot(data = gapminder_usa, aes(x = time, y = gini, color = country)) +\n  geom_line() +\n  theme_bg() +\n  labs(\n    title = \"Einkommens- und Erbschaftssteuer in den USA\",\n    subtitle = \"Gini-Koeffizient von 1850 bis 2024\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  ) +\n  geom_richtext(\n    data = data.frame(\n      x = 1850, y = 30,\n      label = \"Zwischen 1930 und 1980 wurden in den Vereinigten Staaten die höchsten Einkommen durchschnittlich mit 81 Prozent besteuert und die größten vererbten Vermögen mit 74 Prozent.\"\n    ),\n    aes(x, y, label = label),\n    inherit.aes = FALSE,\n    hjust = 0, vjust = 0,\n    fill = \"white\", label.color = \"black\",\n    label.r = grid::unit(3, \"pt\"),\n    size = 3.5\n  ) +\n  theme_bg_dark()\n\n\n\n\n\n## Eine Vermogenssteuer hat das potenzial, Ungleichheit zu reduzieren, und die Abgabenlast von Konsumsteuern zu reduzieren.\n## Die USA hatten in den 80 Jahren eine 80% Vermogenssteuer.\n\n\nlibrary(patchwork)\n\n\np_line +\n  annotation_custom(ggplotGrob(p_bar),\n    xmin = 1980, ymin = 43,\n    xmax = 2020\n  ) +\n  p_line_usa +\n  plot_layout(widths = c(2, 1))"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#section-4",
-    "href": "sessions/good_plots/slides.html#section-4",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/story.html#section",
+    "href": "sessions/good_plots/story.html#section",
+    "title": "Informatio",
     "section": "",
     "text": "Was wäre die Überschrift für eure Grafik, wenn sie in der Zeitung stehen würde?\nWelche Infos sind noch notwendig, um die Grafik zu verstehen? Wo könnte man sie einbauen?\nSoll die Abbildung aus mehreren Plots bestehen? In welcher Reihenfolge?"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#publikum",
-    "href": "sessions/good_plots/slides.html#publikum",
+    "objectID": "sessions/good_plots/good_plots.html",
+    "href": "sessions/good_plots/good_plots.html",
     "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "View slides in full screen"
+  },
+  {
+    "objectID": "sessions/good_plots/good_plots.html#intro",
+    "href": "sessions/good_plots/good_plots.html#intro",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "View slides in full screen"
+  },
+  {
+    "objectID": "sessions/good_plots/good_plots.html#information",
+    "href": "sessions/good_plots/good_plots.html#information",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Information",
+    "text": "Information\n\nView slides in full screen"
+  },
+  {
+    "objectID": "sessions/good_plots/good_plots.html#story",
+    "href": "sessions/good_plots/good_plots.html#story",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Story",
+    "text": "Story\n\nView slides in full screen"
+  },
+  {
+    "objectID": "sessions/good_plots/good_plots.html#goal",
+    "href": "sessions/good_plots/good_plots.html#goal",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Goal",
+    "text": "Goal\n\nView slides in full screen"
+  },
+  {
+    "objectID": "sessions/good_plots/good_plots.html#visual-form",
+    "href": "sessions/good_plots/good_plots.html#visual-form",
+    "title": "Was ist eine gute Grafik?",
+    "section": "Visual Form",
+    "text": "Visual Form\n\nView slides in full screen"
+  },
+  {
+    "objectID": "sessions/good_plots/goal.html#publikum",
+    "href": "sessions/good_plots/goal.html#publikum",
+    "title": "Informatio",
     "section": "Publikum",
     "text": "Publikum"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#purpose",
-    "href": "sessions/good_plots/slides.html#purpose",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#purpose",
+    "href": "sessions/good_plots/goal.html#purpose",
+    "title": "Informatio",
     "section": "Purpose",
     "text": "Purpose\n\nExploratory vs. Explanatory\nKann oft über reines Zeigen der Daten hinausgehen."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#salienz",
-    "href": "sessions/good_plots/slides.html#salienz",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#salienz",
+    "href": "sessions/good_plots/goal.html#salienz",
+    "title": "Informatio",
     "section": "Salienz",
     "text": "Salienz\nSalienz durch visual features:\n Quelle: Wong, B. (2010)"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#gruppieren",
-    "href": "sessions/good_plots/slides.html#gruppieren",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#gruppieren",
+    "href": "sessions/good_plots/goal.html#gruppieren",
+    "title": "Informatio",
     "section": "Gruppieren",
     "text": "Gruppieren\n\n\nGruppierung durch Form\n\n\n\n\n\n\n\n\n\n\nGruppierung durch verbundene Elemente"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#darstellung-von-größen",
-    "href": "sessions/good_plots/slides.html#darstellung-von-größen",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#darstellung-von-größen",
+    "href": "sessions/good_plots/goal.html#darstellung-von-größen",
+    "title": "Informatio",
     "section": "Darstellung von Größen",
     "text": "Darstellung von Größen\nDie Größe von Elemenen kann auch genutzt werden, um Daten zu kodieren."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#einschätzen-von-größen",
-    "href": "sessions/good_plots/slides.html#einschätzen-von-größen",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#einschätzen-von-größen",
+    "href": "sessions/good_plots/goal.html#einschätzen-von-größen",
+    "title": "Informatio",
     "section": "Einschätzen von Größen",
     "text": "Einschätzen von Größen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDie Größe von Kreisen einzuschätzen ist schwer!"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#das-gleiche-gilt-für-winkel",
-    "href": "sessions/good_plots/slides.html#das-gleiche-gilt-für-winkel",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#das-gleiche-gilt-für-winkel",
+    "href": "sessions/good_plots/goal.html#das-gleiche-gilt-für-winkel",
+    "title": "Informatio",
     "section": "Das gleiche gilt für Winkel!",
     "text": "Das gleiche gilt für Winkel!\n\n\nVersuche, die Größen zu sortieren:"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#das-gleiche-gilt-für-winkel-1",
-    "href": "sessions/good_plots/slides.html#das-gleiche-gilt-für-winkel-1",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#das-gleiche-gilt-für-winkel-1",
+    "href": "sessions/good_plots/goal.html#das-gleiche-gilt-für-winkel-1",
+    "title": "Informatio",
     "section": "Das gleiche gilt für Winkel!",
     "text": "Das gleiche gilt für Winkel!\n\n\n Quelle\n\n\nQuelle\n\n\n\n\n\n\n\n\nKreis- bzw. Tortendiagramme sollten daher vermieden werden."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#farben",
-    "href": "sessions/good_plots/slides.html#farben",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#farben",
+    "href": "sessions/good_plots/goal.html#farben",
+    "title": "Informatio",
     "section": "Farben",
     "text": "Farben\n\n\nFarbe ist eine der wichtigsten Methoden, um Informationen zu [labeln], hervorzuheben, [Werte] zu kommunizieren, [Realität simulieren], und um zu designen und zu [dekorieren].\n\n\n\n\nFoto von Efe Kurnaz auf Unsplash"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#kategoriale-vs.-quantitative-daten",
-    "href": "sessions/good_plots/slides.html#kategoriale-vs.-quantitative-daten",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#kategoriale-vs.-quantitative-daten",
+    "href": "sessions/good_plots/goal.html#kategoriale-vs.-quantitative-daten",
+    "title": "Informatio",
     "section": "Kategoriale vs. quantitative Daten",
     "text": "Kategoriale vs. quantitative Daten\n\n\nKategoriale Daten\nVerschiedene Farben, die sich gut unterscheiden lassen.\n\n\n\n\n\n\n\n\n\n\nQuantitative Daten\nFarbverläufe, die eine Reihenfolge haben.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2 setzt die entsprechende Skala schon automatisch!"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#skalen-mit-nullpunkt",
-    "href": "sessions/good_plots/slides.html#skalen-mit-nullpunkt",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#skalen-mit-nullpunkt",
+    "href": "sessions/good_plots/goal.html#skalen-mit-nullpunkt",
+    "title": "Informatio",
     "section": "Skalen mit Nullpunkt",
     "text": "Skalen mit Nullpunkt\n\nWas zu beachten ist: unten Blau oben Rot … https://ggplot2-book.org/scales-colour.html\nVor allem für diskrete Gruppen geeignet\nFarbverläufe schwieriger (aber es gibt color scales dafür)\nBestimmte Farben (Grün = gut, Rot = Gefahr)\nIntervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen\n\nKein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten\n\nOrdinal: Richtung und gute Unterscheidbarkeit im Farbraum\nNominalskaliert: Spriale/Diagnoale im Farbraum\nDiskret\nContinuous\nBinned Vorgefertigte Paletten:\n\nSequenziell\nQualitativ\nDiverging"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#farbwahrnehmung-beim-menschen",
-    "href": "sessions/good_plots/slides.html#farbwahrnehmung-beim-menschen",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#farbwahrnehmung-beim-menschen",
+    "href": "sessions/good_plots/goal.html#farbwahrnehmung-beim-menschen",
+    "title": "Informatio",
     "section": "Farbwahrnehmung beim Menschen",
     "text": "Farbwahrnehmung beim Menschen\n\n\n\n\nPrimärfarben des Lichts: Rot, Grün, Blau\n\n\n\n\n\nBy Original:  Penubag Vector: Victor Blacus - Own work based on: Electromagnetic-Spectrum.png, CC BY-SA 3.0, Link\nBy BenRG - Own work, Public Domain, Link"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#andere-tiere-können-auch-mal-mehr-oder-weniger-haben",
-    "href": "sessions/good_plots/slides.html#andere-tiere-können-auch-mal-mehr-oder-weniger-haben",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#andere-tiere-können-auch-mal-mehr-oder-weniger-haben",
+    "href": "sessions/good_plots/goal.html#andere-tiere-können-auch-mal-mehr-oder-weniger-haben",
+    "title": "Informatio",
     "section": "Andere Tiere können auch mal mehr oder weniger haben:",
     "text": "Andere Tiere können auch mal mehr oder weniger haben:\n\n\n\n\n\n\n\nBild aus Farbsehen der Tiere\nFoto von Ben Moreland auf Unsplash"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#viele-tiere-sehen-nur-grau",
-    "href": "sessions/good_plots/slides.html#viele-tiere-sehen-nur-grau",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#viele-tiere-sehen-nur-grau",
+    "href": "sessions/good_plots/goal.html#viele-tiere-sehen-nur-grau",
+    "title": "Informatio",
     "section": "Viele Tiere sehen nur grau",
     "text": "Viele Tiere sehen nur grau\n\n\nWarum überhaupt Farbwahrnehmung?\n\n\nKonsistenz: Farbtöne sind unabhängig vom Licht wahrnehmbar.\nAber: More is not always better! Zu viel kann auch vom Wesentlichen ablenken.\n\n\nFarbwahrnehmung ist also subjektiv, und bringt nur einen Vorteil, wenn eine Bedeutung daraus abgeleitet werden kann.\n\n\n\n\n\nFoto von Chinh Le Duc auf Unsplash"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#more-is-not-always-better",
-    "href": "sessions/good_plots/slides.html#more-is-not-always-better",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#more-is-not-always-better",
+    "href": "sessions/good_plots/goal.html#more-is-not-always-better",
+    "title": "Informatio",
     "section": "More is not always better",
     "text": "More is not always better\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(\n  gapminder_2020,\n  aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point(size = 3) +\n  theme_bg() \n\n\n\n\n\n\n\n\n\nMehr als sechs Farben sollten es auf keinen Fall werden!\n\n\n\n\n\n\nAlternative: Facetting."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#farben-1",
-    "href": "sessions/good_plots/slides.html#farben-1",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#farben-1",
+    "href": "sessions/good_plots/goal.html#farben-1",
+    "title": "Informatio",
     "section": "Farben",
     "text": "Farben\n\nGanglienzellen übertragen keine Informationen über absolute Helligkeit, sondern über relative Helligkeit.\n\nVisualisierung kann nicht gut darin sein, absolute Werte zu kommunizieren (Tabellen können das besser). Aber: Unterschiede und Veränderungen.\n\n\nBild von Nature Methods."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#section-5",
-    "href": "sessions/good_plots/slides.html#section-5",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#section",
+    "href": "sessions/good_plots/goal.html#section",
+    "title": "Informatio",
     "section": "",
     "text": "Hier sind die Farben klar unterscheidbar, und der Gini-Index lässt sich gut ablesen.\n\n\n\n\n\n\n\n\n\n\nDer Plot ist etwas sub-optimaler. Die tatsächlichen Werte des Gini-Index werden nicht gut kommuniziert."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#farbe-ist-relativ",
-    "href": "sessions/good_plots/slides.html#farbe-ist-relativ",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#farbe-ist-relativ",
+    "href": "sessions/good_plots/goal.html#farbe-ist-relativ",
+    "title": "Informatio",
     "section": "Farbe ist relativ",
     "text": "Farbe ist relativ"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#eigenschaften-von-farben",
-    "href": "sessions/good_plots/slides.html#eigenschaften-von-farben",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#eigenschaften-von-farben",
+    "href": "sessions/good_plots/goal.html#eigenschaften-von-farben",
+    "title": "Informatio",
     "section": "Eigenschaften von Farben",
     "text": "Eigenschaften von Farben\n\nFarbton, Sättigung, Helligkeit\nDie drei Eigenschaften beschreiben das Aussehen von Farben.\n\n\n\nFarbräume\n\nRGB: Zusammenmischen von Licht der unterschiedlichen Farben. Alle drei zusammen ergeben weiß.\nCMYK: Ausblenden aus dem weißen Farbspektrum durch Filter. Grundfarben: Gelb, Magenta (Purpur), Cyan (Blaugrün) (+K - Key (also Schwarz))"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#salienz-1",
-    "href": "sessions/good_plots/slides.html#salienz-1",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#salienz-1",
+    "href": "sessions/good_plots/goal.html#salienz-1",
+    "title": "Informatio",
     "section": "Salienz",
     "text": "Salienz\nSticht eine Farbe hervor, ist sie besonders salient - das kann gewollt oder ungewollt sein."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#größe",
-    "href": "sessions/good_plots/slides.html#größe",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#größe",
+    "href": "sessions/good_plots/goal.html#größe",
+    "title": "Informatio",
     "section": "Größe",
     "text": "Größe"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#farbfehlsichtigkeit",
-    "href": "sessions/good_plots/slides.html#farbfehlsichtigkeit",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#farbfehlsichtigkeit",
+    "href": "sessions/good_plots/goal.html#farbfehlsichtigkeit",
+    "title": "Informatio",
     "section": "Farbfehlsichtigkeit",
     "text": "Farbfehlsichtigkeit\n\nprotanopic right side\n\nBy Mark Fairchild, CC BY-SA 3.0, Link\n\n\nProtanopie: Zapfentyp L (rot) fehlt: rot vs grün Schwäche\nDeuteranopie: Zapfentyp M (grün) fehlt: rot vs grün Schwäche\nTritanopie: Zapfentyp S (blau) fehlt: blau vs grün, gelb vs violett Schwäche\nTake the above scale and show that it is not great for color blindness\nhttps://www.color-blindness.com/coblis-color-blindness-simulator/"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#colorblind-check",
-    "href": "sessions/good_plots/slides.html#colorblind-check",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#colorblind-check",
+    "href": "sessions/good_plots/goal.html#colorblind-check",
+    "title": "Informatio",
     "section": "Colorblind-Check",
     "text": "Colorblind-Check\n\n\nAuf Colblindor.\n\n\nMit colorblindcheck.\n\nlibrary(colorblindcheck)\n\npalette_check(scales::hue_pal()(6), plot = TRUE)\n\n\n\n\n\n\n\n\n          name n tolerance ncp ndcp  min_dist mean_dist max_dist\n1       normal 6  28.22768  15   15 28.227682  48.60479 91.99894\n2 deuteranopia 6  28.22768  15    9  5.870477  31.50134 59.55026\n3   protanopia 6  28.22768  15    8  3.930855  32.79118 57.04317\n4   tritanopia 6  28.22768  15    9  7.200490  40.41105 71.61725"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#anwendung-in-ggplot2",
-    "href": "sessions/good_plots/slides.html#anwendung-in-ggplot2",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#anwendung-in-ggplot2",
+    "href": "sessions/good_plots/goal.html#anwendung-in-ggplot2",
+    "title": "Informatio",
     "section": "Anwendung in ggplot2",
     "text": "Anwendung in ggplot2"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#farben-wählen",
-    "href": "sessions/good_plots/slides.html#farben-wählen",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#farben-wählen",
+    "href": "sessions/good_plots/goal.html#farben-wählen",
+    "title": "Informatio",
     "section": "Farben wählen",
     "text": "Farben wählen\n\nName\nrgb()\nNummer\nHex code"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#farben-manuell-setzen",
-    "href": "sessions/good_plots/slides.html#farben-manuell-setzen",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#farben-manuell-setzen",
+    "href": "sessions/good_plots/goal.html#farben-manuell-setzen",
+    "title": "Informatio",
     "section": "Farben manuell setzen",
     "text": "Farben manuell setzen\n\n\n\nCodePlot\n\n\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_manual(values = c(\"red\", \"green\", \"blue\", \"yellow\", \"violet\", \"brown\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCodePlot\n\n\n\nmy_color_scale &lt;- c(\n  \"East Asia & Pacific\" = \"red\",\n  \"South Asia\" = \"green\",\n  \"Sub-Saharan Africa\" = \"blue\",\n  \"Europe & Central Asia\" = \"yellow\",\n  \"Middle East & North Africa\" = \"violet\",\n  \"Americas\" = \"brown\"\n)\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    color = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption 2020\") +\n  scale_color_manual(values = my_color_scale)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWenn du in einem Projekt die gleichen Gruppen in verschiedenen Plots zeigst, setze die Farbskala einmal mit den Gruppennamen, damit die Gruppen in allen Plots die selben Farben bekommen."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#graustufen",
-    "href": "sessions/good_plots/slides.html#graustufen",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#graustufen",
+    "href": "sessions/good_plots/goal.html#graustufen",
+    "title": "Informatio",
     "section": "Graustufen",
     "text": "Graustufen\n\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption 2020\") +\n  scale_fill_grey()"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#externe-farb-paletten",
-    "href": "sessions/good_plots/slides.html#externe-farb-paletten",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#externe-farb-paletten",
+    "href": "sessions/good_plots/goal.html#externe-farb-paletten",
+    "title": "Informatio",
     "section": "Externe Farb-Paletten",
     "text": "Externe Farb-Paletten\n\n\nR Color Brewer\n\nlibrary(RColorBrewer)\ndisplay.brewer.all(colorblindFriendly = FALSE)\n\n\n\n\n\n\n\n\n\n\nCodePlot\n\n\n\nlibrary(RColorBrewer)\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_brewer(palette = \"PuOr\")"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#externe-farb-paletten-1",
-    "href": "sessions/good_plots/slides.html#externe-farb-paletten-1",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#externe-farb-paletten-1",
+    "href": "sessions/good_plots/goal.html#externe-farb-paletten-1",
+    "title": "Informatio",
     "section": "Externe Farb-Paletten",
     "text": "Externe Farb-Paletten\n\n\npaletteer\nSammlung von Paletten aus diversen Paketen\n\nPalette-Finder\nGallerie\n\n\n\nCodePlot\n\n\n\nlibrary(paletteer)\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_paletteer_d(\"LaCroixColoR::Orange\")"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#übung-1",
-    "href": "sessions/good_plots/slides.html#übung-1",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/goal.html#übung",
+    "href": "sessions/good_plots/goal.html#übung",
+    "title": "Informatio",
     "section": "Übung",
     "text": "Übung\n\n\nBaue eine eigene Farbpalette für deinen Plot und teste sie auf Farbfehlsichtigkeiten."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#nützlichkeit",
-    "href": "sessions/good_plots/slides.html#nützlichkeit",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Nützlichkeit",
-    "text": "Nützlichkeit\n\n\n\n\n\n\nFoto von Kelly Sikkema auf Unsplash\nFoto von Yucel Moran auf Unsplash\n\n\nHier gilt ganz besonders: Simplify to Clarify"
+    "objectID": "sessions/good_plots/information.html#integrität-der-daten-garbage-in-garbage-out",
+    "href": "sessions/good_plots/information.html#integrität-der-daten-garbage-in-garbage-out",
+    "title": "Informatio",
+    "section": "Integrität der Daten: Garbage in, garbage out",
+    "text": "Integrität der Daten: Garbage in, garbage out\n\n\n\nScheinkorrelationen\nWrong data, wrong measurements, wrong interpretations …\nSloppy research\n\nP-Hacking\nCherry Picking\n\n\n\n\n\n\nFoto von Jilbert Ebrahimi auf Unsplash."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#funktionelles-design",
-    "href": "sessions/good_plots/slides.html#funktionelles-design",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Funktionelles Design",
-    "text": "Funktionelles Design\n\n\n\n\nFoto von BVG\n\n\n\n\nFoto von BVG\n\n\n\n\n\n\n\n\nDabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen.\nHandschriftliche Skizze ist auch erstmal hilfreich!"
+    "objectID": "sessions/good_plots/information.html#fehlender-kontext",
+    "href": "sessions/good_plots/information.html#fehlender-kontext",
+    "title": "Informatio",
+    "section": "Fehlender Kontext",
+    "text": "Fehlender Kontext"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#simplify-to-clarify-data-ink-ratio",
-    "href": "sessions/good_plots/slides.html#simplify-to-clarify-data-ink-ratio",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Simplify to clarify: Data-ink ratio",
-    "text": "Simplify to clarify: Data-ink ratio\n\nData graphics should draw the viewer’s attention to the sense and substance of the data, not to something else. (Tufte & Graves-Morris, 1983)\n\nAuf die Spitze getrieben von Tufte & Graves-Morris (1983):\n\n\nData-ink ratio = Data-ink / Total ink used to print the graphic\n\nJedes Stück Tinte sollte einen Grund haben.\n\n\n :::{.image-ref} CC BY-SA 2.0, Link\n\n:::"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#data-ink-ratio-in-praxis",
-    "href": "sessions/good_plots/slides.html#data-ink-ratio-in-praxis",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Data-ink ratio in Praxis",
-    "text": "Data-ink ratio in Praxis\n\n\n10% Daten, 90 % Achsenbeschriftungen und Hintergrundlinien\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggthemes)\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  theme_excel() +\n  scale_x_continuous(\n    breaks = scales::pretty_breaks(n = 10), # ensure ticks\n    minor_breaks = waiver() # ensures minor ticks too\n  ) +\n  scale_y_continuous(\n    breaks = scales::pretty_breaks(n = 10),\n    minor_breaks = waiver()\n  ) +\n  theme(\n    panel.grid.major = element_line(color = \"grey60\", size = 1.2), # thick major grid\n    panel.grid.minor = element_line(color = \"grey60\", size = 0.8) # thick minor grid\n  )\n\n\n\n\n\n\n0% Daten (Plotte die Daten, keine Zusammenfassungen)\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_smooth()\n\n\n\n\n\n\n\nca. 90 % Daten, 10 % Achsenbeschriftungen und Legende\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggthemes)\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  theme_tufte()"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#redundanzen",
-    "href": "sessions/good_plots/slides.html#redundanzen",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Redundanzen",
-    "text": "Redundanzen\n\nErase non-data-ink, within reason. Erase redundant data-ink, within reaseon (Tufte & Graves-Morris, 1983)\n\n\n\nFrageAntwort\n\n\nAuf wie viele Arten wird hier die Höhe der CO2 Emissionen pro Kopf dargestellt?\n\n\n\n\n\n\n\n\n\n\n\nAuf sieben verschiedene Arten:\n\nHöhe der linken Balkenlinie\nHöhe der rechten Balkenlinie\nHöhe der horizontalen Balkenlinie\nHöhe des Balkeninneren\nFarbe des Balkens\nPosition des Labels\nWert des Labels\n\nBalken an sich enthalten also schon redundante Informationen!"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#section-6",
-    "href": "sessions/good_plots/slides.html#section-6",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/information.html#section",
+    "href": "sessions/good_plots/information.html#section",
+    "title": "Informatio",
     "section": "",
-    "text": "AufgabeAntwort\n\n\nEntferne alle Redundanzen, machen den Plot also “Tufte-Komform”\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons, fill = co2_pcap_cons, color = co2_pcap_cons, label = round(co2_pcap_cons), 2)\n) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\") +\n  geom_text(vjust = -1, color = \"black\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  labs(\n    x = \"Land\",\n    y = \"CO2 Consumption per capita in t\") +\n  theme_bg()\n\n\n\n\nAntwort 1Antwort 2\n\n\nEntfernen der Achsenlinien und Umrandungen. Hintergrundlinien werden innerhalb der Balken dargestellt.\n\n\n\n\n\n\n\n\n\n\n\nMitunter können die vertikalen und horizontalen Linien auch hilfreich beim Vergleich/bei der Zuordnung zum Land sein: “Tufte Barchart”"
+    "text": "Siehe storymaps."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#maximieren-von-informationen",
-    "href": "sessions/good_plots/slides.html#maximieren-von-informationen",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Maximieren von Informationen",
-    "text": "Maximieren von Informationen\n\n\nNormaler Scatterplot\nBox um den Plot, Grid-Linien, Achsen-Ticks: Alles keine Daten.\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() \n\n\n\n\n\nTufte-Scatterplot\nNutzen der Ticks und Achsen-Linien, um Informationen zu transportieren.\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(paletteer)\n\n\nxlim_v &lt;- c(20, 80)\nylim_v &lt;- c(20, 80)\n\n# Parameter: Anzahl der Quantile, Versatz von den Rändern, kleine Lücke zwischen Segmenten\nprobs &lt;- seq(0, 1, by = 0.25) # Quartile; für Dezile: by = 0.1\noff_x &lt;- 0 # Versatz der \"y-Achse\" nach rechts\noff_y &lt;- 0 # Versatz der \"x-Achse\" nach oben\ngap &lt;- 0.2 # kleine Lücke an Segmentenden (optisch schöner)\n\nqx &lt;- quantile(gapminder_2020$gini, probs = probs, na.rm = TRUE)\nqy &lt;- quantile(gapminder_2020$hapiscore_whr, probs = probs, na.rm = TRUE)\n\n# Segment-Dataframes bauen (pro Intervall ein Segment)\nseg_x &lt;- tibble(\n  x    = pmax(qx[-length(qx)] + gap / 2, xlim_v[1]),\n  xend = pmin(qx[-1] - gap / 2, xlim_v[2]),\n  y    = ylim_v[1] + off_y,\n  yend = ylim_v[1] + off_y\n) %&gt;% filter(x &lt; xend)\n\nseg_y &lt;- tibble(\n  x    = xlim_v[1] + off_x,\n  xend = xlim_v[1] + off_x,\n  y    = pmax(qy[-length(qy)] + gap / 2, ylim_v[1]),\n  yend = pmin(qy[-1] - gap / 2, ylim_v[2])\n) %&gt;%\n  filter(y &lt; yend)\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  # Quantil-\"x-Achse\" (horizontal) leicht ins Panel versetzt\n  geom_segment(\n    data = seg_x,\n    aes(x = x, xend = xend, y = y, yend = yend),\n    inherit.aes = FALSE\n  ) +\n  # Quantil-\"y-Achse\" (vertikal) leicht ins Panel versetzt\n  geom_segment(\n    data = seg_y,\n    aes(x = x, xend = xend, y = y, yend = yend),\n    inherit.aes = FALSE\n  ) +\n  scale_x_continuous(breaks = unique(c(round(seg_x$x, 0), round(seg_x$xend, 0)))) +\n  scale_y_continuous(breaks = unique(c(round(seg_y$y, 0), round(seg_y$yend, 0)))) +\n  coord_cartesian(xlim = xlim_v, ylim = ylim_v, expand = FALSE) +\n  theme_tufte() +\n  theme(axis.ticks = element_blank()) +\n  paletteer::scale_colour_paletteer_d(\"fishualize::Koumansetta_rainfordi\")"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#verteilungen-plotten",
-    "href": "sessions/good_plots/slides.html#verteilungen-plotten",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Verteilungen Plotten",
-    "text": "Verteilungen Plotten\n\n\n\n\nReduzieren heißt nicht, die Informationen zu reduzieren, sondern den Chart-Junk!\nSehr oft macht es Sinn, die gesamte Verteilung zu plotten, möglicherweise auch zusätzlich zu zusammenfassenden Statistiken."
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#verteilungen-plotten-1",
-    "href": "sessions/good_plots/slides.html#verteilungen-plotten-1",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Verteilungen plotten",
-    "text": "Verteilungen plotten\n\n\nBoxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_2020 %&gt;% drop_na(country),\n  aes(x = world_4region, y = hapiscore_whr, fill = world_4region)) +\n  geom_boxplot() +\n  theme(axis.ticks = element_blank(), legend.position = \"none\") +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\")\n\n\n\n\n\nTufte-Boxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggthemes)\n\nggplot(data = gapminder_2020 %&gt;% drop_na(country), \n  aes(x = world_4region, y = hapiscore_whr, group = world_4region)) +\ngeom_jitter(alpha = 0.5, color = \"lightgrey\") + \n  geom_tufteboxplot() +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\") +\ntheme_tufte()"
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#keine-angst-vor-leerem-raum",
-    "href": "sessions/good_plots/slides.html#keine-angst-vor-leerem-raum",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Keine Angst vor leerem Raum",
-    "text": "Keine Angst vor leerem Raum\n\n\nData from Rockefeller Institute and Wikipedia."
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#zusammenfassung",
-    "href": "sessions/good_plots/slides.html#zusammenfassung",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Zusammenfassung",
-    "text": "Zusammenfassung\n\n\n\n\nAbove all else show the data.\nMaximize the data-ink ratio, within reason.\nErase non-data-ink, within reason.\nErase redundant data-ink, within reason.\nRevise and edit.\n\n\nAus Tufte & Graves-Morris (1983)."
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#gegenentwurf-ästhetik",
-    "href": "sessions/good_plots/slides.html#gegenentwurf-ästhetik",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Gegenentwurf: Ästhetik",
-    "text": "Gegenentwurf: Ästhetik\n\n\nAbbildung von [Cédric Scherer]https://www.behance.net/gallery/100683383/Travelling-to-Outer-Space#)."
-  },
-  {
-    "objectID": "sessions/good_plots/slides.html#section-7",
-    "href": "sessions/good_plots/slides.html#section-7",
-    "title": "Was ist eine gute Grafik?",
+    "objectID": "sessions/good_plots/information.html#section-1",
+    "href": "sessions/good_plots/information.html#section-1",
+    "title": "Informatio",
     "section": "",
-    "text": "Wandelt euren Plot in einen Tufte-Plot um."
+    "text": "“Land doesn’t vote … People Do.”\n\n\n\n\n\n\nSiehe storymaps."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#farben-als-design-element",
-    "href": "sessions/good_plots/slides.html#farben-als-design-element",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Farben als Design-Element",
-    "text": "Farben als Design-Element\n\n\n\n\n\nAll colors are the friends of their neighbors and the lovers of their opposites. - Marc Chagall\n\n\n\nNach MalteAhrens at de.wikipedia. Vectorization by User:SidShakal - Raster version from Wikimedia Commons., Gemeinfrei, Link"
+    "objectID": "sessions/good_plots/information.html#daten-in-kontext-setzen",
+    "href": "sessions/good_plots/information.html#daten-in-kontext-setzen",
+    "title": "Informatio",
+    "section": "Daten in Kontext setzen",
+    "text": "Daten in Kontext setzen\n\nÜbungLösung\n\n\n\nZeichne Mittelwerte, oder hebe hervor aus einer Vergleichsmenge, z.B. europäischer Länder. Am einfachsten geht das mit einem zweiten Datensatz, der alle europäischen Länder enthält:\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\nggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(aes(group = country))\n\n\n\n\n\n\n\nHinweis\n\n\nCode\n## Bilde einen eignen Datensatz, der alle europäischen Lönder enthält\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\n\n\n\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = \"lightgrey\", alpha = 0.5) +\n  geom_smooth(color = \"black\") +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  theme_bg() +\n  labs(\n    title = \"Ungleichheit in Europa On the Rise\",\n    subtitle = \"1900 bis 2024, Gelbe Linie zeigt Deutschland\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  )\n\np_line"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#kleine-farbenlehre",
-    "href": "sessions/good_plots/slides.html#kleine-farbenlehre",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Kleine Farbenlehre",
-    "text": "Kleine Farbenlehre\n\n\n\n\nVincent van Gogh, Public domain, via Wikimedia Commons\n\n\n\nGegenüberliegende Farben intensivieren sich gegenseitig: eine Primärfarbe, und eine Sekundärfarbe, die aus den anderen beiden Primärfarben gemischt wird. Das erzeugt stärkere Kontraste. (Van Gogh bild)\nMit weiß und schwarz lassen sich die Schattierungen hinzumischen\ntriadisches Farbschema: Fom MIttelpunkt des Farbkreises Strahlen mit gleichem Winkel abgehen lassen (So viele, wie man Farben haben will). Das wählt dann Farben mit dem größten Kontrast aus. (https://www.kunstplaza.de/fashion-design/farbenlehre-farbtheorie-styleguides-fashion-design/)"
+    "objectID": "sessions/good_plots/information.html#daten-in-kontext-setzen-1",
+    "href": "sessions/good_plots/information.html#daten-in-kontext-setzen-1",
+    "title": "Informatio",
+    "section": "Daten in Kontext setzen",
+    "text": "Daten in Kontext setzen\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = \"lightgrey\", alpha = 0.5) +\n  geom_smooth(color = \"black\") +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  theme_bg() +\n  labs(\n    title = \"Ungleichheit in Europa On the Rise\",\n    subtitle = \"1900 bis 2024, Gelbe Linie zeigt Deutschland\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  )\n\np_line"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#weitere-tools",
-    "href": "sessions/good_plots/slides.html#weitere-tools",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Weitere Tools",
-    "text": "Weitere Tools\n\n\n\n\nWollbox von Vincent van Gogh, mit der er Farbkombinationen getestet hat. Eigenes Bild.\n\n\n\n\n- Colorbrewer\n- Huemint\n- Pinterest"
+    "objectID": "sessions/good_plots/information.html#achsen",
+    "href": "sessions/good_plots/information.html#achsen",
+    "title": "Informatio",
+    "section": "Achsen",
+    "text": "Achsen\n\nFoto von Joerg Fielenbach auf Unsplash"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#schriften",
-    "href": "sessions/good_plots/slides.html#schriften",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Schriften",
-    "text": "Schriften\nDie Schriftart kann einer Abbildung ein ganz anderes Aussehn vereleihen.\nWir nutzen Schriftarten von Google Fonts\n\nlibrary(showtext)\n\nfont_add_google(\"Special Elite\", family = \"special\")\n\n\nDaten von zygmuntz."
+    "objectID": "sessions/good_plots/information.html#konventionen",
+    "href": "sessions/good_plots/information.html#konventionen",
+    "title": "Informatio",
+    "section": "Konventionen",
+    "text": "Konventionen\n\n\n\n\n\n\n\nKonventionen beachten! Die y-Achse sollte bspw. in der Regel bei 0 beginnen.\n\n\n\n\n\n\n\n\n\n776.013 Home protection; use or threatened use of deadly force; presumption of fear of death or great bodily harm.— (1) A person who is in a dwelling or residence in which the person has a right to be has no duty to retreat and has the right to stand his or her ground and use or threaten to use:\n(a) Nondeadly force against another when and to the extent that the person reasonably believes that such conduct is necessary to defend himself or herself or another against the other’s imminent use of unlawful force; or\n(b) Deadly force if he or she reasonably believes that using or threatening to use such force is necessary to prevent imminent death or great bodily harm to himself or herself or another or to prevent the imminent commission of a forcible felony.\n(Florida Satutes)"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#section-8",
-    "href": "sessions/good_plots/slides.html#section-8",
-    "title": "Was ist eine gute Grafik?",
-    "section": "",
-    "text": "library(ggwordcloud)\n\ntags &lt;- read.csv(here::here(\"data\", \"goodbooks-10k\", \"tags.csv\"))\nbook_tags &lt;- read.csv(here::here(\"data\", \"goodbooks-10k\", \"book_tags.csv\"))\nbooks &lt;- read.csv(here::here(\"data\", \"goodbooks-10k\", \"books.csv\")) \n\n\nclassics &lt;- book_tags %&gt;% \nleft_join(books) %&gt;%\nleft_join(tags) %&gt;% \nfilter(tag_name == \"classics\") %&gt;% \nfilter(ratings_count &gt; 20000, !duplicated(authors)) %&gt;%\n  select(original_title, average_rating, tag_name, ratings_count) %&gt;%\n  distinct() %&gt;% \n  arrange(ratings_count) %&gt;%\n  slice_tail(n = 50)\n\n\nset.seed(45)\nggplot(data = classics, \n       mapping = aes(label = original_title, size = average_rating)) +\n  geom_text_wordcloud() +\nscale_size(range = c(1, 6)) +\nlabs(title = \"What to read next ...\", \nsubtitle = \"... according to goodreads\") +\ntheme_bg()"
+    "objectID": "sessions/good_plots/information.html#manipulation-des-bildformats",
+    "href": "sessions/good_plots/information.html#manipulation-des-bildformats",
+    "title": "Informatio",
+    "section": "Manipulation des Bildformats",
+    "text": "Manipulation des Bildformats"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#section-9",
-    "href": "sessions/good_plots/slides.html#section-9",
-    "title": "Was ist eine gute Grafik?",
-    "section": "",
-    "text": "font_add_google(\"Special Elite\", family = \"my textfont\")\nfont_add_google(\"Playfair Display\")\n\nshowtext_auto()\n\n\nset.seed(45)\nggplot(data = classics, \n       mapping = aes(label = original_title, size = average_rating)) +\n  geom_text_wordcloud(family = \"my textfont\") +\nscale_size(range = c(1, 6)) +\nlabs(title = \"What to read next\", \nsubtitle = \"According to goodreads\") +\ntheme_bg() +\ntheme(title = element_text(family = \"Playfair Display\", size = 20), \n)"
+    "objectID": "sessions/good_plots/information.html#reales-beispiel-für-manipulation-des-bildformates",
+    "href": "sessions/good_plots/information.html#reales-beispiel-für-manipulation-des-bildformates",
+    "title": "Informatio",
+    "section": "Reales Beispiel für Manipulation des Bildformates",
+    "text": "Reales Beispiel für Manipulation des Bildformates\n\nThe designer of the visualization, by selecting a y-axis starting point, has control over the subjective importance of the resulting differences.\n(Correll et al., 2020)\n\n\n\n\n\n\nGrafik aus Huff (1979), heruntergeladen von Observable blog."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#section-10",
-    "href": "sessions/good_plots/slides.html#section-10",
-    "title": "Was ist eine gute Grafik?",
-    "section": "",
-    "text": "Suche dir eine Schriftart aus Google Fonts und baue sie in deinen Plot ein."
+    "objectID": "sessions/good_plots/information.html#soll-die-null-geplottet-werden",
+    "href": "sessions/good_plots/information.html#soll-die-null-geplottet-werden",
+    "title": "Informatio",
+    "section": "Soll die Null geplottet werden?",
+    "text": "Soll die Null geplottet werden?"
   },
   {
-    "objectID": "sessions/good_plots/slides.html#übung-2",
-    "href": "sessions/good_plots/slides.html#übung-2",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Übung",
-    "text": "Übung\n\nWähle eine Grafik von … aus und erstelle einen Plan, wie du sie verbessern würdest."
+    "objectID": "sessions/good_plots/information.html#absolute-werte",
+    "href": "sessions/good_plots/information.html#absolute-werte",
+    "title": "Informatio",
+    "section": "Absolute Werte",
+    "text": "Absolute Werte\nDie Null sollte in der Regel mitgeplottet werden, da wir uns Mengen anschauen."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#literatur",
-    "href": "sessions/good_plots/slides.html#literatur",
-    "title": "Was ist eine gute Grafik?",
-    "section": "Literatur",
-    "text": "Literatur\n\n\n\n\nCorrell, M., Bertini, E., & Franconeri, S. (2020). Truncating the y-axis: Threat or menace? Proceedings of the 2020 CHI conference on human factors in computing systems, 1–12.\n\n\nHuff, D. (1979). How to lie with statistics / by Darrell Huff.\n\n\nTufte, E. R., & Graves-Morris, P. R. (1983). The visual display of quantitative information (Bd. 2). Graphics press Cheshire, CT."
+    "objectID": "sessions/good_plots/information.html#veränderung-der-werte",
+    "href": "sessions/good_plots/information.html#veränderung-der-werte",
+    "title": "Informatio",
+    "section": "Veränderung der Werte",
+    "text": "Veränderung der Werte\nHier ist es eher eine Ermessensfrage:\n\n\n\n\n\n\nIf zero is in the neighborhood, invite it in! (Andrew Gelman)\n\n\n\n\n\n\nIn general, in a time-series, use a baseline that shows the data not the zero point. (Tufte & Graves-Morris, 1983)"
+  },
+  {
+    "objectID": "sessions/good_plots/information.html#veränderung-der-werte-1",
+    "href": "sessions/good_plots/information.html#veränderung-der-werte-1",
+    "title": "Informatio",
+    "section": "Veränderung der Werte",
+    "text": "Veränderung der Werte"
+  },
+  {
+    "objectID": "sessions/good_plots/information.html#schneiden-von-achsen",
+    "href": "sessions/good_plots/information.html#schneiden-von-achsen",
+    "title": "Informatio",
+    "section": "Schneiden von Achsen",
+    "text": "Schneiden von Achsen\n\n\n\n\n\n\nIn der Regel keine gute Idee! Verzerrt die Skala.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCorrell, M., Bertini, E., & Franconeri, S. (2020). Truncating the y-axis: Threat or menace? Proceedings of the 2020 CHI conference on human factors in computing systems, 1–12.\n\n\nHuff, D. (1979). How to lie with statistics / by Darrell Huff.\n\n\nTufte, E. R., & Graves-Morris, P. R. (1983). The visual display of quantitative information (Bd. 2). Graphics press Cheshire, CT."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\ncircle\n73.03\n73.12\n\n\nslant_down\n46.31\n55.69\n\n\nslant_down\n61.09\n89.22\n\n\nhigh_lines\n49.58\n16.76\n\n\nslant_down\n59.31\n10.57\n\n\nslant_up\n20.21\n67.52\n\n\nstar\n77.58\n15.83\n\n\nv_lines\n50.44\n37.67\n\n\ndots\n26.49\n17.41\n\n\nstar\n28.59\n63.02\n\n\ndots\n51.93\n52.26\n\n\ndino\n95.38\n36.79\n\n\ndino\n61.54\n66.41\n\n\nx_shape\n82.67\n81.71\n\n\naway\n39.96\n42.94\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\ndino\n61.54\n66.41\n\n\nx_shape\n77.16\n73.52\n\n\nslant_down\n59.20\n41.27\n\n\nstar\n41.74\n17.83\n\n\ncircle\n62.69\n78.17\n\n\nslant_down\n68.22\n1.13\n\n\nv_lines\n50.11\n18.26\n\n\ndots\n75.57\n17.06\n\n\ndino\n33.08\n77.56\n\n\nstar\n64.03\n27.67\n\n\nhigh_lines\n37.16\n84.95\n\n\nstar\n69.65\n44.04\n\n\nv_lines\n50.44\n37.67\n\n\nbullseye\n91.19\n46.67\n\n\nx_shape\n41.21\n24.13\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
@@ -1547,6 +1407,27 @@
     "text": "View slides in full screen\n\nIntro/Beispiele/Motivation/Arten von Grafiken (1 Basic + 1 Schöne) - Janine (+Nicklas)"
   },
   {
+    "objectID": "sessions/good_plots/slides.html#section",
+    "href": "sessions/good_plots/slides.html#section",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "Excellence in statistical graphics consists of complex ideas communicated with clarity, precision, and efficiency. (Tufte & Graves-Morris, 1983)\n\n\nshow the data\ninduce the viewer to think about the substance rather than about methodology, graphic design, the technology of graphic production, or something else\navoid distorting what the data have to say\npresent many numbers in a small space\nmake large datasets coherent\nencourage the eye to compare different pieces of data\nReveal the data at several levels of detail, from a broad overview to the fine structure\nserve a reasonably clear purpose: description, exploration, tabulation, or decoration\nbe closely integrated with the statistical and verbal descriptions of a data set"
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#section-1",
+    "href": "sessions/good_plots/slides.html#section-1",
+    "title": "Was ist eine gute Grafik?",
+    "section": "",
+    "text": "Darstellung von David McCandless in Knowledge is Beautiful (2014)."
+  },
+  {
+    "objectID": "sessions/good_plots/slides.html#what-makes-a-bad-plot",
+    "href": "sessions/good_plots/slides.html#what-makes-a-bad-plot",
+    "title": "Was ist eine gute Grafik?",
+    "section": "What makes a bad plot?",
+    "text": "What makes a bad plot?\n\n\n\nJede Gruppe bekommt eine Abbildung.\n\nDiskutiert in der Gruppe, was bei der Visualisierung schief läuft.\nSession\nKurze Diskussion. Stellt den anderen Gruppen eure Ergebnisse vor.\n\n\n\n\n\n\nBild gefunden auf Reddit.\n\n\n\n\n\nTufte, E. R., & Graves-Morris, P. R. (1983). The visual display of quantitative information (Bd. 2). Graphics press Cheshire, CT."
+  },
+  {
     "objectID": "sessions/good_plots/maps.html#section",
     "href": "sessions/good_plots/maps.html#section",
     "title": "Karten",
@@ -1573,6 +1454,153 @@
     "title": "Karten",
     "section": "",
     "text": ":::{.column width=“50%} \n\n\n\n\n\n:::\n\nGrafiken von zeit.de."
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#nützlichkeit",
+    "href": "sessions/good_plots/visual_form.html#nützlichkeit",
+    "title": "Informatio",
+    "section": "Nützlichkeit",
+    "text": "Nützlichkeit\n\n\n\n\n\n\nFoto von Kelly Sikkema auf Unsplash\nFoto von Yucel Moran auf Unsplash\n\n\nHier gilt ganz besonders: Simplify to Clarify"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#funktionelles-design",
+    "href": "sessions/good_plots/visual_form.html#funktionelles-design",
+    "title": "Informatio",
+    "section": "Funktionelles Design",
+    "text": "Funktionelles Design\n\n\n\n\nFoto von BVG\n\n\n\n\nFoto von BVG\n\n\n\n\n\n\n\n\nDabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen.\nHandschriftliche Skizze ist auch erstmal hilfreich!"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#simplify-to-clarify-data-ink-ratio",
+    "href": "sessions/good_plots/visual_form.html#simplify-to-clarify-data-ink-ratio",
+    "title": "Informatio",
+    "section": "Simplify to clarify: Data-ink ratio",
+    "text": "Simplify to clarify: Data-ink ratio\n\nData graphics should draw the viewer’s attention to the sense and substance of the data, not to something else. (Tufte & Graves-Morris, 1983)\n\nAuf die Spitze getrieben von Tufte & Graves-Morris (1983):\n\n\nData-ink ratio = Data-ink / Total ink used to print the graphic\n\nJedes Stück Tinte sollte einen Grund haben.\n\n\n :::{.image-ref} CC BY-SA 2.0, Link\n\n:::"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#data-ink-ratio-in-praxis",
+    "href": "sessions/good_plots/visual_form.html#data-ink-ratio-in-praxis",
+    "title": "Informatio",
+    "section": "Data-ink ratio in Praxis",
+    "text": "Data-ink ratio in Praxis\n\n\n10% Daten, 90 % Achsenbeschriftungen und Hintergrundlinien\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggthemes)\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  theme_excel() +\n  scale_x_continuous(\n    breaks = scales::pretty_breaks(n = 10), # ensure ticks\n    minor_breaks = waiver() # ensures minor ticks too\n  ) +\n  scale_y_continuous(\n    breaks = scales::pretty_breaks(n = 10),\n    minor_breaks = waiver()\n  ) +\n  theme(\n    panel.grid.major = element_line(color = \"grey60\", size = 1.2), # thick major grid\n    panel.grid.minor = element_line(color = \"grey60\", size = 0.8) # thick minor grid\n  )\n\n\n\n\n\n\n0% Daten (Plotte die Daten, keine Zusammenfassungen)\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_smooth()\n\n\n\n\n\n\n\nca. 90 % Daten, 10 % Achsenbeschriftungen und Legende\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggthemes)\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  theme_tufte()"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#redundanzen",
+    "href": "sessions/good_plots/visual_form.html#redundanzen",
+    "title": "Informatio",
+    "section": "Redundanzen",
+    "text": "Redundanzen\n\nErase non-data-ink, within reason. Erase redundant data-ink, within reaseon (Tufte & Graves-Morris, 1983)\n\n\n\nFrageAntwort\n\n\nAuf wie viele Arten wird hier die Höhe der CO2 Emissionen pro Kopf dargestellt?\n\n\n\n\n\n\n\n\n\n\n\nAuf sieben verschiedene Arten:\n\nHöhe der linken Balkenlinie\nHöhe der rechten Balkenlinie\nHöhe der horizontalen Balkenlinie\nHöhe des Balkeninneren\nFarbe des Balkens\nPosition des Labels\nWert des Labels\n\nBalken an sich enthalten also schon redundante Informationen!"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#section",
+    "href": "sessions/good_plots/visual_form.html#section",
+    "title": "Informatio",
+    "section": "",
+    "text": "AufgabeAntwort\n\n\nEntferne alle Redundanzen, machen den Plot also “Tufte-Komform”\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons, fill = co2_pcap_cons, color = co2_pcap_cons, label = round(co2_pcap_cons), 2)\n) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\") +\n  geom_text(vjust = -1, color = \"black\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  labs(\n    x = \"Land\",\n    y = \"CO2 Consumption per capita in t\") +\n  theme_bg()\n\n\n\n\nAntwort 1Antwort 2\n\n\nEntfernen der Achsenlinien und Umrandungen. Hintergrundlinien werden innerhalb der Balken dargestellt.\n\n\n\n\n\n\n\n\n\n\n\nMitunter können die vertikalen und horizontalen Linien auch hilfreich beim Vergleich/bei der Zuordnung zum Land sein: “Tufte Barchart”"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#maximieren-von-informationen",
+    "href": "sessions/good_plots/visual_form.html#maximieren-von-informationen",
+    "title": "Informatio",
+    "section": "Maximieren von Informationen",
+    "text": "Maximieren von Informationen\n\n\nNormaler Scatterplot\nBox um den Plot, Grid-Linien, Achsen-Ticks: Alles keine Daten.\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() \n\n\n\n\n\nTufte-Scatterplot\nNutzen der Ticks und Achsen-Linien, um Informationen zu transportieren.\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(paletteer)\n\n\nxlim_v &lt;- c(20, 80)\nylim_v &lt;- c(20, 80)\n\n# Parameter: Anzahl der Quantile, Versatz von den Rändern, kleine Lücke zwischen Segmenten\nprobs &lt;- seq(0, 1, by = 0.25) # Quartile; für Dezile: by = 0.1\noff_x &lt;- 0 # Versatz der \"y-Achse\" nach rechts\noff_y &lt;- 0 # Versatz der \"x-Achse\" nach oben\ngap &lt;- 0.2 # kleine Lücke an Segmentenden (optisch schöner)\n\nqx &lt;- quantile(gapminder_2020$gini, probs = probs, na.rm = TRUE)\nqy &lt;- quantile(gapminder_2020$hapiscore_whr, probs = probs, na.rm = TRUE)\n\n# Segment-Dataframes bauen (pro Intervall ein Segment)\nseg_x &lt;- tibble(\n  x    = pmax(qx[-length(qx)] + gap / 2, xlim_v[1]),\n  xend = pmin(qx[-1] - gap / 2, xlim_v[2]),\n  y    = ylim_v[1] + off_y,\n  yend = ylim_v[1] + off_y\n) %&gt;% filter(x &lt; xend)\n\nseg_y &lt;- tibble(\n  x    = xlim_v[1] + off_x,\n  xend = xlim_v[1] + off_x,\n  y    = pmax(qy[-length(qy)] + gap / 2, ylim_v[1]),\n  yend = pmin(qy[-1] - gap / 2, ylim_v[2])\n) %&gt;%\n  filter(y &lt; yend)\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  # Quantil-\"x-Achse\" (horizontal) leicht ins Panel versetzt\n  geom_segment(\n    data = seg_x,\n    aes(x = x, xend = xend, y = y, yend = yend),\n    inherit.aes = FALSE\n  ) +\n  # Quantil-\"y-Achse\" (vertikal) leicht ins Panel versetzt\n  geom_segment(\n    data = seg_y,\n    aes(x = x, xend = xend, y = y, yend = yend),\n    inherit.aes = FALSE\n  ) +\n  scale_x_continuous(breaks = unique(c(round(seg_x$x, 0), round(seg_x$xend, 0)))) +\n  scale_y_continuous(breaks = unique(c(round(seg_y$y, 0), round(seg_y$yend, 0)))) +\n  coord_cartesian(xlim = xlim_v, ylim = ylim_v, expand = FALSE) +\n  theme_tufte() +\n  theme(axis.ticks = element_blank()) +\n  paletteer::scale_colour_paletteer_d(\"fishualize::Koumansetta_rainfordi\")"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#verteilungen-plotten",
+    "href": "sessions/good_plots/visual_form.html#verteilungen-plotten",
+    "title": "Informatio",
+    "section": "Verteilungen Plotten",
+    "text": "Verteilungen Plotten\n\n\n\n\nReduzieren heißt nicht, die Informationen zu reduzieren, sondern den Chart-Junk!\nSehr oft macht es Sinn, die gesamte Verteilung zu plotten, möglicherweise auch zusätzlich zu zusammenfassenden Statistiken."
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#verteilungen-plotten-1",
+    "href": "sessions/good_plots/visual_form.html#verteilungen-plotten-1",
+    "title": "Informatio",
+    "section": "Verteilungen plotten",
+    "text": "Verteilungen plotten\n\n\nBoxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_2020 %&gt;% drop_na(country),\n  aes(x = world_4region, y = hapiscore_whr, fill = world_4region)) +\n  geom_boxplot() +\n  theme(axis.ticks = element_blank(), legend.position = \"none\") +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\")\n\n\n\n\n\nTufte-Boxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggthemes)\n\nggplot(data = gapminder_2020 %&gt;% drop_na(country), \n  aes(x = world_4region, y = hapiscore_whr, group = world_4region)) +\ngeom_jitter(alpha = 0.5, color = \"lightgrey\") + \n  geom_tufteboxplot() +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\") +\ntheme_tufte()"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#keine-angst-vor-leerem-raum",
+    "href": "sessions/good_plots/visual_form.html#keine-angst-vor-leerem-raum",
+    "title": "Informatio",
+    "section": "Keine Angst vor leerem Raum",
+    "text": "Keine Angst vor leerem Raum\n\n\nData from Rockefeller Institute and Wikipedia."
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#zusammenfassung",
+    "href": "sessions/good_plots/visual_form.html#zusammenfassung",
+    "title": "Informatio",
+    "section": "Zusammenfassung",
+    "text": "Zusammenfassung\n\n\n\n\nAbove all else show the data.\nMaximize the data-ink ratio, within reason.\nErase non-data-ink, within reason.\nErase redundant data-ink, within reason.\nRevise and edit.\n\n\nAus Tufte & Graves-Morris (1983)."
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#gegenentwurf-ästhetik",
+    "href": "sessions/good_plots/visual_form.html#gegenentwurf-ästhetik",
+    "title": "Informatio",
+    "section": "Gegenentwurf: Ästhetik",
+    "text": "Gegenentwurf: Ästhetik\n\n\nAbbildung von [Cédric Scherer]https://www.behance.net/gallery/100683383/Travelling-to-Outer-Space#)."
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#section-1",
+    "href": "sessions/good_plots/visual_form.html#section-1",
+    "title": "Informatio",
+    "section": "",
+    "text": "Wandelt euren Plot in einen Tufte-Plot um."
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#farben-als-design-element",
+    "href": "sessions/good_plots/visual_form.html#farben-als-design-element",
+    "title": "Informatio",
+    "section": "Farben als Design-Element",
+    "text": "Farben als Design-Element\n\n\n\n\n\nAll colors are the friends of their neighbors and the lovers of their opposites. - Marc Chagall\n\n\n\nNach MalteAhrens at de.wikipedia. Vectorization by User:SidShakal - Raster version from Wikimedia Commons., Gemeinfrei, Link"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#kleine-farbenlehre",
+    "href": "sessions/good_plots/visual_form.html#kleine-farbenlehre",
+    "title": "Informatio",
+    "section": "Kleine Farbenlehre",
+    "text": "Kleine Farbenlehre\n\n\n\n\nVincent van Gogh, Public domain, via Wikimedia Commons\n\n\n\nGegenüberliegende Farben intensivieren sich gegenseitig: eine Primärfarbe, und eine Sekundärfarbe, die aus den anderen beiden Primärfarben gemischt wird. Das erzeugt stärkere Kontraste. (Van Gogh bild)\nMit weiß und schwarz lassen sich die Schattierungen hinzumischen\ntriadisches Farbschema: Fom MIttelpunkt des Farbkreises Strahlen mit gleichem Winkel abgehen lassen (So viele, wie man Farben haben will). Das wählt dann Farben mit dem größten Kontrast aus. (https://www.kunstplaza.de/fashion-design/farbenlehre-farbtheorie-styleguides-fashion-design/)"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#weitere-tools",
+    "href": "sessions/good_plots/visual_form.html#weitere-tools",
+    "title": "Informatio",
+    "section": "Weitere Tools",
+    "text": "Weitere Tools\n\n\n\n\nWollbox von Vincent van Gogh, mit der er Farbkombinationen getestet hat. Eigenes Bild.\n\n\n\n\n- Colorbrewer\n- Huemint\n- Pinterest"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#schriften",
+    "href": "sessions/good_plots/visual_form.html#schriften",
+    "title": "Informatio",
+    "section": "Schriften",
+    "text": "Schriften\nDie Schriftart kann einer Abbildung ein ganz anderes Aussehn vereleihen.\nWir nutzen Schriftarten von Google Fonts\n\nlibrary(showtext)\n\nfont_add_google(\"Special Elite\", family = \"special\")\n\n\nDaten von zygmuntz."
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#section-2",
+    "href": "sessions/good_plots/visual_form.html#section-2",
+    "title": "Informatio",
+    "section": "",
+    "text": "library(ggwordcloud)\n\ntags &lt;- read.csv(here::here(\"data\", \"goodbooks-10k\", \"tags.csv\"))\nbook_tags &lt;- read.csv(here::here(\"data\", \"goodbooks-10k\", \"book_tags.csv\"))\nbooks &lt;- read.csv(here::here(\"data\", \"goodbooks-10k\", \"books.csv\")) \n\n\nclassics &lt;- book_tags %&gt;% \nleft_join(books) %&gt;%\nleft_join(tags) %&gt;% \nfilter(tag_name == \"classics\") %&gt;% \nfilter(ratings_count &gt; 20000, !duplicated(authors)) %&gt;%\n  select(original_title, average_rating, tag_name, ratings_count) %&gt;%\n  distinct() %&gt;% \n  arrange(ratings_count) %&gt;%\n  slice_tail(n = 50)\n\n\nset.seed(45)\nggplot(data = classics, \n       mapping = aes(label = original_title, size = average_rating)) +\n  geom_text_wordcloud() +\nscale_size(range = c(1, 6)) +\nlabs(title = \"What to read next ...\", \nsubtitle = \"... according to goodreads\") +\ntheme_bg()"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#section-3",
+    "href": "sessions/good_plots/visual_form.html#section-3",
+    "title": "Informatio",
+    "section": "",
+    "text": "font_add_google(\"Special Elite\", family = \"my textfont\")\nfont_add_google(\"Playfair Display\")\n\nshowtext_auto()\n\n\nset.seed(45)\nggplot(data = classics, \n       mapping = aes(label = original_title, size = average_rating)) +\n  geom_text_wordcloud(family = \"my textfont\") +\nscale_size(range = c(1, 6)) +\nlabs(title = \"What to read next\", \nsubtitle = \"According to goodreads\") +\ntheme_bg() +\ntheme(title = element_text(family = \"Playfair Display\", size = 20), \n)"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#section-4",
+    "href": "sessions/good_plots/visual_form.html#section-4",
+    "title": "Informatio",
+    "section": "",
+    "text": "Suche dir eine Schriftart aus Google Fonts und baue sie in deinen Plot ein."
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#übung",
+    "href": "sessions/good_plots/visual_form.html#übung",
+    "title": "Informatio",
+    "section": "Übung",
+    "text": "Übung\n\nWähle eine Grafik von … aus und erstelle einen Plan, wie du sie verbessern würdest.\n\n\n\n\n\nTufte, E. R., & Graves-Morris, P. R. (1983). The visual display of quantitative information (Bd. 2). Graphics press Cheshire, CT."
   },
   {
     "objectID": "sessions/more_ggplot/more_ggplot.html",
