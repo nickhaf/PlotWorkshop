@@ -1,6 +1,8 @@
 ---
 title: "Einführung"
-format: letterbox-revealjs
+format: 
+  letterbox-revealjs:
+    code-block-height: 400px
 ---
 
 ```{r}
