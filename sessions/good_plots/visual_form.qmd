@@ -1,5 +1,8 @@
 ---
-title: "Informatio"
+title: "Visual Form"
+title-slide-attributes:
+  data-background-image: ./images/eye_landscape.jpg
+  data-background-size: cover
 format: 
   letterbox-revealjs:
     code-block-height: 650px
@@ -34,14 +37,20 @@ gapminder_2020 <- gapminder %>%
   arrange(desc(co2_cons))
 ```
 
-# Visual Form
+## Visual Form
 
 
 ::: {.columns}
 ::: {.column width="50%}
 ::: {.quote}
-Design is a requirement, not a cosmetic addition. ([nature methods](https://www.nature.com/articles/nmeth.1783))
+Design is a requirement, not a cosmetic addition. 
+
+::: {.small}
+[nature methods](https://www.nature.com/articles/nmeth.1783)
 :::
+:::
+
+\
 
 - Nützlichkeit
 - Effizienz
@@ -57,6 +66,1061 @@ Design is a requirement, not a cosmetic addition. ([nature methods](https://www.
 Foto von <a href="https://unsplash.com/de/@samscrim?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Samuel Scrimshaw</a> auf <a href="https://unsplash.com/de/fotos/macro-photography-of-gray-alligator-eye-iq8x4Ik8mi8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
       
 :::
+
+
+
+# Effizienz: Salienz von Informationen
+
+Durch die Unterscheidbarkeit von grafischen Symbolen (*visual features*) soll grafische Informationen möglichst schnell aufgenommen werden, ohne lange überlegen zu müssen.
+
+Dafür können die sog. [Gestalt-Prinzipien]{.highlight} genutzt werden. 
+
+:::{.callout-tip}
+## Menschen nehmen Muster nach gewissen Prinzipien wahr. Die Regeln, nach denen wir Muster wahrnehmen, werden Gestalt-Prinzipien genannt, beispielsweise:
+
+- [**Nähe**: Einander nahe Elemente werden als zusammengehörig wahrgenommen]{.small}  
+- [**Ähnlichkeit**: Einander ähnliche Elemente werden als zusammengehörig wahrgenommen]{.small}  
+- [**Verbundene Elemente**: Verbundene Elemente werden als zusammengehörig wahrgenommen]{.small}  
+- [**Gute Fortsetzung**: Linien werden wahrgenommen, als folgten sie dem einfachsten Weg]{.small}  
+- [**Geschlossenheit**: Unvollständige Elemente werden als vollständig wahrgenommen]{.small}  
+- [**Figur und Grund**: Elemente sind entweder im Vorder- oder Hintergrund]{.small}  
+- [**Gemeinsames Schicksal**: Elemente mit ähnlicher Bewegungsrichtung werden als zusammengehörig wahrgenommen]{.small}
+
+:::
+
+
+## Salienz 
+
+Salienz durch *visual features*:
+
+![](./images/wong_salience.png)
+[Quelle: Wong, B. (2010)](https://www.nature.com/articles/nmeth1010-773)
+
+
+<!-- Unterscheiden von Gruppen:  -->
+<!-- - Gruppierung -->
+<!-- - Größe -->
+<!-- - Farbe -->
+<!-- - Form -->
+
+<!-- - Bewusste Wahrnehmung ignoriert Informationen und fügt hinzu -->
+<!-- - Nähe -->
+<!-- - Salienz (Farbe, Größe, Neigung) (Szaﬁr, Haroz, Gleicher & Franconeri -->
+<!-- (2016)) -->
+<!-- - Hier würde das USA Bild passen (evtl. mit einem anderen Beispiel, das den Unterschied deutlich macht, z.B. keine andere Farbe, näher dran durch andere Achse) -->
+<!-- - Harold et al., 2016: Lenken von Aufmerksamkeit -->
+<!-- - Nothelfer et al., 2017: Redundatne Kodierung führt zu deutlich höherer Genauigkeit der Antworten und kürzeren Reaktionszeiten -->
+
+
+
+## Gruppieren
+
+:::{.columns}
+:::{.column widht="50%}
+
+Gruppierung durch [Form]{.highlight} 
+
+```{r}
+#| echo: false
+
+set.seed(123)
+df <- data.frame(
+  x = 1:20,
+  y = cumsum(rnorm(20, 0.2)),
+  group = factor(rep(1:2, times = 10))
+)
+
+ggplot(df, aes(x, y)) +
+  geom_point(aes(shape = group), size = 3, show.legend = F) +
+  theme_bg() +
+  theme(
+    axis.text.y = element_text(hjust = 1),
+    panel.grid = element_blank(),
+    legend.position = "none"
+  )
+```
+
+:::
+
+:::{.column widht="50%}
+
+Gruppierung durch [verbundene Elemente]{.highlight}
+
+```{r}
+#| echo: false
+
+ggplot(df, aes(x, y)) +
+  geom_point(size = 3) +
+  geom_line(aes(group = group), show.legend = F) +
+  theme_bg() +
+  theme(
+    axis.text.y = element_text(hjust = 1),
+    panel.grid = element_blank(),
+    legend.position = "none"
+  )
+```
+
+:::
+:::
+
+## Darstellung von Größen
+
+Die Größe von Elemenen kann auch genutzt werden, um Daten zu kodieren.
+
+```{r}
+#| echo: false
+#| fig-width: 18
+#| fig-height: 10
+
+library(ggwordcloud)
+library(showtext)
+
+tags <- read.csv(here::here("data", "goodbooks-10k", "tags.csv"))
+book_tags <- read.csv(here::here("data", "goodbooks-10k", "book_tags.csv"))
+books <- read.csv(here::here("data", "goodbooks-10k", "books.csv")) 
+
+
+classics <- book_tags %>% 
+left_join(books) %>%
+left_join(tags) %>% 
+filter(tag_name == "classics") %>% 
+filter(ratings_count > 20000, !duplicated(authors)) %>%
+  select(original_title, average_rating, tag_name, ratings_count) %>%
+  distinct() %>% 
+  arrange(ratings_count) %>%
+  slice_tail(n = 50)
+
+
+font_add_google("Special Elite", family = "my textfont")
+font_add_google("Playfair Display")
+
+showtext_auto()
+
+
+set.seed(45)
+ggplot(data = classics, 
+       mapping = aes(label = original_title, size = average_rating)) +
+  geom_text_wordcloud(family = "my textfont") +
+scale_size(range = c(5, 20)) +
+labs(title = "What to read next", 
+subtitle = "According to the 50 most read classics on goodreads.", 
+caption = "The larger the title, the higher the average rating.") +
+theme_bg() +
+theme(title = element_text(family = "Playfair Display", size = 50), 
+      subtitle = element_text(family = "Playfair Display", size = 40),
+caption = element_text(family = "Playfair Display", size = 30)
+)
+```
+
+
+## Einschätzen von Größen
+
+:::{.columns}
+:::{.column widht="50%}
+
+```{r}
+#| echo: false
+
+library(ggplot2)
+
+# Define the data
+df <- data.frame(
+  row = rep(1:3, each = 2),
+  column = rep(c("A", "B"), times = 3),
+  size = c(1, 10, 1, 5, 1, 2)
+)
+
+# Plot
+ggplot(df, aes(x = column, y = factor(row), size = size)) +
+  geom_point(shape = 16, color = "#01364C") +
+  scale_size_area(max_size = 30) + # keeps area proportional to value
+  scale_y_discrete(name = NULL, limits = rev) +
+  xlab(NULL) +
+  theme_bg() +
+  theme(
+    axis.text.y = element_text(hjust = 1),
+    panel.grid = element_blank(),
+    legend.position = "none"
+  )
+```
+:::
+
+:::{.column widht="50%}
+
+::: {.fragment}
+
+```{r}
+#| echo: false
+library(ggplot2)
+
+# Define the data
+df <- data.frame(
+  row = rep(1:3, each = 2),
+  column = rep(c("A", "B"), times = 3),
+  size = c(1, 10, 1, 5, 1, 2)
+)
+
+# Plot with squares
+ggplot(df, aes(x = column, y = factor(row), size = size)) +
+  geom_point(shape = 15, color = "#01364C") + # shape 15 = square
+  scale_size_area(max_size = 30) + # still based on area
+  scale_y_discrete(name = NULL, limits = rev) +
+  xlab(NULL) +
+  theme_bg() +
+  theme(
+    axis.text.y = element_text(hjust = 1),
+    panel.grid = element_blank(),
+    legend.position = "none"
+  )
+```
+
+:::
+:::
+:::
+
+::: {.fragment}
+:::{.callout-caution}
+Die Größe von Kreisen einzuschätzen ist schwer!
+:::
+:::
+
+
+## Das gleiche gilt für Winkel!
+
+::: {.slide data-background-color="white"}
+
+
+::: {.columns}
+ 
+Versuche, die Größen zu sortieren: 
+
+::: {.column width="50%"}
+```{r }
+#| echo: false
+
+continent_co2 <- gapminder_2020 %>%
+  group_by(world_6region) %>%
+  summarise(mean_co2_pcap_cons = mean(co2_pcap_cons, na.rm = TRUE)) %>%
+  drop_na(mean_co2_pcap_cons)
+
+continent_co2$world_6region <- factor(
+  continent_co2$world_6region,
+  levels = c(
+    "south_asia",
+    "sub_saharan_africa",
+    "europe_central_asia",
+    "middle_east_north_africa",
+    "america",
+    "east_asia_pacific"
+  ),
+  labels = c(
+    "South Asia",
+    "Sub-Saharan Africa",
+    "Europe & Central Asia",
+    "Middle East & North Africa",
+    "Americas",
+    "East Asia & Pacific"
+  )
+)
+
+continent_co2_pct <- continent_co2 %>%
+  mutate(percentage = mean_co2_pcap_cons / sum(mean_co2_pcap_cons)) %>%
+  arrange(desc(world_6region)) %>%
+  mutate(
+    ymax = cumsum(percentage),
+    ymin = c(0, head(ymax, -1))
+  )
+
+
+ggplot(
+  continent_co2_pct,
+  aes(x = "", y = percentage * 100, fill = world_6region)
+) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y") +
+  scale_fill_manual(values = theme_colors) +
+  labs(title = "Share of global per capita CO2 consumption") +
+  theme_minimal() +
+  theme(
+    axis.title = element_blank(),
+    legend.position = "bottom",
+    legend.key.size = unit(0.4, "cm"),
+    legend.text = element_text(size = 7),
+    legend.title = element_blank()
+  )
+```
+:::
+
+::: {.column width="50%"}
+:::{.fragment}
+
+```{r}
+#| echo: false
+
+
+continent_co2_pct <- continent_co2 %>%
+  mutate(percentage = mean_co2_pcap_cons / sum(mean_co2_pcap_cons) * 100)
+
+ggplot(
+  continent_co2_pct,
+  aes(x = world_6region, y = percentage, fill = world_6region)
+) +
+  geom_bar(stat = "identity", width = 1) +
+  scale_fill_manual(values = theme_colors) +
+  theme_minimal() +
+  labs(title = "Share of global per capita CO2 consumption 2020") +
+  theme(
+    axis.title.x = element_blank(),
+    axis.text.x = element_blank(),
+    legend.position = "bottom",
+    legend.key.size = unit(0.4, "cm"),
+    legend.text = element_text(size = 7),
+    legend.title = element_blank()
+  )
+```
+:::
+:::
+:::
+:::
+
+## Das gleiche gilt für Winkel!
+
+
+::: {.columns} 
+::: {.column width="50%"}
+
+![](./images/pie1.png)
+[Quelle](https://scc.ms.unimelb.edu.au/resources/data-visualisation-and-exploration/no_pie-charts)
+:::
+
+::: {.column width="50%"}
+![](./images/pie2.png)
+
+[Quelle](https://www.data-to-viz.com/caveat/pie.html)
+:::
+:::
+
+:::{.fragment}
+:::{.callout-caution}
+Kreis- bzw. Tortendiagramme sollten daher vermieden werden.
+:::
+:::
+
+## Farben
+
+:::: {.columns} 
+::: {.column width="50%"}
+
+Farbe ist eine der wichtigsten Methoden, um Informationen zu [labeln], hervorzuheben, [Werte] zu kommunizieren, [Realität simulieren], und um zu designen und zu [dekorieren]. 
+:::
+
+::: {.column width="50%"}
+![](./images/colors.jpg){.image-right}
+:::
+:::
+
+::: image-ref
+Foto von <a href="https://unsplash.com/de/@efekurnaz?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Efe Kurnaz</a> auf <a href="https://unsplash.com/de/fotos/multicolored-hallway-RnCPiXixooY?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+      
+:::
+
+## Kategoriale vs. quantitative Daten
+
+```{r}
+#| label: color-plot
+#| echo: false
+
+
+color_plot_cat <- ggplot(
+  gapminder_2020,
+  aes(x = gini, y = hapiscore_whr, color = world_6region)
+) +
+  geom_point(size = 3) +
+  theme_bg() 
+
+
+color_plot_num <- ggplot(
+  gapminder_2020,
+  aes(x = world_6region, y = hapiscore_whr, color = gini)
+) +
+  geom_point(size = 3) +
+  theme_bg() 
+
+
+color_plot_bar <- ggplot(
+  gapminder_2020 %>% group_by(world_6region) %>%
+    summarise(hapiscore_whr = mean(hapiscore_whr, na.rm = TRUE)) %>%
+    drop_na(),
+  aes(x = world_6region, y = hapiscore_whr, fill = world_6region)) +
+  geom_bar(stat="identity", width = 1) +
+  theme_bg()+ theme(axis.title.x = element_blank(),
+        axis.text.x  = element_blank(),
+        axis.ticks.x = element_blank(),
+        axis.line.x  = element_blank())
+
+```
+
+
+::: {.columns}
+::: {.column width="50%"}
+
+### Kategoriale Daten
+Verschiedene Farben, die sich gut unterscheiden lassen.
+
+```{r}
+#| echo: false
+color_plot_cat
+
+```
+
+:::
+::: {.column width="50%"}
+
+### Quantitative Daten
+Farbverläufe, die eine Reihenfolge haben.
+
+```{r}
+#| echo: false
+color_plot_num
+
+```
+:::
+:::
+
+::: {.callout-tip}
+`ggplot2` setzt die entsprechende Skala schon automatisch!
+:::
+
+
+
+## Skalen mit Nullpunkt
+- Was zu beachten ist: unten Blau oben Rot ...
+https://ggplot2-book.org/scales-colour.html
+- Vor allem für diskrete Gruppen geeignet
+- Farbverläufe schwieriger (aber es gibt color scales dafür)
+- Bestimmte Farben (Grün = gut, Rot = Gefahr)
+
+- Intervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen
+  - Kein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten
+- Ordinal: Richtung und gute Unterscheidbarkeit im Farbraum
+- Nominalskaliert: Spriale/Diagnoale im Farbraum
+
+
+- Diskret
+- Continuous
+- Binned
+Vorgefertigte Paletten:
+
+Sequenziell
+\
+Qualitativ
+\
+Diverging
+
+
+## Farbwahrnehmung beim Menschen {style="text-align: right;"}
+
+::: {.columns}
+::: {.column width="50%"}
+![](./images/electro_spec.svg){.image-left}
+:::
+
+::: {.column widht="50%"}
+
+Primärfarben des Lichts: [R]{.highlight}ot, [G]{.highlight}rün, [B]{.highlight}lau
+
+\
+
+![](./images/cones_human.svg)
+
+
+:::
+:::
+
+:::{.image-ref}
+By <a href="//commons.wikimedia.org/wiki/File:Electromagnetic-Spectrum.png" title="File:Electromagnetic-Spectrum.png">Original: </a> <a href="//commons.wikimedia.org/wiki/User:Penubag" title="User:Penubag">Penubag</a> Vector: <a href="//commons.wikimedia.org/wiki/User:Victor_Blacus" title="User:Victor Blacus">Victor Blacus</a> - Own work based on: <a href="//commons.wikimedia.org/wiki/File:Electromagnetic-Spectrum.png" title="File:Electromagnetic-Spectrum.png">Electromagnetic-Spectrum.png</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=22428451">Link</a>  
+By <a href="//commons.wikimedia.org/wiki/User:BenRG" title="User:BenRG">BenRG</a> - <span class="int-own-work" lang="en">Own work</span>, Public Domain, <a href="https://commons.wikimedia.org/w/index.php?curid=7873848">Link</a>
+:::
+
+
+
+
+## Andere Tiere können auch mal mehr oder weniger haben:
+
+::: {.columns}
+
+::: {.column width="50%"}
+![](./images/color_animals.png)
+:::
+
+::: {.column width="50%"}
+![](./images/chicken.jpg){.image-right}
+:::
+:::
+
+:::{.image-ref}
+Bild aus [Farbsehen der Tiere](https://media.springernature.com/original/springer-static/image/art%3A10.1007%2Fs00347-017-0543-6/MediaObjects/347_2017_543_Fig1_HTML.gif?as=jpg)  
+Foto von <a href="https://unsplash.com/de/@relentlessjpg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Ben Moreland</a> auf <a href="https://unsplash.com/de/fotos/selective-focus-photography-of-brown-hen-auijD19Byq8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+      
+:::
+
+## Viele Tiere sehen nur grau
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+Warum überhaupt Farbwahrnehmung?
+
+::: {.fragment}
+
+- [Konsistenz]{.highlight}: Farbtöne sind unabhängig vom Licht wahrnehmbar. 
+- Aber: [More is not always better!]{.highlight} Zu viel kann auch vom Wesentlichen ablenken. 
+
+
+<!-- : Affen vom Amerikanischen Kontinent sind teilweise die und teilweise tetra: di kann besser INsekten ausmachen, tri Früchte gegen grünen background.  -->
+
+
+Farbwahrnehmung ist also subjektiv, und bringt nur einen Vorteil, wenn eine Bedeutung daraus abgeleitet werden kann. 
+
+:::
+
+:::
+
+::: {.column width="50%"}
+![](./images/whale.jpg){.image-right}
+:::
+:::
+
+
+::: {.image-ref}
+Foto von <a href="https://unsplash.com/de/@mero_dnt?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Chinh Le Duc</a> auf <a href="https://unsplash.com/de/fotos/ein-buckelwal-schwimmt-unter-der-wasseroberflache-P19iVmm7XUA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+
+
+## More is not always better
+
+::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| echo: false
+
+color_plot_cat
+```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+ggplot(
+  gapminder_2020,
+  aes(x = gini, y = hapiscore_whr, color = world_4region)
+) +
+  geom_point(size = 3) +
+  theme_bg() 
+```
+
+:::
+:::
+
+
+Mehr als [sechs]{.highlight} Farben sollten es auf keinen Fall werden!
+
+::: {.callout-tip}
+Alternative: Facetting. 
+:::
+
+## Farben
+
+![](./images/color_perception.png)
+
+Ganglienzellen übertragen keine Informationen über absolute Helligkeit,
+sondern über [relative Helligkeit]{.highlight}.
+
+
+::: {.callout-info}
+Visualisierung kann nicht gut darin sein, absolute Werte zu
+kommunizieren (Tabellen können das besser). 
+Aber: [Unterschiede]{.highlight} und [Veränderungen]{.highlight}. 
+:::
+
+
+::: .image-ref
+Bild von [Nature Methods](https://www.nature.com/articles/nmeth0810-573/figures/1). 
+:::
+
+
+##
+::: {.columns}
+::: {.column width="50%"}
+
+Hier sind die Farben klar unterscheidbar, und der Gini-Index lässt sich gut ablesen.
+
+```{r}
+#| echo: false
+color_plot_cat
+
+```
+
+:::
+::: {.column width="50%"}
+
+Der Plot ist etwas sub-optimaler. Die tatsächlichen Werte des Gini-Index werden nicht gut kommuniziert. 
+
+```{r}
+#| echo: false
+color_plot_num
+
+```
+:::
+:::
+
+
+## Farbe ist relativ
+
+```{r}
+#| label: color_bias_reds
+#| echo: false
+#| fig-width: 14
+#| fig-height: 7
+
+theme_colors_red <- c(
+  "#D80000", 
+  "#D80020", 
+  "#D80040", 
+  "#D80060", 
+  "#D80080", 
+  "#D80099" 
+)
+
+
+color_plot_bar +
+  scale_fill_manual(values = theme_colors_red)
+
+```
+
+
+
+
+## Eigenschaften von Farben
+
+::: {.columns}
+
+### Farbton, Sättigung, Helligkeit
+Die drei Eigenschaften beschreiben das Aussehen von Farben. 
+
+::: {.column width="50%"}
+
+![](./images/color_properties.png)
+
+:::
+
+
+::: {.column width="50%"}
+
+### Farbräume
+- RGB: **Zusammen**mischen von Licht der unterschiedlichen Farben. Alle drei zusammen ergeben weiß. 
+- CMYK: **Ausblenden** aus dem weißen Farbspektrum durch Filter. Grundfarben: Gelb, Magenta (Purpur), Cyan (Blaugrün) (+K - Key (also Schwarz))
+
+:::
+:::
+
+
+
+## Salienz
+
+Sticht eine Farbe hervor, ist sie besonders salient - das kann gewollt oder ungewollt sein. 
+
+::: {.columns}
+:::{.column widht="50%}
+
+```{r}
+#| label: color_bias__scatter_bar
+#| echo: false
+
+accent_scale <- c(
+"america" = "#7FC97F",
+"east_asia_pacific" = "#699896FF", 
+"europe_central_asia" = "red", 
+"middle_east_north_africa" = "#9FAFC0", 
+"south_asia" = "#B49B97",
+"sub_saharan_africa" = "#E9E4A6FF" 
+)
+
+color_plot_bar +
+   scale_fill_manual(values = accent_scale)
+```
+
+:::
+
+
+:::{.column widht="50%}
+```{r}
+#| label: color_balanced__scatter_bar
+#| echo: false
+
+theme_colors_3 <- c(
+  "#9FAFC0", # entsättigtes Dunkelblau
+  "#B49B97", # ausgebleichtes Braun
+  "#F2E2A0", # ausgebleichtes Gelb (statt Rot)
+  "#A7C9C3", # stark aufgehelltes Türkis
+  "#D8B88C", # heller Orange-Braun-Ton
+  "#A6B7CA", # blasser Stahlblau-Ton
+  "#BFD4C2", # sehr blasses Olivgrün
+  "#D6C1D5", # blasses Flieder/Pastell-Lila
+  "#D8D9DB" # sehr heller, neutraler Grauton
+)
+
+color_plot_bar +
+   scale_fill_manual(values = theme_colors_3)
+```
+
+
+:::
+
+:::
+
+
+
+## Größe
+
+:::{.columns}
+:::{.column width="33%"}
+
+```{r}
+#| echo: false
+#| fig-width: 6
+#| fig-height: 8
+
+ggplot(
+  gapminder_2020,
+  aes(x = gini, y = hapiscore_whr, color = world_6region)
+) +
+  geom_point(size = 1) +
+  theme_bg() 
+
+
+```
+:::
+
+:::{.column width="33%"}
+```{r}
+#| echo: false
+#| fig-width: 6
+#| fig-height: 8
+
+ggplot(
+  gapminder_2020,
+  aes(x = gini, y = hapiscore_whr, color = world_6region)
+) +
+  geom_point(size = 2) +
+  theme_bg() 
+
+```
+:::
+
+:::{.column width="33%"}
+```{r}
+#| echo: false
+#| fig-width: 6
+#| fig-height: 8
+
+ggplot(
+  gapminder_2020,
+  aes(x = gini, y = hapiscore_whr, color = world_6region)
+) +
+  geom_point(size = 3) +
+  theme_bg() 
+
+```
+:::
+:::
+
+
+## Farbfehlsichtigkeit
+
+![](./images/cones_eye.jpg)
+
+protanopic right side
+
+::: {.image-ref}
+By Mark Fairchild, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=32075732">Link</a>
+:::
+
+- Protanopie: Zapfentyp L (rot) fehlt: rot vs grün Schwäche
+- Deuteranopie: Zapfentyp M (grün) fehlt: rot vs grün Schwäche
+- Tritanopie: Zapfentyp S (blau) fehlt: blau vs grün, gelb vs violett Schwäche
+
+
+- Take the above scale and show that it is not great for color blindness
+- https://www.color-blindness.com/coblis-color-blindness-simulator/
+
+
+## Colorblind-Check
+
+::: {.columns}
+::: {.column width="50%"}
+Auf [Colblindor](https://www.color-blindness.com/coblis-color-blindness-simulator/).
+
+![](./images/colorblind_check.png)
+
+:::
+
+::: {.column width="50%"}
+Mit [colorblindcheck](https://cran.r-project.org/web/packages/colorblindcheck/index.html).
+
+```{r}
+library(colorblindcheck)
+
+palette_check(scales::hue_pal()(6), plot = TRUE)
+```
+
+:::
+:::
+
+
+
+## Anwendung in ggplot2
+
+## Farben wählen
+- Name
+- rgb()
+- Nummer
+- Hex code
+
+## Farben manuell setzen
+
+::: {.columns}
+::: {.column width="50%"}
+
+::: panel-tabset
+
+### Code
+
+```{r}
+#| label: manual_color_scale
+#| code-line-numbers: "11"
+#| fig-show: hide
+
+ggplot(
+  continent_co2_pct,
+  aes(
+    x = world_6region,
+    y = percentage,
+    fill = world_6region
+  )
+) +
+  geom_bar(stat = "identity", width = 1) +
+  theme_minimal() +
+  labs(title = "Share of global per capita CO2 consumption") +
+  scale_fill_manual(values = c("red", "green", "blue", "yellow", "violet", "brown"))
+```
+
+### Plot
+
+```{r}
+#| label: manual_color_scale
+#| echo: false
+```
+
+:::
+:::
+
+:::{.column widht="50%"}
+
+
+::: panel-tabset
+
+### Code
+
+```{r}
+#| label: manual_color_scale_named
+#| code-line-numbers: "1,2,3,4,5,6,7,8,20"
+#| reults: hide
+#| fig-show: hide
+
+my_color_scale <- c(
+  "East Asia & Pacific" = "red",
+  "South Asia" = "green",
+  "Sub-Saharan Africa" = "blue",
+  "Europe & Central Asia" = "yellow",
+  "Middle East & North Africa" = "violet",
+  "Americas" = "brown"
+)
+
+ggplot(
+  continent_co2_pct,
+  aes(
+    x = world_6region,
+    y = percentage,
+    color = world_6region
+  )
+) +
+  geom_bar(stat = "identity", width = 1) +
+  theme_minimal() +
+  labs(title = "Share of global per capita CO2 consumption 2020") +
+  scale_color_manual(values = my_color_scale)
+```
+
+### Plot
+
+```{r}
+#| label: manual_color_scale_named
+#| echo: false
+```
+
+:::
+
+::: {.callout-tip}
+Wenn du in einem Projekt die gleichen Gruppen in verschiedenen Plots zeigst, setze die Farbskala einmal mit den Gruppennamen, damit die Gruppen in allen Plots die selben Farben bekommen.
+:::
+
+:::
+:::
+
+
+
+
+## Graustufen 
+
+
+
+```{r}
+#| code-line-numbers: "12"
+#| output-location: column
+
+
+ggplot(
+  continent_co2_pct,
+  aes(
+    x = world_6region,
+    y = percentage,
+    fill = world_6region
+  )
+) +
+  geom_bar(stat = "identity", width = 1) +
+  theme_minimal() +
+  labs(title = "Share of global per capita CO2 consumption 2020") +
+  scale_fill_grey()
+```
+
+
+
+
+## Externe Farb-Paletten
+
+::: {.columns}
+::: {.column width="50%"}
+[**R Color Brewer**](https://r-graph-gallery.com/38-rcolorbrewers-palettes.html)
+
+```{r}
+library(RColorBrewer)
+display.brewer.all(colorblindFriendly = FALSE)
+```
+
+:::
+::: {.column width="50%"}
+
+
+::: panel-tabset
+
+### Code
+
+```{r}
+#| label: color_brewer
+#| reults: hide
+#| fig-show: hide
+#| code-line-numbers: "1,12"
+
+library(RColorBrewer)
+
+ggplot(
+  continent_co2_pct,
+  aes(
+    x = world_6region,
+    y = percentage,
+    fill = world_6region
+  )
+) +
+  geom_bar(stat = "identity", width = 1) +
+  theme_minimal() +
+  labs(title = "Share of global per capita CO2 consumption") +
+  scale_fill_brewer(palette = "PuOr")
+```
+
+
+### Plot
+
+```{r}
+#| label: color_brewer
+#| echo: false
+```
+
+:::
+:::
+:::
+
+## Externe Farb-Paletten
+::: {.columns}
+::: {.column width="50%"}
+[**paletteer**](https://r-graph-gallery.com/package/paletteer.html)
+
+Sammlung von Paletten aus diversen Paketen
+
+- [Palette-Finder](https://r-graph-gallery.com/color-palette-finder)
+- [Gallerie](https://pmassicotte.github.io/paletteer_gallery/#sequential)
+
+:::
+
+::: {.column width="50%"}
+
+::: panel-tabset
+
+### Code
+
+```{r}
+#| label: paletteer
+#| reults: hide
+#| fig-show: hide
+#| code-line-numbers: "1,14"
+
+library(paletteer)
+
+ggplot(
+  continent_co2_pct,
+  aes(
+    x = world_6region,
+    y = percentage,
+    fill = world_6region
+  )
+) +
+  geom_bar(stat = "identity", width = 1) +
+  theme_minimal() +
+  labs(title = "Share of global per capita CO2 consumption") +
+  scale_fill_paletteer_d("LaCroixColoR::Orange")
+```
+
+
+### Plot
+
+```{r}
+#| label: paletteer
+#| echo: false
+```
+
+:::
+:::
+
+:::
+
+
+
+## Übung
+
+::: {.exercise}
+1. Baue eine eigene Farbpalette für deinen Plot und teste sie auf Farbfehlsichtigkeiten.
+:::
+
 
 
 ## Nützlichkeit
