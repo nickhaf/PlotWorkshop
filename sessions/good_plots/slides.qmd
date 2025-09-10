@@ -251,7 +251,7 @@ ggplot(data = gapminder_line, aes(x = time, y = gini)) +
 #| code-fold: true
 
 
-## Bilde einen eignen Datensatz, der alle europöischen Lönder enthält
+## Bilde einen eignen Datensatz, der alle europäischen Lönder enthält
 
 gapminder_europe <- gapminder %>%
   filter(world_4region == "europe", time >= 1900, time <= 2024) %>%
@@ -2756,8 +2756,7 @@ Aus @tufte1983visual.
 ![](./images/space.png){.lightbox}
 
 ::: {.image-ref}
-Abbildung ovn [Cédric Scherer]https://www.behance.net/gallery/100683383/Travelling-to-Outer-Space#).
-
+Abbildung von [Cédric Scherer]https://www.behance.net/gallery/100683383/Travelling-to-Outer-Space#).
 :::
 
 
