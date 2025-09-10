@@ -795,7 +795,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nwide_lines\n31.09\n32.38\n\n\nbullseye\n79.66\n73.93\n\n\nslant_down\n31.40\n39.27\n\n\ndino\n53.08\n85.26\n\n\nbullseye\n61.61\n29.99\n\n\nstar\n76.95\n15.86\n\n\ndino\n91.28\n41.54\n\n\ncircle\n48.89\n16.81\n\n\nslant_down\n90.70\n41.47\n\n\nslant_up\n43.86\n94.09\n\n\nh_lines\n57.05\n10.51\n\n\nwide_lines\n64.30\n84.13\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nbullseye\n70.85\n52.28\n\n\ndino\n35.38\n51.41\n\n\nbullseye\n62.05\n63.85\n\n\ndots\n25.57\n82.92\n\n\nslant_down\n51.35\n0.30\n\n\nv_lines\n30.50\n38.31\n\n\nwide_lines\n63.91\n62.97\n\n\nstar\n43.30\n31.53\n\n\nstar\n39.09\n15.12\n\n\ndino\n68.46\n94.10\n\n\nslant_up\n55.76\n54.03\n\n\nv_lines\n69.50\n92.12\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
@@ -931,6 +931,13 @@
     "text": "Scatterplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_2019, aes(x = gini, y = hapiscore_whr, color = world_4region)) +\n  geom_point(size = 3)  +\n  labs(x = \"Gini-Koeffizient\", y =\"Happiness score (WHR)\", color= \"Weltregion\")"
   },
   {
+    "objectID": "sessions/Einführung/slides.html#scatterplot-2",
+    "href": "sessions/Einführung/slides.html#scatterplot-2",
+    "title": "Einführung",
+    "section": "Scatterplot",
+    "text": "Scatterplot\n… hier noch eine ausgefeiltere Version einfügen …"
+  },
+  {
     "objectID": "sessions/Einführung/slides.html#barplot",
     "href": "sessions/Einführung/slides.html#barplot",
     "title": "Einführung",
@@ -980,6 +987,13 @@
     "text": "Histogram\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_2023, aes(x = hapiscore_whr)) +\n  geom_histogram() +\n  theme_bg() +\n  labs(x = \"Happiness\", y = \"\", title = \"World Happiness 2023\")"
   },
   {
+    "objectID": "sessions/Einführung/slides.html#histogram-2",
+    "href": "sessions/Einführung/slides.html#histogram-2",
+    "title": "Einführung",
+    "section": "Histogram",
+    "text": "Histogram\n… hier noch eine ausgefeiltere Version einfügen …"
+  },
+  {
     "objectID": "sessions/Einführung/slides.html#boxplot",
     "href": "sessions/Einführung/slides.html#boxplot",
     "title": "Einführung",
@@ -992,6 +1006,13 @@
     "title": "Einführung",
     "section": "Boxplot",
     "text": "Boxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_2023, aes(x = gini)) +\n  geom_boxplot() +\n  theme_bg() +\n  labs(x = \"Bevölkerung\", y = \"\", \n       title = \"Verteilung des Gini-Index\", subtitle = \"Jahr: 2023\")"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#boxplot-2",
+    "href": "sessions/Einführung/slides.html#boxplot-2",
+    "title": "Einführung",
+    "section": "Boxplot",
+    "text": "Boxplot\n… hier noch eine ausgefeiltere Version einfügen …"
   },
   {
     "objectID": "sessions/Einführung/slides.html#kombiniert",
@@ -1041,13 +1062,6 @@
     "title": "Einführung",
     "section": "Animiert: gganimate",
     "text": "Animiert: gganimate"
-  },
-  {
-    "objectID": "sessions/Einführung/slides.html#interaktiv-plotly",
-    "href": "sessions/Einführung/slides.html#interaktiv-plotly",
-    "title": "Einführung",
-    "section": "Interaktiv: plotly",
-    "text": "Interaktiv: plotly"
   },
   {
     "objectID": "sessions/Einführung/slides.html#generative-art",
