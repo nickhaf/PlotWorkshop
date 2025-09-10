@@ -8,6 +8,7 @@ author:
 
 
 
+## Intro
 
 ```{=html}
 <iframe class="slide-deck" src="slides.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
@@ -15,8 +16,40 @@ author:
 
 [View slides in full screen](slides.html)
 
-- Wahrnehmungspsychologie/Schlechte/Gute Grafiken + Sammeln?/ggplot-Anwendung direkt dazu (z.B. Farben, Annotation ... -> Also direkte Anwendung der Theorie) - Janine (+ Nicklas)
+
+## Information
+
+```{=html}
+<iframe class="slide-deck" src="information.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
+```
+
+[View slides in full screen](information.html)
 
 
-# Übung
-Schlechte Grafiken diskutieren
+## Story
+
+```{=html}
+<iframe class="slide-deck" src="story.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
+```
+
+[View slides in full screen](story.html)
+
+
+
+## Goal
+
+```{=html}
+<iframe class="slide-deck" src="goal.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
+```
+
+[View slides in full screen](goal.html)
+
+
+
+## Visual Form
+
+```{=html}
+<iframe class="slide-deck" src="visual_form.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
+```
+
+[View slides in full screen](visual_form.html)

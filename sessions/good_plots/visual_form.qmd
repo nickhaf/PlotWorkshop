@@ -1,0 +1,850 @@
+---
+title: "Informatio"
+format: 
+  letterbox-revealjs:
+    code-block-height: 650px
+bibliography: refs.bib
+---
+
+
+```{r}
+#| label: Load pacakges
+#| echo: false
+#| message: false
+
+library(here)
+library(janitor)
+library(ggwordcloud)
+library(ggrepel)
+library(ggtext)
+library(showtext)
+library(tidyverse)
+source(here::here("src", "themes.R"))
+source(here::here("src", "functions.R"))
+
+gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
+
+gapminder_europe <- gapminder %>%
+  filter(world_4region == "europe", time >= 1900, time <= 2024) %>%
+  drop_na(gini)
+
+gapminder_2020 <- gapminder %>%
+  filter(time == 2020) %>%
+  drop_na(world_6region, world_4region, country, gini, hapiscore_whr) %>% 
+  arrange(desc(co2_cons))
+```
+
+# Visual Form
+
+
+::: {.columns}
+::: {.column width="50%}
+::: {.quote}
+Design is a requirement, not a cosmetic addition. ([nature methods](https://www.nature.com/articles/nmeth.1783))
+:::
+
+- Nützlichkeit
+- Effizienz
+- Ästhetik
+
+:::
+::: {.column width="50%}
+![](./images/eye.jpg){.image-right}
+:::
+:::
+
+::: {.image-ref}
+Foto von <a href="https://unsplash.com/de/@samscrim?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Samuel Scrimshaw</a> auf <a href="https://unsplash.com/de/fotos/macro-photography-of-gray-alligator-eye-iq8x4Ik8mi8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+      
+:::
+
+
+## Nützlichkeit
+
+:::{.columns}
+
+::: {.column width="50%"}
+![](./images/remote.jpg)
+
+:::
+
+:::{.column width="50%"}
+![](./images/remote_2.jpg)
+
+::: image-ref
+Foto von <a href="https://unsplash.com/de/@kellysikkema?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Kelly Sikkema</a> auf <a href="https://unsplash.com/de/fotos/drei-schwarze-fernbedienungen-auf-holztisch-HprPUHnjDgk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>  
+Foto von <a href="https://unsplash.com/de/@ymoran?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Yucel Moran</a> auf <a href="https://unsplash.com/de/fotos/schwarze-fernbedienung-auf-weissem-textil-LJW-blAKI98?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+
+:::
+:::
+
+Hier gilt ganz besonders: [Simplify to Clarify]{.highlight}
+
+
+## Funktionelles Design {.nostretch}
+
+:::{.columns}
+
+::: {.column width="67.5%"}
+![](./images/map.png)
+
+::: image-ref
+Foto von <a href="https://www.bvg.de/.imaging/mte/bvg-theme/zoomed3000w/dam/BVG-Bilder/Verbindungen/netz-ab-01-a.jpg/jcr:content/netz-ab-01-a.jpg">BVG</a>
+:::
+
+:::
+
+:::{.column width="32.5%"}
+![](./images/fahrplan-tabelle.png)
+
+::: image-ref
+Foto von <a href="https://www.bvg.de/de/verbindungen/linienuebersicht">BVG</a>
+:::
+
+:::
+:::
+
+::: {.callout-tip}
+Dabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen.  
+Handschriftliche Skizze ist auch erstmal hilfreich!
+:::
+
+
+
+## Simplify to clarify: Data-ink ratio
+
+::: .quote
+Data graphics should draw the viewer's attention to the sense and substance of the data, not to something else. [@tufte1983visual]
+:::
+
+Auf die Spitze getrieben von @tufte1983visual: 
+
+
+::: {.columns}
+::: {.column width="50%"}
+Data-ink ratio = Data-ink / Total ink used to print the graphic
+
+- Jedes Stück Tinte sollte einen Grund haben.  
+
+:::
+::: {.column width="50%"}
+
+![](./images/eeg.png)
+:::{.image-ref}
+<a href="https://creativecommons.org/licenses/by-sa/2.0" title="Creative Commons Attribution-Share Alike 2.0">CC BY-SA 2.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=845554">Link</a>
+:::
+:::
+:::
+
+## Data-ink ratio in Praxis
+
+
+::: {.columns}
+::: {.column width="33%"}
+
+10% Daten, 90 % Achsenbeschriftungen und Hintergrundlinien
+
+::: {.panel-tabset}
+
+### Plot
+
+```{r}
+#| echo: false
+#| label: excel_plot
+ 
+
+library(ggthemes)
+
+ggplot(
+  data = gapminder_2020,
+  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)
+) +
+  geom_point() +
+  theme_excel() +
+  scale_x_continuous(
+    breaks = scales::pretty_breaks(n = 10), # ensure ticks
+    minor_breaks = waiver() # ensures minor ticks too
+  ) +
+  scale_y_continuous(
+    breaks = scales::pretty_breaks(n = 10),
+    minor_breaks = waiver()
+  ) +
+  theme(
+    panel.grid.major = element_line(color = "grey60", size = 1.2), # thick major grid
+    panel.grid.minor = element_line(color = "grey60", size = 0.8) # thick minor grid
+  )
+```
+
+### Code
+
+```{r}
+#| eval: false
+#| label: excel_plot
+```
+
+:::
+
+
+:::
+
+::: {.column width="33%"}
+:::{.fragment}
+
+
+0% Daten (Plotte die Daten, keine Zusammenfassungen)
+
+::: {.panel-tabset}
+### Plot
+```{r}
+#| echo: false
+#| label: mean_plot
+
+ggplot(
+  data = gapminder_2020,
+  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)
+) +
+  geom_smooth()
+```
+
+### Code
+```{r}
+#| eval: false
+#| label: mean_plot
+
+```
+:::
+
+:::
+
+:::
+
+::: {.column width="33%"}
+
+::: {.fragment}
+ca. 90 % Daten, 10 % Achsenbeschriftungen und Legende
+
+::: {.panel-tabset}
+### Plot
+```{r}
+#| echo: false
+#| label: tufte_plot
+
+library(ggthemes)
+ggplot(
+  data = gapminder_2020,
+  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)
+) +
+  geom_point() +
+  theme_tufte()
+```
+
+### Code
+```{r}
+#| eval: false
+#| label: tufte_plot
+
+```
+:::
+:::
+:::
+:::
+
+## Redundanzen 
+
+::: {.quote}
+Erase non-data-ink, within reason. Erase redundant data-ink, within reaseon [@tufte1983visual]
+:::
+
+
+::: .{exercise}
+::: {.panel-tabset}
+
+### Frage
+
+Auf wie viele Arten wird hier die Höhe der CO2 Emissionen pro Kopf dargestellt?
+
+```{r}
+#| echo: false
+#| fig-height: 4
+
+ggplot(
+  gapminder_2020[1:10, ],
+  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons, fill = co2_pcap_cons, color = co2_pcap_cons, label = round(co2_pcap_cons), 2)
+) +
+  geom_bar(stat = "identity", width = 1, color = "black") +
+  geom_text(vjust = -1, color = "black") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(
+    x = "Land",
+    y = "CO2 Consumption per capita in t"
+  ) +
+  theme_bg()
+```
+
+### Antwort
+
+Auf [sieben]{.highlight} verschiedene Arten: 
+
+1. Höhe der linken Balkenlinie
+2. Höhe der rechten Balkenlinie
+3. Höhe der horizontalen Balkenlinie
+4. Höhe des Balkeninneren
+5. Farbe des Balkens
+6. Position des Labels
+7. Wert des Labels
+
+Balken an sich enthalten also schon redundante Informationen!
+
+:::
+:::
+
+## 
+::: .exercise
+
+
+::: {.panel-tabset}
+
+### Aufgabe
+
+Entferne alle Redundanzen, machen den Plot also "Tufte-Komform" 
+```{r}
+#| eval: false
+
+ggplot(
+  gapminder_2020[1:10, ],
+  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons, fill = co2_pcap_cons, color = co2_pcap_cons, label = round(co2_pcap_cons), 2)
+) +
+  geom_bar(stat = "identity", width = 1, color = "black") +
+  geom_text(vjust = -1, color = "black") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(
+    x = "Land",
+    y = "CO2 Consumption per capita in t") +
+  theme_bg()
+```
+
+### Antwort
+
+::: {.panel-tabset}
+
+#### Antwort 1
+
+Entfernen der Achsenlinien und Umrandungen. Hintergrundlinien werden innerhalb der Balken dargestellt. 
+
+```{r}
+#| echo: false
+
+library(ggthemes)
+
+ggplot(
+  gapminder_2020[1:10, ],
+  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)
+) +
+  geom_bar(stat = "identity", width = 0.5, color = NA, fill = "grey") +
+  geom_hline(yintercept = seq(0, 30, by = 5), color = "white", size = 0.3) +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1), axis.ticks = element_blank()) +
+  labs(
+    x = "Land",
+    y = "CO2 Consumption per capita in t"
+  ) +
+  theme_tufte()
+```
+
+
+#### Antwort 2
+
+Mitunter können die vertikalen und horizontalen Linien auch hilfreich beim Vergleich/bei der Zuordnung zum Land sein: ["Tufte Barchart"]{.highlight}
+
+```{r}
+#| echo: false
+library(ggplot2)
+
+ggplot(
+  gapminder_2020[1:10, ],
+  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)
+) +
+  # vertikale Linie, leicht nach links geschoben
+  geom_segment(
+    aes(xend = reorder(country, co2_pcap_cons), y = 0, yend = co2_pcap_cons),
+    position = position_nudge(x = -0.14)
+  ) +
+  geom_segment(aes(
+    x = as.numeric(reorder(country, co2_pcap_cons)) - 0.15,
+    xend = as.numeric(reorder(country, co2_pcap_cons)) + 0.15,
+    y = co2_pcap_cons, yend = co2_pcap_cons
+  )) +
+  ylim(c(0, 30)) +
+  labs(
+    x = "Land",
+    y = "CO2 Consumption per capita in t"
+  ) +
+  theme_tufte() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+:::
+:::
+
+
+:::
+
+## Maximieren von Informationen
+
+::: {.columns}
+
+::: {.column width = "50%"}
+### Normaler Scatterplot
+
+Box um den Plot, Grid-Linien, Achsen-Ticks: Alles keine Daten. 
+
+::: {.panel-tabset}
+
+### Plot
+
+```{r}
+#| label: normal_scatter
+#| echo: false
+ggplot(
+  data = gapminder_2020,
+  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)
+) +
+  geom_point() 
+```
+
+### Code
+
+```{r}
+#| label: normal_scatter
+#| eval: false
+
+```
+
+:::
+:::
+
+::: {.column width = "50%"}
+
+
+### Tufte-Scatterplot
+
+Nutzen der Ticks und Achsen-Linien, um Informationen zu transportieren. 
+
+::: {.panel-tabset}
+
+### Plot
+
+``` {r}
+#| echo: false
+#| label: tufte_scatter
+
+library(paletteer)
+
+
+xlim_v <- c(20, 80)
+ylim_v <- c(20, 80)
+
+# Parameter: Anzahl der Quantile, Versatz von den Rändern, kleine Lücke zwischen Segmenten
+probs <- seq(0, 1, by = 0.25) # Quartile; für Dezile: by = 0.1
+off_x <- 0 # Versatz der "y-Achse" nach rechts
+off_y <- 0 # Versatz der "x-Achse" nach oben
+gap <- 0.2 # kleine Lücke an Segmentenden (optisch schöner)
+
+qx <- quantile(gapminder_2020$gini, probs = probs, na.rm = TRUE)
+qy <- quantile(gapminder_2020$hapiscore_whr, probs = probs, na.rm = TRUE)
+
+# Segment-Dataframes bauen (pro Intervall ein Segment)
+seg_x <- tibble(
+  x    = pmax(qx[-length(qx)] + gap / 2, xlim_v[1]),
+  xend = pmin(qx[-1] - gap / 2, xlim_v[2]),
+  y    = ylim_v[1] + off_y,
+  yend = ylim_v[1] + off_y
+) %>% filter(x < xend)
+
+seg_y <- tibble(
+  x    = xlim_v[1] + off_x,
+  xend = xlim_v[1] + off_x,
+  y    = pmax(qy[-length(qy)] + gap / 2, ylim_v[1]),
+  yend = pmin(qy[-1] - gap / 2, ylim_v[2])
+) %>%
+  filter(y < yend)
+
+ggplot(
+  data = gapminder_2020,
+  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)
+) +
+  geom_point() +
+  # Quantil-"x-Achse" (horizontal) leicht ins Panel versetzt
+  geom_segment(
+    data = seg_x,
+    aes(x = x, xend = xend, y = y, yend = yend),
+    inherit.aes = FALSE
+  ) +
+  # Quantil-"y-Achse" (vertikal) leicht ins Panel versetzt
+  geom_segment(
+    data = seg_y,
+    aes(x = x, xend = xend, y = y, yend = yend),
+    inherit.aes = FALSE
+  ) +
+  scale_x_continuous(breaks = unique(c(round(seg_x$x, 0), round(seg_x$xend, 0)))) +
+  scale_y_continuous(breaks = unique(c(round(seg_y$y, 0), round(seg_y$yend, 0)))) +
+  coord_cartesian(xlim = xlim_v, ylim = ylim_v, expand = FALSE) +
+  theme_tufte() +
+  theme(axis.ticks = element_blank()) +
+  paletteer::scale_colour_paletteer_d("fishualize::Koumansetta_rainfordi")
+```
+
+### Code
+
+```{r}
+#| label: tufte_scatter
+#| eval: false
+```
+
+:::
+:::
+:::
+
+
+
+## Verteilungen Plotten
+
+\
+\
+\
+
+Reduzieren heißt nicht, die Informationen zu reduzieren, sondern den Chart-Junk!  
+Sehr oft macht es Sinn, [die gesamte Verteilung zu plotten]{.highlight}, möglicherweise auch [zusätzlich]{.highlight} zu zusammenfassenden Statistiken.
+
+## Verteilungen plotten
+
+::: {.columns}
+::: {.column width = "50%"}
+
+### Boxplot
+
+::: {.panel-tabset}
+
+### Plot
+
+```{r}
+#| label: boxplot_happy
+#| echo: false
+
+ggplot(data = gapminder_2020 %>% drop_na(country),
+  aes(x = world_4region, y = hapiscore_whr, fill = world_4region)) +
+  geom_boxplot() +
+  theme(axis.ticks = element_blank(), legend.position = "none") +
+  scale_fill_paletteer_d("fishualize::Koumansetta_rainfordi") +
+  xlab("Region") +
+  ylab("Happiness Score (World Happiness Report)")
+```
+
+### Code 
+
+```{r}
+#| label: boxplot_happy
+#| eval: false
+
+```
+:::
+:::
+
+::: {.column width = "50%"}
+
+### Tufte-Boxplot
+
+::: {.panel-tabset}
+
+### Plot
+
+```{r}
+#| echo: false
+#| label: tufte-box
+
+library(ggthemes)
+
+ggplot(data = gapminder_2020 %>% drop_na(country), 
+  aes(x = world_4region, y = hapiscore_whr, group = world_4region)) +
+geom_jitter(alpha = 0.5, color = "lightgrey") + 
+  geom_tufteboxplot() +
+  scale_fill_paletteer_d("fishualize::Koumansetta_rainfordi") +
+  xlab("Region") +
+  ylab("Happiness Score (World Happiness Report)") +
+theme_tufte()
+```
+
+### Code
+
+```{r}
+#| label: tufte-box
+#| eval: false
+```
+:::
+:::
+:::
+
+## Keine Angst vor leerem Raum
+
+```{r}
+#| echo: false
+#| eval: false
+#| 
+
+library(rvest)
+library(httr)
+library(polite)
+
+url <- "https://en.wikipedia.org/wiki/Gun_ownership"
+url_bow <- polite::bow(url)
+url_bow
+
+firearm_df <- polite::scrape(url_bow) %>%
+  rvest::html_nodes("table.wikitable") %>%
+  rvest::html_table(fill = TRUE) %>%
+  as.data.frame() %>%
+  rename(country = "Countries.and.territories", "guns" = "Estimate.of.civilian.firearms.per.100.people") %>%
+  select(country, guns)
+
+saveRDS(firearm_df, here::here("sessions", "good_plots", "data", "firearm_df.rds"))
+```
+
+```{r}
+#| echo: false
+
+firearm_df <- readRDS(here::here("sessions", "good_plots", "data", "firearm_df.rds"))
+df <- data.frame(
+  country = c("United States", "Germany", "France", "Canada", "Finland", "Austria", "Australia", "Italy", "Netherlands", "Switzerland"),
+  mass_shootings = c(109, 5, 6, 4, 3, 2, 1, 2, 2, 2)
+) %>%
+  left_join(firearm_df) %>%
+  mutate(labels = case_when(
+    country == "United States" ~ "USA",
+    country == "Germany" ~ "Germany",
+    country == "Switzerland" ~ "Switzerland",
+    country == "Netherlands" ~ "Netherlands",
+    TRUE ~ NA
+  ))
+```
+
+
+```{r}
+#| echo: false
+#| fig-height: 4
+#| fig-width: 7
+
+ggplot(
+  data = df,
+  aes(x = guns, y = mass_shootings, label = labels)
+) +
+  geom_point(aes(colour = ifelse(country == "United States", "USA", "noUSA")), size = 4) +
+  scale_colour_manual(values = c("lightgrey", "red")) +
+  geom_text_repel(vjust = -3, size = 5, color = "#01364C") +
+  theme_bg() +
+  theme(legend.position = "none") +
+  xlab("Guns per 100 Civilians") +
+  ylab("Number of Mass Shootings 2002 - 2022")
+```
+
+
+::: {.image-ref}
+Data from [Rockefeller Institute](https://rockinst.org/blog/public-mass-shootings-around-the-world-prevalence-context-and-prevention/) and [Wikipedia](https://en.wikipedia.org/wiki/Gun_ownership). 
+:::
+
+
+## Zusammenfassung
+
+\
+\
+
+1. Above all else show the data. 
+1. Maximize the data-ink ratio, within reason.
+1. Erase non-data-ink, within reason.
+1. Erase redundant data-ink, within reason.
+1. Revise and edit.
+
+::: image-ref
+Aus @tufte1983visual. 
+:::
+
+
+
+## Gegenentwurf: Ästhetik {background-color="black"}
+
+![](./images/space.png){.lightbox}
+
+::: {.image-ref}
+Abbildung von [Cédric Scherer]https://www.behance.net/gallery/100683383/Travelling-to-Outer-Space#).
+:::
+
+
+
+
+
+## 
+::: .exercise
+Wandelt euren Plot in einen Tufte-Plot um. 
+:::
+
+
+## Farben als Design-Element
+
+::: {.columns}
+::: {.column width="50%"}
+
+
+![](./images/farbkreis.png)
+
+:::
+::: {.column width="50%"}
+
+::: {.quote}
+All colors are the friends of their neighbors and the lovers of their opposites. - Marc Chagall 
+::: 
+
+:::
+:::
+
+::: image-ref
+Nach <a href="https://de.wikipedia.org/wiki/User:MalteAhrens" class="extiw" title="de:User:MalteAhrens">MalteAhrens</a> at <a class="external text" href="https://de.wikipedia.org">de.wikipedia</a>. Vectorization by <a href="//commons.wikimedia.org/wiki/User:SidShakal" title="User:SidShakal">User:SidShakal</a> - Raster version from Wikimedia Commons., Gemeinfrei, <a href="https://commons.wikimedia.org/w/index.php?curid=3574696">Link</a>
+:::
+
+## Kleine Farbenlehre
+
+:::{.columns}
+:::{.column width="50%"}
+
+![](./images/zoeaaf.jpg)
+
+::: image-ref
+<a href="https://commons.wikimedia.org/wiki/File:De_zoeaaf_-_s0067V1962_-_Van_Gogh_Museum.jpg">Vincent van Gogh</a>, Public domain, via Wikimedia Commons
+:::
+:::
+
+:::{.column width="50%"}
+- Gegenüberliegende Farben intensivieren sich gegenseitig: eine Primärfarbe, und eine Sekundärfarbe, die aus den anderen beiden Primärfarben gemischt wird. Das erzeugt stärkere Kontraste. (Van Gogh bild)
+- Mit weiß und schwarz lassen sich die Schattierungen hinzumischen
+- triadisches Farbschema: Fom MIttelpunkt des Farbkreises Strahlen mit gleichem Winkel abgehen lassen (So viele, wie man Farben haben will). Das wählt dann Farben mit dem größten Kontrast aus. 
+(https://www.kunstplaza.de/fashion-design/farbenlehre-farbtheorie-styleguides-fashion-design/)
+
+:::
+:::
+
+
+
+## Weitere Tools
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+![](./images/hue_box.jpg)
+
+::: .image-ref
+Wollbox von Vincent van Gogh, mit der er Farbkombinationen getestet hat. Eigenes Bild. 
+:::
+:::
+
+::: {.column width ="50%"}
+\
+\
+- [Colorbrewer](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3)  
+- [Huemint](https://huemint.com/)  
+- [Pinterest](https://de.pinterest.com/cereusart/color-palettes/)  
+
+:::
+:::
+
+
+## Schriften
+
+Die Schriftart kann einer Abbildung ein ganz anderes Aussehn vereleihen.  
+Wir nutzen Schriftarten von [Google Fonts]()
+
+
+
+```{r}
+#| eval: false
+
+library(showtext)
+
+font_add_google("Special Elite", family = "special")
+```
+
+::: {.image-ref}
+Daten von [zygmuntz](https://github.com/zygmuntz/goodbooks-10k). 
+:::
+
+## 
+
+```{r}
+#| output-location: column
+#| fig-width: 7
+#| fig-height: 10
+
+library(ggwordcloud)
+
+tags <- read.csv(here::here("data", "goodbooks-10k", "tags.csv"))
+book_tags <- read.csv(here::here("data", "goodbooks-10k", "book_tags.csv"))
+books <- read.csv(here::here("data", "goodbooks-10k", "books.csv")) 
+
+
+classics <- book_tags %>% 
+left_join(books) %>%
+left_join(tags) %>% 
+filter(tag_name == "classics") %>% 
+filter(ratings_count > 20000, !duplicated(authors)) %>%
+  select(original_title, average_rating, tag_name, ratings_count) %>%
+  distinct() %>% 
+  arrange(ratings_count) %>%
+  slice_tail(n = 50)
+
+
+set.seed(45)
+ggplot(data = classics, 
+       mapping = aes(label = original_title, size = average_rating)) +
+  geom_text_wordcloud() +
+scale_size(range = c(1, 6)) +
+labs(title = "What to read next ...", 
+subtitle = "... according to goodreads") +
+theme_bg()
+
+```
+
+## 
+```{r}
+#| fig.showtext: TRUE
+#| output-location: column
+#| fig-width: 7
+#| fig-height: 10
+
+font_add_google("Special Elite", family = "my textfont")
+font_add_google("Playfair Display")
+
+showtext_auto()
+
+
+set.seed(45)
+ggplot(data = classics, 
+       mapping = aes(label = original_title, size = average_rating)) +
+  geom_text_wordcloud(family = "my textfont") +
+scale_size(range = c(1, 6)) +
+labs(title = "What to read next", 
+subtitle = "According to goodreads") +
+theme_bg() +
+theme(title = element_text(family = "Playfair Display", size = 20), 
+)
+```
+
+
+##
+
+::: {.exercise}
+Suche dir eine Schriftart aus [Google Fonts](https://fonts.google.com/) und baue sie in deinen Plot ein.
+:::
+
+## Übung
+
+::: {.exercise}
+Wähle eine Grafik von ... aus und erstelle einen Plan, wie du sie verbessern würdest. 
+:::
