@@ -392,53 +392,67 @@
     "text": "View slides in full screen\n\nÜbung\n\nExplorative Grafiken - Janine"
   },
   {
-    "objectID": "sessions/good_plots/story.html#story-arc",
-    "href": "sessions/good_plots/story.html#story-arc",
-    "title": "Informatio",
-    "section": "Story-Arc",
-    "text": "Story-Arc\n\n\nAbbildung von Laura Navarro Soler."
+    "objectID": "sessions/good_plots/story.html#exploration",
+    "href": "sessions/good_plots/story.html#exploration",
+    "title": "Story",
+    "section": "Exploration",
+    "text": "Exploration\n\n\nAbbildung von Laura Navarro Soler."
   },
   {
-    "objectID": "sessions/good_plots/story.html#story-arc-1",
-    "href": "sessions/good_plots/story.html#story-arc-1",
-    "title": "Informatio",
+    "objectID": "sessions/good_plots/story.html#story-arc",
+    "href": "sessions/good_plots/story.html#story-arc",
+    "title": "Story",
     "section": "Story-Arc",
     "text": "Story-Arc\n\n\nAbbildung von Corey Jones."
   },
   {
-    "objectID": "sessions/good_plots/story.html#episodische-grafik-lass-es-sich-entfalten.",
-    "href": "sessions/good_plots/story.html#episodische-grafik-lass-es-sich-entfalten.",
-    "title": "Informatio",
-    "section": "Episodische Grafik, lass es sich entfalten.",
-    "text": "Episodische Grafik, lass es sich entfalten.\n\n\nBild von information is beautiful.\n\n\n“If your study were reported in the newspaper, what would the headline be?”"
+    "objectID": "sessions/good_plots/story.html#grafik-entfalten-lassen",
+    "href": "sessions/good_plots/story.html#grafik-entfalten-lassen",
+    "title": "Story",
+    "section": "Grafik entfalten lassen",
+    "text": "Grafik entfalten lassen\n\n\n\n\n\n\n\n\n\n\nBild von information is beautiful."
   },
   {
     "objectID": "sessions/good_plots/story.html#bewerten-der-informationen",
     "href": "sessions/good_plots/story.html#bewerten-der-informationen",
-    "title": "Informatio",
+    "title": "Story",
     "section": "Bewerten der Informationen",
     "text": "Bewerten der Informationen"
   },
   {
     "objectID": "sessions/good_plots/story.html#zusätzliche-informationen-einbauen",
     "href": "sessions/good_plots/story.html#zusätzliche-informationen-einbauen",
-    "title": "Informatio",
+    "title": "Story",
     "section": "Zusätzliche Informationen einbauen",
-    "text": "Zusätzliche Informationen einbauen\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\nsteuer &lt;- gapminder_line %&gt;%\n  filter(time %in% c(1914, 1920, 1939, 1945, 1974, 1990, 1991, 1996, 2020), country == \"deu\") %&gt;%\n  arrange(time) %&gt;%\n  mutate(label = c(\"Beginn 1. WK\", \"Reichseinkommensteuer\", \"Beginn 2. WK\", \"Starke Anhebung durch Alliiert\", \"Einkommenssteuerreformgesetz\", \"Wiedervereinigung\", \"Linear-Progressiver Tarif\", \"Anhebung Freibetrage\", \"Corona\"))\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  theme_bg_dark() +\n  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = \"#F8F8F8\", alpha = 0.2) +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  geom_point(data = steuer) +\n  geom_text_repel(\n    data = steuer, aes(label = label), nudge_x = c(20, 25, 10, -5, 0, 0, -10), nudge_y = c(2, 2, 2, -2, 1, -2, 1),\n    color = \"#F4BA02\"\n  ) +\n  labs(\n    title = \"Ungleichheit in Deutschland On the Rise?\",\n    subtitle = \"Gini-Koeffizient von 1850 bis 2024\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  ) +\n  geom_richtext(\n    data = data.frame(\n      x = 1900, y = 20,\n      label = \"&lt;b&gt;Gini-Koeffizient&lt;/b&gt;: &lt;br&gt; Maß für Ungleichheit. &lt;br&gt; In diesem Fall Einkommen.&lt;br&gt;0 = vollkommen gleich &lt;br&gt; 100 = maximal ungleich.\"\n    ),\n    aes(x, y, label = label),\n    hjust = 0, vjust = 0,\n    fill = \"#F4BA02\", label.color = \"#01364C\",\n    label.r = grid::unit(3, \"pt\"),\n    size = 5\n  )\n\np_line\n\n## Add a plot on vermogen!! Evtl. einfach den Gini Koeffizienten fur ein Paar Jahre, die ich habe\n\n## https://www.econtribute.de/RePEc/ajk/ajkpbs/ECONtribute_PB_001_2020.pdf"
+    "text": "Zusätzliche Informationen einbauen"
+  },
+  {
+    "objectID": "sessions/good_plots/story.html#labeln-annotate",
+    "href": "sessions/good_plots/story.html#labeln-annotate",
+    "title": "Story",
+    "section": "Labeln: annotate()",
+    "text": "Labeln: annotate()\n\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\nggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = \"lightgrey\", alpha = 0.5) +\n  geom_smooth(color = \"black\") +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  theme_bg() +\n  labs(\n    title = \"Ungleichheit in Europa On the Rise\",\n    subtitle = \"1900 bis 2024\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  ) +\n  annotate(\n    geom = \"text\", x = 1920, y = 49, label = \"Deutschland\",\n    color = \"#F4BA02\", fontface = \"bold\", size = 4\n  ) +\n  annotate(\"segment\",\n    x = 1920, xend = 1918, y = 47, yend = 44,\n    color = \"#F4BA02\", arrow = arrow(length = unit(0.2, \"cm\"))\n  )"
+  },
+  {
+    "objectID": "sessions/good_plots/story.html#übung",
+    "href": "sessions/good_plots/story.html#übung",
+    "title": "Story",
+    "section": "🏋 Übung",
+    "text": "🏋 Übung\n\n\n\nBaut ein Label in euren Plot ein.\n\n\n\n\n\nFoto von Anastasiya Doicheva auf Unsplash"
   },
   {
     "objectID": "sessions/good_plots/story.html#vergleichen",
     "href": "sessions/good_plots/story.html#vergleichen",
-    "title": "Informatio",
+    "title": "Story",
     "section": "Vergleichen",
-    "text": "Vergleichen\n\nPlot\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n#\n# World Inequality Lab – Working Paper N° 2022/09\n# Wealth and its Distribution in Germany,\n# 1895-2018\n\ndf &lt;- data.frame(\n  year = c(\n    1895, 1900, 1905, 1910, 1915, 1920, 1925, 1930, 1935, 1940,\n    1945, 1950, 1955, 1960, 1965, 1970, 1975, 1980, 1985, 1990,\n    1995, 2000, 2005, 2010, 2015, 2018\n  ),\n  top1_share_percent = c(\n    46, 47, 47.5, 48, 47.5, 45, 36, 41, 38, 33,\n    28, 23, 22, 23, 21, 24, 28, 27, 26, 25.5,\n    26, 27, 26.5, 28.5, 27, 28\n  )\n)\n\nggplot(df, aes(year, top1_share_percent)) +\n  geom_line() +\n  geom_point() +\n  ylim(c(0, 50))\n\n\n\ndat_eink &lt;- data.frame(\n  country = rep(c(\"Schweiz\", \"Deutschland\", \"Österreich\"), 4),\n  Steuer = c(rep(\"Erbschaft\", 3), rep(\"Vermögen\", 3), rep(\"Konsum\", 3), rep(\"Unternehmen\", 3)),\n  anteil = c(1, 0, 1, 7, 0, 0, 26, 41, 43, 15, 12, 10)\n)\n\np_bar &lt;- ggplot(dat_eink, aes(x = reorder(Steuer, anteil), y = anteil, fill = Steuer)) +\n  geom_bar(stat = \"identity\", position = \"dodge\") +\n  facet_wrap(vars(country)) +\n  theme_bg() +\n  labs(\n    title = \"Steueraufkommen in % des BIP\",\n    subtitle = \"Haushaltsjahr 2022\",\n    x = \"Steuerart\",\n    y = \"Anteil am BIP in %\"\n  ) +\n  geom_text(aes(label = anteil),\n    position = position_dodge(width = 0.9),\n    vjust = -0.25\n  ) +\n  theme_bg_dark()\n\n\n# https://www.wsi.de/de/blog-17857-vermoegensteuer-geht-die-schweiz-widerlegt-den-mythos-vom-unmoeglichen-68853.htm\n\n\ngapminder_usa &lt;- gapminder %&gt;%\n  filter(country %in% c(\"usa\"), time &gt;= 1850, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\np_line_usa &lt;- ggplot(data = gapminder_usa, aes(x = time, y = gini, color = country)) +\n  geom_line() +\n  theme_bg() +\n  labs(\n    title = \"Einkommens- und Erbschaftssteuer in den USA\",\n    subtitle = \"Gini-Koeffizient von 1850 bis 2024\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  ) +\n  geom_richtext(\n    data = data.frame(\n      x = 1850, y = 30,\n      label = \"Zwischen 1930 und 1980 wurden in den Vereinigten Staaten die höchsten Einkommen durchschnittlich mit 81 Prozent besteuert und die größten vererbten Vermögen mit 74 Prozent.\"\n    ),\n    aes(x, y, label = label),\n    inherit.aes = FALSE,\n    hjust = 0, vjust = 0,\n    fill = \"white\", label.color = \"black\",\n    label.r = grid::unit(3, \"pt\"),\n    size = 3.5\n  ) +\n  theme_bg_dark()\n\n\n\n\n\n## Eine Vermogenssteuer hat das potenzial, Ungleichheit zu reduzieren, und die Abgabenlast von Konsumsteuern zu reduzieren.\n## Die USA hatten in den 80 Jahren eine 80% Vermogenssteuer.\n\n\nlibrary(patchwork)\n\n\np_line +\n  annotation_custom(ggplotGrob(p_bar),\n    xmin = 1980, ymin = 43,\n    xmax = 2020\n  ) +\n  p_line_usa +\n  plot_layout(widths = c(2, 1))"
+    "text": "Vergleichen"
   },
   {
-    "objectID": "sessions/good_plots/story.html#section",
-    "href": "sessions/good_plots/story.html#section",
-    "title": "Informatio",
-    "section": "",
-    "text": "Was wäre die Überschrift für eure Grafik, wenn sie in der Zeitung stehen würde?\nWelche Infos sind noch notwendig, um die Grafik zu verstehen? Wo könnte man sie einbauen?\nSoll die Abbildung aus mehreren Plots bestehen? In welcher Reihenfolge?"
+    "objectID": "sessions/good_plots/story.html#übung-1",
+    "href": "sessions/good_plots/story.html#übung-1",
+    "title": "Story",
+    "section": "🏋 Übung",
+    "text": "🏋 Übung\n\n\n\n\nWas wäre die Überschrift für eure Grafik, wenn sie in der Zeitung stehen würde?\nWelche Infos sind noch notwendig, um die Grafik zu verstehen? Wo könnte man sie einbauen?\nSoll die Abbildung aus mehreren Plots bestehen? In welcher Reihenfolge?"
   },
   {
     "objectID": "sessions/good_plots/good_plots.html",
@@ -739,7 +753,7 @@
     "href": "sessions/good_plots/information.html#daten-in-kontext-setzen",
     "title": "Informationen",
     "section": "Daten in Kontext setzen",
-    "text": "Daten in Kontext setzen\n\nÜbungLösung\n\n\n\nArbeite an deinem Plot-Projekt aus den letzten Übungen: Zeichne Mittelwerte, oder hebe hervor aus einer Vergleichsmenge, z.B. europäischer Länder. Am einfachsten geht das mit zwei verschiedenen Datensätzen.\n\n\n\n\n\n\nTipp\n\n\nErstellen von zwei Datensätzen:\n\n\nCode\n## Deutschland, das wird gleich in einer anderen Farbe hervorgehoben\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n## Europäische Länder\nggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(aes(group = country))\n\n\n\n\n\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = \"lightgrey\", alpha = 0.5) +\n  geom_smooth(color = \"black\") +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  theme_bg() +\n  labs(\n    title = \"Ungleichheit in Europa On the Rise\",\n    subtitle = \"1900 bis 2024, Gelbe Linie zeigt Deutschland\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  )\n\np_line"
+    "text": "Daten in Kontext setzen\n\n🏋 ÜbungLösung\n\n\n\nArbeite an deinem Plot-Projekt aus den letzten Übungen: Zeichne Mittelwerte, oder hebe hervor aus einer Vergleichsmenge, z.B. europäischer Länder. Am einfachsten geht das mit zwei verschiedenen Datensätzen.\n\n\n\n\n\n\nTipp\n\n\nErstellen von zwei Datensätzen:\n\n\nCode\n## Deutschland, das wird gleich in einer anderen Farbe hervorgehoben\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n## Europäische Länder\nggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(aes(group = country))\n\n\n\n\n\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line &lt;- gapminder %&gt;%\n  filter(country %in% c(\"deu\"), time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line(data = gapminder_europe, aes(x = time, y = gini, group = country), color = \"lightgrey\", alpha = 0.5) +\n  geom_smooth(color = \"black\") +\n  geom_line(color = \"#F4BA02\", linewidth = 2) +\n  theme_bg() +\n  labs(\n    title = \"Ungleichheit in Europa On the Rise\",\n    subtitle = \"1900 bis 2024, Gelbe Linie zeigt Deutschland\",\n    x = \"Jahr\",\n    y = \"Gini-Koeffizient\"\n  )\n\np_line"
   },
   {
     "objectID": "sessions/good_plots/information.html#achsen-konventionen",
@@ -808,8 +822,8 @@
     "objectID": "sessions/good_plots/information.html#übung-1",
     "href": "sessions/good_plots/information.html#übung-1",
     "title": "Informationen",
-    "section": "Übung",
-    "text": "Übung\n\nLegt für euren Plot aus den vorherigen Übungen die Skalenlimits fest. Begründet eure Entscheidung."
+    "section": "🏋 Übung",
+    "text": "🏋 Übung\n\nLegt für euren Plot aus den vorherigen Übungen die Skalenlimits fest. Begründet eure Entscheidung."
   },
   {
     "objectID": "sessions/good_plots/information.html#literatur",
@@ -823,7 +837,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\ncircle\n60.76\n17.03\n\n\ndino\n72.05\n86.41\n\n\ndino\n47.18\n9.87\n\n\ndino\n38.21\n49.10\n\n\nv_lines\n89.50\n48.42\n\n\nh_lines\n49.79\n89.66\n\n\nx_shape\n37.24\n83.72\n\n\nslant_up\n55.56\n85.81\n\n\nx_shape\n34.15\n13.52\n\n\ncircle\n58.84\n16.64\n\n\ndino\n39.49\n25.38\n\n\nbullseye\n49.19\n85.88\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\ncircle\n65.76\n18.52\n\n\nhigh_lines\n17.89\n71.11\n\n\ncircle\n53.85\n16.39\n\n\ncircle\n32.64\n70.73\n\n\nbullseye\n72.57\n80.97\n\n\nhigh_lines\n62.19\n76.16\n\n\ndino\n71.28\n22.95\n\n\nh_lines\n54.92\n10.50\n\n\ndots\n75.16\n83.03\n\n\ncircle\n39.49\n20.03\n\n\ncircle\n84.29\n57.26\n\n\nh_lines\n80.40\n30.49\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
