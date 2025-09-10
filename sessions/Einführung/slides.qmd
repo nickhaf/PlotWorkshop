@@ -172,14 +172,24 @@ Abbildung von [Allison Horst](https://allisonhorst.com/r-packages-functions)
 :::
 
 ## Vorerfahrungen
+## Quiz {background-image="images/world.jpg" background-size="1225px"}
 
-@NH: baust Du hier das Mentimeter ein? 
+!UPDATE 
+::: image-ref
+Bild von [Amazon](https://m.media-amazon.com/images/I/71KH-wJcv3L.jpg). 
+:::
 
-- Fachbereich  
-- Vorerfahrungen in R  
-- Vorerfahrungen in RStudio  
-- Vorerfahrungen in ggplot  
-- Vorerfahrungen mit Datenvisualisierung in gpplot  
+::: {.exercise}
+Befragung Vorerfahrungen und Wünsche: [Mentimeter](https://www.menti.com/almrscnnw8h8)
+:::
+
+!UPDATE
+::: image-ref
+Fragen von [Gapminder](https://upgrader.gapminder.org/).  
+Foto von <a href="https://unsplash.com/de/@nasa?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">NASA</a> auf <a href="https://unsplash.com/de/fotos/foto-aus-dem-weltraum-Q1p7bh3SHj8?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+
+
 
 # Organisatorisches 
 @NH: hast Du ein passendes Bild? Wo kriegst Du die eigentlich immer her?
@@ -207,6 +217,8 @@ Abbildung von [Allison Horst](https://allisonhorst.com/r-packages-functions)
 - Breakout-Sessions für Gruppenarbeit   
 - Teilen von zwei Screens: Folien, RStudio  
 :::
+
+![](./images/screenshot)
 
 # Galerie {background-image="images/gallery.jpg" background-size="1225px"}
 
@@ -254,97 +266,6 @@ Es werden [6 Dimensionen]{.highlight} dargestellt!
 ::: image-ref
 Image from [Wikipedia](https://en.wikipedia.org/wiki/File:Minard.png). 
 :::
-
-
-## 
-<!-- @NH  dieser Plot wird bei mir auf der Folie nicht dargestellt -->
-
-```{r}
-#| echo: false
-#| eval: false
-
-# Load dataset from github (Surfer project)
-data <- read.table("https://github.com/holtzy/data_to_viz/raw/master/Example_dataset/19_MapConnection.csv", header=T, sep=",")
-
-# Download NASA night lights image
-download.file("https://raw.githubusercontent.com/holtzy/data_to_viz/master/story/IMG/BlackMarble_2016_01deg.jpg",  destfile = "sessions/Einführung/images/BlackMarble_2016_01deg.jpg", mode = "wb")
-
-# Count how many times we have each unique connexion + order by importance
-summary <- data %>% 
-  dplyr::count(homelat,homelon,homecontinent, travellat,travellon,travelcontinent) %>%
-  arrange(n)
-
-# A function that makes a dateframe per connection (we will use these connections to plot each lines)
-data_for_connection=function( dep_lon, dep_lat, arr_lon, arr_lat, group){
-  inter <- geosphere::gcIntermediate(c(dep_lon, dep_lat), c(arr_lon, arr_lat), n=50, addStartEnd=TRUE, breakAtDateLine=F)             
-  inter=data.frame(inter)
-  inter$group=NA
-  diff_of_lon=abs(dep_lon) + abs(arr_lon)
-  if(diff_of_lon > 180){
-    inter$group[ which(inter$lon>=0)]=paste(group, "A",sep="")
-    inter$group[ which(inter$lon<0)]=paste(group, "B",sep="")
-  }else{
-    inter$group=group
-  }
-  return(inter)
-}
-
-# Création d'un dataframe complet avec les points de toutes les lignes à faire.
-# @NH: hast Du französisch annotiert? XD
-data_ready_plot=data.frame()
-for(i in c(1:nrow(summary))){
-  tmp=data_for_connection(summary$homelon[i], summary$homelat[i], summary$travellon[i], summary$travellat[i] , i)
-  tmp$homecontinent=summary$homecontinent[i]
-  tmp$n=summary$n[i]
-  data_ready_plot=rbind(data_ready_plot, tmp)
-}
-data_ready_plot$homecontinent=factor(data_ready_plot$homecontinent, levels=c("Asia","Europe","Australia","Africa","North America","South America","Antarctica"))
-
-saveRDS(data_ready_plot, "./sessions/Einführung/surfdata.rds")
-
-```
-
-```{r}
-#| echo: false
-#| eval: false
-
-library(jpeg)
-
-# Load picture and render
-earth <- jpeg::readJPEG("./images/worldmap.jpg", native = TRUE)
-earth <- grid::rasterGrob(earth, interpolate = TRUE)
-
-data_ready_plot <- readRDS("./surfdata.rds")
-# Plot
-p <- ggplot() +
-  annotation_custom(earth, xmin = -180, xmax = 180, ymin = -90, ymax = 90) +
-  geom_line(data=data_ready_plot, aes(x=lon, y=lat, group=group, colour=homecontinent, alpha=n), size=0.3) +
-  scale_color_brewer(palette="Set3") +
-  theme_void() +
-  theme(
-        legend.position="none",
-        panel.background = element_rect(fill = "black", colour = "black"), 
-        panel.spacing=unit(c(0,0,0,0), "null"),
-        plot.margin=grid::unit(c(0,0,0,0), "cm"),
-  ) +
-  ggplot2::annotate("text", x = -150, y = -45, hjust = 0, size = 8, label = paste("Where surfers travel."), color = "white") +
-  ggplot2::annotate("text", x = -150, y = -51, hjust = 0, size = 5, label = paste("data-to-viz.com | NASA.gov | 10,000 #surf tweets recovered"), color = "white", alpha = 0.5) +
-  #ggplot2::annotate("text", x = 160, y = -51, hjust = 1, size = 7, label = paste("Cacedédi Air-Guimzu 2018"), color = "white", alpha = 0.5) +
-  xlim(-180,180) +
-  ylim(-60,80) +
-  scale_x_continuous(expand = c(0.006, 0.006)) +
-  coord_equal() 
-
-p
-```
-
-
-::: image-ref
-
-Code von [https://www.data-to-viz.com/story/MapConnection.html].
-
-:::
-
 
 
 # {background-image="images/setup.jpg" background-size="1225px"}
@@ -432,7 +353,7 @@ Bild von [Amazon](https://m.media-amazon.com/images/I/71KH-wJcv3L.jpg).
 ## Quiz {background-image="images/world.jpg" background-size="1225px"}
 
 ::: {.exercise}
-Öffne [Mentimeter](https://www.mentimeter.com/app/presentation/alep3cierpqrz5cwkm6v2ege1h1tvhbi/edit?question=nw21zffqg1ti) und bearbeite das Quiz. 
+Öffne [Mentimeter](https://www.menti.com/algkr6ubejd7) und bearbeite das Quiz. 
 :::
 
 ::: image-ref
