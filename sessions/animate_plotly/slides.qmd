@@ -107,15 +107,14 @@ gapminder_line_g7$country_de <- factor(gapminder_line_g7$country_de,
 
 p_line_g7 <- ggplot(data = gapminder_line_g7, aes(x = time, y = gini)) +
   geom_line(aes(col = country_de)) +  
-  theme_bg() +
   labs(title = "Ungleichheit On the Rise", 
      subtitle = "Gini-Koeffizient in den G7-Staaten von 1900 bis 2024",
      x = "Jahr",
      y = "Gini-Koeffizient", 
      col = "G7-Staat") +
   scale_color_discrete(labels = labels_g7) +
-  theme_solarized() # + 
-  #scale_colour_solarized() 
+  theme_solarized() 
+
 p_line_g7
 ```
 
@@ -145,15 +144,14 @@ gapminder_line_g7$country_de <- factor(gapminder_line_g7$country_de,
 
 p_line_g7 <- ggplot(data = gapminder_line_g7, aes(x = time, y = gini)) +
   geom_line(aes(col = country_de)) +  
-  theme_bg() +
   labs(title = "Ungleichheit On the Rise", 
      subtitle = "Gini-Koeffizient in den G7-Staaten von 1900 bis 2024",
      x = "Jahr",
      y = "Gini-Koeffizient", 
      col = "G7-Staat") +
   scale_color_discrete(labels = labels_g7) +
-  theme_solarized() # + 
-  #scale_colour_solarized() 
+  theme_solarized() 
+
 p_line_g7
 ```
 
@@ -713,6 +711,6 @@ saveWidget(p_plotly, file = "bubbles_wide.html")
 ![](./images/horst_gganimate.png){fig-align="center"}
 
 :::{.image-ref}
-Abbildung von [Allison Horst]{https://allisonhorst.com/r-packages-functions}
+Abbildung von [Allison Horst](https://allisonhorst.com/r-packages-functions)
 :::
 
