@@ -114,12 +114,23 @@ Darstellung von David McCandless in [Knowledge is Beautiful (2014)](https://info
 
 ::: {.exercise}
 
-Jede Gruppe bekommt eine Abbildung. 
+Gruppenarbeit: Diskutieren Sie eine Grafik!
 
-1. Diskutiert in der Gruppe, was bei der Visualisierung schief läuft. 
-1. Kurze Diskussion. Stellt den anderen Gruppen eure Ergebnisse vor.
+1. Führe untenstehenden Code aus, um Dich einer der fünf Gruppen zuzuordnen. 
+1. Lade die Grafik mit Deiner Gruppennummer von [Github](https://github.com/nickhaf/PlotWorkshop/tree/main/sessions/good_plots/bad_plots) herunter.   
+1. Gehe in den entsprechenden Breakout-Room und diskutiert in der Gruppe, was bei eurer Grafik schiefgelaufen ist. 
+1. Stellt den anderen Gruppen kurz eure Ergebnisse vor.
 
 :::
+
+\
+
+```{r}
+#| eval: false
+
+paste("Ihre Gruppe:", sample(1:5, 1))
+```
+
 
 ::: 
 ::: {.column width="50%"}
@@ -133,6 +144,6 @@ Jede Gruppe bekommt eine Abbildung.
 Bild gefunden auf [Reddit](https://www.reddit.com/r/dataisugly/comments/1msd4v2/its_not_wrong_but_i_still_hate_it/). 
 :::
 
-## Übung
+## References
 
 

@@ -21,10 +21,14 @@ library(ggwordcloud)
 library(ggrepel)
 library(ggtext)
 library(tidyverse)
+library(quartets)
+library(GGally)
+
 source(here::here("src", "themes.R"))
 source(here::here("src", "functions.R"))
 
 gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
+
 
 gapminder_europe <- gapminder %>%
   filter(world_4region == "europe", time >= 1900, time <= 2024) %>%
@@ -41,10 +45,16 @@ gapminder_2020 <- gapminder %>%
 ::: {.columns}
 ::: {.column width="50%"}
 
-- Usefulness
-- usable
-- fitting
-- efficient
+Grafiken dienen stets einem bestimmten [Zweck]{.highlight} und richten sich an ein [Publikum]{.highlight}. 
+
+Beispiele: 
+
+- Beitrag im Fachjournal für Wissenschaftler 
+- Wahlergebnisse in der Wahl-Sondersendung  
+- Werbeanzeige in der Tageszeitung  
+- Post auf X  
+
+Je nach Zweck und Publikum kann eine Grafik mehr oder weniger gut geeignet sein.  
 
 ::: 
 ::: {.column width="50%"}
@@ -58,16 +68,129 @@ Foto von <a href="https://unsplash.com/de/@lookagaindigital?utm_content=creditCo
 
 ::: 
 
-Tufte Zitat
+
+## Explanative vs. explorative Grafiken
+
+**Unterschiedliche Ziele von Grafiken** 
+
+- [Explanativ:]{.highlight} Die Grafik dient dazu, anderen einen bestimmten Sachverhalt (ein Muster in den Daten) zu kommunizieren  
+- [Explorativ:]{.highlight} Die Grafik soll dabei helfen, bestimmte Sachverhalte (Muster in den Daten) zu erkennen
+
+Der Fokus unseres Workshops lag bisher stark auf explanativen Grafiken
+
+Nachfolgend werden Techniken für explorative Grafiken vorgestellt:
+
+- Prinzip des „small multiple“ anhand von `faceting`
+- Viele bivariate Zusammenhänge mit `ggpairs()`
+- Eine Serie gleicher Grafiken mit Funktion und Schleife erzeugen
+
+## Prinzip des "small multiple"
+
+Die Technik des `faceting` erlaubt es, Grafiken gemäß Edward Tufte‘s Prinzip des [small multiple]{.highlight} zu erzeugen.
+
+Prinzip des small multiple:
+
+:::{.quote}
+At the heart of quantitative reasoning is a single question: Compared to what? Small multiple designs, multivariate and data bountiful, answer directly by visually enforcing comparisons of changes, of the differences among objects, of the scope of alternatives. For a wide range of problems in data presentation, small multiples are the best design solution. 
+
+Tufte (1990). Envisioning Information. Graphics Press (p. 67).
+:::
+
+Grafiken, die diesem Prinzip entsprechen, sind [stets gleich aufgebaut]{.highlight} und ermöglichen so einen schnellen Vergleich der dargestellten Information zwischen den einzelnen Grafiken.
+
+## Faceting in `ggplot2`
+
+Es gibt zwei Funktionen für faceting in gglot2:
+
+- `facet_grid()`: Darstellung der Ergebnisse von Gruppen in  
+  - Zeilen oder
+  - Spalten oder
+  - einem Raster (*grid*) aus Zeilen und Spalten
+- `facet_wrap()`: Darstellung der Ergebnisse von Gruppen mit Zeilenumbruch (*wrap*)
+
+Wichtig: Gruppe muss als diskrete Variable im Datensatz vorliegen
+
+## Faceting in `ggplot2`
+
+:::{.columns}
+::: {.column width="50%"}
+
+```{r}
+ggplot(datasaurus_dozen, aes(x = x, y = y)) +
+  geom_point() +
+  theme_bg()
+```
+:::
+
+::: {.column width="50%"}
+
+```{r}
+ggplot(datasaurus_dozen, aes(x = x, y = y)) +
+  geom_point() +
+  theme_bg() +
+  facet_wrap(~dataset, ncol = 5)
+```
+:::
+
+:::
+
+## Faceting in `ggplot2`
+
+:::{.columns}
+::: {.column width="50%"}
+
+```{r}
+ggplot(datasaurus_dozen, aes(x = x, y = y)) +
+  geom_point(aes(col = dataset), show.legend = F) +
+  theme_bg()
+```
+:::
+
+::: {.column width="50%"}
+
+```{r}
+ggplot(datasaurus_dozen, aes(x = x, y = y)) +
+  geom_point(aes(col = dataset), show.legend = F) +
+  theme_bg() +
+  facet_wrap(~dataset, ncol = 5)
+```
+:::
+:::
+
+## Viele bivariate Zusammenhänge mit `ggpairs` darstellen
+
+[- Dafür verwenden wir die Funktion `ggpairs( Datensatz )` aus dem Paket `GGally`]{.small}   
+[- Es werden bivariate Zusammenhänge zwischen allen im Datensatz enthaltenen Variablen dargestellt]{.small}
+
+```{r}
+#| fig-width: 14
+#| fig-height: 5
+
+gapminder_auswahl <- gapminder %>%
+  filter(time >= 1900, time <= 2024) %>%
+  select(world_4region, gini, hapiscore_whr, lex, gdp_pcap) %>%
+  drop_na(gini)
+
+ggpairs(gapminder_auswahl, columns = 2:5)
+```
+
+## Viele bivariate Zusammenhänge mit `ggpairs` darstellen
+
+[- In der Funktion können die ggplot-aesthetics angesprochen werden, sodass Ergebnisse nach Gruppenzugehörigkeit dargestellt werden können]{.small}   
+
+```{r}
+#| fig-width: 14
+#| fig-height: 5
+
+ggpairs(gapminder_auswahl, columns = 2:5, aes(color = world_4region, alpha = .5))
+```
 
 
-## Publikum
+## Eine Serie gleicher Grafiken mit Funktion und Schleife erzeugen
 
+- Bisher haben wir stets Funktionen benutzt, die im Basis-R oder in den aktuell geladenen Paketen enthalten sind
 
-## Purpose
-- Exploratory vs. Explanatory
-- Kann oft über reines Zeigen der Daten hinausgehen. 
+- Funktionen können jedoch auch selbst geschrieben und an die eigenen Bedürfnisse (z.B. eine bestimmte Grafik) angepasst werden
 
-
-
+- Mithilfe einer `for`-Schleife kann diese Funktion dann auf alle Variablen eines Datensatzes, auf alle Länder eines Datensatzes etc. angewendet werden. So entsteht eine Serie von Grafiken, die man schnell durchscrollen und auf Auffälligkeiten überprüfen kann
 
