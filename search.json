@@ -25,7 +25,7 @@
     "href": "index.html#r-pakete",
     "title": "Datenvisualisierung in R",
     "section": "R-Pakete",
-    "text": "R-Pakete\nInstalliert euch gerne schon einmal die Pakete, die wir im Workshop verwenden werden.\n\ninstall.packages(c(\"tidyverse\", \"here\", \"GGally\", \n                   \"RColorBrewer\", \"colorblindcheck\", \n                   \"patchwork\", \"ggthemes\", \"gganimate\", \n                   \"ggtext\", \"ggrepel\", \"ggridges\", \n                   \"ggwordcloud\", \"paletteer\", \"plotly\",\n                   \"readxl\", \"showtext\", \"htmlwidgets\"))"
+    "text": "R-Pakete\nInstalliert euch gerne schon einmal die Pakete, die wir im Workshop verwenden werden.\n\ninstall.packages(c(\"tidyverse\", \"here\", \"GGally\", \n                   \"RColorBrewer\", \"colorblindcheck\", \n                   \"patchwork\", \"ggthemes\", \"gganimate\", \n                   \"ggtext\", \"ggrepel\", \"ggridges\", \n                   \"ggwordcloud\", \"paletteer\", \"plotly\",\n                   \"readxl\", \"showtext\", \"htmlwidgets\", \n                   \"ggview\", \"scales\"))"
   },
   {
     "objectID": "index.html#cryptpad",
@@ -33,6 +33,97 @@
     "title": "Datenvisualisierung in R",
     "section": "Cryptpad",
     "text": "Cryptpad\nZum unkomplizierten Austausch von Code-Schnipseln im Workshop nutzen wir dieses Cryptpad: https://cryptpad.fr/code/#/2/code/edit/YH8EkvdnTZaCixuDViTP00VA/"
+  },
+  {
+    "objectID": "sessions/science_plots/slides.html#einführung",
+    "href": "sessions/science_plots/slides.html#einführung",
+    "title": "Exportieren",
+    "section": "Einführung",
+    "text": "Einführung\n\n\nWir haben mittlerweile viele schöne Grafiken erzeugt - aber noch nicht gespeichert.\nDafür gibt es mehrere Möglichkeiten, Hilfsmittel und Konventionen.\nInhalte des Foliensatzes:\n\nSpeichern von Grafiken\n\nPlot-Vorschau mit ggview\n\nZusammenfügen von Grafiken in einer einzelnen Datei\nKonventionen und Richtlinien\n\n\n\n\n\nFoto von Paul Teysen auf Unsplash"
+  },
+  {
+    "objectID": "sessions/science_plots/slides.html#vorbereitung",
+    "href": "sessions/science_plots/slides.html#vorbereitung",
+    "title": "Exportieren",
+    "section": "Vorbereitung",
+    "text": "Vorbereitung\nPakete, die wir für die Beispiele im Foliensatz benötigen:\n\nlibrary(ggplot2)\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(ggview)\nlibrary(scales)\n\nDatensatz\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))"
+  },
+  {
+    "objectID": "sessions/science_plots/slides.html#speichern",
+    "href": "sessions/science_plots/slides.html#speichern",
+    "title": "Exportieren",
+    "section": "Speichern",
+    "text": "Speichern\nGrafiken können “manuell” über die RStudio-GUI oder (besser!, weil reproduzierbar) per Syntax gespeichert werden.\n\n\nSpeichern über die RStudio-GUI\n\n\n\nSpeichern per Syntax\n\nggsave( “Pfad/Dateiname.endung” ): es wird das letzte mit ggplot() erzeugte Plot gespeichert\num genauer zu kontrollieren, welche Datei gespeichert werden soll, kann ein mit ggplot erzeugtes Objekt über das Argument plot= angesprochen werden: ggsave( \"name.png\" , plot = plot_name )\noptionale zusätzliche Argumente zur Spezifikation von Größe, Proportion und Auflösung:\n– width\n- height\n- units (Angabe von “px”, “cm”, “in” oder “mm”)\n– dpi"
+  },
+  {
+    "objectID": "sessions/science_plots/slides.html#speichern-per-syntax",
+    "href": "sessions/science_plots/slides.html#speichern-per-syntax",
+    "title": "Exportieren",
+    "section": "Speichern per Syntax",
+    "text": "Speichern per Syntax\nErzeugen der Grafik und Ablegen als Objekt:\n\ngapminder_line &lt;- gapminder %&gt;% \n  filter(country %in% c(\"deu\"), time &gt;=1900, time &lt;= 2024) %&gt;% \n  drop_na(gini)\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line() \n\nSpeichern mit Kontrolle von Größe, Proportion und Auflösung:\n\nggsave(\"lineplot.png\", plot = p_line, \n       width = 20, height = 10, units = \"cm\", dpi = 300)\n\nDie Datei (im Querformat) wurde erzeugt:"
+  },
+  {
+    "objectID": "sessions/science_plots/slides.html#plot-vorschau-mit-ggview",
+    "href": "sessions/science_plots/slides.html#plot-vorschau-mit-ggview",
+    "title": "Exportieren",
+    "section": "Plot-Vorschau mit ggview",
+    "text": "Plot-Vorschau mit ggview\nMit der Funktion canvas() aus dem Paket ggview erhalten Sie eine Vorschau über Größe, Proportion und Auflösung, bevor Sie die Datei abspeichern, öffnen, inspizieren, und dann wieder korrigieren. So sparen Sie sich sehr viel Zeit!"
+  },
+  {
+    "objectID": "sessions/science_plots/slides.html#dgps-richtlinien-zur-manuskriptgestaltung-2019",
+    "href": "sessions/science_plots/slides.html#dgps-richtlinien-zur-manuskriptgestaltung-2019",
+    "title": "Exportieren",
+    "section": "DGPs Richtlinien zur Manuskriptgestaltung (2019)",
+    "text": "DGPs Richtlinien zur Manuskriptgestaltung (2019)\n\n\n\nDie Richtlinien zur Manuskriptgestaltung der Deutschen Gesellschaft für Psychologie (DGPs) (2019) enthalten Regeln für die Erstellung von Manuskripten im Bereich der psychologischen Forschung, die oft auch in der Bildungsforschung herangezogen werden\nNeben formalen Hinweisen in Bezug auf statistische und mathematische Textteile, Tabellen, Quellenangaben im Text, wörtliche Zitate und die Erstellung des Literaturverzeichnisses sind auch Hinweise zur Erstellung von Abbildungen enthalten:\n\nKapitel 6, „Abbildungen“: „Jede Art nicht textlicher Darstellung von Material, die nicht in Tabellenform geschieht, wird unter dem Begriff Abbildung zusammengefasst. Abbildungen beinhalten u.a. Fotografien, Grafiken, Diagramme, Schemata.“"
+  },
+  {
+    "objectID": "sessions/science_plots/slides.html#dgps-richtlinien-zur-manuskriptgestaltung-2019-1",
+    "href": "sessions/science_plots/slides.html#dgps-richtlinien-zur-manuskriptgestaltung-2019-1",
+    "title": "Exportieren",
+    "section": "DGPs Richtlinien zur Manuskriptgestaltung (2019)",
+    "text": "DGPs Richtlinien zur Manuskriptgestaltung (2019)\n6.1 Arten von Abbildungen\n\nGrafische Darstellungen statistischer Ergebnisse zeigen in der Regel Vergleiche oder Verteilungen und können z.B. absolute Werte, Prozentwerte oder Maßzahlen illustrieren. Die Linien sollten sauber und klar dargestellt sein, überflüssige Details sind zu vermeiden. Abszisse und Ordinate sollen von klein nach groß skaliert sein und vergleichbare Maßeinheiten enthalten\nDetails zu einzelnen Grafiktypen (Liniendiagramme, Balkendiagramme, Kreis- oder Kuchendiagramme, Streudiagramme, Fluss- und Strukturdiagramme), besonders relevant:\n\nFarben sollen im Falle eines einfarbigen Drucks (schwarz-weiß) noch unterscheidbar sein (Liniendiagramm: bspw. eine gestrichelte und eine durchgezogene Linie)\n3D-Darstellungen oder Schattierungen der Balken sind zu vermeiden\n\nBedeutung der Farben muss durch eine Legende erläutert werden"
+  },
+  {
+    "objectID": "sessions/science_plots/slides.html#dgps-richtlinien-zur-manuskriptgestaltung-2019-2",
+    "href": "sessions/science_plots/slides.html#dgps-richtlinien-zur-manuskriptgestaltung-2019-2",
+    "title": "Exportieren",
+    "section": "DGPs Richtlinien zur Manuskriptgestaltung (2019)",
+    "text": "DGPs Richtlinien zur Manuskriptgestaltung (2019)\n6.2 Formale Gestaltung von Abbildungen im Manuskript\n\nDateiformat: gängige Dateiformate wie .tif, .jpg, .bmp, .gif oder .eps (z.B. ggsave(\"filename.jpg\"))\n\nFür Abszisse und Ordinate sollten mitteldicke Linien verwendet werden (geom_line(linewidth=.8))\n\nPassende, unmissverständliche Skalierung der Achsen; bei Ratingskalen:\n\nAbszisse geht vom kleinstmöglichen zum größtmöglichen Wert (xlim=c(min, max))\n\nSkalierung der Ordinate wird an den Wertebereich der abhängigen Variablen angepasst\n\n\nBei der Darstellung von Mittelwerten sollten Fehlerbalken für Standardabweichungen, Standardfehler oder Konfidenzintervalle eingefügt werden (geom_errorbar())\n\nAchsen sind stets zu beschriften: Abszisse (unterhalb), Ordinate (links von der Ordinate, 90 Grad gedreht) (labs(x=\"...\", y=\"...\"))"
+  },
+  {
+    "objectID": "sessions/science_plots/slides.html#dgps-richtlinien-zur-manuskriptgestaltung-2019-3",
+    "href": "sessions/science_plots/slides.html#dgps-richtlinien-zur-manuskriptgestaltung-2019-3",
+    "title": "Exportieren",
+    "section": "DGPs Richtlinien zur Manuskriptgestaltung (2019)",
+    "text": "DGPs Richtlinien zur Manuskriptgestaltung (2019)\n6.2 Formale Gestaltung von Abbildungen im Manuskript (Fortsetzung)\n\n\nDie Größe der Beschriftung, Zeichen, Symbole und der Legende muss mindestens einer 8-Punkt-Schrift entsprechen, sie soll andererseits nicht größer als eine 14-Punkt-Schrift sein. Die Schriftgrößen sollten innerhalb einer Abbildung um nicht mehr als 4 Punkte variieren. Als Faustregel gilt, dass die in einer grafischen Darstellung verwendeten Symbole die Größe eines durchschnittlichen kleinen Buchstabens haben sollten. Als bevorzugter Schrifttyp für Abbildungen sind serifenlose Schriften einzusetzen, z.B. die Schriftarten Arial oder Calibri\nDie Verlaufskurven sollten durch einfache geometrische Formen an den Messpunkten unterscheidbar sein. Offene und gefüllte Kreise und Dreiecke sind gut unterscheidbar; weniger gut unterscheidbar sind Kombinationen aus Quadraten und Kreisen oder Quadraten und Rauten. Ein Diagramm sollte nicht mehr als vier Verlaufskurven enthalten; die Abstände zwischen den Verlaufskurven sollten auch nach der Reproduktion (Verkleinerung) noch gut erkennbar sein.\nBei der Variation der Größe der Elemente ist auch deren Wichtigkeit zu berücksichtigen, d.h. wichtigere Elemente sollten hervorstechen. Zum Beispiel sollten Verlaufskurven oder Balkendiagramme dicker sein als die Achsenbezeichnungen und diese wieder dicker als die Achsen selbe"
+  },
+  {
+    "objectID": "sessions/science_plots/slides.html#dgps-richtlinien-zur-manuskriptgestaltung-2019-4",
+    "href": "sessions/science_plots/slides.html#dgps-richtlinien-zur-manuskriptgestaltung-2019-4",
+    "title": "Exportieren",
+    "section": "DGPs Richtlinien zur Manuskriptgestaltung (2019)",
+    "text": "DGPs Richtlinien zur Manuskriptgestaltung (2019)\n6.4 Titel und Legenden zur Abbildung\n\nDie Abbildung soll jedenfalls für sich allein verständlich sein, ohne dass die Leserinnen und Leser auf den Text des Artikels angewiesen sind\nLegenden stellen einen Bestandteil der Abbildung dar, sie erklären die in der Abbildung verwendeten Zeichen und Symbole. Sie werden innerhalb der Abbildung angebracht und die Art ihrer Schriftgestaltung soll daher der der übrigen Abbildung entsprechen."
+  },
+  {
+    "objectID": "sessions/science_plots/slides.html#dgps-richtlinien-zur-manuskriptgestaltung-2019-5",
+    "href": "sessions/science_plots/slides.html#dgps-richtlinien-zur-manuskriptgestaltung-2019-5",
+    "title": "Exportieren",
+    "section": "DGPs Richtlinien zur Manuskriptgestaltung (2019)",
+    "text": "DGPs Richtlinien zur Manuskriptgestaltung (2019)\n6.5 Herstellung der Abbildungen für das Druckverfahren\n\nBei der Erstellung einer Abbildung ist darauf zu achten, dass sie in ihren Größenverhältnissen in eine Spalte der Zeitschrift passt, in der sie abgedruckt werden soll. Eine Ausnahme von dieser Regel sollte nur gemacht werden, wenn die Darstellung feinster Details oder zahlreicher Einzelheiten die Nutzung der vollen Breite der Zeitschriftenseite erforderlich macht.\nTeilabbildungen sind mit Großbuchstaben zu kennzeichnen (bspw. „A“ und „B“) • Nicht mehr als zwei bis drei verschiedene Formen der Schattierung oder Musterung verwenden\nDie Druckqualität sollte zumindest 300 dpi betragen (600 bis 1200 dpi werden empfohlen)\nBei der Reproduktion sind grundsätzlich reine Schwarz-Weiß-Grafiken, Halbtongrafiken (mit Grauschattierungen) und Farbabbildungen zu unterscheiden. Farbabbildungen erfordern einen speziellen Druckvorgang und sind deshalb in der Reproduktion teurer"
+  },
+  {
+    "objectID": "sessions/science_plots/slides.html#dgps-richtlinien-zur-manuskriptgestaltung-2019-6",
+    "href": "sessions/science_plots/slides.html#dgps-richtlinien-zur-manuskriptgestaltung-2019-6",
+    "title": "Exportieren",
+    "section": "DGPs Richtlinien zur Manuskriptgestaltung (2019)",
+    "text": "DGPs Richtlinien zur Manuskriptgestaltung (2019)\n6.7 Checkliste für die Erstellung von Abbildungen (Auszug)\n\n\nIst die Abbildung notwendig und sinnvoll?\n\nIst die Abbildung einfach, klar und frei von unwesentlichen Details?\n\nWurden alle Werte korrekt eingezeichnet?\n\nIst die Skaleneinteilung korrekt proportioniert?\n\nIst die Beschriftung hinsichtlich ihrer Größe, Farbe und ihrem Verhältnis zum Rest der Abbildung einwandfrei?\n\nSind gleiche Abbildungen oder Abbildungen gleicher Wichtigkeit alle mit der gleichen Skaleneinteilung versehen?\n\nSind alle Ausdrücke richtig geschrieben?\n\nWerden alle verwendeten Abkürzungen und Symbole im Titel oder in der Legende zu der Abbildung erläutert? Sind die in der Abbildung verwendeten Symbole, Abkürzungen und Terminologien konsistent zu denen in der Beschriftung zu dieser Abbildung, zu anderen Abbildungen und zum Text?\n\nSind digitale Dateien von Abbildungen in entsprechenden Dateiformaten abgespeichert (z.B. .tif, .”pg, .bmp, .gif oder .eps* oder wurden als Originaldatei des Grafikprogramms, in der die Abbildung erstellt wurde gespeichert?"
+  },
+  {
+    "objectID": "sessions/science_plots/slides.html#apa-publication-manual",
+    "href": "sessions/science_plots/slides.html#apa-publication-manual",
+    "title": "Exportieren",
+    "section": "APA Publication Manual",
+    "text": "APA Publication Manual\n\n\n\nDas Publication Manual of the American Psychological Association (APA) liegt in der 7. Auflage vor (2020)\nDie Hinweise zur Manuskripterstellung bilden den Standard, den Verlage an Manuskripte in unserem Bereich stellen – sind denen der DGPs jedoch sehr ähnlich\nHinweise zur Erstellung von Abbildungen in der 6. Auflage (2010) sind in Kapitel 5 enthalten: „Displaying Results“\nPotentiell ebenfalls relevant:\n\n4.37 Commas in Numbers: Use Commas between groups of three digits in most figures of 1,000 or more:\n\n\n\nlibrary(scales)\nggplot(data) +\n  ... +\n  scale_x_continuous(labels = scales::comma)"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#datensatz",
@@ -690,7 +781,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\ndots\n50.46\n17.04\n\n\nwide_lines\n63.41\n38.38\n\n\nhigh_lines\n31.00\n82.58\n\n\nh_lines\n27.89\n30.48\n\n\nbullseye\n20.69\n62.72\n\n\naway\n35.90\n91.11\n\n\naway\n67.67\n37.11\n\n\nbullseye\n62.82\n84.97\n\n\nx_shape\n79.22\n22.09\n\n\nv_lines\n50.12\n16.69\n\n\ndots\n50.89\n17.14\n\n\nbullseye\n61.61\n29.99\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nwide_lines\n65.45\n43.27\n\n\ndots\n25.86\n17.08\n\n\nv_lines\n89.50\n33.90\n\n\nx_shape\n41.32\n80.21\n\n\ndots\n50.56\n17.09\n\n\nslant_up\n51.14\n20.62\n\n\nslant_up\n59.63\n7.06\n\n\nh_lines\n32.87\n30.50\n\n\nv_lines\n69.52\n15.18\n\n\nx_shape\n35.75\n94.12\n\n\ncircle\n61.83\n17.27\n\n\nx_shape\n42.08\n24.95\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
@@ -816,7 +907,7 @@
     "href": "sessions/Einführung/slides.html#vorbereitung",
     "title": "Einführung",
     "section": "Vorbereitung",
-    "text": "Vorbereitung\nPakete, die wir für die Beispiele im Foliensatz benötigen:\n\nlibrary(ggplot2)\nlibrary(quartets)\nlibrary(tidyverse)\nlibrary(ggrepel)\nlibrary(ggthemes)\nlibrary(gganimate)\nlibrary(plotly)\n\nDatensatz\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\nTheme\n\nsource(here::here(\"src\", \"themes.R\"))"
+    "text": "Vorbereitung\nPakete, die wir für die Beispiele im Foliensatz benötigen:\n\nlibrary(ggplot2)\nlibrary(quartets)\nlibrary(tidyverse)\nlibrary(ggrepel)\nlibrary(ggthemes)\nlibrary(gganimate)\nlibrary(plotly)\n\nDatensatz\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))"
   },
   {
     "objectID": "sessions/Einführung/slides.html#scatterplot",
@@ -858,7 +949,7 @@
     "href": "sessions/Einführung/slides.html#barplot-mit-erweiterungen",
     "title": "Einführung",
     "section": "Barplot mit Erweiterungen",
-    "text": "Barplot mit Erweiterungen\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2023_bar &lt;- gapminder_2023 %&gt;% \n  filter(world_4region == \"europe\") %&gt;% \n  drop_na(unicode_region_subtag, gini)\n\nggplot(data = gapminder_2023_bar, \n       aes(x = reorder(unicode_region_subtag, gini), y = gini, fill = ifelse(unicode_region_subtag == \"DE\", \"DEU\", \"noDEU\"))) +\n  geom_bar(stat = \"identity\", size = 4, show.legend = F) +\n  scale_fill_manual(values = c(\"red\", \"grey35\")) +\n  labs(title = \"Gini-Index im europäischen Vergleich (Jahr: 2023)\",\n       x = \"\", y = \"Gini-Index\") +\n  theme_bg()"
+    "text": "Barplot mit Erweiterungen\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2023_bar &lt;- gapminder_2023 %&gt;% \n  filter(world_4region == \"europe\") %&gt;% \n  drop_na(unicode_region_subtag, gini)\n\nggplot(data = gapminder_2023_bar, \n       aes(x = reorder(unicode_region_subtag, gini), y = gini, fill = ifelse(unicode_region_subtag == \"DE\", \"DEU\", \"noDEU\"))) +\n  geom_bar(stat = \"identity\", size = 4, show.legend = F) +\n  scale_fill_manual(values = c(\"red\", \"grey35\")) +\n  labs(title = \"Gini-Index im europäischen Vergleich (Jahr: 2023)\",\n       x = \"\", y = \"Gini-Index\")"
   },
   {
     "objectID": "sessions/Einführung/slides.html#lineplot",
@@ -872,14 +963,14 @@
     "href": "sessions/Einführung/slides.html#lineplot-1",
     "title": "Einführung",
     "section": "Lineplot",
-    "text": "Lineplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_line, aes(x = time, y = gini)) +\ngeom_line() +  \ntheme_bg() +\nlabs(title = \"Ungleichheit in Deutschland On the Rise\", \n     subtitle = \"Gini-Koeffizient von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\")"
+    "text": "Lineplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_line, aes(x = time, y = gini)) +\ngeom_line() +  \nlabs(title = \"Ungleichheit in Deutschland On the Rise\", \n     subtitle = \"Gini-Koeffizient von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\")"
   },
   {
     "objectID": "sessions/Einführung/slides.html#lineplot-2",
     "href": "sessions/Einführung/slides.html#lineplot-2",
     "title": "Einführung",
     "section": "Lineplot",
-    "text": "Lineplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line_g7 &lt;- gapminder %&gt;% \n  filter(country %in% c(\"can\", \"fra\", \"deu\", \"ita\", \"jpn\", \"gbr\", \"usa\"), time &gt;=1900, time &lt;= 2024) %&gt;% \n  drop_na(gini)\n\nlabels_g7 &lt;- c(\n  \"can\" = \"Kanada\",\n  \"fra\" = \"Frankreich\",\n  \"deu\" = \"Deutschland\",\n  \"ita\" = \"Italien\",\n  \"jpn\" = \"Japan\",\n  \"gbr\" = \"Vereinigtes Königreich\",\n  \"usa\" = \"USA\"\n)\n\ngapminder_line_g7$country_de &lt;- labels_g7[gapminder_line_g7$country]\ngapminder_line_g7$country_de &lt;- factor(gapminder_line_g7$country_de,\n                        levels = sort(unique(gapminder_line_g7$country_de)))\n\np_line_g7 &lt;- ggplot(data = gapminder_line_g7, aes(x = time, y = gini)) +\n  geom_line(aes(col = country_de)) +  \n  theme_bg() +\n  labs(title = \"Ungleichheit On the Rise\", \n     subtitle = \"Gini-Koeffizient in den G7-Staaten von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\", \n     col = \"G7-Staat\") +\n  scale_color_discrete(labels = labels_g7) +\n  theme_solarized() # + \n  scale_colour_solarized() \np_line_g7"
+    "text": "Lineplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line_g7 &lt;- gapminder %&gt;% \n  filter(country %in% c(\"can\", \"fra\", \"deu\", \"ita\", \"jpn\", \"gbr\", \"usa\"), time &gt;=1900, time &lt;= 2024) %&gt;% \n  drop_na(gini)\n\nlabels_g7 &lt;- c(\n  \"can\" = \"Kanada\",\n  \"fra\" = \"Frankreich\",\n  \"deu\" = \"Deutschland\",\n  \"ita\" = \"Italien\",\n  \"jpn\" = \"Japan\",\n  \"gbr\" = \"Vereinigtes Königreich\",\n  \"usa\" = \"USA\"\n)\n\ngapminder_line_g7$country_de &lt;- labels_g7[gapminder_line_g7$country]\ngapminder_line_g7$country_de &lt;- factor(gapminder_line_g7$country_de,\n                        levels = sort(unique(gapminder_line_g7$country_de)))\n\np_line_g7 &lt;- ggplot(data = gapminder_line_g7, aes(x = time, y = gini)) +\n  geom_line(aes(col = country_de)) +  \n  labs(title = \"Ungleichheit On the Rise\", \n     subtitle = \"Gini-Koeffizient in den G7-Staaten von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\", \n     col = \"G7-Staat\") +\n  scale_color_discrete(labels = labels_g7) +\n  theme_solarized() # + \n  scale_colour_solarized() \np_line_g7"
   },
   {
     "objectID": "sessions/Einführung/slides.html#histogram",
@@ -893,7 +984,7 @@
     "href": "sessions/Einführung/slides.html#histogram-1",
     "title": "Einführung",
     "section": "Histogram",
-    "text": "Histogram\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_2023, aes(x = hapiscore_whr)) +\n  geom_histogram()"
+    "text": "Histogram\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2023 &lt;- gapminder %&gt;% \n  filter(time == 2023) \n\nggplot(data = gapminder_2023, aes(x = hapiscore_whr)) +\n  geom_histogram()"
   },
   {
     "objectID": "sessions/Einführung/slides.html#histogram-mit-erweiterungen",
@@ -921,14 +1012,14 @@
     "href": "sessions/Einführung/slides.html#boxplot-mit-erweiterungen",
     "title": "Einführung",
     "section": "Boxplot mit Erweiterungen",
-    "text": "Boxplot mit Erweiterungen\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2023 &lt;- gapminder %&gt;% \n  filter(time == 2023) \n\nggplot(data = gapminder_2023, aes(x = world_4region, y = gini)) +\n  geom_boxplot(aes(group = world_4region), staplewidth =.2) + \n  theme_bg() +\n  labs(x = \"\", y = \"\", \n       title = \"Verteilung des Gini-Index\", subtitle = \"Jahr: 2023\")"
+    "text": "Boxplot mit Erweiterungen\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2023 &lt;- gapminder %&gt;% \n  filter(time == 2023) \n\nggplot(data = gapminder_2023, aes(x = world_4region, y = gini)) +\n  geom_boxplot(aes(group = world_4region), staplewidth =.2) + \n  labs(x = \"\", y = \"\", \n       title = \"Verteilung des Gini-Index\", subtitle = \"Jahr: 2023\")"
   },
   {
     "objectID": "sessions/Einführung/slides.html#kombiniert",
     "href": "sessions/Einführung/slides.html#kombiniert",
     "title": "Einführung",
     "section": "Kombiniert",
-    "text": "Kombiniert\nGruppenvergleich per Boxplot mit Datenpunkten und Violin Plot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\np_kombi &lt;- ggplot(data = gapminder_2023, aes(x= world_4region, y = gini)) +\n  geom_violin(aes(fill = world_4region, col = world_4region), alpha=.2, show.legend = FALSE) + \n  geom_jitter(height = 0, width=.2) + \n  geom_boxplot(fill=NA) +\n  theme_bg() +\n  labs(x = \"Weltregion\", y = \"\", fill = \"Weltregion\",\n       title = \"Verteilung des Gini-Index\", subtitle = \"Jahr: 2023\")"
+    "text": "Kombiniert\nGruppenvergleich per Boxplot mit Datenpunkten und Violin Plot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\np_kombi &lt;- ggplot(data = gapminder_2023, aes(x= world_4region, y = gini)) +\n  geom_violin(aes(fill = world_4region, col = world_4region), alpha=.2, show.legend = FALSE) + \n  geom_jitter(height = 0, width=.2) + \n  geom_boxplot(fill=NA) +\n  labs(x = \"Weltregion\", y = \"\", fill = \"Weltregion\",\n       title = \"Verteilung des Gini-Index\", subtitle = \"Jahr: 2023\")"
   },
   {
     "objectID": "sessions/Einführung/slides.html#bubble-chart",
@@ -1019,14 +1110,14 @@
     "href": "sessions/animate_plotly/slides.html#vorbereitung",
     "title": "gganimate und plotly",
     "section": "Vorbereitung",
-    "text": "Vorbereitung\nPakete, die wir für die Beispiele im Foliensatz benötigen:\n\nlibrary(ggplot2)\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(ggthemes)\nlibrary(gganimate)\nlibrary(plotly)\nlibrary(htmlwidgets)\n\nDatensatz\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\nTheme\n\nsource(here::here(\"src\", \"themes.R\"))"
+    "text": "Vorbereitung\nPakete, die wir für die Beispiele im Foliensatz benötigen:\n\nlibrary(ggplot2)\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(ggthemes)\nlibrary(gganimate)\nlibrary(plotly)\nlibrary(htmlwidgets)\n\nDatensatz\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))"
   },
   {
     "objectID": "sessions/animate_plotly/slides.html#animierte-grafiken-1",
     "href": "sessions/animate_plotly/slides.html#animierte-grafiken-1",
     "title": "gganimate und plotly",
     "section": "Animierte Grafiken",
-    "text": "Animierte Grafiken\n\n\n\n\n\n\nAusgangspunkt für eine animierte Grafik mit gganimate ist eine statische, mit ggplot2 erzeugte Grafik.\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line_g7 &lt;- gapminder %&gt;%\n  filter(country %in% c(\"can\", \"fra\", \"deu\", \"ita\", \"jpn\", \"gbr\", \"usa\"), time &gt;=1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\nlabels_g7 &lt;- c(\n  \"can\" = \"Kanada\",\n  \"fra\" = \"Frankreich\",\n  \"deu\" = \"Deutschland\",\n  \"ita\" = \"Italien\",\n  \"jpn\" = \"Japan\",\n  \"gbr\" = \"Vereinigtes Königreich\",\n  \"usa\" = \"USA\"\n)\n\ngapminder_line_g7$country_de &lt;- labels_g7[gapminder_line_g7$country]\ngapminder_line_g7$country_de &lt;- factor(gapminder_line_g7$country_de,\n                        levels = sort(unique(gapminder_line_g7$country_de)))\n\np_line_g7 &lt;- ggplot(data = gapminder_line_g7, aes(x = time, y = gini)) +\n  geom_line(aes(col = country_de)) +  \n  theme_bg() +\n  labs(title = \"Ungleichheit On the Rise\", \n     subtitle = \"Gini-Koeffizient in den G7-Staaten von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\", \n     col = \"G7-Staat\") +\n  scale_color_discrete(labels = labels_g7) +\n  theme_solarized() # + \n  #scale_colour_solarized() \np_line_g7"
+    "text": "Animierte Grafiken\n\n\n\n\n\n\nAusgangspunkt für eine animierte Grafik mit gganimate ist eine statische, mit ggplot2 erzeugte Grafik.\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line_g7 &lt;- gapminder %&gt;%\n  filter(country %in% c(\"can\", \"fra\", \"deu\", \"ita\", \"jpn\", \"gbr\", \"usa\"), time &gt;=1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\nlabels_g7 &lt;- c(\n  \"can\" = \"Kanada\",\n  \"fra\" = \"Frankreich\",\n  \"deu\" = \"Deutschland\",\n  \"ita\" = \"Italien\",\n  \"jpn\" = \"Japan\",\n  \"gbr\" = \"Vereinigtes Königreich\",\n  \"usa\" = \"USA\"\n)\n\ngapminder_line_g7$country_de &lt;- labels_g7[gapminder_line_g7$country]\ngapminder_line_g7$country_de &lt;- factor(gapminder_line_g7$country_de,\n                        levels = sort(unique(gapminder_line_g7$country_de)))\n\np_line_g7 &lt;- ggplot(data = gapminder_line_g7, aes(x = time, y = gini)) +\n  geom_line(aes(col = country_de)) +  \n  labs(title = \"Ungleichheit On the Rise\", \n     subtitle = \"Gini-Koeffizient in den G7-Staaten von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\", \n     col = \"G7-Staat\") +\n  scale_color_discrete(labels = labels_g7) +\n  theme_solarized() \n\np_line_g7"
   },
   {
     "objectID": "sessions/animate_plotly/slides.html#animierte-grafiken-2",
@@ -1068,7 +1159,7 @@
     "href": "sessions/animate_plotly/slides.html#interaktive-grafik-mit-plotly-1",
     "title": "gganimate und plotly",
     "section": "Interaktive Grafik mit plotly",
-    "text": "Interaktive Grafik mit plotly\n\n\n\n\n\n\nWendet man nun ggplotly() darauf an, entsteht diese interaktive Grafik. Das mouse-over-Textfeld funktioniert bereits, ließe sich aber auch noch feiner anpassen.\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\nggplotly(p_bubble)"
+    "text": "Interaktive Grafik mit plotly\n\n\n\n\n\n\nWendet man nun ggplotly() darauf an, entsteht diese interaktive Grafik. Das mouse-over-Textfeld funktioniert bereits, ließe sich aber auch noch feiner anpassen (Stichwort: tooltip).\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\nggplotly(p_bubble)"
   },
   {
     "objectID": "sessions/animate_plotly/slides.html#interaktive-grafiken-speichern",
@@ -1082,7 +1173,7 @@
     "href": "sessions/animate_plotly/slides.html#section",
     "title": "gganimate und plotly",
     "section": "",
-    "text": "Abbildung von [Allison Horst]{https://allisonhorst.com/r-packages-functions}"
+    "text": "Abbildung von Allison Horst"
   },
   {
     "objectID": "sessions/r_basics/slides.html#die-daten",
