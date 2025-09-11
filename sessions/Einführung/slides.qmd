@@ -410,6 +410,32 @@ Hier finden Sie eine gute Übersicht über verschiedene Plot-Typen, in der auch 
 
 ![](./images/graphgallery.png){.lightbox fig-align="center"}
 
+## Vorbereitung
+
+[Pakete]{.highlight}, die wir für die Beispiele im Foliensatz benötigen: 
+
+```{r}
+library(ggplot2)
+library(quartets)
+library(tidyverse)
+library(ggrepel)
+library(ggthemes)
+library(gganimate)
+library(plotly)
+```
+
+[Datensatz]{.highlight}
+
+```{r}
+gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
+```
+
+
+[Theme]{.highlight}
+
+```{r}
+source(here::here("src", "themes.R"))
+```
 
 
 ## Scatterplot
@@ -1261,12 +1287,14 @@ p_line_g7 +
 
 ## Interaktiv: `plotly`
 
+\
+
 ```{r}
 #| label: ggplotly
 #| echo: false
 
 ggplotly(p_bubble) |>
-  layout(width = 1000, height = 550)
+  layout(width = 1000, height = 450)
 ```
 
 
