@@ -25,7 +25,7 @@
     "href": "index.html#r-pakete",
     "title": "Datenvisualisierung in R",
     "section": "R-Pakete",
-    "text": "R-Pakete\nInstalliert euch gerne schon einmal die Pakete, die wir im Workshop verwenden werden.\n\ninstall.packages(c(\"tidyverse\", \"here\", \"GGally\", \n                   \"RColorBrewer\", \"colorblindcheck\", \n                   \"patchwork\", \"ggthemes\", \"gganimate\", \n                   \"ggtext\", \"ggrepel\", \"ggridges\", \n                   \"ggwordcloud\", \"paletteer\", \"plotly\",\n                   \"readxl\", \"showtext\"))"
+    "text": "R-Pakete\nInstalliert euch gerne schon einmal die Pakete, die wir im Workshop verwenden werden.\n\ninstall.packages(c(\"tidyverse\", \"here\", \"GGally\", \n                   \"RColorBrewer\", \"colorblindcheck\", \n                   \"patchwork\", \"ggthemes\", \"gganimate\", \n                   \"ggtext\", \"ggrepel\", \"ggridges\", \n                   \"ggwordcloud\", \"paletteer\", \"plotly\",\n                   \"readxl\", \"showtext\", \"htmlwidgets\"))"
   },
   {
     "objectID": "index.html#cryptpad",
@@ -690,7 +690,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nbullseye\n55.37\n30.45\n\n\naway\n40.57\n79.37\n\n\ndino\n46.67\n54.10\n\n\nv_lines\n69.50\n5.96\n\n\nx_shape\n37.10\n15.45\n\n\nv_lines\n50.35\n12.47\n\n\nslant_down\n28.60\n44.22\n\n\ncircle\n43.05\n18.40\n\n\nbullseye\n89.09\n57.77\n\n\nslant_up\n68.85\n39.57\n\n\ndino\n71.54\n64.49\n\n\nwide_lines\n64.05\n48.82\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nslant_up\n47.23\n44.58\n\n\ncircle\n42.14\n76.88\n\n\nslant_up\n85.82\n37.57\n\n\ndino\n46.15\n94.49\n\n\nwide_lines\n65.57\n23.77\n\n\naway\n48.96\n72.63\n\n\nwide_lines\n36.95\n13.51\n\n\nx_shape\n33.73\n88.62\n\n\nslant_up\n36.16\n33.82\n\n\ndino\n68.46\n5.26\n\n\nslant_down\n61.74\n38.58\n\n\nhigh_lines\n72.27\n67.64\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
@@ -802,7 +802,7 @@
     "href": "sessions/Einführung/slides.html#resourcen",
     "title": "Einführung",
     "section": "Resourcen",
-    "text": "Resourcen\ndatatoviz\nHier finden Sie eine gute Übersicht über verschiedene Plot-Typen, in der auch die Implentierung in R dokumentiert ist:\nhttps://www.data-to-viz.com/"
+    "text": "Resourcen\ndata-to-viz\nHier finden Sie eine gute Übersicht über verschiedene Plot-Typen, in der auch die Implentierung in R dokumentiert ist:\nhttps://www.data-to-viz.com/"
   },
   {
     "objectID": "sessions/Einführung/slides.html#resourcen-1",
@@ -810,6 +810,13 @@
     "title": "Einführung",
     "section": "Resourcen",
     "text": "Resourcen\nR Graph Gallery\nHier finden Sie eine gute Übersicht über verschiedene Plot-Typen, in der auch die Implentierung in R dokumentiert ist:\nhttps://r-graph-gallery.com/"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#vorbereitung",
+    "href": "sessions/Einführung/slides.html#vorbereitung",
+    "title": "Einführung",
+    "section": "Vorbereitung",
+    "text": "Vorbereitung\nPakete, die wir für die Beispiele im Foliensatz benötigen:\n\nlibrary(ggplot2)\nlibrary(quartets)\nlibrary(tidyverse)\nlibrary(ggrepel)\nlibrary(ggthemes)\nlibrary(gganimate)\nlibrary(plotly)\n\nDatensatz\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\nTheme\n\nsource(here::here(\"src\", \"themes.R\"))"
   },
   {
     "objectID": "sessions/Einführung/slides.html#scatterplot",
@@ -935,7 +942,7 @@
     "href": "sessions/Einführung/slides.html#karten",
     "title": "Einführung",
     "section": "Karten",
-    "text": "Karten"
+    "text": "Karten\n\n\nBerlin, eigene Darstellung basierend auf dem R-Paket sf"
   },
   {
     "objectID": "sessions/Einführung/slides.html#spider-chart",
@@ -1001,46 +1008,81 @@
     "text": "View slides in full screen"
   },
   {
+    "objectID": "sessions/animate_plotly/slides.html#einführung",
+    "href": "sessions/animate_plotly/slides.html#einführung",
+    "title": "gganimate und plotly",
+    "section": "Einführung",
+    "text": "Einführung\n\n\n\nBisher haben wir ausschließlich statische Grafiken erzeugt.\n\nForschungsergebnisse werden zunehmend nicht mehr nur in Printmedien dargestellt, sodass wir animierte und interaktive Grafiken teilen können. So kann noch mehr Information in einer einzigen “Grafik” zugänglich gemacht werden!\n\n\n\n\n\nFoto von Jakob Owens auf Unsplash"
+  },
+  {
+    "objectID": "sessions/animate_plotly/slides.html#vorbereitung",
+    "href": "sessions/animate_plotly/slides.html#vorbereitung",
+    "title": "gganimate und plotly",
+    "section": "Vorbereitung",
+    "text": "Vorbereitung\nPakete, die wir für die Beispiele im Foliensatz benötigen:\n\nlibrary(ggplot2)\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(ggthemes)\nlibrary(gganimate)\nlibrary(plotly)\nlibrary(htmlwidgets)\n\nDatensatz\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\nTheme\n\nsource(here::here(\"src\", \"themes.R\"))"
+  },
+  {
     "objectID": "sessions/animate_plotly/slides.html#animierte-grafiken-1",
     "href": "sessions/animate_plotly/slides.html#animierte-grafiken-1",
-    "title": "Ausblick: gganimate und plotly",
+    "title": "gganimate und plotly",
     "section": "Animierte Grafiken",
-    "text": "Animierte Grafiken\n\n\n\n\n\n\nAusgangspunkt für eine animierte Grafik mit gganimate ist eine statische, mit ggplot2 erzeugte Grafik.\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\ngapminder_line_g7 &lt;- gapminder |&gt;\n  filter(country %in% c(\"can\", \"fra\", \"deu\", \"ita\", \"jpn\", \"gbr\", \"usa\"), time &gt;=1900, time &lt;= 2024) |&gt;\n  drop_na(gini)\n\nlabels_g7 &lt;- c(\n  \"can\" = \"Kanada\",\n  \"fra\" = \"Frankreich\",\n  \"deu\" = \"Deutschland\",\n  \"ita\" = \"Italien\",\n  \"jpn\" = \"Japan\",\n  \"gbr\" = \"Vereinigtes Königreich\",\n  \"usa\" = \"USA\"\n)\n\ngapminder_line_g7$country_de &lt;- labels_g7[gapminder_line_g7$country]\ngapminder_line_g7$country_de &lt;- factor(gapminder_line_g7$country_de,\n                        levels = sort(unique(gapminder_line_g7$country_de)))\n\np_line_g7 &lt;- ggplot(data = gapminder_line_g7, aes(x = time, y = gini)) +\n  geom_line(aes(col = country_de)) +  \n  theme_bg() +\n  labs(title = \"Ungleichheit On the Rise\", \n     subtitle = \"Gini-Koeffizient in den G7-Staaten von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\", \n     col = \"G7-Staat\") +\n  scale_color_discrete(labels = labels_g7) +\n  theme_solarized() # + \n  #scale_colour_solarized() \np_line_g7"
+    "text": "Animierte Grafiken\n\n\n\n\n\n\nAusgangspunkt für eine animierte Grafik mit gganimate ist eine statische, mit ggplot2 erzeugte Grafik.\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_line_g7 &lt;- gapminder %&gt;%\n  filter(country %in% c(\"can\", \"fra\", \"deu\", \"ita\", \"jpn\", \"gbr\", \"usa\"), time &gt;=1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\nlabels_g7 &lt;- c(\n  \"can\" = \"Kanada\",\n  \"fra\" = \"Frankreich\",\n  \"deu\" = \"Deutschland\",\n  \"ita\" = \"Italien\",\n  \"jpn\" = \"Japan\",\n  \"gbr\" = \"Vereinigtes Königreich\",\n  \"usa\" = \"USA\"\n)\n\ngapminder_line_g7$country_de &lt;- labels_g7[gapminder_line_g7$country]\ngapminder_line_g7$country_de &lt;- factor(gapminder_line_g7$country_de,\n                        levels = sort(unique(gapminder_line_g7$country_de)))\n\np_line_g7 &lt;- ggplot(data = gapminder_line_g7, aes(x = time, y = gini)) +\n  geom_line(aes(col = country_de)) +  \n  theme_bg() +\n  labs(title = \"Ungleichheit On the Rise\", \n     subtitle = \"Gini-Koeffizient in den G7-Staaten von 1900 bis 2024\",\n     x = \"Jahr\",\n     y = \"Gini-Koeffizient\", \n     col = \"G7-Staat\") +\n  scale_color_discrete(labels = labels_g7) +\n  theme_solarized() # + \n  #scale_colour_solarized() \np_line_g7"
   },
   {
     "objectID": "sessions/animate_plotly/slides.html#animierte-grafiken-2",
     "href": "sessions/animate_plotly/slides.html#animierte-grafiken-2",
-    "title": "Ausblick: gganimate und plotly",
+    "title": "gganimate und plotly",
     "section": "Animierte Grafiken",
     "text": "Animierte Grafiken\n\n\n\n\n\n\nMit transition_reveal(along = time) werden die Linien über die Zeit “enthüllt”.\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\np_line_g7 + \n  transition_reveal(along = time) +# Linien werden über die Zeit \"enthüllt\"\n  ease_aes(\"linear\")"
   },
   {
     "objectID": "sessions/animate_plotly/slides.html#noch-mehr-animierte-grafiken",
     "href": "sessions/animate_plotly/slides.html#noch-mehr-animierte-grafiken",
-    "title": "Ausblick: gganimate und plotly",
+    "title": "gganimate und plotly",
     "section": "Noch mehr animierte Grafiken",
-    "text": "Noch mehr animierte Grafiken\n\n\n\n\n\n\nAuch unser bubble chart lässt sich animieren. Dies war die statische Ausgangsbasis.\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\noptions(scipen=10)\n\n# Farben der vier Weltregionen \ntuerkis &lt;- rgb(0,213,233, max=255)\ngruen &lt;- rgb(127,235,0, max=255)\nrot &lt;- rgb(255,88,114, max=255)\ngelb &lt;- rgb(255,231,0, max=255)\n\ngapminder |&gt;\n  # Auswahl der Daten von 2019:\n  subset(time == 2019) |&gt; \n    # Neu: Angabe der Einwohnerzahl in Millionen\n  mutate(pop = pop/1000000) |&gt;\n  # Grund-Grafik anfordern:\n  ggplot(aes(x=gini, y=hapiscore_whr)) +\n  # Neu: Text für die Jahreszahl einfügen, sodass diese ganz im Hintergrund steht\n  annotate(\"text\", x=45, y=50, label=\"2019\", size=85, colour =\"grey90\", family=\"mono\", fontface=1) +\n  # Neu: Farbthema: heller Hintergrund, schwarze Linien an x- und y-Achse\n  theme_classic() + \n  # Wie bisher: Punkte einzeichnen --&gt; Streu-Punkt-Diagramm,\n  # Neu: Unterscheidung der Punkte nach Farbe (Region) und Größe (Population);  \n  # Transparenz der Datenpunkte (alpha), Rand um die Punkte (shape) \n  geom_point(aes(fill = world_4region, size = pop), shape=21, alpha=.7) +\n  # Skalieren der Größe der Punkte, sodass die Unterschiede deutlicher sind\n  scale_size(range = c(1, 30)) +\n  # Neu: Beschriftung der Achsen\n  labs(x=\"Gini-Index\", y=\"Hyppiness Score\") +\n  # Neu: manuelle Spezifikation der y-Achse: Wertebereich, Position der Beschriftungen (10er-Schritte)\n  scale_y_continuous(limits = c(15, 85), \n                     breaks = seq(20,80, by=10),\n                     labels = paste0(seq(20,80, by=10), \"%\")) +\n  # Neu: manuelle Spezifikation der x-Achse: Wertebereich, log-Transformation, Position und Name der Beschriftungen\n  scale_x_continuous(limits = c(18,75),\n                     breaks = seq(20,70, by= 5)) +\n  # Neu: manuelle Spezifikation der Farben\n  scale_fill_manual(\n    values = c(tuerkis, gruen, rot, gelb),\n    breaks = c(\"africa\", \"americas\", \"asia\", \"europe\")) +\n  # Neu: Theme (Anpassung der Schriftgroesse, relativ zur Groesse 12, blaues Raster im Hintergrund, Rand für die Legende)\n  theme(text = element_text(size=12),\n        axis.text = element_text(size=rel(.8)),\n        axis.title = element_text(size=rel(1.2)),\n        panel.grid.major = element_line(colour = \"azure2\")) +\n  # Neu: Titel, Beschriftungen der Achse und Legende\n  labs(title=\"Bubble Chart im Gapminder-Look\",\n       subtitle=\"Jahr: 2023\",\n       x=\"Gini-Index\",\n       y=\"Happiness Score (WHR)\",\n       fill=\"Weltregion\",\n       size=\"Einwohnerzahl\\n(in Mio.)\") +\n  # Neu: Vergroessern der Punkte fuer die Farb-Legende fuer die Kontinente\n  guides(fill = guide_legend(override.aes = list(size = 5), order=1))"
+    "text": "Noch mehr animierte Grafiken\n\n\n\n\n\n\nAuch unser bubble chart lässt sich animieren. Dies ist die statische Ausgangsbasis.\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\noptions(scipen=10)\n\n# Farben der vier Weltregionen \ntuerkis &lt;- rgb(0,213,233, max=255)\ngruen &lt;- rgb(127,235,0, max=255)\nrot &lt;- rgb(255,88,114, max=255)\ngelb &lt;- rgb(255,231,0, max=255)\n\np_static &lt;- gapminder %&gt;%\n  # Auswahl der Daten von 2019:\n  subset(time == 2019) %&gt;% \n    # Neu: Angabe der Einwohnerzahl in Millionen\n  mutate(pop = pop/1000000) %&gt;%\n  # Grund-Grafik anfordern:\n  ggplot(aes(x=gini, y=hapiscore_whr)) +\n  # Neu: Text für die Jahreszahl einfügen, sodass diese ganz im Hintergrund steht\n  annotate(\"text\", x=45, y=50, label=\"2019\", size=85, colour =\"grey90\", family=\"mono\", fontface=1) +\n  # Neu: Farbthema: heller Hintergrund, schwarze Linien an x- und y-Achse\n  theme_classic() + \n  # Wie bisher: Punkte einzeichnen --&gt; Streu-Punkt-Diagramm,\n  # Neu: Unterscheidung der Punkte nach Farbe (Region) und Größe (Population);  \n  # Transparenz der Datenpunkte (alpha), Rand um die Punkte (shape) \n  geom_point(aes(fill = world_4region, size = pop), shape=21, alpha=.7) +\n  # Skalieren der Größe der Punkte, sodass die Unterschiede deutlicher sind\n  scale_size(range = c(1, 30)) +\n  # Neu: Beschriftung der Achsen\n  labs(x=\"Gini-Index\", y=\"Hyppiness Score\") +\n  # Neu: manuelle Spezifikation der y-Achse: Wertebereich, Position der Beschriftungen (10er-Schritte)\n  scale_y_continuous(limits = c(15, 85), \n                     breaks = seq(20,80, by=10),\n                     labels = paste0(seq(20,80, by=10), \"%\")) +\n  # Neu: manuelle Spezifikation der x-Achse: Wertebereich, log-Transformation, Position und Name der Beschriftungen\n  scale_x_continuous(limits = c(18,75),\n                     breaks = seq(20,70, by= 5)) +\n  # Neu: manuelle Spezifikation der Farben\n  scale_fill_manual(\n    values = c(tuerkis, gruen, rot, gelb),\n    breaks = c(\"africa\", \"americas\", \"asia\", \"europe\")) +\n  # Neu: Theme (Anpassung der Schriftgroesse, relativ zur Groesse 12, blaues Raster im Hintergrund, Rand für die Legende)\n  theme(text = element_text(size=12),\n        axis.text = element_text(size=rel(.8)),\n        axis.title = element_text(size=rel(1.2)),\n        panel.grid.major = element_line(colour = \"azure2\")) +\n  # Neu: Titel, Beschriftungen der Achse und Legende\n  labs(title=\"Bubble Chart im Gapminder-Look\",\n       subtitle=\"Jahr: 2023\",\n       x=\"Gini-Index\",\n       y=\"Happiness Score (WHR)\",\n       fill=\"Weltregion\",\n       size=\"Einwohnerzahl\\n(in Mio.)\") +\n  # Neu: Vergroessern der Punkte fuer die Farb-Legende fuer die Kontinente\n  guides(fill = guide_legend(override.aes = list(size = 5), order=1))  \n\np_static"
   },
   {
     "objectID": "sessions/animate_plotly/slides.html#noch-mehr-animierte-grafiken-1",
     "href": "sessions/animate_plotly/slides.html#noch-mehr-animierte-grafiken-1",
-    "title": "Ausblick: gganimate und plotly",
+    "title": "gganimate und plotly",
     "section": "Noch mehr animierte Grafiken",
-    "text": "Noch mehr animierte Grafiken\n\n\n\n\n\n\nNun wird für jedes Jahr ein neues Bubble chart erzeugt.\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\noptions(scipen=10)\n\n# Farben der vier Weltregionen \ntuerkis &lt;- rgb(0,213,233, max=255)\ngruen &lt;- rgb(127,235,0, max=255)\nrot &lt;- rgb(255,88,114, max=255)\ngelb &lt;- rgb(255,231,0, max=255)\n\np_static &lt;- gapminder |&gt;\n  subset(time &gt;= 2005 & time &lt;= 2023) |&gt; \n  # Neu: Angabe der Einwohnerzahl in Millionen\n  mutate(pop = pop/1000000) |&gt;\n  # Grund-Grafik anfordern:\n  ggplot(aes(x=gini, y=hapiscore_whr)) +\n  # Neu: Text für die Jahreszahl einfügen, sodass diese ganz im Hintergrund steht\n  # ...funktioniert nicht ohne weiteres...\n  # Neu: Farbthema: heller Hintergrund, schwarze Linien an x- und y-Achse\n  theme_classic() + \n  # Wie bisher: Punkte einzeichnen --&gt; Streu-Punkt-Diagramm,\n  # Neu: Unterscheidung der Punkte nach Farbe (Region) und Größe (Population);  \n  # Transparenz der Datenpunkte (alpha), Rand um die Punkte (shape) \n  geom_point(aes(fill = world_4region, size = pop), shape=21, alpha=.7) +\n  # Skalieren der Größe der Punkte, sodass die Unterschiede deutlicher sind\n  scale_size(range = c(1, 30)) +\n  # Neu: Beschriftung der Achsen\n  labs(x=\"Gini-Index\", y=\"Hyppiness Score\") +\n  # Neu: manuelle Spezifikation der y-Achse: Wertebereich, Position der Beschriftungen (10er-Schritte)\n  scale_y_continuous(limits = c(15, 85), \n                     breaks = seq(20,80, by=10),\n                     labels = paste0(seq(20,80, by=10), \"%\")) +\n  # Neu: manuelle Spezifikation der x-Achse: Wertebereich, log-Transformation, Position und Name der Beschriftungen\n  scale_x_continuous(limits = c(18,75),\n                     breaks = seq(20,70, by= 5)) +\n  # Neu: manuelle Spezifikation der Farben\n  scale_fill_manual(\n    values = c(tuerkis, gruen, rot, gelb),\n    breaks = c(\"africa\", \"americas\", \"asia\", \"europe\")) +\n  # Neu: Theme (Anpassung der Schriftgroesse, relativ zur Groesse 12, blaues Raster im Hintergrund, Rand für die Legende)\n  theme(text = element_text(size=12),\n        axis.text = element_text(size=rel(.8)),\n        axis.title = element_text(size=rel(1.2)),\n        panel.grid.major = element_line(colour = \"azure2\")) +\n  # Neu: Titel, Beschriftungen der Achse und Legende\n  labs(title=\"Bubble Chart im Gapminder-Look\",\n       subtitle = \"Jahr: {floor(frame_time)}\",\n       x=\"Gini-Index\",\n       y=\"Happiness Score (WHR)\",\n       fill=\"Weltregion\",\n       size=\"Einwohnerzahl\\n(in Mio.)\") +\n  # Neu: Vergroessern der Punkte fuer die Farb-Legende fuer die Kontinente\n  guides(fill = guide_legend(override.aes = list(size = 5), order=1)) \n\np_static + transition_time(time) +\n  ease_aes(\"linear\")"
+    "text": "Noch mehr animierte Grafiken\n\n\n\n\n\n\nNun wird für jedes Jahr ein neues Bubble chart erzeugt.\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\noptions(scipen=10)\n\n# Farben der vier Weltregionen \ntuerkis &lt;- rgb(0,213,233, max=255)\ngruen &lt;- rgb(127,235,0, max=255)\nrot &lt;- rgb(255,88,114, max=255)\ngelb &lt;- rgb(255,231,0, max=255)\n\np_static &lt;- gapminder %&gt;%\n  subset(time &gt;= 2005 & time &lt;= 2023) %&gt;% \n  # Neu: Angabe der Einwohnerzahl in Millionen\n  mutate(pop = pop/1000000) %&gt;%\n  # Grund-Grafik anfordern:\n  ggplot(aes(x=gini, y=hapiscore_whr)) +\n  # Neu: Text für die Jahreszahl einfügen, sodass diese ganz im Hintergrund steht\n  # ...funktioniert nicht ohne weiteres...\n  # Neu: Farbthema: heller Hintergrund, schwarze Linien an x- und y-Achse\n  theme_classic() + \n  # Wie bisher: Punkte einzeichnen --&gt; Streu-Punkt-Diagramm,\n  # Neu: Unterscheidung der Punkte nach Farbe (Region) und Größe (Population);  \n  # Transparenz der Datenpunkte (alpha), Rand um die Punkte (shape) \n  geom_point(aes(fill = world_4region, size = pop), shape=21, alpha=.7) +\n  # Skalieren der Größe der Punkte, sodass die Unterschiede deutlicher sind\n  scale_size(range = c(1, 30)) +\n  # Neu: Beschriftung der Achsen\n  labs(x=\"Gini-Index\", y=\"Hyppiness Score\") +\n  # Neu: manuelle Spezifikation der y-Achse: Wertebereich, Position der Beschriftungen (10er-Schritte)\n  scale_y_continuous(limits = c(15, 85), \n                     breaks = seq(20,80, by=10),\n                     labels = paste0(seq(20,80, by=10), \"%\")) +\n  # Neu: manuelle Spezifikation der x-Achse: Wertebereich, log-Transformation, Position und Name der Beschriftungen\n  scale_x_continuous(limits = c(18,75),\n                     breaks = seq(20,70, by= 5)) +\n  # Neu: manuelle Spezifikation der Farben\n  scale_fill_manual(\n    values = c(tuerkis, gruen, rot, gelb),\n    breaks = c(\"africa\", \"americas\", \"asia\", \"europe\")) +\n  # Neu: Theme (Anpassung der Schriftgroesse, relativ zur Groesse 12, blaues Raster im Hintergrund, Rand für die Legende)\n  theme(text = element_text(size=12),\n        axis.text = element_text(size=rel(.8)),\n        axis.title = element_text(size=rel(1.2)),\n        panel.grid.major = element_line(colour = \"azure2\")) +\n  # Neu: Titel, Beschriftungen der Achse und Legende\n  labs(title=\"Bubble Chart im Gapminder-Look\",\n       subtitle = \"Jahr: {floor(frame_time)}\",\n       x=\"Gini-Index\",\n       y=\"Happiness Score (WHR)\",\n       fill=\"Weltregion\",\n       size=\"Einwohnerzahl\\n(in Mio.)\") +\n  # Neu: Vergroessern der Punkte fuer die Farb-Legende fuer die Kontinente\n  guides(fill = guide_legend(override.aes = list(size = 5), order=1)) \n\np_static + transition_time(time) +\n  ease_aes(\"linear\")"
+  },
+  {
+    "objectID": "sessions/animate_plotly/slides.html#animierte-grafiken-speichern",
+    "href": "sessions/animate_plotly/slides.html#animierte-grafiken-speichern",
+    "title": "gganimate und plotly",
+    "section": "Animierte Grafiken speichern",
+    "text": "Animierte Grafiken speichern\nDie mit gganimate animierten Grafiken können mit der Funktion anim_save() als gif-Datei gespeichert werden.\n\np_anim &lt;- p_static + transition_time(time) +\n  ease_aes(\"linear\") \n\nanim_save(\"bubbles.gif\", animation = p_anim)\n\nUm die Größe und Proportionen der gespeicherten Animation zu kontrollieren, kann man wie folgt vorgehen:\n\nanimate(p_anim, height = 10, width = 20, units = \"cm\", res = 150)\nanim_save(\"bubbles_wide.gif\")"
   },
   {
     "objectID": "sessions/animate_plotly/slides.html#interaktive-grafik-mit-plotly",
     "href": "sessions/animate_plotly/slides.html#interaktive-grafik-mit-plotly",
-    "title": "Ausblick: gganimate und plotly",
-    "section": "Interaktive Grafik mit ‘plotly’",
-    "text": "Interaktive Grafik mit ‘plotly’"
+    "title": "gganimate und plotly",
+    "section": "Interaktive Grafik mit plotly",
+    "text": "Interaktive Grafik mit plotly\n\n\n\n\n\n\nAuch hier bildet eine statische, mit ggplot erzeugte Grafik den Ausgangspunkt.\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\noptions(scipen=10)\n# Farben der vier Weltregionen \ntuerkis &lt;- rgb(0,213,233, max=255)\ngruen &lt;- rgb(127,235,0, max=255)\nrot &lt;- rgb(255,88,114, max=255)\ngelb &lt;- rgb(255,231,0, max=255)\n\np_bubble &lt;- gapminder %&gt;%\n  # Auswahl der Daten von 2023:\n  subset(time == 2023) %&gt;% \n    # Neu: Angabe der Einwohnerzahl in Millionen\n  mutate(pop = pop/1000000) %&gt;%\n  # Grund-Grafik anfordern:\n  ggplot(aes(x=gini, y=hapiscore_whr)) +\n  # Neu: Text für die Jahreszahl (\"2015\") einfügen, sodass diese ganz im Hintergrund steht\n  annotate(\"text\", x=45, y=50, label=\"2023\", size=85, colour =\"grey90\", family=\"mono\", fontface=1) +\n  # Neu: Farbthema: heller Hintergrund, schwarze Linien an x- und y-Achse\n  theme_classic() + \n  # Wie bisher: Punkte einzeichnen --&gt; Streu-Punkt-Diagramm,\n  # Neu: Unterscheidung der Punkte nach Farbe (Region) und Größe (Population);  \n  # Transparenz der Datenpunkte (alpha), Rand um die Punkte (shape) \n  geom_point(aes(fill = world_4region, size = pop), shape=21, alpha=.7) +\n  # Skalieren der Größe der Punkte, sodass die Unterschiede deutlicher sind\n  scale_size(range = c(1, 30)) +\n  # Neu: Beschriftung der Achsen\n  labs(x=\"Gini-Index\", y=\"Hyppiness Score\") +\n  # Neu: manuelle Spezifikation der y-Achse: Wertebereich, Position der Beschriftungen (10er-Schritte)\n  scale_y_continuous(limits = c(15, 85), \n                     breaks = seq(20,80, by=10),\n                     labels = paste0(seq(20,80, by=10), \"%\")) +\n  # Neu: manuelle Spezifikation der x-Achse: Wertebereich, log-Transformation, Position und Name der Beschriftungen\n  scale_x_continuous(limits = c(18,75),\n                     breaks = seq(20,70, by= 5)) +\n  # Neu: manuelle Spezifikation der Farben\n  scale_fill_manual(\n    values = c(tuerkis, gruen, rot, gelb),\n    breaks = c(\"africa\", \"americas\", \"asia\", \"europe\")) +\n  # Neu: Theme (Anpassung der Schriftgroesse, relativ zur Groesse 12, blaues Raster im Hintergrund, Rand für die Legende)\n  theme(text = element_text(size=12),\n        axis.text = element_text(size=rel(.8)),\n        axis.title = element_text(size=rel(1.2)),\n        panel.grid.major = element_line(colour = \"azure2\")) +\n  # Neu: Titel, Beschriftungen der Achse und Legende\n  labs(title=\"Bubble Chart im Gapminder-Look\",\n       subtitle=\"Jahr: 2023\",\n       x=\"Gini-Index\",\n       y=\"Happiness Score (WHR)\",\n       fill=\"Weltregion\",\n       size=\"Einwohnerzahl\\n(in Mio.)\") +\n  # Neu: Vergroessern der Punkte fuer die Farb-Legende fuer die Kontinente\n  guides(fill = guide_legend(override.aes = list(size = 5), order=1)) \n\np_bubble"
   },
   {
-    "objectID": "sessions/animate_plotly/slides.html#interaktiv",
-    "href": "sessions/animate_plotly/slides.html#interaktiv",
-    "title": "Ausblick: gganimate und plotly",
-    "section": "interaktiv",
-    "text": "interaktiv"
+    "objectID": "sessions/animate_plotly/slides.html#interaktive-grafik-mit-plotly-1",
+    "href": "sessions/animate_plotly/slides.html#interaktive-grafik-mit-plotly-1",
+    "title": "gganimate und plotly",
+    "section": "Interaktive Grafik mit plotly",
+    "text": "Interaktive Grafik mit plotly\n\n\n\n\n\n\nWendet man nun ggplotly() darauf an, entsteht diese interaktive Grafik. Das mouse-over-Textfeld funktioniert bereits, ließe sich aber auch noch feiner anpassen.\n\n\n\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\nggplotly(p_bubble)"
+  },
+  {
+    "objectID": "sessions/animate_plotly/slides.html#interaktive-grafiken-speichern",
+    "href": "sessions/animate_plotly/slides.html#interaktive-grafiken-speichern",
+    "title": "gganimate und plotly",
+    "section": "Interaktive Grafiken speichern",
+    "text": "Interaktive Grafiken speichern\nDie mit ggplotly erzeugten HTML-Objekte können mit der Funktion saveWidget() aus dem R-Paket htmlwidgets als HTML-Datei gespeichert werden.\n\np_plotly &lt;- ggplotly(p_bubble) \nsaveWidget(p_plotly, file = \"bubbles.html\")\n\nUm die Größe und Proportionen der HTML-Grafik zu kontrollieren, kann man wie folgt vorgehen:\n\np_plotly &lt;- ggplotly(p_bubble) %&gt;%\n  layout(width = 1200, height = 400)\n\nsaveWidget(p_plotly, file = \"bubbles_wide.html\")"
+  },
+  {
+    "objectID": "sessions/animate_plotly/slides.html#section",
+    "href": "sessions/animate_plotly/slides.html#section",
+    "title": "gganimate und plotly",
+    "section": "",
+    "text": "Abbildung von [Allison Horst]{https://allisonhorst.com/r-packages-functions}"
   },
   {
     "objectID": "sessions/r_basics/slides.html#die-daten",
