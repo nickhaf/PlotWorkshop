@@ -18,7 +18,7 @@
     "href": "index.html#tag-2",
     "title": "Datenvisualisierung in R",
     "section": "Tag 2",
-    "text": "Tag 2\n\n\n\n\n\n\n\n\n\n\nggplot2: Advanced\n\n\n9:00 - 12:00\n\n\n\nNicklas Hafiz, Janine Buchholz\n\n\n\n\n\n\n\n\n\n\n\n\n\nWissenschaftliche Grafiken\n\n\n13:00 - 14:00\n\n\n\n\n\n\n\n\n\n\n\n\ngganimate & plotly\n\n\n14:10 - 15:30\n\n\n\n\n\n\n\n\n\n\n\n\nWrap-up, Fragen, Übungszeit & Evaluation\n\n\n15:45 - 17:00\n\n\n\n\n\nKeine Treffer"
+    "text": "Tag 2\n\n\n\n\n\n\n\n\n\n\nggplot2: Advanced\n\n\n10:30 - 12:00\n\n\n\nNicklas Hafiz, Janine Buchholz\n\n\n\n\n\n\n\n\n\n\n\n\n\ngganimate & plotly\n\n\n13:00 - 14:00\n\n\n\n\n\n\n\n\n\n\n\n\nExportieren\n\n\n14:00 - 15:00\n\n\n\n\n\n\n\n\n\n\n\n\nWrap-up, Fragen, Übungszeit & Evaluation\n\n\n15:00 - 17:00\n\n\n\n\n\nKeine Treffer"
   },
   {
     "objectID": "index.html#r-pakete",
@@ -690,7 +690,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nx_shape\n48.53\n34.15\n\n\nstar\n43.60\n19.99\n\n\nh_lines\n76.70\n50.49\n\n\nbullseye\n38.36\n13.43\n\n\nslant_up\n61.66\n64.10\n\n\ndino\n22.31\n57.18\n\n\naway\n74.89\n25.42\n\n\ndino\n95.38\n36.79\n\n\nslant_up\n27.55\n75.16\n\n\nslant_down\n64.09\n68.65\n\n\ndino\n28.97\n74.49\n\n\nx_shape\n42.20\n20.92\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\ndino\n87.95\n46.03\n\n\ndino\n29.74\n62.18\n\n\nslant_up\n24.63\n53.40\n\n\ncircle\n53.72\n79.31\n\n\nstar\n44.00\n33.90\n\n\ndots\n25.48\n82.93\n\n\nslant_down\n18.11\n53.71\n\n\nbullseye\n63.15\n83.95\n\n\nx_shape\n37.58\n15.02\n\n\ncircle\n77.20\n69.31\n\n\nslant_down\n39.60\n32.14\n\n\nbullseye\n91.51\n53.31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
