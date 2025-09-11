@@ -95,9 +95,14 @@ Die Teilnehmenden benötigen einen Laptop, mit welchem sie sich in Posit-Cloud e
 Installiert euch gerne schon einmal die Pakete für den Workshop: 
 
 ```{r}
-eval: false
+#| eval: false
 
-install.packages(c("tidyverse", "here", "GGally", "RColorBrewer", "colorblindcheck", "Patchwork", "ggthemes", "gganimate", "ggtext", "ggrepel", "ggwordcloud", "paletteer", "plotly", "readxl", "showtext"))
+install.packages(c("tidyverse", "here", "GGally", 
+                   "RColorBrewer", "colorblindcheck", 
+                   "Patchwork", "ggthemes", "gganimate", 
+                   "ggtext", "ggrepel", "ggwordcloud", 
+                   "paletteer", "plotly", "readxl", 
+                   "showtext"))
 
 ```
 
