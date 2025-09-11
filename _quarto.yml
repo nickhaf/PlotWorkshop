@@ -39,8 +39,14 @@ website:
         - text: "gganimate & plotly"
           href: sessions/animate_plotly/animate_plotly.qmd
           icon: arrows-move
-
-
+    right:
+      - text: "Die Daten"
+        href: other_sites/daten.qmd     
+        icon: database-fill
+      - text: "Ressourcen"
+        href: other_sites/Ressourcen.qmd     
+        icon: folder-fill 
+      
 format:
   html:
     theme: styles.scss

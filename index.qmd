@@ -90,6 +90,22 @@ Grundsätzlich können die im Kurs behandelten Inhalte aber auch in anderen Prog
 Die Teilnehmenden benötigen einen Laptop, mit welchem sie sich in Posit-Cloud einloggen können, um den Beispiel und Übungsaufgaben zu folgen.  
 
 
+# Genutzte Pakete
+
+Installiert euch gerne schon einmal die Pakete für den Workshop: 
+
+```{r}
+#| eval: false
+
+install.packages(c("tidyverse", "here", "GGally", 
+                   "RColorBrewer", "colorblindcheck", 
+                   "Patchwork", "ggthemes", "gganimate", 
+                   "ggtext", "ggrepel", "ggwordcloud", 
+                   "paletteer", "plotly", "readxl", 
+                   "showtext"))
+
+```
+
 # Zeitplan
 
 :::
