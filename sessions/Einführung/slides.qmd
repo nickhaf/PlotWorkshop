@@ -390,6 +390,30 @@ Foto von <a href="https://unsplash.com/de/@nasa?utm_content=creditCopyText&utm_m
 
 # Zentrale Plot-Typen
 
+## Resourcen
+
+:::{.callout-tip}
+## datatoviz
+
+Hier finden Sie eine gute Übersicht über verschiedene Plot-Typen, in der auch die Implentierung in R dokumentiert ist:
+
+[https://r-graph-gallery.com/](https://r-graph-gallery.com/)
+:::
+
+![](./images/graphgallery.png){.lightbox fig-align="center"}
+
+:::{.callout-tip}
+## R Graph Gallery
+
+Hier finden Sie eine gute Übersicht über verschiedene Plot-Typen, in der auch die Implentierung in R dokumentiert ist:
+
+[https://www.data-to-viz.com/](https://www.data-to-viz.com/)
+:::
+
+![](./images/datatoviz.png)
+
+
+
 ## Scatterplot
 ::: {.columns}
 
