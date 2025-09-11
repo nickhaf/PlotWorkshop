@@ -690,7 +690,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\ndino\n87.95\n46.03\n\n\ndino\n29.74\n62.18\n\n\nslant_up\n24.63\n53.40\n\n\ncircle\n53.72\n79.31\n\n\nstar\n44.00\n33.90\n\n\ndots\n25.48\n82.93\n\n\nslant_down\n18.11\n53.71\n\n\nbullseye\n63.15\n83.95\n\n\nx_shape\n37.58\n15.02\n\n\ncircle\n77.20\n69.31\n\n\nslant_down\n39.60\n32.14\n\n\nbullseye\n91.51\n53.31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nbullseye\n55.37\n30.45\n\n\naway\n40.57\n79.37\n\n\ndino\n46.67\n54.10\n\n\nv_lines\n69.50\n5.96\n\n\nx_shape\n37.10\n15.45\n\n\nv_lines\n50.35\n12.47\n\n\nslant_down\n28.60\n44.22\n\n\ncircle\n43.05\n18.40\n\n\nbullseye\n89.09\n57.77\n\n\nslant_up\n68.85\n39.57\n\n\ndino\n71.54\n64.49\n\n\nwide_lines\n64.05\n48.82\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
@@ -1491,6 +1491,20 @@
     "text": "Visual Form\n\n\n\nDesign is a requirement, not a cosmetic addition.\n\nnature methods\n\n\n\n\n\nNützlichkeit\nEffizienz\nÄsthetik\n\n\n\n\n\nFoto von Samuel Scrimshaw auf Unsplash"
   },
   {
+    "objectID": "sessions/good_plots/visual_form.html#setup",
+    "href": "sessions/good_plots/visual_form.html#setup",
+    "title": "Visual Form",
+    "section": "Setup",
+    "text": "Setup\n\n# install.packages(c(\"here\", \"ggwordcloud\", \"ggrepel\", \"ggtext\", \"showtext\", \"tidyverse\", \"paletteer\", \"ggthemes\"))\n\nlibrary(here)\n#library(janitor)\nlibrary(ggwordcloud)\nlibrary(ggrepel)\nlibrary(ggtext)\nlibrary(showtext)\nlibrary(tidyverse)\nlibrary(paletteer)\nlibrary(ggthemes)\n\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_2020 &lt;- gapminder %&gt;%\n  filter(time == 2020) %&gt;%\n  drop_na(world_6region, world_4region, country, gini, hapiscore_whr) %&gt;%\n  arrange(desc(co2_cons))"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#der-ausgangsplot-für-diese-session-wiederholung",
+    "href": "sessions/good_plots/visual_form.html#der-ausgangsplot-für-diese-session-wiederholung",
+    "title": "Visual Form",
+    "section": "Der Ausgangsplot für diese Session: Wiederholung",
+    "text": "Der Ausgangsplot für diese Session: Wiederholung\n\n🏋 ÜbungLösung\n\n\n\nErstelle einen Plot der den Gini-Koeffizienten (gini) gegen den Happiness-Score (hapiscore_whr) in verschiedenen Ländern 2020 (gapminder_2020) darstellt. Der Plot sollte einen Scatterplot enthalten, und eine geglättete Linie (geom_smooth()). Füge außerdem Titel und Achsenbeschriftungen hinzu.\nLink zum Setup, falls nötig\n\n\n\n\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point() +\n  geom_smooth() +\n  labs(\n    title = \"Ungleichheit = Un-Happiness?\",\n    subtitle = \"Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2020\",\n    x = \"Gini-Index\",\n    y = \"Happiness-Score\",\n  ) +\n  theme_bw()"
+  },
+  {
     "objectID": "sessions/good_plots/visual_form.html#gestalt-prinzipien",
     "href": "sessions/good_plots/visual_form.html#gestalt-prinzipien",
     "title": "Visual Form",
@@ -1530,14 +1544,21 @@
     "href": "sessions/good_plots/visual_form.html#gruppierung-durch-form",
     "title": "Visual Form",
     "section": "Gruppierung durch Form",
-    "text": "Gruppierung durch Form\n\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(aes(shape = world_4region)) +\n  geom_smooth() +\n  labs(\n    title = \"Ungleichheit = Un-Happiness?\",\n    subtitle = \"Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2020\",\n    x = \"Gini-Index\",\n    y = \"Happiness-Score\",\n  ) +\n  theme_bg()"
+    "text": "Gruppierung durch Form\n\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(aes(shape = world_4region)) +\n  geom_smooth() +\n  labs(\n    title = \"Ungleichheit = Un-Happiness?\",\n    subtitle = \"Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2020\",\n    x = \"Gini-Index\",\n    y = \"Happiness-Score\",\n  ) +\n  theme_bw()"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#darstellung-von-größen-1",
+    "href": "sessions/good_plots/visual_form.html#darstellung-von-größen-1",
+    "title": "Visual Form",
+    "section": "Darstellung von Größen",
+    "text": "Darstellung von Größen\n\n🏋 ÜbungLösung\n\n\n\nErweitert den Plot aus der vorherigen Übung, indem ihr die Punkte nach Weltregion (world_4region) einfärbt. Erweitert den Plot um die Aesthetic size, sodass sich die Größe der Punkte nach der Bevölkerungsgröße (pop) richtet.\nLink zum Setup, falls nötig\n\n\n\n\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(aes(color = world_4region, size = pop)) +\n  geom_smooth() +\n  labs(\n    title = \"Ungleichheit = Un-Happiness?\",\n    subtitle = \"Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2020\",\n    x = \"Gini-Index\",\n    y = \"Happiness-Score\",\n  ) +\n  theme_bg()"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#darstellen-von-größen",
     "href": "sessions/good_plots/visual_form.html#darstellen-von-größen",
     "title": "Visual Form",
     "section": "Darstellen von Größen",
-    "text": "Darstellen von Größen\n\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(aes(color = world_4region, size = pop)) +\n  geom_smooth() +\n  labs(\n    title = \"Ungleichheit = Un-Happiness?\",\n    subtitle = \"Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2020\",\n    x = \"Gini-Index\",\n    y = \"Happiness-Score\",\n  ) +\n  theme_bg()"
+    "text": "Darstellen von Größen\n\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(aes(color = world_4region, size = pop)) +\n  geom_smooth() +\n  labs(\n    title = \"Ungleichheit = Un-Happiness?\",\n    subtitle = \"Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2020\",\n    x = \"Gini-Index\",\n    y = \"Happiness-Score\",\n  ) +\n  theme_bw()"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#einschätzen-von-größen",
@@ -1545,6 +1566,13 @@
     "title": "Visual Form",
     "section": "Einschätzen von Größen",
     "text": "Einschätzen von Größen\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nDie Größe von Kreisen einzuschätzen ist schwer!"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#datenumwandlung-für-den-folgenden-teil",
+    "href": "sessions/good_plots/visual_form.html#datenumwandlung-für-den-folgenden-teil",
+    "title": "Visual Form",
+    "section": "Datenumwandlung für den folgenden Teil",
+    "text": "Datenumwandlung für den folgenden Teil\n\ncontinent_co2 &lt;- gapminder_2020 %&gt;%\n  group_by(world_6region) %&gt;%\n  summarise(mean_co2_pcap_cons = mean(co2_pcap_cons, na.rm = TRUE)) %&gt;%\n  drop_na(mean_co2_pcap_cons)\n\ncontinent_co2_pct &lt;- continent_co2 %&gt;%\n  mutate(percentage = mean_co2_pcap_cons / sum(mean_co2_pcap_cons) * 100)"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#das-gleiche-gilt-für-winkel",
@@ -1663,14 +1691,14 @@
     "href": "sessions/good_plots/visual_form.html#colorblind-check",
     "title": "Visual Form",
     "section": "Colorblind-Check",
-    "text": "Colorblind-Check\n\n\nAuf Colblindor.\n\n\nMit colorblindcheck.\n\nlibrary(colorblindcheck)\n\npalette_check(scales::hue_pal()(6), plot = TRUE)\n\n\n\n\n\n\n\n\n          name n tolerance ncp ndcp  min_dist mean_dist max_dist\n1       normal 6  28.22768  15   15 28.227682  48.60479 91.99894\n2 deuteranopia 6  28.22768  15    9  5.870477  31.50134 59.55026\n3   protanopia 6  28.22768  15    8  3.930855  32.79118 57.04317\n4   tritanopia 6  28.22768  15    9  7.200490  40.41105 71.61725"
+    "text": "Colorblind-Check\n\n\nAuf Colblindor.\n\n\nMit colorblindcheck.\n\nlibrary(colorblindcheck)\n\npalette_check(c(\"#F8766D\", \"#B79F00\", \"#00BA38\", \"#00BFC4\", \"#619CFF\", \"#F564E3\"), plot = TRUE)\n\n\n\n\n\n\n\n\n          name n tolerance ncp ndcp  min_dist mean_dist max_dist\n1       normal 6  28.22768  15   15 28.227682  48.60479 91.99894\n2 deuteranopia 6  28.22768  15    9  5.870477  31.50134 59.55026\n3   protanopia 6  28.22768  15    8  3.930855  32.79118 57.04317\n4   tritanopia 6  28.22768  15    9  7.200490  40.41105 71.61725"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#farben-wählen",
     "href": "sessions/good_plots/visual_form.html#farben-wählen",
     "title": "Visual Form",
     "section": "Farben wählen",
-    "text": "Farben wählen\n\n\n\nName: \"red\"\nrgb(): rgb(1,0,0)\nHex code: #FF0000\n\n\n\nggplot(\n  gapminder_2020,\n  aes(x = gini, y = hapiscore_whr)\n) +\n  geom_point(size = 3, color = \"#FF0000\") +\n  geom_smooth(color = \"darkblue\") +\n  theme_bg()"
+    "text": "Farben wählen\n\n\n\nName: \"red\"\nrgb(): rgb(1,0,0)\nHex code: #FF0000\n\n\n\nggplot(\n  gapminder_2020,\n  aes(x = gini, y = hapiscore_whr)\n) +\n  geom_point(size = 3, color = \"#FF0000\") +\n  geom_smooth(color = \"darkgreen\") +\n  theme_bg()"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#farben-manuell-setzen",
@@ -1698,14 +1726,14 @@
     "href": "sessions/good_plots/visual_form.html#externe-farb-paletten-1",
     "title": "Visual Form",
     "section": "Externe Farb-Paletten",
-    "text": "Externe Farb-Paletten\n\n\npaletteer\nSammlung von Paletten aus diversen Paketen\n\nPalette-Finder\nGallerie\n\n\n\nCodePlot\n\n\n\nlibrary(paletteer)\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_paletteer_d(\"LaCroixColoR::Orange\")"
+    "text": "Externe Farb-Paletten\n\n\npaletteer\nSammlung von Paletten aus diversen Paketen\n\nPalette-Finder\nGallerie\n\nZ.B. Enthält \"lisa::Jean_MichelBasquiat_1\" folgende Farben:\n\n paletteer::paletteer_d(\"lisa::Jean_MichelBasquiat_1\") \n\n&lt;colors&gt;\n#C11432FF #009ADAFF #66A64FFF #FDD10AFF #070707FF \n\n\n\n\nCodePlot\n\n\n\nlibrary(paletteer)\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_paletteer_d(\"lisa::Jean_MichelBasquiat_1\")"
   },
   {
-    "objectID": "sessions/good_plots/visual_form.html#übung",
-    "href": "sessions/good_plots/visual_form.html#übung",
+    "objectID": "sessions/good_plots/visual_form.html#section-1",
+    "href": "sessions/good_plots/visual_form.html#section-1",
     "title": "Visual Form",
-    "section": "🏋 Übung",
-    "text": "🏋 Übung\n\n\n\n\nWechsel die Farbpalette für deinen Plot und teste sie auf Farbfehlsichtigkeiten.\n\n\n\n\n\n\nFoto von Geordanna Cordero auf Unsplash"
+    "section": "",
+    "text": "🏋 ÜbungMögliche Lösungcolorblind-check\n\n\n\nWechsel die Farbpalette für den Übungsplot und teste sie auf Farbfehlsichtigkeiten.\nLink zum Setup, falls nötig\n\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(aes(color = world_4region, size = pop)) +\n  geom_smooth() +\n  labs(\n    title = \"Ungleichheit = Un-Happiness?\",\n    subtitle = \"Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2020\",\n    x = \"Gini-Index\",\n    y = \"Happiness-Score\",\n  ) +\n  theme_bw()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(aes(color = world_4region, size = pop)) +\n  geom_smooth() +\n  labs(\n    title = \"Ungleichheit = Un-Happiness?\",\n    subtitle = \"Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2020\",\n    x = \"Gini-Index\",\n    y = \"Happiness-Score\",\n  ) +\n  theme_bw() +\n  paletteer::scale_colour_paletteer_d(\"lisa::FridaKahlo\")\n\n\n\n\n\n\n\n\n\n\n\n\n\npalette_check(paletteer::paletteer_d(\"lisa::FridaKahlo\"), \n              plot = TRUE)\n\n\n\n\n\n\n\n\n\n          name n tolerance ncp ndcp  min_dist mean_dist max_dist\n1       normal 5  19.20737  10   10 19.207369  40.81006 72.81425\n2 deuteranopia 5  19.20737  10    8  1.160009  33.73234 73.34852\n3   protanopia 5  19.20737  10    7  9.881437  34.30690 72.28313\n4   tritanopia 5  19.20737  10    9 18.518051  39.51372 72.61195"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#funktionelles-desing-1",
@@ -1743,11 +1771,11 @@
     "text": "Redundanzen\n\nErase non-data-ink, within reason. Erase redundant data-ink, within reason.\n\nTufte & Graves-Morris (1983)\n\n\n\n\nFrageAntwort\n\n\nAuf wie viele Arten wird hier die Höhe der CO2 Emissionen pro Kopf dargestellt?\n\n\n\n\n\n\n\n\n\n\n\nAuf sieben verschiedene Arten:\n\nHöhe der linken Balkenlinie\nHöhe der rechten Balkenlinie\nHöhe der horizontalen Balkenlinie\nHöhe des Balkeninneren\nFarbe des Balkens\nPosition des Labels\nWert des Labels\n\nBalken an sich enthalten also schon redundante Informationen!"
   },
   {
-    "objectID": "sessions/good_plots/visual_form.html#section-1",
-    "href": "sessions/good_plots/visual_form.html#section-1",
+    "objectID": "sessions/good_plots/visual_form.html#tufte-konformer-barplot",
+    "href": "sessions/good_plots/visual_form.html#tufte-konformer-barplot",
     "title": "Visual Form",
-    "section": "",
-    "text": "AufgabeAntwort\n\n\n\nEntferne alle Redundanzen, machen den Plot also “Tufte-Komform”\n\n\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons, fill = co2_pcap_cons, color = co2_pcap_cons, label = round(co2_pcap_cons), 2)\n) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\") +\n  geom_text(vjust = -1, color = \"black\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  labs(\n    x = \"Land\",\n    y = \"CO2 Consumption per capita in t\"\n  ) +\n  theme_bg()\n\n\n\n\n\n\n\n\n\n\n\n\nAntwort 1Antwort 2\n\n\nEntfernen der Achsenlinien und Umrandungen. Hintergrundlinien werden innerhalb der Balken dargestellt.\n\n\nlibrary(ggthemes)\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)\n) +\n  geom_bar(stat = \"identity\", width = 0.5, color = NA, fill = \"grey\") +\n  geom_hline(yintercept = seq(0, 30, by = 5), color = \"white\", size = 0.3) +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1), axis.ticks = element_blank()) +\n  labs(\n    x = \"Land\",\n    y = \"CO2 Consumption per capita in t\"\n  ) +\n  theme_tufte()\n\n\n\n\n\n\n\n\n\n\n\nMitunter können die vertikalen und horizontalen Linien auch hilfreich beim Vergleich/bei der Zuordnung zum Land sein.\n\n\nlibrary(ggplot2)\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)\n) +\n  # vertikale Linie, leicht nach links geschoben\n  geom_segment(\n    aes(xend = reorder(country, co2_pcap_cons), y = 0, yend = co2_pcap_cons),\n    position = position_nudge(x = -0.14)\n  ) +\n  geom_segment(aes(\n    x = as.numeric(reorder(country, co2_pcap_cons)) - 0.15,\n    xend = as.numeric(reorder(country, co2_pcap_cons)) + 0.15,\n    y = co2_pcap_cons, yend = co2_pcap_cons\n  )) +\n  ylim(c(0, 30)) +\n  labs(\n    x = \"Land\",\n    y = \"CO2 Consumption per capita in t\"\n  ) +\n  theme_tufte() +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n:::"
+    "section": "Tufte-Konformer Barplot",
+    "text": "Tufte-Konformer Barplot\n\nMöglichkeit 1Möglichkeit 2\n\n\nEntfernen der Achsenlinien und Umrandungen. Hintergrundlinien werden innerhalb der Balken dargestellt.\n\n\nlibrary(ggthemes)\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)\n) +\n  geom_bar(stat = \"identity\", width = 0.5, color = NA, fill = \"grey\") +\n  geom_hline(yintercept = seq(0, 30, by = 5), color = \"white\", size = 0.3) +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1), axis.ticks = element_blank()) +\n  labs(\n    x = \"Land\",\n    y = \"CO2 Consumption per capita in t\"\n  ) +\n  theme_tufte()\n\n\n\n\n\n\n\n\n\n\n\nMitunter können die vertikalen und horizontalen Linien auch hilfreich beim Vergleich/bei der Zuordnung zum Land sein.\n\n\nlibrary(ggplot2)\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)\n) +\n  # vertikale Linie, leicht nach links geschoben\n  geom_segment(\n    aes(xend = reorder(country, co2_pcap_cons), y = 0, yend = co2_pcap_cons),\n    position = position_nudge(x = -0.14)\n  ) +\n  geom_segment(aes(\n    x = as.numeric(reorder(country, co2_pcap_cons)) - 0.15,\n    xend = as.numeric(reorder(country, co2_pcap_cons)) + 0.15,\n    y = co2_pcap_cons, yend = co2_pcap_cons\n  )) +\n  ylim(c(0, 30)) +\n  labs(\n    x = \"Land\",\n    y = \"CO2 Consumption per capita in t\"\n  ) +\n  theme_tufte() +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1))\n\n\n\n\n\n\n\n\n\n\n\n\n::: :::"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#maximieren-von-informationen",
@@ -1796,7 +1824,7 @@
     "href": "sessions/good_plots/visual_form.html#kleine-farbenlehre",
     "title": "Visual Form",
     "section": "Kleine Farbenlehre",
-    "text": "Kleine Farbenlehre\n\n\n\n\nVincent van Gogh, Public domain, via Wikimedia Commons\n\n\n\nGegenüberliegende Farben intensivieren sich gegenseitig: eine Primärfarbe, und eine Sekundärfarbe, die aus den anderen beiden Primärfarben gemischt wird. Das erzeugt stärkere Kontraste. (Van Gogh bild)\nMit weiß und schwarz lassen sich die Schattierungen hinzumischen\ntriadisches Farbschema: Fom MIttelpunkt des Farbkreises Strahlen mit gleichem Winkel abgehen lassen (So viele, wie man Farben haben will). Das wählt dann Farben mit dem größten Kontrast aus. (https://www.kunstplaza.de/fashion-design/farbenlehre-farbtheorie-styleguides-fashion-design/)"
+    "text": "Kleine Farbenlehre\n\n\n\n\nVincent van Gogh, Public domain, via Wikimedia Commons\n\n\n\nGegenüberliegende Farben intensivieren sich gegenseitig: eine Primärfarbe, und eine Sekundärfarbe, die aus den anderen beiden Primärfarben gemischt wird. Das erzeugt stärkere Kontraste.\nMit weiß und schwarz lassen sich die Schattierungen hinzumischen."
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#weitere-tools",
@@ -1810,7 +1838,7 @@
     "href": "sessions/good_plots/visual_form.html#schriften",
     "title": "Visual Form",
     "section": "Schriften",
-    "text": "Schriften\nDie Schriftart kann einer Abbildung ein ganz anderes Aussehen verleihen.\nWir nutzen Schriftarten von Google Fonts.\n\nlibrary(showtext)\n\nfont_add_google(\"Special Elite\", family = \"special\")"
+    "text": "Schriften\n\n\nDie Schriftart kann einer Abbildung ein ganz anderes Aussehen verleihen.\nWir nutzen Schriftarten von Google Fonts.\n\nlibrary(showtext)\n\nfont_add_google(\"Special Elite\", family = \"special\")\n\n\n\n\n\nFoto von Natalia Y. auf Unsplash"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#schriftart",
@@ -1824,14 +1852,14 @@
     "href": "sessions/good_plots/visual_form.html#schriftart-1",
     "title": "Visual Form",
     "section": "Schriftart",
-    "text": "Schriftart\n\n\nfont_add_google(\"Special Elite\", family = \"my textfont\")\nfont_add_google(\"Playfair Display\")\n\nshowtext_auto()\n\n\nset.seed(45)\nggplot(\n  data = classics,\n  mapping = aes(label = original_title, size = average_rating)\n) +\n  geom_text_wordcloud(family = \"my textfont\") +\n  scale_size(range = c(1, 6)) +\n  labs(\n    title = \"What to read next\",\n    subtitle = \"According to goodreads\"\n  ) +\n  theme_bg() +\n  theme(title = element_text(family = \"Playfair Display\", size = 20), )"
+    "text": "Schriftart\n\n\nfont_add_google(\"Special Elite\", family = \"my textfont\")\nfont_add_google(\"Playfair Display\")\n\nshowtext_auto()\n\n\nset.seed(45)\nggplot(\n  data = classics,\n  mapping = aes(label = original_title, size = average_rating)\n) +\n  geom_text_wordcloud(family = \"my textfont\") +\n  scale_size(range = c(1, 6)) +\n  labs(\n    title = \"What to read next\",\n    subtitle = \"According to goodreads\"\n  ) +\n  theme_bg() +\n  theme(title = element_text(family = \"Playfair Display\", size = 20))"
   },
   {
-    "objectID": "sessions/good_plots/visual_form.html#übung-1",
-    "href": "sessions/good_plots/visual_form.html#übung-1",
+    "objectID": "sessions/good_plots/visual_form.html#section-2",
+    "href": "sessions/good_plots/visual_form.html#section-2",
     "title": "Visual Form",
-    "section": "🏋 Übung",
-    "text": "🏋 Übung\n\n\n\nSuche dir eine Schriftart aus Google Fonts und baue sie in deinen Plot ein.\n\n\n\n\n\nFoto von Natalia Y. auf Unsplash"
+    "section": "",
+    "text": "🏋 ÜbungLösung\n\n\n\nSuche dir eine Schriftart aus Google Fonts und baue sie in den Übungs-Plot ein.\nLink zum Setup, falls nötig\n\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(aes(color = world_4region, size = pop)) +\n  geom_smooth() +\n  labs(\n    title = \"Ungleichheit = Un-Happiness?\",\n    subtitle = \"Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2020\",\n    x = \"Gini-Index\",\n    y = \"Happiness-Score\",\n  ) +\n  theme_bw() +\n  paletteer::scale_colour_paletteer_d(\"lisa::FridaKahlo\") \n\n\n\n\n\n\n\n\n\n\n\n\n\n\nfont_add_google(\"Special Elite\", family = \"my textfont\")\nfont_add_google(\"Playfair Display\")\n\nshowtext_auto()\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(aes(color = world_4region, size = pop)) +\n  geom_smooth() +\n  labs(\n    title = \"Ungleichheit = Un-Happiness?\",\n    subtitle = \"Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2020\",\n    x = \"Gini-Index\",\n    y = \"Happiness-Score\",\n  ) +\n  theme_bw() +\n  paletteer::scale_colour_paletteer_d(\"lisa::FridaKahlo\") +\n  theme(\n    title = element_text(family = \"Playfair Display\"),\n    legend.title = element_text(family = \"Playfair Display\", size = 12),\n    legend.text  = element_text(family = \"my textfont\", size = 10)\n  )"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#literatur",
