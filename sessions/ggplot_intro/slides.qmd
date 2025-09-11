@@ -379,7 +379,7 @@ ggplot(
 
 ::: {.panel-tabset}
 
-### 🏋 Übung
+### Übung
 
 \
 \
@@ -425,7 +425,9 @@ gapminder_2019 <- gapminder %>%
 
 ::: {.panel-tabset}
 
-### 🏋 Übung
+### Übung
+\
+\
 ::: {.exercise}
 Erstellt daraus einen Scatterplot. Gibt es einen Zusammenhang zwischen euren Variablen? 
 :::
@@ -484,7 +486,7 @@ ggplot(
 
 ::: {.panel-tabset}
 
-### 🏋 Übung
+### Übung
 
 \
 
@@ -645,7 +647,7 @@ Eine Übersicht über Themes findet sich [hier](https://ggplot2.tidyverse.org/re
 
 
 
-## 🏋 Übung
+## Übung
 
 ::: {.exercise}
 
@@ -670,7 +672,7 @@ Nutzt die bisherigen Code-Blocks, R-interne Hilfe, Google und KI. Falls ihr eine
 <!-- ### „Wir können nicht so ganz pauschal sagen, die Deutschen arbeiten zu wenig“, sagte der CDU-Vorsitzende am Mittwoch in Berlin auf dem Tag der Bauindustrie." -->
 
 
-## 🏋 Übung
+## Übung
 
 ::: {.panel-tabset}
 ### Aufgabe
