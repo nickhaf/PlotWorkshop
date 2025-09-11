@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Datenvisualisierung in R",
     "section": "",
-    "text": "Ein Bild sagt mehr als tausend … Zahlen! Mit einer guten Grafik lassen sich viele Informationen übersichtlich darstellen, Sachverhalte schnell erkennen und auch an Laien komplizierte Datenlagen verständlich kommunizieren. Dabei ist eine gute Visualisierung nicht einfach: komplexe Inhalte müssen klar, präzise und effizient dargestellt werden und sollen idealerweise auch noch hübsch aussehen. In diesem Kurs lernen Teilnehmende die Grundprinzipien des „Analytical Design“ (Edward Tufte) sowie verschiedene Visualisierungsformen zur Exploration und Kommunikation univariater und multivariater Daten kennen. In diversen Übungen können sie diese Grundprinzipien bei der Erstellung von eigenen Grafiken in ggplot2 und Erweiterungen wie gganimate selbst erproben.\n\n\n\n\n\nNicklas Hafiz ist Psychologe und promoviert am Institut zur Qualitätsentwicklung im Bildungswesen (IQB) zu Simulationsstudien in der psychologischen Methodenforschung. Teil seiner dortigen Arbeit ist zudem die Entwicklung eines R-Pakets zur Erstellung der Grafiken für den Bildungstrend-Bericht. Zudem verfügt er über Erfahrung in der Lehre und hat bereits Veranstaltungen und Workshops zu R, Item-Response-Theorie sowie zu reproduzierbarem Arbeiten mit GitHub durchgeführt.\n\n\n\nLink to his ORCID\n\n\n\nDr. Janine Buchholz ist ebenfalls Psychologin und arbeitet als Postdoktorandin im Forschungsdatenzentrum am Institut zur Qualitätsentwicklung im Bildungswesen (FDZ am IQB) in Berlin. Sie hat am DIPF | Leibniz-Institut für Bildungsforschung und Bildungsinformation zu mehrdimensionalen Modellen der Item-Response-Theorie promoviert und über mehrere Jahre in unterschiedlichen Rollen an der PISA-Studie mitgewirkt. Sie verfügt über Lehrerfahrung zu verschiedenen Methoden der empirischen Bildungsforschung und Datenvisualisierung.\n\n\n\nLink to her ORCID\n\n\n\n\n\n\n\nVoraussetzungen für die Teilnahme sind Grundkenntnisse in R. Grundsätzlich können die im Kurs behandelten Inhalte aber auch in anderen Programmiersprachen umgesetzt werden. Die Teilnehmenden benötigen einen Laptop, mit welchem sie sich in Posit-Cloud einloggen können, um den Beispiel und Übungsaufgaben zu folgen."
+    "text": "Ein Bild sagt mehr als tausend … Zahlen! Mit einer guten Grafik lassen sich viele Informationen übersichtlich darstellen, Sachverhalte schnell erkennen und auch an Laien komplizierte Datenlagen verständlich kommunizieren. Dabei ist eine gute Visualisierung nicht einfach: komplexe Inhalte müssen klar, präzise und effizient dargestellt werden und sollen idealerweise auch noch hübsch aussehen. In diesem Kurs lernen Teilnehmende die Grundprinzipien des „Analytical Design“ (Edward Tufte) sowie verschiedene Visualisierungsformen zur Exploration und Kommunikation univariater und multivariater Daten kennen. In diversen Übungen können sie diese Grundprinzipien bei der Erstellung von eigenen Grafiken in ggplot2 und Erweiterungen wie gganimate selbst erproben.\n\n\n\n\n\nNicklas Hafiz](https://orcid.org/0000-0001-9035-4483) ist Psychologe und promoviert am Institut zur Qualitätsentwicklung im Bildungswesen (IQB) zu Simulationsstudien in der psychologischen Methodenforschung. Teil seiner dortigen Arbeit ist zudem die Entwicklung eines R-Pakets zur Erstellung der Grafiken für den Bildungstrend-Bericht. Zudem verfügt er über Erfahrung in der Lehre und hat bereits Veranstaltungen und Workshops zu R, Item-Response-Theorie sowie zu reproduzierbarem Arbeiten mit GitHub durchgeführt.\n\nDr. Janine Buchholz](https://orcid.org/0000-0003-2534-4603) ist ebenfalls Psychologin und arbeitet als Postdoktorandin im Forschungsdatenzentrum am Institut zur Qualitätsentwicklung im Bildungswesen (FDZ am IQB) in Berlin. Sie hat am DIPF | Leibniz-Institut für Bildungsforschung und Bildungsinformation zu mehrdimensionalen Modellen der Item-Response-Theorie promoviert und über mehrere Jahre in unterschiedlichen Rollen an der PISA-Studie mitgewirkt. Sie verfügt über Lehrerfahrung zu verschiedenen Methoden der empirischen Bildungsforschung und Datenvisualisierung.\n\n\n\n\n\nVoraussetzungen für die Teilnahme sind Grundkenntnisse in R. Grundsätzlich können die im Kurs behandelten Inhalte aber auch in anderen Programmiersprachen umgesetzt werden. Die Teilnehmenden benötigen einen Laptop, mit welchem sie sich in Posit-Cloud einloggen können, um den Beispiel und Übungsaufgaben zu folgen."
   },
   {
     "objectID": "index.html#tag-1",
@@ -21,11 +21,11 @@
     "text": "Tag 2\n\n\n\n\n\n\n\n\nggplot2: Advanced\n\n\n\n\n\n\nNicklas Hafiz, Janine Buchholz\n\n\n\n\n\n\n\n\n\n\n\n\n\nWissenschaftliche Grafiken\n\n\n\n\n\n\n\n\n\n\nExplorative Grafiken\n\n\n\n\n\n\n\n\n\n\nGrafiken Druckreif machen\n\n\n\n\n\n\n\n\n\n\ngganimate & plotly\n\n\n\n\n\nKeine Treffer"
   },
   {
-    "objectID": "index.html#leistungsnachweis-schriftliche-ausarbeitung",
-    "href": "index.html#leistungsnachweis-schriftliche-ausarbeitung",
+    "objectID": "index.html#leistungsnachweis",
+    "href": "index.html#leistungsnachweis",
     "title": "Datenvisualisierung in R",
-    "section": "Leistungsnachweis: Schriftliche Ausarbeitung",
-    "text": "Leistungsnachweis: Schriftliche Ausarbeitung\nErzählen Sie uns eine Geschichte! Suchen Sie sich ein paar spannende Variablen und fertigen Sie einen kleinen Bericht an, in dem die Verteilungen bzw. Zusammenhänge dargestellt werden - Verwenden Sie dafür einen der Datensätze, die wir im Workshop verwendet haben. - Nutzen Sie mindestens zwei Grafiktypen (z.B. Line Plot und Scatterplot) - Diskutieren Sie jeweils, welche Änderungen Sie an Ihrer Grafik vorgenommen haben, damit diese den Gestaltungsprinzipien guter Grafiken entspricht. - Umfang: max. 2 Seiten\nEinreichung\n\nFristende: bis spätestens 15.10.2025\n\nE-Mail: nicklas.jakob.hafiz@hu-berlin.de und janine.buchholz@hu-berlin.de"
+    "section": "Leistungsnachweis",
+    "text": "Leistungsnachweis\nFormat: Schriftliche Ausarbeitung\nErzählen Sie uns eine Geschichte! Suchen Sie sich ein paar spannende Variablen und fertigen Sie einen kleinen Bericht an, in dem die Verteilungen bzw. Zusammenhänge dargestellt werden.\n\nVerwenden Sie dafür einen der Datensätze, die wir im Workshop verwendet haben.\n\nNutzen Sie mindestens zwei Grafiktypen (z.B. Line Plot und Scatterplot)\n\nDiskutieren Sie jeweils, welche Änderungen Sie an Ihrer Grafik vorgenommen haben, damit diese den Gestaltungsprinzipien guter Grafiken entspricht.\n\nUmfang:\n\nschriftliche Ausarbeitung (max. 2 Seiten)\nR Skript zur Erzeugung der Grafiken\n\n\nEinreichung\n\nFristende: 15.10.2025\n\nE-Mail an: nicklas.jakob.hafiz@hu-berlin.de und janine.buchholz@hu-berlin.de"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#datensatz",
@@ -389,7 +389,7 @@
     "href": "sessions/explorative_plots/explorative_plots.html",
     "title": "Explorative Grafiken",
     "section": "",
-    "text": "View slides in full screen"
+    "text": "View slides in full screen\n\nÜbung\n\nExplorative Grafiken - Janine"
   },
   {
     "objectID": "sessions/good_plots/story.html#exploration",
@@ -501,21 +501,63 @@
     "href": "sessions/good_plots/goal.html#goal",
     "title": "Goal",
     "section": "Goal",
-    "text": "Goal\n\n\n\nUsefulness\nusable\nfitting\nefficient\n\n\n\n\n\nFoto von Look Again Digital auf Unsplash\n\nTufte Zitat"
+    "text": "Goal\n\n\nGrafiken dienen stets einem bestimmten Zweck und richten sich an ein Publikum.\nBeispiele:\n\nBeitrag im Fachjournal für Wissenschaftler\nWahlergebnisse in der Wahl-Sondersendung\n\nWerbeanzeige in der Tageszeitung\n\nPost auf X\n\nJe nach Zweck und Publikum kann eine Grafik mehr oder weniger gut geeignet sein.\n\n\n\n\nFoto von Look Again Digital auf Unsplash"
   },
   {
-    "objectID": "sessions/good_plots/goal.html#publikum",
-    "href": "sessions/good_plots/goal.html#publikum",
+    "objectID": "sessions/good_plots/goal.html#explanative-vs.-explorative-grafiken",
+    "href": "sessions/good_plots/goal.html#explanative-vs.-explorative-grafiken",
     "title": "Goal",
-    "section": "Publikum",
-    "text": "Publikum"
+    "section": "Explanative vs. explorative Grafiken",
+    "text": "Explanative vs. explorative Grafiken\nUnterschiedliche Ziele von Grafiken\n\nExplanativ: Die Grafik dient dazu, anderen einen bestimmten Sachverhalt (ein Muster in den Daten) zu kommunizieren\n\nExplorativ: Die Grafik soll dabei helfen, bestimmte Sachverhalte (Muster in den Daten) zu erkennen\n\nDer Fokus unseres Workshops lag bisher stark auf explanativen Grafiken\nNachfolgend werden Techniken für explorative Grafiken vorgestellt:\n\nPrinzip des „small multiple“ anhand von faceting\nViele bivariate Zusammenhänge mit ggpairs()\nEine Serie gleicher Grafiken mit Funktion und Schleife erzeugen"
   },
   {
-    "objectID": "sessions/good_plots/goal.html#purpose",
-    "href": "sessions/good_plots/goal.html#purpose",
+    "objectID": "sessions/good_plots/goal.html#prinzip-des-small-multiple",
+    "href": "sessions/good_plots/goal.html#prinzip-des-small-multiple",
     "title": "Goal",
-    "section": "Purpose",
-    "text": "Purpose\n\nExploratory vs. Explanatory\nKann oft über reines Zeigen der Daten hinausgehen."
+    "section": "Prinzip des “small multiple”",
+    "text": "Prinzip des “small multiple”\nDie Technik des faceting erlaubt es, Grafiken gemäß Edward Tufte‘s Prinzip des small multiple zu erzeugen.\nPrinzip des small multiple:\n\nAt the heart of quantitative reasoning is a single question: Compared to what? Small multiple designs, multivariate and data bountiful, answer directly by visually enforcing comparisons of changes, of the differences among objects, of the scope of alternatives. For a wide range of problems in data presentation, small multiples are the best design solution.\nTufte (1990). Envisioning Information. Graphics Press (p. 67).\n\nGrafiken, die diesem Prinzip entsprechen, sind stets gleich aufgebaut und ermöglichen so einen schnellen Vergleich der dargestellten Information zwischen den einzelnen Grafiken."
+  },
+  {
+    "objectID": "sessions/good_plots/goal.html#faceting-in-ggplot2",
+    "href": "sessions/good_plots/goal.html#faceting-in-ggplot2",
+    "title": "Goal",
+    "section": "Faceting in ggplot2",
+    "text": "Faceting in ggplot2\nEs gibt zwei Funktionen für faceting in gglot2:\n\nfacet_grid(): Darstellung der Ergebnisse von Gruppen in\n\nZeilen oder\nSpalten oder\neinem Raster (grid) aus Zeilen und Spalten\n\nfacet_wrap(): Darstellung der Ergebnisse von Gruppen mit Zeilenumbruch (wrap)\n\nWichtig: Gruppe muss als diskrete Variable im Datensatz vorliegen"
+  },
+  {
+    "objectID": "sessions/good_plots/goal.html#faceting-in-ggplot2-1",
+    "href": "sessions/good_plots/goal.html#faceting-in-ggplot2-1",
+    "title": "Goal",
+    "section": "Faceting in ggplot2",
+    "text": "Faceting in ggplot2\n\n\n\nggplot(datasaurus_dozen, aes(x = x, y = y)) +\n  geom_point() +\n  theme_bg()\n\n\n\n\n\n\n\n\n\n\nggplot(datasaurus_dozen, aes(x = x, y = y)) +\n  geom_point() +\n  theme_bg() +\n  facet_wrap(~dataset, ncol = 5)"
+  },
+  {
+    "objectID": "sessions/good_plots/goal.html#faceting-in-ggplot2-2",
+    "href": "sessions/good_plots/goal.html#faceting-in-ggplot2-2",
+    "title": "Goal",
+    "section": "Faceting in ggplot2",
+    "text": "Faceting in ggplot2\n\n\n\nggplot(datasaurus_dozen, aes(x = x, y = y)) +\n  geom_point(aes(col = dataset), show.legend = F) +\n  theme_bg()\n\n\n\n\n\n\n\n\n\n\nggplot(datasaurus_dozen, aes(x = x, y = y)) +\n  geom_point(aes(col = dataset), show.legend = F) +\n  theme_bg() +\n  facet_wrap(~dataset, ncol = 5)"
+  },
+  {
+    "objectID": "sessions/good_plots/goal.html#viele-bivariate-zusammenhänge-mit-ggpairs-darstellen",
+    "href": "sessions/good_plots/goal.html#viele-bivariate-zusammenhänge-mit-ggpairs-darstellen",
+    "title": "Goal",
+    "section": "Viele bivariate Zusammenhänge mit ggpairs darstellen",
+    "text": "Viele bivariate Zusammenhänge mit ggpairs darstellen\n- Dafür verwenden wir die Funktion ggpairs( Datensatz ) aus dem Paket GGally\n- Es werden bivariate Zusammenhänge zwischen allen im Datensatz enthaltenen Variablen dargestellt\n\ngapminder_auswahl &lt;- gapminder %&gt;%\n  filter(time &gt;= 1900, time &lt;= 2024) %&gt;%\n  select(world_4region, gini, hapiscore_whr, lex, gdp_pcap) %&gt;%\n  drop_na(gini)\n\nggpairs(gapminder_auswahl, columns = 2:5)"
+  },
+  {
+    "objectID": "sessions/good_plots/goal.html#viele-bivariate-zusammenhänge-mit-ggpairs-darstellen-1",
+    "href": "sessions/good_plots/goal.html#viele-bivariate-zusammenhänge-mit-ggpairs-darstellen-1",
+    "title": "Goal",
+    "section": "Viele bivariate Zusammenhänge mit ggpairs darstellen",
+    "text": "Viele bivariate Zusammenhänge mit ggpairs darstellen\n- In der Funktion können die ggplot-aesthetics angesprochen werden, sodass Ergebnisse nach Gruppenzugehörigkeit dargestellt werden können\n\nggpairs(gapminder_auswahl, columns = 2:5, aes(color = world_4region, alpha = .5))"
+  },
+  {
+    "objectID": "sessions/good_plots/goal.html#eine-serie-gleicher-grafiken-mit-funktion-und-schleife-erzeugen",
+    "href": "sessions/good_plots/goal.html#eine-serie-gleicher-grafiken-mit-funktion-und-schleife-erzeugen",
+    "title": "Goal",
+    "section": "Eine Serie gleicher Grafiken mit Funktion und Schleife erzeugen",
+    "text": "Eine Serie gleicher Grafiken mit Funktion und Schleife erzeugen\n\nBisher haben wir stets Funktionen benutzt, die im Basis-R oder in den aktuell geladenen Paketen enthalten sind\nFunktionen können jedoch auch selbst geschrieben und an die eigenen Bedürfnisse (z.B. eine bestimmte Grafik) angepasst werden\nMithilfe einer for-Schleife kann diese Funktion dann auf alle Variablen eines Datensatzes, auf alle Länder eines Datensatzes etc. angewendet werden. So entsteht eine Serie von Grafiken, die man schnell durchscrollen und auf Auffälligkeiten überprüfen kann"
   },
   {
     "objectID": "sessions/good_plots/information.html#informationen",
@@ -648,7 +690,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nslant_down\n53.39\n78.87\n\n\nwide_lines\n63.95\n18.69\n\n\nbullseye\n53.10\n84.55\n\n\naway\n40.64\n73.39\n\n\ndino\n40.77\n88.33\n\n\nhigh_lines\n54.11\n17.67\n\n\nhigh_lines\n56.46\n25.14\n\n\ndino\n60.77\n33.72\n\n\ndots\n52.33\n51.88\n\n\nslant_down\n82.30\n46.99\n\n\ndino\n63.08\n19.10\n\n\nslant_down\n65.20\n33.03\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nx_shape\n48.66\n64.96\n\n\nv_lines\n50.09\n11.61\n\n\nwide_lines\n33.92\n53.56\n\n\nh_lines\n22.82\n30.44\n\n\ncircle\n53.08\n79.30\n\n\nhigh_lines\n57.66\n24.06\n\n\nwide_lines\n66.34\n33.31\n\n\nv_lines\n50.23\n80.65\n\n\nh_lines\n49.75\n10.49\n\n\nslant_up\n54.39\n53.81\n\n\ndino\n57.44\n10.26\n\n\ndots\n52.79\n51.07\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
@@ -949,14 +991,14 @@
     "href": "sessions/animate_plotly/animate_plotly.html",
     "title": "Ausblick: gganimate und plotly",
     "section": "",
-    "text": "View slides in full screen"
+    "text": "View slides in full screen - Was noch so möglich: gganimate/plotly - Janine (+ Nicklas)\n\nÜbung\n\nbisherige Grafik animieren/plotly"
   },
   {
     "objectID": "sessions/r_basics/r_basics.html",
     "href": "sessions/r_basics/r_basics.html",
     "title": "R-Basics",
     "section": "",
-    "text": "View slides in full screen"
+    "text": "View slides in full screen\n\ntidyverse, Factors, long format - Nicklas"
   },
   {
     "objectID": "sessions/r_basics/slides.html#die-daten",
@@ -1166,7 +1208,7 @@
     "href": "sessions/prep_plots/prep_plots.html",
     "title": "Grafiken Druckreif machen",
     "section": "",
-    "text": "View slides in full screen"
+    "text": "View slides in full screen\n\nÜbung\n\nGrafiken Druckreif machen und vorstellen (verschiedene Ziele/Zielgruppen, Alle die den gleichen Plot-Typ haben gruppieren)"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#section",
@@ -1355,14 +1397,14 @@
     "href": "sessions/good_plots/slides.html#what-makes-a-bad-visualization",
     "title": "Was ist eine gute Grafik?",
     "section": "What makes a bad visualization?",
-    "text": "What makes a bad visualization?\n\n\n\nJede Gruppe bekommt eine Abbildung.\n\nDiskutiert in der Gruppe, was bei der Visualisierung schief läuft.\nKurze Diskussion. Stellt den anderen Gruppen eure Ergebnisse vor.\n\n\n\n\n\n\nBild gefunden auf Reddit."
+    "text": "What makes a bad visualization?\n\n\n\nGruppenarbeit: Diskutieren Sie eine Grafik!\n\nFühre untenstehenden Code aus, um Dich einer der fünf Gruppen zuzuordnen.\nLade die Grafik mit Deiner Gruppennummer von Github herunter.\n\nGehe in den entsprechenden Breakout-Room und diskutiert in der Gruppe, was bei eurer Grafik schiefgelaufen ist.\nStellt den anderen Gruppen kurz eure Ergebnisse vor.\n\n\n\n\n\npaste(\"Ihre Gruppe:\", sample(1:5, 1))\n\n\n\n\n\nBild gefunden auf Reddit."
   },
   {
-    "objectID": "sessions/good_plots/slides.html#übung",
-    "href": "sessions/good_plots/slides.html#übung",
+    "objectID": "sessions/good_plots/slides.html#references",
+    "href": "sessions/good_plots/slides.html#references",
     "title": "Was ist eine gute Grafik?",
-    "section": "Übung",
-    "text": "Übung\n\n\n\n\nTufte, E. R., & Graves-Morris, P. R. (1983). The visual display of quantitative information (Bd. 2). Graphics press Cheshire, CT."
+    "section": "References",
+    "text": "References\n\n\n\n\nTufte, E. R., & Graves-Morris, P. R. (1983). The visual display of quantitative information (Bd. 2). Graphics press Cheshire, CT."
   },
   {
     "objectID": "sessions/good_plots/maps.html#section",
@@ -1400,18 +1442,11 @@
     "text": "Visual Form\n\n\n\nDesign is a requirement, not a cosmetic addition.\n\nnature methods\n\n\n\n\n\nNützlichkeit\nEffizienz\nÄsthetik\n\n\n\n\n\nFoto von Samuel Scrimshaw auf Unsplash"
   },
   {
-    "objectID": "sessions/good_plots/visual_form.html#gestalt-prinzipien",
-    "href": "sessions/good_plots/visual_form.html#gestalt-prinzipien",
-    "title": "Visual Form",
-    "section": "Gestalt-Prinzipien",
-    "text": "Gestalt-Prinzipien\n\n\n\n\n\n\nMenschen nehmen Muster nach gewissen Prinzipien wahr. Die Regeln, nach denen wir Muster wahrnehmen, werden Gestalt-Prinzipien genannt, beispielsweise:\n\n\n\nNähe: Einander nahe Elemente werden als zusammengehörig wahrgenommen\n\nÄhnlichkeit: Einander ähnliche Elemente werden als zusammengehörig wahrgenommen\n\nVerbundene Elemente: Verbundene Elemente werden als zusammengehörig wahrgenommen\n\nGute Fortsetzung: Linien werden wahrgenommen, als folgten sie dem einfachsten Weg\n\nGeschlossenheit: Unvollständige Elemente werden als vollständig wahrgenommen\n\nFigur und Grund: Elemente sind entweder im Vorder- oder Hintergrund\n\nGemeinsames Schicksal: Elemente mit ähnlicher Bewegungsrichtung werden als zusammengehörig wahrgenommen"
-  },
-  {
     "objectID": "sessions/good_plots/visual_form.html#salienz",
     "href": "sessions/good_plots/visual_form.html#salienz",
     "title": "Visual Form",
     "section": "Salienz",
-    "text": "Salienz\nSalienz durch visual features:\n\n\nAbbildung von Wong, B. (2010)"
+    "text": "Salienz\nSalienz durch visual features:\n Quelle: Wong, B. (2010)"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#gruppieren",
@@ -1421,32 +1456,11 @@
     "text": "Gruppieren\n\n\nGruppierung durch Form\n\n\n\n\n\n\n\n\n\n\nGruppierung durch verbundene Elemente"
   },
   {
-    "objectID": "sessions/good_plots/visual_form.html#gruppieren-durch-nähe",
-    "href": "sessions/good_plots/visual_form.html#gruppieren-durch-nähe",
-    "title": "Visual Form",
-    "section": "Gruppieren durch Nähe",
-    "text": "Gruppieren durch Nähe\n\n\nData from Rockefeller Institute and Wikipedia."
-  },
-  {
     "objectID": "sessions/good_plots/visual_form.html#darstellung-von-größen",
     "href": "sessions/good_plots/visual_form.html#darstellung-von-größen",
     "title": "Visual Form",
     "section": "Darstellung von Größen",
     "text": "Darstellung von Größen\nDie Größe von Elemenen kann auch genutzt werden, um Daten zu kodieren."
-  },
-  {
-    "objectID": "sessions/good_plots/visual_form.html#gruppierung-durch-form",
-    "href": "sessions/good_plots/visual_form.html#gruppierung-durch-form",
-    "title": "Visual Form",
-    "section": "Gruppierung durch Form",
-    "text": "Gruppierung durch Form\n\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(aes(shape = world_4region)) +\n  geom_smooth() +\n  labs(\n    title = \"Ungleichheit = Un-Happiness?\",\n    subtitle = \"Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2020\",\n    x = \"Gini-Index\",\n    y = \"Happiness-Score\",\n  ) +\n  theme_bg()"
-  },
-  {
-    "objectID": "sessions/good_plots/visual_form.html#darstellen-von-größen",
-    "href": "sessions/good_plots/visual_form.html#darstellen-von-größen",
-    "title": "Visual Form",
-    "section": "Darstellen von Größen",
-    "text": "Darstellen von Größen\n\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(aes(color = world_4region, size = pop)) +\n  geom_smooth() +\n  labs(\n    title = \"Ungleichheit = Un-Happiness?\",\n    subtitle = \"Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2020\",\n    x = \"Gini-Index\",\n    y = \"Happiness-Score\",\n  ) +\n  theme_bg()"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#einschätzen-von-größen",
@@ -1470,25 +1484,25 @@
     "text": "Das gleiche gilt für Winkel!\n\n\n Quelle\n\n\nQuelle\n\n\n\n\n\n\n\n\nKreis- bzw. Tortendiagramme sollten daher vermieden werden."
   },
   {
-    "objectID": "sessions/good_plots/visual_form.html#farbe",
-    "href": "sessions/good_plots/visual_form.html#farbe",
+    "objectID": "sessions/good_plots/visual_form.html#farben",
+    "href": "sessions/good_plots/visual_form.html#farben",
     "title": "Visual Form",
-    "section": "Farbe",
-    "text": "Farbe\n\n\nFarbe ist eine der wichtigsten Methoden, um Informationen zu labeln, hervorzuheben, Werte zu kommunizieren, Realität simulieren, und um zu designen und zu dekorieren.\n\n\n\n\nFoto von Efe Kurnaz auf Unsplash"
+    "section": "Farben",
+    "text": "Farben\n\n\nFarbe ist eine der wichtigsten Methoden, um Informationen zu [labeln], hervorzuheben, [Werte] zu kommunizieren, [Realität simulieren], und um zu designen und zu [dekorieren].\n\n\n\n\nFoto von Efe Kurnaz auf Unsplash"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#kategoriale-vs.-quantitative-daten",
     "href": "sessions/good_plots/visual_form.html#kategoriale-vs.-quantitative-daten",
     "title": "Visual Form",
     "section": "Kategoriale vs. quantitative Daten",
-    "text": "Kategoriale vs. quantitative Daten\n\n\nKategoriale Daten\nVerschiedene Farben, die sich gut unterscheiden lassen.\n\n\n\n\n\n\n\n\n\n\nQuantitative Daten\nFarbverläufe, die eine Reihenfolge haben."
+    "text": "Kategoriale vs. quantitative Daten\n\n\nKategoriale Daten\nVerschiedene Farben, die sich gut unterscheiden lassen.\n\n\n\n\n\n\n\n\n\n\nQuantitative Daten\nFarbverläufe, die eine Reihenfolge haben.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2 setzt die entsprechende Skala schon automatisch!"
   },
   {
-    "objectID": "sessions/good_plots/visual_form.html#skalenarten",
-    "href": "sessions/good_plots/visual_form.html#skalenarten",
+    "objectID": "sessions/good_plots/visual_form.html#skalen-mit-nullpunkt",
+    "href": "sessions/good_plots/visual_form.html#skalen-mit-nullpunkt",
     "title": "Visual Form",
-    "section": "Skalenarten",
-    "text": "Skalenarten\n\n\nBild von nature methods."
+    "section": "Skalen mit Nullpunkt",
+    "text": "Skalen mit Nullpunkt\n\nWas zu beachten ist: unten Blau oben Rot … https://ggplot2-book.org/scales-colour.html\nVor allem für diskrete Gruppen geeignet\nFarbverläufe schwieriger (aber es gibt color scales dafür)\nBestimmte Farben (Grün = gut, Rot = Gefahr)\nIntervallskaliert/Verhältnisskaliert: Es gibt Nullpunkt: Divergierende Skalen\n\nKein Nullpunkt: Gleichmäßige Abstände zwischen Farbwerten\n\nOrdinal: Richtung und gute Unterscheidbarkeit im Farbraum\nNominalskaliert: Spriale/Diagnoale im Farbraum\nDiskret\nContinuous\nBinned Vorgefertigte Paletten:\n\nSequenziell\nQualitativ\nDiverging"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#farbwahrnehmung-beim-menschen",
@@ -1498,11 +1512,11 @@
     "text": "Farbwahrnehmung beim Menschen\n\n\n\n\nPrimärfarben des Lichts: Rot, Grün, Blau\n\n\n\n\n\nBy Original:  Penubag Vector: Victor Blacus - Own work based on: Electromagnetic-Spectrum.png, CC BY-SA 3.0, Link\nBy BenRG - Own work, Public Domain, Link"
   },
   {
-    "objectID": "sessions/good_plots/visual_form.html#section",
-    "href": "sessions/good_plots/visual_form.html#section",
+    "objectID": "sessions/good_plots/visual_form.html#andere-tiere-können-auch-mal-mehr-oder-weniger-haben",
+    "href": "sessions/good_plots/visual_form.html#andere-tiere-können-auch-mal-mehr-oder-weniger-haben",
     "title": "Visual Form",
-    "section": "",
-    "text": "Andere Tiere können auch mal mehr oder weniger haben:\n\n\n\n\n\nBild aus Farbsehen der Tiere\nFoto von Ben Moreland auf Unsplash"
+    "section": "Andere Tiere können auch mal mehr oder weniger haben:",
+    "text": "Andere Tiere können auch mal mehr oder weniger haben:\n\n\n\n\n\n\n\nBild aus Farbsehen der Tiere\nFoto von Ben Moreland auf Unsplash"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#viele-tiere-sehen-nur-grau",
@@ -1516,25 +1530,25 @@
     "href": "sessions/good_plots/visual_form.html#more-is-not-always-better",
     "title": "Visual Form",
     "section": "More is not always better",
-    "text": "More is not always better\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMehr als sechs Farben sollten es auf keinen Fall werden!\n\n\n\n\n\n\nAlternative: Facetting."
+    "text": "More is not always better\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(\n  gapminder_2020,\n  aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point(size = 3) +\n  theme_bg() \n\n\n\n\n\n\n\n\n\nMehr als sechs Farben sollten es auf keinen Fall werden!\n\n\n\n\n\n\nAlternative: Facetting."
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#farben-1",
+    "href": "sessions/good_plots/visual_form.html#farben-1",
+    "title": "Visual Form",
+    "section": "Farben",
+    "text": "Farben\n\nGanglienzellen übertragen keine Informationen über absolute Helligkeit, sondern über relative Helligkeit.\n\nVisualisierung kann nicht gut darin sein, absolute Werte zu kommunizieren (Tabellen können das besser). Aber: Unterschiede und Veränderungen.\n\n\nBild von Nature Methods."
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#section",
+    "href": "sessions/good_plots/visual_form.html#section",
+    "title": "Visual Form",
+    "section": "",
+    "text": "Hier sind die Farben klar unterscheidbar, und der Gini-Index lässt sich gut ablesen.\n\n\n\n\n\n\n\n\n\n\nDer Plot ist etwas sub-optimaler. Die tatsächlichen Werte des Gini-Index werden nicht gut kommuniziert."
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#farbe-ist-relativ",
     "href": "sessions/good_plots/visual_form.html#farbe-ist-relativ",
-    "title": "Visual Form",
-    "section": "Farbe ist relativ",
-    "text": "Farbe ist relativ\n\nGanglienzellen übertragen keine Informationen über absolute Helligkeit, sondern über relative Helligkeit.\n\nVisualisierung kann nicht gut darin sein, absolute Werte zu kommunizieren (Tabellen können das besser). Aber: Unterschiede und Veränderungen.\n\n\nBild von Nature Methods."
-  },
-  {
-    "objectID": "sessions/good_plots/visual_form.html#farbe-ist-relativ-1",
-    "href": "sessions/good_plots/visual_form.html#farbe-ist-relativ-1",
-    "title": "Visual Form",
-    "section": "Farbe ist relativ",
-    "text": "Farbe ist relativ\n\n\nHier sind die Farben klar unterscheidbar, und der Gini-Index lässt sich gut ablesen.\n\n\n\n\n\n\n\n\n\n\nHier werden die tatsächlichen Werte des Gini-Index nicht gut kommuniziert."
-  },
-  {
-    "objectID": "sessions/good_plots/visual_form.html#farbe-ist-relativ-2",
-    "href": "sessions/good_plots/visual_form.html#farbe-ist-relativ-2",
     "title": "Visual Form",
     "section": "Farbe ist relativ",
     "text": "Farbe ist relativ"
@@ -1565,7 +1579,7 @@
     "href": "sessions/good_plots/visual_form.html#farbfehlsichtigkeit",
     "title": "Visual Form",
     "section": "Farbfehlsichtigkeit",
-    "text": "Farbfehlsichtigkeit\n\n\n\nProtanopie: Zapfentyp L (rot) fehlt: rot vs grün Schwäche\nDeuteranopie: Zapfentyp M (grün) fehlt: rot vs grün Schwäche\nTritanopie: Zapfentyp S (blau) fehlt: blau vs grün, gelb vs violett Schwäche\n\nRechts: Protanopie\n\n\n\n\nBy Mark Fairchild, CC BY-SA 3.0, Link"
+    "text": "Farbfehlsichtigkeit\n\nprotanopic right side\n\nBy Mark Fairchild, CC BY-SA 3.0, Link\n\n\nProtanopie: Zapfentyp L (rot) fehlt: rot vs grün Schwäche\nDeuteranopie: Zapfentyp M (grün) fehlt: rot vs grün Schwäche\nTritanopie: Zapfentyp S (blau) fehlt: blau vs grün, gelb vs violett Schwäche\nTake the above scale and show that it is not great for color blindness\nhttps://www.color-blindness.com/coblis-color-blindness-simulator/"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#colorblind-check",
@@ -1575,11 +1589,18 @@
     "text": "Colorblind-Check\n\n\nAuf Colblindor.\n\n\nMit colorblindcheck.\n\nlibrary(colorblindcheck)\n\npalette_check(scales::hue_pal()(6), plot = TRUE)\n\n\n\n\n\n\n\n\n          name n tolerance ncp ndcp  min_dist mean_dist max_dist\n1       normal 6  28.22768  15   15 28.227682  48.60479 91.99894\n2 deuteranopia 6  28.22768  15    9  5.870477  31.50134 59.55026\n3   protanopia 6  28.22768  15    8  3.930855  32.79118 57.04317\n4   tritanopia 6  28.22768  15    9  7.200490  40.41105 71.61725"
   },
   {
+    "objectID": "sessions/good_plots/visual_form.html#anwendung-in-ggplot2",
+    "href": "sessions/good_plots/visual_form.html#anwendung-in-ggplot2",
+    "title": "Visual Form",
+    "section": "Anwendung in ggplot2",
+    "text": "Anwendung in ggplot2"
+  },
+  {
     "objectID": "sessions/good_plots/visual_form.html#farben-wählen",
     "href": "sessions/good_plots/visual_form.html#farben-wählen",
     "title": "Visual Form",
     "section": "Farben wählen",
-    "text": "Farben wählen\n\n\n\nName: \"red\"\nrgb(): rgb(1,0,0)\nHex code: #FF0000\n\n\n\nggplot(\n  gapminder_2020,\n  aes(x = gini, y = hapiscore_whr)\n) +\n  geom_point(size = 3, color = \"#FF0000\") +\n  geom_smooth(color = \"darkblue\") +\n  theme_bg()"
+    "text": "Farben wählen\n\nName\nrgb()\nNummer\nHex code"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#farben-manuell-setzen",
@@ -1613,15 +1634,15 @@
     "objectID": "sessions/good_plots/visual_form.html#übung",
     "href": "sessions/good_plots/visual_form.html#übung",
     "title": "Visual Form",
-    "section": "🏋 Übung",
-    "text": "🏋 Übung\n\n\n\n\nWechsel die Farbpalette für deinen Plot und teste sie auf Farbfehlsichtigkeiten.\n\n\n\n\n\n\nFoto von Geordanna Cordero auf Unsplash"
+    "section": "Übung",
+    "text": "Übung\n\n\nBaue eine eigene Farbpalette für deinen Plot und teste sie auf Farbfehlsichtigkeiten."
   },
   {
-    "objectID": "sessions/good_plots/visual_form.html#funktionelles-desing-1",
-    "href": "sessions/good_plots/visual_form.html#funktionelles-desing-1",
+    "objectID": "sessions/good_plots/visual_form.html#nützlichkeit",
+    "href": "sessions/good_plots/visual_form.html#nützlichkeit",
     "title": "Visual Form",
-    "section": "Funktionelles Desing",
-    "text": "Funktionelles Desing\n\n\n\n\n\n\nFoto von Kelly Sikkema auf Unsplash\nFoto von Yucel Moran auf Unsplash\n\n\nHier gilt ganz besonders: Simplify to Clarify"
+    "section": "Nützlichkeit",
+    "text": "Nützlichkeit\n\n\n\n\n\n\nFoto von Kelly Sikkema auf Unsplash\nFoto von Yucel Moran auf Unsplash\n\n\nHier gilt ganz besonders: Simplify to Clarify"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#funktionelles-design",
@@ -1635,7 +1656,7 @@
     "href": "sessions/good_plots/visual_form.html#simplify-to-clarify-data-ink-ratio",
     "title": "Visual Form",
     "section": "Simplify to clarify: Data-ink ratio",
-    "text": "Simplify to clarify: Data-ink ratio\n\nData graphics should draw the viewer’s attention to the sense and substance of the data, not to something else.\n\nTufte & Graves-Morris (1983)\n\n\n\n\n\n\n\nData-ink ratio = Data-ink / Total ink used to print the graphic\n\n\n\n\n\n\nJedes Stück Tinte sollte einen Grund haben.\n\n\n\n\n\n\nCC BY-SA 2.0, Link"
+    "text": "Simplify to clarify: Data-ink ratio\n\nData graphics should draw the viewer’s attention to the sense and substance of the data, not to something else. (Tufte & Graves-Morris, 1983)\n\nAuf die Spitze getrieben von Tufte & Graves-Morris (1983):\n\n\nData-ink ratio = Data-ink / Total ink used to print the graphic\n\nJedes Stück Tinte sollte einen Grund haben.\n\n\n :::{.image-ref} CC BY-SA 2.0, Link\n\n:::"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#data-ink-ratio-in-praxis",
@@ -1649,21 +1670,21 @@
     "href": "sessions/good_plots/visual_form.html#redundanzen",
     "title": "Visual Form",
     "section": "Redundanzen",
-    "text": "Redundanzen\n\nErase non-data-ink, within reason. Erase redundant data-ink, within reason.\n\nTufte & Graves-Morris (1983)\n\n\n\n\nFrageAntwort\n\n\nAuf wie viele Arten wird hier die Höhe der CO2 Emissionen pro Kopf dargestellt?\n\n\n\n\n\n\n\n\n\n\n\nAuf sieben verschiedene Arten:\n\nHöhe der linken Balkenlinie\nHöhe der rechten Balkenlinie\nHöhe der horizontalen Balkenlinie\nHöhe des Balkeninneren\nFarbe des Balkens\nPosition des Labels\nWert des Labels\n\nBalken an sich enthalten also schon redundante Informationen!"
+    "text": "Redundanzen\n\nErase non-data-ink, within reason. Erase redundant data-ink, within reaseon (Tufte & Graves-Morris, 1983)\n\n\n\nFrageAntwort\n\n\nAuf wie viele Arten wird hier die Höhe der CO2 Emissionen pro Kopf dargestellt?\n\n\n\n\n\n\n\n\n\n\n\nAuf sieben verschiedene Arten:\n\nHöhe der linken Balkenlinie\nHöhe der rechten Balkenlinie\nHöhe der horizontalen Balkenlinie\nHöhe des Balkeninneren\nFarbe des Balkens\nPosition des Labels\nWert des Labels\n\nBalken an sich enthalten also schon redundante Informationen!"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#section-1",
     "href": "sessions/good_plots/visual_form.html#section-1",
     "title": "Visual Form",
     "section": "",
-    "text": "AufgabeAntwort\n\n\n\nEntferne alle Redundanzen, machen den Plot also “Tufte-Komform”\n\n\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons, fill = co2_pcap_cons, color = co2_pcap_cons, label = round(co2_pcap_cons), 2)\n) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\") +\n  geom_text(vjust = -1, color = \"black\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  labs(\n    x = \"Land\",\n    y = \"CO2 Consumption per capita in t\"\n  ) +\n  theme_bg()\n\n\n\n\n\n\n\n\n\n\n\n\nAntwort 1Antwort 2\n\n\nEntfernen der Achsenlinien und Umrandungen. Hintergrundlinien werden innerhalb der Balken dargestellt.\n\n\nlibrary(ggthemes)\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)\n) +\n  geom_bar(stat = \"identity\", width = 0.5, color = NA, fill = \"grey\") +\n  geom_hline(yintercept = seq(0, 30, by = 5), color = \"white\", size = 0.3) +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1), axis.ticks = element_blank()) +\n  labs(\n    x = \"Land\",\n    y = \"CO2 Consumption per capita in t\"\n  ) +\n  theme_tufte()\n\n\n\n\n\n\n\n\n\n\n\nMitunter können die vertikalen und horizontalen Linien auch hilfreich beim Vergleich/bei der Zuordnung zum Land sein.\n\n\nlibrary(ggplot2)\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons)\n) +\n  # vertikale Linie, leicht nach links geschoben\n  geom_segment(\n    aes(xend = reorder(country, co2_pcap_cons), y = 0, yend = co2_pcap_cons),\n    position = position_nudge(x = -0.14)\n  ) +\n  geom_segment(aes(\n    x = as.numeric(reorder(country, co2_pcap_cons)) - 0.15,\n    xend = as.numeric(reorder(country, co2_pcap_cons)) + 0.15,\n    y = co2_pcap_cons, yend = co2_pcap_cons\n  )) +\n  ylim(c(0, 30)) +\n  labs(\n    x = \"Land\",\n    y = \"CO2 Consumption per capita in t\"\n  ) +\n  theme_tufte() +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1))\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n:::"
+    "text": "AufgabeAntwort\n\n\nEntferne alle Redundanzen, machen den Plot also “Tufte-Komform”\n\nggplot(\n  gapminder_2020[1:10, ],\n  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons, fill = co2_pcap_cons, color = co2_pcap_cons, label = round(co2_pcap_cons), 2)\n) +\n  geom_bar(stat = \"identity\", width = 1, color = \"black\") +\n  geom_text(vjust = -1, color = \"black\") +\n  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +\n  labs(\n    x = \"Land\",\n    y = \"CO2 Consumption per capita in t\") +\n  theme_bg()\n\n\n\n\nAntwort 1Antwort 2\n\n\nEntfernen der Achsenlinien und Umrandungen. Hintergrundlinien werden innerhalb der Balken dargestellt.\n\n\n\n\n\n\n\n\n\n\n\nMitunter können die vertikalen und horizontalen Linien auch hilfreich beim Vergleich/bei der Zuordnung zum Land sein: “Tufte Barchart”"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#maximieren-von-informationen",
     "href": "sessions/good_plots/visual_form.html#maximieren-von-informationen",
     "title": "Visual Form",
     "section": "Maximieren von Informationen",
-    "text": "Maximieren von Informationen\n\n\nNormaler Scatterplot\nBox um den Plot, Grid-Linien, Achsen-Ticks: Alles keine Daten.\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point()\n\n\n\n\n\nTufte-Scatterplot\nNutzen der Ticks und Achsen-Linien, um Informationen zu transportieren.\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(paletteer)\n\n\nxlim_v &lt;- c(20, 80)\nylim_v &lt;- c(20, 80)\n\n# Parameter: Anzahl der Quantile, Versatz von den Rändern, kleine Lücke zwischen Segmenten\nprobs &lt;- seq(0, 1, by = 0.25) # Quartile; für Dezile: by = 0.1\noff_x &lt;- 0 # Versatz der \"y-Achse\" nach rechts\noff_y &lt;- 0 # Versatz der \"x-Achse\" nach oben\ngap &lt;- 0.2 # kleine Lücke an Segmentenden (optisch schöner)\n\nqx &lt;- quantile(gapminder_2020$gini, probs = probs, na.rm = TRUE)\nqy &lt;- quantile(gapminder_2020$hapiscore_whr, probs = probs, na.rm = TRUE)\n\n# Segment-Dataframes bauen (pro Intervall ein Segment)\nseg_x &lt;- tibble(\n  x    = pmax(qx[-length(qx)] + gap / 2, xlim_v[1]),\n  xend = pmin(qx[-1] - gap / 2, xlim_v[2]),\n  y    = ylim_v[1] + off_y,\n  yend = ylim_v[1] + off_y\n) %&gt;% filter(x &lt; xend)\n\nseg_y &lt;- tibble(\n  x    = xlim_v[1] + off_x,\n  xend = xlim_v[1] + off_x,\n  y    = pmax(qy[-length(qy)] + gap / 2, ylim_v[1]),\n  yend = pmin(qy[-1] - gap / 2, ylim_v[2])\n) %&gt;%\n  filter(y &lt; yend)\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  # Quantil-\"x-Achse\" (horizontal) leicht ins Panel versetzt\n  geom_segment(\n    data = seg_x,\n    aes(x = x, xend = xend, y = y, yend = yend),\n    inherit.aes = FALSE\n  ) +\n  # Quantil-\"y-Achse\" (vertikal) leicht ins Panel versetzt\n  geom_segment(\n    data = seg_y,\n    aes(x = x, xend = xend, y = y, yend = yend),\n    inherit.aes = FALSE\n  ) +\n  scale_x_continuous(breaks = unique(c(round(seg_x$x, 0), round(seg_x$xend, 0)))) +\n  scale_y_continuous(breaks = unique(c(round(seg_y$y, 0), round(seg_y$yend, 0)))) +\n  coord_cartesian(xlim = xlim_v, ylim = ylim_v, expand = FALSE) +\n  theme_tufte() +\n  theme(axis.ticks = element_blank()) +\n  paletteer::scale_colour_paletteer_d(\"fishualize::Koumansetta_rainfordi\")"
+    "text": "Maximieren von Informationen\n\n\nNormaler Scatterplot\nBox um den Plot, Grid-Linien, Achsen-Ticks: Alles keine Daten.\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() \n\n\n\n\n\nTufte-Scatterplot\nNutzen der Ticks und Achsen-Linien, um Informationen zu transportieren.\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(paletteer)\n\n\nxlim_v &lt;- c(20, 80)\nylim_v &lt;- c(20, 80)\n\n# Parameter: Anzahl der Quantile, Versatz von den Rändern, kleine Lücke zwischen Segmenten\nprobs &lt;- seq(0, 1, by = 0.25) # Quartile; für Dezile: by = 0.1\noff_x &lt;- 0 # Versatz der \"y-Achse\" nach rechts\noff_y &lt;- 0 # Versatz der \"x-Achse\" nach oben\ngap &lt;- 0.2 # kleine Lücke an Segmentenden (optisch schöner)\n\nqx &lt;- quantile(gapminder_2020$gini, probs = probs, na.rm = TRUE)\nqy &lt;- quantile(gapminder_2020$hapiscore_whr, probs = probs, na.rm = TRUE)\n\n# Segment-Dataframes bauen (pro Intervall ein Segment)\nseg_x &lt;- tibble(\n  x    = pmax(qx[-length(qx)] + gap / 2, xlim_v[1]),\n  xend = pmin(qx[-1] - gap / 2, xlim_v[2]),\n  y    = ylim_v[1] + off_y,\n  yend = ylim_v[1] + off_y\n) %&gt;% filter(x &lt; xend)\n\nseg_y &lt;- tibble(\n  x    = xlim_v[1] + off_x,\n  xend = xlim_v[1] + off_x,\n  y    = pmax(qy[-length(qy)] + gap / 2, ylim_v[1]),\n  yend = pmin(qy[-1] - gap / 2, ylim_v[2])\n) %&gt;%\n  filter(y &lt; yend)\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(x = gini, y = hapiscore_whr, color = world_4region)\n) +\n  geom_point() +\n  # Quantil-\"x-Achse\" (horizontal) leicht ins Panel versetzt\n  geom_segment(\n    data = seg_x,\n    aes(x = x, xend = xend, y = y, yend = yend),\n    inherit.aes = FALSE\n  ) +\n  # Quantil-\"y-Achse\" (vertikal) leicht ins Panel versetzt\n  geom_segment(\n    data = seg_y,\n    aes(x = x, xend = xend, y = y, yend = yend),\n    inherit.aes = FALSE\n  ) +\n  scale_x_continuous(breaks = unique(c(round(seg_x$x, 0), round(seg_x$xend, 0)))) +\n  scale_y_continuous(breaks = unique(c(round(seg_y$y, 0), round(seg_y$yend, 0)))) +\n  coord_cartesian(xlim = xlim_v, ylim = ylim_v, expand = FALSE) +\n  theme_tufte() +\n  theme(axis.ticks = element_blank()) +\n  paletteer::scale_colour_paletteer_d(\"fishualize::Koumansetta_rainfordi\")"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#verteilungen-plotten",
@@ -1677,7 +1698,14 @@
     "href": "sessions/good_plots/visual_form.html#verteilungen-plotten-1",
     "title": "Visual Form",
     "section": "Verteilungen plotten",
-    "text": "Verteilungen plotten\n\n\nBoxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(\n  data = gapminder_2020 %&gt;% drop_na(country),\n  aes(x = world_4region, y = hapiscore_whr, fill = world_4region)\n) +\n  geom_boxplot() +\n  theme(axis.ticks = element_blank(), legend.position = \"none\") +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\")\n\n\n\n\n\nTufte-Boxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggthemes)\n\nggplot(\n  data = gapminder_2020 %&gt;% drop_na(country),\n  aes(x = world_4region, y = hapiscore_whr, group = world_4region)\n) +\n  geom_jitter(alpha = 0.5, color = \"lightgrey\") +\n  geom_tufteboxplot() +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\") +\n  theme_tufte()"
+    "text": "Verteilungen plotten\n\n\nBoxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = gapminder_2020 %&gt;% drop_na(country),\n  aes(x = world_4region, y = hapiscore_whr, fill = world_4region)) +\n  geom_boxplot() +\n  theme(axis.ticks = element_blank(), legend.position = \"none\") +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\")\n\n\n\n\n\nTufte-Boxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggthemes)\n\nggplot(data = gapminder_2020 %&gt;% drop_na(country), \n  aes(x = world_4region, y = hapiscore_whr, group = world_4region)) +\ngeom_jitter(alpha = 0.5, color = \"lightgrey\") + \n  geom_tufteboxplot() +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\") +\ntheme_tufte()"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#keine-angst-vor-leerem-raum",
+    "href": "sessions/good_plots/visual_form.html#keine-angst-vor-leerem-raum",
+    "title": "Visual Form",
+    "section": "Keine Angst vor leerem Raum",
+    "text": "Keine Angst vor leerem Raum\n\n\nData from Rockefeller Institute and Wikipedia."
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#zusammenfassung",
@@ -1687,11 +1715,18 @@
     "text": "Zusammenfassung\n\n\n\n\nAbove all else show the data.\nMaximize the data-ink ratio, within reason.\nErase non-data-ink, within reason.\nErase redundant data-ink, within reason.\nRevise and edit.\n\n\nAus Tufte & Graves-Morris (1983)."
   },
   {
-    "objectID": "sessions/good_plots/visual_form.html#design-1",
-    "href": "sessions/good_plots/visual_form.html#design-1",
+    "objectID": "sessions/good_plots/visual_form.html#gegenentwurf-ästhetik",
+    "href": "sessions/good_plots/visual_form.html#gegenentwurf-ästhetik",
     "title": "Visual Form",
-    "section": "Design",
-    "text": "Design\n\n\nAbbildung von [Cédric Scherer]https://www.behance.net/gallery/100683383/Travelling-to-Outer-Space#)."
+    "section": "Gegenentwurf: Ästhetik",
+    "text": "Gegenentwurf: Ästhetik\n\n\nAbbildung von [Cédric Scherer]https://www.behance.net/gallery/100683383/Travelling-to-Outer-Space#)."
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#section-2",
+    "href": "sessions/good_plots/visual_form.html#section-2",
+    "title": "Visual Form",
+    "section": "",
+    "text": "Wandelt euren Plot in einen Tufte-Plot um."
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#farben-als-design-element",
@@ -1719,49 +1754,49 @@
     "href": "sessions/good_plots/visual_form.html#schriften",
     "title": "Visual Form",
     "section": "Schriften",
-    "text": "Schriften\nDie Schriftart kann einer Abbildung ein ganz anderes Aussehen verleihen.\nWir nutzen Schriftarten von Google Fonts.\n\nlibrary(showtext)\n\nfont_add_google(\"Special Elite\", family = \"special\")"
+    "text": "Schriften\nDie Schriftart kann einer Abbildung ein ganz anderes Aussehn vereleihen.\nWir nutzen Schriftarten von Google Fonts\n\nlibrary(showtext)\n\nfont_add_google(\"Special Elite\", family = \"special\")\n\n\nDaten von zygmuntz."
   },
   {
-    "objectID": "sessions/good_plots/visual_form.html#schriftart",
-    "href": "sessions/good_plots/visual_form.html#schriftart",
+    "objectID": "sessions/good_plots/visual_form.html#section-3",
+    "href": "sessions/good_plots/visual_form.html#section-3",
     "title": "Visual Form",
-    "section": "Schriftart",
-    "text": "Schriftart\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggwordcloud)\n\ntags &lt;- read.csv(here::here(\"data\", \"goodbooks-10k\", \"tags.csv\"))\nbook_tags &lt;- read.csv(here::here(\"data\", \"goodbooks-10k\", \"book_tags.csv\"))\nbooks &lt;- read.csv(here::here(\"data\", \"goodbooks-10k\", \"books.csv\"))\n\n\nclassics &lt;- book_tags %&gt;%\n  left_join(books) %&gt;%\n  left_join(tags) %&gt;%\n  filter(tag_name == \"classics\") %&gt;%\n  filter(ratings_count &gt; 20000, !duplicated(authors)) %&gt;%\n  select(original_title, average_rating, tag_name, ratings_count) %&gt;%\n  distinct() %&gt;%\n  arrange(ratings_count) %&gt;%\n  slice_tail(n = 50)\n\n\nset.seed(45)\nggplot(\n  data = classics,\n  mapping = aes(label = original_title, size = average_rating)\n) +\n  geom_text_wordcloud() +\n  scale_size(range = c(1, 6)) +\n  labs(\n    title = \"What to read next ...\",\n    subtitle = \"... according to goodreads\"\n  ) +\n  theme_bg()\n\n\n\n\n\nDaten von zygmuntz."
+    "section": "",
+    "text": "library(ggwordcloud)\n\ntags &lt;- read.csv(here::here(\"data\", \"goodbooks-10k\", \"tags.csv\"))\nbook_tags &lt;- read.csv(here::here(\"data\", \"goodbooks-10k\", \"book_tags.csv\"))\nbooks &lt;- read.csv(here::here(\"data\", \"goodbooks-10k\", \"books.csv\")) \n\n\nclassics &lt;- book_tags %&gt;% \nleft_join(books) %&gt;%\nleft_join(tags) %&gt;% \nfilter(tag_name == \"classics\") %&gt;% \nfilter(ratings_count &gt; 20000, !duplicated(authors)) %&gt;%\n  select(original_title, average_rating, tag_name, ratings_count) %&gt;%\n  distinct() %&gt;% \n  arrange(ratings_count) %&gt;%\n  slice_tail(n = 50)\n\n\nset.seed(45)\nggplot(data = classics, \n       mapping = aes(label = original_title, size = average_rating)) +\n  geom_text_wordcloud() +\nscale_size(range = c(1, 6)) +\nlabs(title = \"What to read next ...\", \nsubtitle = \"... according to goodreads\") +\ntheme_bg()"
   },
   {
-    "objectID": "sessions/good_plots/visual_form.html#schriftart-1",
-    "href": "sessions/good_plots/visual_form.html#schriftart-1",
+    "objectID": "sessions/good_plots/visual_form.html#section-4",
+    "href": "sessions/good_plots/visual_form.html#section-4",
     "title": "Visual Form",
-    "section": "Schriftart",
-    "text": "Schriftart\n\n\nfont_add_google(\"Special Elite\", family = \"my textfont\")\nfont_add_google(\"Playfair Display\")\n\nshowtext_auto()\n\n\nset.seed(45)\nggplot(\n  data = classics,\n  mapping = aes(label = original_title, size = average_rating)\n) +\n  geom_text_wordcloud(family = \"my textfont\") +\n  scale_size(range = c(1, 6)) +\n  labs(\n    title = \"What to read next\",\n    subtitle = \"According to goodreads\"\n  ) +\n  theme_bg() +\n  theme(title = element_text(family = \"Playfair Display\", size = 20), )"
+    "section": "",
+    "text": "font_add_google(\"Special Elite\", family = \"my textfont\")\nfont_add_google(\"Playfair Display\")\n\nshowtext_auto()\n\n\nset.seed(45)\nggplot(data = classics, \n       mapping = aes(label = original_title, size = average_rating)) +\n  geom_text_wordcloud(family = \"my textfont\") +\nscale_size(range = c(1, 6)) +\nlabs(title = \"What to read next\", \nsubtitle = \"According to goodreads\") +\ntheme_bg() +\ntheme(title = element_text(family = \"Playfair Display\", size = 20), \n)"
+  },
+  {
+    "objectID": "sessions/good_plots/visual_form.html#section-5",
+    "href": "sessions/good_plots/visual_form.html#section-5",
+    "title": "Visual Form",
+    "section": "",
+    "text": "Suche dir eine Schriftart aus Google Fonts und baue sie in deinen Plot ein."
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#übung-1",
     "href": "sessions/good_plots/visual_form.html#übung-1",
     "title": "Visual Form",
-    "section": "🏋 Übung",
-    "text": "🏋 Übung\n\n\n\nSuche dir eine Schriftart aus Google Fonts und baue sie in deinen Plot ein.\n\n\n\n\n\nFoto von Natalia Y. auf Unsplash"
-  },
-  {
-    "objectID": "sessions/good_plots/visual_form.html#literatur",
-    "href": "sessions/good_plots/visual_form.html#literatur",
-    "title": "Visual Form",
-    "section": "Literatur",
-    "text": "Literatur\n\n\n\n\nTufte, E. R., & Graves-Morris, P. R. (1983). The visual display of quantitative information (Bd. 2). Graphics press Cheshire, CT."
+    "section": "Übung",
+    "text": "Übung\n\nWähle eine Grafik von … aus und erstelle einen Plan, wie du sie verbessern würdest.\n\n\n\n\n\nTufte, E. R., & Graves-Morris, P. R. (1983). The visual display of quantitative information (Bd. 2). Graphics press Cheshire, CT."
   },
   {
     "objectID": "sessions/more_ggplot/more_ggplot.html",
     "href": "sessions/more_ggplot/more_ggplot.html",
     "title": "Mehr ggplot2!",
     "section": "",
-    "text": "View slides in full screen"
+    "text": "View slides in full screen\n\nAdvanced: Achsen, theme, Titel, Coords, scales, speichern - Nicklas (+Janine)"
   },
   {
     "objectID": "sessions/science_plots/science_plots.html",
     "href": "sessions/science_plots/science_plots.html",
     "title": "Wissenschaftliche Grafiken (APA)",
     "section": "",
-    "text": "View slides in full screen"
+    "text": "View slides in full screen\n\nWissenschaftliche Grafiken (APA) - Janine"
   },
   {
     "objectID": "sessions/example_slides.html#normal-slide",
