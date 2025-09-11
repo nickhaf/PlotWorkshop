@@ -392,7 +392,7 @@ Foto von <a href="https://unsplash.com/de/@nasa?utm_content=creditCopyText&utm_m
 
 ## Resourcen
 
-**datatoviz**
+**data-to-viz**
 
 Hier finden Sie eine gute Übersicht über verschiedene Plot-Typen, in der auch die Implentierung in R dokumentiert ist:
 
@@ -1202,7 +1202,12 @@ Abbildung in Anlehnung an die typische Darstellung auf [gapminder](https://www.g
 
 ## Karten
 
-![](./images/ex_streets.png)
+![](./images/ex_streets.png){width="80%"}
+
+::: image-ref
+Berlin, eigene Darstellung basierend auf dem R-Paket [sf](https://cran.r-project.org/web/packages/sf/index.html)
+:::
+
 
 ## Spider-Chart
 
@@ -1267,7 +1272,7 @@ ggplotly(p_bubble) |>
 
 ## Logos ;-)
 
-![](../../logo/logo3d.png){width=50% .lightbox}
+![](../../logo/logo3d.png){width=50% .lightbox fig-align="center"}
 
 
 ## {background-image="images/habeck.jpeg" background-size="1225px"}
