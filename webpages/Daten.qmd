@@ -3,7 +3,7 @@ title: "Verwendete Datensätze"
 subtitle: "Herunterladen und Codebooks"
 ---
 
-![](./images/worldmap.jpg
+![](./images/worldmap.jpg)
 
 
 # Gapminder-Datensatz
@@ -16,6 +16,7 @@ Wir verwenden im Workshop Daten von [gapminder](https://www.gapminder.org/). Wir
 
 ```{r}
 #| eval: false
+
 gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
 ```
 
@@ -72,7 +73,7 @@ gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
 
 : {.striped}
 
-![](./images/characters.jpg)
+![](./images/central_perk.jpg)
 
 # Characters-Datensatz
 
