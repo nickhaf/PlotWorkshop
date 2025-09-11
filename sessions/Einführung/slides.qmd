@@ -78,7 +78,6 @@ knitr::kable(df, digits = 2)
 
 ggplot(datasaurus_dozen, aes(x = x, y = y)) +
   geom_point() +
-  theme_bg() +
   ylim(0, 100)
 ```
 :::
@@ -132,7 +131,6 @@ Wir haben Deskriptivstatistiken für jedes `dataset` berechnet. Mittelwerte, Var
 ggplot(datasaurus_dozen, aes(x = x, y = y)) +
   facet_wrap(~dataset, ncol = 5) +
   geom_point() +
-  theme_bg() +
   ylim(0, 100)
 
 ```
@@ -431,12 +429,6 @@ gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
 ```
 
 
-[Theme]{.highlight}
-
-```{r}
-source(here::here("src", "themes.R"))
-```
-
 
 ## Scatterplot
 ::: {.columns}
@@ -638,8 +630,7 @@ ggplot(data = gapminder_2023_bar,
   geom_bar(stat = "identity", size = 4, show.legend = F) +
   scale_fill_manual(values = c("red", "grey50")) +
   labs(title = "Gini-Index im europäischen Vergleich (Jahr: 2023)",
-       x = "", y = "Gini-Index") +
-  theme_bg()
+       x = "", y = "Gini-Index")
 
 ```
 
@@ -658,8 +649,7 @@ ggplot(data = gapminder_2023_bar,
   geom_bar(stat = "identity", size = 4, show.legend = F) +
   scale_fill_manual(values = c("red", "grey35")) +
   labs(title = "Gini-Index im europäischen Vergleich (Jahr: 2023)",
-       x = "", y = "Gini-Index") +
-  theme_bg()
+       x = "", y = "Gini-Index")
 ```
 
 
@@ -699,7 +689,7 @@ gapminder_line <- gapminder %>%
   drop_na(gini)
 
 p_line <- ggplot(data = gapminder_line, aes(x = time, y = gini)) +
-geom_line() 
+  geom_line() 
 
 p_line
 ```
@@ -730,7 +720,6 @@ p_line
 
 ggplot(data = gapminder_line, aes(x = time, y = gini)) +
 geom_line() +  
-theme_bg() +
 labs(title = "Ungleichheit in Deutschland On the Rise", 
      subtitle = "Gini-Koeffizient von 1900 bis 2024",
      x = "Jahr",
@@ -772,7 +761,6 @@ gapminder_line_g7$country_de <- factor(gapminder_line_g7$country_de,
 
 p_line_g7 <- ggplot(data = gapminder_line_g7, aes(x = time, y = gini)) +
   geom_line(aes(col = country_de)) +  
-  theme_bg() +
   labs(title = "Ungleichheit On the Rise", 
      subtitle = "Gini-Koeffizient in den G7-Staaten von 1900 bis 2024",
      x = "Jahr",
@@ -810,7 +798,6 @@ gapminder_line_g7$country_de <- factor(gapminder_line_g7$country_de,
 
 p_line_g7 <- ggplot(data = gapminder_line_g7, aes(x = time, y = gini)) +
   geom_line(aes(col = country_de)) +  
-  theme_bg() +
   labs(title = "Ungleichheit On the Rise", 
      subtitle = "Gini-Koeffizient in den G7-Staaten von 1900 bis 2024",
      x = "Jahr",
@@ -883,6 +870,9 @@ p_histo
 ```{r}
 #| label: example-histo-code
 #| eval: false
+
+gapminder_2023 <- gapminder %>% 
+  filter(time == 2023) 
 
 ggplot(data = gapminder_2023, aes(x = hapiscore_whr)) +
   geom_histogram() 
@@ -1022,7 +1012,6 @@ gapminder_2023 <- gapminder %>%
 
 ggplot(data = gapminder_2023, aes(x = world_4region, y = gini)) +
   geom_boxplot(aes(group = world_4region), staplewidth =.2) + 
-  theme_bg() +
   labs(x = "", y = "", 
        title = "Verteilung des Gini-Index", subtitle = "Jahr: 2023")
 ```
@@ -1038,7 +1027,6 @@ gapminder_2023 <- gapminder %>%
 
 ggplot(data = gapminder_2023, aes(x = world_4region, y = gini)) +
   geom_boxplot(aes(group = world_4region), staplewidth =.2) + 
-  theme_bg() +
   labs(x = "", y = "", 
        title = "Verteilung des Gini-Index", subtitle = "Jahr: 2023")
 ```
@@ -1068,7 +1056,6 @@ p_kombi <- ggplot(data = gapminder_2023, aes(x= world_4region, y = gini)) +
   geom_violin(aes(fill = world_4region, col = world_4region), alpha=.2, show.legend = FALSE) + 
   geom_jitter(height = 0, width=.2) + 
   geom_boxplot(fill=NA) +
-  theme_bg() +
   labs(x = "Weltregion", y = "", fill = "Weltregion",
        title = "Verteilung des Gini-Index", subtitle = "Jahr: 2023")
 p_kombi
@@ -1084,7 +1071,6 @@ p_kombi <- ggplot(data = gapminder_2023, aes(x= world_4region, y = gini)) +
   geom_violin(aes(fill = world_4region, col = world_4region), alpha=.2, show.legend = FALSE) + 
   geom_jitter(height = 0, width=.2) + 
   geom_boxplot(fill=NA) +
-  theme_bg() +
   labs(x = "Weltregion", y = "", fill = "Weltregion",
        title = "Verteilung des Gini-Index", subtitle = "Jahr: 2023")
 ```

@@ -52,14 +52,6 @@ gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
 ```
 
 
-[Theme]{.highlight}
-
-```{r}
-source(here::here("src", "themes.R"))
-```
-
-
-
 # Animierte Grafiken
 
 - Die Grundidee bei [animierten Grafiken]{.highlight} ist es, nicht einen einzigen Plot zu erstellen, sondern stattdessen sehr viele Einzelgrafiken, die dann als einzelne Bilder zu einem Film zusammengefügt werden. Das übernimmt `gganimate` für uns!    
@@ -115,15 +107,14 @@ gapminder_line_g7$country_de <- factor(gapminder_line_g7$country_de,
 
 p_line_g7 <- ggplot(data = gapminder_line_g7, aes(x = time, y = gini)) +
   geom_line(aes(col = country_de)) +  
-  theme_bg() +
   labs(title = "Ungleichheit On the Rise", 
      subtitle = "Gini-Koeffizient in den G7-Staaten von 1900 bis 2024",
      x = "Jahr",
      y = "Gini-Koeffizient", 
      col = "G7-Staat") +
   scale_color_discrete(labels = labels_g7) +
-  theme_solarized() # + 
-  #scale_colour_solarized() 
+  theme_solarized() 
+
 p_line_g7
 ```
 
@@ -153,15 +144,14 @@ gapminder_line_g7$country_de <- factor(gapminder_line_g7$country_de,
 
 p_line_g7 <- ggplot(data = gapminder_line_g7, aes(x = time, y = gini)) +
   geom_line(aes(col = country_de)) +  
-  theme_bg() +
   labs(title = "Ungleichheit On the Rise", 
      subtitle = "Gini-Koeffizient in den G7-Staaten von 1900 bis 2024",
      x = "Jahr",
      y = "Gini-Koeffizient", 
      col = "G7-Staat") +
   scale_color_discrete(labels = labels_g7) +
-  theme_solarized() # + 
-  #scale_colour_solarized() 
+  theme_solarized() 
+
 p_line_g7
 ```
 
@@ -664,7 +654,7 @@ p_bubble
 ## Interaktive Grafik mit `plotly`
 
 :::{.callout-note}
-Wendet man nun `ggplotly()` darauf an, entsteht diese interaktive Grafik. Das mouse-over-Textfeld funktioniert bereits, ließe sich aber auch noch feiner anpassen.
+Wendet man nun `ggplotly()` darauf an, entsteht diese interaktive Grafik. Das mouse-over-Textfeld funktioniert bereits, ließe sich aber auch noch feiner anpassen (Stichwort: `tooltip`).
 :::
 
 ::: {.panel-tabset}
@@ -721,6 +711,6 @@ saveWidget(p_plotly, file = "bubbles_wide.html")
 ![](./images/horst_gganimate.png){fig-align="center"}
 
 :::{.image-ref}
-Abbildung von [Allison Horst]{https://allisonhorst.com/r-packages-functions}
+Abbildung von [Allison Horst](https://allisonhorst.com/r-packages-functions)
 :::
 

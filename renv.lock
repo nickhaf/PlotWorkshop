@@ -982,14 +982,14 @@
     },
     "ggview": {
       "Package": "ggview",
-      "Version": "0.2.1",
+      "Version": "0.2.2",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
         "ggplot2",
         "rstudioapi"
       ],
-      "Hash": "320a6ce9f081b9f6f08174dbb133ef7d"
+      "Hash": "b2c6e64e24cfa5e66ac18d240fe62be3"
     },
     "ggwordcloud": {
       "Package": "ggwordcloud",
