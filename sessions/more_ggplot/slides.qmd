@@ -21,13 +21,17 @@ source(here::here("src", "functions.R"))
 
 ::: {.column width="50%"}
 
+::: {.exercise}
+
+Ladet die `characters`-Daten [hier]() herunter, und legt sie ebenfalls in eurem `data`-Ordner ab. 
+Lest sie dann in R ein: 
+
 ```{r}
-#| eval: false
-
-install.packages("tidytuesdayR")
-
-characters <- tidytuesdayR::tt_load("2022-08-16")
+characters <- readRDS(here::here("data", "characters.rds"))
 ```
+
+:::
+
 
 ![](./images/central_perk.jpg)
 
@@ -50,75 +54,29 @@ Foto von <a href="https://unsplash.com/de/@lgtts?utm_content=creditCopyText&utm_
 
 ## Aufbereitung {background-image="./images/yellow_umbrellas.jpg" background-size="1225px" background-repeat="repeat"}
 
+::: {.exercise}
+
 ```{r}
-#| eval: false
-library(tidyverse)
-
-## Mergen
-char_dat <- characters$characters
-psych_dat <- characters$psych_stats
-
-dat_merged <- char_dat %>%
-  rename(char_name = name) %>%
-  left_join(psych_dat)
-
 shows <- c("How I Met Your Mother", "Friends")
-questions <- c("doer/thinker", 
-                         "jock/nerd", 
-                         "cold/warm", 
-                         "main character/side character", 
-                         "crazy/sane", 
-                         "dispassionate/romantic", 
-                         "high IQ/low IQ", 
-                         "heroic/villainous", 
-                         "funny/humorless", 
-                         "chaotic/orderly")
+questions <- c(
+  "doer/thinker",
+  "jock/nerd",
+  "dispassionate/romantic",
+  "funny/humorless",
+  "chaotic/orderly"
+)
 
 ## Filtern von TV-Shows und Fragen
-dat_prepped <- dat_merged %>%
+char_prepped <- characters %>%
   filter(uni_name %in% shows) %>%
-  filter(question %in% questions) %>%
-  ## Rating always between 50 and 100. Use the personality trait for correct scaling
-  mutate(
-    top_trait = str_split_i(question, pattern = "/", i = 2),
-    bottom_trait = str_split_i(question, pattern = "/", i = 1)
-  ) %>%
-  mutate(avg_rating = case_when(
-    personality == top_trait ~ avg_rating,
-    personality == bottom_trait ~ 100 - avg_rating
-  ))
+  filter(question %in% questions)
 ```
 
-```{r}
-#| echo: false
-#| 
-shows <- c("How I Met Your Mother", "Friends")
-questions <- c("doer/thinker", 
-                         "jock/nerd", 
-                         "cold/warm", 
-                         "main character/side character", 
-                         "crazy/sane", 
-                         "dispassionate/romantic", 
-                         "high IQ/low IQ", 
-                         "heroic/villainous", 
-                         "funny/humorless", 
-                         "chaotic/orderly")
-dat_prepped <- readRDS(here::here("data", "dat_merged.rds")) %>%
-  filter(uni_name %in% shows) %>%
-  filter(question %in% questions) %>%
-  ## Rating always between 50 and 100. Use the personality trait for correct scaling
-  mutate(
-    top_trait = str_split_i(question, pattern = "/", i = 2),
-    bottom_trait = str_split_i(question, pattern = "/", i = 1)
-  ) %>%
-  mutate(avg_rating = case_when(
-    personality == top_trait ~ avg_rating,
-    personality == bottom_trait ~ 100 - avg_rating
-  ))
-```
+::: 
+
 
 :::{.callout-tip}
-Suche dir zwei eigene TV-Shows und eigene Fragen aus dem Datensatz aus, wenn du direkt mitmachen willst. 
+Suche dir zwei eigene TV-Shows und eigene Fragen aus dem Datensatz aus, wenn du direkt mitmachen willst.
 :::
 
 ::: image-ref
@@ -131,19 +89,30 @@ Foto von <a href="https://unsplash.com/de/@simplelovelyuseful?utm_content=credit
 Wir wollen jetzt Charactereigenschaften von Personen aus zwei TV-Shows vergleichen. 
 Ich nehme [Friends](https://www.netflix.com/de/title/70153404) und [How I Met Your Mother](https://www.disneyplus.com/de-de/browse/entity-bc68ac79-3ace-4427-9ec0-5ee6f314d194).
 
+::: {.panel-tabset}
 
+### 🏋 Übung
+
+::: {.exercise}
+
+Plotte die Ratings für die ausgewählten Charactere. Auf der x-Achse sollte die Frage zu sehen sein, auf der y-Achse das Rating. Styling machen wir später! Außerdem sollten der Name der Charactere (`char_name`) nache `color` und der Name der TV-Show (`uni_name`) nach `shape` unterscheidbar sein.
+
+:::
+
+### Lösung
 ```{r}
 #| output-location: column
 #| fig-height: 4
 
 ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  data = char_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
+) +
   geom_point()
 ```
 
+:::
 
-Let's build a plot!
 
 # Skalen und Legenden
 
@@ -185,11 +154,9 @@ Legenden und Achsen sind funktional äquivalent und werden in ggplot2 unter dem 
 #| output-location: column
 
 ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, 
-                y = avg_rating, 
-                colour = char_name, 
-                shape = uni_name)) +
+  data = char_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
+) +
   geom_point()
 ```
 
@@ -212,8 +179,9 @@ ggplot(
 #| eval: false
 
 ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  data = char_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
+) +
   geom_point() +
   scale_x_discrete() +
   scale_y_continuous() +
@@ -227,7 +195,6 @@ ggplot(
 ```{r}
 #| label: intern_scales
 #| echo: false
-
 ```
 
 :::
@@ -255,8 +222,9 @@ Das können wir uns zunutze machen, um manuell Scales zu definieren.
 #| output-location: column
 
 ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  data = char_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
+) +
   geom_point() +
   scale_x_discrete(name = "Eigenschaft") +
   scale_y_continuous(name = "Mittleres Rating") +
@@ -276,8 +244,9 @@ Wir sehen so aber, dass Achsen- und Legendentitel jeweils Skalennamen sind.
 #| output-location: column
 
 ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = avg_rating, shape = uni_name)) +
+  data = char_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = avg_rating, shape = uni_name)
+) +
   geom_point() +
   scale_y_log10(name = "Mittleren Rating log") +
   scale_colour_continuous()
@@ -302,15 +271,39 @@ Dadurch wird jedem Element in der color-variable genau die gewünschte Farbe zug
 
 
 char_colors <- c(
-    "Ted Mosby" = "blue", "Robin Scherbatsky" = "red", "Barney Stinson" = "green", "Lily Aldrin" = "purple", "Marshall Eriksen" = "orange", "Rachel Green" = "pink", "Monica Geller" = "brown", "Phoebe Buffay" = "yellow", "Joey Tribbiani" = "cyan")
+  "Ted Mosby" = "blue", "Robin Scherbatsky" = "red", "Barney Stinson" = "green", "Lily Aldrin" = "purple", "Marshall Eriksen" = "orange", "Rachel Green" = "pink", "Monica Geller" = "brown", "Phoebe Buffay" = "yellow", "Joey Tribbiani" = "cyan"
+)
+
+ggplot(
+  data = char_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
+) +
+  geom_point(size = 3) +
+  scale_colour_manual(values = char_colors)
+```
+
+## Anwendungsfälle: Farben/Formen
+
+Genaus funktioniert das für FormenÖ
+
+```{r}
+#| code-line-numbers: "5,12"
+#| output-location: column
+#| fig-height: 4
+
+
+char_colors <- c(
+  "Ted Mosby" = "blue", "Robin Scherbatsky" = "red", "Barney Stinson" = "green", "Lily Aldrin" = "purple", "Marshall Eriksen" = "orange", "Rachel Green" = "pink", "Monica Geller" = "brown", "Phoebe Buffay" = "yellow", "Joey Tribbiani" = "cyan"
+)
 char_shapes <- c("Friends" = 12, "How I Met Your Mother" = 18)
 
 ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  data = char_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
+) +
   geom_point(size = 3) +
-  scale_shape_manual(values = char_shapes) +
-  scale_colour_manual(values = char_colors)
+  scale_colour_manual(values = char_colors) +
+  scale_shape_manual(values = char_shapes)
 ```
 
 ## Exkurs: Eigene Skalen-Funktion
@@ -323,9 +316,10 @@ Wenn ich dieselben Skalen für mehrere Plots nutzen will, kann ich mir auch vorh
 
 set_char_scales <- function() {
   char_colors <- c(
-    "Ted Mosby" = "blue", "Robin Scherbatsky" = "red", "Barney Stinson" = "green", "Lily Aldrin" = "purple", "Marshall Eriksen" = "orange", "Rachel Green" = "pink", "Monica Geller" = "brown", "Phoebe Buffay" = "yellow", "Joey Tribbiani" = "cyan")
+    "Ted Mosby" = "blue", "Robin Scherbatsky" = "red", "Barney Stinson" = "green", "Lily Aldrin" = "purple", "Marshall Eriksen" = "orange", "Rachel Green" = "pink", "Monica Geller" = "brown", "Phoebe Buffay" = "yellow", "Joey Tribbiani" = "cyan"
+  )
   char_shapes <- c("Friends" = 12, "How I Met Your Mother" = 18)
-  
+
   ## Output
   list(
     scale_shape_manual(values = char_shapes),
@@ -357,7 +351,8 @@ Nutze die interne R-Hilfe, aber verzichte auf Internet/KI.
 
 ggplot(
   data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
+) +
   geom_point()
 ```
 
@@ -370,11 +365,14 @@ ggplot(
 
 ggplot(
   data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
+) +
   geom_point() +
-  scale_y_continuous(name = "Mittleres Rating", 
-                     breaks = seq(0, 100, by = 10), 
-                     limits = c(0, 100))
+  scale_y_continuous(
+    name = "Mittleres Rating",
+    breaks = seq(0, 100, by = 10),
+    limits = c(0, 100)
+  )
 ```
 
 :::
@@ -391,12 +389,15 @@ Intern passiert das über `guides()`. Wir können `guides()` also nutzen, um die
 
 ggplot(
   data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
+) +
   geom_point() +
-  guides(color = guide_legend(title = "Charaktere", 
-                              ncol = 3, ## Mehr Spalten in der Legende
-                              reverse = TRUE, ## Reihenfolge umkehren
-                              override.aes = list(size = 3))) ## Größe der Punkte in der Legende ändern
+  guides(color = guide_legend(
+    title = "Charaktere",
+    ncol = 3, ## Mehr Spalten in der Legende
+    reverse = TRUE, ## Reihenfolge umkehren
+    override.aes = list(size = 3)
+  )) ## Größe der Punkte in der Legende ändern
 ```
 
 ## Mögliche guide-Funktionen
@@ -426,7 +427,8 @@ Nutze die interne R-Hilfe, aber versuche, es ohne Internet/KI zu lösen:
 
 ggplot(
   data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
+) +
   geom_point()
 ```
 
@@ -441,7 +443,8 @@ ggplot(
 
 ggplot(
   data = dat_prepped,
-  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)) +
+  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)
+) +
   geom_point() +
   guides(x = guide_axis(angle = 90))
 ```
@@ -498,10 +501,11 @@ Anordnen von einer *einzelnen* Variable in einem Raster:
 
 ggplot(
   data = dat_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")), ## Subset wegen Platzproblemen
-  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)) +
+  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)
+) +
   geom_point() +
   guides(x = guide_axis(angle = 90)) +
-  facet_wrap(vars(char_name), nrow = 4) 
+  facet_wrap(vars(char_name), nrow = 4)
 ```
 
 ### Code
@@ -510,7 +514,6 @@ ggplot(
 #| label: wrap_1d
 #| eval: false
 #| code-line-numbers: "6"
-
 ```
 
 :::
@@ -532,7 +535,8 @@ ggplot(
 
 ggplot(
   data = dat_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")),
-  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)) +
+  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)
+) +
   geom_point() +
   guides(x = guide_axis(angle = 90)) +
   facet_grid(char_name ~ .)
@@ -571,7 +575,8 @@ Anordnen von *mehreren* Variable in einem Raster:
 
 ggplot(
   data = dat_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")),
-  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)) +
+  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)
+) +
   geom_point() +
   guides(x = guide_axis(angle = 90)) +
   facet_wrap(vars(char_name, uni_name), nrow = 4)
@@ -604,7 +609,8 @@ ggplot(
 
 ggplot(
   data = dat_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")),
-  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)) +
+  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)
+) +
   geom_point() +
   guides(x = guide_axis(angle = 90)) +
   facet_grid(char_name ~ uni_name)
@@ -654,7 +660,7 @@ ggplot(dat_prepped, aes(x = top_trait, y = avg_rating, colour = char_name, shape
   guides(x = guide_axis(angle = 90)) +
   facet_wrap(vars(char_name)) +
   guides(color = "none") +
-theme_bg()
+  theme_bg()
 ```
 
 ### Code
@@ -662,7 +668,6 @@ theme_bg()
 ```{r}
 #| eval: false
 #| label: facet_tips1
-
 ```
 
 :::
@@ -684,13 +689,13 @@ Plot Mittelwerte
 
 dat_mean <- dat_prepped %>%
   group_by(question) %>%
-  summarise(mean_rating = mean(avg_rating)) %>% 
-  ungroup() %>% 
+  summarise(mean_rating = mean(avg_rating)) %>%
+  ungroup() %>%
   right_join(dat_prepped)
 
 
 ggplot(dat_prepped, aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
-geom_segment(
+  geom_segment(
     aes(
       x = question, xend = question,
       y = 0, yend = avg_rating,
@@ -717,7 +722,6 @@ geom_segment(
 #| label: facet_tips2
 #| eval: false
 #| code-line-numbers: "1,2,3,4,5,7,8,9,10,11,12,13,14,15"
-
 ```
 
 :::
@@ -843,7 +847,6 @@ ggplot(
 ```{r}
 #| label: polar_coords
 #| eval: false
-
 ```
 
 :::
@@ -871,7 +874,6 @@ Foto von <a href="https://unsplash.com/de/@raulcachophoto?utm_content=creditCopy
 
 
 ```{r}
-
 dat_prepped_robin <- dat_prepped %>%
   filter(char_name == "Robin Scherbatsky")
 
@@ -1068,7 +1070,6 @@ ggplot(
 ```{r}
 #| label: ggtext_bold
 #| echo: false
-
 ```
 
 :::
@@ -1084,7 +1085,7 @@ ggplot(
 ```{r}
 #| code-line-numbers: "6"
 
-ggplot( 
+ggplot(
   data = dat_prepped %>% filter(char_name == "Lilly Aldrin"),
   mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
 ) +
@@ -1098,7 +1099,7 @@ ggplot(
 ```{r}
 #| code-line-numbers: "6"
 
-ggplot( 
+ggplot(
   data = dat_prepped %>% filter(char_name == "Lilly Aldrin"),
   mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
 ) +
@@ -1111,7 +1112,7 @@ ggplot(
 ```{r}
 #| code-line-numbers: "6"
 
-ggplot( 
+ggplot(
   data = dat_prepped %>% filter(char_name == "Lilly Aldrin"),
   mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
 ) +
@@ -1128,7 +1129,7 @@ ggplot(
 ```{r}
 #| code-line-numbers: "6"
 
-ggplot( 
+ggplot(
   data = dat_prepped %>% filter(char_name == "Ted Mosby"),
   mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
 ) +
@@ -1142,7 +1143,7 @@ ggplot(
 ```{r}
 #| code-line-numbers: "6"
 
-ggplot( 
+ggplot(
   data = dat_prepped %>% filter(char_name == "Ted Mosby"),
   mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
 ) +
@@ -1155,7 +1156,7 @@ ggplot(
 ```{r}
 #| code-line-numbers: "6"
 
-ggplot( 
+ggplot(
   data = dat_prepped %>% filter(char_name == "Ted Mosby"),
   mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
 ) +
@@ -1178,7 +1179,7 @@ Nudge um eine halbe Einheit nach rechts.
 ```{r}
 #| code-line-numbers: "6"
 
-ggplot( 
+ggplot(
   data = dat_prepped %>% filter(char_name == "Rachel Green"),
   mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
 ) +
@@ -1195,7 +1196,7 @@ Nudge um 5 Einheiten nach unten.
 ```{r}
 #| code-line-numbers: "6"
 
-ggplot( 
+ggplot(
   data = dat_prepped %>% filter(char_name == "Rachel Green"),
   mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
 ) +
@@ -1210,11 +1211,10 @@ ggplot(
 
 ## 
 ```{r}
+image_path <- here::here("sessions", "more_ggplot", "images", "character_images")
 
-image_path <- here::here("sessions", "more_ggplot","images", "character_images")
-
-dat_prepped <- dat_prepped %>% 
-mutate(image_link_local = paste0(image_path, "/", id, ".jpg"))
+dat_prepped <- dat_prepped %>%
+  mutate(image_link_local = paste0(image_path, "/", id, ".jpg"))
 ```
 
 ```{r}
@@ -1599,7 +1599,7 @@ dat_prepped3 <- dat_prepped3 %>%
 outer_points <- dat_prepped3 %>%
   mutate(
     max_rating = 100,
-    label_y = 90, 
+    label_y = 90,
     nudge_x = ifelse(uni_name == "Friends", -0.14, 0.14)
   )
 
@@ -1621,25 +1621,27 @@ ggplot(
   scale_color_manual(values = c("Friends" = "#9C8CD4", "How I Met Your Mother" = "#FFED29")) +
   theme_bw() +
   labs(title = "The one where Everyone meets") +
-    geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
-             nudge_x = -0.35,
-             nudge_y = 30,
-             size=0.12) +
   geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
-             nudge_x = -0.35,
-             nudge_y = 30,
-             size=0.1, inherit.aes = FALSE) +
+    nudge_x = -0.35,
+    nudge_y = 30,
+    size = 0.12
+  ) +
+  geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
+    nudge_x = -0.35,
+    nudge_y = 30,
+    size = 0.1, inherit.aes = FALSE
+  ) +
   theme(
     axis.ticks = element_blank(),
-    axis.text.x = element_text(color = "white", face = "bold"), 
-    axis.text.y = element_blank(), 
-    axis.title = element_blank(), 
-    panel.background = element_rect(fill = "#06402B"), 
-    plot.background = element_rect(fill = '#06402B'), 
-    title = element_text(color = "white", size = 16, face = "bold"), 
-    strip.background = element_rect(fill = "#06402B"), 
-    strip.text = element_text(color = "white", face = "bold"), 
-    legend.background = element_rect(fill = "#06402B"), 
+    axis.text.x = element_text(color = "white", face = "bold"),
+    axis.text.y = element_blank(),
+    axis.title = element_blank(),
+    panel.background = element_rect(fill = "#06402B"),
+    plot.background = element_rect(fill = "#06402B"),
+    title = element_text(color = "white", size = 16, face = "bold"),
+    strip.background = element_rect(fill = "#06402B"),
+    strip.text = element_text(color = "white", face = "bold"),
+    legend.background = element_rect(fill = "#06402B"),
     legend.text = element_text(color = "white")
   )
 ```
@@ -1656,13 +1658,13 @@ dat_joey_barney <- dat_prepped3 %>%
   filter(char_name %in% c("Barney Stinson", "Joey Tribbiani"))
 
 
-  outer_points_joey_barney <- dat_joey_barney %>%
+outer_points_joey_barney <- dat_joey_barney %>%
   mutate(
     max_rating = 100,
-    label_y = 95, 
+    label_y = 95,
     nudge_x = ifelse(uni_name == "Friends", -0.1, 0.1)
   )
-    
+
 p_left <- ggplot(
   dat_joey_barney,
   aes(x = top_trait, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)
@@ -1680,35 +1682,37 @@ p_left <- ggplot(
   scale_fill_manual(values = c("Friends" = "#36d1ab", "How I Met Your Mother" = "#FFED29")) +
   scale_color_manual(values = c("Friends" = "#9C8CD4", "How I Met Your Mother" = "#FFED29")) +
   theme_bw() +
-  labs(title = "The one where Everyone meets", 
-       subtitle = "Character ratings from 0 to 100") +
-    geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
-             nudge_x = -0.35,
-             nudge_y = 30,
-             size=0.12) +
+  labs(
+    title = "The one where Everyone meets",
+    subtitle = "Character ratings from 0 to 100"
+  ) +
   geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
-             nudge_x = -0.35,
-             nudge_y = 30,
-             size=0.1, inherit.aes = FALSE) +
+    nudge_x = -0.35,
+    nudge_y = 30,
+    size = 0.12
+  ) +
+  geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
+    nudge_x = -0.35,
+    nudge_y = 30,
+    size = 0.1, inherit.aes = FALSE
+  ) +
   theme(
     axis.ticks = element_blank(),
-    axis.text.x = element_text(color = "white", face = "bold"), 
-    axis.text.y = element_blank(), 
-    axis.title = element_blank(), 
-    panel.background = element_rect(fill = "#06402B"), 
-    plot.background = element_rect(fill = '#06402B'), 
-    title = element_text(color = "white", size = 16, face = "bold"), 
-    strip.background = element_rect(fill = "#06402B"), 
-    strip.text = element_text(color = "white", face = "bold"), 
-    legend.background = element_rect(fill = "#06402B"), 
+    axis.text.x = element_text(color = "white", face = "bold"),
+    axis.text.y = element_blank(),
+    axis.title = element_blank(),
+    panel.background = element_rect(fill = "#06402B"),
+    plot.background = element_rect(fill = "#06402B"),
+    title = element_text(color = "white", size = 16, face = "bold"),
+    strip.background = element_rect(fill = "#06402B"),
+    strip.text = element_text(color = "white", face = "bold"),
+    legend.background = element_rect(fill = "#06402B"),
     legend.position = "none"
-  ) 
-
+  )
 ```
 
 
 ```{r}
-
 outer_points2 <- outer_points %>%
   filter(!char_name %in% c("Barney Stinson", "Joey Tribbiani"))
 
@@ -1729,25 +1733,27 @@ p_right <- ggplot(
   scale_fill_manual(values = c("Friends" = "#36d1ab", "How I Met Your Mother" = "#FFED29")) +
   scale_color_manual(values = c("Friends" = "#9C8CD4", "How I Met Your Mother" = "#FFED29")) +
   theme_bw() +
-    geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
-             nudge_x = -0.35,
-             nudge_y = 30,
-             size=0.12) +
   geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
-             nudge_x = -0.35,
-             nudge_y = 30,
-             size=0.1, inherit.aes = FALSE) +
+    nudge_x = -0.35,
+    nudge_y = 30,
+    size = 0.12
+  ) +
+  geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
+    nudge_x = -0.35,
+    nudge_y = 30,
+    size = 0.1, inherit.aes = FALSE
+  ) +
   theme(
     axis.ticks = element_blank(),
-    axis.text.x = element_text(color = "white"), 
-    axis.text.y = element_blank(), 
-    axis.title = element_blank(), 
-    panel.background = element_rect(fill = "#053625"), 
-    plot.background = element_rect(fill = '#053625'), 
-    strip.background = element_rect(fill = "#053625"), 
-    strip.text = element_text(color = "white", face = "bold"), 
+    axis.text.x = element_text(color = "white"),
+    axis.text.y = element_blank(),
+    axis.title = element_blank(),
+    panel.background = element_rect(fill = "#053625"),
+    plot.background = element_rect(fill = "#053625"),
+    strip.background = element_rect(fill = "#053625"),
+    strip.text = element_text(color = "white", face = "bold"),
     legend.position = "none"
-  ) 
+  )
 ```
 
 
@@ -1755,7 +1761,6 @@ p_right <- ggplot(
 
 ## Patch together
 ```{r}
-
 p_left +
   p_right
 ```
@@ -1766,4 +1771,3 @@ Vektor vs Raster (Rolfs 7)
 
 
 Use characters data for demonstration or for exercise? 
-
