@@ -39,7 +39,7 @@ listing:
       description: 10:30 - 12:00
     - title: "gganimate & plotly"
       path: sessions/animate_plotly/animate_plotly.qmd
-      image: sessions/animate_plotly/horst_gganimate.png
+      image: sessions/animate_plotly/images/horst_gganimate.png
       description: 13:00 - 14:00
     - title: "Exportieren"
       path: sessions/science_plots/science_plots.qmd
