@@ -119,7 +119,8 @@ install.packages(c("tidyverse", "here", "GGally",
                    "patchwork", "ggthemes", "gganimate", 
                    "ggtext", "ggrepel", "ggridges", 
                    "ggwordcloud", "paletteer", "plotly",
-                   "readxl", "showtext", "htmlwidgets"))
+                   "readxl", "showtext", "htmlwidgets", 
+                   "ggview", "scales"))
 
 ```
 

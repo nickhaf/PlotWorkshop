@@ -1,4 +1,271 @@
 ---
-title: "Wissenschaftliche Grafiken (APA)"
-format: letterbox-revealjs
+title: "Exportieren"
+title-slide-attributes:
+  data-background-image: ./images/export.jpg
+  data-background-size: cover
+format: 
+  letterbox-revealjs:
+    code-block-height: 650px
 ---
+
+
+
+## Einführung
+
+::: {.columns}
+::: {.column width="50%"}
+
+Wir haben mittlerweile viele schöne Grafiken erzeugt - aber noch nicht gespeichert.
+
+Dafür gibt es mehrere Möglichkeiten, Hilfsmittel und Konventionen. 
+
+**Inhalte des Foliensatzes:** 
+
+- Speichern von Grafiken  
+- Plot-Vorschau mit `ggview`  
+- Zusammenfügen von Grafiken in einer einzelnen Datei
+- Konventionen und Richtlinien 
+
+
+::: 
+::: {.column width="50%"}
+![](./images/export_hoch.jpg){.image-right}
+:::
+:::
+
+
+::: {.image-ref}
+Foto von <a href="https://unsplash.com/de/@hooverpaul55?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Paul Teysen</a> auf <a href="https://unsplash.com/de/fotos/blau-rote-und-gelbe-intermodale-container-bukjsECgmeU?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+      
+::: 
+
+## Vorbereitung
+
+[Pakete]{.highlight}, die wir für die Beispiele im Foliensatz benötigen: 
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+library(ggview)
+library(scales)
+```
+
+[Datensatz]{.highlight}
+
+```{r}
+gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
+```
+
+
+
+## Speichern
+
+Grafiken können "manuell" über die RStudio-GUI oder (besser!, weil reproduzierbar) per Syntax gespeichert werden. 
+
+::: {.columns}
+::: {.column width="50%"}
+
+**Speichern über die RStudio-GUI**
+
+![](./images/gui.png)
+
+![](./images/gui2.png)
+
+
+:::
+
+::: {.column width="50%"}
+
+**Speichern per Syntax**
+
+- [`ggsave( “Pfad/Dateiname.endung” )`: 
+es wird das letzte mit `ggplot()` erzeugte Plot gespeichert]{.small}
+
+- [um genauer zu kontrollieren, welche Datei gespeichert werden soll, kann ein mit ggplot erzeugtes Objekt über das Argument `plot=` angesprochen werden: 
+`ggsave( "name.png" , plot = plot_name )`]{.small}
+
+- [optionale zusätzliche Argumente zur Spezifikation von Größe, Proportion und Auflösung:  ]{.small}  
+[  – `width`  ]{.small}    
+[  - `height`   ]{.small}    
+[  - `units` (Angabe von “px", "cm”, “in” oder “mm”)   ]{.small}   
+[  – `dpi`   ]{.small}   
+
+:::
+:::
+
+## Speichern per Syntax
+
+Erzeugen der Grafik und Ablegen als Objekt: 
+
+```{r}
+gapminder_line <- gapminder %>% 
+  filter(country %in% c("deu"), time >=1900, time <= 2024) %>% 
+  drop_na(gini)
+
+p_line <- ggplot(data = gapminder_line, aes(x = time, y = gini)) +
+  geom_line() 
+```
+
+Speichern mit Kontrolle von Größe, Proportion und Auflösung: 
+
+```{r}
+ggsave("lineplot.png", plot = p_line, 
+       width = 20, height = 10, units = "cm", dpi = 300)
+```
+
+Die Datei (im Querformat) wurde erzeugt:  
+
+![](./images/file.png){height="20%"}
+
+
+
+## Plot-Vorschau mit `ggview`
+
+Mit der Funktion `canvas()` aus dem Paket `ggview` erhalten Sie eine Vorschau über Größe, Proportion und Auflösung, [bevor]{.highlight} Sie die Datei abspeichern, öffnen, inspizieren, und dann wieder korrigieren. So sparen Sie sich sehr viel Zeit! 
+
+![](./images/ggview.gif)
+
+# Konventionen und Richtlinien 
+
+Viele Fachjournale und Fachgesellschaften haben Konventionen oder stellen Richtlinien zur Grafikerstellung bereit.
+
+Im Bereich der Psychologie sind die [Richtlinien zur Manuskripterstellung der Deutschen Gesellschaft für Psychologie (DGPs)]{.highlight} bzw. die [Publication Guidelines der American Psychological Association (APA)]{.highlight} relevant. 
+
+Diese geben teils sehr spezifische Anforderungen an Grafiken vor und werden im nachfolgenden exemplarisch vorgestellt. 
+
+## DGPs Richtlinien zur Manuskriptgestaltung (2019)
+
+::: {.columns}
+::: {.column width="70%"}
+
+- Die [Richtlinien zur Manuskriptgestaltung der Deutschen Gesellschaft für
+Psychologie (DGPs) (2019)](https://www.hogrefe.com/de/shop/richtlinien-zur-manuskriptgestaltung-89736.html) enthalten Regeln für die Erstellung von Manuskripten im Bereich der psychologischen Forschung, die oft auch in der Bildungsforschung herangezogen werden
+
+- Neben formalen Hinweisen in Bezug auf statistische und mathematische Textteile, Tabellen, Quellenangaben im Text, wörtliche Zitate und die Erstellung des Literaturverzeichnisses sind auch Hinweise zur Erstellung
+von Abbildungen enthalten:
+
+  - Kapitel 6, „Abbildungen“: „Jede Art nicht textlicher Darstellung von Material, die nicht in Tabellenform geschieht, wird unter dem Begriff Abbildung zusammengefasst. Abbildungen beinhalten u.a. Fotografien, Grafiken, Diagramme, Schemata.“
+  
+:::
+
+::: {.column width="30%"}
+![](./images/dgps.jpg)
+:::
+:::
+
+
+## DGPs Richtlinien zur Manuskriptgestaltung (2019)
+
+**6.1 Arten von Abbildungen**
+
+- Grafische Darstellungen statistischer Ergebnisse zeigen in der Regel [Vergleiche oder Verteilungen]{.highlight} und können z.B. absolute Werte, Prozentwerte oder Maßzahlen illustrieren. Die Linien sollten sauber und klar dargestellt sein, überflüssige Details sind zu vermeiden. Abszisse und Ordinate sollen von klein nach groß skaliert sein und vergleichbare Maßeinheiten enthalten
+
+- Details zu einzelnen Grafiktypen (Liniendiagramme, Balkendiagramme, Kreis- oder Kuchendiagramme, Streudiagramme, Fluss- und Strukturdiagramme), besonders relevant:
+
+  - Farben sollen im Falle eines einfarbigen Drucks (schwarz-weiß) noch [unterscheidbar]{.highlight} sein (Liniendiagramm: bspw. eine gestrichelte und eine durchgezogene Linie)
+  - [3D-Darstellungen]{.highlight} oder Schattierungen der Balken sind zu vermeiden  
+  - Bedeutung der Farben muss durch eine [Legende]{.highlight} erläutert werden
+  
+
+## DGPs Richtlinien zur Manuskriptgestaltung (2019)
+
+**6.2 Formale Gestaltung von Abbildungen im Manuskript**
+
+- Dateiformat: gängige [Dateiformate]{.highlight} wie .tif, .jpg, .bmp, .gif oder .eps (z.B. `ggsave("filename.jpg")`)   
+- Für Abszisse und Ordinate sollten mitteldicke Linien verwendet werden (`geom_line(linewidth=.8)`)   
+- Passende, unmissverständliche [Skalierung der Achsen]{.highlight}; bei Ratingskalen:   
+  - Abszisse geht vom kleinstmöglichen zum größtmöglichen Wert (`xlim=c(min, max)`)   
+  - Skalierung der Ordinate wird an den Wertebereich der abhängigen Variablen angepasst    
+- Bei der Darstellung von Mittelwerten sollten [Fehlerbalken]{.highlight} für Standardabweichungen, Standardfehler oder Konfidenzintervalle eingefügt werden (`geom_errorbar()`)    
+- [Achsen]{.highlight} sind stets zu beschriften: Abszisse (unterhalb), Ordinate (links von der Ordinate, 90 Grad gedreht) (`labs(x="...", y="...")`)
+
+
+## DGPs Richtlinien zur Manuskriptgestaltung (2019)
+
+**6.2 Formale Gestaltung von Abbildungen im Manuskript** (Fortsetzung)
+
+:::{.small}
+- Die [Größe der Beschriftung, Zeichen, Symbole und der Legende]{.highlight} muss mindestens einer 8-Punkt-Schrift entsprechen, sie soll andererseits nicht größer als eine 14-Punkt-Schrift sein. Die Schriftgrößen sollten innerhalb einer Abbildung um nicht mehr als 4 Punkte variieren. Als Faustregel gilt, dass die in einer grafischen Darstellung verwendeten Symbole die Größe eines durchschnittlichen kleinen Buchstabens haben sollten. Als bevorzugter Schrifttyp für Abbildungen sind [serifenlose Schriften]{.highlight} einzusetzen, z.B. die Schriftarten Arial oder Calibri
+
+- Die Verlaufskurven sollten durch einfache geometrische Formen an den Messpunkten unterscheidbar sein. [Offene und gefüllte Kreise und Dreiecke]{.highlight} sind gut unterscheidbar; weniger gut unterscheidbar sind Kombinationen aus Quadraten und Kreisen oder Quadraten und Rauten. Ein Diagramm sollte nicht mehr als vier Verlaufskurven enthalten; die Abstände zwischen den Verlaufskurven sollten auch nach der Reproduktion (Verkleinerung) noch gut erkennbar sein.
+
+- Bei der Variation der Größe der Elemente ist auch deren [Wichtigkeit]{.highlight} zu berücksichtigen, d.h. wichtigere Elemente sollten hervorstechen. Zum Beispiel sollten Verlaufskurven oder Balkendiagramme dicker sein als die Achsenbezeichnungen und diese wieder dicker als die Achsen selbe 
+:::
+
+## DGPs Richtlinien zur Manuskriptgestaltung (2019)
+
+**6.4 Titel und Legenden zur Abbildung**
+
+- Die Abbildung soll jedenfalls [für sich allein verständlich]{.highlight} sein, ohne dass die Leserinnen und Leser auf den Text des Artikels angewiesen sind
+
+- [Legenden]{.highlight} stellen einen Bestandteil der Abbildung dar, sie erklären die in der Abbildung verwendeten Zeichen und Symbole. Sie werden innerhalb der Abbildung angebracht und die Art ihrer Schriftgestaltung soll daher der der übrigen Abbildung entsprechen.
+
+## DGPs Richtlinien zur Manuskriptgestaltung (2019)
+
+**6.5 Herstellung der Abbildungen für das Druckverfahren**
+
+- Bei der Erstellung einer Abbildung ist darauf zu achten, dass sie in ihren [Größenverhältnissen in eine Spalte der Zeitschrift passt]{.highlight}, in der sie abgedruckt werden soll. Eine Ausnahme von dieser Regel sollte nur gemacht werden, wenn die Darstellung feinster Details oder zahlreicher Einzelheiten die Nutzung der vollen Breite der Zeitschriftenseite erforderlich macht.
+
+- [Teilabbildungen]{.highlight} sind mit Großbuchstaben zu kennzeichnen (bspw. „A“ und „B“) • Nicht mehr als zwei bis drei verschiedene Formen der Schattierung oder Musterung verwenden 
+
+- Die [Druckqualität]{.highlight} sollte zumindest 300 dpi betragen (600 bis 1200 dpi werden empfohlen) 
+
+- Bei der Reproduktion sind grundsätzlich [reine Schwarz-Weiß-Grafiken]{.highlight}, Halbtongrafiken (mit Grauschattierungen) und Farbabbildungen zu unterscheiden. Farbabbildungen erfordern einen speziellen Druckvorgang und sind deshalb in der Reproduktion teurer
+
+## DGPs Richtlinien zur Manuskriptgestaltung (2019)
+
+**6.7 Checkliste für die Erstellung von Abbildungen (Auszug)**
+
+:::{.small}
+- Ist die Abbildung notwendig und sinnvoll?  
+- Ist die Abbildung einfach, klar und frei von unwesentlichen Details?  
+- Wurden alle Werte korrekt eingezeichnet?  
+- Ist die Skaleneinteilung korrekt proportioniert?  
+- Ist die Beschriftung hinsichtlich ihrer Größe, Farbe und ihrem Verhältnis zum Rest der Abbildung einwandfrei?  
+- Sind gleiche Abbildungen oder Abbildungen gleicher Wichtigkeit alle mit der gleichen Skaleneinteilung versehen?  
+- Sind alle Ausdrücke richtig geschrieben?   
+- Werden alle verwendeten Abkürzungen und Symbole im Titel oder in der Legende zu der Abbildung erläutert? Sind die in der Abbildung verwendeten Symbole, Abkürzungen und Terminologien konsistent zu denen in der Beschriftung zu dieser Abbildung, zu anderen Abbildungen und zum Text?  
+- Sind digitale Dateien von Abbildungen in entsprechenden Dateiformaten abgespeichert (z.B. .tif, ."pg, .bmp, .gif oder .eps* oder wurden als Originaldatei des Grafikprogramms, in der die Abbildung erstellt wurde gespeichert?  
+:::
+
+## APA Publication Manual
+
+::: {.columns}
+::: {.column width="65%"}
+
+- Das [Publication Manual of the American Psychological Association (APA)](https://apastyle.apa.org/products/publication-manual-7th-edition) liegt in der 7. Auflage vor (2020)
+
+- Die Hinweise zur Manuskripterstellung bilden den Standard, den Verlage an
+Manuskripte in unserem Bereich stellen – sind denen der DGPs jedoch sehr ähnlich
+
+- Hinweise zur Erstellung von Abbildungen in der 6. Auflage (2010) sind in Kapitel 5 enthalten: „Displaying Results“ 
+
+- Potentiell ebenfalls relevant:
+
+  - [4.37 Commas in Numbers: Use Commas between groups of three digits in most figures of 1,000 or more:]{.small}   
+
+```{r}
+#| eval: false
+
+library(scales)
+ggplot(data) +
+  ... +
+  scale_x_continuous(labels = scales::comma) 
+
+```
+
+
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="30%"}
+![](./images/apa.gif)
+:::
+:::
+
+
+
+

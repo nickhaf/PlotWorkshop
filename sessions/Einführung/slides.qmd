@@ -431,12 +431,6 @@ gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
 ```
 
 
-[Theme]{.highlight}
-
-```{r}
-source(here::here("src", "themes.R"))
-```
-
 
 ## Scatterplot
 ::: {.columns}
@@ -699,7 +693,7 @@ gapminder_line <- gapminder %>%
   drop_na(gini)
 
 p_line <- ggplot(data = gapminder_line, aes(x = time, y = gini)) +
-geom_line() 
+  geom_line() 
 
 p_line
 ```
@@ -883,6 +877,9 @@ p_histo
 ```{r}
 #| label: example-histo-code
 #| eval: false
+
+gapminder_2023 <- gapminder %>% 
+  filter(time == 2023) 
 
 ggplot(data = gapminder_2023, aes(x = hapiscore_whr)) +
   geom_histogram() 
