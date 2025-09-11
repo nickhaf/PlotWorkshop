@@ -112,24 +112,16 @@ Darstellung von David McCandless in [Knowledge is Beautiful (2014)](https://info
 ::: {.columns}
 ::: {.column width="50%"}
 
-::: {.exercise}
-
-Gruppenarbeit: Diskutieren Sie eine Grafik!
-
-1. Führe untenstehenden Code aus, um Dich einer der fünf Gruppen zuzuordnen. 
-1. Lade die Grafik mit Deiner Gruppennummer von [Github](https://github.com/nickhaf/PlotWorkshop/tree/main/sessions/good_plots/bad_plots) herunter.   
-1. Gehe in den entsprechenden Breakout-Room und diskutiert in der Gruppe, was bei eurer Grafik schiefgelaufen ist. 
-1. Stellt den anderen Gruppen kurz eure Ergebnisse vor.
-
-:::
-
 \
 
-```{r}
-#| eval: false
+::: {.exercise}
+**Gruppenarbeit**
 
-paste("Ihre Gruppe:", sample(1:5, 1))
-```
+1. Trefft euch wieder in einem Breakout-Raum mit den Ordnungsnummern 1-4.
+1. Ladet die Grafik mit eurer Ordnungsnummer von [Github](https://github.com/nickhaf/PlotWorkshop/tree/main/sessions/good_plots/bad_plots) herunter.   
+1. Diskutiert in der Gruppe, was bei eurer Grafik schiefgelaufen ist. 
+1. Stellt den anderen Gruppen kurz eure Ergebnisse vor.
+:::
 
 
 ::: 
