@@ -51,6 +51,9 @@ characters <- readRDS(here::here("data", "characters.rds"))
 
 :::
 ::: {.column width="50%"}
+\
+\
+\
 
 - Psychometrische, crowd-sourced ratings für TV-Charaktere. 
 - Zwei (mehr oder weniger) gegensätzliche Eigenschaften, werden auf einer Skala von 0 - 100 bewertet. 
@@ -89,19 +92,16 @@ char_prepped <- characters %>%
 ::: 
 
 
-:::{.callout-tip}
-Suche dir zwei eigene TV-Shows und eigene Fragen aus dem Datensatz aus, wenn du direkt mitmachen willst.
-:::
+
 
 ::: image-ref
 Foto von <a href="https://unsplash.com/de/@simplelovelyuseful?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Catrin Johnson</a> auf <a href="https://unsplash.com/de/fotos/gelber-regenschirm-ym96FAhQ8o4?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
 :::
 
 
-## Ziel
+## Wiederholung
 
-Wir wollen jetzt Charactereigenschaften von Personen aus zwei TV-Shows vergleichen. 
-Ich nehme [Friends](https://www.netflix.com/de/title/70153404) und [How I Met Your Mother](https://www.disneyplus.com/de-de/browse/entity-bc68ac79-3ace-4427-9ec0-5ee6f314d194).
+Wir schauen uns jetzt Persönlichkeitseigenschaften von Charakteren aus [Friend](https://www.netflix.com/de/title/70153404) und [How I Met Your Mother](https://www.disneyplus.com/de-de/browse/entity-bc68ac79-3ace-4427-9ec0-5ee6f314d194) an.
 
 ::: {.panel-tabset}
 
@@ -109,7 +109,7 @@ Ich nehme [Friends](https://www.netflix.com/de/title/70153404) und [How I Met Yo
 
 ::: {.exercise}
 
-Plotte die Ratings für die ausgewählten Charactere. Auf der x-Achse sollte die Frage zu sehen sein, auf der y-Achse das Rating. Styling machen wir später! Außerdem sollten der Name der Charactere (`char_name`) nache `color` und der Name der TV-Show (`uni_name`) nach `shape` unterscheidbar sein.
+Plotte die Ratings für die ausgewählten Charactere. Auf der x-Achse sollte die Frage `top_trait` zu sehen sein, auf der y-Achse das Rating. Styling machen wir später! Außerdem sollten der Name der Charactere (`char_name`) nache `color` und der Name der TV-Show (`uni_name`) nach `shape` unterscheidbar sein.
 
 :::
 
@@ -188,7 +188,7 @@ ggplot(
 ### Code
 
 ```{r}
-#| code-line-numbers: "5,6,7,8"
+#| code-line-numbers: "6,7,8,9"
 #| label: intern_scales
 #| eval: false
 
@@ -221,7 +221,7 @@ ggplot(
 \
 
 - `top_trait` ist eine diskrete Variable: `scale_x_discrete()`
-- `avg_rating` ist kontinuierlich: `scale_x_continuous()`
+- `avg_rating` ist kontinuierlich: `scale_y_continuous()`
 - `char_name` und `uni_name` sind diskret: `scale_colour_discrete()` und `scale_shape_discrete()`
 
 Das können wir uns zunutze machen, um manuell Scales zu definieren. 
@@ -254,7 +254,7 @@ Wir sehen so aber, dass Achsen- und Legendentitel jeweils Skalennamen sind.
 ## Skalentypen
 
 ```{r}
-#| code-line-numbers: "3,5,6"
+#| code-line-numbers: "3,6,7"
 #| output-location: column
 
 ggplot(
@@ -276,10 +276,10 @@ Eine Übersicht über die möglichen Skalentypen findet sich [hier](https://ggpl
 
 Oft macht es Sinn, die Farben direkt über einen `named vector` zu definieren. 
 Dadurch bekommen alle Plots, die diese Variablen nutzen, auch sicher die gleichen Aesthetics zugeordnet. 
-Dadurch wird jedem Element in der color-variable genau die gewünschte Farbe zugeordnet:
+Dadurch wird jedem Element in der color-Variable genau die gewünschte Farbe zugeordnet:
 
 ```{r}
-#| code-line-numbers: "1,2,3,9,10"
+#| code-line-numbers: "1,2,3,10"
 #| output-location: column
 #| fig-height: 4
 
@@ -301,7 +301,7 @@ ggplot(
 Genauso funktioniert das für Formen:
 
 ```{r}
-#| code-line-numbers: "5,12"
+#| code-line-numbers: "4,12"
 #| output-location: column
 #| fig-height: 4
 
@@ -367,8 +367,8 @@ Intern passiert das über `guides()`. Wir können `guides()` also nutzen, um die
 
 
 ```{r}
-#| code-line-numbers: "5,6,7,8"
-#| fig-width: 14
+#| code-line-numbers: "5,6,7,8,9,10,11"
+#| output-location: column
 
 ggplot(
   data = char_prepped,
@@ -377,7 +377,7 @@ ggplot(
   geom_point() +
   guides(color = guide_legend(
     title = "Charaktere",
-    ncol = 3, ## Mehr Spalten in der Legende
+    ncol = 2, ## Mehr Spalten in der Legende
     reverse = TRUE, ## Reihenfolge umkehren
     override.aes = list(size = 3)
   )) ## Größe der Punkte in der Legende ändern
@@ -421,8 +421,6 @@ ggplot(
 
 ```{r}
 #| code-line-numbers: "6"
-#| plot-height: 8
-#| plot-width: 7
 
 ggplot(
   data = char_prepped,
@@ -443,12 +441,40 @@ Das sieht schon besser aus, aber wir haben ein [Overplotting-Problem]()!
 
 
 
-# Text
+# Text-Geoms 
 
-## Labeling
+::: {.columns}
+::: {.column width="50%"}
+
+::: {.image-ref2}
+Foto von <a href="https://unsplash.com/de/@foxfox?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Natalia Y.</a> auf <a href="https://unsplash.com/de/fotos/grauer-schmuck-mit-verschiedenen-buchstaben-in-braunen-organizer-boxen-aus-holz-Oxl_KBNqxGA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+
+:::
+::: {.column width="50%"}
+![](./images/font.jpg){.image-right}
+:::
+:::
+
+
+
+## 
+
+::: {.columns}
+
+
+::: {.column width="50%"}
+
+`geom_label{}`
+
+::: {.panel-tabset}
+
+### Plot
 
 ```{r}
-#| output-location: column
+#| label: geom_text
+#| echo: false
+#| code-line-numbers: "5"
 
 ggplot(
   data = char_prepped,
@@ -457,11 +483,28 @@ ggplot(
   geom_label(aes(label = char_name))
 ```
 
+### Code
 
-## `ggrepel`
+```{r}
+#| label: geom_text
+#| eval: false
+#| code-line-numbers: "5"
+
+```
+:::
+:::
+::: {.column width="50%"}
+
+`geom_text()` (mit `ggrepel`)
+
+::: {.panel-tabset}
+### Plot
 
 ```{r}
 #| output-location: column
+#| label: ggrepel
+#| echo: false
+#| code-line-numbers: "7"
 
 library(ggrepel)
 
@@ -473,28 +516,18 @@ ggplot(
   geom_text_repel(aes(label = char_name))
 ```
 
-
-## Labeling von einzelnen Punkten
-
-Erzeugen einer eigenen Spalte, die nur auf den gewünschten Punkten den Text enthält.
+### Code
 
 ```{r}
-#| output-location: column
+#| label: ggrepel
+#| eval: false
+#| code-line-numbers: "7"
 
-char_prepped_2 <- char_prepped %>%
-  mutate(char_name_label = case_when(
-    char_name == "Monica Geller" & top_trait == "orderly" ~ "Monica ist sehr ordentlich",
-    TRUE ~ NA
-  ))
-
-ggplot(
-  data = char_prepped_2,
-  mapping = aes(x = top_trait, y = avg_rating, shape = uni_name, label = char_name_label, color = char_name)
-) +
-  geom_point() +
-  geom_text_repel(nudge_x = 0.75, nudge_y = 1)
 ```
 
+:::
+:::
+:::
 
 ## ggtext
 
@@ -531,14 +564,15 @@ ggplot(
 ```{r}
 #| label: ggtext_bold
 #| eval: false
-#| code-line-numbers: "1,2,9,10,11"
+#| code-line-numbers: "1,2,11,12,13"
+#| fig.width: 12
 
-char_prepped_2 <- char_prepped %>%
+char_prepped_3 <- char_prepped %>%
   mutate(char_name_bold = paste0("**", char_name, "**"))
 
 
 ggplot(
-  data = char_prepped_2,
+  data = char_prepped_3,
   mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)
 ) +
   geom_point() +
@@ -553,6 +587,8 @@ ggplot(
 ```{r}
 #| label: ggtext_bold
 #| echo: false
+#| fig.width: 12
+
 ```
 
 :::
@@ -569,7 +605,7 @@ ggplot(
 #| code-line-numbers: "6"
 
 ggplot(
-  data = char_prepped %>% filter(char_name == "Lilly Aldrin"),
+  data = char_prepped %>% filter(char_name == "Lily Aldrin"),
   mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name)
 ) +
   geom_point() +
@@ -583,7 +619,7 @@ ggplot(
 #| code-line-numbers: "6"
 
 ggplot(
-  data = char_prepped %>% filter(char_name == "Lilly Aldrin"),
+  data = char_prepped %>% filter(char_name == "Lily Aldrin"),
   mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name)
 ) +
   geom_point() +
@@ -596,7 +632,7 @@ ggplot(
 #| code-line-numbers: "6"
 
 ggplot(
-  data = char_prepped %>% filter(char_name == "Lilly Aldrin"),
+  data = char_prepped %>% filter(char_name == "Lily Aldrin"),
   mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name)
 ) +
   geom_point() +
@@ -650,13 +686,13 @@ ggplot(
 :::
 
 
-## nudge
+## Nudging
 
 Nudging erfolgt auf der gleichen Skala wie die Werte. 
 
 ::: {.columns}
 
-::: {.column width="50%"}}
+::: {.column width="50%"}
 
 Nudge um eine halbe Einheit nach rechts. 
 ```{r}
@@ -672,7 +708,7 @@ ggplot(
 
 :::
 
-::: {.column width="50%"}}
+::: {.column width="50%"}
 
 Nudge um 5 Einheiten nach unten.
 
@@ -802,6 +838,8 @@ ggplot(
 Versuche nun, den Plot über zwei Dimensionen (`char_name` und `uni_name`) zu facetten, entweder mit `facet_wrap()` oder `facet_grid()`.
 
 ```{r}
+#| output-location: column
+
 ggplot(
   data = char_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")),
   mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)
@@ -816,7 +854,7 @@ ggplot(
 
 ::: {.panel-tabset}
 
-#### `facet_wrap()`
+### `facet_wrap()`
 
 ```{r}
 #| code-line-numbers: "7"
@@ -835,6 +873,7 @@ ggplot(
 
 ```{r}
 #| output-location: column
+#| code-line-numbers: "7"
 
 ggplot(
   data = char_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")),
@@ -847,7 +886,7 @@ ggplot(
 
 :::
 
-:::
+::: 
 
 ## Facetting - Mehrere Variablen
 Anordnen von *mehreren* Variable in einem Raster:
@@ -1057,7 +1096,7 @@ ggplot(char_prepped, aes(x = top_trait, y = avg_rating, colour = char_name, shap
 ### Lösung
 ```{r}
 #| output-location: column
-#| code-line-numbers: "6,18,19,20,21,22,23,24,25,26,27,28"
+#| code-line-numbers: "20,21,22,23,24,25,26,27,28"
 
 
 dat_mean <- char_prepped %>%
@@ -1112,7 +1151,7 @@ ggplot(
 ) +
   geom_point() +
   facet_wrap(vars(uni_name), nrow = 4) +
-  theme_bg()
+  theme_bw()
 ```
 
 
@@ -1147,7 +1186,7 @@ Eine Übersicht über Standard-Themes findet ihr [hier](https://ggplot2.tidyvers
 
 ```{r}
 #| output-location: column
-#| code-line-numbers: "7"
+#| code-line-numbers: "12"
 
 ggplot(
   data = char_prepped,
@@ -1173,6 +1212,10 @@ ggplot(
 
 ::: {.exercise}
 
+::: {.columns}
+
+::: {.column width = "50%"}
+
 Style nun unseren Lollipop-Plot mit einem vorgefertigtem Theme deiner Wahl.
 
 Passe danach folgendes an: 
@@ -1182,7 +1225,13 @@ Passe danach folgendes an:
 - Versuche, die x-Achsen-Label innerhalb von `themes()` zu drehen. Wir hatten das vorhin schon einmal in [`guides()`](#turn_axis) gemacht. 
 - Optional: Ändere die [Schriftart](https://nickhaf.github.io/PlotWorkshop/sessions/good_plots/visual_form.html#/schriftart-1) mit `showtext`.
 
+:::
+::: {.column width ="50%"}
+
 ```{r}
+#| eval: false
+
+
 dat_mean <- char_prepped %>%
   group_by(top_trait) %>%
   summarise(mean_rating = mean(avg_rating)) %>%
@@ -1218,12 +1267,17 @@ ggplot(char_prepped, aes(x = top_trait, y = avg_rating, colour = char_name, shap
 ```
 
 ::: 
+:::
+:::
 
 ### Lösung
 
 ```{r}
 #| output-location: column
-#| code-line-numbers: ""
+#| fig.showtext: TRUE
+
+library(showtext)
+font_add_google("Playfair Display")
 
 
 dat_mean <- char_prepped %>%
@@ -1261,7 +1315,7 @@ ggplot(char_prepped, aes(x = top_trait, y = avg_rating, colour = char_name, shap
   theme(
     legend.background = element_rect(fill = "#06402B"),
     plot.background = element_rect(fill = "#06402B"),
-    text = element_text(color = "white"),
+    text = element_text(color = "white", family = "Playfair Display"),
     axis.text = element_text(color = "white"),
     axis.text.x = element_text(angle = 90)
   )
@@ -1329,7 +1383,7 @@ Zwei Aufgaben:
 #| label: polar_coords
 #| echo: false
 #| fig-width: 12
-#| fig-height: 10
+#| fig-height: 8
 
 ggplot(
   data = char_prepped,
@@ -1374,6 +1428,7 @@ Foto von <a href="https://unsplash.com/de/@raulcachophoto?utm_content=creditCopy
 
 ## Patchwork
 
+Ich erstelle mir hier zwei gesonderte Plots, einmal nur mit Robin Scherbatsky und einmal mit allen anderen Charakteren. 
 
 ```{r}
 char_prepped_robin <- char_prepped %>%
@@ -1424,7 +1479,7 @@ p_rest <- ggplot(
 [Patchwork](https://patchwork.data-imaginist.com/) erlaubt es, Plots zu kombinieren.
 
 ```{r}
-#| fig-width: 12
+#| fig-width: 14
 
 library(patchwork)
 
@@ -1437,7 +1492,7 @@ p_robin +
 ## Patchwork: Stylen
 
 ```{r}
-#| fig-width: 12
+#| fig-width: 14
 
 library(patchwork)
 
@@ -1459,6 +1514,7 @@ Vorlage von  [Tanya Shapiro](https://github.com/tashapiro/tanya-data-viz/blob/ma
 
 ```{r}
 #| echo: false
+#| fig.width: 12
 
 coord_radar <- function(theta = "x", start = 0, direction = 1) {
   theta <- match.arg(theta, c("x", "y"))
@@ -1560,8 +1616,8 @@ char_prepped3 <- arrange(char_prepped2, top_trait)
 
 char_prepped3 <- char_prepped3 %>%
   mutate(
-    image_x = ifelse(uni_name == "Friends", -1, 1),
-    image_x_coord = ifelse(uni_name == "Friends", "low IQ", "side character")
+    image_x = ifelse(uni_name == "Friends", -1, 0.25),
+    image_x_coord = ifelse(uni_name == "Friends", "humorless", "romantic")
   ) %>%
   arrange(top_trait)
 
@@ -1684,6 +1740,11 @@ p_left +
 
 ### 🏋 Übung
 
+::: {.exercise}
+
+:::  {.columns}
+::: {.column width="50%"}
+
 Wandle unseren Lollipop-Plot in einen Barplot um. Du brauchst dafür `geom_col()`. Beachte dabei folgendes: 
 
 
@@ -1696,9 +1757,13 @@ Wandle unseren Lollipop-Plot in einen Barplot um. Du brauchst dafür `geom_col()
 Achtung, der Plot sieht noch etwas komisch aus, weil er nicht facettiert ist. 
 :::
 
-```{r}
-#| output-location: column
+:::
 
+::: (.column width="50%")
+
+
+```{r}
+#| eval: false
 
 ggplot(char_prepped, aes(x = top_trait, y = avg_rating, colour = char_name)) +
   geom_point() +
@@ -1713,7 +1778,10 @@ ggplot(char_prepped, aes(x = top_trait, y = avg_rating, colour = char_name)) +
     alpha = 0.5
   )
 ```
+:::
 
+:::
+:::
 
 ### Lösung
 
