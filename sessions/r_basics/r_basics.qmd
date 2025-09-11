@@ -10,5 +10,3 @@ author:
 ```
 
 [View slides in full screen](slides.html)
-
-- tidyverse, Factors, long format - Nicklas

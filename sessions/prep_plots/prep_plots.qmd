@@ -14,6 +14,3 @@ author:
 ```
 
 [View slides in full screen](slides.html)
-
-# Übung
-- Grafiken Druckreif machen und vorstellen (verschiedene Ziele/Zielgruppen, Alle die den gleichen Plot-Typ haben gruppieren)
