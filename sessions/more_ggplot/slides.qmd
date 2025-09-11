@@ -1382,8 +1382,8 @@ Zwei Aufgaben:
 ```{r}
 #| label: polar_coords
 #| echo: false
-#| fig-width: 12
-#| fig-height: 8
+#| fig-width: 10
+#| fig-height: 6
 
 ggplot(
   data = char_prepped,
@@ -1410,12 +1410,6 @@ ggplot(
 #| eval: false
 ```
 
-:::
-
-::: {.callout-warning}
-Vorsicht damit! In vielen Fällen ist ein lineares Koordinatensystem einfacher zu interpretieren. 
-Winkel sind oft nicht so einfach zu interpretieren. 
-Nichtsdestotrotz kann es gerade zur Gestaltung nett sein!
 :::
 
 
@@ -1514,7 +1508,8 @@ Vorlage von  [Tanya Shapiro](https://github.com/tashapiro/tanya-data-viz/blob/ma
 
 ```{r}
 #| echo: false
-#| fig.width: 12
+#| fig.width: 13
+#| fig.height: 8
 
 coord_radar <- function(theta = "x", start = 0, direction = 1) {
   theta <- match.arg(theta, c("x", "y"))
@@ -1616,8 +1611,9 @@ char_prepped3 <- arrange(char_prepped2, top_trait)
 
 char_prepped3 <- char_prepped3 %>%
   mutate(
-    image_x = ifelse(uni_name == "Friends", -1, 0.25),
-    image_x_coord = ifelse(uni_name == "Friends", "humorless", "romantic")
+    image_x = ifelse(uni_name == "Friends", -1, 1),
+    image_x_coord = ifelse(uni_name == "Friends", "nerd", "romantic"), 
+    nudge_x = ifelse(uni_name == "Friends", -0.35, -0.1)
   ) %>%
   arrange(top_trait)
 
@@ -1662,13 +1658,13 @@ p_left <- ggplot(
     subtitle = "Character ratings from 0 to 100"
   ) +
   geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
-    nudge_x = -0.35,
-    nudge_y = 30,
+    nudge_x = -0.45,
+    nudge_y = 5,
     size = 0.12
   ) +
   geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
-    nudge_x = -0.35,
-    nudge_y = 30,
+    nudge_x = -0.45,
+    nudge_y = 5,
     size = 0.1, inherit.aes = FALSE
   ) +
   theme(
@@ -1706,13 +1702,13 @@ p_right <- ggplot(
   scale_color_manual(values = c("Friends" = "#9C8CD4", "How I Met Your Mother" = "#FFED29")) +
   theme_bw() +
   geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
-    nudge_x = -0.35,
-    nudge_y = 30,
+    nudge_x = -0.45,
+    nudge_y = 5,
     size = 0.12
   ) +
   geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
-    nudge_x = -0.35,
-    nudge_y = 30,
+    nudge_x = -0.45,
+    nudge_y = 5,
     size = 0.1, inherit.aes = FALSE
   ) +
   theme(
@@ -1734,16 +1730,11 @@ p_left +
 ```
 
 
-## Abschlussübung 
 
-::: {.panel-tabset}
-
-### 🏋 Übung
+## 🏋 Übung
 
 ::: {.exercise}
 
-:::  {.columns}
-::: {.column width="50%"}
 
 Wandle unseren Lollipop-Plot in einen Barplot um. Du brauchst dafür `geom_col()`. Beachte dabei folgendes: 
 
@@ -1754,13 +1745,17 @@ Wandle unseren Lollipop-Plot in einen Barplot um. Du brauchst dafür `geom_col()
 - Nutze eine andere Color-Palette, die gut für kontinuierliche Daten funktioniert.
 
 ::: {.callout-important}
-Achtung, der Plot sieht noch etwas komisch aus, weil er nicht facettiert ist. 
+Achtung, der Ausgangsplot (nächste Seite) sieht noch etwas komisch aus, weil er nicht facettiert ist. 
 :::
 
 :::
 
-::: (.column width="50%")
 
+## 🏋 Übung
+
+::: {.panel-tabset}
+
+### Ausgangscode
 
 ```{r}
 #| eval: false
@@ -1778,15 +1773,19 @@ ggplot(char_prepped, aes(x = top_trait, y = avg_rating, colour = char_name)) +
     alpha = 0.5
   )
 ```
-:::
 
-:::
-:::
 
 ### Lösung
 
+::: {.panel-tabset}
+
+### Plot
+
 ```{r}
-#| output-location: column
+#| label: barplot_solution
+#| echo: false
+#| fig-width: 12
+
 
 shows <- c("How I Met Your Mother", "Friends")
 quest_vec <- c(
@@ -1813,6 +1812,12 @@ ggplot(char_prepped, aes(x = avg_rating, y = top_trait, fill = avg_rating)) +
   theme_bw() +
   xlim(c(0, 100)) +
   scale_fill_viridis_c(option = "D") 
+```
+
+### Code
+```{r}
+#| label: barplot_solution
+#| eval: false
 ```
 
 :::
