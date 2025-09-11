@@ -683,7 +683,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\ndino\n38.72\n84.87\n\n\nv_lines\n69.50\n17.17\n\n\naway\n81.72\n6.04\n\n\nslant_up\n84.09\n56.30\n\n\nbullseye\n51.60\n84.82\n\n\naway\n71.96\n41.87\n\n\ncircle\n52.08\n16.45\n\n\nslant_down\n91.52\n36.89\n\n\naway\n42.97\n17.95\n\n\nslant_down\n36.43\n62.29\n\n\nv_lines\n50.35\n12.47\n\n\nbullseye\n64.81\n62.81\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nbullseye\n70.24\n82.17\n\n\ndino\n55.13\n18.33\n\n\nslant_down\n57.04\n42.42\n\n\nh_lines\n32.53\n70.16\n\n\nx_shape\n47.13\n31.31\n\n\nv_lines\n50.08\n10.24\n\n\nv_lines\n50.33\n43.59\n\n\nv_lines\n50.29\n13.44\n\n\ncircle\n53.57\n16.34\n\n\nhigh_lines\n79.70\n20.74\n\n\nh_lines\n34.63\n30.50\n\n\ncircle\n69.51\n20.28\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
