@@ -15,6 +15,20 @@ source(here::here("src", "themes.R"))
 source(here::here("src", "functions.R"))
 ```
 
+
+## Setup
+```{r}
+# install.packages(c("ggimage", "here", "tidyverse", "ggtext", "glue", "patchwork", "ggrepel"))
+
+library(ggimage)
+library(here)
+library(patchwork)
+library(tidyverse)
+library(ggtext)
+library(glue)
+library(ggrepel)
+```
+
 ## Datensatz
 
 :::{.columns}
@@ -284,7 +298,7 @@ ggplot(
 
 ## Anwendungsfälle: Farben/Formen
 
-Genaus funktioniert das für FormenÖ
+Genauso funktioniert das für Formen:
 
 ```{r}
 #| code-line-numbers: "5,12"
@@ -306,37 +320,6 @@ ggplot(
   scale_shape_manual(values = char_shapes)
 ```
 
-## Exkurs: Eigene Skalen-Funktion
-
-Wenn ich dieselben Skalen für mehrere Plots nutzen will, kann ich mir auch vorher eine Funktion definieren: 
-
-```{r}
-#| code-line-numbers: "1,2,3,4,7,8,9,10,11,18"
-#| output-location: column
-
-set_char_scales <- function() {
-  char_colors <- c(
-    "Ted Mosby" = "blue", "Robin Scherbatsky" = "red", "Barney Stinson" = "green", "Lily Aldrin" = "purple", "Marshall Eriksen" = "orange", "Rachel Green" = "pink", "Monica Geller" = "brown", "Phoebe Buffay" = "yellow", "Joey Tribbiani" = "cyan"
-  )
-  char_shapes <- c("Friends" = 12, "How I Met Your Mother" = 18)
-
-  ## Output
-  list(
-    scale_shape_manual(values = char_shapes),
-    scale_colour_manual(values = char_colors)
-  )
-}
-
-ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
-) +
-  geom_point(size = 3) +
-  set_char_scales()
-```
-
-
-
 ## Anwendungsfälle: Skalen-Ticks
 
 :::{.panel-tabset}
@@ -350,7 +333,7 @@ Nutze die interne R-Hilfe, aber verzichte auf Internet/KI.
 #| eval: false
 
 ggplot(
-  data = dat_prepped,
+  data = char_prepped,
   mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
 ) +
   geom_point()
@@ -361,10 +344,10 @@ ggplot(
 ### Lösung
 ```{r}
 #| output-location: column
-#| code-line-numbers: "5,6,7"
+#| code-line-numbers: "6,7,8,9,10"
 
 ggplot(
-  data = dat_prepped,
+  data = char_prepped,
   mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
 ) +
   geom_point() +
@@ -388,7 +371,7 @@ Intern passiert das über `guides()`. Wir können `guides()` also nutzen, um die
 #| fig-width: 14
 
 ggplot(
-  data = dat_prepped,
+  data = char_prepped,
   mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
 ) +
   geom_point() +
@@ -400,7 +383,7 @@ ggplot(
   )) ## Größe der Punkte in der Legende ändern
 ```
 
-## Mögliche guide-Funktionen
+## Mögliche guide-Funktionen {#turn_axis}
 
 ::: {.columns}
 
@@ -418,7 +401,7 @@ ggplot(
 ### 🏋 Übung
 
 ::: {.exercise}
-Nutze das gerade gelernte und versuche, die x-Achsenbeschriftung um 90 Grad zu drehen, um sie lesbar zu machen. 
+Nutze das gerade gelernte und versuche, die x-Achsenbeschriftung um 90 Grad zu drehen, um sie lesbarer zu machen. 
 Nutze die interne R-Hilfe, aber versuche, es ohne Internet/KI zu lösen:
 
 
@@ -426,7 +409,7 @@ Nutze die interne R-Hilfe, aber versuche, es ohne Internet/KI zu lösen:
 #| eval: false
 
 ggplot(
-  data = dat_prepped,
+  data = char_prepped,
   mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
 ) +
   geom_point()
@@ -437,12 +420,12 @@ ggplot(
 ### Lösung
 
 ```{r}
-#| code-line-numbers: "5"
+#| code-line-numbers: "6"
 #| plot-height: 8
 #| plot-width: 7
 
 ggplot(
-  data = dat_prepped,
+  data = char_prepped,
   mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)
 ) +
   geom_point() +
@@ -493,14 +476,14 @@ Anordnen von einer *einzelnen* Variable in einem Raster:
 
 ### Plot
 ```{r}
-#| code-line-numbers: "6"
+#| code-line-numbers: "7"
 #| label: wrap_1d
 #| echo: false
 #| fig-height: 4
 
 
 ggplot(
-  data = dat_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")), ## Subset wegen Platzproblemen
+  data = char_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")), ## Subset wegen Platzproblemen
   mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)
 ) +
   geom_point() +
@@ -513,7 +496,7 @@ ggplot(
 ```{r}
 #| label: wrap_1d
 #| eval: false
-#| code-line-numbers: "6"
+#| code-line-numbers: "7"
 ```
 
 :::
@@ -527,14 +510,14 @@ ggplot(
 
 ### Plot
 ```{r}
-#| code-line-numbers: "6"
+#| code-line-numbers: "7"
 #| label: grid_1d
 #| echo: false
 #| fig-height: 4
 
 
 ggplot(
-  data = dat_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")),
+  data = char_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")),
   mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)
 ) +
   geom_point() +
@@ -547,7 +530,7 @@ ggplot(
 ```{r}
 #| label: grid_1d
 #| eval: false
-#| code-line-numbers: "6"
+#| code-line-numbers: "7"
 ```
 
 :::
@@ -556,6 +539,62 @@ ggplot(
 :::
 
 
+## 
+
+::: {.panel-tabset}
+
+### 🏋 Übung
+
+::: {.exercise}
+Versuche nun, den Plot über zwei Dimensionen (`char_name` und `uni_name`) zu facetten, entweder mit `facet_wrap()` oder `facet_grid()`.
+
+```{r}
+ggplot(
+  data = char_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")),
+  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)
+) +
+  geom_point() +
+  guides(x = guide_axis(angle = 90))
+```
+
+:::
+
+### Lösung
+
+::: {.panel-tabset}
+
+#### `facet_wrap()`
+
+```{r}
+#| code-line-numbers: "7"
+#| output-location: column
+
+ggplot(
+  data = char_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")),
+  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)
+) +
+  geom_point() +
+  guides(x = guide_axis(angle = 90)) +
+  facet_wrap(vars(char_name, uni_name), nrow = 4)
+```
+
+### `facet_grid()`
+
+```{r}
+#| output-location: column
+
+ggplot(
+  data = char_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")),
+  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)
+) +
+  geom_point() +
+  guides(x = guide_axis(angle = 90)) +
+  facet_grid(char_name ~ uni_name)
+```
+
+:::
+
+:::
 
 ## Facetting - Mehrere Variablen
 Anordnen von *mehreren* Variable in einem Raster:
@@ -567,14 +606,14 @@ Anordnen von *mehreren* Variable in einem Raster:
 
 ### Plot
 ```{r}
-#| code-line-numbers: "6"
+#| code-line-numbers: "7"
 #| label: wrap_2d
 #| echo: false
 #| fig-height: 4.5
 
 
 ggplot(
-  data = dat_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")),
+  data = char_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")),
   mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)
 ) +
   geom_point() +
@@ -587,7 +626,7 @@ ggplot(
 ```{r}
 #| label: wrap_2d
 #| eval: false
-#| code-line-numbers: "6"
+#| code-line-numbers: "7"
 ```
 
 :::
@@ -601,14 +640,14 @@ ggplot(
 
 ### Plot
 ```{r}
-#| code-line-numbers: "6"
+#| code-line-numbers: "7"
 #| label: grid_2d
 #| echo: false
 #| fig-height: 4.5
 
 
 ggplot(
-  data = dat_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")),
+  data = char_prepped %>% filter(char_name %in% c("Robin Scherbatsky", "Monica Geller", "Barney Stinson", "Joey Tribbiani")),
   mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)
 ) +
   geom_point() +
@@ -621,7 +660,7 @@ ggplot(
 ```{r}
 #| label: grid_2d
 #| eval: false
-#| code-line-numbers: "6"
+#| code-line-numbers: "7"
 ```
 
 :::
@@ -643,24 +682,26 @@ Plot alle Punkte
 #| fig-width: 12
 
 
-dat_prepped_background <- dat_prepped %>%
+char_prepped_background <- char_prepped %>%
   mutate(char_name_bg = char_name) %>%
   select(-char_name)
 
-ggplot(dat_prepped, aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)) +
+ggplot(char_prepped, aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)) +
   # background lines: drawn in every facet, grouped by country_bg
-  geom_point(
-    data = dat_prepped_background,
+  geom_jitter(
+    data = char_prepped_background,
     aes(group = char_name_bg),
     color = "grey70",
     alpha = 0.7,
-    size = 0.6
+    size = 1,
+    height = 0,
+    width = 0.1
   ) +
-  geom_point() +
+  geom_point(size = 2) +
   guides(x = guide_axis(angle = 90)) +
   facet_wrap(vars(char_name)) +
   guides(color = "none") +
-  theme_bg()
+  theme_bw()
 ```
 
 ### Code
@@ -687,34 +728,25 @@ Plot Mittelwerte
 #| code-line-numbers: "1,2,3,4,5,7,8,9,10,11,12,13,14,15"
 
 
-dat_mean <- dat_prepped %>%
+dat_mean <- char_prepped %>%
   group_by(question) %>%
   summarise(mean_rating = mean(avg_rating)) %>%
-  ungroup() %>%
-  right_join(dat_prepped)
+  ungroup()
 
 
-ggplot(dat_prepped, aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
-  geom_segment(
-    aes(
-      x = question, xend = question,
-      y = 0, yend = avg_rating,
-      group = interaction(char_name, uni_name)
-    ),
-    linewidth = 0.5,
-    alpha = 0.5
-  ) +
+ggplot(char_prepped, aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
   geom_point(
     data = dat_mean,
-    aes(x = question, y = avg_rating),
+    aes(x = question, y = mean_rating),
     inherit.aes = FALSE,
     color = "grey70",
-    size = 1
+    size = 3,
+    alpha = 0.7
   ) +
   geom_point() +
   facet_wrap(vars(char_name)) +
   guides(color = "none") +
-  theme_bg()
+  theme_bw()
 ```
 
 ### Code
@@ -731,26 +763,102 @@ Standardisierung könnte beim Vergleich zwischen den Fragen helfen - das kommt a
 Ist aber ein Punkt, den man zumindest im Hinterkopf behalten sollte.
 :::
 
+## 
+
+::: {.panel-tabset}
+
+### 🏋 Übung
+
+::: {.exercise}
+
+Versuche nun, einen Lollipop-Plot aus diesem Plot zu machen. 
+
+```{r}
+#| output-location: column
+
+
+dat_mean <- char_prepped %>%
+  group_by(question) %>%
+  summarise(mean_rating = mean(avg_rating)) %>%
+  ungroup()
+
+
+ggplot(char_prepped, aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  geom_point(
+    data = dat_mean,
+    aes(x = question, y = mean_rating),
+    inherit.aes = FALSE,
+    color = "grey70",
+    size = 3,
+    alpha = 0.7
+  ) +
+  geom_point() +
+  facet_wrap(vars(char_name)) +
+  guides(color = "none") +
+  theme_bw()
+```
+
+:::
+
+
+### Lösung
+```{r}
+#| output-location: column
+#| code-line-numbers: "6,18,19,20,21,22,23,24,25,26,27,28"
+
+
+dat_mean <- char_prepped %>%
+  group_by(question) %>%
+  summarise(mean_rating = mean(avg_rating)) %>%
+  ungroup()
+
+
+ggplot(char_prepped, aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  geom_point(
+    data = dat_mean,
+    aes(x = question, y = mean_rating),
+    inherit.aes = FALSE,
+    color = "grey70",
+    size = 3,
+    alpha = 0.7
+  ) +
+  geom_point() +
+  facet_wrap(vars(char_name)) +
+  guides(color = "none") +
+  theme_bw() +
+  geom_segment(
+    aes(
+      x = question, xend = question,
+      y = 0, yend = avg_rating,
+      group = interaction(char_name, uni_name)
+    ),
+    linewidth = 0.5,
+    alpha = 0.5
+  )
+```
+
+:::
+
 ## Sortieren
 Sortieren, läuft in ggplot2 oft über `factor()`. 
-Manchmal kann es hilfreich sein, sich eine eigene ID-Variable zum Sortieren zu erstellen
 
 
 ```{r}
-dat_prepped$uni_name_fac <- factor(dat_prepped$uni_name, levels = c("How I Met Your Mother", "Friends"))
+char_prepped$uni_name <- factor(char_prepped$uni_name, levels = c("How I Met Your Mother", "Friends"))
 ```
 
+Jetzt ist die Reihenfolge der Facetten umgekehrt: 
 
 ```{r}
 #| output-location: column
 #| code-line-numbers: "6"
 
 ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)
+  data = char_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
 ) +
   geom_point() +
-  facet_wrap(vars(uni_name_fac), nrow = 4) +
+  facet_wrap(vars(uni_name), nrow = 4) +
   theme_bg()
 ```
 
@@ -759,10 +867,156 @@ ggplot(
 # Themes
 ## Themes
 
-Da würde man ja auch viel zur Legende ändern? 
+- Mit Themes kann man die [nicht datenbezogenen]{.highlight} Elemente eines Plots einstellen. Das ist z.B. `plot.title` oder `axis.ticks.x`. 
+- Zu jedem Theme-Element gehört eine Element-Funktion: Oft brauchen wir z.B. `element_text()`, mit welchem wir z.B. den Titel stylen können: Farbe, Schriftart ...
+- Es gibt bereits vorgefertigte Themes, man kann aber auch einzelne Element mit `theme()` überschreiben. 
+
+## Themes: Vorgefertigt
+
+```{r}
+#| output-location: column
+#| code-line-numbers: "7"
+
+ggplot(
+  data = char_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
+) +
+  geom_point() +
+  facet_wrap(vars(uni_name), nrow = 4) +
+  theme_dark()
+```
+
+::: {.callout-info}
+Eine Übersicht über Standard-Themes findet ihr [hier](https://ggplot2.tidyverse.org/reference/ggtheme.html). Das Paket [`ggthemes`](https://yutannihilation.github.io/allYourFigureAreBelongToUs/ggthemes/) bietet noch weitere Themes an.
+:::
+
+## Themes: Anpassen
+
+```{r}
+#| output-location: column
+#| code-line-numbers: "7"
+
+ggplot(
+  data = char_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
+) +
+  geom_point() +
+  facet_wrap(vars(uni_name), nrow = 4) +
+  theme_bw() +
+  labs(
+    title = "Charaktereigenschaften von TV-Charakteren",
+    subtitle = "Friends vs. How I Met Your Mother"
+  ) +
+  theme(plot.title = element_text(color = "red"))
+```
 
 
-## Labels
+## 
+
+::: {.panel-tabset}
+
+### 🏋 Übung
+
+
+::: {.exercise}
+
+Style nun unseren Lollipop-Plot mit einem vorgefertigtem Theme deiner Wahl.
+
+Passe danach folgendes an: 
+
+- Setze die Hintergrundfarbe der Legende und des Plots auf "#06402B". Dafür wird ein anderes `element_` gebraucht. Findest du heraus welches? 
+- Setze die Textfarbe im gesamten Plot auf weiß.
+- Versuche, die x-Achsen-Label innerhalb von `themes()` zu drehen. Wir hatten das vorhin schon einmal in [`guides()`](#turn_axis) gemacht. 
+- Optional: Ändere die [Schriftart](https://nickhaf.github.io/PlotWorkshop/sessions/good_plots/visual_form.html#/schriftart-1) mit `showtext`.
+
+```{r}
+dat_mean <- char_prepped %>%
+  group_by(question) %>%
+  summarise(mean_rating = mean(avg_rating)) %>%
+  ungroup()
+
+
+ggplot(char_prepped, aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  geom_point(
+    data = dat_mean,
+    aes(x = question, y = mean_rating),
+    inherit.aes = FALSE,
+    color = "grey70",
+    size = 3,
+    alpha = 0.7
+  ) +
+  geom_point() +
+  facet_wrap(vars(char_name)) +
+  guides(color = "none") +
+  theme_bw() +
+  geom_segment(
+    aes(
+      x = question, xend = question,
+      y = 0, yend = avg_rating,
+      group = interaction(char_name, uni_name)
+    ),
+    linewidth = 0.5,
+    alpha = 0.5
+  ) +
+  labs(
+    title = "Charaktereigenschaften von TV-Charakteren",
+    subtitle = "Friends vs. How I Met Your Mother"
+  )
+```
+
+::: 
+
+### Lösung
+
+```{r}
+#| output-location: column
+#| code-line-numbers: ""
+
+
+dat_mean <- char_prepped %>%
+  group_by(question) %>%
+  summarise(mean_rating = mean(avg_rating)) %>%
+  ungroup()
+
+
+ggplot(char_prepped, aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  geom_point(
+    data = dat_mean,
+    aes(x = question, y = mean_rating),
+    inherit.aes = FALSE,
+    color = "grey70",
+    size = 3,
+    alpha = 0.7
+  ) +
+  geom_point() +
+  facet_wrap(vars(char_name)) +
+  guides(color = "none") +
+  theme_bw() +
+  geom_segment(
+    aes(
+      x = question, xend = question,
+      y = 0, yend = avg_rating,
+      group = interaction(char_name, uni_name)
+    ),
+    linewidth = 0.5,
+    alpha = 0.5
+  ) +
+  labs(
+    title = "Charaktereigenschaften von TV-Charakteren",
+    subtitle = "Friends vs. How I Met Your Mother"
+  ) +
+  theme(
+    legend.background = element_rect(fill = "#06402B"),
+    plot.background = element_rect(fill = "#06402B"),
+    text = element_text(color = "white"),
+    axis.text = element_text(color = "white"),
+    axis.text.x = element_text(angle = 90)
+  )
+```
+
+
+:::
+
 
 # Kordinatensysteme
 
@@ -825,21 +1079,21 @@ Zwei Aufgaben:
 #| fig-height: 10
 
 ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac, group = question)
+  data = char_prepped,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name, group = question)
 ) +
   geom_point() +
   geom_segment(
     aes(
       x = question, xend = question,
       y = 0, yend = avg_rating,
-      group = interaction(char_name, uni_name_fac)
+      group = interaction(char_name, uni_name)
     ),
     linewidth = 0.5
   ) +
   ylim(0, 100) +
   facet_wrap(vars(char_name)) +
-  coord_polar(theta = "x")
+  coord_polar()
 ```
 
 ### Code  
@@ -857,11 +1111,6 @@ Winkel sind oft nicht so einfach zu interpretieren.
 Nichtsdestotrotz kann es gerade zur Gestaltung nett sein!
 :::
 
-## Realistischer Anwendungen
-- Zeitreihen
-- Strecken
-
-
 
 # Kombinieren von Plots {background-image="./images/rug.jpg" background-size="1225px"}
 
@@ -874,13 +1123,13 @@ Foto von <a href="https://unsplash.com/de/@raulcachophoto?utm_content=creditCopy
 
 
 ```{r}
-dat_prepped_robin <- dat_prepped %>%
+char_prepped_robin <- char_prepped %>%
   filter(char_name == "Robin Scherbatsky")
 
 
 p_robin <- ggplot(
-  data = dat_prepped_robin,
-  mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)
+  data = char_prepped_robin,
+  mapping = aes(x = question, y = avg_rating, shape = uni_name)
 ) +
   geom_point() +
   facet_wrap(vars(char_name)) +
@@ -889,8 +1138,8 @@ p_robin <- ggplot(
 
 
 p_rest <- ggplot(
-  data = dat_prepped %>% filter(char_name != "Robin Scherbatsky"),
-  mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)
+  data = char_prepped %>% filter(char_name != "Robin Scherbatsky"),
+  mapping = aes(x = question, y = avg_rating, shape = uni_name)
 ) +
   geom_point() +
   facet_wrap(vars(char_name), nrow = 2) +
@@ -925,37 +1174,91 @@ p_robin +
 ```
 
 
-## 
 
-Abschalten der Legende im ersten Plot. 
+## 
 
 ::: {.panel-tabset}
 
-### Plot
-```{r}
-#| code-line-numbers: "8, 11"
-#| label: patchwork_no_legend
-#| echo: false
+### 🏋 Übung
 
-p_robin <- ggplot(
-  data = dat_prepped_robin,
-  mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)
-) +
+:::{.exercise}
+Versuche einmal, das für unseren Lollipop-Plot zu machen. Also: nimm das folgende Plotgerüst und suche dir einen Character aus, den du hervorheben möchtest. Erstelle für diesen Charakter einen eigenen Plot, und nimm ihn aus dem anderen Plot heraus. 
+Kombiniere dann beide Plots nebeneinander, sodass der ausgewählte Character größer dargestellt wird, und die anderen, facettierten Charactere, daneben stehen. 
+
+```{r}
+
+ggplot(char_prepped, aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
   geom_point() +
   facet_wrap(vars(char_name)) +
-  ylim(0, 100) +
-  theme(legend.position = "none")
-
-p_robin +
-  p_rest +
-  plot_layout(widths = c(2, 2), guides = "collect")
+  guides(color = "none") +
+  theme_bw() +
+  geom_segment(
+    aes(
+      x = question, xend = question,
+      y = 0, yend = avg_rating,
+      group = interaction(char_name, uni_name)
+    ),
+    linewidth = 0.5,
+    alpha = 0.5
+  ) +
+  labs(
+    title = "Charaktereigenschaften von TV-Charakteren",
+    subtitle = "Friends vs. How I Met Your Mother"
+  ) 
 ```
 
-### Code
+:::
+
+### Lösung
+
 ```{r}
-#| label: patchwork_no_legend
-#| eval: false
-#| fig-width: 12
+char_ross <- char_prepped %>%
+  filter(char_name %in% c("Ross Geller", "Ted Mosby"))
+char_rest <- char_prepped %>%
+  filter(!char_name %in% c("Ross Geller",  "Ted Mosby"))
+
+
+p_ross <- ggplot(char_ross, aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  geom_point() +
+  facet_wrap(vars(char_name), nrow = 2) +
+  guides(color = "none") +
+  theme_bw() +
+  geom_segment(
+    aes(
+      x = question, xend = question,
+      y = 0, yend = avg_rating,
+      group = interaction(char_name, uni_name)
+    ),
+    linewidth = 0.5,
+    alpha = 0.5
+  ) +
+  labs(
+    title = "Charaktereigenschaften von TV-Charakteren",
+    subtitle = "Friends vs. How I Met Your Mother"
+  ) 
+
+
+p_rest <- ggplot(char_rest, aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)) +
+  geom_point() +
+  facet_wrap(vars(char_name), nrow = 2) +
+  guides(color = "none") +
+  theme_bw() +
+  geom_segment(
+    aes(
+      x = question, xend = question,
+      y = 0, yend = avg_rating,
+      group = interaction(char_name, uni_name)
+    ),
+    linewidth = 0.5,
+    alpha = 0.5
+  ) +
+  labs(
+    title = "Charaktereigenschaften von TV-Charakteren",
+    subtitle = "Friends vs. How I Met Your Mother"
+  ) 
+
+
+p_ross + p_rest + plot_layout(widths = c(2, 3))
 ```
 
 :::
@@ -968,8 +1271,8 @@ p_robin +
 #| output-location: column
 
 ggplot(
-  data = dat_prepped,
-  mapping = aes(x = question, y = avg_rating, shape = uni_name_fac)
+  data = char_prepped,
+  mapping = aes(x = question, y = avg_rating, shape = uni_name)
 ) +
   geom_label(aes(label = char_name))
 ```
@@ -983,8 +1286,8 @@ ggplot(
 library(ggrepel)
 
 ggplot(
-  data = dat_prepped,
-  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
+  data = char_prepped,
+  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name)
 ) +
   geom_point() +
   geom_text_repel(aes(label = char_name))
@@ -998,15 +1301,15 @@ Erzeugen einer eigenen Spalte, die nur auf den gewünschten Punkten den Text ent
 ```{r}
 #| output-location: column
 
-dat_prepped_2 <- dat_prepped %>%
+char_prepped_2 <- char_prepped %>%
   mutate(char_name_label = case_when(
     char_name == "Monica Geller" & top_trait == "orderly" ~ "Monica ist sehr ordentlich",
     TRUE ~ NA
   ))
 
 ggplot(
-  data = dat_prepped_2,
-  mapping = aes(x = top_trait, y = avg_rating, shape = uni_name_fac, label = char_name_label, color = char_name)
+  data = char_prepped_2,
+  mapping = aes(x = top_trait, y = avg_rating, shape = uni_name, label = char_name_label, color = char_name)
 ) +
   geom_point() +
   geom_text_repel(nudge_x = 0.75, nudge_y = 1)
@@ -1022,15 +1325,15 @@ ggplot(
 
 library(ggtext)
 
-dat_prepped_2 <- dat_prepped %>%
+char_prepped_2 <- char_prepped %>%
   mutate(char_name_label = case_when(
     char_name == "Monica Geller" & top_trait == "orderly" ~ "Monica ist sehr <span style='color:black'>ordentlich</span>",
     TRUE ~ NA
   ))
 
 ggplot(
-  data = dat_prepped_2,
-  mapping = aes(x = top_trait, y = avg_rating, shape = uni_name_fac, label = char_name_label, color = char_name)
+  data = char_prepped_2,
+  mapping = aes(x = top_trait, y = avg_rating, shape = uni_name, label = char_name_label, color = char_name)
 ) +
   geom_point() +
   geom_richtext(
@@ -1050,13 +1353,13 @@ ggplot(
 #| eval: false
 #| code-line-numbers: "1,2,9,10,11"
 
-dat_prepped_2 <- dat_prepped %>%
+char_prepped_2 <- char_prepped %>%
   mutate(char_name_bold = paste0("**", char_name, "**"))
 
 
 ggplot(
-  data = dat_prepped_2,
-  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name_fac)
+  data = char_prepped_2,
+  mapping = aes(x = question, y = avg_rating, colour = char_name, shape = uni_name)
 ) +
   geom_point() +
   facet_wrap(vars(char_name_bold)) +
@@ -1086,8 +1389,8 @@ ggplot(
 #| code-line-numbers: "6"
 
 ggplot(
-  data = dat_prepped %>% filter(char_name == "Lilly Aldrin"),
-  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
+  data = char_prepped %>% filter(char_name == "Lilly Aldrin"),
+  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name)
 ) +
   geom_point() +
   geom_text(aes(label = char_name), hjust = 0.5)
@@ -1100,8 +1403,8 @@ ggplot(
 #| code-line-numbers: "6"
 
 ggplot(
-  data = dat_prepped %>% filter(char_name == "Lilly Aldrin"),
-  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
+  data = char_prepped %>% filter(char_name == "Lilly Aldrin"),
+  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name)
 ) +
   geom_point() +
   geom_text(aes(label = char_name), hjust = 0)
@@ -1113,8 +1416,8 @@ ggplot(
 #| code-line-numbers: "6"
 
 ggplot(
-  data = dat_prepped %>% filter(char_name == "Lilly Aldrin"),
-  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
+  data = char_prepped %>% filter(char_name == "Lilly Aldrin"),
+  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name)
 ) +
   geom_point() +
   geom_text(aes(label = char_name), hjust = 1)
@@ -1130,8 +1433,8 @@ ggplot(
 #| code-line-numbers: "6"
 
 ggplot(
-  data = dat_prepped %>% filter(char_name == "Ted Mosby"),
-  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
+  data = char_prepped %>% filter(char_name == "Ted Mosby"),
+  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name)
 ) +
   geom_point() +
   geom_text(aes(label = char_name), vjust = 1)
@@ -1144,8 +1447,8 @@ ggplot(
 #| code-line-numbers: "6"
 
 ggplot(
-  data = dat_prepped %>% filter(char_name == "Ted Mosby"),
-  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
+  data = char_prepped %>% filter(char_name == "Ted Mosby"),
+  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name)
 ) +
   geom_point() +
   geom_text(aes(label = char_name), vjust = 0)
@@ -1157,8 +1460,8 @@ ggplot(
 #| code-line-numbers: "6"
 
 ggplot(
-  data = dat_prepped %>% filter(char_name == "Ted Mosby"),
-  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
+  data = char_prepped %>% filter(char_name == "Ted Mosby"),
+  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name)
 ) +
   geom_point() +
   geom_text(aes(label = char_name), vjust = -1)
@@ -1180,8 +1483,8 @@ Nudge um eine halbe Einheit nach rechts.
 #| code-line-numbers: "6"
 
 ggplot(
-  data = dat_prepped %>% filter(char_name == "Rachel Green"),
-  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
+  data = char_prepped %>% filter(char_name == "Rachel Green"),
+  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name)
 ) +
   geom_point() +
   geom_text(aes(label = char_name), nudge_x = 0.5)
@@ -1197,8 +1500,8 @@ Nudge um 5 Einheiten nach unten.
 #| code-line-numbers: "6"
 
 ggplot(
-  data = dat_prepped %>% filter(char_name == "Rachel Green"),
-  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name_fac)
+  data = char_prepped %>% filter(char_name == "Rachel Green"),
+  mapping = aes(x = bottom_trait, y = avg_rating, shape = uni_name)
 ) +
   geom_point() +
   geom_text(aes(label = char_name), nudge_y = -5)
@@ -1207,162 +1510,20 @@ ggplot(
 :::
 :::
 
-# Bilder
-
-## 
-```{r}
-image_path <- here::here("sessions", "more_ggplot", "images", "character_images")
-
-dat_prepped <- dat_prepped %>%
-  mutate(image_link_local = paste0(image_path, "/", id, ".jpg"))
-```
-
-```{r}
-library(tidyverse)
-library(ggtext)
-library(glue)
-
-ggplot(
-  data = dat_prepped,
-  mapping = aes(x = image_link_local, y = avg_rating, shape = uni_name_fac)
-) +
-  geom_point() +
-  facet_wrap(vars(question), nrow = 2) +
-  ylim(0, 100) +
-  scale_x_discrete(
-    labels = \(x) glue("<img src='{x}' height='24' />")
-  ) +
-  theme(
-    axis.text.x = element_markdown()
-  ) +
-  coord_cartesian(clip = "off") # falls Bilder abgeschnitten werden
-```
-
-# Themes
-
-## Themes
-```{r}
-library(tidyverse)
-library(ggtext)
-library(glue)
-
-ggplot(
-  data = dat_prepped,
-  mapping = aes(x = image_link_local, y = avg_rating, shape = uni_name_fac)
-) +
-  geom_point() +
-  facet_wrap(vars(question), nrow = 2) +
-  ylim(0, 100) +
-  scale_x_discrete(
-    labels = \(x) glue("<img src='{x}' height='24' />")
-  ) +
-  theme(
-    axis.text.x = element_markdown()
-  ) +
-  coord_cartesian(clip = "off") # falls Bilder abgeschnitten werden
-```
 
 # Let's bring it together: Spider-Chat
 
-Step by step
-
-```{r}
-#| output-location: column
-
-# traits <- c("doer/thinker", "jock/nerd", "cold/warm", "main character/side character", "crazy/sane")
-# line<-data.frame(x=rep(traits,2),y=c(rep(0, length(traits)),rep(100, length(traits))))
-
-
-ggplot(
-  dat_prepped,
-  aes(x = question, y = avg_rating, group = char_name)
-) +
-  geom_point()
-```
-
-## Spider-Chart
-
-```{r}
-#| output-location: column
-
-ggplot(
-  dat_prepped,
-  aes(x = question, y = avg_rating, group = char_name)
-) +
-  geom_point() +
-  facet_wrap(vars(char_name), ncol = 4)
-```
-
-
-## Vergleichen von ähnlichen Charakteren
-
-Dafür erzeuge ich eine eigene Variable
-
-```{r}
-#| output-location: column
-
-dat_prepped2 <- dat_prepped %>%
-  mutate(facet_id = case_when(
-    char_name %in% c("Barney Stinson", "Joey Tribbiani") ~ "Barney & Joey",
-    char_name %in% c("Ted Mosby", "Ross Geller") ~ "Ted & Ross",
-    char_name %in% c("Robin Scherbatsky", "Rachel Green") ~ "Robin & Rachel",
-    char_name %in% c("Lily Aldrin", "Monica Geller") ~ "Lily & Monica",
-    char_name %in% c("Marshall Eriksen", "Chandler Bing") ~ "Marshall & Chandler"
-  )) %>%
-  filter(!is.na(facet_id)) ## Sorry Phoebe :(
-
-ggplot(
-  dat_prepped2,
-  aes(x = question, y = avg_rating, group = char_name, color = uni_name)
-) +
-  geom_point() +
-  facet_wrap(vars(facet_id), ncol = 4) +
-  ylim(0, 100)
-```
-
-##
-
-```{r}
-#| output-location: column
-
-ggplot(
-  dat_prepped2,
-  aes(x = question, y = avg_rating, group = char_name, color = uni_name)
-) +
-  geom_point() +
-  facet_wrap(vars(facet_id), ncol = 4) +
-  ylim(0, 100) +
-  coord_polar()
-```
-
-
-
-##
-
-```{r}
-#| output-location: column
-
-ggplot(
-  dat_prepped2,
-  aes(x = question, y = avg_rating, group = char_name, color = uni_name)
-) +
-  geom_point() +
-  geom_polygon(alpha = 0.5) +
-  facet_wrap(vars(facet_id), ncol = 4) +
-  ylim(0, 100) +
-  coord_polar()
-```
-
-
 ## 
 
-## 
+::: {.image-ref}
 
-Radar coords from  [Tanya Shapiro](https://github.com/tashapiro/tanya-data-viz/blob/main/westworld/code/ww-radar-plot.R)
+Vorlage von  [Tanya Shapiro](https://github.com/tashapiro/tanya-data-viz/blob/main/westworld/code/ww-radar-plot.R)
+
+:::
 
 
 ```{r}
-#| code-fold: true
+#| echo: false
 
 coord_radar <- function(theta = "x", start = 0, direction = 1) {
   theta <- match.arg(theta, c("x", "y"))
@@ -1446,215 +1607,38 @@ coord_radar <- function(theta = "x", start = 0, direction = 1) {
     }
   )
 }
-```
 
-```{r}
-#| output-location: column
-dat_prepped3 <- arrange(dat_prepped2, question)
+image_path <- here::here("sessions", "more_ggplot", "images", "character_images")
 
-ggplot(
-  dat_prepped3,
-  aes(x = question, y = avg_rating, group = char_name, color = uni_name, fill = char_name)
-) +
-  geom_point() +
-  geom_polygon(alpha = 0.5) +
-  facet_wrap(vars(facet_id), ncol = 4) +
-  ylim(0, 100) +
-  coord_radar()
-```
+char_prepped2 <- char_prepped %>%
+  mutate(image_link_local = paste0(image_path, "/", id, ".jpg")) %>% 
+  mutate(facet_id = case_when(
+    char_name %in% c("Barney Stinson", "Joey Tribbiani") ~ "Barney & Joey",
+    char_name %in% c("Ted Mosby", "Ross Geller") ~ "Ted & Ross",
+    char_name %in% c("Robin Scherbatsky", "Rachel Green") ~ "Robin & Rachel",
+    char_name %in% c("Lily Aldrin", "Monica Geller") ~ "Lily & Monica",
+    char_name %in% c("Marshall Eriksen", "Chandler Bing") ~ "Marshall & Chandler"
+  )) %>%
+  filter(!is.na(facet_id)) ## Sorry Phoebe :(
 
+char_prepped3 <- arrange(char_prepped2, question)
 
-##
-
-https://de.pinterest.com/pin/friends-colors--2955556002181108/
-
-```{r}
-#| output-location: column
-
-ggplot(
-  dat_prepped3,
-  aes(x = question, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)
-) +
-  geom_point() +
-  geom_polygon(alpha = 0.1) +
-  facet_wrap(vars(facet_id), ncol = 4) +
-  ylim(0, 100) +
-  coord_radar() +
-  scale_fill_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
-  scale_color_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
-  theme_bg()
-```
-
-##
-
-```{r}
-#| output-location: column
-
-ggplot(
-  dat_prepped3,
-  aes(x = question, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)
-) +
-  geom_point() +
-  geom_polygon(alpha = 0.1) +
-  facet_wrap(vars(facet_id), ncol = 4) +
-  ylim(0, 100) +
-  coord_radar() +
-  scale_fill_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
-  scale_color_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
-  theme_bg() +
-  labs(title = "The one where Everyone meets", )
-```
-
-
-
-##
-
-```{r}
-#| output-location: column
-
-library(ggimage)
-
-dat_prepped3 <- dat_prepped3 %>%
-  mutate(
-    image_x = ifelse(uni_name == "Friends", -1, 1),
-    image_x_coord = ifelse(uni_name == "Friends", "doer/thinker", "crazy/sane")
-  )
-
-ggplot(
-  dat_prepped3,
-  aes(x = question, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)
-) +
-  geom_point() +
-  geom_polygon(alpha = 0.1) +
-  facet_wrap(vars(facet_id), ncol = 4) +
-  ylim(0, 100) +
-  coord_radar() +
-  scale_fill_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
-  scale_color_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
-  theme_bg() +
-  labs(title = "The one where Everyone meets") +
-  geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
-    nudge_x = c(0.5, -0.5),
-    size = 0.1, inherit.aes = FALSE
-  ) +
-  NULL
-```
-
-
-## Adding a frame around the picture
-
-```{r}
-#| output-location: column
-
-library(ggimage)
-
-dat_prepped3 <- dat_prepped3 %>%
-  mutate(
-    image_x = ifelse(uni_name == "Friends", -1, 1),
-    image_x_coord = ifelse(uni_name == "Friends", "doer/thinker", "crazy/sane")
-  )
-
-ggplot(
-  dat_prepped3,
-  aes(x = question, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)
-) +
-  geom_point() +
-  geom_polygon(alpha = 0.1) +
-  facet_wrap(vars(facet_id), ncol = 4) +
-  ylim(0, 100) +
-  coord_radar() +
-  scale_fill_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
-  scale_color_manual(values = c("Friends" = "#00009E", "How I Met Your Mother" = "yellow")) +
-  theme_bg() +
-  labs(title = "The one where Everyone meets") +
-  geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
-    nudge_x = c(0.5, -0.5),
-    size = 0.12
-  ) +
-  geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
-    nudge_x = c(0.5, -0.5),
-    size = 0.1, inherit.aes = FALSE
-  ) +
-  NULL
-```
-
-
-## Styling
-
-
-- Anchor points on top to show max
-- Style
-- Nudge pictures further out
-
-```{r}
-#| output-location: column
-
-dat_prepped3 <- dat_prepped3 %>%
+char_prepped3 <- char_prepped3 %>%
   mutate(
     image_x = ifelse(uni_name == "Friends", -1, 1),
     image_x_coord = ifelse(uni_name == "Friends", "low IQ", "side character")
   ) %>%
   arrange(top_trait)
 
-outer_points <- dat_prepped3 %>%
+outer_points <- char_prepped3 %>%
   mutate(
     max_rating = 100,
     label_y = 90,
     nudge_x = ifelse(uni_name == "Friends", -0.14, 0.14)
   )
 
-ggplot(
-  dat_prepped3,
-  aes(x = top_trait, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)
-) +
-  geom_point(data = outer_points, aes(top_trait, max_rating), color = "white", inherit.aes = FALSE) +
-  geom_richtext(
-    data = outer_points, aes(top_trait, label_y, label = round(avg_rating, 0), color = uni_name), inherit.aes = FALSE, fill = NA, label.color = NA,
-    label.padding = grid::unit(rep(0, 4), "pt"), nudge_x = outer_points$nudge_x, size = 2
-  ) +
-  geom_point() +
-  geom_polygon(alpha = 0.1) +
-  facet_wrap(vars(facet_id), ncol = 4) +
-  ylim(0, 100) +
-  coord_radar() +
-  scale_fill_manual(values = c("Friends" = "#36d1ab", "How I Met Your Mother" = "#FFED29")) +
-  scale_color_manual(values = c("Friends" = "#9C8CD4", "How I Met Your Mother" = "#FFED29")) +
-  theme_bw() +
-  labs(title = "The one where Everyone meets") +
-  geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
-    nudge_x = -0.35,
-    nudge_y = 30,
-    size = 0.12
-  ) +
-  geom_image(aes(x = image_x_coord, y = 100, image = image_link_local),
-    nudge_x = -0.35,
-    nudge_y = 30,
-    size = 0.1, inherit.aes = FALSE
-  ) +
-  theme(
-    axis.ticks = element_blank(),
-    axis.text.x = element_text(color = "white", face = "bold"),
-    axis.text.y = element_blank(),
-    axis.title = element_blank(),
-    panel.background = element_rect(fill = "#06402B"),
-    plot.background = element_rect(fill = "#06402B"),
-    title = element_text(color = "white", size = 16, face = "bold"),
-    strip.background = element_rect(fill = "#06402B"),
-    strip.text = element_text(color = "white", face = "bold"),
-    legend.background = element_rect(fill = "#06402B"),
-    legend.text = element_text(color = "white")
-  )
-```
 
-
-
-
-
-##
-
-
-```{r}
-dat_joey_barney <- dat_prepped3 %>%
+dat_joey_barney <- char_prepped3 %>%
   filter(char_name %in% c("Barney Stinson", "Joey Tribbiani"))
 
 
@@ -1709,15 +1693,12 @@ p_left <- ggplot(
     legend.background = element_rect(fill = "#06402B"),
     legend.position = "none"
   )
-```
 
-
-```{r}
 outer_points2 <- outer_points %>%
   filter(!char_name %in% c("Barney Stinson", "Joey Tribbiani"))
 
 p_right <- ggplot(
-  dat_prepped3 %>% filter(!char_name %in% c("Barney Stinson", "Joey Tribbiani")),
+  char_prepped3 %>% filter(!char_name %in% c("Barney Stinson", "Joey Tribbiani")),
   aes(x = top_trait, y = avg_rating, group = char_name, color = uni_name, fill = uni_name)
 ) +
   geom_point(data = outer_points2, aes(top_trait, max_rating), color = "white", inherit.aes = FALSE) +
@@ -1754,20 +1735,10 @@ p_right <- ggplot(
     strip.text = element_text(color = "white", face = "bold"),
     legend.position = "none"
   )
-```
 
 
-- Eventuell in Funktionen packen was geht
 
-## Patch together
-```{r}
 p_left +
   p_right
+
 ```
-
-
-## Abspeichern
-Vektor vs Raster (Rolfs 7)
-
-
-Use characters data for demonstration or for exercise? 
