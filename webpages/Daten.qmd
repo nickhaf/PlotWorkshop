@@ -30,13 +30,13 @@ gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
 |`part_time_employ_fe` | Anteil Teilzeitbeschäftigung (Frauen) | Numerisch |
 |`part_time_employ_ma` | Anteil Teilzeitbeschäftigung (Männer) | Numerisch |
 |`working_hours_week` | Durchschnittliche Wochenarbeitszeit | Numerisch |
-|`country` | Länder-Code (3-stellig, z. B. „afg“) | Kategorial |
-|`c_demox_eiu` | Demokratieindex (EIU, korrigiert) | Numerisch |
+|`country` | Länder-Code (3-stellig) | Kategorial |
+|`c_demox_eiu` | Demokratieindex, von -10 bis 10  | Numerisch |
 |`co2_cons` | CO₂-Emissionen durch Konsum (Mio. Tonnen) | Numerisch |
-|`co2_pcap_cons` | CO₂-Emissionen pro Kopf (Konsum-basiert) | Numerisch |
+|`co2_pcap_cons` | CO₂-Emissionen pro Kopf in Tonnen (Konsum-basiert) | Numerisch |
 |`co2_pcap_terr` | CO₂-Emissionen pro Kopf (territorial) | Numerisch |
-|`co2_terr` | CO₂-Emissionen territorial (Mio. Tonnen) | Numerisch |
-|`cumulative_co2_emissions_tonnes` | Kumulierte CO₂-Emissionen (Tonnen) | Numerisch |
+|`co2_terr` | CO₂-Emissionen territorial | Numerisch |
+|`cumulative_co2_emissions_tonnes` | Kumulierte CO₂-Emissionen (Tonnen)| Numerisch |
 |`demox_eiu` | Demokratieindex (EIU, original) | Numerisch |
 |`gdp_pcap` | Bruttoinlandsprodukt pro Kopf (konstante USD) | Numerisch |
 |`gdp_pcap_21` | BIP pro Kopf (21. Jh.-angepasst, USD) | Numerisch |
