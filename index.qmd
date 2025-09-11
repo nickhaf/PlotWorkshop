@@ -36,19 +36,19 @@ listing:
     - title: "ggplot2: Advanced"
       path: sessions/more_ggplot/more_ggplot.qmd
       image: sessions/more_ggplot/images/central_perk.jpg
-      description: 9:00 - 12:00
-    - title: "Wissenschaftliche Grafiken"
-      href: sessions/science_plots/science_plots.qmd
-      image: sessions/science_plots/images/science_plot.jpg
-      description: 13:00 - 14:00
+      description: 10:30 - 12:00
     - title: "gganimate & plotly"
-      href: sessions/animate_plotly/animate_plotly.qmd
-      image: sessions/animate_plotly/horst_gganimate.png
-      description: 14:10 - 15:30
+      path: sessions/animate_plotly/animate_plotly.qmd
+      image: sessions/animate_plotly/images/horst_gganimate.png
+      description: 13:00 - 14:00
+    - title: "Exportieren"
+      path: sessions/science_plots/science_plots.qmd
+      image: sessions/science_plots/images/science_plot.jpg
+      description: 14:00 - 15:00
     - title: "Wrap-up, Fragen, Übungszeit & Evaluation"
-      href: sessions/exercise/exercise.qmd
+      path: sessions/exercise/exercise.qmd
       image: sessions/exercise/images/yoga.jpg
-      description: 15:45 - 17:00
+      description: 15:00 - 17:00
 
 ---
 
@@ -119,7 +119,8 @@ install.packages(c("tidyverse", "here", "GGally",
                    "patchwork", "ggthemes", "gganimate", 
                    "ggtext", "ggrepel", "ggridges", 
                    "ggwordcloud", "paletteer", "plotly",
-                   "readxl", "showtext"))
+                   "readxl", "showtext", "htmlwidgets", 
+                   "ggview", "scales"))
 
 ```
 
@@ -133,14 +134,14 @@ Zum unkomplizierten Austausch von Code-Schnipseln im Workshop nutzen wir dieses 
 
 [Format:]{.highlight} Schriftliche Ausarbeitung
 
-Erzählt uns eine Geschichte! Sucht Dir ein paar spannende Variablen und fertige einen kleinen Bericht an, in dem die Verteilungen bzw. Zusammenhänge dargestellt werden.  
+Erzählt uns eine Geschichte! Suche Dir ein paar spannende Variablen und fertige einen kleinen Bericht an, in dem die Verteilungen bzw. Zusammenhänge dargestellt werden.  
 
 - Nutze dafür einen der Datensätze, die wir im Workshop verwendet haben.  
 - Nutze mindestens zwei Grafiktypen (z.B. Line Plot und Scatterplot)   
 - Diskutiere jeweils, welche Änderungen Du an der Grafik vorgenommen hast, damit diese den 
 Gestaltungsprinzipien guter Grafiken entspricht (z.B. Vergabe eindeutiger Achsenbeschriftungen, Anspassung von Größenverhältnissen, Verwendung eines bestimmten Themes oder Farbschemas).   
 - Umfang: 
-  - schriftliche Ausarbeitung (max. 2 Seiten)
+  - schriftliche Ausarbeitung (ca. 2-3 Seiten)
   - R Skript zur Erzeugung der Grafiken
 
 [Einreichung]{.highlight}
