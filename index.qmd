@@ -38,15 +38,15 @@ listing:
       image: sessions/more_ggplot/images/central_perk.jpg
       description: 10:30 - 12:00
     - title: "gganimate & plotly"
-      href: sessions/animate_plotly/animate_plotly.qmd
+      path: sessions/animate_plotly/animate_plotly.qmd
       image: sessions/animate_plotly/horst_gganimate.png
       description: 13:00 - 14:00
     - title: "Exportieren"
-      href: sessions/science_plots/science_plots.qmd
+      path: sessions/science_plots/science_plots.qmd
       image: sessions/science_plots/images/science_plot.jpg
       description: 14:00 - 15:00
     - title: "Wrap-up, Fragen, Übungszeit & Evaluation"
-      href: sessions/exercise/exercise.qmd
+      path: sessions/exercise/exercise.qmd
       image: sessions/exercise/images/yoga.jpg
       description: 15:00 - 17:00
 
