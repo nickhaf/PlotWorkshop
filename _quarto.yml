@@ -14,12 +14,13 @@ website:
         - text: "ggplot2: Die Basics"
           href: sessions/ggplot_intro/ggplot2_basics.qmd
           icon: bar-chart-fill
-        - text: "R für Grafiken"
-          href: sessions/r_basics/r_basics.qmd
-          icon: r-circle-fill
         - text: "Gute Plots"
           href: sessions/good_plots/good_plots.qmd
           icon: pie-chart-fill
+        - text: "R für Grafiken"
+          href: sessions/r_basics/r_basics.qmd
+          icon: r-circle-fill
+        
       
       - text: Tag 2
         icon: tree-fill
@@ -30,16 +31,19 @@ website:
         - text: "Wissenschaftliche Grafiken"
           href: sessions/science_plots/science_plots.qmd
           icon: mortarboard-fill
-        - text: "Explorative Grafiken"
-          href: sessions/explorative_plots/explorative_plots.qmd
-          icon: binoculars-fill
-        - text: "Grafiken Druckreif machen"
-          href: sessions/prep_plots/prep_plots.qmd
-          icon: printer-fill
         - text: "gganimate & plotly"
           href: sessions/animate_plotly/animate_plotly.qmd
           icon: arrows-move
-
+        - text: Leistungsnachweis
+          href: sessions/exercise/exercise.qmd
+          icon: check2-square
+    right:
+      - text: Die Daten
+        href: webpages/Daten.qmd     
+        icon: database-fill
+      - text: Ressourcen
+        href: webpages/Ressourcen.qmd     
+        icon: folder-fill
 
 format:
   html:
