@@ -134,7 +134,7 @@ Zum unkomplizierten Austausch von Code-Schnipseln im Workshop nutzen wir dieses 
 
 [Format:]{.highlight} Schriftliche Ausarbeitung
 
-Erzählt uns eine Geschichte! Sucht Dir ein paar spannende Variablen und fertige einen kleinen Bericht an, in dem die Verteilungen bzw. Zusammenhänge dargestellt werden.  
+Erzählt uns eine Geschichte! Suche Dir ein paar spannende Variablen und fertige einen kleinen Bericht an, in dem die Verteilungen bzw. Zusammenhänge dargestellt werden.  
 
 - Nutze dafür einen der Datensätze, die wir im Workshop verwendet haben.  
 - Nutze mindestens zwei Grafiktypen (z.B. Line Plot und Scatterplot)   
