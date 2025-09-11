@@ -36,19 +36,19 @@ listing:
     - title: "ggplot2: Advanced"
       path: sessions/more_ggplot/more_ggplot.qmd
       image: sessions/more_ggplot/images/central_perk.jpg
-      description: 9:00 - 12:00
-    - title: "Wissenschaftliche Grafiken"
-      href: sessions/science_plots/science_plots.qmd
-      image: sessions/science_plots/images/science_plot.jpg
-      description: 13:00 - 14:00
+      description: 10:30 - 12:00
     - title: "gganimate & plotly"
       href: sessions/animate_plotly/animate_plotly.qmd
       image: sessions/animate_plotly/horst_gganimate.png
-      description: 14:10 - 15:30
+      description: 13:00 - 14:00
+    - title: "Exportieren"
+      href: sessions/science_plots/science_plots.qmd
+      image: sessions/science_plots/images/science_plot.jpg
+      description: 14:00 - 15:00
     - title: "Wrap-up, Fragen, Übungszeit & Evaluation"
       href: sessions/exercise/exercise.qmd
       image: sessions/exercise/images/yoga.jpg
-      description: 15:45 - 17:00
+      description: 15:00 - 17:00
 
 ---
 
