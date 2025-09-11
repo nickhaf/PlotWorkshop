@@ -392,7 +392,7 @@ Foto von <a href="https://unsplash.com/de/@nasa?utm_content=creditCopyText&utm_m
 
 ## Resourcen
 
-**datatoviz**
+**data-to-viz**
 
 Hier finden Sie eine gute Übersicht über verschiedene Plot-Typen, in der auch die Implentierung in R dokumentiert ist:
 
@@ -410,6 +410,32 @@ Hier finden Sie eine gute Übersicht über verschiedene Plot-Typen, in der auch 
 
 ![](./images/graphgallery.png){.lightbox fig-align="center"}
 
+## Vorbereitung
+
+[Pakete]{.highlight}, die wir für die Beispiele im Foliensatz benötigen: 
+
+```{r}
+library(ggplot2)
+library(quartets)
+library(tidyverse)
+library(ggrepel)
+library(ggthemes)
+library(gganimate)
+library(plotly)
+```
+
+[Datensatz]{.highlight}
+
+```{r}
+gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
+```
+
+
+[Theme]{.highlight}
+
+```{r}
+source(here::here("src", "themes.R"))
+```
 
 
 ## Scatterplot
@@ -1202,7 +1228,12 @@ Abbildung in Anlehnung an die typische Darstellung auf [gapminder](https://www.g
 
 ## Karten
 
-![](./images/ex_streets.png)
+![](./images/ex_streets.png){width="80%"}
+
+::: image-ref
+Berlin, eigene Darstellung basierend auf dem R-Paket [sf](https://cran.r-project.org/web/packages/sf/index.html)
+:::
+
 
 ## Spider-Chart
 
@@ -1256,18 +1287,20 @@ p_line_g7 +
 
 ## Interaktiv: `plotly`
 
+\
+
 ```{r}
 #| label: ggplotly
 #| echo: false
 
 ggplotly(p_bubble) |>
-  layout(width = 1000, height = 550)
+  layout(width = 1000, height = 450)
 ```
 
 
 ## Logos ;-)
 
-![](../../logo/logo3d.png){width=50% .lightbox}
+![](../../logo/logo3d.png){width=50% .lightbox fig-align="center"}
 
 
 ## {background-image="images/habeck.jpeg" background-size="1225px"}
