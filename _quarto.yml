@@ -38,14 +38,6 @@ website:
           href: sessions/exercise/exercise.qmd
           icon: check2-square
 
-    right:
-      - text: "Die Daten"
-        href: webpages/Daten.qmd     
-        icon: database-fill
-      - text: "Ressourcen"
-        href: webpages/Ressourcen.qmd     
-        icon: folder-fill
-
 format:
   html:
     theme: styles.scss
