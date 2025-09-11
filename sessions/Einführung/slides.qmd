@@ -390,6 +390,28 @@ Foto von <a href="https://unsplash.com/de/@nasa?utm_content=creditCopyText&utm_m
 
 # Zentrale Plot-Typen
 
+## Resourcen
+
+**datatoviz**
+
+Hier finden Sie eine gute Übersicht über verschiedene Plot-Typen, in der auch die Implentierung in R dokumentiert ist:
+
+[https://www.data-to-viz.com/](https://www.data-to-viz.com/){.lightbox fig-align="center"}
+
+![](./images/datatoviz.png){.lightbox fig-align="center"}
+
+## Resourcen
+
+**R Graph Gallery**
+
+Hier finden Sie eine gute Übersicht über verschiedene Plot-Typen, in der auch die Implentierung in R dokumentiert ist:
+
+[https://r-graph-gallery.com/](https://r-graph-gallery.com/)
+
+![](./images/graphgallery.png){.lightbox fig-align="center"}
+
+
+
 ## Scatterplot
 ::: {.columns}
 
@@ -525,7 +547,7 @@ ggplot(data = gapminder_2023, aes(x = gini, y = hapiscore_whr)) +
 ```{r}
 #| echo: false
 gapminder_2023_bar <- gapminder_2023 %>% 
-  filter(world_6region == "europe_central_asia") %>% 
+  filter(world_4region == "europe") %>% 
   drop_na(unicode_region_subtag, gini)
 
 p_bar <- ggplot(data = gapminder_2023_bar) +
@@ -559,7 +581,7 @@ p_bar
 #| eval: false
 
 gapminder_2023_bar <- gapminder_2023 %>% 
-  filter(world_6region == "europe_central_asia") %>% 
+  filter(world_4region == "europe") %>% 
   drop_na(unicode_region_subtag, gini)
 
 p_bar <- ggplot(data = gapminder_2023_bar) +
@@ -582,14 +604,14 @@ p_bar
 #| echo: false
 
 gapminder_2023_bar <- gapminder_2023 %>% 
-  filter(world_6region == "europe_central_asia") %>% 
+  filter(world_4region == "europe") %>% 
   drop_na(unicode_region_subtag, gini)
 
 ggplot(data = gapminder_2023_bar, 
        aes(x = reorder(unicode_region_subtag, gini), y = gini, fill = ifelse(unicode_region_subtag == "DE", "DEU", "noDEU"))) +
   geom_bar(stat = "identity", size = 4, show.legend = F) +
   scale_fill_manual(values = c("red", "grey50")) +
-  labs(title = "Gini-Index in Europa und Zentralasien (Jahr: 2023)",
+  labs(title = "Gini-Index im europäischen Vergleich (Jahr: 2023)",
        x = "", y = "Gini-Index") +
   theme_bg()
 
@@ -602,14 +624,14 @@ ggplot(data = gapminder_2023_bar,
 #| eval: false
 
 gapminder_2023_bar <- gapminder_2023 %>% 
-  filter(world_6region == "europe_central_asia") %>% 
+  filter(world_4region == "europe") %>% 
   drop_na(unicode_region_subtag, gini)
 
 ggplot(data = gapminder_2023_bar, 
        aes(x = reorder(unicode_region_subtag, gini), y = gini, fill = ifelse(unicode_region_subtag == "DE", "DEU", "noDEU"))) +
   geom_bar(stat = "identity", size = 4, show.legend = F) +
   scale_fill_manual(values = c("red", "grey35")) +
-  labs(title = "Gini-Index in Europa und Zentralasien (Jahr: 2023)",
+  labs(title = "Gini-Index im europäischen Vergleich (Jahr: 2023)",
        x = "", y = "Gini-Index") +
   theme_bg()
 ```
@@ -651,12 +673,7 @@ gapminder_line <- gapminder %>%
   drop_na(gini)
 
 p_line <- ggplot(data = gapminder_line, aes(x = time, y = gini)) +
-geom_line() +  
-theme_bg() +
-labs(title = "Ungleichheit in Deutschland On the Rise", 
-     subtitle = "Gini-Koeffizient von 1900 bis 2024",
-     x = "Jahr",
-     y = "Gini-Koeffizient")
+geom_line() 
 
 p_line
 ```
@@ -977,8 +994,8 @@ p_boxplot <- ggplot(data = gapminder_2023, aes(x = lex)) +
 gapminder_2023 <- gapminder %>% 
   filter(time == 2023) 
 
-ggplot(data = gapminder_2023, aes(x = world_6region, y = gini)) +
-  geom_boxplot(aes(group = world_6region), staplewidth =.2) + 
+ggplot(data = gapminder_2023, aes(x = world_4region, y = gini)) +
+  geom_boxplot(aes(group = world_4region), staplewidth =.2) + 
   theme_bg() +
   labs(x = "", y = "", 
        title = "Verteilung des Gini-Index", subtitle = "Jahr: 2023")
@@ -993,8 +1010,8 @@ ggplot(data = gapminder_2023, aes(x = world_6region, y = gini)) +
 gapminder_2023 <- gapminder %>% 
   filter(time == 2023) 
 
-ggplot(data = gapminder_2023, aes(x = world_6region, y = gini)) +
-  geom_boxplot(aes(group = world_6region), staplewidth =.2) + 
+ggplot(data = gapminder_2023, aes(x = world_4region, y = gini)) +
+  geom_boxplot(aes(group = world_4region), staplewidth =.2) + 
   theme_bg() +
   labs(x = "", y = "", 
        title = "Verteilung des Gini-Index", subtitle = "Jahr: 2023")
@@ -1176,11 +1193,10 @@ gapminder |>
   # Neu: Vergroessern der Punkte fuer die Farb-Legende fuer die Kontinente
   guides(fill = guide_legend(override.aes = list(size = 5), order=1)) 
 ```
-
 :::
 
 ::: image-ref
-Abbildung in Anlehnung an die typische Darstellung auf [gapminder](https://www.gapminder.org/tools/#$model$markers$bubble$encoding$y$data$concept=hapiscore_whr&space@=geo&=time;;&scale$domain:null&zoomed:null&type:null;;&x$data$concept=inequality_index_gini&source=sg&space@=geo&=time;;&scale$domain:null&zoomed:null&type:null;;&frame$value=2019;;;;;&chart-type=bubbles&url=v2)
+Abbildung in Anlehnung an die typische Darstellung auf [gapminder](https://www.gapminder.org/tools/#$model$markers$bubble$encoding$y$data$concept=hapiscore_whr&space@=geo&=time;;&scale$domain:null&zoomed:null&type:null;;&x$data$concept=inequality_index_gini&source=sg&space@=geo&=time;;&scale$domain:null&zoomed:null&type:null;;&frame$value=2023;;;;;&chart-type=bubbles&url=v2)
 :::
 
 
