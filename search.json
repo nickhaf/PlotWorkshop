@@ -683,7 +683,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nv_lines\n50.34\n18.72\n\n\nx_shape\n79.00\n10.63\n\n\naway\n66.45\n19.84\n\n\nstar\n39.31\n15.64\n\n\nx_shape\n49.66\n36.27\n\n\ndino\n86.41\n47.56\n\n\nh_lines\n57.05\n10.51\n\n\nbullseye\n63.50\n11.91\n\n\naway\n34.12\n45.73\n\n\ndots\n50.18\n83.18\n\n\nslant_up\n65.15\n92.50\n\n\nbullseye\n37.89\n82.57\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nx_shape\n42.61\n24.20\n\n\nh_lines\n52.80\n90.09\n\n\nv_lines\n30.50\n49.38\n\n\nx_shape\n39.46\n78.46\n\n\nh_lines\n68.40\n50.50\n\n\nwide_lines\n38.71\n76.40\n\n\ndino\n56.67\n86.03\n\n\nh_lines\n74.68\n70.45\n\n\nslant_down\n56.38\n14.79\n\n\ncircle\n64.02\n17.88\n\n\nx_shape\n37.56\n11.93\n\n\nwide_lines\n75.63\n37.13\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
@@ -791,6 +791,20 @@
     "text": "Quiz\n\nÖffne Mentimeter und bearbeite das Quiz.\n\n\nFragen von Gapminder.\nFoto von NASA auf Unsplash"
   },
   {
+    "objectID": "sessions/Einführung/slides.html#resourcen",
+    "href": "sessions/Einführung/slides.html#resourcen",
+    "title": "Einführung",
+    "section": "Resourcen",
+    "text": "Resourcen\ndatatoviz\nHier finden Sie eine gute Übersicht über verschiedene Plot-Typen, in der auch die Implentierung in R dokumentiert ist:\nhttps://www.data-to-viz.com/"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#resourcen-1",
+    "href": "sessions/Einführung/slides.html#resourcen-1",
+    "title": "Einführung",
+    "section": "Resourcen",
+    "text": "Resourcen\nR Graph Gallery\nHier finden Sie eine gute Übersicht über verschiedene Plot-Typen, in der auch die Implentierung in R dokumentiert ist:\nhttps://r-graph-gallery.com/"
+  },
+  {
     "objectID": "sessions/Einführung/slides.html#scatterplot",
     "href": "sessions/Einführung/slides.html#scatterplot",
     "title": "Einführung",
@@ -823,14 +837,14 @@
     "href": "sessions/Einführung/slides.html#barplot-1",
     "title": "Einführung",
     "section": "Barplot",
-    "text": "Barplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2023_bar &lt;- gapminder_2023 %&gt;% \n  filter(world_6region == \"europe_central_asia\") %&gt;% \n  drop_na(unicode_region_subtag, gini)\n\np_bar &lt;- ggplot(data = gapminder_2023_bar) +\n  geom_bar(aes(x = unicode_region_subtag, y = gini), stat = \"identity\") \n\np_bar"
+    "text": "Barplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2023_bar &lt;- gapminder_2023 %&gt;% \n  filter(world_4region == \"europe\") %&gt;% \n  drop_na(unicode_region_subtag, gini)\n\np_bar &lt;- ggplot(data = gapminder_2023_bar) +\n  geom_bar(aes(x = unicode_region_subtag, y = gini), stat = \"identity\") \n\np_bar"
   },
   {
     "objectID": "sessions/Einführung/slides.html#barplot-mit-erweiterungen",
     "href": "sessions/Einführung/slides.html#barplot-mit-erweiterungen",
     "title": "Einführung",
     "section": "Barplot mit Erweiterungen",
-    "text": "Barplot mit Erweiterungen\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2023_bar &lt;- gapminder_2023 %&gt;% \n  filter(world_6region == \"europe_central_asia\") %&gt;% \n  drop_na(unicode_region_subtag, gini)\n\nggplot(data = gapminder_2023_bar, \n       aes(x = reorder(unicode_region_subtag, gini), y = gini, fill = ifelse(unicode_region_subtag == \"DE\", \"DEU\", \"noDEU\"))) +\n  geom_bar(stat = \"identity\", size = 4, show.legend = F) +\n  scale_fill_manual(values = c(\"red\", \"grey35\")) +\n  labs(title = \"Gini-Index in Europa und Zentralasien (Jahr: 2023)\",\n       x = \"\", y = \"Gini-Index\") +\n  theme_bg()"
+    "text": "Barplot mit Erweiterungen\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2023_bar &lt;- gapminder_2023 %&gt;% \n  filter(world_4region == \"europe\") %&gt;% \n  drop_na(unicode_region_subtag, gini)\n\nggplot(data = gapminder_2023_bar, \n       aes(x = reorder(unicode_region_subtag, gini), y = gini, fill = ifelse(unicode_region_subtag == \"DE\", \"DEU\", \"noDEU\"))) +\n  geom_bar(stat = \"identity\", size = 4, show.legend = F) +\n  scale_fill_manual(values = c(\"red\", \"grey35\")) +\n  labs(title = \"Gini-Index im europäischen Vergleich (Jahr: 2023)\",\n       x = \"\", y = \"Gini-Index\") +\n  theme_bg()"
   },
   {
     "objectID": "sessions/Einführung/slides.html#lineplot",
@@ -893,7 +907,7 @@
     "href": "sessions/Einführung/slides.html#boxplot-mit-erweiterungen",
     "title": "Einführung",
     "section": "Boxplot mit Erweiterungen",
-    "text": "Boxplot mit Erweiterungen\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2023 &lt;- gapminder %&gt;% \n  filter(time == 2023) \n\nggplot(data = gapminder_2023, aes(x = world_6region, y = gini)) +\n  geom_boxplot(aes(group = world_6region), staplewidth =.2) + \n  theme_bg() +\n  labs(x = \"\", y = \"\", \n       title = \"Verteilung des Gini-Index\", subtitle = \"Jahr: 2023\")"
+    "text": "Boxplot mit Erweiterungen\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ngapminder_2023 &lt;- gapminder %&gt;% \n  filter(time == 2023) \n\nggplot(data = gapminder_2023, aes(x = world_4region, y = gini)) +\n  geom_boxplot(aes(group = world_4region), staplewidth =.2) + \n  theme_bg() +\n  labs(x = \"\", y = \"\", \n       title = \"Verteilung des Gini-Index\", subtitle = \"Jahr: 2023\")"
   },
   {
     "objectID": "sessions/Einführung/slides.html#kombiniert",
@@ -1397,7 +1411,7 @@
     "href": "sessions/good_plots/slides.html#what-makes-a-bad-visualization",
     "title": "Was ist eine gute Grafik?",
     "section": "What makes a bad visualization?",
-    "text": "What makes a bad visualization?\n\n\n\nGruppenarbeit: Diskutieren Sie eine Grafik!\n\nFühre untenstehenden Code aus, um Dich einer der fünf Gruppen zuzuordnen.\nLade die Grafik mit Deiner Gruppennummer von Github herunter.\n\nGehe in den entsprechenden Breakout-Room und diskutiert in der Gruppe, was bei eurer Grafik schiefgelaufen ist.\nStellt den anderen Gruppen kurz eure Ergebnisse vor.\n\n\n\n\n\npaste(\"Ihre Gruppe:\", sample(1:5, 1))\n\n\n\n\n\nBild gefunden auf Reddit."
+    "text": "What makes a bad visualization?\n\n\n\n\n\nGruppenarbeit\n\nTrefft euch wieder in einem Breakout-Raum mit den Ordnungsnummern 1-4.\nLadet die Grafik mit eurer Ordnungsnummer von Github herunter.\n\nDiskutiert in der Gruppe, was bei eurer Grafik schiefgelaufen ist.\nStellt den anderen Gruppen kurz eure Ergebnisse vor.\n\n\n\n\n\n\nBild gefunden auf Reddit."
   },
   {
     "objectID": "sessions/good_plots/slides.html#references",
