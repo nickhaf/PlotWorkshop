@@ -4,3 +4,15 @@ subtitle: "Nützliche Links und Materialien"
 format: html
 ---
 
+## Coole Plots
+
+
+
+## Webseiten
+
+
+## Daten
+Es gibt das sehr coole [tidytuesday](https://github.com/rfordatascience/tidytuesday)-Projekt. Jede Woche wird ein neuer Datensatz veröffentlicht, der von der Community analysiert und visualisiert werden kann. Die Daten sind vielfältig und reichen von Umweltdaten über soziale Themen bis hin zu Popkultur. Daraus ist auch unser `characters` Datensatz.
+
+Dann natürlich [Gapminder](https://www.gapminder.org/data/). Das haben wir ja schon viel besprochen. 
+
