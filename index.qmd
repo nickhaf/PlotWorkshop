@@ -99,7 +99,7 @@ Installiert euch gerne schon einmal die Pakete für den Workshop:
 
 install.packages(c("tidyverse", "here", "GGally", 
                    "RColorBrewer", "colorblindcheck", 
-                   "Patchwork", "ggthemes", "gganimate", 
+                   "patchwork", "ggthemes", "gganimate", 
                    "ggtext", "ggrepel", "ggwordcloud", 
                    "paletteer", "plotly", "readxl", 
                    "showtext"))
