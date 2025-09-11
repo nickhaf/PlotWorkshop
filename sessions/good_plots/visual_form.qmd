@@ -10,33 +10,6 @@ bibliography: refs.bib
 ---
 
 
-```{r}
-#| label: Load pacakges
-#| echo: false
-#| message: false
-
-library(here)
-library(janitor)
-library(ggwordcloud)
-library(ggrepel)
-library(ggtext)
-library(showtext)
-library(tidyverse)
-source(here::here("src", "themes.R"))
-source(here::here("src", "functions.R"))
-
-gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
-
-gapminder_europe <- gapminder %>%
-  filter(world_4region == "europe", time >= 1900, time <= 2024) %>%
-  drop_na(gini)
-
-gapminder_2020 <- gapminder %>%
-  filter(time == 2020) %>%
-  drop_na(world_6region, world_4region, country, gini, hapiscore_whr) %>%
-  arrange(desc(co2_cons))
-```
-
 ## Visual Form
 
 
@@ -67,6 +40,85 @@ Foto von <a href="https://unsplash.com/de/@samscrim?utm_content=creditCopyText&u
       
 :::
 
+
+## Setup {#setup}
+
+```{r}
+#| label: Load packages
+#| message: false
+
+# install.packages(c("here", "ggwordcloud", "ggrepel", "ggtext", "showtext", "tidyverse", "paletteer", "ggthemes"))
+
+library(here)
+#library(janitor)
+library(ggwordcloud)
+library(ggrepel)
+library(ggtext)
+library(showtext)
+library(tidyverse)
+library(paletteer)
+library(ggthemes)
+
+
+gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
+
+gapminder_europe <- gapminder %>%
+  filter(world_4region == "europe", time >= 1900, time <= 2024) %>%
+  drop_na(gini)
+
+gapminder_2020 <- gapminder %>%
+  filter(time == 2020) %>%
+  drop_na(world_6region, world_4region, country, gini, hapiscore_whr) %>%
+  arrange(desc(co2_cons))
+```
+
+```{r}
+#| echo: false
+
+source(here::here("src", "themes.R"))
+source(here::here("src", "functions.R"))
+```
+
+## Der Ausgangsplot für diese Session: Wiederholung
+
+::: {.panel-tabset}
+
+### 🏋 Übung
+
+::: {.exercise}
+
+Erstelle einen Plot der den Gini-Koeffizienten (`gini`) gegen den Happiness-Score (`hapiscore_whr`) in verschiedenen Ländern 2020 (`gapminder_2020`) darstellt. 
+Der Plot sollte einen Scatterplot enthalten, und eine geglättete Linie (`geom_smooth()`). 
+Füge außerdem Titel und Achsenbeschriftungen hinzu.
+
+[Link zum Setup, falls nötig](#setup)
+
+:::
+
+### Lösung
+
+```{r}
+#| output-location: column
+
+ggplot(
+  data = gapminder_2020,
+  mapping = aes(
+    x = gini,
+    y = hapiscore_whr
+  )
+) +
+  geom_point() +
+  geom_smooth() +
+  labs(
+    title = "Ungleichheit = Un-Happiness?",
+    subtitle = "Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2020",
+    x = "Gini-Index",
+    y = "Happiness-Score",
+  ) +
+  theme_bw()
+```
+
+:::
 
 
 # Effizienz: Salienz von Informationen
@@ -109,7 +161,7 @@ Abbildung von [Wong, B. (2010)](https://www.nature.com/articles/nmeth1010-773)
 ## Gruppieren
 
 :::{.columns}
-:::{.column widht="50%}
+:::{.column width="50%}
 
 Gruppierung durch [Form]{.highlight} 
 
@@ -135,7 +187,7 @@ ggplot(df, aes(x, y)) +
 
 :::
 
-:::{.column widht="50%}
+:::{.column width="50%}
 
 Gruppierung durch [verbundene Elemente]{.highlight}
 
@@ -226,6 +278,7 @@ Data from [Rockefeller Institute](https://rockinst.org/blog/public-mass-shooting
 :::
 
 
+
 ## Darstellung von Größen
 
 Die Größe von Elemenen kann auch genutzt werden, um Daten zu kodieren.
@@ -301,8 +354,51 @@ ggplot(
     x = "Gini-Index",
     y = "Happiness-Score",
   ) +
+  theme_bw()
+```
+
+
+## Darstellung von Größen
+
+::: {.panel-tabset}
+
+### 🏋 Übung
+
+::: {.exercise}
+Erweitert den Plot aus der vorherigen Übung, indem ihr die Punkte nach Weltregion (`world_4region`) einfärbt.
+Erweitert den Plot um die Aesthetic `size`, sodass sich die Größe der Punkte nach der Bevölkerungsgröße (`pop`) richtet. 
+
+[Link zum Setup, falls nötig](#setup)
+
+:::
+
+
+### Lösung
+
+```{r}
+#| output-location: column
+#| code-line-numbers: "8"
+
+ggplot(
+  data = gapminder_2020,
+  mapping = aes(
+    x = gini,
+    y = hapiscore_whr
+  )
+) +
+  geom_point(aes(color = world_4region, size = pop)) +
+  geom_smooth() +
+  labs(
+    title = "Ungleichheit = Un-Happiness?",
+    subtitle = "Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2020",
+    x = "Gini-Index",
+    y = "Happiness-Score",
+  ) +
   theme_bg()
 ```
+
+:::
+
 
 
 ## Darstellen von Größen
@@ -326,7 +422,7 @@ ggplot(
     x = "Gini-Index",
     y = "Happiness-Score",
   ) +
-  theme_bg()
+  theme_bw()
 ```
 
 
@@ -404,6 +500,19 @@ Die Größe von Kreisen einzuschätzen ist schwer!
 :::
 
 
+## Datenumwandlung für den folgenden Teil
+
+```{r}
+continent_co2 <- gapminder_2020 %>%
+  group_by(world_6region) %>%
+  summarise(mean_co2_pcap_cons = mean(co2_pcap_cons, na.rm = TRUE)) %>%
+  drop_na(mean_co2_pcap_cons)
+
+continent_co2_pct <- continent_co2 %>%
+  mutate(percentage = mean_co2_pcap_cons / sum(mean_co2_pcap_cons) * 100)
+```
+
+
 ## Das gleiche gilt für Winkel!
 
 ::: {.slide data-background-color="white"}
@@ -417,10 +526,6 @@ Versuche, die Größen zu sortieren:
 ```{r }
 #| echo: false
 
-continent_co2 <- gapminder_2020 %>%
-  group_by(world_6region) %>%
-  summarise(mean_co2_pcap_cons = mean(co2_pcap_cons, na.rm = TRUE)) %>%
-  drop_na(mean_co2_pcap_cons)
 
 continent_co2$world_6region <- factor(
   continent_co2$world_6region,
@@ -477,8 +582,6 @@ ggplot(
 #| echo: false
 
 
-continent_co2_pct <- continent_co2 %>%
-  mutate(percentage = mean_co2_pcap_cons / sum(mean_co2_pcap_cons) * 100)
 
 ggplot(
   continent_co2_pct,
@@ -982,7 +1085,7 @@ Mit [colorblindcheck](https://cran.r-project.org/web/packages/colorblindcheck/in
 
 library(colorblindcheck)
 
-palette_check(scales::hue_pal()(6), plot = TRUE)
+palette_check(c("#F8766D", "#B79F00", "#00BA38", "#00BFC4", "#619CFF", "#F564E3"), plot = TRUE)
 ```
 
 :::
@@ -1007,7 +1110,7 @@ ggplot(
   aes(x = gini, y = hapiscore_whr)
 ) +
   geom_point(size = 3, color = "#FF0000") +
-  geom_smooth(color = "darkblue") +
+  geom_smooth(color = "darkgreen") +
   theme_bg()
 ```
 :::
@@ -1193,6 +1296,13 @@ Sammlung von Paletten aus diversen Paketen
 - [Palette-Finder](https://r-graph-gallery.com/color-palette-finder)
 - [Gallerie](https://pmassicotte.github.io/paletteer_gallery/#sequential)
 
+
+Z.B. Enthält `"lisa::Jean_MichelBasquiat_1"` folgende Farben:
+
+```{r}
+ paletteer::paletteer_d("lisa::Jean_MichelBasquiat_1") 
+```
+
 :::
 
 ::: {.column width="50%"}
@@ -1220,7 +1330,7 @@ ggplot(
   geom_bar(stat = "identity", width = 1) +
   theme_minimal() +
   labs(title = "Share of global per capita CO2 consumption") +
-  scale_fill_paletteer_d("LaCroixColoR::Orange")
+  scale_fill_paletteer_d("lisa::Jean_MichelBasquiat_1")
 ```
 
 
@@ -1238,23 +1348,79 @@ ggplot(
 
 
 
-## 🏋 Übung
+##
 
-::: {.columns}
-::: {.column width="50%"}
+::: {.panel-tabset}
+
+
+### 🏋 Übung
+
 ::: {.exercise}
-1. Wechsel die Farbpalette für deinen Plot und teste sie auf Farbfehlsichtigkeiten.
-:::
-:::
-::: {.column width="50%"}
-![](./images/paint.jpg){.image-right}
-:::
+Wechsel die Farbpalette für den Übungsplot und teste sie auf Farbfehlsichtigkeiten.
+
+[Link zum Setup, falls nötig](#setup)
+
+```{r}
+#| output-location: column
+
+ggplot(
+  data = gapminder_2020,
+  mapping = aes(
+    x = gini,
+    y = hapiscore_whr
+  )
+) +
+  geom_point(aes(color = world_4region, size = pop)) +
+  geom_smooth() +
+  labs(
+    title = "Ungleichheit = Un-Happiness?",
+    subtitle = "Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2020",
+    x = "Gini-Index",
+    y = "Happiness-Score",
+  ) +
+  theme_bw()
+```
+
 :::
 
-::: {.image-ref}
-Foto von <a href="https://unsplash.com/de/@geordannatheartist?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Geordanna Cordero</a> auf <a href="https://unsplash.com/de/fotos/mehrfarbige-abstrakte-malerei-2Qg4y32pdCc?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+
+### Mögliche Lösung
+
+```{r}
+#| output-location: column
+#| code-line-numbers: "17"
+
+ggplot(
+  data = gapminder_2020,
+  mapping = aes(
+    x = gini,
+    y = hapiscore_whr
+  )
+) +
+  geom_point(aes(color = world_4region, size = pop)) +
+  geom_smooth() +
+  labs(
+    title = "Ungleichheit = Un-Happiness?",
+    subtitle = "Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2020",
+    x = "Gini-Index",
+    y = "Happiness-Score",
+  ) +
+  theme_bw() +
+  paletteer::scale_colour_paletteer_d("lisa::FridaKahlo")
+```
+
+
+### colorblind-check
+
+```{r}
+#| output-location: column
+
+palette_check(paletteer::paletteer_d("lisa::FridaKahlo"), 
+              plot = TRUE)
+```
 
 :::
+
 
 # Funktionelles Desing
 
@@ -1313,7 +1479,7 @@ Handschriftliche Skizze ist auch erstmal hilfreich!
 
 ## Simplify to clarify: Data-ink ratio
 
-::: .{quote}
+::: {.quote}
 Data graphics should draw the viewer's attention to the sense and substance of the data, not to something else. 
 
 ::: {.small}
@@ -1511,41 +1677,11 @@ Balken an sich enthalten also schon redundante Informationen!
 :::
 :::
 
-## 
-
-
+## Tufte-Konformer Barplot
 
 ::: {.panel-tabset}
 
-### Aufgabe
-::: .{exercise}
-
-Entferne alle Redundanzen, machen den Plot also "Tufte-Komform" 
-
-:::
-
-```{r}
-#| output-location: column
-
-ggplot(
-  gapminder_2020[1:10, ],
-  aes(x = reorder(country, co2_pcap_cons), y = co2_pcap_cons, fill = co2_pcap_cons, color = co2_pcap_cons, label = round(co2_pcap_cons), 2)
-) +
-  geom_bar(stat = "identity", width = 1, color = "black") +
-  geom_text(vjust = -1, color = "black") +
-  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
-  labs(
-    x = "Land",
-    y = "CO2 Consumption per capita in t"
-  ) +
-  theme_bg()
-```
-
-### Antwort
-
-::: {.panel-tabset}
-
-#### Antwort 1
+### Möglichkeit 1
 
 
 Entfernen der Achsenlinien und Umrandungen. Hintergrundlinien werden innerhalb der Balken dargestellt. 
@@ -1572,7 +1708,7 @@ ggplot(
 ```
 
 
-#### Antwort 2
+### Möglichkeit 2
 
 Mitunter können die vertikalen und horizontalen Linien auch hilfreich beim Vergleich/bei der Zuordnung zum Land sein.
 
@@ -1872,11 +2008,8 @@ Nach <a href="https://de.wikipedia.org/wiki/User:MalteAhrens" class="extiw" titl
 :::
 
 :::{.column width="50%"}
-- Gegenüberliegende Farben intensivieren sich gegenseitig: eine Primärfarbe, und eine Sekundärfarbe, die aus den anderen beiden Primärfarben gemischt wird. Das erzeugt stärkere Kontraste. (Van Gogh bild)
-- Mit weiß und schwarz lassen sich die Schattierungen hinzumischen
-- triadisches Farbschema: Fom MIttelpunkt des Farbkreises Strahlen mit gleichem Winkel abgehen lassen (So viele, wie man Farben haben will). Das wählt dann Farben mit dem größten Kontrast aus. 
-(https://www.kunstplaza.de/fashion-design/farbenlehre-farbtheorie-styleguides-fashion-design/)
-
+- Gegenüberliegende Farben intensivieren sich gegenseitig: eine Primärfarbe, und eine Sekundärfarbe, die aus den anderen beiden Primärfarben gemischt wird. Das erzeugt stärkere Kontraste.
+- Mit weiß und schwarz lassen sich die Schattierungen hinzumischen. 
 :::
 :::
 
@@ -1908,9 +2041,10 @@ Wollbox von Vincent van Gogh, mit der er Farbkombinationen getestet hat. Eigenes
 
 ## Schriften
 
+::: {.columns}
+::: {.column width="50%"}
 Die Schriftart kann einer Abbildung ein ganz anderes Aussehen verleihen.  
 Wir nutzen Schriftarten von [Google Fonts](https://fonts.google.com/).
-
 
 ```{r}
 #| eval: false
@@ -1919,7 +2053,15 @@ library(showtext)
 
 font_add_google("Special Elite", family = "special")
 ```
+:::
+::: {.column width="50%"}
+![](./images/font.jpg){.image-right}
+:::
+:::
 
+::: {.image-ref}
+Foto von <a href="https://unsplash.com/de/@foxfox?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Natalia Y.</a> auf <a href="https://unsplash.com/de/fotos/grauer-schmuck-mit-verschiedenen-buchstaben-in-braunen-organizer-boxen-aus-holz-Oxl_KBNqxGA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
 
 ## Schriftart
 
@@ -2003,26 +2145,83 @@ ggplot(
     subtitle = "According to goodreads"
   ) +
   theme_bg() +
-  theme(title = element_text(family = "Playfair Display", size = 20), )
+  theme(title = element_text(family = "Playfair Display", size = 20))
 ```
 
 
-## 🏋 Übung
+## 
 
-::: {.columns}
-::: {.column width="50%"}
+::: {.panel-tabset}
+
+### 🏋 Übung
+
 ::: {.exercise}
-Suche dir eine Schriftart aus [Google Fonts](https://fonts.google.com/) und baue sie in deinen Plot ein.
-:::
-:::
-::: {.column width="50%"}
-![](./images/font.jpg){.image-right}
+Suche dir eine Schriftart aus [Google Fonts](https://fonts.google.com/) und baue sie in den Übungs-Plot ein.  
+
+[Link zum Setup, falls nötig](#setup)
+
+```{r}
+#| output-location: column
+
+ggplot(
+  data = gapminder_2020,
+  mapping = aes(
+    x = gini,
+    y = hapiscore_whr
+  )
+) +
+  geom_point(aes(color = world_4region, size = pop)) +
+  geom_smooth() +
+  labs(
+    title = "Ungleichheit = Un-Happiness?",
+    subtitle = "Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2020",
+    x = "Gini-Index",
+    y = "Happiness-Score",
+  ) +
+  theme_bw() +
+  paletteer::scale_colour_paletteer_d("lisa::FridaKahlo") 
+```
 
 :::
+
+### Lösung
+
+```{r}
+#| output-location: column
+#| fig.showtext: TRUE
+#| code-line-numbers: "1,2,3,21,22,23,24,25"
+
+font_add_google("Special Elite", family = "my textfont")
+font_add_google("Playfair Display")
+
+showtext_auto()
+
+ggplot(
+  data = gapminder_2020,
+  mapping = aes(
+    x = gini,
+    y = hapiscore_whr
+  )
+) +
+  geom_point(aes(color = world_4region, size = pop)) +
+  geom_smooth() +
+  labs(
+    title = "Ungleichheit = Un-Happiness?",
+    subtitle = "Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2020",
+    x = "Gini-Index",
+    y = "Happiness-Score",
+  ) +
+  theme_bw() +
+  paletteer::scale_colour_paletteer_d("lisa::FridaKahlo") +
+  theme(
+    title = element_text(family = "Playfair Display"),
+    legend.title = element_text(family = "Playfair Display", size = 12),
+    legend.text  = element_text(family = "my textfont", size = 10)
+  )
+```
+
 :::
 
-::: {.image-ref}
-Foto von <a href="https://unsplash.com/de/@foxfox?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Natalia Y.</a> auf <a href="https://unsplash.com/de/fotos/grauer-schmuck-mit-verschiedenen-buchstaben-in-braunen-organizer-boxen-aus-holz-Oxl_KBNqxGA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-:::
+
 
 ## Literatur
