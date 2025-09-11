@@ -14,5 +14,3 @@ author:
 ```
 
 [View slides in full screen](slides.html)
-
-- Wissenschaftliche Grafiken (APA) - Janine

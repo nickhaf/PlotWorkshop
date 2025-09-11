@@ -1,0 +1,36 @@
+---
+title: "Leistungsnachweis"
+format: html
+image: "images/yoga.jpg"
+author: 
+  - name: "Janine Buchholz" 
+  - name: "Nicklas Hafiz"
+---
+
+![](./images/yoga.jpg)
+
+::: {.image-ref}
+Foto von <a href="https://unsplash.com/de/@kikekiks?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">kike vega</a> auf <a href="https://unsplash.com/de/fotos/silhouettenfotografie-einer-frau-die-yoga-macht-F2qh3yjz6Jk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+      
+:::
+
+
+
+## Leistungsnachweis
+
+[Format:]{.highlight} Schriftliche Ausarbeitung
+
+Erzählen Sie uns eine Geschichte! Suchen Sie sich ein paar spannende Variablen und fertigen Sie einen kleinen Bericht an, in dem die Verteilungen bzw. Zusammenhänge dargestellt werden. 
+
+- Verwenden Sie dafür einen der Datensätze, die wir im Workshop verwendet haben.  
+- Nutzen Sie mindestens zwei Grafiktypen (z.B. Line Plot und Scatterplot)   
+- Diskutieren Sie jeweils, welche Änderungen Sie an Ihrer Grafik vorgenommen haben, damit diese den 
+Gestaltungsprinzipien guter Grafiken entspricht.   
+- Umfang: 
+  - schriftliche Ausarbeitung (max. 2 Seiten)
+  - R Skript zur Erzeugung der Grafiken
+
+[Einreichung]{.highlight}
+
+- Fristende: 15.10.2025  
+- E-Mail an: [nicklas.jakob.hafiz@hu-berlin.de](mailto:nicklas.jakob.hafiz@hu-berlin.de) und [janine.buchholz@hu-berlin.de](mailto:janine.buchholz@hu-berlin.de)

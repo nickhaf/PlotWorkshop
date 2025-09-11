@@ -292,7 +292,7 @@ gapminder_dat <- gapminder_dat_full[gapminder_dat_full$name == "Germany", ]
 head(gapminder_dat)
 ```
 
-Im `tidyverse`:
+## Konditionales Subsetting im `tidyverse`:
 
 ```{r, output.lines = 2}
 gapminder_dat <- gapminder_dat_full %>% 
@@ -319,13 +319,10 @@ gapminder_dat_full %>%
   head
 ```
 
+
 ## Faktoren
-Eventuell auh einfach später einführen, wenn gebraucht!
 
-```{r}
-gapminder_dat_full$country
-```
-
+Zuwe
 
 ```{r}
 as.factor(gapminder_dat_full$country)
