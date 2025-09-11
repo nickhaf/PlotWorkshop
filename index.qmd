@@ -66,7 +66,7 @@ Ein Bild sagt mehr als tausend … Zahlen! Mit einer guten Grafik lassen sich vi
 
 
 ::: {.column width="45%"}
-[Nicklas Hafiz](https://orcid.org/0000-0001-9035-4483) ist Psychologe und promoviert am Institut zur Qualitätsentwicklung im Bildungswesen (IQB) zu Simulationsstudien in der psychologischen Methodenforschung.
+[Nicklas Hafiz](https://orcid.org/0000-0001-9035-4483) ist Psychologe und promoviert am Institut zur Qualitätsentwicklung im Bildungswesen ([IQB](https://www.iqb.hu-berlin.de/institut/staff/?pg=c135)) zu Simulationsstudien in der psychologischen Methodenforschung.
 Teil seiner dortigen Arbeit ist zudem die Entwicklung eines R-Pakets zur Erstellung der Grafiken für den Bildungstrend-Bericht.
 Zudem verfügt er über Erfahrung in der Lehre und hat bereits Veranstaltungen und Workshops zu R, Item-Response-Theorie sowie zu reproduzierbarem Arbeiten mit GitHub durchgeführt. 
 :::
@@ -75,7 +75,7 @@ Zudem verfügt er über Erfahrung in der Lehre und hat bereits Veranstaltungen u
 :::
 
 ::: {.column width="45%"}
-[Dr. Janine Buchholz](https://orcid.org/0000-0003-2534-4603) ist ebenfalls Psychologin und arbeitet als Postdoktorandin im Forschungsdatenzentrum am Institut zur Qualitätsentwicklung im Bildungswesen (FDZ am IQB) in Berlin. 
+[Dr. Janine Buchholz](https://orcid.org/0000-0003-2534-4603) ist ebenfalls Psychologin und arbeitet als Postdoktorandin im Forschungsdatenzentrum am Institut zur Qualitätsentwicklung im Bildungswesen ([FDZ am IQB](https://www.iqb.hu-berlin.de/institut/staff/?pg=c163)) in Berlin. 
 Sie hat am DIPF | Leibniz-Institut für Bildungsforschung und Bildungsinformation zu mehrdimensionalen Modellen der Item-Response-Theorie promoviert und über mehrere Jahre in unterschiedlichen Rollen an der PISA-Studie mitgewirkt. 
 Sie verfügt über Lehrerfahrung zu verschiedenen Methoden der empirischen Bildungsforschung und Datenvisualisierung.
 :::
@@ -87,24 +87,7 @@ Sie verfügt über Lehrerfahrung zu verschiedenen Methoden der empirischen Bildu
 
 Voraussetzungen für die Teilnahme sind Grundkenntnisse in R. 
 Grundsätzlich können die im Kurs behandelten Inhalte aber auch in anderen Programmiersprachen umgesetzt werden. 
-Die Teilnehmenden benötigen einen Laptop, mit welchem sie sich in Posit-Cloud einloggen können, um den Beispiel und Übungsaufgaben zu folgen.  
-
-
-# Genutzte Pakete
-
-Installiert euch gerne schon einmal die Pakete für den Workshop: 
-
-```{r}
-#| eval: false
-
-install.packages(c("tidyverse", "here", "GGally", 
-                   "RColorBrewer", "colorblindcheck", 
-                   "patchwork", "ggthemes", "gganimate", 
-                   "ggtext", "ggrepel", "ggwordcloud", 
-                   "paletteer", "plotly", "readxl", 
-                   "showtext"))
-
-```
+Zur Teilnahme benötigen Sie eine lokale Installation von R und RStudio (https://posit.co/download/rstudio-desktop/); alternativ können Sie sich einen kostenfreien (aber zeitlich begrenzten!) Workspace auf der Posit Cloud einrichten (https://login.posit.cloud/)  
 
 # Zeitplan
 
@@ -122,16 +105,40 @@ install.packages(c("tidyverse", "here", "GGally",
 
 :::
 
-##  Leistungsnachweis
+# Setup
+
+## R-Pakete
+
+Installiert euch gerne schon einmal die Pakete, die wir im Workshop verwenden werden. 
+
+```{r}
+#| eval: false
+
+install.packages(c("tidyverse", "here", "GGally", 
+                   "RColorBrewer", "colorblindcheck", 
+                   "patchwork", "ggthemes", "gganimate", 
+                   "ggtext", "ggrepel", "ggridges", 
+                   "ggwordcloud", "paletteer", "plotly",
+                   "readxl", "showtext"))
+
+```
+
+## Cryptpad
+
+Zum unkomplizierten Austausch von Code-Schnipseln im Workshop nutzen wir dieses Cryptpad:
+[https://cryptpad.fr/code/#/2/code/edit/YH8EkvdnTZaCixuDViTP00VA/](https://cryptpad.fr/code/#/2/code/edit/YH8EkvdnTZaCixuDViTP00VA/)
+
+
+#  Leistungsnachweis
 
 [Format:]{.highlight} Schriftliche Ausarbeitung
 
-Erzählen Sie uns eine Geschichte! Suchen Sie sich ein paar spannende Variablen und fertigen Sie einen kleinen Bericht an, in dem die Verteilungen bzw. Zusammenhänge dargestellt werden.  
+Erzählt uns eine Geschichte! Sucht Dir ein paar spannende Variablen und fertige einen kleinen Bericht an, in dem die Verteilungen bzw. Zusammenhänge dargestellt werden.  
 
-- Verwenden Sie dafür einen der Datensätze, die wir im Workshop verwendet haben.  
-- Nutzen Sie mindestens zwei Grafiktypen (z.B. Line Plot und Scatterplot)   
-- Diskutieren Sie jeweils, welche Änderungen Sie an Ihrer Grafik vorgenommen haben, damit diese den 
-Gestaltungsprinzipien guter Grafiken entspricht.   
+- Nutze dafür einen der Datensätze, die wir im Workshop verwendet haben.  
+- Nutze mindestens zwei Grafiktypen (z.B. Line Plot und Scatterplot)   
+- Diskutiere jeweils, welche Änderungen Du an der Grafik vorgenommen hast, damit diese den 
+Gestaltungsprinzipien guter Grafiken entspricht (z.B. Vergabe eindeutiger Achsenbeschriftungen, Anspassung von Größenverhältnissen, Verwendung eines bestimmten Themes oder Farbschemas).   
 - Umfang: 
   - schriftliche Ausarbeitung (max. 2 Seiten)
   - R Skript zur Erzeugung der Grafiken
