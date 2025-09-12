@@ -227,7 +227,7 @@ p_static <- gapminder %>%
   theme_classic() + 
   geom_point(aes(fill = world_4region, size = pop), shape=21, alpha=.7) +
   scale_size(range = c(1, 30)) +
-  labs(x="Gini-Index", y="Hyppiness Score") +
+  labs(x="Gini-Index", y="Happiness Score") +
   scale_y_continuous(limits = c(15, 85), 
                      breaks = seq(20,80, by=10),
                      labels = paste0(seq(20,80, by=10), "%")) +
@@ -273,7 +273,7 @@ p_static <- gapminder %>%
   theme_classic() + 
   geom_point(aes(fill = world_4region, size = pop), shape=21, alpha=.7) +
   scale_size(range = c(1, 30)) +
-  labs(x="Gini-Index", y="Hyppiness Score") +
+  labs(x="Gini-Index", y="Happiness Score") +
   scale_y_continuous(limits = c(15, 85), 
                      breaks = seq(20,80, by=10),
                      labels = paste0(seq(20,80, by=10), "%")) +
@@ -331,7 +331,7 @@ p_static <- gapminder %>%
   theme_classic() + 
   geom_point(aes(fill = world_4region, size = pop), shape=21, alpha=.7) +
   scale_size(range = c(1, 30)) +
-  labs(x="Gini-Index", y="Hyppiness Score") +
+  labs(x="Gini-Index", y="Happiness Score") +
   scale_y_continuous(limits = c(15, 85), 
                      breaks = seq(20,80, by=10),
                      labels = paste0(seq(20,80, by=10), "%")) +
@@ -378,7 +378,7 @@ p_static <- gapminder %>%
   theme_classic() + 
   geom_point(aes(fill = world_4region, size = pop), shape=21, alpha=.7) +
   scale_size(range = c(1, 30)) +
-  labs(x="Gini-Index", y="Hyppiness Score") +
+  labs(x="Gini-Index", y="Happiness Score") +
   scale_y_continuous(limits = c(15, 85), 
                      breaks = seq(20,80, by=10),
                      labels = paste0(seq(20,80, by=10), "%")) +
@@ -482,7 +482,7 @@ p_bubble <- gapminder %>%
   theme_classic() + 
   geom_point(aes(fill = world_4region, size = pop), shape=21, alpha=.7) +
   scale_size(range = c(1, 30)) +
-  labs(x="Gini-Index", y="Hyppiness Score") +
+  labs(x="Gini-Index", y="Happiness Score") +
   scale_y_continuous(limits = c(15, 85), 
                      breaks = seq(20,80, by=10),
                      labels = paste0(seq(20,80, by=10), "%")) +
@@ -531,7 +531,7 @@ p_bubble <- gapminder %>%
   theme_classic() + 
   geom_point(aes(fill = world_4region, size = pop), shape=21, alpha=.7) +
   scale_size(range = c(1, 30)) +
-  labs(x="Gini-Index", y="Hyppiness Score") +
+  labs(x="Gini-Index", y="Happiness Score") +
   scale_y_continuous(limits = c(15, 85), 
                      breaks = seq(20,80, by=10),
                      labels = paste0(seq(20,80, by=10), "%")) +
