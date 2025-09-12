@@ -1,5 +1,5 @@
 ---
-title: "Wissenschaftliche Grafiken (APA)"
+title: "Grafiken exportieren"
 format: html
 image: ./images/science_plot.jpg
 author: 
