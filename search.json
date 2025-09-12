@@ -39,7 +39,7 @@
     "href": "sessions/science_plots/slides.html#einführung",
     "title": "Exportieren",
     "section": "Einführung",
-    "text": "Einführung\n\n\nWir haben mittlerweile viele schöne Grafiken erzeugt - aber noch nicht gespeichert.\nDafür gibt es mehrere Möglichkeiten, Hilfsmittel und Konventionen.\n\n\nInhalte des Foliensatzes:\n\nSpeichern von Grafiken\n\nPlot-Vorschau mit ggview\n\nZusammenfügen von Grafiken in einer einzelnen Datei\nKonventionen und Richtlinien\n\n\n\n\n\nFoto von Paul Teysen auf Unsplash"
+    "text": "Einführung\n\n\nWir haben mittlerweile viele schöne Grafiken erzeugt - aber noch nicht gespeichert.\nDafür gibt es mehrere Möglichkeiten, Hilfsmittel und Konventionen.\n\n\nInhalte des Foliensatzes:\n\nSpeichern von Grafiken\n\nPlot-Vorschau mit ggview\n\nKonventionen und Richtlinien\n\n\n\n\n\nFoto von Paul Teysen auf Unsplash"
   },
   {
     "objectID": "sessions/science_plots/slides.html#vorbereitung",
@@ -74,7 +74,7 @@
     "href": "sessions/science_plots/slides.html#plot-vorschau-mit-ggview-1",
     "title": "Exportieren",
     "section": "Plot-Vorschau mit ggview",
-    "text": "Plot-Vorschau mit ggview\nBeispiel-Code\n\ngapminder_line &lt;- gapminder %&gt;% \n  filter(country %in% c(\"deu\"), time &gt;=1900, time &lt;= 2024) %&gt;% \n  drop_na(gini)\n\nVorschau mit der ggview-Funktion canvas()\n\nggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line()  +\n  canvas(width = 1200, height = 600, units = \"px\", dpi = 300)\n\nSpeichern\n\nEntweder so:\n\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line()  +\n  canvas(width = 1200, height = 600, units = \"px\", dpi = 300)\n\nsave_ggplot(p_line, \"my_plot.png\")\n\n\n… oder “klassisch” so:\n\n\nggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line()  +\n  canvas(width = 1200, height = 600, units = \"px\", dpi = 300)\n\nggsave(\"my_plot.png\",\n       width = 1200, height = 600, units = \"px\", dpi = 300)"
+    "text": "Plot-Vorschau mit ggview\nVorschau mit der ggview-Funktion canvas()\n\ngapminder_line &lt;- gapminder %&gt;% \n  filter(country %in% c(\"deu\"), time &gt;=1900, time &lt;= 2024) %&gt;% \n  drop_na(gini)\n\nggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line()  +\n  canvas(width = 1200, height = 600, units = \"px\", dpi = 300)\n\nSpeichern\n- Entweder so:\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line()  +\n  canvas(width = 1200, height = 600, units = \"px\", dpi = 300)\n\nsave_ggplot(p_line, \"my_plot.png\")\n\n- … oder “klassisch” so:\n\nggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line()  +\n  canvas(width = 1200, height = 600, units = \"px\", dpi = 300)\n\nggsave(\"my_plot.png\",\n       width = 1200, height = 600, units = \"px\", dpi = 300)"
   },
   {
     "objectID": "sessions/science_plots/slides.html#dgps-richtlinien-zur-manuskriptgestaltung-2019",
@@ -697,7 +697,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nstar\n58.08\n92.01\n\n\nwide_lines\n64.33\n41.62\n\n\nbullseye\n41.39\n37.30\n\n\nh_lines\n59.85\n10.54\n\n\ncircle\n42.68\n18.54\n\n\nbullseye\n70.64\n82.43\n\n\ncircle\n50.49\n79.00\n\n\nslant_up\n31.33\n32.54\n\n\nslant_up\n61.66\n64.10\n\n\nstar\n44.01\n46.45\n\n\nx_shape\n75.28\n24.87\n\n\nh_lines\n76.77\n10.50\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nstar\n75.13\n23.37\n\n\ncircle\n70.98\n21.15\n\n\ncircle\n60.67\n17.05\n\n\nslant_up\n41.53\n13.40\n\n\nslant_down\n51.49\n20.84\n\n\nslant_up\n42.42\n11.69\n\n\ndots\n51.07\n17.21\n\n\naway\n39.04\n84.68\n\n\naway\n67.27\n18.71\n\n\nx_shape\n42.35\n24.56\n\n\nv_lines\n69.50\n15.61\n\n\nstar\n75.13\n23.37\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
