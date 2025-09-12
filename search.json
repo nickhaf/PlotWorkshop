@@ -39,7 +39,7 @@
     "href": "sessions/science_plots/slides.html#einführung",
     "title": "Exportieren",
     "section": "Einführung",
-    "text": "Einführung\n\n\nWir haben mittlerweile viele schöne Grafiken erzeugt - aber noch nicht gespeichert.\nDafür gibt es mehrere Möglichkeiten, Hilfsmittel und Konventionen.\nInhalte des Foliensatzes:\n\nSpeichern von Grafiken\n\nPlot-Vorschau mit ggview\n\nZusammenfügen von Grafiken in einer einzelnen Datei\nKonventionen und Richtlinien\n\n\n\n\n\nFoto von Paul Teysen auf Unsplash"
+    "text": "Einführung\n\n\nWir haben mittlerweile viele schöne Grafiken erzeugt - aber noch nicht gespeichert.\nDafür gibt es mehrere Möglichkeiten, Hilfsmittel und Konventionen.\n\n\nInhalte des Foliensatzes:\n\nSpeichern von Grafiken\n\nPlot-Vorschau mit ggview\n\nZusammenfügen von Grafiken in einer einzelnen Datei\nKonventionen und Richtlinien\n\n\n\n\n\nFoto von Paul Teysen auf Unsplash"
   },
   {
     "objectID": "sessions/science_plots/slides.html#vorbereitung",
@@ -68,6 +68,13 @@
     "title": "Exportieren",
     "section": "Plot-Vorschau mit ggview",
     "text": "Plot-Vorschau mit ggview\nMit der Funktion canvas() aus dem Paket ggview erhalten Sie eine Vorschau über Größe, Proportion und Auflösung, bevor Sie die Datei abspeichern, öffnen, inspizieren, und dann wieder korrigieren. So sparen Sie sich sehr viel Zeit!"
+  },
+  {
+    "objectID": "sessions/science_plots/slides.html#plot-vorschau-mit-ggview-1",
+    "href": "sessions/science_plots/slides.html#plot-vorschau-mit-ggview-1",
+    "title": "Exportieren",
+    "section": "Plot-Vorschau mit ggview",
+    "text": "Plot-Vorschau mit ggview\nBeispiel-Code\n\ngapminder_line &lt;- gapminder %&gt;% \n  filter(country %in% c(\"deu\"), time &gt;=1900, time &lt;= 2024) %&gt;% \n  drop_na(gini)\n\nVorschau mit der ggview-Funktion canvas()\n\nggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line()  +\n  canvas(width = 1200, height = 600, units = \"px\", dpi = 300)\n\nSpeichern\n\nEntweder so:\n\n\np_line &lt;- ggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line()  +\n  canvas(width = 1200, height = 600, units = \"px\", dpi = 300)\n\nsave_ggplot(p_line, \"my_plot.png\")\n\n\n… oder “klassisch” so:\n\n\nggplot(data = gapminder_line, aes(x = time, y = gini)) +\n  geom_line()  +\n  canvas(width = 1200, height = 600, units = \"px\", dpi = 300)\n\nggsave(\"my_plot.png\",\n       width = 1200, height = 600, units = \"px\", dpi = 300)"
   },
   {
     "objectID": "sessions/science_plots/slides.html#dgps-richtlinien-zur-manuskriptgestaltung-2019",
@@ -690,7 +697,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nhigh_lines\n61.73\n77.07\n\n\nstar\n44.01\n46.45\n\n\nbullseye\n55.86\n85.34\n\n\nstar\n66.29\n26.12\n\n\nwide_lines\n66.76\n18.09\n\n\nh_lines\n49.74\n30.47\n\n\nv_lines\n69.50\n84.48\n\n\nh_lines\n49.74\n30.47\n\n\ncircle\n57.14\n16.60\n\n\nh_lines\n52.98\n10.86\n\n\ndots\n52.64\n51.42\n\n\nstar\n57.55\n90.75\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nv_lines\n50.20\n47.21\n\n\nbullseye\n64.81\n62.81\n\n\nhigh_lines\n39.74\n23.49\n\n\nx_shape\n81.56\n83.79\n\n\nx_shape\n74.11\n71.93\n\n\nhigh_lines\n33.55\n20.08\n\n\nbullseye\n53.17\n84.26\n\n\nslant_down\n90.70\n41.47\n\n\nx_shape\n46.28\n68.03\n\n\naway\n33.34\n0.51\n\n\nslant_up\n86.26\n55.83\n\n\nh_lines\n78.64\n89.55\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
