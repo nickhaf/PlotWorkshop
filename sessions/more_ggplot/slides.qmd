@@ -231,7 +231,7 @@ Das können wir uns zunutze machen, um manuell Scales zu definieren.
 ## Ändern der Skalen-Defaults
 
 ```{r}
-#| code-line-numbers: "5,6,7,8"
+#| code-line-numbers: "6,7,8,9"
 #| output-location: column
 
 ggplot(
@@ -388,7 +388,7 @@ Intern passiert das über `guides()`. Wir können `guides()` also nutzen, um die
 
 
 ```{r}
-#| code-line-numbers: "5,6,7,8,9,10,11"
+#| code-line-numbers: "6,7,8,9,10,11"
 #| output-location: column
 
 ggplot(
@@ -525,7 +525,7 @@ ggplot(
 #| output-location: column
 #| label: ggrepel
 #| echo: false
-#| code-line-numbers: "7"
+#| code-line-numbers: "8"
 
 library(ggrepel)
 
@@ -556,63 +556,29 @@ ggplot(
 
 ```{r}
 #| output-location: column
+#| code-line-numbers: "1,2,3,4,5,6,7,13,16,17,18,19"
 
 library(ggtext)
 
 char_prepped_2 <- char_prepped %>%
   mutate(char_name_label = case_when(
-    char_name == "Monica Geller" & top_trait == "orderly" ~ "Monica ist sehr <span style='color:black'>ordentlich</span>",
+    char_name == "Monica Geller" & top_trait == "orderly" ~ "Monica ist sehr <span style='color:green'>ordentlich</span>",
     TRUE ~ NA
   ))
 
 ggplot(
   data = char_prepped_2,
-  mapping = aes(x = top_trait, y = avg_rating, shape = uni_name, label = char_name_label, color = char_name)
+  mapping = aes(x = top_trait, 
+                y = avg_rating, 
+                label = char_name_label)
 ) +
   geom_point() +
   geom_richtext(
-    nudge_x = 0.75, nudge_y = 1, fill = NA, label.color = NA, # remove background and outline
+    fill = NA, label.color = NA, # remove background and outline
     label.padding = grid::unit(rep(0, 4), "pt")
   )
 ```
 
-## ggtext
-
-::: {.panel-tabset}
-
-### Code
-
-```{r}
-#| label: ggtext_bold
-#| eval: false
-#| code-line-numbers: "1,2,11,12,13"
-#| fig.width: 12
-
-char_prepped_3 <- char_prepped %>%
-  mutate(char_name_bold = paste0("**", char_name, "**"))
-
-
-ggplot(
-  data = char_prepped_3,
-  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)
-) +
-  geom_point() +
-  facet_wrap(vars(char_name_bold)) +
-  theme(
-    strip.text = element_markdown()
-  )
-```
-
-### Plot
-
-```{r}
-#| label: ggtext_bold
-#| echo: false
-#| fig.width: 12
-
-```
-
-:::
 
 # Adjustment: hjust/vjust vs. nudge_x/nudge_y
 
@@ -1076,6 +1042,46 @@ Standardisierung könnte beim Vergleich zwischen den Fragen helfen - das kommt a
 Ist aber ein Punkt, den man zumindest im Hinterkopf behalten sollte.
 :::
 
+
+## ggtext
+
+::: {.panel-tabset}
+
+### Code
+
+```{r}
+#| label: ggtext_bold
+#| eval: false
+#| code-line-numbers: "1,2,11,12,13"
+#| fig.width: 12
+
+char_prepped_3 <- char_prepped %>%
+  mutate(char_name_bold = paste0("**", char_name, "**"))
+
+
+ggplot(
+  data = char_prepped_3,
+  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)
+) +
+  geom_point() +
+  facet_wrap(vars(char_name_bold)) +
+  theme(
+    strip.text = element_markdown()
+  )
+```
+
+### Plot
+
+```{r}
+#| label: ggtext_bold
+#| echo: false
+#| fig.width: 12
+
+```
+
+:::
+
+
 ## 
 
 ::: {.panel-tabset}
@@ -1178,11 +1184,8 @@ ggplot(
 
 
 # Themes
-## Themes
+Zum Einstellen von [nicht datenbezogene]{.highlight} Elementen eines Plots (z.B. `plot.title` oder `axis.ticks.x`)
 
-- Mit Themes kann man die [nicht datenbezogenen]{.highlight} Elemente eines Plots einstellen. Das ist z.B. `plot.title` oder `axis.ticks.x`. 
-- Zu jedem Theme-Element gehört eine Element-Funktion: Oft brauchen wir z.B. `element_text()`, mit welchem wir z.B. den Titel stylen können: Farbe, Schriftart ...
-- Es gibt bereits vorgefertigte Themes, man kann aber auch einzelne Element mit `theme()` überschreiben. 
 
 ## Themes: Vorgefertigt
 
@@ -1204,6 +1207,10 @@ Eine Übersicht über Standard-Themes findet ihr [hier](https://ggplot2.tidyvers
 :::
 
 ## Themes: Anpassen
+Funktioniert über `theme()`. 
+Lass dir mit `?theme` anzeigen, was man alles verändern kann. 
+Je nach Art des Elements (z.B. Text, oder Fläche (z.B. bei Plot-Hintergrund)) muss ein anderes `element_` genutzt werden: 
+
 
 ```{r}
 #| output-location: column
@@ -1447,7 +1454,7 @@ ggplot(
 :::
 
 
-::: {.image-ref}
+::: {.image-ref2}
 Foto von <a href="https://unsplash.com/de/@raulcachophoto?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Raúl Cacho Oses</a> auf <a href="https://unsplash.com/de/fotos/drei-farblich-sortierte-quilts-z4x9ITBe040?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
       
 :::
