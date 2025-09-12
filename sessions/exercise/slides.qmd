@@ -21,6 +21,7 @@ format:
 - Wrap-Up  
 - Fragen  
 - Übungszeit  
+- Leistungsnachweis   
 - Evaluation  
 
 
@@ -425,6 +426,30 @@ gapminder |>
   # Vergroessern der Punkte fuer die Farb-Legende fuer die Kontinente
   guides(fill = guide_legend(override.aes = list(size = 5), order=1)) 
 ```
+:::
+
+## Leistungsnachweis
+
+[Format:]{.highlight} Schriftliche Ausarbeitung
+
+Erzählt uns eine Geschichte! Suche Dir ein paar spannende Variablen und fertige einen kleinen Bericht an, in dem die Verteilungen bzw. Zusammenhänge dargestellt werden.  
+
+:::{.small}
+- Nutze dafür einen der Datensätze, die wir im Workshop verwendet haben.  
+- Nutze mindestens zwei Grafiktypen (z.B. Line Plot und Scatterplot)   
+- Diskutiere jeweils, welche Änderungen Du an der Grafik vorgenommen hast, damit diese den 
+Gestaltungsprinzipien guter Grafiken entspricht (z.B. Vergabe eindeutiger Achsenbeschriftungen, Anspassung von Größenverhältnissen, Verwendung eines bestimmten Themes oder Farbschemas).   
+- Umfang: 
+  - schriftliche Ausarbeitung (ca. 2-3 Seiten)
+  - R Skript zur Erzeugung der Grafiken   
+  
+:::
+
+[Einreichung]{.highlight}
+
+:::{.small}
+- Fristende: 15.10.2025  
+- E-Mail an: [nicklas.jakob.hafiz@hu-berlin.de](mailto:nicklas.jakob.hafiz@hu-berlin.de) und [janine.buchholz@hu-berlin.de](mailto:janine.buchholz@hu-berlin.de)
 :::
 
 ## Evaluation
