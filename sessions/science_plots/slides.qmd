@@ -25,7 +25,6 @@ Dafür gibt es mehrere Möglichkeiten, Hilfsmittel und Konventionen.
 
 - Speichern von Grafiken  
 - Plot-Vorschau mit `ggview`  
-- Zusammenfügen von Grafiken in einer einzelnen Datei
 - Konventionen und Richtlinien 
 
 
@@ -129,21 +128,15 @@ Mit der Funktion `canvas()` aus dem Paket `ggview` erhalten Sie eine Vorschau ü
 
 ## Plot-Vorschau mit `ggview`
 
-Beispiel-Code
-
-```{r}
-#| eval: false
-
-gapminder_line <- gapminder %>% 
-  filter(country %in% c("deu"), time >=1900, time <= 2024) %>% 
-  drop_na(gini)
-```
-
 [Vorschau]{.highlight} mit der `ggview`-Funktion `canvas()`
 
 ```{r}
 #| eval: false
-#| code-line-numbers: "3"
+#| code-line-numbers: "7"
+
+gapminder_line <- gapminder %>% 
+  filter(country %in% c("deu"), time >=1900, time <= 2024) %>% 
+  drop_na(gini)
 
 ggplot(data = gapminder_line, aes(x = time, y = gini)) +
   geom_line()  +
@@ -152,7 +145,7 @@ ggplot(data = gapminder_line, aes(x = time, y = gini)) +
 
 [Speichern]{.highlight}
 
-- [Entweder so: ]{.small}
+[  - Entweder so: ]{.small}
 
 ```{r}
 #| eval: false
@@ -165,7 +158,7 @@ p_line <- ggplot(data = gapminder_line, aes(x = time, y = gini)) +
 save_ggplot(p_line, "my_plot.png")
 ```
 
-- [... oder "klassisch" so:]{.small} 
+[  - ... oder "klassisch" so:]{.small} 
 
 ```{r}
 #| eval: false
