@@ -29,4 +29,5 @@ Wer für die Erstellung der Plots noch mehr Hintergründe zur tieferen Funktions
 Ein etwas anwendungsbezogenere Cookbook ist z.B. [R Graphics Cookbook, 2nd edition](https://r-graphics.org/). 
 
 Farben sind ein besonder wichtiger Aspekt von Visualisierungen. Hier sei vor allem [Colblindor](https://www.color-blindness.com/coblis-color-blindness-simulator/) empfohlen. Damit kann man eigene Grafiken auf Farbfehlsichtigkeiten überprüfen. 
+Zum Auswählen der Farbskala selbst einigt sich zum Beispiel der [R Color palette finder](https://r-graph-gallery.com/color-palette-finder). Damit kann man auch filtern nach Art der benötigten Skala, Anzahl der Kategorien, und Farbfehlsichtigkeit. 
 
