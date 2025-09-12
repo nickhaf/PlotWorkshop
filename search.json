@@ -697,7 +697,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nstar\n75.13\n23.37\n\n\ncircle\n70.98\n21.15\n\n\ncircle\n60.67\n17.05\n\n\nslant_up\n41.53\n13.40\n\n\nslant_down\n51.49\n20.84\n\n\nslant_up\n42.42\n11.69\n\n\ndots\n51.07\n17.21\n\n\naway\n39.04\n84.68\n\n\naway\n67.27\n18.71\n\n\nx_shape\n42.35\n24.56\n\n\nv_lines\n69.50\n15.61\n\n\nstar\n75.13\n23.37\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\ncircle\n84.79\n55.57\n\n\ndino\n50.00\n85.26\n\n\nv_lines\n30.50\n49.38\n\n\nstar\n56.17\n32.12\n\n\nstar\n43.23\n63.17\n\n\ndino\n42.82\n91.41\n\n\nbullseye\n35.35\n47.14\n\n\nslant_down\n47.45\n82.62\n\n\nv_lines\n50.17\n29.18\n\n\nh_lines\n43.59\n89.75\n\n\nh_lines\n47.05\n90.46\n\n\ncircle\n57.14\n16.60\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
@@ -1997,7 +1997,7 @@
   {
     "objectID": "sessions/science_plots/science_plots.html",
     "href": "sessions/science_plots/science_plots.html",
-    "title": "Wissenschaftliche Grafiken (APA)",
+    "title": "Grafiken exportieren",
     "section": "",
     "text": "View slides in full screen"
   },
