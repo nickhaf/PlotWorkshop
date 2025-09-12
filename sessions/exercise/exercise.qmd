@@ -7,13 +7,12 @@ author:
   - name: "Nicklas Hafiz"
 ---
 
-![](./images/yoga.jpg)
 
-::: {.image-ref}
-Foto von <a href="https://unsplash.com/de/@kikekiks?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">kike vega</a> auf <a href="https://unsplash.com/de/fotos/silhouettenfotografie-einer-frau-die-yoga-macht-F2qh3yjz6Jk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-      
-:::
+```{=html}
+<iframe class="slide-deck" src="slides.html" height="420" width="747" style="border: 1px solid #2e3846;"></iframe>
+```
 
+[View slides in full screen](slides.html)
 
 
 ## Leistungsnachweis
