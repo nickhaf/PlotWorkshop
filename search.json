@@ -711,7 +711,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nslant_up\n65.15\n92.50\n\n\nbullseye\n78.25\n17.88\n\n\nh_lines\n95.25\n30.46\n\n\nv_lines\n30.49\n43.56\n\n\nx_shape\n44.12\n23.37\n\n\ndots\n50.45\n83.97\n\n\nstar\n57.55\n90.75\n\n\nwide_lines\n69.77\n20.00\n\n\ncircle\n49.57\n79.04\n\n\nbullseye\n20.02\n61.34\n\n\ndots\n50.86\n17.15\n\n\ndino\n29.74\n62.18\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\ncircle\n85.18\n53.78\n\n\nx_shape\n80.18\n19.09\n\n\nslant_up\n55.56\n85.81\n\n\nwide_lines\n71.99\n78.82\n\n\nh_lines\n42.70\n90.44\n\n\nwide_lines\n67.59\n90.95\n\n\nv_lines\n69.50\n10.21\n\n\nv_lines\n50.28\n97.61\n\n\nstar\n44.00\n33.90\n\n\nbullseye\n55.86\n85.34\n\n\nx_shape\n51.35\n61.60\n\n\nwide_lines\n75.33\n32.83\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
@@ -1292,7 +1292,7 @@
     "href": "other_sites/Ressourcen.html#hilfe-bei-der-umsetzung",
     "title": "Ressourcen",
     "section": "Hilfe bei der Umsetzung",
-    "text": "Hilfe bei der Umsetzung\nDie R Graph Gallery bietet eine Vielzahl von Beispielen für die verschiedensten Plot-Typen, direkt mit R-Code. Eine super Anlaufstelle, sobald man weiß, welchen Plot-Typ man braucht.\nWer für die Erstellung der Plots noch mehr Hintergründe zur tieferen Funktionsweise von ggplot2 braucht, wird bei ggplot2: Elegant Graphics for Data Analysis (3e) fündig. Ein etwas anwendungsbezogenere Cookbook ist z.B. R Graphics Cookbook, 2nd edition.\nFarben sind ein besonder wichtiger Aspekt von Visualisierungen. Hier sei vor allem Colblindor empfohlen. Damit kann man eigene Grafiken auf Farbfehlsichtigkeiten überprüfen."
+    "text": "Hilfe bei der Umsetzung\nDie R Graph Gallery bietet eine Vielzahl von Beispielen für die verschiedensten Plot-Typen, direkt mit R-Code. Eine super Anlaufstelle, sobald man weiß, welchen Plot-Typ man braucht.\nWer für die Erstellung der Plots noch mehr Hintergründe zur tieferen Funktionsweise von ggplot2 braucht, wird bei ggplot2: Elegant Graphics for Data Analysis (3e) fündig. Ein etwas anwendungsbezogenere Cookbook ist z.B. R Graphics Cookbook, 2nd edition.\nFarben sind ein besonder wichtiger Aspekt von Visualisierungen. Hier sei vor allem Colblindor empfohlen. Damit kann man eigene Grafiken auf Farbfehlsichtigkeiten überprüfen. Zum Auswählen der Farbskala selbst einigt sich zum Beispiel der R Color palette finder. Damit kann man auch filtern nach Art der benötigten Skala, Anzahl der Kategorien, und Farbfehlsichtigkeit."
   },
   {
     "objectID": "other_sites/daten.html",
