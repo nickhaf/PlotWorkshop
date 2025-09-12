@@ -19,6 +19,8 @@ Wir haben mittlerweile viele schöne Grafiken erzeugt - aber noch nicht gespeich
 
 Dafür gibt es mehrere Möglichkeiten, Hilfsmittel und Konventionen. 
 
+\
+
 **Inhalte des Foliensatzes:** 
 
 - Speichern von Grafiken  
@@ -124,6 +126,59 @@ Die Datei (im Querformat) wurde erzeugt:
 Mit der Funktion `canvas()` aus dem Paket `ggview` erhalten Sie eine Vorschau über Größe, Proportion und Auflösung, [bevor]{.highlight} Sie die Datei abspeichern, öffnen, inspizieren, und dann wieder korrigieren. So sparen Sie sich sehr viel Zeit! 
 
 ![](./images/ggview.gif)
+
+## Plot-Vorschau mit `ggview`
+
+Beispiel-Code
+
+```{r}
+#| eval: false
+
+gapminder_line <- gapminder %>% 
+  filter(country %in% c("deu"), time >=1900, time <= 2024) %>% 
+  drop_na(gini)
+```
+
+[Vorschau]{.highlight} mit der `ggview`-Funktion `canvas()`
+
+```{r}
+#| eval: false
+#| code-line-numbers: "3"
+
+ggplot(data = gapminder_line, aes(x = time, y = gini)) +
+  geom_line()  +
+  canvas(width = 1200, height = 600, units = "px", dpi = 300)
+```
+
+[Speichern]{.highlight}
+
+- [Entweder so: ]{.small}
+
+```{r}
+#| eval: false
+#| code-line-numbers: "5"
+
+p_line <- ggplot(data = gapminder_line, aes(x = time, y = gini)) +
+  geom_line()  +
+  canvas(width = 1200, height = 600, units = "px", dpi = 300)
+
+save_ggplot(p_line, "my_plot.png")
+```
+
+- [... oder "klassisch" so:]{.small} 
+
+```{r}
+#| eval: false
+#| code-line-numbers: "5,6"
+
+ggplot(data = gapminder_line, aes(x = time, y = gini)) +
+  geom_line()  +
+  canvas(width = 1200, height = 600, units = "px", dpi = 300)
+
+ggsave("my_plot.png",
+       width = 1200, height = 600, units = "px", dpi = 300)
+```
+
 
 # Konventionen und Richtlinien 
 
