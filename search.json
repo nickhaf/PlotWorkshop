@@ -242,14 +242,7 @@
     "href": "sessions/more_ggplot/slides.html#ggtext",
     "title": "Mehr ggplot2!",
     "section": "ggtext",
-    "text": "ggtext\nggtext erlaubt es, Markdown und HTML-Code in ggplot2 zu nutzen.\n\n\nlibrary(ggtext)\n\nchar_prepped_2 &lt;- char_prepped %&gt;%\n  mutate(char_name_label = case_when(\n    char_name == \"Monica Geller\" & top_trait == \"orderly\" ~ \"Monica ist sehr &lt;span style='color:black'&gt;ordentlich&lt;/span&gt;\",\n    TRUE ~ NA\n  ))\n\nggplot(\n  data = char_prepped_2,\n  mapping = aes(x = top_trait, y = avg_rating, shape = uni_name, label = char_name_label, color = char_name)\n) +\n  geom_point() +\n  geom_richtext(\n    nudge_x = 0.75, nudge_y = 1, fill = NA, label.color = NA, # remove background and outline\n    label.padding = grid::unit(rep(0, 4), \"pt\")\n  )"
-  },
-  {
-    "objectID": "sessions/more_ggplot/slides.html#ggtext-1",
-    "href": "sessions/more_ggplot/slides.html#ggtext-1",
-    "title": "Mehr ggplot2!",
-    "section": "ggtext",
-    "text": "ggtext\n\nCodePlot\n\n\n\nchar_prepped_3 &lt;- char_prepped %&gt;%\n  mutate(char_name_bold = paste0(\"**\", char_name, \"**\"))\n\n\nggplot(\n  data = char_prepped_3,\n  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)\n) +\n  geom_point() +\n  facet_wrap(vars(char_name_bold)) +\n  theme(\n    strip.text = element_markdown()\n  )"
+    "text": "ggtext\nggtext erlaubt es, Markdown und HTML-Code in ggplot2 zu nutzen.\n\n\nlibrary(ggtext)\n\nchar_prepped_2 &lt;- char_prepped %&gt;%\n  mutate(char_name_label = case_when(\n    char_name == \"Monica Geller\" & top_trait == \"orderly\" ~ \"Monica ist sehr &lt;span style='color:green'&gt;ordentlich&lt;/span&gt;\",\n    TRUE ~ NA\n  ))\n\nggplot(\n  data = char_prepped_2,\n  mapping = aes(x = top_trait, \n                y = avg_rating, \n                label = char_name_label)\n) +\n  geom_point() +\n  geom_richtext(\n    fill = NA, label.color = NA, # remove background and outline\n    label.padding = grid::unit(rep(0, 4), \"pt\")\n  )"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#hjust",
@@ -308,6 +301,13 @@
     "text": "Facetting - Tipps\nPlot Mittelwerte\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ndat_mean &lt;- char_prepped %&gt;%\n  group_by(top_trait) %&gt;%\n  summarise(mean_rating = mean(avg_rating)) %&gt;%\n  ungroup()\n\n\nggplot(char_prepped, aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)) +\n  geom_point(\n    data = dat_mean,\n    aes(x = top_trait, y = mean_rating),\n    inherit.aes = FALSE,\n    color = \"grey70\",\n    size = 3,\n    alpha = 0.7\n  ) +\n  geom_point() +\n  facet_wrap(vars(char_name)) +\n  guides(color = \"none\") +\n  theme_bw()\n\n\n\n\n\n\n\n\n\n\nStandardisierung könnte beim Vergleich zwischen den Fragen helfen - das kommt aber auf die finale Fragestellung an. Ist aber ein Punkt, den man zumindest im Hinterkopf behalten sollte."
   },
   {
+    "objectID": "sessions/more_ggplot/slides.html#ggtext-1",
+    "href": "sessions/more_ggplot/slides.html#ggtext-1",
+    "title": "Mehr ggplot2!",
+    "section": "ggtext",
+    "text": "ggtext\n\nCodePlot\n\n\n\nchar_prepped_3 &lt;- char_prepped %&gt;%\n  mutate(char_name_bold = paste0(\"**\", char_name, \"**\"))\n\n\nggplot(\n  data = char_prepped_3,\n  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)\n) +\n  geom_point() +\n  facet_wrap(vars(char_name_bold)) +\n  theme(\n    strip.text = element_markdown()\n  )"
+  },
+  {
     "objectID": "sessions/more_ggplot/slides.html#section-4",
     "href": "sessions/more_ggplot/slides.html#section-4",
     "title": "Mehr ggplot2!",
@@ -322,13 +322,6 @@
     "text": "Sortieren\nSortieren, läuft in ggplot2 oft über factor().\n\nchar_prepped$uni_name &lt;- factor(char_prepped$uni_name, levels = c(\"How I Met Your Mother\", \"Friends\"))\n\nJetzt ist die Reihenfolge der Facetten umgekehrt:\n\n\nggplot(\n  data = char_prepped,\n  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)\n) +\n  geom_point() +\n  facet_wrap(vars(uni_name), nrow = 4) +\n  theme_bw()"
   },
   {
-    "objectID": "sessions/more_ggplot/slides.html#themes-1",
-    "href": "sessions/more_ggplot/slides.html#themes-1",
-    "title": "Mehr ggplot2!",
-    "section": "Themes",
-    "text": "Themes\n\nMit Themes kann man die nicht datenbezogenen Elemente eines Plots einstellen. Das ist z.B. plot.title oder axis.ticks.x.\nZu jedem Theme-Element gehört eine Element-Funktion: Oft brauchen wir z.B. element_text(), mit welchem wir z.B. den Titel stylen können: Farbe, Schriftart …\nEs gibt bereits vorgefertigte Themes, man kann aber auch einzelne Element mit theme() überschreiben."
-  },
-  {
     "objectID": "sessions/more_ggplot/slides.html#themes-vorgefertigt",
     "href": "sessions/more_ggplot/slides.html#themes-vorgefertigt",
     "title": "Mehr ggplot2!",
@@ -340,7 +333,7 @@
     "href": "sessions/more_ggplot/slides.html#themes-anpassen",
     "title": "Mehr ggplot2!",
     "section": "Themes: Anpassen",
-    "text": "Themes: Anpassen\n\n\nggplot(\n  data = char_prepped,\n  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)\n) +\n  geom_point() +\n  facet_wrap(vars(uni_name), nrow = 4) +\n  theme_bw() +\n  labs(\n    title = \"Charaktereigenschaften von TV-Charakteren\",\n    subtitle = \"Friends vs. How I Met Your Mother\"\n  ) +\n  theme(plot.title = element_text(color = \"red\"))"
+    "text": "Themes: Anpassen\nFunktioniert über theme(). Lass dir mit ?theme anzeigen, was man alles verändern kann. Je nach Art des Elements (z.B. Text, oder Fläche (z.B. bei Plot-Hintergrund)) muss ein anderes element_ genutzt werden:\n\n\nggplot(\n  data = char_prepped,\n  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)\n) +\n  geom_point() +\n  facet_wrap(vars(uni_name), nrow = 4) +\n  theme_bw() +\n  labs(\n    title = \"Charaktereigenschaften von TV-Charakteren\",\n    subtitle = \"Friends vs. How I Met Your Mother\"\n  ) +\n  theme(plot.title = element_text(color = \"red\"))"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#section-5",
@@ -697,7 +690,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nslant_down\n59.31\n10.57\n\n\nwide_lines\n76.67\n38.44\n\n\ndino\n66.92\n10.64\n\n\nv_lines\n30.50\n53.61\n\n\nh_lines\n63.02\n30.49\n\n\nslant_up\n30.40\n29.08\n\n\ncircle\n81.58\n63.89\n\n\nslant_up\n31.14\n61.43\n\n\nbullseye\n23.50\n25.32\n\n\nhigh_lines\n28.22\n28.28\n\n\naway\n30.39\n42.76\n\n\nwide_lines\n66.82\n11.41\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\ndino\n85.13\n51.41\n\n\nslant_up\n50.44\n78.20\n\n\ncircle\n45.01\n77.88\n\n\nslant_down\n46.99\n55.42\n\n\ndino\n35.64\n79.87\n\n\ndino\n38.72\n31.41\n\n\ncircle\n51.29\n82.44\n\n\nslant_down\n71.89\n59.27\n\n\nslant_down\n90.70\n41.47\n\n\nwide_lines\n65.71\n99.28\n\n\nbullseye\n63.07\n64.04\n\n\nhigh_lines\n56.79\n17.31\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
@@ -1011,6 +1004,13 @@
     "objectID": "sessions/ggplot_intro/ggplot2_basics.html",
     "href": "sessions/ggplot_intro/ggplot2_basics.html",
     "title": "ggplot2 Basics",
+    "section": "",
+    "text": "View slides in full screen"
+  },
+  {
+    "objectID": "sessions/exercise/exercise.html",
+    "href": "sessions/exercise/exercise.html",
+    "title": "Leistungsnachweis",
     "section": "",
     "text": "View slides in full screen"
   },
