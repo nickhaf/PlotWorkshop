@@ -137,7 +137,14 @@
     "href": "sessions/more_ggplot/slides.html#datensatz",
     "title": "Mehr ggplot2!",
     "section": "Datensatz",
-    "text": "Datensatz\n\n\n\nLadet die characters-Daten hier herunter, und legt sie ebenfalls in eurem data-Ordner ab. Lest sie dann in R ein:\n\ncharacters &lt;- readRDS(here::here(\"data\", \"characters.rds\"))\n\n\n\n\n\n\n\n\n\nPsychometrische, crowd-sourced ratings für TV-Charaktere.\nZwei (mehr oder weniger) gegensätzliche Eigenschaften, werden auf einer Skala von 0 - 100 bewertet.\n\n\n\nFoto von Ilse Orsel auf Unsplash"
+    "text": "Datensatz\n\nDownloade den Datensatz direkt von GitHub:\n\ncharacters &lt;- readRDS(url(\"https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/characters.rds\"))\n\n## Optional: Abspeichern\nsaveRDS(characters, here::here(\"data\", \"characters.rds\"))\n\n\n\n\n\n\n\n“Psychometrische”, crowd-sourced ratings für TV-Charaktere.\nZwei (mehr oder weniger) gegensätzliche Eigenschaften, werden auf einer Skala von 0 - 100 bewertet.\n\n\n\nFoto von Ilse Orsel auf Unsplash"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#datensatz-download-manuell-optional",
+    "href": "sessions/more_ggplot/slides.html#datensatz-download-manuell-optional",
+    "title": "Mehr ggplot2!",
+    "section": "Datensatz Download Manuell (optional)",
+    "text": "Datensatz Download Manuell (optional)\nNur machen, wenn es auf der vorherigen Folie nicht geklappt hat!\n\nLadet die characters-Daten hier herunter, und legt sie ebenfalls in eurem data-Ordner ab. Lest sie dann in R ein:\n\ncharacters &lt;- readRDS(here::here(\"data\", \"characters.rds\"))"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#aufbereitung",
@@ -704,7 +711,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nstar\n76.06\n16.38\n\n\nh_lines\n37.02\n50.49\n\n\nx_shape\n39.76\n79.66\n\n\nh_lines\n56.83\n89.58\n\n\ncircle\n53.72\n79.31\n\n\nwide_lines\n33.85\n46.28\n\n\ncircle\n52.83\n85.58\n\n\nwide_lines\n67.03\n76.22\n\n\nh_lines\n22.82\n30.44\n\n\nhigh_lines\n61.73\n77.07\n\n\nh_lines\n63.02\n30.49\n\n\nx_shape\n41.79\n83.99\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\ndots\n50.22\n83.75\n\n\ndots\n50.21\n85.46\n\n\nhigh_lines\n47.35\n72.59\n\n\nwide_lines\n73.03\n46.27\n\n\nslant_up\n47.23\n44.58\n\n\nwide_lines\n67.63\n61.43\n\n\ndots\n52.64\n51.42\n\n\nv_lines\n49.95\n48.23\n\n\nstar\n58.24\n92.10\n\n\nstar\n28.09\n63.12\n\n\nh_lines\n55.75\n50.48\n\n\ndino\n64.87\n97.56\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
