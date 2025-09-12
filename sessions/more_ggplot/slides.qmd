@@ -37,7 +37,7 @@ library(ggrepel)
 
 ::: {.exercise}
 
-Ladet die `characters`-Daten [hier]() herunter, und legt sie ebenfalls in eurem `data`-Ordner ab. 
+Ladet die `characters`-Daten [hier](https://github.com/nickhaf/PlotWorkshop/blob/main/data/characters.rds) herunter, und legt sie ebenfalls in eurem `data`-Ordner ab. 
 Lest sie dann in R ein: 
 
 ```{r}
