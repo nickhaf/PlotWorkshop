@@ -697,7 +697,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nv_lines\n50.20\n47.21\n\n\nbullseye\n64.81\n62.81\n\n\nhigh_lines\n39.74\n23.49\n\n\nx_shape\n81.56\n83.79\n\n\nx_shape\n74.11\n71.93\n\n\nhigh_lines\n33.55\n20.08\n\n\nbullseye\n53.17\n84.26\n\n\nslant_down\n90.70\n41.47\n\n\nx_shape\n46.28\n68.03\n\n\naway\n33.34\n0.51\n\n\nslant_up\n86.26\n55.83\n\n\nh_lines\n78.64\n89.55\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nstar\n58.08\n92.01\n\n\nwide_lines\n64.33\n41.62\n\n\nbullseye\n41.39\n37.30\n\n\nh_lines\n59.85\n10.54\n\n\ncircle\n42.68\n18.54\n\n\nbullseye\n70.64\n82.43\n\n\ncircle\n50.49\n79.00\n\n\nslant_up\n31.33\n32.54\n\n\nslant_up\n61.66\n64.10\n\n\nstar\n44.01\n46.45\n\n\nx_shape\n75.28\n24.87\n\n\nh_lines\n76.77\n10.50\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
@@ -1017,14 +1017,14 @@
   {
     "objectID": "sessions/exercise/exercise.html",
     "href": "sessions/exercise/exercise.html",
-    "title": "Leistungsnachweis",
+    "title": "Abschluss",
     "section": "",
     "text": "View slides in full screen"
   },
   {
     "objectID": "sessions/exercise/exercise.html#leistungsnachweis",
     "href": "sessions/exercise/exercise.html#leistungsnachweis",
-    "title": "Leistungsnachweis",
+    "title": "Abschluss",
     "section": "Leistungsnachweis",
     "text": "Leistungsnachweis\nFormat: Schriftliche Ausarbeitung\nErzählt uns eine Geschichte! Suche Dir ein paar spannende Variablen und fertige einen kleinen Bericht an, in dem die Verteilungen bzw. Zusammenhänge dargestellt werden.\n\nNutze dafür einen der Datensätze, die wir im Workshop verwendet haben.\n\nNutze mindestens zwei Grafiktypen (z.B. Line Plot und Scatterplot)\n\nDiskutiere jeweils, welche Änderungen Du an der Grafik vorgenommen hast, damit diese den Gestaltungsprinzipien guter Grafiken entspricht (z.B. Vergabe eindeutiger Achsenbeschriftungen, Anspassung von Größenverhältnissen, Verwendung eines bestimmten Themes oder Farbschemas).\n\nUmfang:\n\nschriftliche Ausarbeitung (ca. 2-3 Seiten)\nR Skript zur Erzeugung der Grafiken\n\n\nEinreichung\n\nFristende: 15.10.2025\n\nE-Mail an: nicklas.jakob.hafiz@hu-berlin.de und janine.buchholz@hu-berlin.de"
   },
@@ -1327,7 +1327,7 @@
     "href": "sessions/exercise/slides.html#inhalte",
     "title": "Abschluss",
     "section": "Inhalte",
-    "text": "Inhalte\n\n\n\n\n\n\n\nWrap-Up\n\nFragen\n\nÜbungszeit\n\nEvaluation\n\n\n\n\n\nFoto von kike vega auf Unsplash"
+    "text": "Inhalte\n\n\n\n\n\n\n\nWrap-Up\n\nFragen\n\nÜbungszeit\n\nLeistungsnachweis\n\nEvaluation\n\n\n\n\n\nFoto von kike vega auf Unsplash"
   },
   {
     "objectID": "sessions/exercise/slides.html#vorbereitung",
@@ -1363,6 +1363,13 @@
     "title": "Abschluss",
     "section": "Übung 2",
     "text": "Übung 2\n\nLösungsvorschlagCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\noptions(scipen=10)\n\n# Farben der vier Weltregionen \ntuerkis &lt;- rgb(0,213,233, max=255)\ngruen &lt;- rgb(127,235,0, max=255)\nrot &lt;- rgb(255,88,114, max=255)\ngelb &lt;- rgb(255,231,0, max=255)\n\ngapminder |&gt;\n  # Auswahl der Daten von 2019:\n  subset(time == 2019) |&gt; \n  # Angabe der Einwohnerzahl in Millionen\n  mutate(pop = pop/1000000) |&gt;\n  # Grund-Grafik anfordern:\n  ggplot(aes(x=gini, y=hapiscore_whr)) +\n  # Text für die Jahreszahl (\"2019\") einfügen, sodass diese ganz im Hintergrund steht\n  annotate(\"text\", x=45, y=50, label=\"2019\", size=85, colour =\"grey90\", family=\"mono\", fontface=1) +\n  # Farbthema: heller Hintergrund, schwarze Linien an x- und y-Achse\n  theme_classic() + \n  # Wie bisher: Punkte einzeichnen --&gt; Streu-Punkt-Diagramm,\n  # Neu: Unterscheidung der Punkte nach Farbe (Weltegion) und Größe (Population);  \n  # Transparenz der Datenpunkte (alpha), Rand um die Punkte (shape) \n  geom_point(aes(fill = world_4region, size = pop), shape=21, alpha=.7) +\n  # Skalieren der Größe der Punkte, sodass die Unterschiede deutlicher sind\n  scale_size(range = c(1, 30)) +\n  # Beschriftung der Achsen\n  labs(x=\"Gini-Index\", y=\"Happiness Score\") +\n  # Neu: manuelle Spezifikation der y-Achse: Wertebereich, Position der Beschriftungen (10er-Schritte)\n  scale_y_continuous(limits = c(15, 85), \n                     breaks = seq(20,80, by=10),\n                     labels = paste0(seq(20,80, by=10), \"%\")) +\n  #  manuelle Spezifikation der x-Achse: Wertebereich, log-Transformation, Position und Name der Beschriftungen\n  scale_x_continuous(limits = c(18,75),\n                     breaks = seq(20,70, by= 5)) +\n  # manuelle Spezifikation der Farben\n  scale_fill_manual(\n    values = c(tuerkis, gruen, rot, gelb),\n    breaks = c(\"africa\", \"americas\", \"asia\", \"europe\")) +\n  # Theme (Anpassung der Schriftgroesse, relativ zur Groesse 12, blaues Raster im Hintergrund, Rand für die Legende)\n  theme(text = element_text(size=12),\n        axis.text = element_text(size=rel(.8)),\n        axis.title = element_text(size=rel(1.2)),\n        panel.grid.major = element_line(colour = \"azure2\")) +\n  # Titel, Beschriftungen der Achse und Legende\n  labs(x=\"Inequality index (Gini)\",\n       y=\"Happiness Score (WHR)\",\n       fill=\"Weltregion\",\n       size=\"Einwohnerzahl\\n(in Mio.)\") +\n  # Vergroessern der Punkte fuer die Farb-Legende fuer die Kontinente\n  guides(fill = guide_legend(override.aes = list(size = 5), order=1))"
+  },
+  {
+    "objectID": "sessions/exercise/slides.html#leistungsnachweis",
+    "href": "sessions/exercise/slides.html#leistungsnachweis",
+    "title": "Abschluss",
+    "section": "Leistungsnachweis",
+    "text": "Leistungsnachweis\nFormat: Schriftliche Ausarbeitung\nErzählt uns eine Geschichte! Suche Dir ein paar spannende Variablen und fertige einen kleinen Bericht an, in dem die Verteilungen bzw. Zusammenhänge dargestellt werden.\n\n\nNutze dafür einen der Datensätze, die wir im Workshop verwendet haben.\n\nNutze mindestens zwei Grafiktypen (z.B. Line Plot und Scatterplot)\n\nDiskutiere jeweils, welche Änderungen Du an der Grafik vorgenommen hast, damit diese den Gestaltungsprinzipien guter Grafiken entspricht (z.B. Vergabe eindeutiger Achsenbeschriftungen, Anspassung von Größenverhältnissen, Verwendung eines bestimmten Themes oder Farbschemas).\n\nUmfang:\n\nschriftliche Ausarbeitung (ca. 2-3 Seiten)\nR Skript zur Erzeugung der Grafiken\n\n\n\nEinreichung\n\n\nFristende: 15.10.2025\n\nE-Mail an: nicklas.jakob.hafiz@hu-berlin.de und janine.buchholz@hu-berlin.de"
   },
   {
     "objectID": "sessions/exercise/slides.html#evaluation",
