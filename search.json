@@ -704,7 +704,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nslant_down\n37.48\n63.79\n\n\nbullseye\n59.27\n29.64\n\n\nstar\n58.24\n92.10\n\n\nbullseye\n61.09\n10.08\n\n\naway\n59.85\n72.96\n\n\nhigh_lines\n50.89\n29.15\n\n\nhigh_lines\n47.09\n26.99\n\n\nwide_lines\n37.83\n14.47\n\n\nwide_lines\n68.54\n48.44\n\n\nslant_down\n66.75\n84.00\n\n\ncircle\n42.14\n76.88\n\n\naway\n62.21\n21.48\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\naway\n39.51\n74.85\n\n\nhigh_lines\n43.92\n27.80\n\n\nh_lines\n49.79\n89.66\n\n\nslant_down\n44.38\n57.68\n\n\nh_lines\n57.05\n10.51\n\n\nslant_down\n59.24\n91.48\n\n\nslant_up\n65.15\n92.50\n\n\nh_lines\n87.70\n50.49\n\n\ncircle\n66.09\n77.02\n\n\nstar\n77.34\n15.89\n\n\nslant_up\n81.27\n80.64\n\n\nslant_up\n68.41\n19.91\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
@@ -1267,18 +1267,25 @@
     "text": "Von Long zu Wide\n\ninhabitants_wide_2 &lt;- inhabitants_long %&gt;%\n  pivot_wider(\n    id_cols = \"country\",\n    names_from = \"variable\",\n    values_from = \"value\"\n  )\n\nhead(inhabitants_wide_2)\n\n# A tibble: 3 × 3\n  country    area inhabitants_2022\n  &lt;chr&gt;     &lt;dbl&gt;            &lt;dbl&gt;\n1 China   9597000       1425857720\n2 India   3287000       1420939232\n3 USA     9834000        338903174"
   },
   {
-    "objectID": "other_sites/Ressourcen.html#webseiten",
-    "href": "other_sites/Ressourcen.html#webseiten",
+    "objectID": "other_sites/Ressourcen.html#wahl-der-daten",
+    "href": "other_sites/Ressourcen.html#wahl-der-daten",
     "title": "Ressourcen",
-    "section": "Webseiten",
-    "text": "Webseiten"
+    "section": "Wahl der Daten",
+    "text": "Wahl der Daten\nDer erste Schritt in einem Visualisierungs-Projekt. Falls man gerne seine Visualisierungs-Skills trainieren will, aber keine konkreten Daten dafür zur Verfügung hat, gibt es das sehr coole tidytuesday-Projekt. Jede Woche wird ein neuer Datensatz veröffentlicht, der von der Community analysiert und visualisiert werden kann. Die Daten sind vielfältig und reichen von Umweltdaten über soziale Themen bis hin zu Popkultur. Daraus ist auch unser characters Datensatz.\nDann natürlich Gapminder. Das haben wir ja schon viel besprochen."
   },
   {
-    "objectID": "other_sites/Ressourcen.html#daten",
-    "href": "other_sites/Ressourcen.html#daten",
+    "objectID": "other_sites/Ressourcen.html#plot-inspo",
+    "href": "other_sites/Ressourcen.html#plot-inspo",
     "title": "Ressourcen",
-    "section": "Daten",
-    "text": "Daten\nEs gibt das sehr coole tidytuesday-Projekt. Jede Woche wird ein neuer Datensatz veröffentlicht, der von der Community analysiert und visualisiert werden kann. Die Daten sind vielfältig und reichen von Umweltdaten über soziale Themen bis hin zu Popkultur. Daraus ist auch unser characters Datensatz.\nDann natürlich Gapminder. Das haben wir ja schon viel besprochen."
+    "section": "Plot-Inspo",
+    "text": "Plot-Inspo\nZur Wahl eines Plot-Typs für ein eigenes Projekt eignet sich from Data to Viz hervorragend. Hier findet sich ein Entscheidungsbaum, der anhand der verwendeten Variablen-Typen Plot-Typen empfiehlt.\nWer ein bisschen ausgefallenere Inspo braucht, kann auch mal bei Information is Beautiful vorbeischauen. Hier gibt es diverse, teilweise auch sehr komplexe Plots, zu den verschiedensten Themen."
+  },
+  {
+    "objectID": "other_sites/Ressourcen.html#hilfe-bei-der-umsetzung",
+    "href": "other_sites/Ressourcen.html#hilfe-bei-der-umsetzung",
+    "title": "Ressourcen",
+    "section": "Hilfe bei der Umsetzung",
+    "text": "Hilfe bei der Umsetzung\nDie R Graph Gallery bietet eine Vielzahl von Beispielen für die verschiedensten Plot-Typen, direkt mit R-Code. Eine super Anlaufstelle, sobald man weiß, welchen Plot-Typ man braucht.\nWer für die Erstellung der Plots noch mehr Hintergründe zur tieferen Funktionsweise von ggplot2 braucht, wird bei ggplot2: Elegant Graphics for Data Analysis (3e) fündig. Ein etwas anwendungsbezogenere Cookbook ist z.B. R Graphics Cookbook, 2nd edition.\nFarben sind ein besonder wichtiger Aspekt von Visualisierungen. Hier sei vor allem Colblindor empfohlen. Damit kann man eigene Grafiken auf Farbfehlsichtigkeiten überprüfen."
   },
   {
     "objectID": "other_sites/daten.html",
