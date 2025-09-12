@@ -29,33 +29,36 @@ library(glue)
 library(ggrepel)
 ```
 
+
 ## Datensatz
+
+::: {.exercise}
+
+Downloade den Datensatz direkt von GitHub: 
+
+```{r}
+#| eval: false
+characters <- readRDS(url("https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/characters.rds"))
+
+## Optional: Abspeichern
+saveRDS(characters, here::here("data", "characters.rds"))
+```
+
+:::
+
 
 :::{.columns}
 
 ::: {.column width="50%"}
 
-::: {.exercise}
-
-Ladet die `characters`-Daten [hier](https://github.com/nickhaf/PlotWorkshop/blob/main/data/characters.rds) herunter, und legt sie ebenfalls in eurem `data`-Ordner ab. 
-Lest sie dann in R ein: 
-
-```{r}
-characters <- readRDS(here::here("data", "characters.rds"))
-```
-
-:::
 
 
 ![](./images/central_perk.jpg)
 
 :::
 ::: {.column width="50%"}
-\
-\
-\
 
-- Psychometrische, crowd-sourced ratings für TV-Charaktere. 
+- "Psychometrische", crowd-sourced ratings für TV-Charaktere. 
 - Zwei (mehr oder weniger) gegensätzliche Eigenschaften, werden auf einer Skala von 0 - 100 bewertet. 
 
 
@@ -67,6 +70,22 @@ characters <- readRDS(here::here("data", "characters.rds"))
 
 ::: image-ref
 Foto von <a href="https://unsplash.com/de/@lgtts?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Ilse Orsel</a> auf <a href="https://unsplash.com/de/fotos/rot-weisses-unks-cafe-fwPHQB4kGzA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
+
+
+
+## Datensatz Download Manuell (optional)
+**Nur machen, wenn es auf der vorherigen Folie nicht geklappt hat!**
+
+::: {.exercise}
+
+Ladet die `characters`-Daten [hier](https://github.com/nickhaf/PlotWorkshop/blob/main/data/characters.rds) herunter, und legt sie ebenfalls in eurem `data`-Ordner ab. 
+Lest sie dann in R ein: 
+
+```{r}
+characters <- readRDS(here::here("data", "characters.rds"))
+
+```
 :::
 
 ## Aufbereitung {background-image="./images/yellow_umbrellas.jpg" background-size="1225px" background-repeat="repeat"}
