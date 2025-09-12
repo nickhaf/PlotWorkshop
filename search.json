@@ -154,13 +154,6 @@
     "text": "Wiederholung\nWir schauen uns jetzt Persönlichkeitseigenschaften von Charakteren aus Friends und How I Met Your Mother an.\n\n🏋 ÜbungLösung\n\n\n\nPlotte die Ratings für die ausgewählten Charactere char_prepped. Auf der x-Achse sollte die Frage top_trait zu sehen sein, auf der y-Achse das Rating. Styling machen wir später! Außerdem sollten der Name der Charactere (char_name) nache color und der Name der TV-Show (uni_name) nach shape unterscheidbar sein.\n\n\n\n\n\nggplot(\n  data = char_prepped,\n  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)\n) +\n  geom_point()"
   },
   {
-    "objectID": "sessions/more_ggplot/slides.html#legenden",
-    "href": "sessions/more_ggplot/slides.html#legenden",
-    "title": "Mehr ggplot2!",
-    "section": "Legenden",
-    "text": "Legenden\n\n\n\n\n\nLegenden werden automatisch erzeugt.\nJede Skala bekommt eine Legende zugeordnet.\nSie nehmen die grafischen Eigenschaften (Aesthetics) und ordnen sie den Datenwerten zu. Man kann sie daher als die „Umkehrfunktion“ der jeweiligen Skalen verstehen.\n\n\n\nLegenden und Achsen sind funktional äquivalent und werden in ggplot2 unter dem Begriff guides zusammengefasst."
-  },
-  {
     "objectID": "sessions/more_ggplot/slides.html#section",
     "href": "sessions/more_ggplot/slides.html#section",
     "title": "Mehr ggplot2!",
@@ -208,6 +201,13 @@
     "title": "Mehr ggplot2!",
     "section": "Anwendungsfälle: Skalen-Ticks",
     "text": "Anwendungsfälle: Skalen-Ticks\n\nÜbungLösung\n\n\n\nVersuche, die y-Achse so zu skalieren, dass sie von 0 bis 100 geht und in 10er Schritten skaliert ist. Nutze die interne R-Hilfe, aber verzichte auf Internet/KI.\n\nggplot(\n  data = char_prepped,\n  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)\n) +\n  geom_point()\n\n\n\n\n\n\nggplot(\n  data = char_prepped,\n  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)\n) +\n  geom_point() +\n  scale_y_continuous(\n    name = \"Mittleres Rating\",\n    breaks = seq(0, 100, by = 10),\n    limits = c(0, 100)\n  )"
+  },
+  {
+    "objectID": "sessions/more_ggplot/slides.html#legenden",
+    "href": "sessions/more_ggplot/slides.html#legenden",
+    "title": "Mehr ggplot2!",
+    "section": "Legenden",
+    "text": "Legenden\n\n\n\n\n\nLegenden werden automatisch erzeugt.\nJede Skala bekommt eine Legende zugeordnet.\nSie nehmen die grafischen Eigenschaften (Aesthetics) und ordnen sie den Datenwerten zu. Man kann sie daher als die „Umkehrfunktion“ der jeweiligen Skalen verstehen.\n\n\n\nLegenden und Achsen sind funktional äquivalent und werden in ggplot2 unter dem Begriff guides zusammengefasst."
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#scale-guides",
@@ -704,7 +704,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\naway\n39.51\n74.85\n\n\nhigh_lines\n43.92\n27.80\n\n\nh_lines\n49.79\n89.66\n\n\nslant_down\n44.38\n57.68\n\n\nh_lines\n57.05\n10.51\n\n\nslant_down\n59.24\n91.48\n\n\nslant_up\n65.15\n92.50\n\n\nh_lines\n87.70\n50.49\n\n\ncircle\n66.09\n77.02\n\n\nstar\n77.34\n15.89\n\n\nslant_up\n81.27\n80.64\n\n\nslant_up\n68.41\n19.91\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nx_shape\n48.53\n34.15\n\n\nstar\n41.53\n24.92\n\n\ncircle\n31.76\n69.80\n\n\ndino\n33.59\n41.41\n\n\nslant_up\n27.11\n54.72\n\n\nx_shape\n43.86\n77.61\n\n\nh_lines\n33.37\n70.46\n\n\ndino\n39.49\n25.38\n\n\nslant_down\n82.30\n46.99\n\n\nslant_down\n52.87\n97.34\n\n\ncircle\n83.84\n58.62\n\n\naway\n74.74\n21.10\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
