@@ -135,26 +135,6 @@ Scales in ggplot2 control the [mapping from data to aesthetics]{.highlight}. The
 :::
 
 
-## Legenden
-
-:::{.columns}
-::: {.column width="50%"}
-![](./images/scales_legends.png)
-:::
-::: {.column width="50%"}
-- Legenden werden [automatisch]{.highlight} erzeugt.
-- [Jede]{.highlight} Skala bekommt eine Legende zugeordnet. 
-- Sie nehmen die grafischen Eigenschaften (Aesthetics) und ordnen sie den Datenwerten zu.
-Man kann sie daher als die [„Umkehrfunktion“]{.highlight} der jeweiligen Skalen verstehen.
-:::
-:::
-
-
-::: {.callout-info}
-Legenden und Achsen sind funktional äquivalent und werden in ggplot2 unter dem Begriff [guides]{.highlight} zusammengefasst.
-:::
-
-
 
 ## 
 
@@ -359,6 +339,28 @@ ggplot(
 ```
 
 :::
+
+
+## Legenden
+
+:::{.columns}
+::: {.column width="50%"}
+![](./images/scales_legends.png)
+:::
+::: {.column width="50%"}
+- Legenden werden [automatisch]{.highlight} erzeugt.
+- [Jede]{.highlight} Skala bekommt eine Legende zugeordnet. 
+- Sie nehmen die grafischen Eigenschaften (Aesthetics) und ordnen sie den Datenwerten zu.
+Man kann sie daher als die [„Umkehrfunktion“]{.highlight} der jeweiligen Skalen verstehen.
+:::
+:::
+
+
+::: {.callout-info}
+Legenden und Achsen sind funktional äquivalent und werden in ggplot2 unter dem Begriff [guides]{.highlight} zusammengefasst.
+:::
+
+
 
 ## Scale Guides
 
