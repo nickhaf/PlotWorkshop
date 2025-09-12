@@ -151,7 +151,7 @@
     "href": "sessions/more_ggplot/slides.html#wiederholung",
     "title": "Mehr ggplot2!",
     "section": "Wiederholung",
-    "text": "Wiederholung\nWir schauen uns jetzt Persönlichkeitseigenschaften von Charakteren aus Friend und How I Met Your Mother an.\n\n🏋 ÜbungLösung\n\n\n\nPlotte die Ratings für die ausgewählten Charactere. Auf der x-Achse sollte die Frage top_trait zu sehen sein, auf der y-Achse das Rating. Styling machen wir später! Außerdem sollten der Name der Charactere (char_name) nache color und der Name der TV-Show (uni_name) nach shape unterscheidbar sein.\n\n\n\n\n\nggplot(\n  data = char_prepped,\n  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)\n) +\n  geom_point()"
+    "text": "Wiederholung\nWir schauen uns jetzt Persönlichkeitseigenschaften von Charakteren aus Friends und How I Met Your Mother an.\n\n🏋 ÜbungLösung\n\n\n\nPlotte die Ratings für die ausgewählten Charactere char_prepped. Auf der x-Achse sollte die Frage top_trait zu sehen sein, auf der y-Achse das Rating. Styling machen wir später! Außerdem sollten der Name der Charactere (char_name) nache color und der Name der TV-Show (uni_name) nach shape unterscheidbar sein.\n\n\n\n\n\nggplot(\n  data = char_prepped,\n  mapping = aes(x = top_trait, y = avg_rating, colour = char_name, shape = uni_name)\n) +\n  geom_point()"
   },
   {
     "objectID": "sessions/more_ggplot/slides.html#legenden",
@@ -508,7 +508,7 @@
     "href": "sessions/good_plots/good_plots.html#visual-form",
     "title": "Was ist eine gute Grafik?",
     "section": "Visual Form",
-    "text": "Visual Form\n\nView slides in full screen"
+    "text": "Visual Form\n\nView slides in full screen\n\nBehandelte Themen\nIn dieser Session geht es hauptsächlich um die Salienz von Informationen. Wir werden einige Gestaltprinzipien kennenlernen. Ein besonderer Fokus liegt hierbei auf der Darstellung von Größen und Farben.\nDanach wechseln wir den Fokus, und beschäftigen uns mit Designfragen. Hierbei geht es hauptsächlich um Tufte’s Data-to-Ink Ratio und seine Umsetzung in der Praxis. Kern ist es, redundante und unnötige Elemente zu entfernen, um die Aufmerksamkeit auf die wichtigen Informationen zu lenken. Zum Ende hin schauen wir uns noch an, wie wir die Schriftart in Plots ändern können, da das vor allem aus ästhetischer Sicht einen großen Einfluss auf den Plot machen kann."
   },
   {
     "objectID": "sessions/good_plots/goal.html#goal",
@@ -704,7 +704,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\ncircle\n52.19\n16.42\n\n\nslant_down\n75.14\n54.24\n\n\nh_lines\n35.67\n30.52\n\n\nslant_up\n68.49\n17.99\n\n\nv_lines\n30.46\n32.75\n\n\nh_lines\n64.77\n90.13\n\n\ndots\n75.23\n82.99\n\n\nh_lines\n22.96\n70.43\n\n\ncircle\n61.83\n17.27\n\n\naway\n39.04\n84.68\n\n\nh_lines\n42.71\n10.49\n\n\naway\n56.58\n70.51\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nslant_down\n37.48\n63.79\n\n\nbullseye\n59.27\n29.64\n\n\nstar\n58.24\n92.10\n\n\nbullseye\n61.09\n10.08\n\n\naway\n59.85\n72.96\n\n\nhigh_lines\n50.89\n29.15\n\n\nhigh_lines\n47.09\n26.99\n\n\nwide_lines\n37.83\n14.47\n\n\nwide_lines\n68.54\n48.44\n\n\nslant_down\n66.75\n84.00\n\n\ncircle\n42.14\n76.88\n\n\naway\n62.21\n21.48\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
@@ -1267,25 +1267,18 @@
     "text": "Von Long zu Wide\n\ninhabitants_wide_2 &lt;- inhabitants_long %&gt;%\n  pivot_wider(\n    id_cols = \"country\",\n    names_from = \"variable\",\n    values_from = \"value\"\n  )\n\nhead(inhabitants_wide_2)\n\n# A tibble: 3 × 3\n  country    area inhabitants_2022\n  &lt;chr&gt;     &lt;dbl&gt;            &lt;dbl&gt;\n1 China   9597000       1425857720\n2 India   3287000       1420939232\n3 USA     9834000        338903174"
   },
   {
-    "objectID": "other_sites/Ressourcen.html#wahl-der-daten",
-    "href": "other_sites/Ressourcen.html#wahl-der-daten",
+    "objectID": "other_sites/Ressourcen.html#webseiten",
+    "href": "other_sites/Ressourcen.html#webseiten",
     "title": "Ressourcen",
-    "section": "Wahl der Daten",
-    "text": "Wahl der Daten\nDer erste Schritt in einem Visualisierungs-Projekt. Falls man gerne seine Visualisierungs-Skills trainieren will, aber keine konkreten Daten dafür zur Verfügung hat, gibt es das sehr coole tidytuesday-Projekt. Jede Woche wird ein neuer Datensatz veröffentlicht, der von der Community analysiert und visualisiert werden kann. Die Daten sind vielfältig und reichen von Umweltdaten über soziale Themen bis hin zu Popkultur. Daraus ist auch unser characters Datensatz.\nDann natürlich Gapminder. Das haben wir ja schon viel besprochen."
+    "section": "Webseiten",
+    "text": "Webseiten"
   },
   {
-    "objectID": "other_sites/Ressourcen.html#plot-inspo",
-    "href": "other_sites/Ressourcen.html#plot-inspo",
+    "objectID": "other_sites/Ressourcen.html#daten",
+    "href": "other_sites/Ressourcen.html#daten",
     "title": "Ressourcen",
-    "section": "Plot-Inspo",
-    "text": "Plot-Inspo\nZur Wahl eines Plot-Typs für ein eigenes Projekt eignet sich from Data to Viz hervorragend. Hier findet sich ein Entscheidungsbaum, der anhand der verwendeten Variablen-Typen Plot-Typen empfiehlt.\nWer ein bisschen ausgefallenere Inspo braucht, kann auch mal bei Information is Beautiful vorbeischauen. Hier gibt es diverse, teilweise auch sehr komplexe Plots, zu den verschiedensten Themen."
-  },
-  {
-    "objectID": "other_sites/Ressourcen.html#hilfe-bei-der-umsetzung",
-    "href": "other_sites/Ressourcen.html#hilfe-bei-der-umsetzung",
-    "title": "Ressourcen",
-    "section": "Hilfe bei der Umsetzung",
-    "text": "Hilfe bei der Umsetzung\nDie R Graph Gallery bietet eine Vielzahl von Beispielen für die verschiedensten Plot-Typen, direkt mit R-Code. Eine super Anlaufstelle, sobald man weiß, welchen Plot-Typ man braucht.\nWer für die Erstellung der Plots noch mehr Hintergründe zur tieferen Funktionsweise von ggplot2 braucht, wird bei ggplot2: Elegant Graphics for Data Analysis (3e) fündig. Ein etwas anwendungsbezogenere Cookbook ist z.B. R Graphics Cookbook, 2nd edition.\nFarben sind ein besonder wichtiger Aspekt von Visualisierungen. Hier sei vor allem Colblindor empfohlen. Damit kann man eigene Grafiken auf Farbfehlsichtigkeiten überprüfen."
+    "section": "Daten",
+    "text": "Daten\nEs gibt das sehr coole tidytuesday-Projekt. Jede Woche wird ein neuer Datensatz veröffentlicht, der von der Community analysiert und visualisiert werden kann. Die Daten sind vielfältig und reichen von Umweltdaten über soziale Themen bis hin zu Popkultur. Daraus ist auch unser characters Datensatz.\nDann natürlich Gapminder. Das haben wir ja schon viel besprochen."
   },
   {
     "objectID": "other_sites/daten.html",
@@ -1936,7 +1929,7 @@
     "href": "sessions/more_ggplot/more_ggplot.html",
     "title": "Mehr ggplot2!",
     "section": "",
-    "text": "View slides in full screen"
+    "text": "View slides in full screen\n\nBehandelte Themen\nZiel dieser Session ist es, grundlegende Prinzipien von ggplot2 zu wiederholen und zu vertiefen. Sie dient vor allem dazu zu zeigen, was in ggplot2 alles so möglich ist, und Teilnehmenden zu ermöglichen, möglichst viel selbst auszuprobieren. Außerdem soll sich den grundlegenen Prinzipien aus verschiedenen Winkeln genähert werden, um ein tieferes Verständnis zu fördern. Die behandelten Themen sind:\n\nSkalen und Legenden: Anpassung von Achsen, Farben, Formen, Größen\nText-Geoms\nFaceting\nThemes\nKoordinatensysteme\nKombinieren von Plots mit patchwork"
   },
   {
     "objectID": "sessions/science_plots/science_plots.html",
