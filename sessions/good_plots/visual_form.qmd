@@ -2214,9 +2214,9 @@ ggplot(
   theme_bw() +
   paletteer::scale_colour_paletteer_d("lisa::FridaKahlo") +
   theme(
-    title = element_text(family = "Playfair Display"),
-    legend.title = element_text(family = "Playfair Display", size = 12),
-    legend.text  = element_text(family = "my textfont", size = 10)
+    title = element_text(family = "Playfair Display"), ## ändert alle Titel im Plot
+    legend.title = element_text(family = "my textfont", size = 12), ## ändert nur den Legenden-Titel
+    legend.text  = element_text(family = "Playfair Display", size = 10) ## ändert nur den Legenden-Text
   )
 ```
 
