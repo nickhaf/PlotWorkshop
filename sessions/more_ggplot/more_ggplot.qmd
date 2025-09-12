@@ -13,3 +13,17 @@ author:
 ```
 
 [View slides in full screen](slides.html)
+
+### Behandelte Themen
+
+Ziel dieser Session ist es, grundlegende Prinzipien von ggplot2 zu [wiederholen und zu vertiefen]{.highlight}. 
+Sie dient vor allem dazu zu zeigen, [was in ggplot2 alles so möglich ist]{.highlight}, und Teilnehmenden zu ermöglichen, möglichst viel selbst auszuprobieren. 
+Außerdem soll sich den grundlegenen Prinzipien aus [verschiedenen Winkeln]{.highlight} genähert werden, um ein tieferes Verständnis zu fördern.
+Die behandelten Themen sind:
+
+- Skalen und Legenden: Anpassung von Achsen, Farben, Formen, Größen
+- Text-Geoms
+- Faceting
+- Themes
+- Koordinatensysteme
+- Kombinieren von Plots mit [patchwork](https://patchwork.data-imaginist.com/)

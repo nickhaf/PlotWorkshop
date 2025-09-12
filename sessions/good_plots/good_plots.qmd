@@ -53,3 +53,20 @@ author:
 ```
 
 [View slides in full screen](visual_form.html)
+
+
+### Behandelte Themen
+
+In dieser Session geht es hauptsächlich um die [Salienz von Informationen]{.highlight}. 
+Wir werden einige [Gestaltprinzipien]{.highlight} kennenlernen. 
+Ein besonderer Fokus liegt hierbei auf der Darstellung von [Größen]{.highlight} und [Farben]{.highlight}. 
+
+Danach wechseln wir den Fokus, und beschäftigen uns mit [Designfragen]{.highlight}. 
+Hierbei geht es hauptsächlich um Tufte's [Data-to-Ink Ratio]{.highlight} und seine Umsetzung in der Praxis. Kern ist es, redundante und unnötige Elemente zu entfernen, um die Aufmerksamkeit auf die wichtigen Informationen zu lenken. 
+Zum Ende hin schauen wir uns noch an, wie wir die Schriftart in Plots ändern können, da das vor allem aus ästhetischer Sicht einen großen Einfluss auf den Plot machen kann. 
+
+
+
+
+
+

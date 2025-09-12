@@ -121,7 +121,7 @@ ggplot(
 :::
 
 
-# Effizienz: Salienz von Informationen
+# Salienz von Informationen
 
 \ 
 \
@@ -2189,7 +2189,7 @@ ggplot(
 ```{r}
 #| output-location: column
 #| fig.showtext: TRUE
-#| code-line-numbers: "1,2,3,21,22,23,24,25"
+#| code-line-numbers: "1,2,3,23,24,25,26,27"
 
 font_add_google("Special Elite", family = "my textfont")
 font_add_google("Playfair Display")

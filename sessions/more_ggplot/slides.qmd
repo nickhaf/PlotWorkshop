@@ -101,7 +101,7 @@ Foto von <a href="https://unsplash.com/de/@simplelovelyuseful?utm_content=credit
 
 ## Wiederholung
 
-Wir schauen uns jetzt Persönlichkeitseigenschaften von Charakteren aus [Friend](https://www.netflix.com/de/title/70153404) und [How I Met Your Mother](https://www.disneyplus.com/de-de/browse/entity-bc68ac79-3ace-4427-9ec0-5ee6f314d194) an.
+Wir schauen uns jetzt Persönlichkeitseigenschaften von Charakteren aus [Friends](https://www.netflix.com/de/title/70153404) und [How I Met Your Mother](https://www.disneyplus.com/de-de/browse/entity-bc68ac79-3ace-4427-9ec0-5ee6f314d194) an.
 
 ::: {.panel-tabset}
 
@@ -109,7 +109,7 @@ Wir schauen uns jetzt Persönlichkeitseigenschaften von Charakteren aus [Friend]
 
 ::: {.exercise}
 
-Plotte die Ratings für die ausgewählten Charactere. Auf der x-Achse sollte die Frage `top_trait` zu sehen sein, auf der y-Achse das Rating. Styling machen wir später! Außerdem sollten der Name der Charactere (`char_name`) nache `color` und der Name der TV-Show (`uni_name`) nach `shape` unterscheidbar sein.
+Plotte die Ratings für die ausgewählten Charactere `char_prepped`. Auf der x-Achse sollte die Frage `top_trait` zu sehen sein, auf der y-Achse das Rating. Styling machen wir später! Außerdem sollten der Name der Charactere (`char_name`) nache `color` und der Name der TV-Show (`uni_name`) nach `shape` unterscheidbar sein.
 
 :::
 
@@ -1413,7 +1413,18 @@ ggplot(
 :::
 
 
-# Kombinieren von Plots {background-image="./images/rug.jpg" background-size="1225px"}
+# Kombinieren 
+
+::: {.columns}
+
+::: {.column width="50%"}
+
+:::
+::: {.column width="50%"}
+![](./images/rug.jpg){.image-right}
+:::
+:::
+
 
 ::: {.image-ref}
 Foto von <a href="https://unsplash.com/de/@raulcachophoto?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Raúl Cacho Oses</a> auf <a href="https://unsplash.com/de/fotos/drei-farblich-sortierte-quilts-z4x9ITBe040?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
