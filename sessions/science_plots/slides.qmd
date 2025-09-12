@@ -54,9 +54,8 @@ library(scales)
 [Datensatz]{.highlight}
 
 ```{r}
-gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
+gapminder <- readRDS(url("https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds"))
 ```
-
 
 
 ## Speichern

@@ -1,0 +1,463 @@
+---
+title: "Abschluss"
+title-slide-attributes:
+  data-background-image: ./images/yoga.jpg
+  data-background-size: cover
+format: 
+  letterbox-revealjs:
+    code-block-height: 475px
+---
+
+## Inhalte
+
+::: {.columns}
+::: {.column width="30%"}
+
+\
+\
+\
+
+
+- Wrap-Up  
+- Fragen  
+- Übungszeit  
+- Evaluation  
+
+
+::: 
+::: {.column width="70%"}
+![](./images/yoga_hoch.jpg){.image-right}
+:::
+:::
+
+
+::: {.image-ref}
+Foto von <a href="https://unsplash.com/de/@kikekiks?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">kike vega</a> auf <a href="https://unsplash.com/de/fotos/silhouettenfotografie-einer-frau-die-yoga-macht-F2qh3yjz6Jk?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+::: 
+
+
+
+# Wrap-Up
+
+:::{.fragment}
+- Die Qualität einer Grafik hängt ab von der Qualität der Daten, der Story, dem Ziel und dem Design der Grafik
+:::
+:::{.fragment}
+- Zur Bemessung der Qualität einer Grafik spielen subjektiv-bewertende Aspekte, aber auch handwerklich-objektive Faktoren eine Rolle
+:::
+:::{.fragment}
+- Es gibt keine allgemeingültigen Kriterien für eine „gute“ Grafik, aber es gibt viele Möglichkeiten, eine schlechte Grafik zu erzeugen
+:::
+:::{.fragment}
+- Die Erstellung von Grafiken mit `ggplot2` ist ein Handwerk – und ein bisschen Kunst
+:::
+:::{.fragment}
+- Für den Bereich wissenschaftlicher Manuskripterstellung gibt es teils sehr präzise Vorgaben
+:::
+
+# Fragen
+
+\ 
+\ 
+
+Gelegenheit für eure Fragen
+
+
+# Übungszeit 
+
+Auf den nachfolgenden Folien haben wir zwei komplexe Aufgaben mit je einem Lösungsvorschlag zusammengestellt.
+
+- 🏋 Übung 1: Barplot mit Faceting    
+- 🏋 Übung 2: Gapminder Bubble Chart   
+
+
+
+## Vorbereitung 
+
+[Pakete]{.highlight}, die wir für die Übungen im Foliensatz benötigen: 
+
+```{r}
+# install.packages(c("ggimage", "here", "tidyverse", "ggtext", "glue", "patchwork", "ggrepel"))
+
+library(ggimage)
+library(here)
+library(patchwork)
+library(tidyverse)
+library(ggtext)
+library(glue)
+library(ggrepel)
+```
+
+[Datensatz]{.highlight}: characters
+
+```{r}
+#| eval: false
+
+characters <- readRDS(url("https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/characters.rds"))
+
+## Optional: Abspeichern
+saveRDS(characters, here::here("data", "characters.rds"))
+```
+
+[Datensatz]{.highlight}: gapminder
+
+```{r}
+#| eval: false
+
+gapminder <- readRDS(url("https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds"))
+
+## Optional: Abspeichern
+saveRDS(gapminder, here::here("data", "characters.rds"))
+```
+
+```{r}
+#| echo: false
+
+characters <- readRDS(url("https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/characters.rds"))
+
+gapminder <- readRDS(url("https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds"))
+```
+
+
+
+# 🏋 Übung 1
+
+::: {.exercise}
+
+Wandle den [Lollipop-Plot]{.highlight} aus der Sitzung [ggplot: Advanced](https://nickhaf.github.io/PlotWorkshop/sessions/more_ggplot/more_ggplot.html) in einen [Barplot]{.highlight} um. Du brauchst dafür `geom_col()`. Beachte dabei folgendes: 
+
+
+- Die Fragen sollten jetzt auf der y-Achse stehen, die Ratings auf der x-Achse. 
+- Facette nach Character-Namen `char_name`. 
+- Die Balkenfüllung soll eine kontinuierliche Farbskala sein, die das Rating kodiert `avg_rating`.
+- Nutze eine andere Color-Palette, die gut für kontinuierliche Daten funktioniert.
+
+::: {.callout-important}
+Achtung, der Ausgangsplot (nächste Seite) sieht anders als im anderen Foliensatz aus, weil wir hier das Facetting weggelassen haben. 
+:::
+
+:::
+
+
+## Übung 1: Datenaufbereitung 
+
+\
+
+```{r}
+shows <- c("How I Met Your Mother", "Friends")
+quest_vec <- c(
+  "doer/thinker",
+  "jock/nerd",
+  "dispassionate/romantic",
+  "funny/humorless",
+  "chaotic/orderly"
+)
+
+## Filtern von TV-Shows und Fragen
+
+char_prepped <- characters %>%
+  filter(uni_name %in% shows) %>%
+  filter(question %in% quest_vec)
+```
+
+
+## Übung 1
+
+::: {.panel-tabset}
+
+### Ausgangsbasis
+
+::: {.panel-tabset}
+
+### Lollipop-Plot
+
+```{r}
+#| echo: false
+#| fig-width: 14
+#| fig-height: 6
+
+ggplot(char_prepped, aes(x = top_trait, y = avg_rating, colour = char_name)) +
+  geom_point() +
+  theme_bw() +
+  geom_segment(
+    aes(
+      x = top_trait, xend = top_trait,
+      y = 0, yend = avg_rating,
+      group = interaction(char_name, uni_name)
+    ),
+    linewidth = 0.5,
+    alpha = 0.5
+  )
+```
+
+### Code
+
+```{r}
+#| eval: false
+
+ggplot(char_prepped, aes(x = top_trait, y = avg_rating, colour = char_name)) +
+  geom_point() +
+  theme_bw() +
+  geom_segment(
+    aes(
+      x = top_trait, xend = top_trait,
+      y = 0, yend = avg_rating,
+      group = interaction(char_name, uni_name)
+    ),
+    linewidth = 0.5,
+    alpha = 0.5
+  )
+```
+:::
+
+### Lösung
+
+::: {.panel-tabset}
+
+### Barplot
+
+```{r}
+#| label: barplot_solution
+#| echo: false
+#| fig-width: 12
+
+
+shows <- c("How I Met Your Mother", "Friends")
+quest_vec <- c(
+  "doer/thinker", "jock/nerd", "cold/warm", "main character/side character",
+  "crazy/sane",
+  "dispassionate/romantic",
+  "high IQ/low IQ",
+  "heroic/villainous",
+  "funny/humorless",
+  "chaotic/orderly",
+  "plays hard/works hard",
+  "cocky/timid",
+  "old/young"
+)
+
+## Filtern von weiteren TV-Shows und Fragen
+char_prepped <- characters %>%
+  filter(uni_name %in% shows) %>%
+  filter(question %in% quest_vec)
+
+ggplot(char_prepped, aes(x = avg_rating, y = top_trait, fill = avg_rating)) +
+  facet_grid(. ~ char_name) +
+  geom_col(position = "identity", color = "black") +
+  theme_bw() +
+  xlim(c(0, 100)) +
+  scale_fill_viridis_c(option = "D") 
+```
+
+### Code
+```{r}
+#| label: barplot_solution
+#| eval: false
+```
+
+:::
+:::
+
+# 🏋 Übung 2
+
+::: {.exercise}
+
+Versuche, dieses Bubble Plot von [gapminder](https://www.gapminder.org/tools/#$model$markers$bubble$encoding$y$data$concept=hapiscore_whr&space@=geo&=time;;&scale$domain:null&zoomed:null&type:null;;&x$data$concept=inequality_index_gini&source=sg&space@=geo&=time;;&scale$domain:null&zoomed:null&type:null;;&frame$value=2019;;;;;&chart-type=bubbles&url=v2) in `ggplot2` auf Basis eines enfachen Scatterplot nachzubauen.  
+:::
+
+
+![](./images/gapminder_bubbles.png)
+
+
+
+## Übung 2 
+
+\
+[Ausgangsbasis]{.highlight}
+
+::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| eval: false
+
+ggplot(gapminder, aes(x = gini, y=hapiscore_whr)) +
+  geom_point()
+```
+
+\
+
+Folgendes sollte [unbedingt]{.highlight} verändert werden:  
+
+::: {.small}
+- Auswahl der Daten von 2019 (Variable: `time`)   
+- Kodierung der Punkte mit Farbe (Variable: `world_4region`) und Größe (Variable: `pop`)   
+- Achsenbeschriftungen
+:::
+
+Viele weitere Detail-Anpassungen sind natürlich ebenfalls möglich :)
+:::
+
+::: {.column width="50%"}
+```{r}
+#| echo: false
+
+ggplot(gapminder, aes(x = gini, y=hapiscore_whr)) +
+  geom_point()
+```
+:::
+:::
+
+
+## Übung 2 
+
+::: {.panel-tabset}
+
+### Lösungsvorschlag 
+```{r}
+#| echo: false
+#| fig-width: 14
+#| fig-height: 7
+
+options(scipen=10)
+
+# Farben der vier Weltregionen 
+tuerkis <- rgb(0,213,233, max=255)
+gruen <- rgb(127,235,0, max=255)
+rot <- rgb(255,88,114, max=255)
+gelb <- rgb(255,231,0, max=255)
+
+gapminder |>
+  # Auswahl der Daten von 2019:
+  subset(time == 2019) |> 
+  # Angabe der Einwohnerzahl in Millionen
+  mutate(pop = pop/1000000) |>
+  # Grund-Grafik anfordern:
+  ggplot(aes(x=gini, y=hapiscore_whr)) +
+  # Text für die Jahreszahl ("2019") einfügen, sodass diese ganz im Hintergrund steht
+  annotate("text", x=45, y=50, label="2019", size=85, colour ="grey90", family="mono", fontface=1) +
+  # Farbthema: heller Hintergrund, schwarze Linien an x- und y-Achse
+  theme_classic() + 
+  # Wie bisher: Punkte einzeichnen --> Streu-Punkt-Diagramm,
+  # Neu: Unterscheidung der Punkte nach Farbe (Weltegion) und Größe (Population);  
+  # Transparenz der Datenpunkte (alpha), Rand um die Punkte (shape) 
+  geom_point(aes(fill = world_4region, size = pop), shape=21, alpha=.7) +
+  # Skalieren der Größe der Punkte, sodass die Unterschiede deutlicher sind
+  scale_size(range = c(1, 30)) +
+  # Beschriftung der Achsen
+  labs(x="Gini-Index", y="Happiness Score") +
+  # Neu: manuelle Spezifikation der y-Achse: Wertebereich, Position der Beschriftungen (10er-Schritte)
+  scale_y_continuous(limits = c(15, 85), 
+                     breaks = seq(20,80, by=10),
+                     labels = paste0(seq(20,80, by=10), "%")) +
+  #  manuelle Spezifikation der x-Achse: Wertebereich, log-Transformation, Position und Name der Beschriftungen
+  scale_x_continuous(limits = c(18,75),
+                     breaks = seq(20,70, by= 5)) +
+  # manuelle Spezifikation der Farben
+  scale_fill_manual(
+    values = c(tuerkis, gruen, rot, gelb),
+    breaks = c("africa", "americas", "asia", "europe")) +
+  # Theme (Anpassung der Schriftgroesse, relativ zur Groesse 12, blaues Raster im Hintergrund, Rand für die Legende)
+  theme(text = element_text(size=12),
+        axis.text = element_text(size=rel(.8)),
+        axis.title = element_text(size=rel(1.2)),
+        panel.grid.major = element_line(colour = "azure2")) +
+  # Titel, Beschriftungen der Achse und Legende
+  labs(title="Bubble Chart im Gapminder-Look",
+       subtitle="Jahr: 2019",
+       x="Gini-Index",
+       y="Happiness Score (WHR)",
+       fill="Weltregion",
+       size="Einwohnerzahl\n(in Mio.)") +
+  # Vergroessern der Punkte fuer die Farb-Legende fuer die Kontinente
+  guides(fill = guide_legend(override.aes = list(size = 5), order=1)) 
+```
+
+### Code
+```{r}
+#| eval: false
+
+options(scipen=10)
+
+# Farben der vier Weltregionen 
+tuerkis <- rgb(0,213,233, max=255)
+gruen <- rgb(127,235,0, max=255)
+rot <- rgb(255,88,114, max=255)
+gelb <- rgb(255,231,0, max=255)
+
+p_bubble <- gapminder |>
+  # Auswahl der Daten von 2019:
+  subset(time == 2019) |> 
+    # Neu: Angabe der Einwohnerzahl in Millionen
+  mutate(pop = pop/1000000) |>
+  # Grund-Grafik anfordern:
+  ggplot(aes(x=gini, y=hapiscore_whr)) +
+  # Neu: Text für die Jahreszahl ("2015") einfügen, sodass diese ganz im Hintergrund steht
+  annotate("text", x=45, y=50, label="2019", size=85, colour ="grey90", family="mono", fontface=1) +
+  # Neu: Farbthema: heller Hintergrund, schwarze Linien an x- und y-Achse
+  theme_classic() + 
+  # Wie bisher: Punkte einzeichnen --> Streu-Punkt-Diagramm,
+  # Neu: Unterscheidung der Punkte nach Farbe (Region) und Größe (Population);  
+  # Transparenz der Datenpunkte (alpha), Rand um die Punkte (shape) 
+  geom_point(aes(fill = world_4region, size = pop), shape=21, alpha=.7) +
+  # Skalieren der Größe der Punkte, sodass die Unterschiede deutlicher sind
+  scale_size(range = c(1, 30)) +
+  # Neu: Beschriftung der Achsen
+  labs(x="Gini-Index", y="Hyppiness Score") +
+  # Neu: manuelle Spezifikation der y-Achse: Wertebereich, Position der Beschriftungen (10er-Schritte)
+  scale_y_continuous(limits = c(15, 85), 
+                     breaks = seq(20,80, by=10),
+                     labels = paste0(seq(20,80, by=10), "%")) +
+  # Neu: manuelle Spezifikation der x-Achse: Wertebereich, log-Transformation, Position und Name der Beschriftungen
+  scale_x_continuous(limits = c(18,75),
+                     breaks = seq(20,70, by= 5)) +
+  # Neu: manuelle Spezifikation der Farben
+  scale_fill_manual(
+    values = c(tuerkis, gruen, rot, gelb),
+    breaks = c("africa", "americas", "asia", "europe")) +
+  # Neu: Theme (Anpassung der Schriftgroesse, relativ zur Groesse 12, blaues Raster im Hintergrund, Rand für die Legende)
+  theme(text = element_text(size=12),
+        axis.text = element_text(size=rel(.8)),
+        axis.title = element_text(size=rel(1.2)),
+        panel.grid.major = element_line(colour = "azure2")) +
+  # Neu: Titel, Beschriftungen der Achse und Legende
+  labs(title="Bubble Chart im Gapminder-Look",
+       subtitle="Jahr: 2019",
+       x="Gini-Index",
+       y="Happiness Score (WHR)",
+       fill="Weltregion",
+       size="Einwohnerzahl\n(in Mio.)") +
+  # Neu: Vergroessern der Punkte fuer die Farb-Legende fuer die Kontinente
+  guides(fill = guide_legend(override.aes = list(size = 5), order=1)) 
+
+p_bubble
+```
+:::
+
+## Evaluation
+
+::: {.columns}
+::: {.column width="30%"}
+
+Wir freuen uns über euer Feedback:
+
+- im Rahmen der [Evaluation]{.highlight} unseres Workshops: [Link zur Evaluation](https://online-eval.studiumdigitale.uni-frankfurt.de/evasys/online.php?p=WoMepS_0925)
+
+- oder auch hier :) 
+\
+\
+\
+
+[Vielen Dank für euer Interesse und die gute Mitarbeit!]{.highlight}
+
+::: 
+
+::: {.column width="70%"}
+![](./images/evaluation_hoch.jpg){.image-right}
+:::
+:::
+
+
+::: {.image-ref}
+Foto von <a href="https://unsplash.com/de/@towfiqu999999?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Towfiqu barbhuiya</a> auf <a href="https://unsplash.com/de/fotos/eine-reihe-gelber-sterne-die-auf-einer-blauen-und-rosa-oberflache-sitzen-0ZUoBtLw3y4?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+::: 
+
