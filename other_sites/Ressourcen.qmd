@@ -4,15 +4,29 @@ subtitle: "Nützliche Links und Materialien"
 format: html
 ---
 
-## Coole Plots
+![](./images/butterfly.jpg)
 
+::: {.image-ref}
+Foto von <a href="https://unsplash.com/de/@scw1217?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Suzanne D. Williams</a> auf <a href="https://unsplash.com/de/fotos/drei-puppen-VMKBFR6r_jg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+:::
 
-
-## Webseiten
-
-
-## Daten
-Es gibt das sehr coole [tidytuesday](https://github.com/rfordatascience/tidytuesday)-Projekt. Jede Woche wird ein neuer Datensatz veröffentlicht, der von der Community analysiert und visualisiert werden kann. Die Daten sind vielfältig und reichen von Umweltdaten über soziale Themen bis hin zu Popkultur. Daraus ist auch unser `characters` Datensatz.
+## Wahl der Daten
+Der erste Schritt in einem Visualisierungs-Projekt. 
+Falls man gerne seine Visualisierungs-Skills trainieren will, aber keine konkreten Daten dafür zur Verfügung hat, gibt es das sehr coole [tidytuesday](https://github.com/rfordatascience/tidytuesday)-Projekt. Jede Woche wird ein neuer Datensatz veröffentlicht, der von der Community analysiert und visualisiert werden kann. Die Daten sind vielfältig und reichen von Umweltdaten über soziale Themen bis hin zu Popkultur. Daraus ist auch unser `characters` Datensatz.
 
 Dann natürlich [Gapminder](https://www.gapminder.org/data/). Das haben wir ja schon viel besprochen. 
+
+## Plot-Inspo
+Zur Wahl eines Plot-Typs für ein eigenes Projekt eignet sich [from Data to Viz](https://www.data-to-viz.com/) hervorragend. Hier findet sich ein Entscheidungsbaum, der anhand der verwendeten Variablen-Typen Plot-Typen empfiehlt. 
+
+Wer ein bisschen ausgefallenere Inspo braucht, kann auch mal bei [Information is Beautiful](https://informationisbeautiful.net/) vorbeischauen. Hier gibt es diverse, teilweise auch sehr komplexe Plots, zu den verschiedensten Themen. 
+
+
+## Hilfe bei der Umsetzung
+Die [R Graph Gallery](https://r-graph-gallery.com/) bietet eine Vielzahl von Beispielen für die verschiedensten Plot-Typen, direkt mit R-Code. Eine super Anlaufstelle, sobald man weiß, welchen Plot-Typ man braucht. 
+
+Wer für die Erstellung der Plots noch mehr Hintergründe zur tieferen Funktionsweise von ggplot2 braucht, wird bei [ggplot2: Elegant Graphics for Data Analysis (3e)](https://ggplot2-book.org/) fündig. 
+Ein etwas anwendungsbezogenere Cookbook ist z.B. [R Graphics Cookbook, 2nd edition](https://r-graphics.org/). 
+
+Farben sind ein besonder wichtiger Aspekt von Visualisierungen. Hier sei vor allem [Colblindor](https://www.color-blindness.com/coblis-color-blindness-simulator/) empfohlen. Damit kann man eigene Grafiken auf Farbfehlsichtigkeiten überprüfen. 
 
