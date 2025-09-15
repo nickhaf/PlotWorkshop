@@ -8,16 +8,10 @@ format:
 
 ```{r}
 #| echo: false
-
+library(tidyverse)
 library(here)
 library(janitor)
 library(ggwordcloud)
-
-gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
-
-gapminder_2019 <- gapminder %>%
-  filter(time == 2019) %>%
-  drop_na(gini, hapiscore_whr)
 
 ```
 
@@ -31,7 +25,7 @@ Bild von [Allison Horst](https://allisonhorst.com/r-packages-functions).
 ## Setup
 
 ```{r}
-# install.packages("tidyverse")
+# install.packages("tidyverse", "here")
 
 library(tidyverse)
 
@@ -39,7 +33,7 @@ gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
 
 gapminder_2019 <- gapminder %>%
   filter(time == 2019) %>%
-  drop_na(gini, hapiscore_whr)
+  tidyr::drop_na(gini, hapiscore_whr)
 ```
 
 
