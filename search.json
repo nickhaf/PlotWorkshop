@@ -399,6 +399,13 @@
     "text": "Spider-Plot\n\nVorlage von Tanya Shapiro"
   },
   {
+    "objectID": "sessions/good_plots/story.html#setup",
+    "href": "sessions/good_plots/story.html#setup",
+    "title": "Story",
+    "section": "Setup",
+    "text": "Setup\n\n# install.packages(\"tidyverse\")\n\nlibrary(tidyverse)\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_2020 &lt;- gapminder %&gt;%\n  filter(time == 2020) %&gt;%\n  drop_na(world_6region, world_4region, country, gini, hapiscore_whr) %&gt;% \n  arrange(desc(co2_cons))"
+  },
+  {
     "objectID": "sessions/good_plots/story.html#exploration",
     "href": "sessions/good_plots/story.html#exploration",
     "title": "Story",
@@ -504,6 +511,13 @@
     "text": "Visual Form\n\nView slides in full screen\n\nBehandelte Themen\nIn dieser Session geht es hauptsächlich um die Salienz von Informationen. Wir werden einige Gestaltprinzipien kennenlernen. Ein besonderer Fokus liegt hierbei auf der Darstellung von Größen und Farben.\nDanach wechseln wir den Fokus, und beschäftigen uns mit Designfragen. Hierbei geht es hauptsächlich um Tufte’s Data-to-Ink Ratio und seine Umsetzung in der Praxis. Kern ist es, redundante und unnötige Elemente zu entfernen, um die Aufmerksamkeit auf die wichtigen Informationen zu lenken. Zum Ende hin schauen wir uns noch an, wie wir die Schriftart in Plots ändern können, da das vor allem aus ästhetischer Sicht einen großen Einfluss auf den Plot machen kann."
   },
   {
+    "objectID": "sessions/good_plots/goal.html#setup",
+    "href": "sessions/good_plots/goal.html#setup",
+    "title": "Goal",
+    "section": "Setup",
+    "text": "Setup\n\n# install.packages(\"tidyverse\")\n\nlibrary(tidyverse)\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_2020 &lt;- gapminder %&gt;%\n  filter(time == 2020) %&gt;%\n  drop_na(world_6region, world_4region, country, gini, hapiscore_whr) %&gt;% \n  arrange(desc(co2_cons))"
+  },
+  {
     "objectID": "sessions/good_plots/goal.html#goal",
     "href": "sessions/good_plots/goal.html#goal",
     "title": "Goal",
@@ -565,6 +579,13 @@
     "title": "Goal",
     "section": "Eine Serie gleicher Grafiken mit Funktion und Schleife erzeugen",
     "text": "Eine Serie gleicher Grafiken mit Funktion und Schleife erzeugen\n\nBisher haben wir stets Funktionen benutzt, die im Basis-R oder in den aktuell geladenen Paketen enthalten sind\nFunktionen können jedoch auch selbst geschrieben und an die eigenen Bedürfnisse (z.B. eine bestimmte Grafik) angepasst werden\nMithilfe einer for-Schleife kann diese Funktion dann auf alle Variablen eines Datensatzes, auf alle Länder eines Datensatzes etc. angewendet werden. So entsteht eine Serie von Grafiken, die man schnell durchscrollen und auf Auffälligkeiten überprüfen kann"
+  },
+  {
+    "objectID": "sessions/good_plots/information.html#setup",
+    "href": "sessions/good_plots/information.html#setup",
+    "title": "Informationen",
+    "section": "Setup",
+    "text": "Setup\n\n# install.packages(\"tidyverse\")\n\nlibrary(tidyverse)\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_2020 &lt;- gapminder %&gt;%\n  filter(time == 2020) %&gt;%\n  drop_na(world_6region, world_4region, country, gini, hapiscore_whr) %&gt;% \n  arrange(desc(co2_cons))"
   },
   {
     "objectID": "sessions/good_plots/information.html#informationen",
@@ -697,7 +718,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nv_lines\n49.69\n42.02\n\n\naway\n55.14\n30.73\n\n\nslant_up\n66.43\n36.54\n\n\ndots\n50.50\n17.11\n\n\nstar\n28.70\n61.78\n\n\nh_lines\n75.48\n10.52\n\n\nslant_up\n68.64\n18.51\n\n\nbullseye\n60.83\n64.60\n\n\nwide_lines\n68.86\n43.08\n\n\nbullseye\n35.54\n48.73\n\n\nhigh_lines\n75.78\n79.89\n\n\nh_lines\n65.95\n50.49\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nhigh_lines\n59.77\n32.62\n\n\nx_shape\n50.94\n62.10\n\n\ncircle\n28.97\n29.05\n\n\nslant_down\n25.00\n75.44\n\n\nslant_up\n68.64\n18.51\n\n\nx_shape\n42.20\n20.92\n\n\ndots\n75.90\n17.17\n\n\nslant_up\n55.76\n54.03\n\n\nv_lines\n50.44\n56.44\n\n\nstar\n77.54\n15.25\n\n\nv_lines\n49.95\n48.23\n\n\naway\n63.92\n30.83\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
@@ -1376,7 +1397,7 @@
     "href": "sessions/exercise/slides.html#evaluation",
     "title": "Abschluss",
     "section": "Evaluation",
-    "text": "Evaluation\n\n\nWir freuen uns über euer Feedback:\n\nim Rahmen der Evaluation unseres Workshops\noder auch hier :)\n\n\n\n\nVielen Dank für euer Interesse und die gute Mitarbeit!\n\n\n\n\nFoto von Towfiqu barbhuiya auf Unsplash"
+    "text": "Evaluation\n\n\nWir freuen uns über euer Feedback:\n\nim Rahmen der Evaluation unseres Workshops: Link zur Evaluation\noder auch hier :)\n\n\n\n\nVielen Dank für euer Interesse und die gute Mitarbeit!\n\n\n\n\nFoto von Towfiqu barbhuiya auf Unsplash"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#section",
@@ -1384,6 +1405,13 @@
     "title": "ggplot2: Basics",
     "section": "",
     "text": "Bild von Allison Horst."
+  },
+  {
+    "objectID": "sessions/ggplot_intro/slides.html#setup",
+    "href": "sessions/ggplot_intro/slides.html#setup",
+    "title": "ggplot2: Basics",
+    "section": "Setup",
+    "text": "Setup\n\n# install.packages(\"tidyverse\", \"here\")\n\nlibrary(tidyverse)\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\ngapminder_2019 &lt;- gapminder %&gt;%\n  filter(time == 2019) %&gt;%\n  tidyr::drop_na(gini, hapiscore_whr)"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#ggplot2-das-paket",
@@ -1523,7 +1551,7 @@
     "href": "sessions/ggplot_intro/slides.html#übung-3",
     "title": "ggplot2: Basics",
     "section": "🏋 Übung",
-    "text": "🏋 Übung\n\n\nWir losen Gruppen aus. Stellt in den Gruppen kurz eure Scatterplots aus der vorherigen Übung vor. 5 min\nErstellt in Einzelarbeit den euch zugewiesenen Plot-Typen. Nutzt dafür die Variablen, die ihr am interessantesten findet (entweder aus den bisherigen Übungen, oder aus dem Gruppengespräch). 30 min\n\n\nLineplot: 1 numerische, 1 kategoriale und die Jahres-Variable\nBarplot: 1 kategoriale und 1 numerische Variable\nDensityplot: 1 numerische und 1 kategoriale Variable\nBoxplot: 1 numerische und 1 kategoriale Variable\nHistogram: 1 numerische Variable + eine kategoriale Variable\n\nAls kategoriale Variable bietet sich z.B. world_6region an.\n\n\n\n\n\n\nNutzt die bisherigen Code-Blocks, R-interne Hilfe, Google und KI. Falls ihr eine bestimmte Vision habt, aber nicht wisst wie ihr z.B. die Daten umformt, sagt bitte direkt Bescheid, damit wir helfen können!"
+    "text": "🏋 Übung\n\n\nWir losen Gruppen aus. Stellt in den Gruppen kurz eure Scatterplots aus der vorherigen Übung vor. 5 min\nErstellt in Einzelarbeit den euch zugewiesenen Plot-Typen. Nutzt dafür die Variablen, die ihr am interessantesten findet (entweder aus den bisherigen Übungen, oder aus dem Gruppengespräch). 30 min\n\n\nLineplot: 1 numerische, 1 kategoriale und die Jahres-Variable\nBarplot: 1 kategoriale und 1 numerische Variable\nDensityplot: 1 numerische und 1 kategoriale Variable\nBoxplot: 1 numerische und 1 kategoriale Variable\nHistogram: 1 numerische Variable + eine kategoriale Variable\n\nAls kategoriale Variable bietet sich z.B. world_6region an. Infos zu den Plots findet ihr entweder in der Einführung oder auf fronm Data to Viz.\n\n\n\n\n\n\nNutzt die bisherigen Code-Blocks, R-interne Hilfe, Google und KI. Falls ihr eine bestimmte Vision habt, aber nicht wisst wie ihr z.B. die Daten umformt, sagt bitte direkt Bescheid, damit wir helfen können!"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#übung-4",
@@ -1915,7 +1943,7 @@
     "href": "sessions/good_plots/visual_form.html#verteilungen-plotten-1",
     "title": "Visual Form",
     "section": "Verteilungen plotten",
-    "text": "Verteilungen plotten\n\n\nBoxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(\n  data = gapminder_2020 %&gt;% drop_na(country),\n  aes(x = world_4region, y = hapiscore_whr, fill = world_4region)\n) +\n  geom_boxplot() +\n  theme(axis.ticks = element_blank(), legend.position = \"none\") +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\")\n\n\n\n\n\nTufte-Boxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggthemes)\n\nggplot(\n  data = gapminder_2020 %&gt;% drop_na(country),\n  aes(x = world_4region, y = hapiscore_whr, group = world_4region)\n) +\n  geom_jitter(alpha = 0.5, color = \"lightgrey\") +\n  geom_tufteboxplot() +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\") +\n  theme_tufte()"
+    "text": "Verteilungen plotten\n\n\nBoxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(\n  data = gapminder_2020 %&gt;% drop_na(country),\n  aes(x = world_4region, y = hapiscore_whr, fill = world_4region)\n) +\n  geom_boxplot() +\n  theme(axis.ticks = element_blank(), legend.position = \"none\") +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\")\n\n\n\n\n\nTufte-Boxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggthemes)\n\nggplot(\n  data = gapminder_2020 %&gt;% drop_na(country),\n  aes(x = world_4region, y = hapiscore_whr, group = world_4region)\n) +\n  geom_jitter(alpha = 0.5, color = \"lightgrey\", height = 0) +\n  geom_tufteboxplot() +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\") +\n  theme_tufte()"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#zusammenfassung",
