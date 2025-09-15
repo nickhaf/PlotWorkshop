@@ -718,7 +718,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nhigh_lines\n59.77\n32.62\n\n\nx_shape\n50.94\n62.10\n\n\ncircle\n28.97\n29.05\n\n\nslant_down\n25.00\n75.44\n\n\nslant_up\n68.64\n18.51\n\n\nx_shape\n42.20\n20.92\n\n\ndots\n75.90\n17.17\n\n\nslant_up\n55.76\n54.03\n\n\nv_lines\n50.44\n56.44\n\n\nstar\n77.54\n15.25\n\n\nv_lines\n49.95\n48.23\n\n\naway\n63.92\n30.83\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nx_shape\n65.03\n57.10\n\n\ndino\n67.95\n47.95\n\n\naway\n33.02\n24.47\n\n\nslant_up\n46.26\n94.12\n\n\ndino\n65.90\n20.26\n\n\nhigh_lines\n64.25\n14.91\n\n\nh_lines\n51.41\n89.71\n\n\naway\n38.98\n87.32\n\n\nstar\n69.90\n43.45\n\n\nwide_lines\n35.51\n89.60\n\n\ndots\n25.86\n17.08\n\n\ndino\n51.28\n78.72\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
@@ -1397,7 +1397,7 @@
     "href": "sessions/exercise/slides.html#evaluation",
     "title": "Abschluss",
     "section": "Evaluation",
-    "text": "Evaluation\n\n\nWir freuen uns über euer Feedback:\n\nim Rahmen der Evaluation unseres Workshops: Link zur Evaluation\noder auch hier :)\n\n\n\n\nVielen Dank für euer Interesse und die gute Mitarbeit!\n\n\n\n\nFoto von Towfiqu barbhuiya auf Unsplash"
+    "text": "Evaluation\n\n\nWir freuen uns über euer Feedback:\n\nim Rahmen der Evaluation unseres Workshops\noder auch hier :)\n\n\n\n\nVielen Dank für euer Interesse und die gute Mitarbeit!\n\n\n\n\nFoto von Towfiqu barbhuiya auf Unsplash"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#section",
