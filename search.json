@@ -697,7 +697,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nhigh_lines\n61.73\n77.07\n\n\nbullseye\n37.03\n44.46\n\n\nslant_down\n72.46\n27.62\n\n\ndino\n55.38\n97.18\n\n\nbullseye\n20.96\n66.04\n\n\ndino\n38.72\n31.41\n\n\nx_shape\n39.93\n79.94\n\n\ndino\n67.95\n8.72\n\n\nwide_lines\n28.56\n34.63\n\n\nv_lines\n30.45\n79.83\n\n\nhigh_lines\n41.10\n26.55\n\n\nstar\n47.16\n22.38\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nv_lines\n49.69\n42.02\n\n\naway\n55.14\n30.73\n\n\nslant_up\n66.43\n36.54\n\n\ndots\n50.50\n17.11\n\n\nstar\n28.70\n61.78\n\n\nh_lines\n75.48\n10.52\n\n\nslant_up\n68.64\n18.51\n\n\nbullseye\n60.83\n64.60\n\n\nwide_lines\n68.86\n43.08\n\n\nbullseye\n35.54\n48.73\n\n\nhigh_lines\n75.78\n79.89\n\n\nh_lines\n65.95\n50.49\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
@@ -1376,7 +1376,7 @@
     "href": "sessions/exercise/slides.html#evaluation",
     "title": "Abschluss",
     "section": "Evaluation",
-    "text": "Evaluation\n\n\nWir freuen uns über euer Feedback:\n\nim Rahmen der Evaluation unseres Workshops: Link zur Evaluation\noder auch hier :)\n\n\n\n\nVielen Dank für euer Interesse und die gute Mitarbeit!\n\n\n\n\nFoto von Towfiqu barbhuiya auf Unsplash"
+    "text": "Evaluation\n\n\nWir freuen uns über euer Feedback:\n\nim Rahmen der Evaluation unseres Workshops\noder auch hier :)\n\n\n\n\nVielen Dank für euer Interesse und die gute Mitarbeit!\n\n\n\n\nFoto von Towfiqu barbhuiya auf Unsplash"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#section",
@@ -1915,7 +1915,7 @@
     "href": "sessions/good_plots/visual_form.html#verteilungen-plotten-1",
     "title": "Visual Form",
     "section": "Verteilungen plotten",
-    "text": "Verteilungen plotten\n\n\nBoxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(\n  data = gapminder_2020 %&gt;% drop_na(country),\n  aes(x = world_4region, y = hapiscore_whr, fill = world_4region)\n) +\n  geom_boxplot() +\n  theme(axis.ticks = element_blank(), legend.position = \"none\") +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\")\n\n\n\n\n\nTufte-Boxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggthemes)\n\nggplot(\n  data = gapminder_2020 %&gt;% drop_na(country),\n  aes(x = world_4region, y = hapiscore_whr, group = world_4region)\n) +\n  geom_jitter(alpha = 0.5, color = \"lightgrey\", height = 0) +\n  geom_tufteboxplot() +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\") +\n  theme_tufte()"
+    "text": "Verteilungen plotten\n\n\nBoxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(\n  data = gapminder_2020 %&gt;% drop_na(country),\n  aes(x = world_4region, y = hapiscore_whr, fill = world_4region)\n) +\n  geom_boxplot() +\n  theme(axis.ticks = element_blank(), legend.position = \"none\") +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\")\n\n\n\n\n\nTufte-Boxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(ggthemes)\n\nggplot(\n  data = gapminder_2020 %&gt;% drop_na(country),\n  aes(x = world_4region, y = hapiscore_whr, group = world_4region)\n) +\n  geom_jitter(alpha = 0.5, color = \"lightgrey\") +\n  geom_tufteboxplot() +\n  scale_fill_paletteer_d(\"fishualize::Koumansetta_rainfordi\") +\n  xlab(\"Region\") +\n  ylab(\"Happiness Score (World Happiness Report)\") +\n  theme_tufte()"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#zusammenfassung",
