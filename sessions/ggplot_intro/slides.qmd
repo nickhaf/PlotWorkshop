@@ -12,6 +12,13 @@ format:
 library(here)
 library(janitor)
 library(ggwordcloud)
+
+gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
+
+gapminder_2019 <- gapminder %>%
+  filter(time == 2019) %>%
+  drop_na(gini, hapiscore_whr)
+
 ```
 
 ## {background-image="images/ggplot_art.png" background-size="1160px" background-position="15%"}
@@ -20,6 +27,21 @@ library(ggwordcloud)
 
 Bild von [Allison Horst](https://allisonhorst.com/r-packages-functions).
 :::
+
+## Setup
+
+```{r}
+# install.packages("tidyverse")
+
+library(tidyverse)
+
+gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
+
+gapminder_2019 <- gapminder %>%
+  filter(time == 2019) %>%
+  drop_na(gini, hapiscore_whr)
+```
+
 
 ## ggplot2: Das Paket
 
@@ -659,6 +681,7 @@ Eine Übersicht über Themes findet sich [hier](https://ggplot2.tidyverse.org/re
 - Histogram: 1 numerische Variable + eine kategoriale Variable
 
 Als kategoriale Variable bietet sich z.B. `world_6region` an. 
+Infos zu den Plots findet ihr entweder in der [Einführung](https://nickhaf.github.io/PlotWorkshop/sessions/Einf%C3%BChrung/slides.html#/zentrale-plot-typen) oder auf [fronm Data to Viz](https://www.data-to-viz.com/). 
 
 ::: {.callout-tip}
 
@@ -667,7 +690,6 @@ Nutzt die bisherigen Code-Blocks, R-interne Hilfe, Google und KI. Falls ihr eine
 :::
 :::
 
-<!-- ### „Wir können nicht so ganz pauschal sagen, die Deutschen arbeiten zu wenig“, sagte der CDU-Vorsitzende am Mittwoch in Berlin auf dem Tag der Bauindustrie." -->
 
 
 ## 🏋 Übung

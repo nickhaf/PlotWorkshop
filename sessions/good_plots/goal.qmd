@@ -40,6 +40,25 @@ gapminder_2020 <- gapminder %>%
   arrange(desc(co2_cons))
 ```
 
+## Setup
+
+```{r}
+# install.packages("tidyverse")
+
+library(tidyverse)
+
+gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
+
+gapminder_europe <- gapminder %>%
+  filter(world_4region == "europe", time >= 1900, time <= 2024) %>%
+  drop_na(gini)
+
+gapminder_2020 <- gapminder %>%
+  filter(time == 2020) %>%
+  drop_na(world_6region, world_4region, country, gini, hapiscore_whr) %>% 
+  arrange(desc(co2_cons))
+```
+
 ## Goal
 
 ::: {.columns}
