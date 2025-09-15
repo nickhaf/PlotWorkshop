@@ -1928,7 +1928,7 @@ ggplot(
   data = gapminder_2020 %>% drop_na(country),
   aes(x = world_4region, y = hapiscore_whr, group = world_4region)
 ) +
-  geom_jitter(alpha = 0.5, color = "lightgrey") +
+  geom_jitter(alpha = 0.5, color = "lightgrey", height = 0) +
   geom_tufteboxplot() +
   scale_fill_paletteer_d("fishualize::Koumansetta_rainfordi") +
   xlab("Region") +
