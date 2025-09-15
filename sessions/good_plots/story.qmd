@@ -25,6 +25,15 @@ library(tidyverse)
 source(here::here("src", "themes.R"))
 source(here::here("src", "functions.R"))
 
+```
+
+## Setup
+
+```{r}
+# install.packages("tidyverse")
+
+library(tidyverse)
+
 gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
 
 gapminder_europe <- gapminder %>%
@@ -33,7 +42,7 @@ gapminder_europe <- gapminder %>%
 
 gapminder_2020 <- gapminder %>%
   filter(time == 2020) %>%
-  drop_na(world_6region, world_4region, country, gini, hapiscore_whr) %>%
+  drop_na(world_6region, world_4region, country, gini, hapiscore_whr) %>% 
   arrange(desc(co2_cons))
 ```
 

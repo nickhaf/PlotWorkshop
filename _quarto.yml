@@ -33,6 +33,9 @@ website:
         - text: "Exportieren"
           href: sessions/science_plots/science_plots.qmd
           icon: mortarboard-fill
+        - text: "Abschluss"
+          href: sessions/exercise/exercise.qmd
+          icon: person-arms-up
     right:
       - text: "Die Daten"
         href: other_sites/daten.qmd     
