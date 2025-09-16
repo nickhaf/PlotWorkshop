@@ -36,6 +36,9 @@ website:
         - text: "Abschluss"
           href: sessions/exercise/exercise.qmd
           icon: person-arms-up
+        - text: "Karten"
+          href: sessions/good_plots/maps.qmd
+          icon: map-fill
     right:
       - text: "Die Daten"
         href: other_sites/daten.qmd     
