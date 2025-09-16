@@ -49,10 +49,12 @@ listing:
       path: sessions/exercise/exercise.qmd
       image: sessions/exercise/images/yoga.jpg
       description: 15:00 - 17:00
+    - title: "Karten"
+      path: sessions/good_plots/maps.qmd
+      image: sessions/good_plots/images/map_title.jpg
+      description: Optional
 
 ---
-
-
 
 :::{#intro-heading}
 
