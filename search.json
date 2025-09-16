@@ -18,7 +18,7 @@
     "href": "index.html#tag-2",
     "title": "Datenvisualisierung in R",
     "section": "Tag 2",
-    "text": "Tag 2\n\n\n\n\n\n\n\n\n\n\nggplot2: Advanced\n\n\n10:30 - 12:00\n\n\n\nNicklas Hafiz, Janine Buchholz\n\n\n\n\n\n\n\n\n\n\n\n\n\ngganimate & plotly\n\n\n13:00 - 14:00\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\n\nExportieren\n\n\n14:00 - 15:00\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\n\nWrap-up, Fragen, Übungszeit & Evaluation\n\n\n15:00 - 17:00\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\nKeine Treffer"
+    "text": "Tag 2\n\n\n\n\n\n\n\n\n\n\nggplot2: Advanced\n\n\n10:30 - 12:00\n\n\n\nNicklas Hafiz, Janine Buchholz\n\n\n\n\n\n\n\n\n\n\n\n\n\ngganimate & plotly\n\n\n13:00 - 14:00\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\n\nExportieren\n\n\n14:00 - 15:00\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\n\nWrap-up, Fragen, Übungszeit & Evaluation\n\n\n15:00 - 17:00\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\n\nKarten\n\n\nOptional\n\n\n\n\n\n\n\n\n\n\nKeine Treffer"
   },
   {
     "objectID": "index.html#r-pakete",
@@ -718,7 +718,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nstar\n64.40\n67.45\n\n\nbullseye\n50.94\n9.69\n\n\nv_lines\n50.10\n95.09\n\n\nv_lines\n50.34\n18.72\n\n\nwide_lines\n38.71\n76.40\n\n\ndino\n48.72\n11.03\n\n\naway\n39.32\n59.30\n\n\nx_shape\n42.61\n24.20\n\n\nv_lines\n50.28\n97.61\n\n\nbullseye\n34.75\n80.01\n\n\nhigh_lines\n54.11\n17.67\n\n\nwide_lines\n35.84\n53.35\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nslant_down\n28.60\n44.22\n\n\naway\n56.58\n70.51\n\n\ndino\n67.95\n22.18\n\n\nv_lines\n69.50\n5.96\n\n\ndots\n75.96\n16.69\n\n\nslant_up\n20.21\n67.52\n\n\ndino\n52.56\n46.03\n\n\nbullseye\n41.68\n84.02\n\n\ncircle\n31.76\n69.80\n\n\nslant_up\n69.29\n99.58\n\n\ndots\n76.88\n51.87\n\n\nstar\n43.23\n63.17\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
