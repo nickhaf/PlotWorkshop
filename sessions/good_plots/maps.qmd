@@ -7,6 +7,7 @@ format:
   letterbox-revealjs:
     code-block-height: 650px
 bibliography: refs.bib
+author: "Nicklas Hafiz"
 ---
 
 
