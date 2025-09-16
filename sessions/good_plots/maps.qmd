@@ -9,91 +9,177 @@ bibliography: refs.bib
 
 # Karten
 ## 
+Es gibt diverse Möglichkeiten um Karten in R zu erstellen:
+
+- Polygon maps
+- Simple features maps
+
+
+## Simple Features
+
+Um mit simple features arbeiten zu könnnen benötigt man das Paket [sf](https://r-spatial.github.io/sf/).
 
 ```{r}
-#| label: Load election data
-#| echo: false
-
-## https://dataverse.harvard.edu/file.xhtml?fileId=10851934&version=9.1
-
-library(tidyverse)
-library(gerda)
+# install.packages("sf")
 library(sf)
+```
 
-# List available datasets
-available_data <- gerda_data_list()
+Als Beispiel nutzen wir Daten zur Bundestagswahl in Deutschland aus dem [gerda](http://www.german-elections.com/r-package/)-Paket.
 
-geom_dat <- sf::read_sf(here::here("sessions", "good_plots", "data", "shapefiles"), layer = "VG250_GEM" )
-geom_dat_lan <- sf::read_sf(here::here("sessions", "good_plots", "data", "shapefiles"), layer = "VG250_LAN" ) %>% 
+```{r}
+# install.packages("gerda")
+library(gerda)
+```
+
+## Datenaufbereitung
+
+Simple feature data hat sein eigenes Datei-Format, und die Dateistrutur ist sehr komplex. 
+Hier habe ich zwei Datensätze heruntergeladen, ebenfalls aus dem [GERDA-Projekt](https://dataverse.harvard.edu/file.xhtml?fileId=10851934&version=9.1): 
+
+```{r}
+## Für die Gemeindegrenzen
+geom_dat <- sf::read_sf(here::here("sessions", "good_plots", "data", "shapefiles"), layer = "VG250_GEM")
+
+## Für die Bundeslandgrenzen
+geom_dat_lan <- sf::read_sf(here::here("sessions", "good_plots", "data", "shapefiles"), layer = "VG250_LAN") %>%
   dplyr::filter(GF == 4)
+```
 
+Zusätzlich brauchen wir noch die Datensätze zu den Wahlergebnissen der Bundestagswahl 2025:
 
-elect_dat <- load_gerda_web("federal_muni_unharm", verbose = FALSE, file_format = "rds") %>% 
-  dplyr::filter(election_year == 2025) %>% 
-  dplyr::select(ags, county, cdu_csu, spd, gruene, afd, bsw, fdp, linke_pds, number_voters, eligible_voters) 
+```{r}
+elect_dat <- load_gerda_web("federal_muni_unharm", verbose = FALSE, file_format = "rds") %>%
+  dplyr::filter(election_year == 2025) %>%
+  dplyr::select(ags, county, cdu_csu, spd, gruene, afd, bsw, fdp, linke_pds, number_voters, eligible_voters)
 
+## Mergen an die Geo-Daten
 geom_elect_dat <- geom_dat %>%
   left_join(elect_dat, by = c("AGS" = "ags")) %>%
   dplyr::filter(GF == 4)
-
 ```
 
-:::{.columns}
-:::{.column-width="50%"}
+## Datenaufbereitung
+
+Ich wähle hier die Partei mit den meisten Zweitstimmen pro Gemeinde aus:
 
 ```{r}
 #| echo: false
 
-geom_elect_max <- geom_elect_dat %>% 
-  pivot_longer(cols = c("cdu_csu", "spd", "gruene", "afd", "bsw", "linke_pds", "fdp"), values_to = "result", 
-               names_to = "partei") %>% 
-  filter(!is.na(result)) %>% 
-  group_by(AGS) %>% 
-  slice_max(result) 
-  
-  
- ggplot() +
-    geom_sf(data = geom_elect_max, mapping = aes(fill = partei), colour = NA) +
-    geom_sf(data = geom_dat_lan, fill = NA, colour = "grey30", linewidth = 0.2) +
-    coord_sf() +
-    theme_minimal() +
-    theme(
-      panel.grid.major = element_blank(),
-      panel.grid.minor = element_blank(),
-      title = element_text(size = 9),
-      axis.title.x = element_blank(), axis.text.x = element_blank(), axis.ticks.x = element_blank(),
-      axis.title.y = element_blank(), axis.text.y = element_blank(), axis.ticks.y = element_blank(),
-      legend.position = "bottom", legend.text = element_text(size = 14), legend.key.size = unit(0.6, "cm"),
-      plot.margin = margin(t = 0, r = 0, b = 0, l = 0),
-      legend.box.margin = margin(t = -25, r = 0, b = 0, l = 0)
-    ) +
-    scale_fill_manual(values = c("cdu_csu" = "black", 
-                           "spd" = "red", 
-                            "gruene" = "green", 
-                           "linke_pds" = "purple", 
-                            "fdp" =  "yellow", 
-                            "afd" = "blue")) +
-    labs(title = "Partei mit den meisten Zweitstimmen per Gemeinde")
-
+geom_elect_max <- geom_elect_dat %>%
+  pivot_longer(
+    cols = c("cdu_csu", "spd", "gruene", "afd", "linke_pds"), values_to = "result",
+    names_to = "partei"
+  ) %>%
+  filter(!is.na(result)) %>%
+  group_by(AGS) %>%
+  slice_max(result)
 ```
 
-:::
-:::{.column-width="50%}
+## Karte 
 
-Zeigen von Kreisen, wo es sehr eng war 
+Die Funktion `geom_sf()` kann aus unseren sf-Daten direkt eine Karte erstellen:
 
-:::
-:::
 
+```{r}
+#| output-location: column
+
+p <- ggplot() +
+  geom_sf(data = geom_elect_max)
+
+p
+```
+
+
+## Mit Bundeslandgrenzen: 
+
+```{r}
+#| output-location: column
+
+ggplot() +
+  geom_sf(data = geom_dat_lan)
+```
+
+
+## 
+
+Zusammenfügen:
+
+```{r}
+#| output-location: column
+
+
+ggplot() +
+  geom_sf(data = geom_elect_max, color = NA) +
+  geom_sf(data = geom_dat_lan, fill = NA, colour = "grey30", linewidth = 0.2) +
+  coord_sf() +
+  theme_minimal()
+```
+
+
+## Einfärben
+
+Da wir ja die interressierenden Daten direkt an die Geo-Daten rangehängt haben, können wir sie ganz einfach in unseren ggplot mit aufnehmen. 
+Farben setze ich anhand dieser [Tabelle](https://gist.github.com/Fischaela/0cf760f17672e3eb399193e48d7c6104). 
+
+```{r}
+ggplot() +
+  geom_sf(data = geom_elect_max, aes(fill = partei), color = NA) +
+  geom_sf(data = geom_dat_lan, fill = NA, colour = "grey30", linewidth = 0.2) +
+  coord_sf() +
+  theme_minimal() +
+  scale_fill_manual(values = c(
+    "cdu_csu" = "#000000",
+    "spd" = "#E3000F",
+    "gruene" = "#1AA037",
+    "linke_pds" = "purple",
+    "afd" = "#0489DB"
+  )) +
+  labs(title = "Partei mit den meisten Zweitstimmen per Gemeinde")
+```
 
 
 
 ## Alternativen
 
+Vielleicht ist es informativer, die Wahlergebnisse parteienspezifisch zu zeigen: 
+
+```{r}
+geom_elect_dat_long <- geom_elect_dat %>%
+  pivot_longer(
+    cols = c("cdu_csu", "spd", "gruene", "afd", "linke_pds"), values_to = "result",
+    names_to = "partei"
+  ) %>% 
+  drop_na(result)
+```
 
 
+```{r}
+#| output-location: column
 
-![](./data/map_options.png)
+ggplot() +
+  geom_sf(data = geom_elect_dat_long, aes(fill = partei, alpha = result), color = NA) +
+  geom_sf(data = geom_dat_lan, fill = NA, colour = "grey30", linewidth = 0.2) +
+  coord_sf() +
+  facet_wrap(~partei) +
+  theme_minimal() +
+  scale_fill_manual(values = c(
+    "cdu_csu" = "#000000",
+    "spd" = "#E3000F",
+    "gruene" = "#1AA037",
+    "linke_pds" = "purple",
+    "afd" = "#0489DB"
+  )) 
+```
+
+
+::: {.callout-warning}
+Hier muss die Farbwahl gut bedacht werden. Aktuell ist der Alpha-Wert für alle Parteien gleich, was dazu führt, dass Partein mit weniger Stimmen sehr blass dargestellt werden. [Die Zeit](https://www.zeit.de/politik/deutschland/2025-02/bundestagswahl-2025-wahlergebnisse-wahlkreise-live) hat die Farbgebung etwas anders gelöst. 
+:::
+
+
+## Alternativen
+
+![](./images/map_options.png)
 
 ::: image-ref
 Bild von [storymaps](https://storymaps.arcgis.com/stories/0e636a652d44484b9457f953994b212b). 
@@ -110,7 +196,8 @@ library(cartogram)
 ## Ansonsten mit county oder sogar nur Bundesland?
 
 cartogram_dat <- cartogram_cont(geom_elect_max,
-                 weight = "number_voters")
+  weight = "number_voters"
+)
 
 saveRDS(here::here("sessions", "good_plots", "data", "cartogram_dat.rds"))
 ```
@@ -125,8 +212,6 @@ readRDS(here::here("sessions", "good_plots", "data", "cartogram_dat.rds"))
 
 ggplot(cartogram_dat) +
   geom_sf()
-
-
 ```
 
 ![](./images/bundestagswahl.svg)
@@ -158,21 +243,20 @@ plot_fed_map <- function(fill_var, legend_label, fill_palette, limits, plot_titl
       legend.box.margin = margin(t = -25, r = 0, b = 0, l = 0)
     ) +
     scale_fill_distiller(NULL,
-                         palette = fill_palette,
-                         na.value = "white",
-                         direction = 1,
-                         limits = limits,
-                         guide = guide_legend(
-                           keyheight = unit(4, units = "mm"), keywidth = unit(18, units = "mm"),
-                           label.position = "bottom", title.position = "top", nrow = 1
-                         )
+      palette = fill_palette,
+      na.value = "white",
+      direction = 1,
+      limits = limits,
+      guide = guide_legend(
+        keyheight = unit(4, units = "mm"), keywidth = unit(18, units = "mm"),
+        label.position = "bottom", title.position = "top", nrow = 1
+      )
     ) +
     # Add title if provided
     labs(title = plot_title)
 }
 
-plot_fed_map("spd", "spd", "Reds", c(0,1))
-
+plot_fed_map("spd", "spd", "Reds", c(0, 1))
 ```
 
 
