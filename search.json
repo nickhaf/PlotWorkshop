@@ -718,7 +718,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nx_shape\n65.03\n57.10\n\n\ndino\n67.95\n47.95\n\n\naway\n33.02\n24.47\n\n\nslant_up\n46.26\n94.12\n\n\ndino\n65.90\n20.26\n\n\nhigh_lines\n64.25\n14.91\n\n\nh_lines\n51.41\n89.71\n\n\naway\n38.98\n87.32\n\n\nstar\n69.90\n43.45\n\n\nwide_lines\n35.51\n89.60\n\n\ndots\n25.86\n17.08\n\n\ndino\n51.28\n78.72\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nstar\n64.40\n67.45\n\n\nbullseye\n50.94\n9.69\n\n\nv_lines\n50.10\n95.09\n\n\nv_lines\n50.34\n18.72\n\n\nwide_lines\n38.71\n76.40\n\n\ndino\n48.72\n11.03\n\n\naway\n39.32\n59.30\n\n\nx_shape\n42.61\n24.20\n\n\nv_lines\n50.28\n97.61\n\n\nbullseye\n34.75\n80.01\n\n\nhigh_lines\n54.11\n17.67\n\n\nwide_lines\n35.84\n53.35\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
@@ -1607,28 +1607,77 @@
     "href": "sessions/good_plots/maps.html#section",
     "title": "Karten",
     "section": "",
-    "text": "|data_name            |description                                                                          |\n|:--------------------|:------------------------------------------------------------------------------------|\n|municipal_unharm     |Local elections at the municipal level (1990-2020, unharmonized).                    |\n|municipal_harm       |Local elections at the municipal level (1990-2020, harmonized).                      |\n|state_unharm         |State elections at the municipal level (2006-2019, unharmonized).                    |\n|state_harm           |State elections at the municipal level (2006-2019, harmonized).                      |\n|federal_muni_raw     |Federal elections at the municipal level (1980-2025, raw data).                      |\n|federal_muni_unharm  |Federal elections at the municipal level (1980-2025, unharmonized).                  |\n|federal_muni_harm_21 |Federal elections at the municipal level (1990-2025, harmonized to 2021 boundaries). |\n|federal_muni_harm_25 |Federal elections at the municipal level (1990-2025, harmonized to 2025 boundaries). |\n|federal_cty_unharm   |Federal elections at the county level (1953-2021, unharmonized).                     |\n|federal_cty_harm     |Federal elections at the county level (1990-2021, harmonized).                       |\n|ags_crosswalks       |Crosswalks for municipalities (1990-2025).                                           |\n|cty_crosswalks       |Crosswalks for counties (1990-2025).                                                 |\n|ags_area_pop_emp     |Crosswalk covariates (area, population, employment) for municipalities (1990-2025).  |\n|cty_area_pop_emp     |Crosswalk covariates (area, population, employment) for counties (1990-2025).        |\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nZeigen von Kreisen, wo es sehr eng war"
+    "text": "Es gibt verschiedene Möglichkeiten um Karten in ggplot2 zu erstellen:\n\nPolygon maps (simpel)\nSimple features maps (komplexer)\n\n\n\n\n\nFoto von Annie Spratt auf Unsplash"
+  },
+  {
+    "objectID": "sessions/good_plots/maps.html#simple-features",
+    "href": "sessions/good_plots/maps.html#simple-features",
+    "title": "Karten",
+    "section": "Simple Features",
+    "text": "Simple Features\nBestimmtes Encoding für Geodaten, das häufig verwendet wird. Um mit simple features arbeiten zu könnnen benötigt man das Paket sf.\n\n# install.packages(\"sf\")\nlibrary(tidyverse)\nlibrary(sf)\n\nAls Beispiel nutzen wir Daten zur Bundestagswahl in Deutschland aus dem gerda-Paket.\n\n# install.packages(\"gerda\")\nlibrary(gerda)"
+  },
+  {
+    "objectID": "sessions/good_plots/maps.html#datenaufbereitung",
+    "href": "sessions/good_plots/maps.html#datenaufbereitung",
+    "title": "Karten",
+    "section": "Datenaufbereitung",
+    "text": "Datenaufbereitung\nHier habe ich zwei Datensätze heruntergeladen, ebenfalls aus dem GERDA-Projekt. Ihr könnt sie hier downloaden (Ihr braucht alle Dateien im Ordner).\n\n## Für die Gemeindegrenzen\ngeom_dat &lt;- sf::read_sf(here::here(\"sessions\", \"good_plots\", \"data\", \"shapefiles\"), layer = \"VG250_GEM\")\n\n## Für die Bundeslandgrenzen\ngeom_dat_lan &lt;- sf::read_sf(here::here(\"sessions\", \"good_plots\", \"data\", \"shapefiles\"), layer = \"VG250_LAN\") %&gt;%\n  dplyr::filter(GF == 4)\n\nZusätzlich brauchen wir noch die Datensätze zu den Wahlergebnissen der Bundestagswahl 2025:\n\nelect_dat &lt;- load_gerda_web(\"federal_muni_unharm\", verbose = FALSE, file_format = \"rds\") \n\n## Aufbereitung\nelect_dat &lt;- elect_dat %&gt;%\n  dplyr::filter(election_year == 2025) %&gt;%\n  dplyr::select(ags, county, cdu_csu, spd, gruene, afd, bsw, fdp, linke_pds, number_voters, eligible_voters)\n\n## Mergen an die Geo-Daten\ngeom_elect_dat &lt;- geom_dat %&gt;%\n  left_join(elect_dat, by = c(\"AGS\" = \"ags\")) %&gt;%\n  dplyr::filter(GF == 4)"
+  },
+  {
+    "objectID": "sessions/good_plots/maps.html#datenaufbereitung-1",
+    "href": "sessions/good_plots/maps.html#datenaufbereitung-1",
+    "title": "Karten",
+    "section": "Datenaufbereitung",
+    "text": "Datenaufbereitung\nIch wähle hier die Partei mit den meisten Zweitstimmen pro Gemeinde aus:\n\ngeom_elect_max &lt;- geom_elect_dat %&gt;%\n  pivot_longer(\n    cols = c(\"cdu_csu\", \"spd\", \"gruene\", \"afd\", \"linke_pds\"), values_to = \"result\",\n    names_to = \"partei\"\n  ) %&gt;%\n  filter(!is.na(result)) %&gt;%\n  group_by(AGS) %&gt;%\n  slice_max(result)"
+  },
+  {
+    "objectID": "sessions/good_plots/maps.html#karte",
+    "href": "sessions/good_plots/maps.html#karte",
+    "title": "Karten",
+    "section": "Karte",
+    "text": "Karte\nDie Funktion geom_sf() kann aus unseren sf-Daten direkt eine Karte erstellen:\n\n\np &lt;- ggplot() +\n  geom_sf(data = geom_elect_max)\n\np"
+  },
+  {
+    "objectID": "sessions/good_plots/maps.html#mit-bundeslandgrenzen",
+    "href": "sessions/good_plots/maps.html#mit-bundeslandgrenzen",
+    "title": "Karten",
+    "section": "Mit Bundeslandgrenzen:",
+    "text": "Mit Bundeslandgrenzen:\n(das war unser zweite Datensatz)\n\n\nggplot() +\n  geom_sf(data = geom_dat_lan)"
+  },
+  {
+    "objectID": "sessions/good_plots/maps.html#section-1",
+    "href": "sessions/good_plots/maps.html#section-1",
+    "title": "Karten",
+    "section": "",
+    "text": "Zusammenfügen:\n\n\nggplot() +\n  geom_sf(data = geom_elect_max, color = NA) +\n  geom_sf(data = geom_dat_lan, fill = NA, colour = \"grey30\", linewidth = 0.2) +\n  coord_sf() +\n  theme_minimal()"
+  },
+  {
+    "objectID": "sessions/good_plots/maps.html#einfärben",
+    "href": "sessions/good_plots/maps.html#einfärben",
+    "title": "Karten",
+    "section": "Einfärben",
+    "text": "Einfärben\nDa wir ja die interressierenden Daten direkt an die Geo-Daten rangehängt haben, können wir sie ganz einfach in unseren ggplot mit aufnehmen. Farben setze ich anhand dieser Tabelle.\n\n\nggplot() +\n  geom_sf(data = geom_elect_max, aes(fill = partei), color = NA) +\n  geom_sf(data = geom_dat_lan, fill = NA, colour = \"grey30\", linewidth = 0.2) +\n  coord_sf() +\n  theme_minimal() +\n  scale_fill_manual(values = c(\n    \"cdu_csu\" = \"#000000\",\n    \"spd\" = \"#E3000F\",\n    \"gruene\" = \"#1AA037\",\n    \"linke_pds\" = \"purple\",\n    \"afd\" = \"#0489DB\"\n  )) +\n  labs(title = \"Partei mit den meisten Zweitstimmen pro Gemeinde\")"
   },
   {
     "objectID": "sessions/good_plots/maps.html#alternativen",
     "href": "sessions/good_plots/maps.html#alternativen",
     "title": "Karten",
     "section": "Alternativen",
-    "text": "Alternativen\n\n\nBild von storymaps."
+    "text": "Alternativen\nVielleicht ist es informativer, die Wahlergebnisse parteienspezifisch zu zeigen:\n\n## Daten ins Long-Format\ngeom_elect_dat_long &lt;- geom_elect_dat %&gt;%\n  pivot_longer(\n    cols = c(\"cdu_csu\", \"spd\", \"gruene\", \"afd\", \"linke_pds\"), values_to = \"result\",\n    names_to = \"partei\"\n  ) %&gt;% \n  drop_na(result)"
   },
   {
-    "objectID": "sessions/good_plots/maps.html#kartogramm",
-    "href": "sessions/good_plots/maps.html#kartogramm",
+    "objectID": "sessions/good_plots/maps.html#parteispezifischer-plot",
+    "href": "sessions/good_plots/maps.html#parteispezifischer-plot",
     "title": "Karten",
-    "section": "Kartogramm",
-    "text": "Kartogramm\n\nlibrary(cartogram)\n\n## Ansonsten mit county oder sogar nur Bundesland?\n\ncartogram_dat &lt;- cartogram_cont(geom_elect_max,\n                 weight = \"number_voters\")\n\nsaveRDS(here::here(\"sessions\", \"good_plots\", \"data\", \"cartogram_dat.rds\"))\n\n\n# https://r-charts.com/spatial/cartogram-ggplot2/\n\nlibrary(cartogram)\n\nreadRDS(here::here(\"sessions\", \"good_plots\", \"data\", \"cartogram_dat.rds\"))\n\nggplot(cartogram_dat) +\n  geom_sf()\n\n\n\nVon Costamiri - Eigenes WerkMap based on: Shapefiles by bundeswahlleiterin.de (Geometrie der Wahlkreise im Koordinatensystem UTM32 generalisiert) © Die Bundeswahlleiterin, Statistisches Bundesamt, Wiesbaden 2024, Wahlkreiskarte für die Wahl zum 21. Deutschen Bundestag; Grundlage der Geoinformationen © Geobasis-DE / BKG 2024Data based on: Bundestagswahl 2025: Open-Data-Angebot der Bundeswahlleiterin by bundeswahlleiterin.de, CC BY-SA 4.0, Link"
+    "section": "Parteispezifischer Plot",
+    "text": "Parteispezifischer Plot\n\n\nggplot() +\n  geom_sf(data = geom_elect_dat_long, aes(fill = partei, alpha = result), color = NA) +\n  geom_sf(data = geom_dat_lan, fill = NA, colour = \"grey30\", linewidth = 0.2) +\n  coord_sf() +\n  facet_wrap(~partei) +\n  theme_minimal() +\n  scale_fill_manual(values = c(\n    \"cdu_csu\" = \"#000000\",\n    \"spd\" = \"#E3000F\",\n    \"gruene\" = \"#1AA037\",\n    \"linke_pds\" = \"purple\",\n    \"afd\" = \"#0489DB\"\n  )) \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHier muss die Farbwahl gut bedacht werden. Aktuell ist der Alpha-Wert für alle Parteien gleich, was dazu führt, dass Parteien mit weniger Stimmen sehr blass dargestellt werden. Die Zeit hat die Farbgebung etwas anders gelöst."
   },
   {
-    "objectID": "sessions/good_plots/maps.html#section-2",
-    "href": "sessions/good_plots/maps.html#section-2",
+    "objectID": "sessions/good_plots/maps.html#alternativen-1",
+    "href": "sessions/good_plots/maps.html#alternativen-1",
     "title": "Karten",
-    "section": "",
-    "text": ":::{.column width=“50%} \n\n\n\n\n\n:::\n\nGrafiken von zeit.de."
+    "section": "Alternativen",
+    "text": "Alternativen\n\n\n\n\nWie bereits besprochen kann es Nachteile haben, Nicht-Geodaten als Geo-Daten darzustellen. Z.B. entspricht die Größe der Fläche nicht der Anzahl der Stimmen. Links seht ihr einige Beispiele dafür, wie man damit umgehen könnte.\nEs ist dabei immer ein Trade-off zwischen Akkuratheit der Geo-Informationen, und Visualisierung der Information die man eigentlich zeigen möchte. Siehe storymaps."
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#visual-form",
