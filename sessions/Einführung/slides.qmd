@@ -408,7 +408,7 @@ Hier finden Sie eine gute Übersicht über verschiedene Plot-Typen, in der auch 
 
 ![](./images/graphgallery.png){.lightbox fig-align="center"}
 
-## Vorbereitung
+## Setup
 
 [Pakete]{.highlight}, die wir für die Beispiele im Foliensatz benötigen: 
 

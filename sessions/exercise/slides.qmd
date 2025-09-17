@@ -110,7 +110,7 @@ saveRDS(characters, here::here("data", "characters.rds"))
 gapminder <- readRDS(url("https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds"))
 
 ## Optional: Abspeichern
-saveRDS(gapminder, here::here("data", "characters.rds"))
+saveRDS(gapminder, here::here("data", "gapminder_dat.rds"))
 ```
 
 ```{r}
