@@ -25,11 +25,11 @@ Bild von [Allison Horst](https://allisonhorst.com/r-packages-functions).
 ## Setup
 
 ```{r}
-# install.packages("tidyverse", "here")
+# install.packages(c("tidyverse", "here"))
 
 library(tidyverse)
 
-gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
+gapminder <- readRDS(url("https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds"))
 
 gapminder_2019 <- gapminder %>%
   filter(time == 2019) %>%

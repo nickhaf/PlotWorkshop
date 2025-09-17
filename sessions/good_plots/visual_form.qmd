@@ -60,7 +60,7 @@ library(paletteer)
 library(ggthemes)
 
 
-gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
+gapminder <- readRDS(url("https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds"))
 
 gapminder_europe <- gapminder %>%
   filter(world_4region == "europe", time >= 1900, time <= 2024) %>%
@@ -1110,7 +1110,7 @@ ggplot(
   aes(x = gini, y = hapiscore_whr)
 ) +
   geom_point(size = 3, color = "#FF0000") +
-  geom_smooth(color = "darkgreen") +
+  geom_smooth(color = "blue") +
   theme_bg()
 ```
 :::
@@ -1294,7 +1294,7 @@ ggplot(
 Sammlung von Paletten aus diversen Paketen
 
 - [Palette-Finder](https://r-graph-gallery.com/color-palette-finder)
-- [Gallerie](https://pmassicotte.github.io/paletteer_gallery/#sequential)
+- [Galerie](https://pmassicotte.github.io/paletteer_gallery/#sequential)
 
 
 Z.B. Enthält `"lisa::Jean_MichelBasquiat_1"` folgende Farben:
@@ -1422,9 +1422,9 @@ palette_check(paletteer::paletteer_d("lisa::FridaKahlo"),
 :::
 
 
-# Funktionelles Desing
+# Funktionelles Design
 
-## Funktionelles Desing
+## Funktionelles Design
 
 :::{.columns}
 

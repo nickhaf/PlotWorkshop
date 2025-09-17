@@ -413,7 +413,7 @@ Hier finden Sie eine gute Übersicht über verschiedene Plot-Typen, in der auch 
 [Pakete]{.highlight}, die wir für die Beispiele im Foliensatz benötigen: 
 
 ```{r}
-# install.packages("ggplot2", "quartets", "tidyverse", "ggrepel", "ggthemes", "gganimate", "plotly")
+# install.packages(c("ggplot2", "quartets", "tidyverse", "ggrepel", "ggthemes", "gganimate", "plotly"))
 
 library(ggplot2)
 library(quartets)
@@ -1181,6 +1181,58 @@ Abbildung in Anlehnung an die typische Darstellung auf [gapminder](https://www.g
 :::
 
 
+## Word Clouds 
+
+```{r}
+#| echo: false
+#| fig-width: 18
+#| fig-height: 10
+
+library(ggwordcloud)
+library(showtext)
+
+tags <- read.csv(here::here("data", "goodbooks-10k", "tags.csv"))
+book_tags <- read.csv(here::here("data", "goodbooks-10k", "book_tags.csv"))
+books <- read.csv(here::here("data", "goodbooks-10k", "books.csv"))
+
+
+classics <- book_tags %>%
+  left_join(books) %>%
+  left_join(tags) %>%
+  filter(tag_name == "classics") %>%
+  filter(ratings_count > 20000, !duplicated(authors)) %>%
+  select(original_title, average_rating, tag_name, ratings_count) %>%
+  distinct() %>%
+  arrange(ratings_count) %>%
+  slice_tail(n = 50)
+
+
+font_add_google("Special Elite", family = "my textfont")
+font_add_google("Playfair Display")
+
+showtext_auto()
+
+
+set.seed(45)
+ggplot(
+  data = classics,
+  mapping = aes(label = original_title, size = average_rating)
+) +
+  geom_text_wordcloud(family = "my textfont") +
+  scale_size(range = c(5, 20)) +
+  labs(
+    title = "What to read next",
+    subtitle = "According to the 50 most read classics on goodreads.",
+    caption = "The larger the title, the higher the average rating."
+  ) +
+  theme_bg() +
+  theme(
+    title = element_text(family = "Playfair Display", size = 50),
+    subtitle = element_text(family = "Playfair Display", size = 40),
+    caption = element_text(family = "Playfair Display", size = 30)
+  )
+```
+
 ## Karten
 
 ![](./images/ex_streets.png){width="80%"}
@@ -1229,16 +1281,9 @@ Abbildung von [informationisbeautiful.net](https://informationisbeautiful.net/vi
 
 ## Animiert: `gganimate`
 
-```{r}
-#| label: gganimate
-#| fig-width: 14
-#| fig-height: 7
-#| echo: false
+\
 
-p_line_g7 + 
-  transition_reveal(along = time) +# Linien werden über die Zeit "enthüllt"
-  ease_aes("linear")  
-```
+![](../../_site/sessions/animate_plotly/slides_files/figure-html/anim-plot-1.gif)
 
 ## Interaktiv: `plotly`
 

@@ -40,11 +40,13 @@ Foto von <a href="https://unsplash.com/de/@hooverpaul55?utm_content=creditCopyTe
       
 ::: 
 
-## Vorbereitung
+## Setup
 
 [Pakete]{.highlight}, die wir für die Beispiele im Foliensatz benötigen: 
 
 ```{r}
+# install.packages(c("ggplot2", "dplyr", "tidyr", "ggview", "scales"))
+
 library(ggplot2)
 library(dplyr)
 library(tidyr)

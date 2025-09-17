@@ -37,7 +37,7 @@ Bestimmtes [Encoding]{.highlight} für Geodaten, das häufig verwendet wird.
 Um mit simple features arbeiten zu könnnen benötigt man das Paket [sf](https://r-spatial.github.io/sf/).
 
 ```{r}
-# install.packages("sf")
+# install.packages(c("sf", "tidyverse"))
 library(tidyverse)
 library(sf)
 ```

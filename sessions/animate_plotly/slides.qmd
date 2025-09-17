@@ -31,11 +31,13 @@ Foto von <a href="https://unsplash.com/de/@jakobowens1?utm_content=creditCopyTex
 
 
 
-## Vorbereitung
+## Setup
 
 [Pakete]{.highlight}, die wir für die Beispiele im Foliensatz benötigen: 
 
 ```{r}
+# install.packages(c("ggplot2", "dplyr", "tidyr", "ggthemes", "gganimate", "plotly", "htmlwidgets"))
+
 library(ggplot2)
 library(dplyr)
 library(tidyr)

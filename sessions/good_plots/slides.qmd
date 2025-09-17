@@ -20,7 +20,7 @@ library(tidyverse)
 source(here::here("src", "themes.R"))
 source(here::here("src", "functions.R"))
 
-gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
+gapminder <- readRDS(url("https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds"))
 ```
 
 
