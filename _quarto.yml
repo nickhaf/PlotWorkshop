@@ -51,6 +51,8 @@ format:
   html:
     theme: styles.scss
     toc: true
+    embed-resources: true
+
 
   letterbox-revealjs:
     embed-resources: true

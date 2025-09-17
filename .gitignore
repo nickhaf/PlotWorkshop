@@ -7,4 +7,5 @@
 *.tsv
 *.pptx
 /_site/
+/*_files/
 testjb.qmd
