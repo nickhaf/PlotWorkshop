@@ -78,8 +78,9 @@ Auf den nachfolgenden Folien haben wir zwei komplexe Aufgaben mit je einem Lösu
 [Pakete]{.highlight}, die wir für die Übungen im Foliensatz benötigen: 
 
 ```{r}
-# install.packages(c("ggimage", "here", "tidyverse", "ggtext", "glue", "patchwork", "ggrepel"))
+# install.packages(c("ggplot2", "ggimage", "here", "tidyverse", "ggtext", "glue", "patchwork", "ggrepel", "scales"))
 
+library(ggplot2)
 library(ggimage)
 library(here)
 library(patchwork)
@@ -87,6 +88,7 @@ library(tidyverse)
 library(ggtext)
 library(glue)
 library(ggrepel)
+library(scales)
 ```
 
 [Datensatz]{.highlight}: characters

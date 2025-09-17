@@ -35,7 +35,7 @@ gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
 
 library(tidyverse)
 
-gapminder <- readRDS(here::here("data", "gapminder_dat.rds"))
+gapminder <- readRDS(url("https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds"))
 
 gapminder_europe <- gapminder %>%
   filter(world_4region == "europe", time >= 1900, time <= 2024) %>%

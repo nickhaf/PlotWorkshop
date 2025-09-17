@@ -116,14 +116,11 @@ Installiert euch gerne schon einmal die Pakete, die wir im Workshop verwenden we
 ```{r}
 #| eval: false
 
-install.packages(c("tidyverse", "here", "GGally", 
-                   "RColorBrewer", "colorblindcheck", 
-                   "patchwork", "ggthemes", "gganimate", 
-                   "ggtext", "ggrepel", "ggridges", 
-                   "ggwordcloud", "paletteer", "plotly",
-                   "readxl", "showtext", "htmlwidgets", 
-                   "ggview", "scales"))
-
+install.packages(c("colorblindcheck", "dplyr", "gerda", "GGally", "gganimate", "ggimage", 
+                   "ggplot2", "ggrepel", "ggridges", "ggtext", "ggthemes", "ggview", 
+                   "ggwordcloud", "glue", "here", "htmlwidgets", "janitor", "paletteer", 
+                   "patchwork", "plotly", "quartets", "RColorBrewer", "readxl", "scales", 
+                   "sf", "showtext", "tidyr", "tidyverse"))
 ```
 
 ## Cryptpad
