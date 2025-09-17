@@ -718,7 +718,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nv_lines\n50.44\n75.01\n\n\nh_lines\n47.92\n30.49\n\n\nslant_down\n58.30\n41.58\n\n\nwide_lines\n31.64\n77.61\n\n\nslant_down\n49.84\n50.58\n\n\nbullseye\n51.60\n84.82\n\n\nstar\n54.41\n78.23\n\n\nslant_up\n48.45\n16.21\n\n\nv_lines\n50.47\n12.46\n\n\ndots\n50.73\n16.99\n\n\nbullseye\n49.28\n84.05\n\n\nh_lines\n70.57\n50.50\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nstar\n55.32\n80.25\n\n\nstar\n82.54\n56.54\n\n\nstar\n67.88\n24.24\n\n\nslant_down\n49.45\n79.93\n\n\nstar\n58.02\n91.69\n\n\nh_lines\n24.27\n50.49\n\n\nh_lines\n76.70\n50.49\n\n\nslant_up\n60.75\n28.05\n\n\ndots\n76.06\n52.10\n\n\nslant_up\n54.39\n53.81\n\n\naway\n36.45\n50.55\n\n\nhigh_lines\n62.34\n83.25\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
@@ -840,11 +840,11 @@
     "text": "Resourcen\nR Graph Gallery\nHier finden Sie eine gute Übersicht über verschiedene Plot-Typen, in der auch die Implentierung in R dokumentiert ist:\nhttps://r-graph-gallery.com/"
   },
   {
-    "objectID": "sessions/Einführung/slides.html#vorbereitung",
-    "href": "sessions/Einführung/slides.html#vorbereitung",
+    "objectID": "sessions/Einführung/slides.html#setup",
+    "href": "sessions/Einführung/slides.html#setup",
     "title": "Einführung",
-    "section": "Vorbereitung",
-    "text": "Vorbereitung\nPakete, die wir für die Beispiele im Foliensatz benötigen:\n\nlibrary(ggplot2)\nlibrary(quartets)\nlibrary(tidyverse)\nlibrary(ggrepel)\nlibrary(ggthemes)\nlibrary(gganimate)\nlibrary(plotly)\n\nDatensatz\n\ngapminder &lt;- readRDS(url(\"https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds\"))"
+    "section": "Setup",
+    "text": "Setup\nPakete, die wir für die Beispiele im Foliensatz benötigen:\n\n# install.packages(\"ggplot2\", \"quartets\", \"tidyverse\", \"ggrepel\", \"ggthemes\", \"gganimate\", \"plotly\")\n\nlibrary(ggplot2)\nlibrary(quartets)\nlibrary(tidyverse)\nlibrary(ggrepel)\nlibrary(ggthemes)\nlibrary(gganimate)\nlibrary(plotly)\n\nDatensatz\n\ngapminder &lt;- readRDS(url(\"https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds\"))"
   },
   {
     "objectID": "sessions/Einführung/slides.html#scatterplot",
@@ -1355,7 +1355,7 @@
     "href": "sessions/exercise/slides.html#vorbereitung",
     "title": "Abschluss",
     "section": "Vorbereitung",
-    "text": "Vorbereitung\nPakete, die wir für die Übungen im Foliensatz benötigen:\n\n# install.packages(c(\"ggimage\", \"here\", \"tidyverse\", \"ggtext\", \"glue\", \"patchwork\", \"ggrepel\"))\n\nlibrary(ggimage)\nlibrary(here)\nlibrary(patchwork)\nlibrary(tidyverse)\nlibrary(ggtext)\nlibrary(glue)\nlibrary(ggrepel)\n\nDatensatz: characters\n\ncharacters &lt;- readRDS(url(\"https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/characters.rds\"))\n\n## Optional: Abspeichern\nsaveRDS(characters, here::here(\"data\", \"characters.rds\"))\n\nDatensatz: gapminder\n\ngapminder &lt;- readRDS(url(\"https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds\"))\n\n## Optional: Abspeichern\nsaveRDS(gapminder, here::here(\"data\", \"characters.rds\"))"
+    "text": "Vorbereitung\nPakete, die wir für die Übungen im Foliensatz benötigen:\n\n# install.packages(c(\"ggimage\", \"here\", \"tidyverse\", \"ggtext\", \"glue\", \"patchwork\", \"ggrepel\"))\n\nlibrary(ggimage)\nlibrary(here)\nlibrary(patchwork)\nlibrary(tidyverse)\nlibrary(ggtext)\nlibrary(glue)\nlibrary(ggrepel)\n\nDatensatz: characters\n\ncharacters &lt;- readRDS(url(\"https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/characters.rds\"))\n\n## Optional: Abspeichern\nsaveRDS(characters, here::here(\"data\", \"characters.rds\"))\n\nDatensatz: gapminder\n\ngapminder &lt;- readRDS(url(\"https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds\"))\n\n## Optional: Abspeichern\nsaveRDS(gapminder, here::here(\"data\", \"gapminder_dat.rds\"))"
   },
   {
     "objectID": "sessions/exercise/slides.html#übung-1-datenaufbereitung",
