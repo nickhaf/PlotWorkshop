@@ -18,14 +18,14 @@
     "href": "index.html#tag-2",
     "title": "Datenvisualisierung in R",
     "section": "Tag 2",
-    "text": "Tag 2\n\n\n\n\n\n\n\n\n\n\nggplot2: Advanced\n\n\n10:30 - 12:00\n\n\n\nNicklas Hafiz, Janine Buchholz\n\n\n\n\n\n\n\n\n\n\n\n\n\ngganimate & plotly\n\n\n13:00 - 14:00\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\n\nExportieren\n\n\n14:00 - 15:00\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\n\nWrap-up, Fragen, Übungszeit & Evaluation\n\n\n15:00 - 17:00\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\n\nKarten\n\n\nOptional\n\n\n\nNicklas Hafiz\n\n\n\n\n\n\nKeine Treffer"
+    "text": "Tag 2\n\n\n\n\n\n\n\n\n\n\nggplot2: Advanced\n\n\n10:30 - 12:00\n\n\n\nNicklas Hafiz, Janine Buchholz\n\n\n\n\n\n\n\n\n\n\n\n\n\ngganimate & plotly\n\n\n13:00 - 14:00\n\n\n\nJanine Buchholz\n\n\n\n\n\n\n\n\n\n\n\n\n\nExportieren\n\n\n14:00 - 15:00\n\n\n\nJanine Buchholz\n\n\n\n\n\n\n\n\n\n\n\n\n\nWrap-up, Fragen, Übungszeit & Evaluation\n\n\n15:00 - 17:00\n\n\n\nJanine Buchholz, Nicklas Hafiz\n\n\n\n\n\n\n\n\n\n\n\n\n\nKarten\n\n\nOptional\n\n\n\nNicklas Hafiz\n\n\n\n\n\n\nKeine Treffer"
   },
   {
     "objectID": "index.html#r-pakete",
     "href": "index.html#r-pakete",
     "title": "Datenvisualisierung in R",
     "section": "R-Pakete",
-    "text": "R-Pakete\nInstalliert euch gerne schon einmal die Pakete, die wir im Workshop verwenden werden.\n\ninstall.packages(c(\"tidyverse\", \"here\", \"GGally\", \n                   \"RColorBrewer\", \"colorblindcheck\", \n                   \"patchwork\", \"ggthemes\", \"gganimate\", \n                   \"ggtext\", \"ggrepel\", \"ggridges\", \n                   \"ggwordcloud\", \"paletteer\", \"plotly\",\n                   \"readxl\", \"showtext\", \"htmlwidgets\", \n                   \"ggview\", \"scales\"))"
+    "text": "R-Pakete\nInstalliert euch gerne schon einmal die Pakete, die wir im Workshop verwenden werden.\n\ninstall.packages(c(\"colorblindcheck\", \"dplyr\", \"gerda\", \"GGally\", \"gganimate\", \"ggimage\", \n                   \"ggplot2\", \"ggrepel\", \"ggridges\", \"ggtext\", \"ggthemes\", \"ggview\", \n                   \"ggwordcloud\", \"glue\", \"here\", \"htmlwidgets\", \"janitor\", \"paletteer\", \n                   \"patchwork\", \"plotly\", \"quartets\", \"RColorBrewer\", \"readxl\", \"scales\", \n                   \"sf\", \"showtext\", \"tidyr\", \"tidyverse\"))"
   },
   {
     "objectID": "index.html#cryptpad",
@@ -42,11 +42,11 @@
     "text": "Einführung\n\n\nWir haben mittlerweile viele schöne Grafiken erzeugt - aber noch nicht gespeichert.\nDafür gibt es mehrere Möglichkeiten, Hilfsmittel und Konventionen.\n\n\nInhalte des Foliensatzes:\n\nSpeichern von Grafiken\n\nPlot-Vorschau mit ggview\n\nKonventionen und Richtlinien\n\n\n\n\n\nFoto von Paul Teysen auf Unsplash"
   },
   {
-    "objectID": "sessions/science_plots/slides.html#vorbereitung",
-    "href": "sessions/science_plots/slides.html#vorbereitung",
+    "objectID": "sessions/science_plots/slides.html#setup",
+    "href": "sessions/science_plots/slides.html#setup",
     "title": "Exportieren",
-    "section": "Vorbereitung",
-    "text": "Vorbereitung\nPakete, die wir für die Beispiele im Foliensatz benötigen:\n\nlibrary(ggplot2)\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(ggview)\nlibrary(scales)\n\nDatensatz\n\ngapminder &lt;- readRDS(url(\"https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds\"))"
+    "section": "Setup",
+    "text": "Setup\nPakete, die wir für die Beispiele im Foliensatz benötigen:\n\n# install.packages(c(\"ggplot2\", \"dplyr\", \"tidyr\", \"ggview\", \"scales\"))\n\nlibrary(ggplot2)\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(ggview)\nlibrary(scales)\n\nDatensatz\n\ngapminder &lt;- readRDS(url(\"https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds\"))"
   },
   {
     "objectID": "sessions/science_plots/slides.html#speichern",
@@ -403,7 +403,7 @@
     "href": "sessions/good_plots/story.html#setup",
     "title": "Story",
     "section": "Setup",
-    "text": "Setup\n\n# install.packages(\"tidyverse\")\n\nlibrary(tidyverse)\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_2020 &lt;- gapminder %&gt;%\n  filter(time == 2020) %&gt;%\n  drop_na(world_6region, world_4region, country, gini, hapiscore_whr) %&gt;% \n  arrange(desc(co2_cons))"
+    "text": "Setup\n\n# install.packages(\"tidyverse\")\n\nlibrary(tidyverse)\n\ngapminder &lt;- readRDS(url(\"https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds\"))\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_2020 &lt;- gapminder %&gt;%\n  filter(time == 2020) %&gt;%\n  drop_na(world_6region, world_4region, country, gini, hapiscore_whr) %&gt;% \n  arrange(desc(co2_cons))"
   },
   {
     "objectID": "sessions/good_plots/story.html#exploration",
@@ -515,7 +515,7 @@
     "href": "sessions/good_plots/goal.html#setup",
     "title": "Goal",
     "section": "Setup",
-    "text": "Setup\n\n# install.packages(\"tidyverse\")\n\nlibrary(tidyverse)\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_2020 &lt;- gapminder %&gt;%\n  filter(time == 2020) %&gt;%\n  drop_na(world_6region, world_4region, country, gini, hapiscore_whr) %&gt;% \n  arrange(desc(co2_cons))"
+    "text": "Setup\n\n# install.packages(\"tidyverse\")\n\nlibrary(tidyverse)\n\ngapminder &lt;- readRDS(url(\"https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds\"))\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_2020 &lt;- gapminder %&gt;%\n  filter(time == 2020) %&gt;%\n  drop_na(world_6region, world_4region, country, gini, hapiscore_whr) %&gt;% \n  arrange(desc(co2_cons))"
   },
   {
     "objectID": "sessions/good_plots/goal.html#goal",
@@ -585,7 +585,7 @@
     "href": "sessions/good_plots/information.html#setup",
     "title": "Informationen",
     "section": "Setup",
-    "text": "Setup\n\n# install.packages(\"tidyverse\")\n\nlibrary(tidyverse)\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_2020 &lt;- gapminder %&gt;%\n  filter(time == 2020) %&gt;%\n  drop_na(world_6region, world_4region, country, gini, hapiscore_whr) %&gt;% \n  arrange(desc(co2_cons))"
+    "text": "Setup\n\n# install.packages(\"tidyverse\")\n\nlibrary(tidyverse)\n\ngapminder &lt;- readRDS(url(\"https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds\"))\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_2020 &lt;- gapminder %&gt;%\n  filter(time == 2020) %&gt;%\n  drop_na(world_6region, world_4region, country, gini, hapiscore_whr) %&gt;% \n  arrange(desc(co2_cons))"
   },
   {
     "objectID": "sessions/good_plots/information.html#informationen",
@@ -718,7 +718,7 @@
     "href": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket",
     "title": "Einführung",
     "section": "Datasaurus Dozen (quartets-Paket)",
-    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nh_lines\n58.27\n69.90\n\n\nslant_down\n79.48\n49.14\n\n\nx_shape\n37.10\n15.45\n\n\naway\n59.83\n69.15\n\n\nslant_down\n37.54\n32.88\n\n\nv_lines\n49.95\n48.23\n\n\nslant_up\n65.15\n92.50\n\n\nx_shape\n40.75\n77.20\n\n\nslant_up\n72.62\n74.53\n\n\nwide_lines\n76.67\n38.44\n\n\ndino\n53.85\n80.64\n\n\ncircle\n58.57\n16.64\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
+    "text": "Datasaurus Dozen (quartets-Paket)\n\n\n\n\n\n\n\ndataset\nx\ny\n\n\n\n\nwide_lines\n65.45\n43.27\n\n\nslant_down\n45.50\n3.99\n\n\nv_lines\n50.23\n80.65\n\n\ndino\n50.00\n55.26\n\n\nh_lines\n69.96\n10.51\n\n\ndino\n32.56\n32.18\n\n\nwide_lines\n63.95\n18.69\n\n\ndots\n50.81\n17.11\n\n\ndino\n61.79\n69.10\n\n\naway\n39.81\n65.33\n\n\nbullseye\n37.31\n45.26\n\n\naway\n21.78\n6.62\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIn den Daten lässt sich kein Muster erkennen."
   },
   {
     "objectID": "sessions/Einführung/slides.html#datasaurus-dozen-quartets-paket-1",
@@ -844,7 +844,7 @@
     "href": "sessions/Einführung/slides.html#setup",
     "title": "Einführung",
     "section": "Setup",
-    "text": "Setup\nPakete, die wir für die Beispiele im Foliensatz benötigen:\n\n# install.packages(\"ggplot2\", \"quartets\", \"tidyverse\", \"ggrepel\", \"ggthemes\", \"gganimate\", \"plotly\")\n\nlibrary(ggplot2)\nlibrary(quartets)\nlibrary(tidyverse)\nlibrary(ggrepel)\nlibrary(ggthemes)\nlibrary(gganimate)\nlibrary(plotly)\n\nDatensatz\n\ngapminder &lt;- readRDS(url(\"https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds\"))"
+    "text": "Setup\nPakete, die wir für die Beispiele im Foliensatz benötigen:\n\n# install.packages(c(\"ggplot2\", \"quartets\", \"tidyverse\", \"ggrepel\", \"ggthemes\", \"gganimate\", \"plotly\"))\n\nlibrary(ggplot2)\nlibrary(quartets)\nlibrary(tidyverse)\nlibrary(ggrepel)\nlibrary(ggthemes)\nlibrary(gganimate)\nlibrary(plotly)\n\nDatensatz\n\ngapminder &lt;- readRDS(url(\"https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds\"))"
   },
   {
     "objectID": "sessions/Einführung/slides.html#scatterplot",
@@ -964,6 +964,13 @@
     "title": "Einführung",
     "section": "Bubble Chart",
     "text": "Bubble Chart\nScatterplot, in dem über Größe und Farbe der Datenpunkte zusätzliche Information dargestellt wird.\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n\n\n\n\noptions(scipen=10)\n\ntuerkis &lt;- rgb(0,213,233, max=255)\ngruen &lt;- rgb(127,235,0, max=255)\nrot &lt;- rgb(255,88,114, max=255)\ngelb &lt;- rgb(255,231,0, max=255)\n\ngapminder |&gt;\n  subset(time == 2023) |&gt; \n  mutate(pop = pop/1000000) |&gt;\n  ggplot(aes(x=gini, y=hapiscore_whr)) +\n  annotate(\"text\", x=45, y=50, label=\"2023\", size=70, colour =\"grey90\", family=\"mono\", fontface=1) +\n  theme_classic() + \n  geom_point(aes(fill = world_4region, size = pop), shape=21, alpha=.7) +\n  scale_size(range = c(1, 30)) +\n  labs(x=\"Gini-Index\", y=\"Happiness Score\") +\n  scale_y_continuous(limits = c(15, 85), \n                     breaks = seq(20,80, by=10),\n                     labels = paste0(seq(20,80, by=10), \"%\")) +\n  scale_x_continuous(limits = c(18,75),\n                     breaks = seq(20,70, by= 5)) +\n  scale_fill_manual(\n    values = c(tuerkis, gruen, rot, gelb),\n    breaks = c(\"africa\", \"americas\", \"asia\", \"europe\")) +\n  theme(text = element_text(size=12),\n        axis.text = element_text(size=rel(.8)),\n        axis.title = element_text(size=rel(1.2)),\n        panel.grid.major = element_line(colour = \"azure2\")) +\n  labs(title=\"Bubble Chart im Gapminder-Look\",\n       subtitle=\"Jahr: 2023\",\n       x=\"Gini-Index\",\n       y=\"Happiness Score (WHR)\",\n       fill=\"Weltregion\",\n       size=\"Einwohnerzahl\\n(in Mio.)\") +\n  guides(fill = guide_legend(override.aes = list(size = 5), order=1)) \n\n\n\n\n\nAbbildung in Anlehnung an die typische Darstellung auf gapminder"
+  },
+  {
+    "objectID": "sessions/Einführung/slides.html#word-clouds",
+    "href": "sessions/Einführung/slides.html#word-clouds",
+    "title": "Einführung",
+    "section": "Word Clouds",
+    "text": "Word Clouds"
   },
   {
     "objectID": "sessions/Einführung/slides.html#karten",
@@ -1274,11 +1281,11 @@
     "text": "Einführung\n\n\n\nBisher haben wir ausschließlich statische Grafiken erzeugt.\n\nForschungsergebnisse werden zunehmend nicht mehr nur in Printmedien dargestellt, sodass wir animierte und interaktive Grafiken teilen können. So kann noch mehr Information in einer einzigen “Grafik” zugänglich gemacht werden!\n\n\n\n\n\nFoto von Jakob Owens auf Unsplash"
   },
   {
-    "objectID": "sessions/animate_plotly/slides.html#vorbereitung",
-    "href": "sessions/animate_plotly/slides.html#vorbereitung",
+    "objectID": "sessions/animate_plotly/slides.html#setup",
+    "href": "sessions/animate_plotly/slides.html#setup",
     "title": "gganimate und plotly",
-    "section": "Vorbereitung",
-    "text": "Vorbereitung\nPakete, die wir für die Beispiele im Foliensatz benötigen:\n\nlibrary(ggplot2)\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(ggthemes)\nlibrary(gganimate)\nlibrary(plotly)\nlibrary(htmlwidgets)\n\nDatensatz\n\ngapminder &lt;- readRDS(url(\"https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds\"))"
+    "section": "Setup",
+    "text": "Setup\nPakete, die wir für die Beispiele im Foliensatz benötigen:\n\n# install.packages(c(\"ggplot2\", \"dplyr\", \"tidyr\", \"ggthemes\", \"gganimate\", \"plotly\", \"htmlwidgets\"))\n\nlibrary(ggplot2)\nlibrary(dplyr)\nlibrary(tidyr)\nlibrary(ggthemes)\nlibrary(gganimate)\nlibrary(plotly)\nlibrary(htmlwidgets)\n\nDatensatz\n\ngapminder &lt;- readRDS(url(\"https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds\"))"
   },
   {
     "objectID": "sessions/animate_plotly/slides.html#animierte-grafiken-1",
@@ -1355,7 +1362,7 @@
     "href": "sessions/exercise/slides.html#vorbereitung",
     "title": "Abschluss",
     "section": "Vorbereitung",
-    "text": "Vorbereitung\nPakete, die wir für die Übungen im Foliensatz benötigen:\n\n# install.packages(c(\"ggimage\", \"here\", \"tidyverse\", \"ggtext\", \"glue\", \"patchwork\", \"ggrepel\"))\n\nlibrary(ggimage)\nlibrary(here)\nlibrary(patchwork)\nlibrary(tidyverse)\nlibrary(ggtext)\nlibrary(glue)\nlibrary(ggrepel)\n\nDatensatz: characters\n\ncharacters &lt;- readRDS(url(\"https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/characters.rds\"))\n\n## Optional: Abspeichern\nsaveRDS(characters, here::here(\"data\", \"characters.rds\"))\n\nDatensatz: gapminder\n\ngapminder &lt;- readRDS(url(\"https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds\"))\n\n## Optional: Abspeichern\nsaveRDS(gapminder, here::here(\"data\", \"gapminder_dat.rds\"))"
+    "text": "Vorbereitung\nPakete, die wir für die Übungen im Foliensatz benötigen:\n\n# install.packages(c(\"ggplot2\", \"ggimage\", \"here\", \"tidyverse\", \"ggtext\", \"glue\", \"patchwork\", \"ggrepel\", \"scales\"))\n\nlibrary(ggplot2)\nlibrary(ggimage)\nlibrary(here)\nlibrary(patchwork)\nlibrary(tidyverse)\nlibrary(ggtext)\nlibrary(glue)\nlibrary(ggrepel)\nlibrary(scales)\n\nDatensatz: characters\n\ncharacters &lt;- readRDS(url(\"https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/characters.rds\"))\n\n## Optional: Abspeichern\nsaveRDS(characters, here::here(\"data\", \"characters.rds\"))\n\nDatensatz: gapminder\n\ngapminder &lt;- readRDS(url(\"https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds\"))\n\n## Optional: Abspeichern\nsaveRDS(gapminder, here::here(\"data\", \"gapminder_dat.rds\"))"
   },
   {
     "objectID": "sessions/exercise/slides.html#übung-1-datenaufbereitung",
@@ -1411,7 +1418,7 @@
     "href": "sessions/ggplot_intro/slides.html#setup",
     "title": "ggplot2: Basics",
     "section": "Setup",
-    "text": "Setup\n\n# install.packages(\"tidyverse\", \"here\")\n\nlibrary(tidyverse)\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\ngapminder_2019 &lt;- gapminder %&gt;%\n  filter(time == 2019) %&gt;%\n  tidyr::drop_na(gini, hapiscore_whr)"
+    "text": "Setup\n\n# install.packages(c(\"tidyverse\", \"here\"))\n\nlibrary(tidyverse)\n\ngapminder &lt;- readRDS(url(\"https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds\"))\n\ngapminder_2019 &lt;- gapminder %&gt;%\n  filter(time == 2019) %&gt;%\n  tidyr::drop_na(gini, hapiscore_whr)"
   },
   {
     "objectID": "sessions/ggplot_intro/slides.html#ggplot2-das-paket",
@@ -1614,7 +1621,7 @@
     "href": "sessions/good_plots/maps.html#simple-features",
     "title": "Karten",
     "section": "Simple Features",
-    "text": "Simple Features\nBestimmtes Encoding für Geodaten, das häufig verwendet wird. Um mit simple features arbeiten zu könnnen benötigt man das Paket sf.\n\n# install.packages(\"sf\")\nlibrary(tidyverse)\nlibrary(sf)\n\nAls Beispiel nutzen wir Daten zur Bundestagswahl in Deutschland aus dem gerda-Paket.\n\n# install.packages(\"gerda\")\nlibrary(gerda)"
+    "text": "Simple Features\nBestimmtes Encoding für Geodaten, das häufig verwendet wird. Um mit simple features arbeiten zu könnnen benötigt man das Paket sf.\n\n# install.packages(c(\"sf\", \"tidyverse\"))\nlibrary(tidyverse)\nlibrary(sf)\n\nAls Beispiel nutzen wir Daten zur Bundestagswahl in Deutschland aus dem gerda-Paket.\n\n# install.packages(\"gerda\")\nlibrary(gerda)"
   },
   {
     "objectID": "sessions/good_plots/maps.html#datenaufbereitung",
@@ -1691,7 +1698,7 @@
     "href": "sessions/good_plots/visual_form.html#setup",
     "title": "Visual Form",
     "section": "Setup",
-    "text": "Setup\n\n# install.packages(c(\"here\", \"ggwordcloud\", \"ggrepel\", \"ggtext\", \"showtext\", \"tidyverse\", \"paletteer\", \"ggthemes\"))\n\nlibrary(here)\n#library(janitor)\nlibrary(ggwordcloud)\nlibrary(ggrepel)\nlibrary(ggtext)\nlibrary(showtext)\nlibrary(tidyverse)\nlibrary(paletteer)\nlibrary(ggthemes)\n\n\ngapminder &lt;- readRDS(here::here(\"data\", \"gapminder_dat.rds\"))\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_2020 &lt;- gapminder %&gt;%\n  filter(time == 2020) %&gt;%\n  drop_na(world_6region, world_4region, country, gini, hapiscore_whr) %&gt;%\n  arrange(desc(co2_cons))"
+    "text": "Setup\n\n# install.packages(c(\"here\", \"ggwordcloud\", \"ggrepel\", \"ggtext\", \"showtext\", \"tidyverse\", \"paletteer\", \"ggthemes\"))\n\nlibrary(here)\n#library(janitor)\nlibrary(ggwordcloud)\nlibrary(ggrepel)\nlibrary(ggtext)\nlibrary(showtext)\nlibrary(tidyverse)\nlibrary(paletteer)\nlibrary(ggthemes)\n\n\ngapminder &lt;- readRDS(url(\"https://github.com/nickhaf/PlotWorkshop/raw/refs/heads/main/data/gapminder_dat.rds\"))\n\ngapminder_europe &lt;- gapminder %&gt;%\n  filter(world_4region == \"europe\", time &gt;= 1900, time &lt;= 2024) %&gt;%\n  drop_na(gini)\n\ngapminder_2020 &lt;- gapminder %&gt;%\n  filter(time == 2020) %&gt;%\n  drop_na(world_6region, world_4region, country, gini, hapiscore_whr) %&gt;%\n  arrange(desc(co2_cons))"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#der-ausgangsplot-für-diese-session-wiederholung",
@@ -1894,7 +1901,7 @@
     "href": "sessions/good_plots/visual_form.html#farben-wählen",
     "title": "Visual Form",
     "section": "Farben wählen",
-    "text": "Farben wählen\n\n\n\nName: \"red\"\nrgb(): rgb(1,0,0)\nHex code: #FF0000\n\n\n\nggplot(\n  gapminder_2020,\n  aes(x = gini, y = hapiscore_whr)\n) +\n  geom_point(size = 3, color = \"#FF0000\") +\n  geom_smooth(color = \"darkgreen\") +\n  theme_bg()"
+    "text": "Farben wählen\n\n\n\nName: \"red\"\nrgb(): rgb(1,0,0)\nHex code: #FF0000\n\n\n\nggplot(\n  gapminder_2020,\n  aes(x = gini, y = hapiscore_whr)\n) +\n  geom_point(size = 3, color = \"#FF0000\") +\n  geom_smooth(color = \"blue\") +\n  theme_bg()"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#farben-manuell-setzen",
@@ -1922,7 +1929,7 @@
     "href": "sessions/good_plots/visual_form.html#externe-farb-paletten-1",
     "title": "Visual Form",
     "section": "Externe Farb-Paletten",
-    "text": "Externe Farb-Paletten\n\n\npaletteer\nSammlung von Paletten aus diversen Paketen\n\nPalette-Finder\nGallerie\n\nZ.B. Enthält \"lisa::Jean_MichelBasquiat_1\" folgende Farben:\n\n paletteer::paletteer_d(\"lisa::Jean_MichelBasquiat_1\") \n\n&lt;colors&gt;\n#C11432FF #009ADAFF #66A64FFF #FDD10AFF #070707FF \n\n\n\n\nCodePlot\n\n\n\nlibrary(paletteer)\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_paletteer_d(\"lisa::Jean_MichelBasquiat_1\")"
+    "text": "Externe Farb-Paletten\n\n\npaletteer\nSammlung von Paletten aus diversen Paketen\n\nPalette-Finder\nGalerie\n\nZ.B. Enthält \"lisa::Jean_MichelBasquiat_1\" folgende Farben:\n\n paletteer::paletteer_d(\"lisa::Jean_MichelBasquiat_1\") \n\n&lt;colors&gt;\n#C11432FF #009ADAFF #66A64FFF #FDD10AFF #070707FF \n\n\n\n\nCodePlot\n\n\n\nlibrary(paletteer)\n\nggplot(\n  continent_co2_pct,\n  aes(\n    x = world_6region,\n    y = percentage,\n    fill = world_6region\n  )\n) +\n  geom_bar(stat = \"identity\", width = 1) +\n  theme_minimal() +\n  labs(title = \"Share of global per capita CO2 consumption\") +\n  scale_fill_paletteer_d(\"lisa::Jean_MichelBasquiat_1\")"
   },
   {
     "objectID": "sessions/good_plots/visual_form.html#section-1",
@@ -1932,15 +1939,15 @@
     "text": "🏋 ÜbungMögliche Lösungcolorblind-check\n\n\n\nWechsel die Farbpalette für den Übungsplot und teste sie auf Farbfehlsichtigkeiten.\nLink zum Setup, falls nötig\n\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(aes(color = world_4region, size = pop)) +\n  geom_smooth() +\n  labs(\n    title = \"Ungleichheit = Un-Happiness?\",\n    subtitle = \"Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2020\",\n    x = \"Gini-Index\",\n    y = \"Happiness-Score\",\n  ) +\n  theme_bw()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(\n  data = gapminder_2020,\n  mapping = aes(\n    x = gini,\n    y = hapiscore_whr\n  )\n) +\n  geom_point(aes(color = world_4region, size = pop)) +\n  geom_smooth() +\n  labs(\n    title = \"Ungleichheit = Un-Happiness?\",\n    subtitle = \"Gini-Koeffizient und Happiness-Score in verschiedenen Ländern 2020\",\n    x = \"Gini-Index\",\n    y = \"Happiness-Score\",\n  ) +\n  theme_bw() +\n  paletteer::scale_colour_paletteer_d(\"lisa::FridaKahlo\")\n\n\n\n\n\n\n\n\n\n\n\n\n\npalette_check(paletteer::paletteer_d(\"lisa::FridaKahlo\"), \n              plot = TRUE)\n\n\n\n\n\n\n\n\n\n          name n tolerance ncp ndcp  min_dist mean_dist max_dist\n1       normal 5  19.20737  10   10 19.207369  40.81006 72.81425\n2 deuteranopia 5  19.20737  10    8  1.160009  33.73234 73.34852\n3   protanopia 5  19.20737  10    7  9.881437  34.30690 72.28313\n4   tritanopia 5  19.20737  10    9 18.518051  39.51372 72.61195"
   },
   {
-    "objectID": "sessions/good_plots/visual_form.html#funktionelles-desing-1",
-    "href": "sessions/good_plots/visual_form.html#funktionelles-desing-1",
+    "objectID": "sessions/good_plots/visual_form.html#funktionelles-design-1",
+    "href": "sessions/good_plots/visual_form.html#funktionelles-design-1",
     "title": "Visual Form",
-    "section": "Funktionelles Desing",
-    "text": "Funktionelles Desing\n\n\n\n\n\n\nFoto von Kelly Sikkema auf Unsplash\nFoto von Yucel Moran auf Unsplash\n\n\nHier gilt ganz besonders: Simplify to Clarify"
+    "section": "Funktionelles Design",
+    "text": "Funktionelles Design\n\n\n\n\n\n\nFoto von Kelly Sikkema auf Unsplash\nFoto von Yucel Moran auf Unsplash\n\n\nHier gilt ganz besonders: Simplify to Clarify"
   },
   {
-    "objectID": "sessions/good_plots/visual_form.html#funktionelles-design",
-    "href": "sessions/good_plots/visual_form.html#funktionelles-design",
+    "objectID": "sessions/good_plots/visual_form.html#funktionelles-design-2",
+    "href": "sessions/good_plots/visual_form.html#funktionelles-design-2",
     "title": "Visual Form",
     "section": "Funktionelles Design",
     "text": "Funktionelles Design\n\n\n\n\nFoto von BVG\n\n\n\n\nFoto von BVG\n\n\n\n\n\n\n\n\nDabei kann es helfen, sich von bereits vorhandenen Plots inspirieren zu lassen.\nHandschriftliche Skizze ist auch erstmal hilfreich!"
